@@ -54,9 +54,9 @@
 	showstringspaces=false,
 	showtabs=false, 
 	tabsize=4, 
-	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},
 	keywordstyle=\color{codeblue},
-	emph={random,object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emph={random,object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,pow},          % Custom highlighting
 	emphstyle=\color{codered},
 	stringstyle=\color{codegreen},
 	showstringspaces=false,
@@ -74,20 +74,23 @@
 	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
 
 
-% Deisgn
+% Design
 \usepackage[labelfont=bf]{caption}
 \usepackage[margin=0.6in]{geometry}
 \usepackage{multicol}
 \usepackage[skip=4pt, indent=0pt]{parskip}
 \usepackage[normalem]{ulem}
 \forestset{default}
+
 \renewcommand\labelitemi{$\bullet$}
+
 \usepackage{titlesec}
 \titleformat{\section}[block]
 	{\fontsize{20}{20}}
 	{\huge (\thesection) \Large \dotfill\; }
 	{0em}
 {\MakeUppercase}
+
 \usepackage{graphicx}
 \graphicspath{ {./} }
 
@@ -315,15 +318,18 @@
 
 %! ~~~ Document ~~~
 
-\title{Extended Intro. To Computer Science -- Shit Cheat Sheet}
+\title{\vspace{-0.8cm}Extended Intro. To Computer Science -- Shit Cheat Sheet}
 \author{\textbf{\textit{Shahar Perets $\sim$ 2024}}}
-\date{\normalsize Made using free software \\ But not by Stallman's definitions}
+\date{\normalsize Made using free software, but not by Stallman's definitions}
 
 \begin{document}
 	\setlength{\abovedisplayskip}{0pt}
 	\setlength{\belowdisplayskip}{2pt}
 	\setlength{\abovedisplayshortskip}{0pt}
 	\setlength{\belowdisplayshortskip}{0pt}
+	
+	\setlength{\columnseprule}{0.2pt}
+	
 	\section{\fortitle{Python Built-Ins}}Python built-in data types, functions and etc. 
 	\begin{multicols}{2}
 		
@@ -358,10 +364,10 @@
 		k in d, get, set, del: $ \bm{O(1)} $ \\
 		\textit{(For more see 4.4. hash table)} \\
 		\textbf{methods} \\
-		\texttt{\_\_init\_\_(iterable [opt.], **kwargs), keys(), values() -> iterator, items() -> iterator} (keys and values combined)\texttt{, clear(), copy() -> dict}
+		\texttt{\_\_init\_\_(iterable [opt.], **kwargs), keys(), values() -> iterable, items() -> iterable[tuple]} (keys and values combined)\texttt{, clear() -> None, copy() -> dict, \_\_init\_\_(iterable[iterable], **kwargs)}
 		\subsubsection{set}
 		\textbf{methods: }\texttt{pop, add, remove(elem), pop()} removes random value, \texttt{clear()}. \\
-		\textbf{complexity: }\texttt{in, pop, add, remove}: avg. $ O(1) $, worst $ O(n) $. For more see 4.4 hash table
+		\textbf{complexity: }\texttt{in, pop, add, remove}: avg. $ O(1) $, worst $ O(n) $. \textit{(For more see 4.4. hash table)}
 		
 		\subsection{special methods}
 		\textit{assuming \_\_\{name\}\_\_ syx.} \\
@@ -412,10 +418,11 @@
 		\subsection{Asymptotic Barriers}
 		\subsubsection{definition}
 		\begin{itemize}
-			\item $ f(n) = O(g(n)) $ iff exists $ c, n_0 \ge 0 $ constants such as $ \forall n \ge n_0. \ f(n) \le c g(n) $
-			\item $ f(n) = \Omega(g(n)) $ iff exists $ c, n_0 \ge 0 $ constants such as $ \forall n \ge n_0. \ f(n) \ge c g(n) $
+			\item $ f(n) = O(g(n)) $ iff $ \exists c, n_0 \ge 0. \forall n \ge n_0. \ f(n) \le c g(n) $
+			\item $ f(n) = \Omega(g(n)) $ iff $ \exists c, n_0 \ge 0. \forall n \ge n_0. \ f(n) \ge c g(n) $
 			\item $ f(n) = \Theta(g(n)) $ iff $ f(n) = O(g(n)) \land f(n) = \Omega(g(n)) $
 		\end{itemize}
+		\columnbreak
 		\begin{multicols}{2}
 			[\subsubsection{Hierarchy}]
 			\begin{enumerate}
@@ -491,8 +498,7 @@ def modpow(a, b, c):
 			a = a*a % c; b = b//2
 			return result\end{lstlisting}
 		\subsubsection{pseudo-primes}
-		Returns if $ N $ is prime with probability of $ 1 - 0.5^{a} $. 
-		Using the $ Ferm_n $ group: 
+		Returns if $ N $ is prime with probability of $ 1 - 0.5^{a} $, by fermat's little theorm. $\bm{O(n^3)}$ 
 		\begin{lstlisting}
 def is_prime(N, tests): 
 	for i in range(tests): 
@@ -589,13 +595,13 @@ Traceback [...] StopIteration\end{lstlisting}
 		
 		\subsection{Definitions for codes}
 		$\set C \colon \{0, 1\}^\Sigma$ \textit{be a code;} \\
-		\textbf{Univeral: }$\forall x. |C(x)| < |x|$ when $|x|$ is the raw (binary) length. There's no universal lossless compression scheme. \\
+		\textbf{Univeral: }$\forall x. |C(x)| < |x|$ when $|x|$ is the raw (binary) length. \textit{There isn't a universal lossless compression scheme. }\\
 		\textbf{Codewords: } $x$ is a codeword iff $x \in \Img(C)$ \\
 		\textbf{Variable-length: } $\nexists n. \forall x \in \Img(C). |x| = n$ \\
 		\textbf{Prefix-Free: }$\forall \tau, \gamma \in \Sigma. \tau \neq \gamma \!\!\!\implies\!\!\!\!$ $C(\tau)$ isn't a prefix of $C(\gamma)$. \\
 		\textbf{Uniquely-decodable: }$\exists C\op \colon \{0, 1\}^n \to \Sigma^n$ such as $\forall x_0, \dots x_n \in \dom(C\op). C(C\op_0) = x_0, \dots, C(C\op_n) = x_n$. 
 		
-		\subsection{Codes}
+		\subsection{Compression codes}
 		\subsubsection{Huffman}
 		Create a Huffman tree from a given corpus: 
 		\begin{enumerate}
@@ -608,6 +614,27 @@ Traceback [...] StopIteration\end{lstlisting}
 		Then, each way (left/rigth) to go to a given character, is decoded to 0/1. 
 		
 		\subsection{Lempel-Ziv}
+		Saves repotitions in format of \texttt{[m, k]} when $m$ is the offset backwards, and $k$ is the length of the repitation, e.g.: 
+		\begin{lstlisting}[emph={LZW_compress}]
+>>> LZW_compress("abcabcabc")
+["a", "b", "c", [3, 6]]	\end{lstlisting}
+		We denote $1 \le m \le W \land 1 \le k \le L$, when by default $W = 2095 = 2^{12} - 1, L = 31 = 2^{5} - 1$ (takes 12, 5 bits respectively). 
+		
+		While converting the above list to binary, we add \texttt{0} before each single ASCII character, and \texttt{1} before each \texttt{[m, k]} entry. Hence, assuming ASCII encoding is being used, the minimal length word compressing is $12 + 5 + 1$ bits ($\log W + \log L + 1$ for the prefix), when a given character takes $7$ (ASCII) $+ \; 1$ (prefix) bits. In general, \textbf{we'll compress when}: 
+		\[ 8k > 1 + |W| + |L| + 1, (|X| = \lf \log_2 X \rf + 1) \]
+		This following function is being used to find the maximum match within a $T$ text, when $p$ is the current index: 
+		\begin{lstlisting}
+def maxmatch(T, p, W=2**12-1, L=2**5-1): 
+n = len(T); m = 0; k = 0;
+for offset in range(1, min(p, W) + 1):
+	match_len, j = 0, p-offeset
+	while match_len < min(n - p, L) and \
+			T[j+match_len] == T[p + match_len]
+		match_len += 1
+		if match_len > k: 
+			k, m = match_len, offset
+	return m, k	\end{lstlisting}
+		
 		
 		
 	\end{multicols}
@@ -620,8 +647,6 @@ Traceback [...] StopIteration\end{lstlisting}
 	
 	{\let\newpage\relax\maketitle}
 	\begin{center}
-		
-		\small\textit{Nvidia, fuck you!}
 		
 		\small\textit{contact me: sheave.lariat-0h@icloud.com \& u/Sh\_Pe}
 		
