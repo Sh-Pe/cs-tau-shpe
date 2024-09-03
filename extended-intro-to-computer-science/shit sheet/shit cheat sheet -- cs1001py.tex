@@ -76,7 +76,7 @@
 
 % Design
 \usepackage[labelfont=bf]{caption}
-\usepackage[margin=0.6in]{geometry}
+\usepackage[margin=0.4in]{geometry}
 \usepackage{multicol}
 \usepackage[skip=4pt, indent=0pt]{parskip}
 \usepackage[normalem]{ulem}
@@ -422,7 +422,7 @@
 			\item $ f(n) = \Omega(g(n)) $ iff $ \exists c, n_0 \ge 0. \forall n \ge n_0. \ f(n) \ge c g(n) $
 			\item $ f(n) = \Theta(g(n)) $ iff $ f(n) = O(g(n)) \land f(n) = \Omega(g(n)) $
 		\end{itemize}
-		\columnbreak
+		
 		\begin{multicols}{2}
 			[\subsubsection{Hierarchy}]
 			\begin{enumerate}
@@ -463,42 +463,30 @@
 	\section{\fortitle{Algorithms}}
 	\begin{multicols}{2}
 		
-		\subsection{Sorting Algo.}
+		\subsection{Sorting \& Searching Algo.}
 		\subsubsection{Merge Sort}
-		\begin{lstlisting}
-def mergesort(lst): 
-	n = len(lst)
-	if n <= 1: return lst
-	else: return merge( # user-defined
-		mergesort(lst[0:n//2])
-		mergesort(lst[n//2:n]))\end{lstlisting}
 		\textbf{complexity: }$ \Theta(n \log n) $ (Assuming implementation without slicing)
-		\subsubsection{quicksort}
-		\textbf{complexity: }best, avg.: $ O(n \log n) $, worst: $ O(n^2) $
-		\begin{lstlisting}
-def quicksort(lst): 
-	if len(lst) <= 1: return lst
-		pivot = random.choice(lst)
-		smaller = [elem for elem in lst if elem < pivot]
-		equal   = [elem for elem in lst if elem == pivot]
-		greater = [elem for elem in lst if elem > pivot]
-	return quicksort(smaller)+equal+quicksort(greater)\end{lstlisting}
-		\subsubsection{selection sort}
+		\subsubsection{Quicksort}
+		\textbf{complexity: }best, avg.: $ O(n \log n) $, worst: $ O(n^2) $. Same as merge sort, with random pivot. 
+		\subsubsection{Selection sort}
 		For i in [0, n], find the minimum of lst[i:] and position it at the begining. Always $ O(n^2) $. Bad. No real usecase. 
+		\subsection{Binary search}
+		When an ordered list is given, find the middle, then repeat for the right/left side of it (larger/smaller). Takes $O(\logn)$
 		
 		\subsection{Number Theory Algo. }
-		\subsubsection{modular exponention}
+		\subsubsection{Modular exponention \& Interating Square}
 		\textbf{Complexity: }$ O(n^3) $, suppose \texttt{a, b, c} are $ n $-bit long. \\
-		\textbf{Integer exponent: }without the \texttt{\%c}
+		\textbf{Interating Square algo.: }same as the code below, but without the \texttt{\%c}.
 		\begin{lstlisting}
 def modpow(a, b, c): 
 	result = 1
 	while b > 0: 
 		if b % 2 == 1: result = (result * a) % c
 			a = a*a % c; b = b//2
-			return result\end{lstlisting}
+			return result # = a**b%c = pow(a, b, c)\end{lstlisting}
 		\subsubsection{pseudo-primes}
-		Returns if $ N $ is prime with probability of $ 1 - 0.5^{a} $, by fermat's little theorm. $\bm{O(n^3)}$ 
+		Returns if $ N $ is prime with probability of $ 1 - 0.5^{a} $, by fermat's little theorm. $O(n^3)$. \textit{(code in the next page)}
+		\pagebreak
 		\begin{lstlisting}
 def is_prime(N, tests): 
 	for i in range(tests): 
@@ -507,7 +495,7 @@ def is_prime(N, tests):
 			return False
 			reutrn True\end{lstlisting}
 		\subsubsection{GCD (Euclid Algo.)}
-		\textbf{Complexity: }$ \approx 2 \log b $ iterations which is $ O(\log b) $ (WOLOS $ b \ge a $). 
+		\textbf{Complexity: }$ \approx 2 \log b $ iterations which is $ O(\log b) $ (WOLOG $ b \ge a $). 
 		\begin{lstlisting}
 def gcd(a, b): 
 	if a < b: a, b = b, a # switch
@@ -554,14 +542,19 @@ def gcd(a, b):
 		Each node contains inforamtion about the next node in the right and left subtrees, and its value. The binary tree class conatains info. about the root and the size. Assuming the tree is balanced (deepest in $ \log n $), then insert, lookup and minimum takes $ \log n $ time. 
 		
 		\subsection{Hash table}
-		For $ m $-sized hash table the hash function would be \texttt{hash(n) \% m}. For each hash value assinged a list, which contains all of the elements with the same hash value. On avg. $ \alpha = \tfrac{m}{n} $ ($ \alpha $ called the \textbf{load factor}). The \texttt{dict} keys and \texttt{set} build-in classes uses $ n $-sized hash table, means $ O(\tfrac{n}{n}) = O(1) $ on avg., worst case $ O(n) $. 
+		For $ m $-sized hash table the hash function would be \texttt{hash(n) \% m}. For each hash value assinged a list, which contains all of the elements with the same hash value. On avg. $ \alpha = \tfrac{m}{n} $ ($ \alpha $ called the \textbf{load factor}). The \texttt{dict} keys and \texttt{set} build-in classes uses $ n $-sized hash table, means $ O(\tfrac{n}{n}) = O(1) $ on avg., worst case $ O(n) $ (happens when every key is hashed to the same value).
 		\definecolor{deepred}{rgb}{0.5,0.03,0.02}
 		
+		\columnbreak
 		\subsection{Generators}
 		\subsubsection{Creation}
 		\begin{lstlisting}
-def gen(*arg, **kwargs): yield val  # opt. 1
-gen = (val for val in iterable)     # opt. 2\end{lstlisting}
+>>> def gen(*arg, **kwargs): yield val  # opt. 1
+>>> print(type(gen), type(gen()))
+<class 'function'> <class 'generator'>
+>>> gen = (val for val in iterable)     # opt. 2
+>>> type(gen)
+<class 'generator'>\end{lstlisting}
 		\subsubsection{Usage}
 		To get the next item, use the \texttt{next(gen)} function. We'll get a \texttt{StopIteration} at the end of finite generators. e.g.:
 		\begin{lstlisting}[emph={StopIteration,Traceback}]
@@ -584,12 +577,13 @@ Traceback [...] StopIteration\end{lstlisting}
 		\textbf{Domain: }$ 0 \le exponent \le 2047, \ 0 \le fraction \le \sum_{52}^{i = 1} 2^{-i} = 1 - 2^{-52} $
 		
 		\subsection{String Representations}
-		\textbf{ASCII: }8-bit, \ttt{00} to \ttt{1F}: nulls, \texttt{30} to \texttt{39}: 0-9, \texttt{41}-\texttt{5A} / 65-90: A-Z, \texttt{61}-\texttt{7A} / 98-122: a - b (including). 
+		\textbf{ASCII: }7-bit fixed-length, \ttt{00} to \ttt{1F} / 0-31: nulls, \texttt{30} to \texttt{39} / 48-57: 0-9, \texttt{41}-\texttt{5A} / 65-90: A-Z, \texttt{61}-\texttt{7A} / 98-122: a - b (including). 
 		
 		\textbf{Unicode: }variable length code. Hebrew is between 1488-1514 (22 + 5 = 27). The ascii code above works for unicode too. 
 		
 	\end{multicols}
 	
+	\pagebreak
 	\section{\fortitle{Text Compression}}
 	\begin{multicols}{2}
 		
@@ -620,7 +614,7 @@ Traceback [...] StopIteration\end{lstlisting}
 ["a", "b", "c", [3, 6]]	\end{lstlisting}
 		We denote $1 \le m \le W \land 1 \le k \le L$, when by default $W = 2095 = 2^{12} - 1, L = 31 = 2^{5} - 1$ (takes 12, 5 bits respectively). 
 		
-		While converting the above list to binary, we add \texttt{0} before each single ASCII character, and \texttt{1} before each \texttt{[m, k]} entry. Hence, assuming ASCII encoding is being used, the minimal length word compressing is $12 + 5 + 1$ bits ($\log W + \log L + 1$ for the prefix), when a given character takes $7$ (ASCII) $+ \; 1$ (prefix) bits. In general, \textbf{we'll compress when}: 
+		While converting the above intermediate list to binary, we add \texttt{0} before each single ASCII character, and \texttt{1} before each \texttt{[m, k]} entry. Hence, assuming ASCII encoding is being used, the minimal length word compressing is $12 + 5 + 1$ bits ($\log W + \log L + 1$ for the prefix), when a given character takes $7$ (ASCII) $+ \; 1$ (prefix) bits. In general, \textbf{we'll compress when}: 
 		\[ 8k > 1 + |W| + |L| + 1, (|X| = \lf \log_2 X \rf + 1) \]
 		This following function is being used to find the maximum match within a $T$ text, when $p$ is the current index: 
 		\begin{lstlisting}

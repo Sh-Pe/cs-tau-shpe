@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.2 (MiKTeX 24.4) (format=lualatex 2024.6.30)  3 SEP 2024 14:27
+This is LuaHBTeX, Version 1.18.2 (MiKTeX 24.4) (format=lualatex 2024.6.30)  3 SEP 2024 15:01
  restricted system commands enabled.
 **"shit cheat sheet -- cs1001py.tex"
 ("./shit cheat sheet -- cs1001py.tex"
@@ -1138,15 +1138,15 @@ Package caption Info: End \AtBeginDocument code.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(43.36243pt, 527.57014pt, 43.36243pt)
-* v-part:(T,H,B)=(43.36243pt, 708.24513pt, 43.36243pt)
+* h-part:(L,W,R)=(28.90755pt, 556.4799pt, 28.90755pt)
+* v-part:(T,H,B)=(28.90755pt, 737.15489pt, 28.90755pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=527.57014pt
-* \textheight=708.24513pt
-* \oddsidemargin=-28.90756pt
-* \evensidemargin=-28.90756pt
-* \topmargin=-65.90756pt
+* \textwidth=556.4799pt
+* \textheight=737.15489pt
+* \oddsidemargin=-43.36244pt
+* \evensidemargin=-43.36244pt
+* \topmargin=-80.36244pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -1182,83 +1182,85 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 34
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 Underfull \hbox (badness 10000) in paragraph at lines 338--351
-\TU/lmtt/m/n/10 sorted(iterable, key=None, reverse=False) ->
+\TU/lmtt/m/n/10 max, min(iterable, key:function=None) \TU/lmr/m/n/10 or \TU/lmt
+t/m/n/10 (*args,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 338--351
+\TU/lmtt/m/n/10 sorted(iterable, key=None, reverse=False) -> list\TU/lmr/m/n/10
+ :
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 354--361
-\TU/lmtt/m/n/10 a[len(a):] = b := a += b, insert(i, object) ->
+\TU/lmtt/m/n/10 a[len(a):] = b := a += b, insert(i, object) -> None,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 354--361
-\TU/lmtt/m/n/10 None, pop(int) -> any, count(x) -> int, copy() -
+\TU/lmtt/m/n/10 pop(int) -> any, count(x) -> int, copy() -> list,
+ []
+
+
+Overfull \hbox (5.01006pt too wide) in paragraph at lines 362--368
+\TU/lmtt/m/n/10 __init__(iterable [opt.], **kwargs), keys(), values()
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 362--368
-\TU/lmtt/m/n/10 __init__(iterable [opt.], **kwargs), keys(),
+\TU/lmtt/m/n/10 -> iterable, items() -> iterable[tuple] \TU/lmr/m/n/10 (keys and
+
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 362--368
-\TU/lmtt/m/n/10 values() -> iterable, items() -> iterable[tuple]
+\TU/lmr/m/n/10 val-ues com-bined)\TU/lmtt/m/n/10 , clear() -> None, copy() -> di
+ct,
  []
 
 [1
 
 {/home/shpe/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (10.74353pt too wide) detected at line 448
-[]
- []
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 480.
+ [2]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 490.
+Package mdframed Info: Not enough space on this page on input line 496.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 499.
+
+
+Package xcolor Warning: Incompatible color definition on input line 529.
+
+
+Package xcolor Warning: Incompatible color definition on input line 531.
+
+
+Package xcolor Warning: Incompatible color definition on input line 532.
+
+
+Package xcolor Warning: Incompatible color definition on input line 533.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 468.
+(mdframed)              on input line 551.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 478.
-[2]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 493.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 502.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 511.
+(mdframed)              on input line 560.
 
 
-Package xcolor Warning: Incompatible color definition on input line 541.
-
-
-Package xcolor Warning: Incompatible color definition on input line 543.
-
-
-Package xcolor Warning: Incompatible color definition on input line 544.
-
-
-Package xcolor Warning: Incompatible color definition on input line 545.
-
-
-Overfull \hbox (5.36497pt too wide) in paragraph at lines 539--548
- [] 
- []
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 562.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 567.
 [3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 618.
+(mdframed)              on input line 612.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 626.
+(mdframed)              on input line 620.
 
 
 [4] ("./shit cheat sheet -- cs1001py.aux")
@@ -1269,16 +1271,16 @@ L3 programming layer <2024-05-27>
 )
 
 Here is how much of LuaTeX's memory you used:
- 31544 strings out of 475931
- 382902,1977958 words of node,token memory allocated
+ 31520 strings out of 475931
+ 382912,1977958 words of node,token memory allocated
  908 words of node memory still in use:
    8 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 43 attribute, 103 glue_spe
 c, 43 attribute_list, 2 write nodes
-   avail lists: 1:9,2:5885,3:1459,4:5013,5:4913,6:128,7:14681,8:60,9:14181,10:29
-,11:961
- 53386 multiletter control sequences out of 65536+600000
+   avail lists: 1:7,2:5194,3:1296,4:4670,5:4773,6:128,7:16617,8:58,9:13036,10:29
+,11:985
+ 53362 multiletter control sequences out of 65536+600000
  101 fonts using 7246959 bytes
- 116i,12n,114p,1687b,1257s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,12n,114p,1687b,1265s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman9-italic.otf>
 </home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-bolditalic
 .otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmmono8-regular
@@ -1293,22 +1295,21 @@ otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-regula
 r.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman12-regu
 lar.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman17-re
 gular.otf></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx
-10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx7.p
-fb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></h
-ome/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb></home/
-shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/shpe
-/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmib10.pfb></home/shpe/.
-miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/shpe/.mikt
-ex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr5.pfb></home/shpe/.miktex/te
-xmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/shpe/.miktex/texmfs/
-install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs/ins
-tall/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/install
-/fonts/type1/public/amsfonts/cm/cmti7.pfb></home/shpe/.miktex/texmfs/install/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on shit cheat sheet -- cs1001py.pdf (4 pages, 240225 bytes).
+10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.
+pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb></h
+ome/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/
+shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmib10.pfb></home/sh
+pe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/shpe/.
+miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr5.pfb></home/shpe/.mikte
+x/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/shpe/.miktex/tex
+mfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs
+/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/ins
+tall/fonts/type1/public/amsfonts/cm/cmti7.pfb></home/shpe/.miktex/texmfs/install
+/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on shit cheat sheet -- cs1001py.pdf (4 pages, 232825 bytes).
 
-PDF statistics: 165 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 161 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
