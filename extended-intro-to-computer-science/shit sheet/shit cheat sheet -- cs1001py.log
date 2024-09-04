@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.2 (MiKTeX 24.4) (format=lualatex 2024.6.30)  3 SEP 2024 15:01
+This is LuaHBTeX, Version 1.18.2 (MiKTeX 24.4) (format=lualatex 2024.6.30)  4 SEP 2024 15:42
  restricted system commands enabled.
 **"shit cheat sheet -- cs1001py.tex"
 ("./shit cheat sheet -- cs1001py.tex"
@@ -1276,7 +1276,7 @@ Here is how much of LuaTeX's memory you used:
  908 words of node memory still in use:
    8 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 43 attribute, 103 glue_spe
 c, 43 attribute_list, 2 write nodes
-   avail lists: 1:7,2:5194,3:1296,4:4670,5:4773,6:128,7:16617,8:58,9:13036,10:29
+   avail lists: 1:7,2:5194,3:1296,4:4670,5:4773,6:128,7:16623,8:58,9:13036,10:29
 ,11:985
  53362 multiletter control sequences out of 65536+600000
  101 fonts using 7246959 bytes
@@ -1307,7 +1307,7 @@ mfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs
 /install/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/ins
 tall/fonts/type1/public/amsfonts/cm/cmti7.pfb></home/shpe/.miktex/texmfs/install
 /fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on shit cheat sheet -- cs1001py.pdf (4 pages, 232825 bytes).
+Output written on shit cheat sheet -- cs1001py.pdf (4 pages, 232809 bytes).
 
 PDF statistics: 161 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
