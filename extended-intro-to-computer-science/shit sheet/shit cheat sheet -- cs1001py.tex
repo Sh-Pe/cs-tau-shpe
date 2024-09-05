@@ -551,7 +551,6 @@ def derivative(fn: Callable[[float],float], x: float, h:float =10**(-10)):
 		For $ m $-sized hash table the hash function would be \texttt{hash(n) \% m}. For each hash value assinged a list, which contains all of the elements with the same hash value. On avg. $ \alpha = \tfrac{m}{n} $ ($ \alpha $ called the \textbf{load factor}). The \texttt{dict} keys and \texttt{set} build-in classes uses $ n $-sized hash table, means $ O(\tfrac{n}{n}) = O(1) $ on avg., worst case $ O(n) $ (happens when every key is hashed to the same value).
 		\definecolor{deepred}{rgb}{0.5,0.03,0.02}
 		
-		\columnbreak
 		\subsection{Generators}
 		\subsubsection{Creation}
 		\begin{lstlisting}
@@ -589,7 +588,6 @@ Traceback [...] StopIteration\end{lstlisting}
 		
 	\end{multicols}
 	
-	\pagebreak
 	\section{\fortitle{Text Compression}}
 	\begin{multicols}{2}
 		
