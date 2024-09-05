@@ -515,6 +515,12 @@ def gcd(a, b):
 			\item Each one sends the computed number to each other
 			\item Compute $ f(a)^b = f(b)^a $ (according to some random theorm in the math section) 
 		\end{enumerate}
+		\subsection{Numerical Analysis}
+		\subsubsection*{Derivative of a Function}
+		\begin{lstlisting}
+def derivative(fn: Callable[[float],float], x: float, h:float =10**(-10)):
+	return (f(x+h)-f(x))/h
+		\end{lstlisting}
 	\end{multicols}
 	
 	
@@ -629,8 +635,8 @@ for offset in range(1, min(p, W) + 1):
 			k, m = match_len, offset
 	return m, k	\end{lstlisting}
 		
-		
-		
+	
+	
 	\end{multicols}
 	
 	\dotfill
