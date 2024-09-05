@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.6.27)  5 SEP 2024 18:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.6.27)  5 SEP 2024 18:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1227,33 +1227,42 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 520.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 524.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 529.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 543.
 
 
-Package xcolor Warning: Incompatible color definition on input line 535.
+Package xcolor Warning: Incompatible color definition on input line 561.
 
 
-Package xcolor Warning: Incompatible color definition on input line 537.
+Package xcolor Warning: Incompatible color definition on input line 563.
 
 
-Package xcolor Warning: Incompatible color definition on input line 538.
+Package xcolor Warning: Incompatible color definition on input line 564.
 
 
-Package xcolor Warning: Incompatible color definition on input line 539.
+Package xcolor Warning: Incompatible color definition on input line 565.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 556.
+(mdframed)              on input line 582.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 565.
+(mdframed)              on input line 591.
 [3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 616.
+(mdframed)              on input line 642.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 624.
- [4] (shit cheat sheet -- cs1001py.aux)
+(mdframed)              on input line 650.
+ [4] [5] (shit cheat sheet -- cs1001py.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -1264,10 +1273,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 31439 strings out of 474485
- 718777 string characters out of 5743734
- 2128542 words of memory out of 5000000
- 53233 multiletter control sequences out of 15000+600000
+ 31460 strings out of 474485
+ 719067 string characters out of 5743734
+ 2234542 words of memory out of 5000000
+ 53254 multiletter control sequences out of 15000+600000
  576004 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  116i,12n,121p,1690b,1635s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1297,9 +1306,9 @@ s/cm/cmti9.pfb><C:/Users/eyalf/AppData/Local/Programs/MiKTeX/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb><C:/Users/eyalf/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/amsfonts/cm/cmtt8.pfb><C:/Users/eyalf/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "shit cheat sheet -- cs1001py.pdf" (4 pages, 324742 bytes).
+Output written on "shit cheat sheet -- cs1001py.pdf" (5 pages, 328101 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
+ 136 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
