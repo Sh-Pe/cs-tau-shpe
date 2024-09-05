@@ -1,0 +1,1738 @@
+This is LuaHBTeX, Version 1.18.2 (MiKTeX 24.4) (format=lualatex 2024.6.30)  11 JUL 2024 21:52
+ restricted system commands enabled.
+**hw3_334558962.tex
+(./hw3_334558962.tex
+LaTeX2e <2024-06-01> patch level 1
+L3 programming layer <2024-05-27>
+Lua module: luaotfload 2024-02-14 3.28 Lua based OpenType font support
+Lua module: lualibs 2023-07-13 2.76 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2023-07-13 2.76 ConTeXt Lua libraries -- extended c
+ollection.
+luaotfload | conf : Root cache directory is "/home/shpe/.miktex/texmfs/data/luat
+ex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-res
+olved path "/home/shpe/.miktex/texmfs/install/tex/luatex/luaotfload/fontloader-2
+023-12-28.lua".
+Lua-only attribute luaotfload@noligature = 1
+luaotfload | init : Context OpenType loader version 3.134
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 2
+luaotfload | conf : Root cache directory is "/home/shpe/.miktex/texmfs/data/luat
+ex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
+Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
+Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
+Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 3
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
+Inserting `tracingstacklevels' in `input_level_string'. (/home/shpe/.miktex/tex
+mfs/install/tex/latex/base/article.cls
+Document Class: article 2024/02/08 v1.4n Standard LaTeX document class
+(/home/shpe/.miktex/texmfs/install/tex/latex/base/size10.clo
+File: size10.clo 2024/02/08 v1.4n Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from /home/shpe/.miktex/texmfs/data
+/luatex-cache/generic/names/luaotfload-names.luc.gz)
+\c@part=\count192
+\c@section=\count193
+\c@subsection=\count194
+\c@subsubsection=\count195
+\c@paragraph=\count196
+\c@subparagraph=\count197
+\c@figure=\count198
+\c@table=\count199
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen140
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics/color.sty
+Package: color 2024/01/14 v1.3d Standard LaTeX Color (DPC)
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: luatex.def on input line 149.
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics-def/luatex.def
+File: luatex.def 2024/04/13 v1.2e Graphics/color driver for luatex
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics/mathcolor.ltx))
+(/home/shpe/.miktex/texmfs/install/tex/latex/forest/forest.sty
+Package: forest 2017/07/14 v2.1.5 Drawing (linguistic) trees
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/frontendlayer/tikz.sty
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/basiclayer/pgf.sty
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/utilities/pgfrcs.sty
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks17
+\pgfutil@tempdima=\dimen141
+\pgfutil@tempdimb=\dimen142
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box52
+) (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/basiclayer/pgfcore.sty
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics/graphics.sty
+Package: graphics 2024/05/23 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 106.
+)
+\Gin@req@height=\dimen143
+\Gin@req@width=\dimen144
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/systemlayer/pgfsys.sty
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks19
+\pgfkeys@temptoks=\toks20
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfkeyslibraryfilt
+ered.code.tex
+\pgfkeys@tmptoks=\toks21
+))
+\pgf@x=\dimen145
+\pgf@y=\dimen146
+\pgf@xa=\dimen147
+\pgf@ya=\dimen148
+\pgf@xb=\dimen149
+\pgf@yb=\dimen150
+\pgf@xc=\dimen151
+\pgf@yc=\dimen152
+\pgf@xd=\dimen153
+\pgf@yd=\dimen154
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count266
+\c@pgf@countb=\count267
+\c@pgf@countc=\count268
+\c@pgf@countd=\count269
+\t@pgf@toka=\toks22
+\t@pgf@tokb=\toks23
+\t@pgf@tokc=\toks24
+\pgf@sys@id@count=\count270
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-luatex.def
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-luatex.de
+f
+File: pgfsys-luatex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-common-pd
+f.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsyssoftpath.c
+ode.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count271
+\pgfsyssoftpath@bigbuffer@items=\count272
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsysprotocol.c
+ode.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (/home/shpe/.miktex/texmfs/install/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 274.
+LaTeX Info: Redefining \color on input line 758.
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmath.code.tex
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen155
+\pgfmath@count=\count273
+\pgfmath@box=\box53
+\pgfmath@toks=\toks25
+\pgfmath@stack@operand=\toks26
+\pgfmath@stack@operation=\toks27
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.code.t
+ex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.basic.
+code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.trigon
+ometric.code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.random
+.code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.compar
+ison.code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.base.c
+ode.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.round.
+code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.misc.c
+ode.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.intege
+rarithmetics.code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count274
+)) (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfint.code.tex)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepoints.cod
+e.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen156
+\pgf@picmaxx=\dimen157
+\pgf@picminy=\dimen158
+\pgf@picmaxy=\dimen159
+\pgf@pathminx=\dimen160
+\pgf@pathmaxx=\dimen161
+\pgf@pathminy=\dimen162
+\pgf@pathmaxy=\dimen163
+\pgf@xx=\dimen164
+\pgf@xy=\dimen165
+\pgf@yx=\dimen166
+\pgf@yy=\dimen167
+\pgf@zx=\dimen168
+\pgf@zy=\dimen169
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepathconstr
+uct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen170
+\pgf@path@lasty=\dimen171
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepathusage.
+code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen172
+\pgf@shorten@start@additional=\dimen173
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorescopes.cod
+e.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box54
+\pgf@hbox=\box55
+\pgf@layerbox@main=\box56
+\pgf@picture@serial@count=\count275
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoregraphicsta
+te.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen174
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoretransforma
+tions.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen175
+\pgf@pt@y=\dimen176
+\pgf@pt@temp=\dimen177
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorequick.code
+.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreobjects.co
+de.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepathproces
+sing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorearrows.cod
+e.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen178
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreshade.code
+.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen179
+\pgf@sys@shading@range@num=\count276
+\pgf@shadingcount=\count277
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreimage.code
+.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreexternal.c
+ode.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box57
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorelayers.cod
+e.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoretransparen
+cy.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepatterns.c
+ode.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorerdf.code.t
+ex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmoduleshapes.code
+.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box58
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmoduleplot.code.t
+ex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/compatibility/pgfcomp-version-
+0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen180
+\pgf@nodesepend=\dimen181
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/compatibility/pgfcomp-version-
+1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+))
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/utilities/pgffor.sty
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/utilities/pgfkeys.sty
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/home/shpe/.miktex/texmfs/install/tex/latex/pgf/math/pgfmath.sty
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmath.code.tex))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen182
+\pgffor@skip=\dimen183
+\pgffor@stack=\toks28
+\pgffor@toks=\toks29
+))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/tikz.code
+.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryplothand
+lers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count278
+\pgfplotmarksize=\dimen184
+)
+\tikz@lastx=\dimen185
+\tikz@lasty=\dimen186
+\tikz@lastxsaved=\dimen187
+\tikz@lastysaved=\dimen188
+\tikz@lastmovetox=\dimen189
+\tikz@lastmovetoy=\dimen190
+\tikzleveldistance=\dimen191
+\tikzsiblingdistance=\dimen192
+\tikz@figbox=\box59
+\tikz@figbox@bg=\box60
+\tikz@tempbox=\box61
+\tikz@tempbox@bg=\box62
+\tikztreelevel=\count279
+\tikznumberofchildren=\count280
+\tikznumberofcurrentchild=\count281
+\tikz@fig@count=\count282
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmodulematrix.code
+.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count283
+\pgfmatrixcurrentcolumn=\count284
+\pgf@matrix@numberofcolumns=\count285
+)
+\tikz@expandcount=\count286
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibraryshapes.code.tex
+File: tikzlibraryshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/shapes/pgflibrarys
+hapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/shapes/pgflibrarys
+hapes.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibraryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/shapes/pgflibrarys
+hapes.symbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibraryshapes.arrows.code.tex
+File: tikzlibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/shapes/pgflibrarys
+hapes.arrows.code.tex
+File: pgflibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibraryshapes.callouts.code.tex
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/shapes/pgflibrarys
+hapes.callouts.code.tex))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibraryshapes.multipart.code.tex
+File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/shapes/pgflibrarys
+hapes.multipart.code.tex
+File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodepartlowerbox=\box63
+\pgfnodeparttwobox=\box64
+\pgfnodepartthreebox=\box65
+\pgfnodepartfourbox=\box66
+\pgfnodeparttwentybox=\box67
+\pgfnodepartnineteenbox=\box68
+\pgfnodeparteighteenbox=\box69
+\pgfnodepartseventeenbox=\box70
+\pgfnodepartsixteenbox=\box71
+\pgfnodepartfifteenbox=\box72
+\pgfnodepartfourteenbox=\box73
+\pgfnodepartthirteenbox=\box74
+\pgfnodeparttwelvebox=\box75
+\pgfnodepartelevenbox=\box76
+\pgfnodeparttenbox=\box77
+\pgfnodepartninebox=\box78
+\pgfnodeparteightbox=\box79
+\pgfnodepartsevenbox=\box80
+\pgfnodepartsixbox=\box81
+\pgfnodepartfivebox=\box82
+)))
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibraryfit.code.tex
+File: tikzlibraryfit.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryintersec
+tions.code.tex
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryfpu.code
+.tex)
+\pgf@intersect@solutions=\count287
+) (/home/shpe/.miktex/texmfs/install/tex/latex/pgfopts/pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+\pgfopts@list@add@a@toks=\toks30
+\pgfopts@list@add@b@toks=\toks31
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count288
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/elocalloc/elocalloc.sty
+Package: elocalloc 2016/12/15 v0.03 local allocation for LaTeX 2015+ (DPC)
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)
+\@envbody=\toks32
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/l3packages/xparse/xparse.sty
+(/home/shpe/.miktex/texmfs/install/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-05-27 L3 programming layer (loader) 
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2024-05-08 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count289
+Inserting `l3color' in `luaotfload.parse_color'.
+\l__pdf_internal_box=\box83
+))
+Package: xparse 2024-05-08 L3 Experimental document command parser
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/inlinedef/inlinedef.sty
+Package: inlinedef 2008/07/10 v1.0 Inlined expansions within definitions
+\ID@toks=\toks33
+\ID@count=\count290
+)
+\ID@usercommands=\toks34
+\safeloop@depth=\count291
+\safeRKloop@depth=\count292
+\forest@temp@dimen=\dimen193
+\forest@temp@count=\count293
+\forest@n=\count294
+\forest@temp@global@count=\count295
+\forest@temp@toks=\toks35
+\forest@temparray@M=\count296
+\forest@temparray@N=\count297
+\forest@global@temparray@M=\count298
+\forest@global@temparray@N=\count299
+\forest@isnum@count=\count300
+\forest@isdim@nonintpart=\count301
+\forest@isdim@dimen=\dimen194
+\forest@sort@m=\count302
+\forest@sort@k=\count303
+\forest@sort@p=\count304
+\bracket@content=\toks36
+\bracket@afterthought=\toks37
+\forest@node@maxid=\count305
+\forest@process@left@M=\count306
+\forest@process@left@N=\count307
+\forest@process@right@M=\count308
+\forest@process@right@N=\count309
+\forest@process@saved@M=\count310
+\forest@process@saved@N=\count311
+\forest@process@result@M=\count312
+\forest@process@result@N=\count313
+\forest@process@n=\count314
+\forest@nodewalk@branch@toks=\toks38
+\forest@nodewalk@shortsteps@resolution=\toks39
+\forest@do@dynamics=\toks40
+\forest@box=\box84
+\forest@xg=\dimen195
+\forest@yg=\dimen196
+\forest@xs=\dimen197
+\forest@ys=\dimen198
+\forest@pi@toks=\toks41
+\forest@segment@toks=\toks42
+\forest@PIi@toks=\toks43
+\forest@PIii@toks=\toks44
+\forest@copy@in=\read3
+\forest@copy@out=\write4
+\forest@externalize@max@outer@n=\count315
+\forest@externalize@inner@n=\count316
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+(/home/shpe/.miktex/texmfs/install/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2024/05/23 v2.17q AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks45
+\ex@=\dimen199
+))
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen256
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count317
+LaTeX Info: Redefining \frac on input line 235.
+\uproot@=\count318
+\leftroot@=\count319
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count320
+\DOTSCASE@=\count321
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box85
+\strutbox@=\box86
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen257
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count322
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count323
+\dotsspace@=\muskip17
+\c@parentequation=\count324
+\dspbrk@lvl=\count325
+\tag@help=\toks46
+\row@=\count326
+\column@=\count327
+\maxfields@=\count328
+\andhelp@=\toks47
+\eqnshift@=\dimen258
+\alignsep@=\dimen259
+\tagshift@=\dimen260
+\tagwidth@=\dimen261
+\totwidth@=\dimen262
+\lineht@=\dimen263
+\@envbody=\toks48
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks49
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/home/shpe/.miktex/texmfs/install/tex/latex/jknappen/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup6
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks50
+\thm@bodyfont=\toks51
+\thm@headfont=\toks52
+\thm@notefont=\toks53
+\thm@headpunct=\toks54
+\thm@preskip=\skip54
+\thm@postskip=\skip55
+\thm@headsep=\skip56
+\dth@everypar=\toks55
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/witharrows/witharrows.sty
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryarrows.m
+eta.code.tex
+File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowinset=\dimen264
+\pgfarrowlength=\dimen265
+\pgfarrowwidth=\dimen266
+\pgfarrowlinewidth=\dimen267
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmodulebending.cod
+e.tex
+File: pgfmodulebending.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmodulenonlineartr
+ansformations.code.tex
+File: pgfmodulenonlineartransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgftransformnonlinearflatness=\dimen268
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibrarycurvilin
+ear.code.tex
+File: pgflibrarycurvilinear.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@curvilinear@time@a=\dimen269
+\pgf@curvilinear@length@a=\dimen270
+\pgf@curvilinear@length@b=\dimen271
+\pgf@curvilinear@length@c=\dimen272
+\pgf@curvilinear@length@d=\dimen273
+)
+\pgf@arrows@the@rigidity=\dimen274
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2024-05-08 LaTeX2e option processing using LaTeX3 keys
+)
+Package: witharrows 2023/08/24 v2.8b Draws arrows for explanations on the right
+
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box87
+\sift@deathcycles=\count329
+\@vwid@loff=\dimen275
+\@vwid@roff=\dimen276
+)
+\g__witharrows_last_env_int=\count330
+\l__witharrows_pos_env_int=\count331
+\l__witharrows_pos_arrow_int=\count332
+\g__witharrows_arrow_int=\count333
+\g__witharrows_line_int=\count334
+\g__witharrows_col_int=\count335
+\g__witharrows_static_col_int=\count336
+\l__witharrows_nb_cols_int=\count337
+\l__witharrows_arrow_width_dim=\dimen277
+\l__witharrows_up_and_down_radius_dim=\dimen278
+\l__witharrows_xoffset_for_o_arrows_dim=\dimen279
+\l__witharrows_max_length_of_arrow_dim=\dimen280
+\l__witharrows_ygap_dim=\dimen281
+\l__witharrows_ystart_dim=\dimen282
+\l__witharrows_xoffset_dim=\dimen283
+\l__witharrows_interline_skip=\skip57
+\l__witharrows_start_adjust_dim=\dimen284
+\l__witharrows_end_adjust_dim=\dimen285
+\l__witharrows_mathindent_skip=\skip58
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2024/03/11 v1.30 mathematical typesetting tools
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count338
+\calc@Bcount=\count339
+\calc@Adimen=\dimen286
+\calc@Bdimen=\dimen287
+\calc@Askip=\skip59
+\calc@Bskip=\skip60
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count340
+\calc@Cskip=\skip61
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count341
+\l_MT_multwidth_dim=\dimen288
+\origjot=\skip62
+\l_MT_shortvdotswithinadjustabove_dim=\dimen289
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen290
+\l_MT_above_intertext_sep=\dimen291
+\l_MT_below_intertext_sep=\dimen292
+\l_MT_above_shortintertext_sep=\dimen293
+\l_MT_below_shortintertext_sep=\dimen294
+\xmathstrut@box=\box88
+\xmathstrut@dim=\dimen295
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/cancel/cancel.sty
+Package: cancel 2013/04/12 v2.2 Cancel math terms
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/tools/bm.sty
+Package: bm 2023/12/19 v1.2f Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup7
+\symboldletters=\mathgroup8
+\symboldsymbols=\mathgroup9
+Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
+Package bm Info: No bold for \U/msa/m/n, using \pmb.
+Package bm Info: No bold for \U/msb/m/n, using \pmb.
+Package bm Info: No bold for \U/rsfs/m/n, using \pmb.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/esdiff/esdiff.sty
+Package: esdiff 
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/listings/listings.sty
+\lst@mode=\count342
+\lst@gtempboxa=\box89
+\lst@token=\toks56
+\lst@length=\count343
+\lst@currlwidth=\dimen296
+\lst@column=\count344
+\lst@pos=\count345
+\lst@lostspace=\dimen297
+\lst@width=\dimen298
+\lst@newlines=\count346
+\lst@lineno=\count347
+\lst@maxwidth=\dimen299
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
+\c@lstnumber=\count348
+\lst@skipnumbers=\count349
+\lst@framebox=\box90
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/05/25 1.10b listings configuration
+))
+Package: listings 2024/05/25 1.10b (Carsten Heinz)
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/05/25 1.10b listings language file
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/mdframed/mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))
+(/home/shpe/.miktex/texmfs/install/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2023-09-14 v2.35 Module abspage for zref (HO)
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/zref/zref-base.sty
+Package: zref-base 2023-09-14 v2.35 Module base for zref (HO)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks57
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+Package zref Info: New property list: main on input line 767.
+Package zref Info: New property: default on input line 768.
+Package zref Info: New property: page on input line 769.
+)
+\c@abspage=\count350
+Package zref Info: New property: abspage on input line 67.
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+\mdf@templength=\skip63
+\c@mdf@globalstyle@cnt=\count351
+\mdf@skipabove@length=\skip64
+\mdf@skipbelow@length=\skip65
+\mdf@leftmargin@length=\skip66
+\mdf@rightmargin@length=\skip67
+\mdf@innerleftmargin@length=\skip68
+\mdf@innerrightmargin@length=\skip69
+\mdf@innertopmargin@length=\skip70
+\mdf@innerbottommargin@length=\skip71
+\mdf@splittopskip@length=\skip72
+\mdf@splitbottomskip@length=\skip73
+\mdf@outermargin@length=\skip74
+\mdf@innermargin@length=\skip75
+\mdf@linewidth@length=\skip76
+\mdf@innerlinewidth@length=\skip77
+\mdf@middlelinewidth@length=\skip78
+\mdf@outerlinewidth@length=\skip79
+\mdf@roundcorner@length=\skip80
+\mdf@footenotedistance@length=\skip81
+\mdf@userdefinedwidth@length=\skip82
+\mdf@needspace@length=\skip83
+\mdf@frametitleaboveskip@length=\skip84
+\mdf@frametitlebelowskip@length=\skip85
+\mdf@frametitlerulewidth@length=\skip86
+\mdf@frametitleleftmargin@length=\skip87
+\mdf@frametitlerightmargin@length=\skip88
+\mdf@shadowsize@length=\skip89
+\mdf@extratopheight@length=\skip90
+\mdf@subtitleabovelinewidth@length=\skip91
+\mdf@subtitlebelowlinewidth@length=\skip92
+\mdf@subtitleaboveskip@length=\skip93
+\mdf@subtitlebelowskip@length=\skip94
+\mdf@subtitleinneraboveskip@length=\skip95
+\mdf@subtitleinnerbelowskip@length=\skip96
+\mdf@subsubtitleabovelinewidth@length=\skip97
+\mdf@subsubtitlebelowlinewidth@length=\skip98
+\mdf@subsubtitleaboveskip@length=\skip99
+\mdf@subsubtitlebelowskip@length=\skip100
+\mdf@subsubtitleinneraboveskip@length=\skip101
+\mdf@subsubtitleinnerbelowskip@length=\skip102
+
+
+Package mdframed Warning: package option style is depreciated
+ at this point and will be ignored
+ use framemethod instead
+(mdframed)                 on input line 382.
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/mdframed/md-frame-1.mdf
+File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
+)
+\mdf@frametitlebox=\box91
+\mdf@footnotebox=\box92
+\mdf@splitbox@one=\box93
+\mdf@splitbox@two=\box94
+\mdf@splitbox@save=\box95
+\mdfsplitboxwidth=\skip103
+\mdfsplitboxtotalwidth=\skip104
+\mdfsplitboxheight=\skip105
+\mdfsplitboxdepth=\skip106
+\mdfsplitboxtotalheight=\skip107
+\mdfframetitleboxwidth=\skip108
+\mdfframetitleboxtotalwidth=\skip109
+\mdfframetitleboxheight=\skip110
+\mdfframetitleboxdepth=\skip111
+\mdfframetitleboxtotalheight=\skip112
+\mdffootnoteboxwidth=\skip113
+\mdffootnoteboxtotalwidth=\skip114
+\mdffootnoteboxheight=\skip115
+\mdffootnoteboxdepth=\skip116
+\mdffootnoteboxtotalheight=\skip117
+\mdftotallinewidth=\skip118
+\mdfboundingboxwidth=\skip119
+\mdfboundingboxtotalwidth=\skip120
+\mdfboundingboxheight=\skip121
+\mdfboundingboxdepth=\skip122
+\mdfboundingboxtotalheight=\skip123
+\mdf@freevspace@length=\skip124
+\mdf@horizontalwidthofbox@length=\skip125
+\mdf@verticalmarginwhole@length=\skip126
+\mdf@horizontalspaceofbox=\skip127
+\mdfsubtitleheight=\skip128
+\mdfsubsubtitleheight=\skip129
+\c@mdfcountframes=\count352
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+\mdf@envdepth=\count353
+\c@mdf@env@i=\count354
+\c@mdf@env@ii=\count355
+\c@mdf@zref@counter=\count356
+Package zref Info: New property: mdf@pagevalue on input line 895.
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen300
+\captionmargin=\dimen301
+\caption@leftmargin=\dimen302
+\caption@rightmargin=\dimen303
+\caption@width=\dimen304
+\caption@indent=\dimen305
+\caption@parindent=\dimen306
+\caption@hangindent=\dimen307
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count357
+\c@continuedfloat=\count358
+Package caption Info: listings package is loaded.
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count359
+\Gm@cntv=\count360
+\c@Gm@tempcnt=\count361
+\Gm@bindingoffset=\dimen308
+\Gm@wd@mp=\dimen309
+\Gm@odd@mp=\dimen310
+\Gm@even@mp=\dimen311
+\Gm@layoutwidth=\dimen312
+\Gm@layoutheight=\dimen313
+\Gm@layouthoffset=\dimen314
+\Gm@layoutvoffset=\dimen315
+\Gm@dimlist=\toks58
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
+(/home/shpe/.miktex/texmfs/install/tex/latex/tools/multicol.sty
+Package: multicol 2024/05/23 v1.9h multicolumn formatting (FMi)
+\c@tracingmulticols=\count362
+\mult@box=\box96
+\multicol@leftmargin=\dimen316
+\c@unbalance=\count363
+\c@collectmore=\count364
+\doublecol@number=\count365
+\multicoltolerance=\count366
+\multicolpretolerance=\count367
+\full@width=\dimen317
+\page@free=\dimen318
+\premulticols=\dimen319
+\postmulticols=\dimen320
+\multicolsep=\skip130
+\multicolbaselineskip=\skip131
+\partial@page=\box97
+\last@line=\box98
+\mc@boxedresult=\box99
+\maxbalancingoverflow=\dimen321
+\mult@rightbox=\box100
+\mult@grightbox=\box101
+\mult@firstbox=\box102
+\mult@gfirstbox=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\@tempa=\box112
+\@tempa=\box113
+\@tempa=\box114
+\@tempa=\box115
+\@tempa=\box116
+\@tempa=\box117
+\@tempa=\box118
+\@tempa=\box119
+\@tempa=\box120
+\@tempa=\box121
+\@tempa=\box122
+\@tempa=\box123
+\@tempa=\box124
+\@tempa=\box125
+\@tempa=\box126
+\@tempa=\box127
+\@tempa=\box128
+\@tempa=\box129
+\@tempa=\box130
+\@tempa=\box131
+\@tempa=\box132
+\@tempa=\box133
+\@tempa=\box134
+\@tempa=\box135
+\@tempa=\box136
+\@tempa=\box137
+\@tempa=\box138
+\@tempa=\box139
+\c@minrows=\count368
+\c@columnbadness=\count369
+\c@finalcolumnbadness=\count370
+\last@try=\dimen322
+\multicolovershoot=\dimen323
+\multicolundershoot=\dimen324
+\mult@nat@firstbox=\box140
+\colbreak@box=\box141
+\mc@col@check@num=\count371
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/parskip/parskip.sty
+Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/ulem/ulem.sty
+\UL@box=\box142
+\UL@hyphenbox=\box143
+\UL@skip=\skip132
+\UL@hook=\toks59
+\UL@height=\dimen325
+\UL@pe=\count372
+\UL@pixel=\dimen326
+\ULC@box=\box144
+Package: ulem 2019/11/18
+\ULdepth=\dimen327
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2023/10/27 v2.16 Sectioning titles
+\ttl@box=\box145
+\beforetitleunit=\skip133
+\aftertitleunit=\skip134
+\ttl@plus=\dimen328
+\ttl@minus=\dimen329
+\ttl@toksa=\toks60
+\titlewidth=\dimen330
+\titlewidthlast=\dimen331
+\titlewidthfirst=\dimen332
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/babel/babel.sty
+Package: babel 2024/06/02 v24.6 The Babel package
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/babel/luababel.def
+\bbl@readstream=\read4
+\l@afrikaans=\language2
+Package babel Info: Non-standard hyphenation setup on input line 118.
+\l@ancientgreek=\language3
+\l@armenian=\language4
+\l@assamese=\language5
+\l@basque=\language6
+\l@belarusian=\language7
+\l@bengali=\language8
+\l@bokmal=\language9
+\l@bulgarian=\language10
+\l@catalan=\language11
+\l@churchslavonic=\language12
+\l@classiclatin=\language13
+\l@coptic=\language14
+\l@croatian=\language15
+\l@czech=\language16
+\l@danish=\language17
+\l@dutch=\language18
+\l@esperanto=\language19
+\l@estonian=\language20
+\l@ethiopic=\language21
+\l@finnish=\language22
+\l@french=\language23
+\l@friulan=\language24
+\l@galician=\language25
+\l@georgian=\language26
+\l@german=\language27
+\l@greek=\language28
+\l@gujarati=\language29
+\l@hindi=\language30
+\l@hungarian=\language31
+\l@icelandic=\language32
+\l@indonesian=\language33
+\l@interlingua=\language34
+\l@irish=\language35
+\l@italian=\language36
+\l@kannada=\language37
+\l@kurmanji=\language38
+\l@latin=\language39
+\l@latvian=\language40
+\l@lithuanian=\language41
+\l@liturgicallatin=\language42
+\l@macedonian=\language43
+\l@malayalam=\language44
+\l@marathi=\language45
+\l@mongolian=\language46
+\l@mongolianlmc=\language47
+\l@monogreek=\language48
+\l@ngerman=\language49
+\l@nynorsk=\language50
+\l@occitan=\language51
+\l@oriya=\language52
+\l@pali=\language53
+\l@panjabi=\language54
+\l@piedmontese=\language55
+\l@polish=\language56
+\l@portuguese=\language57
+\l@romanian=\language58
+\l@romansh=\language59
+\l@russian=\language60
+\l@sanskrit=\language61
+\l@serbian=\language62
+\l@serbianc=\language63
+\l@slovak=\language64
+\l@slovenian=\language65
+\l@spanish=\language66
+\l@swedish=\language67
+\l@swissgerman=\language68
+\l@tamil=\language69
+\l@telugu=\language70
+\l@thai=\language71
+\l@turkish=\language72
+\l@turkmen=\language73
+\l@ukenglish=\language74
+\l@ukrainian=\language75
+\l@uppersorbian=\language76
+\l@usenglishmax=\language77
+\l@welsh=\language78
+\babelcatcodetablenum=\catcodetable14
+\bbl@pattcodes=\catcodetable15
+)
+\babel@savecnt=\count373
+\U@D=\dimen333
+\l@unhyphenated=\language79
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/babel/luababel.def
+\bbl@attr@locale=\attribute4
+
+(/home/shpe/.miktex/texmfs/install/tex/luatex/luatexbase/luatexbase.sty
+Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX 
+
+(/home/shpe/.miktex/texmfs/install/tex/luatex/ctablestack/ctablestack.sty
+Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
+\@catcodetablestackcnt=\count374
+)
+\CatcodeTableOther=\catcodetable16
+\CatcodeTableExpl=\catcodetable17
+)
+Removing  `luaotfload.node_processor' from `pre_linebreak_filter'.
+Inserting `Babel.pre_otfload_v' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Removing  `luaotfload.node_processor' from `hpack_filter'.
+Removing  `luaotfload.harf.finalize_hlist' from `hpack_filter'.
+Inserting `Babel.pre_otfload_h' in `hpack_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+\bbl@attr@dir=\attribute5
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+(/home/shpe/.miktex/texmfs/install/tex/latex/arabi/bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+Package babel Info: You haven't specified a language as a class or package
+(babel)             option. I'll load 'nil'. Reported on input line 4269.
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/babel/nil.ldf
+Language: nil 2024/06/02 v24.6 Nil language
+\l@nil=\language80
+))
+(/home/shpe/.miktex/texmfs/install/tex/generic/babel/locale/he/babel-hebrew.tex
+)
+Package babel Info: Importing data for hebrew
+(babel)             from babel-he.ini. Reported on input line 91.
+Package babel Info: Hyphen rules for 'hebrew' set to \l@nil
+(babel)             (\language80). Reported on input line 91.
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/babel/locale/he/babel-hebrew.tex
+) (/home/shpe/.miktex/texmfs/install/tex/generic/babel/babel-ca-hebrew.tex
+\bbl@cntcommon=\count375
+\bbl@hebrday=\count376
+\bbl@hebrmonth=\count377
+\bbl@hebryear=\count378
+\bbl@gregday=\count379
+\bbl@gregmonth=\count380
+\bbl@gregyear=\count381
+)
+(/home/shpe/.miktex/texmfs/install/tex/generic/babel/locale/en/babel-english.te
+x)
+Package babel Info: Importing data for english
+(babel)             from babel-en.ini. Reported on input line 92.
+ (/home/shpe/.miktex/texmfs/install/tex/latex/fontspec/fontspec.sty
+Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
+Lua module: fontspec 2024/05/11 2.9e Font selection for XeLaTeX and LuaLaTeX
+(/home/shpe/.miktex/texmfs/install/tex/latex/fontspec/fontspec-luatex.sty
+Package: fontspec-luatex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaT
+eX
+\l__fontspec_script_int=\count382
+\l__fontspec_language_int=\count383
+\l__fontspec_strnum_int=\count384
+\l__fontspec_tmp_int=\count385
+\l__fontspec_tmpa_int=\count386
+\l__fontspec_tmpb_int=\count387
+\l__fontspec_tmpc_int=\count388
+\l__fontspec_em_int=\count389
+\l__fontspec_emdef_int=\count390
+\l__fontspec_strong_int=\count391
+\l__fontspec_strongdef_int=\count392
+\l__fontspec_tmpa_dim=\dimen334
+\l__fontspec_tmpb_dim=\dimen335
+\l__fontspec_tmpc_dim=\dimen336
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/home/shpe/.miktex/texmfs/install/tex/latex/fontspec/fontspec.cfg)))
+(/home/shpe/.miktex/texmfs/install/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip135
+\enit@outerparindent=\dimen337
+\enit@toks=\toks61
+\enit@inbox=\box146
+\enit@count@id=\count393
+\enitdp@description=\count394
+)
+\c@hebenumi=\count395
+\enitdp@hebenum=\count396
+
+(./hw3_334558962.aux
+
+Package babel Info: The following font families will use the default
+(babel)             settings for all or some languages:
+(babel)             * \rmfamily = lmr
+(babel)               [lmroman10-regular]:+tlig;
+(babel)             * \sffamily = lmss
+(babel)               [lmsans10-regular]:+tlig;
+(babel)             * \ttfamily = lmtt
+(babel)               [lmmono10-regular]:
+(babel)             There is nothing intrinsically wrong with it, but
+(babel)             'babel' will no set Script and Language, which could
+(babel)             be relevant in some languages. If your document uses
+(babel)             these families, consider redefining them with \babelfont.
+(babel)             Reported on input line 4.
+
+luaotfload | cache : Lookup cache loaded from /home/shpe/.miktex/texmfs/data/lua
+tex-cache/generic/names/luaotfload-lookup-cache.luc.
+luaotfload | aux : font no 21 (nil) defines no feature for script hebr with lang
+uage iwr
+
+Package fontspec Info: 
+(fontspec)             Language 'Hebrew' not explicitly supported within font
+(fontspec)             'David CLM' with script 'Hebrew'. Check the typeset
+(fontspec)             output, and if it is okay then ignore this warning.
+(fontspec)             Otherwise a different font should be chosen.
+
+luaotfload | aux : font no 21 (nil) defines no feature for script hebr with lang
+uage iwr
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script hebr
+ with language iwr
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script latn
+ with language iwr
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script dflt
+ with language iwr
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script hebr
+ with language dflt
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script hebr
+ with language iwr
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script latn
+ with language iwr
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script dflt
+ with language iwr
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script hebr
+ with language dflt
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script hebr
+ with language iwr
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script latn
+ with language iwr
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script dflt
+ with language iwr
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script hebr
+ with language dflt
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script hebr
+ with language iwr
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script latn
+ with language iwr
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script dflt
+ with language iwr
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script hebr
+ with language dflt
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script dflt
+ with language dflt
+
+Package fontspec Info: 
+(fontspec)             Font family 'DavidCLM(0)' created for font 'David CLM'
+(fontspec)             with options
+(fontspec)             [Ligatures=TeX,Script=Hebrew,Language=Hebrew,RawFeature=
+{family=rm}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:David
+(fontspec)             CLM:mode=node;script=hebr;language=IWR;+tlig;family=rm;"
+
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:David
+(fontspec)             CLM/B:mode=node;script=hebr;language=IWR;+tlig;family=rm
+;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:David
+(fontspec)             CLM/I:mode=node;script=hebr;language=IWR;+tlig;family=rm
+;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"name:David
+(fontspec)             CLM/BI:mode=node;script=hebr;language=IWR;+tlig;family=r
+m;"
+
+luaotfload | aux : font no 21 (nil) defines no feature for script hebr with lang
+uage iwr
+
+Package fontspec Info: 
+(fontspec)             Language 'Hebrew' not explicitly supported within font
+(fontspec)             'David CLM' with script 'Hebrew'. Check the typeset
+(fontspec)             output, and if it is okay then ignore this warning.
+(fontspec)             Otherwise a different font should be chosen.
+
+luaotfload | aux : font no 21 (nil) defines no feature for script hebr with lang
+uage iwr
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script hebr
+ with language iwr
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script latn
+ with language iwr
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script dflt
+ with language iwr
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script hebr
+ with language dflt
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 26 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script hebr
+ with language iwr
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script latn
+ with language iwr
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script dflt
+ with language iwr
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script hebr
+ with language dflt
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 27 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script hebr
+ with language iwr
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script latn
+ with language iwr
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script dflt
+ with language iwr
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script hebr
+ with language dflt
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 28 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script hebr
+ with language iwr
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script latn
+ with language iwr
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script dflt
+ with language iwr
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script hebr
+ with language dflt
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 29 (nil) does not define feature smcp for script dflt
+ with language dflt
+
+Package fontspec Info: 
+(fontspec)             Font family 'DavidCLM(1)' created for font 'David CLM'
+(fontspec)             with options
+(fontspec)             [Ligatures=TeX,Script=Hebrew,Language=Hebrew,RawFeature=
+{family=sf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:David
+(fontspec)             CLM:mode=node;script=hebr;language=IWR;+tlig;family=sf;"
+
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:David
+(fontspec)             CLM/B:mode=node;script=hebr;language=IWR;+tlig;family=sf
+;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:David
+(fontspec)             CLM/I:mode=node;script=hebr;language=IWR;+tlig;family=sf
+;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"name:David
+(fontspec)             CLM/BI:mode=node;script=hebr;language=IWR;+tlig;family=s
+f;"
+
+luaotfload | aux : font no 33 (nil) defines no feature for script latn with lang
+uage eng
+
+Package fontspec Info: 
+(fontspec)             Language 'English' not explicitly supported within font
+(fontspec)             'Monaspace Xenon' with script 'Latin'. Check the
+(fontspec)             typeset output, and if it is okay then ignore this
+(fontspec)             warning. Otherwise a different font should be chosen.
+
+luaotfload | aux : font no 33 (nil) defines no feature for script latn with lang
+uage eng
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script dflt
+ with language eng
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script dflt
+ with language eng
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script dflt
+ with language eng
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script dflt
+ with language eng
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script dflt
+ with language dflt
+
+Package fontspec Info: 
+(fontspec)             Font family 'MonaspaceXenon(0)' created for font
+(fontspec)             'Monaspace Xenon' with options
+(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
+Space,Script=Latin,Language=English,RawFeature={family=tt}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:Monaspace
+(fontspec)             Xenon:mode=node;script=latn;language=ENG;family=tt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:Monaspace
+(fontspec)             Xenon/B:mode=node;script=latn;language=ENG;family=tt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:Monaspace
+(fontspec)             Xenon/I:mode=node;script=latn;language=ENG;family=tt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"name:Monaspace
+(fontspec)             Xenon/BI:mode=node;script=latn;language=ENG;family=tt;"
+
+)
+\openout1 = hw3_334558962.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 317.
+LaTeX Font Info:    ... okay on input line 317.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 317.
+LaTeX Font Info:    ... okay on input line 317.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 317.
+LaTeX Font Info:    ... okay on input line 317.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 317.
+LaTeX Font Info:    ... okay on input line 317.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 317.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 3
+17.
+ (/home/shpe/.miktex/texmfs/install/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 317.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 317.
+LaTeX Font Info:    ... okay on input line 317.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 317.
+LaTeX Font Info:    ... okay on input line 317.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 317.
+LaTeX Font Info:    ... okay on input line 317.
+
+(/home/shpe/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count397
+\scratchdimen=\dimen338
+\scratchbox=\box147
+\nofMPsegments=\count398
+\nofMParguments=\count399
+\everyMPshowfont=\toks62
+\MPscratchCnt=\count400
+\MPscratchDim=\dimen339
+\MPnumerator=\count401
+\makeMPintoPDFobject=\count402
+\everyMPtoPDFconversion=\toks63
+) (/home/shpe/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+\c@lstlisting=\count403
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(43.36243pt, 527.57014pt, 43.36243pt)
+* v-part:(T,H,B)=(43.36243pt, 708.24513pt, 43.36243pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=527.57014pt
+* \textheight=708.24513pt
+* \oddsidemargin=-28.90756pt
+* \evensidemargin=-28.90756pt
+* \topmargin=-65.90756pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Removing  `Babel.pre_otfload_h' from `hpack_filter'.
+Removing  `luaotfload.node_processor' from `hpack_filter'.
+Removing  `luaotfload.harf.finalize_hlist' from `hpack_filter'.
+Inserting `Babel.math_box_dir' in `hpack_filter'.
+Inserting `Babel.pre_otfload_h' in `hpack_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 318
+.
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 318
+.
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 31
+8.
+
+(/home/shpe/.miktex/texmfs/install/tex/latex/jknappen/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+Overfull \hbox (1.1327pt too wide) detected at line 349
+[] \OMS/cmsy/m/n/10  \OML/cmm/m/it/10 n []\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 a[]; [] ; a[]\OMS/cmsy/m/n/10 g  [] []  [] \OML/cmm/b/it/10 a[] \OMS/cmsy/m/n/10  [] []f\OML/cmm/m/it/10 a[]; [] a[]\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 n \OMS/cmsy/m/n/10  []f\OML/cmm/m/it/10 a[]; [] a[]\OMS/cmsy/m/n/10 g
+ []
+
+
+
+[1
+
+{/home/shpe/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
+LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/n' in size <10> not available
+
+(Font)              Font shape `TU/DavidCLM(0)/b/n' tried instead on input line
+ 371.
+\l__witharrows_x_dim=\dimen340
+\l__witharrows_initial_int=\count404
+\l__witharrows_final_int=\count405
+\l__witharrows_arrow_int=\count406
+\l__witharrows_pos_of_arrow_int=\count407
+\l__witharrows_jump_int=\count408
+\l__witharrows_env_box=\box148
+\l__witharrows_first_arrow_of_group_int=\count409
+\l__witharrows_first_line_of_group_int=\count410
+\l__witharrows_last_line_of_group_int=\count411
+\l__witharrows_first_arrow_int=\count412
+\l__witharrows_last_arrow_int=\count413
+\g__witharrows_x_initial_dim=\dimen341
+\g__witharrows_x_final_dim=\dimen342
+\g__witharrows_y_initial_dim=\dimen343
+\g__witharrows_y_final_dim=\dimen344
+LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/it' in size <10> not availabl
+e
+(Font)              Font shape `TU/DavidCLM(0)/b/it' tried instead on input lin
+e 398.
+
+
+[2]
+
+[3]
+
+[4]
+
+[5]
+
+[6] (./hw3_334558962.aux)
+ ***********
+LaTeX2e <2024-06-01> patch level 1
+L3 programming layer <2024-05-27>
+ ***********
+)
+
+Here is how much of LuaTeX's memory you used:
+ 35654 strings out of 475931
+ 125375,1977958 words of node,token memory allocated
+ 931 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 75 attribute, 103 glue_spe
+c, 27 attribute_list, 2 write nodes
+   avail lists: 1:1,2:3034,3:647,4:56,5:610,6:42,7:6031,8:96,9:1101,10:9
+ 57405 multiletter control sequences out of 65536+600000
+ 140 fonts using 9065391 bytes
+ 116i,12n,114p,1670b,1391s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/fonts/OTF/MonaspaceXenon-Regular.otf></usr/share/fonts/OTF/DavidCLM-
+BoldItalic.otf></usr/share/fonts/OTF/DavidCLM-Bold.otf></usr/share/fonts/OTF/Dav
+idCLM-MediumItalic.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/
+lm/lmroman17-regular.otf></usr/share/fonts/OTF/DavidCLM-Medium.otf></home/shpe/.
+miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/shpe/.mi
+ktex/texmfs/install/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb></home/shpe/.
+miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/shpe/.mik
+tex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx5.pfb></home/shpe/.miktex/
+texmfs/install/fonts/type1/public/amsfonts/cm/cmbx7.pfb></home/shpe/.miktex/texm
+fs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/shpe/.miktex/texmfs/
+install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/shpe/.miktex/texmfs/ins
+tall/fonts/type1/public/amsfonts/cm/cmmi5.pfb></home/shpe/.miktex/texmfs/install
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/shpe/.miktex/texmfs/install/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb></home/shpe/.miktex/texmfs/install/fonts/t
+ype1/public/amsfonts/cm/cmmi9.pfb></home/shpe/.miktex/texmfs/install/fonts/type1
+/public/amsfonts/cm/cmmib10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/p
+ublic/amsfonts/cmextra/cmmib7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1
+/public/amsfonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/pub
+lic/amsfonts/cm/cmr5.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/a
+msfonts/cm/cmr6.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfon
+ts/cm/cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm
+/cmr9.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy6.p
+fb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
+/home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy9.pfb></hom
+e/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/s
+hpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont/line10.pfb></hom
+e/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb></h
+ome/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on hw3_334558962.pdf (6 pages, 279947 bytes).
+
+PDF statistics: 170 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 16 words of extra memory for PDF output out of 10000 (max. 100000000)
+
