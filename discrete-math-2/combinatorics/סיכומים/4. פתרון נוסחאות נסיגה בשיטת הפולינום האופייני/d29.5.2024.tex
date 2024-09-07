@@ -1,0 +1,363 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה בדידה $\sim$ קומבי 6 $\sim$ שיטת הפולינום האופייני}
+\date{29 למאי 2024}
+
+\begin{document}
+	\maketitle
+	\section{הגדרה ומבוא}
+	\textbf{הגדרה: }בהינתן נוסחאות נסידה $a_n = c_1a_{n - 1} + c_2a_{n - 2}$ (כאשר $c_1, c_2$ קובעים ו־$c_2 \neq 0$), הפולינום האופייני שלה הוא $p(x) = x^2 - c_1x - c_2$. 
+	
+	לא ניכס להוכחה של שיטת פתרון האופייני, אך להלן טעימה מתוך ההוכחה: 
+	\textbf{טענה: }תהי נוסחת נסיגה הנ''ל, 
+	\begin{enumerate}
+		\item אם $\alpha$ הוא שורש של הפולינום האופייני, אז הסדרה $a_n = \alpha^n$ מקיימת את נוסחאת הנסיגה. 
+		\begin{proof}
+			מהנתון $\alpha $ שורש של הפולינום האופייני, נקבל: 
+			\[ \begin{WithArrows}
+				p(\alpha ) = \alpha^2 - c_1\alpha - c_2 &= 0 \Arrow{ $\cdot \alpha^{n - 2}$} \\
+				\alpha^n - c_1 \alpha^{n - 1} - c_2\alpha^{n - 2} &=  0 \\
+				\alpha_n =  c_1 \alpha^{n - 1} + c_2 \alpha ^{n - 2}
+			\end{WithArrows} \]
+			צ.ל. $\alpha^n = c_1 \alpha^{n - 1} + c_2 \alpha ^{n - 2}$, וקיבלנו זאת לעיל. 
+		\end{proof}
+		\item אם $a_n = \alpha^n$ ו־$b_n = \beta^n$ מקיימות את נוסחאת הנסיגה, אז גם כל קומבינציה ליניארית שלהם מקיימת את נוסחת הנסיגה. 
+		
+		כלומר, לכל $A, B \in \R $ יתקיים $A \cdot a_n + B \cdot b_n$ מקיימת את נוסחאת הנסיגה. (זו גם טענה קלה להוכחה שלא תוכח כאן). 
+	\end{enumerate}
+	ניתן להוכיח כי הקומבינציות הליניאריות של $\alpha, \beta$ הן היחידות שמקיימות את נוסחאת הנסיגה, אך את ההוכחה נראה רק באלגברה ליניארית בעוד שנה. 
+	
+	\section{השיטה}
+	,vh $a_n = c_1a_{n - 1} + c_2a_{n - 2}$ ($c_1, c_2 \neq 0$ קבועים);
+	\begin{enumerate}
+		\item נחשב את הפולינום האופייני $x^2 - c_1x - c_2$
+		\item נמצא את שורשיו, יסימנו $r_1, r_2$ (לא בהכרח שונים, אם הריבוי הוא $2$). 
+		\item נחלק למקרים: 
+		\begin{itemize}
+			\item אם $r_1 \neq r_2$: הפתרון לנוסחת הנסיגה הוא $a_n = A \cdot r_1^n + B \cdot r_2^n$ לכל $A, B \in \R$ 
+			\item אם $r = r_1 = r_2$: הפתרון הכללי הוא מהצורה: $ a_n = A \cdot r^n + B \cdot nr^n $. 
+		\end{itemize}
+		\item נציב את תנאי ההתחלה כדי למצוא את $A, B$. 
+	\end{enumerate}
+	
+	\section{דוגמאות}
+	\subsection{}
+	ננסה למצוא נוסחה לסדרת פיבונאצ'י. תזכורת: 
+	\[ \begin{cases}
+		F_n = F_{n - 1} + F_{n - 2} \\
+		 F_0 = 0, \ F_1, = 0
+	\end{cases} \]
+	פולינום אופייני: $x^2 - x - 1 $. נמצא שורשים. נקבל $x_{1, 2} = \frac{1 \pm \sqrt{(-1)^2 - 4 \cdot r \cdot (-1)}}{2} = \frac{1 \pm \sqrt{5}}{2}$. לכן, הפתרון הכללי שני נוסחת הנסיגה הוא: 
+	\[ F_n = A \cdot \left (\frac{1 + \sqrt5}{2}\right )^n + B \left (\frac{1 - \sqrt5}{2}\right )^n \]
+	נציב את תנאי ההתחלה: 
+	\[ \begin{cases}
+		F_0 = 0 = A + B \\
+		F_1 = 1 = A \cdot \frac{1 + \sqrt 5}{2} + B \cdot \frac{1 + \sqrt 5}{2}
+	\end{cases} \]
+	
+	נחשב ונקבל $A = \frac{1}{\sqrt 5}, \ B = - \frac{1}{\sqrt5}$. נציב ונקבל: 
+	\[ F_n = \frac{1}{\sqrt5}\left (\frac{1 + \sqrt5}{2} \right )^n - \frac{1}{\sqrt 5}\left (\frac{1 - \sqrt 5}{2}\right )^n \]
+	\textit{הערה: }יחס הזהב, הינו $\phi = \frac{1 + \sqrt5}{2} \approx 1.618 \dots$ (אי־רציונלי מן הסתם) הוא הערך של $\limi \frac{F_x}{F_{x - 1}}$. 
+	
+	\subsection{}
+	\textbf{שאלה: }נתון שביל בממדים $2 \times n $ומרצפות בממדים $1 \times 2, 2 \times 1, 2 \times 2$. נסמן ב‏־$\alpha_n$ את מספר הריצופים השונים האפשריים של השביל בעבור $n$. מצאו נוסחה סגורה.                                                              
+	                                                                                        
+	\textbf{תשובה: }נתבונן בשביל. נפריד למקרים, לפי המשבצת השמאלית עליונה. 
+	\begin{itemize}
+		\item אם כיסינו אותה ע''י $2 \times 2$, אז נותר לרף שביל $2 \times (n - 2)$ באותם התנאים ולכך יש $a_{n - 2}$ אפשרויות. 
+		\item אם כיסינו אותה ע''י $2 \times 1$, אז יש $a_{n - 1}$ אפשרויות לרף את יתר השביל. 
+			\item אם עיסינו אותה ע''י $1 \times 2$, אז גם שתי המשבצות שמתחתיה יכוסו גם הן ע''י $1 \times 2$ ועבור יתר השביל יהיו $a_{n - 2}$ אפשרויות. 
+	\end{itemize}
+	סה''כ, נוסחת הנסיגה תהיה: 
+	\[ a_n = a_{n - 2} + a_{n - 1} + a_{n - 2} = a_{n - 1} + 2a_{n - 2} \]
+	נצטרך למצוא את תנאי ההתחלה. ברור כי $a_1 = 1 $ (ע''י המרצפת $2 \times 1 $) ו־$a_0 = 1 $. לא לחלוטין ברור למה $a_0 = 1 $, לכן נמצא את $a_2 = 3 $, ולפיו נציב ונמצא את $a_0 $: $3 = 1 + 2a_0$ כלומר $2a_0 = 2 $ וסה''כ $a_0 = 1$ כדרוש. 
+	
+	נסכם: 
+	\[ \begin{cases}
+		a_n - a_{n - 1} + 2a_{n - 2} \\
+		a_{0, 1} = 1
+	\end{cases} \]
+	
+	נרצה למצוא נוסחה סגורה. פולינום אופייני: $x^2 - x - 2 $, למה כל המורים מסוכלים לעשות טרינום בראש $(x - 2)(x + 1) = 0 $ כלומר $x_{1, 2} = -1, 2 $ כלומר הפתרון הכללי $A \cdot 2^n + B(-1)^n $. נציב תנאי התחלה: $1 = A + B \land 1 = 2A - B$. נפתור, ונמצא ש־$A = \frac{2}{3}$ ו־$B = \frac{1}{3}$. 
+	
+	\subsection{}
+	\textbf{``תרגילון'': }נסו למצוא נוסחה סגורה לנוסחת הנסיגה: $ a_n = 4a_{n - 1} - 4a_{n - 2} $ עם תנאי התחלה $a_0 = 0, \ a_1 = 1$. 
+	\subsection{}
+	\textbf{תרגיל: }בכמה מילים באורך $n$ מעל $\{A, B, C\}$ מופיע הרצף $CB$?
+	
+	\textbf{תשובה: }אפשר לפתור במגוון דרכים, אך הפעם נרצה לפתור בנוסחאות נסיגה. נפריד למקרים לפי התו הראשון. הפתרון יסומן ב־$a_n$. 
+	איור של ההפרדה למקרים: 
+	\[ a_n \begin{cases}
+		A\underbrace{\quad \quad \quad}_{n - 1} a_{n - 1} \\
+		B\underbrace{\quad \quad \quad}_{n - 1} a_{n - 1} \\
+		C\begin{cases}
+			CA\underbrace{\quad \quad \quad}_{n - 2} \\
+			CC \begin{cases}
+				\dots
+			\end{cases}
+		\end{cases}
+	\end{cases} \]
+	\begin{enumerate}
+		\item אם הוא מתחיל ב־$A$: אז לאחריו יהיו $a_{n - 1}$ תווים בעלי אותה המגבלות, כלומר $a_{n - 1}$ אפשרויות 
+		\item אם הוא מתחיל ב־$B$: כנ''ל
+		\item אם הוא מתחיל ב־$C$: יש כמה אפשרויות: 
+		\begin{itemize}
+			\item יותר מבלבל, ופחות פורמלי: $a_n = 2a_{n - 1} + a_{n - 2} + a_{n - 3} + \dots + a_1 + 1 + 1$. באופן דומה $a_{n - 1} = 2a_{n - 2} + \dots + a_1 + 1 + 1$. נחסר בין המשוואות: 
+			\[ a_n - a_{n - 1} = 2a_{n - 1} + a_{n - 2} - 2a_{n - 2} + \cancel{a_{n - 3} - a_{n - 3} + \dots - \dots + a_1 - a_1 } \]
+			סה''כ קיבלנו $a_n = 3a_{n - 1} - a_{n - 2} $. 
+			תנאי התחלה: $a_0 = 1 $ (בעבור המילה הריקה), $a_1 = 3 $. 
+			\item דרך אחרת, מבלבלת פחות ועם נוסחאות נסיגה מסדר מוגדר היטב: עשינו משהו דומה ביום שני. נסמן ב־$b_n$ את מספר המילים החוקיות שמתחילות ב־$C$, וב־$a_n$ את המילים החוקיות: 
+			\[ a_n \underbrace{\quad \quad \quad}_{n}\begin{cases}
+				A \underbrace{\quad \quad \quad}_{n - 1} a_{n - 1} \\
+				B \underbrace{\quad \quad \quad }_{n - 1} a_{n - 1} \\
+				C \underbrace{\quad \quad \quad}_{n - 1} b_n
+			\end{cases} \implies (I) \ a_n = 2a_{n - 1} + b_n \implies (III) \ a_{n - 1} = 2a_{n - 2} + b_{n - 1} \]
+			ידוע גם: 
+			\[ b_n \underbrace{C\quad \quad \quad}_{n} \begin{cases}
+				CA\underbrace{\quad \quad \quad}_{n - 2} a_{n - 2} \\
+				CC\underbrace{\quad \quad \quad}_{n - 2} b_{n - 1}
+			\end{cases} \implies (II) \ b_n = a_{n - 2} + b_{n - 1} \]
+			מטעמי קריאות, מומלץ לקרוא למשוואות משוואה 1 ושמוואה 2. נעשה זאת גם כאן. ממשוואה $I$ נקבל $b_n = a_n - 2a_{n - 1}$. נחסר בין $III$ לבין $II$: 
+			\[ a_{n - 1} - b_n = a_{n - 2} \]
+			נציב את $b_n$: 
+			\[ a_{n - 1} - (a_n - 2a_{n - 1}) = a_{n - 2} \]
+			וסה''כ $a_n = 3a_{n - 1} - a_{n - 2}$. 
+			\item הדרך המומלצת ביותר: 
+			\[ a_n \begin{cases}
+				A\underbrace{\quad \quad \quad}_{n - 1} a_{n - 1} \\
+				B\underbrace{\quad \quad \quad}_{n - 1} a_{n - 1} \\
+				C ??
+			\end{cases} \]
+			ננסה להבין כמה אפשרויות יש לאשר ב־$??$, הוא מילה חוקית באורך $n - 1 $ שלא מתחילה ב־$B$. מעקרון המשלים, מס' המילים החוקיות באורך $n - 1$ שלא מתחילות ב־$B$ הוא: 
+			\[ a_{n - 1} - a_{n - 2} \]
+			כי $\underbrace{B \underbrace{\quad \quad}}_{n - 1}$. וסה''כ: 
+			\[ a_n = 2a_{n - 1} + a_{n - 1} - a_{n - 2} \]
+			כלומר $a_n = 3a_{n - 1} - a_{n - 2}$ כדרוש. 
+		\end{itemize}
+	\end{enumerate}
+\end{document}

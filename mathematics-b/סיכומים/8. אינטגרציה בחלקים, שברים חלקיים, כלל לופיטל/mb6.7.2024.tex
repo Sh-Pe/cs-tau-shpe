@@ -1,0 +1,454 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sqq   {\overset{?}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה B $\sim$ עברי נגר $\sim$ משהו}
+\date{6 ליולי 2024}
+
+\begin{document}
+	\maketitle
+	\section{\en{Intergration By Parts (IBP)}}
+	הגישה היחידה שיש לנו פרט לשיטת ההצבה. נובע מכלל המכפלה. 
+	\[ (fg)' = f'g + fg' \implies f'g = fg' - (fg)' \implies \int f'(x)(gx)\dx = f(x)g(x)\dx - \int (f(x)g(x))'\dx \]	
+	לדוגמה: 
+	\[ \int  x\sinx \dx = \csb{\begin{cases}
+			g(x) = x & f(x) =  - \cosx \\
+			g'(x) = 1 & f'(x) = \sinx
+	\end{cases}} = - x\cosx + \int \cosx \dx = - x\cosx + \sinx + C \]
+	
+	שיטת הרישום – udv. החוק: 
+	\[ \int u\ d v = uv - \int v\ du \]
+	ככה לרוב רושמים. 
+	\begin{gather*}
+		\int x^2e^x = \csb{\begin{cases}
+				u = x^2, & v = e^x \\
+				du = 2x \dx & dv = e6x \dx
+		\end{cases}} = x^2e^x - \int 2xe^x \dx \\ 
+		= \csb{\begin{cases}
+				u = x & v = e^x \\
+				du = \dx, & dv = e^x\dx
+		\end{cases}} = (x^2 e^x) - 2\cl{xe^x - \int e^x \dx} = x^2e^x - 2xe^x +2e^x + C
+	\end{gather*}
+	דוגמה פשוטה בשביל להכניס עיזות לאינטגרל (הדבר הטוב ביותר בכל הזמנים). 
+	\[ \int \ln x \dx = \int \ln x \cdot 1 \dx = \csb{\begin{cases}
+			u = \ln x & v = x\\
+			du =  \frac{\dx}{x} & dv = 1 \cdot \dx
+	\end{cases}} = x \ln x - \int x \cdot \frac{\dx}{x} = x \ln x - x + C \]
+
+תרגיל: 
+\[ \int x^3 \ln x \dx = \csb{\begin{cases}
+		u = \ln x & v = \frac{1}{4}x^4 \\
+		du = \frac{\dx}{x} & dv = x^3 \cdot \dx
+\end{cases}} = \frac{x^4\ln x}{4} - \int \frac{x^3}{4} = \frac{x^4\ln x}{4} - \frac{x^4}{16} + C \]
+	וגם בעבור אינטגרל מסויים:
+	\[ \int^b_a u \; dv = uv \Big|_a^b - \int^b_a v \; du \]
+	הסבר לסימון: 
+	\[ \int_1^3 x \dx = \frac{x^2}{2}\Big|^3_1 = \frac{3^2}{2}  - \frac{1^2}{2} \]
+	דוגמה נוספת: (אותה ההצבה כמו קודם. אמור להסביר למה צריך להציב שם)
+	\[ \int^5_2 \ln x \dx = \int^5_2 (x \ln x)' \dx - \int^5_2 x \cdot \frac{\dx}{x} = x \ln x \Big|^5_2 - x \big|^5_2 = 5 \ln5 - 5 - (2 \ln 2 - 2) \]
+	
+	ע"ש עצמי: 
+	 \begin{align*}
+	 	I &= \int e^x \sinx \dx = \csb{\begin{cases}
+	 			u = \sinx & v = e^x \\
+	 			du = \cosx \dx & dv = e^x\dx
+	 	\end{cases}} = e^x\sinx - \int e^x \cos \dx \\
+ 	&= \csb{\begin{cases}
+	 			u = \cosx & v = \dots \\
+	 			du = \dots & dv = \dots
+	 	\end{cases}} = e^x\sinx - \cl{e^x\cosx - \int - e^x\sinx \dx} \\
+ 		=e^x (\sinx - \cosx) - I
+	 \end{align*}
+	 נעביר אגפים. 
+	 \[ 2I = e^x(\sinx - \cosx) \implies I = \frac{e^x(\sinx - \cosx)}{2} + C \]
+	 אבל להציב ככה I זה טיפה בעייתי כי הם מוגדרים עד לכדי קבוע. אז כשמעבירים אגף יכול להיות שיש שני קבועים שונים. סה"כ הקבוע לא מענלם למרות שחיסרנו אותם. 
+	 \section{\en{Partioal Fractions}}
+	 "טריקים ושטיטיקים" שלא בהכרח תמיד עוזרים באינטגרלים אבל יכולים לעזור גם בהם. 
+	 \[ \frac{7x - 7}{x^2 - x - 12} = \frac{7x - 7}{(x - 4)(x + 3)} \seq \frac{A}{x - 4} + \frac{B}{x + 3} = \frac{A(x + 3) + B(x - 4)}{x^2 - x - 12} = \frac{(A + B)x + (3A - 4B)}{x^2 - x - 12} \]
+	 נמצא $A, B$ מתאימים. נקבל: 
+	 \[ \begin{cases}
+	 	A + B = 7 \\
+	 	3A - 4B = -7
+	 \end{cases} \implies A = 3, \ B = 4 \]
+	 שזו מערכת משוואות שקל לפתור. סה"כ $\frac{7x -  7}{x^2 - x - 12}  = \frac{3}{x - 4} + \frac{4}{x + 3}$. הדבר הזה, עובד באופן כללי. באופן כללי, כל שבר נוכל לכתוב כסכום של שני שברים קטנים יותר. 
+	 
+	 נתבונן בשבר הבא: 
+	 \[ \frac{x^2 + x - 2}{3x^3 - x^2 + 3x - 1} = \frac{x^2 + x - 2}{(x^2 + 1)(3x - 1)} \seq \frac{A}{3x - 1} + \frac{Bx + C}{x^2 + 1} = \frac{(A + 3B)x^2 (-B + 3C)x + (A - C)}{(x^2 - 1)(3x - 1)} \]
+	 סה"כ: $A + 3B = 1, \ -B + 3C = 1, \ A - C = -2$. תשברו את הראש ותמצאו $A = -7/5, B = 4/5' C = 3/ 5$. קדימה, ננסח באופן כללי: 
+	 
+	 כל פונקציה רציונלית מהצורה להלן נוכל לכתוב כך: 
+	 \[ \frac{P_{<m}(x)}{(a_1x + b_1) \cdot \dots \cdot (a_mx + b+m)} = \frac{A_1}{a_x + b_1} + \dots + \frac{A_m}{a_mx + b_m} \]
+	 כאשר $P_i$ הוא פולינום ממעלה $i$. 
+	 
+	 הטבלה להלן תראה איזה איבר כל גורם שנוצר מהשורש למטה יביא: 
+	 \begin{alignat}{9}
+	 	&&&ax + b &&\to &&&\frac{A}{ax + b} \\
+	 	&&&ax^2 + bx + c &&\to &&&\frac{Ax + B}{ax^2 + bx + c} \\
+	 	&&&(ax + b)^k &&\to &&&\; \; \frac{A_1}{ax + b} + \frac{A_2}{(ax + b)^2} + \dots + \frac{A_k}{(ax + b)^k} \\
+	 	&&&(ax^2 + bx + c)^k &&\to &&& \; \frac{A_1x + B_1}{ax^2 + bx + c} + \dots + \frac{A_kx + B_k}{(ax62 + bx + c)^k}
+	 \end{alignat}
+	 דוגמה: 
+	 \[ \frac{2x + 4}{x^3 - 2x^2} = \frac{2x + 4}{x^2(x - 2)} = \seq = \frac{A}{x - 2} + \frac{B}{x} + \frac{C}{x^2} = \frac{(A + B)x^2 + (-2B + C)x - 2C}{x^3 - 2x^2} \implies \begin{cases}
+	 	A + B = 0 & A = 2 \\
+	 	-2B + C = 2 & B = -2 \\
+	 	-2C = 4 & C = -2
+	 \end{cases} \]
+	 \textit{משפט. }כל פולינום ממשי אפשר לחלק לגורמים ממעלה ריבועית לכל היותר. זה למה עברי עצר בטבלה במעלה 2. 
+	 
+	 \textbf{"שיטת הכיסוי של הרדי או משהו כזה": }
+	 \[ \frac{7x - 7}{x^2 - x - 12} = \frac{A}{x - 4} + \frac{B}{x + 3} \]
+	 נכפול ב־$x - 4$: 
+	 \[ \frac{7x - 7}{x + 3} = A + \frac{B(x - 4)}{x + 3} \overset{x = 4}{\longrightarrow} \frac{7 \cdot 5 - 7}{4 + 3} = A \]
+	 אפשר גם לכפול ב־$(x - 3)$ ואז לקחת $x \to -3$. 
+	 
+	 זו סתם שיטה נוחה יותר לפתור את המשוואות האלו. 
+	 \subsection{אז למה עשינו את זה}
+	 כי אינטגרלים. 
+	 עבור פונקציה $\frac{P(x)}{Q(x)}$, נעשה חילוק פולינומים ונקבל $p(x) + \frac{r(x)}{Q(x)}$. מעלת $r$ קטנה ממעלת $Q$, ונוכל לבצע חרא של שברים חלקיים ולקבל פולינום + שברים חלקיים. עכשיו נעשה אינטגרל. אין בעיה לעשות אינטגלים על פולינומים או על שברים חלקיים. 
+	 
+	 ש.ב.: תקראו על הצבת ויירשטראס (Wieirstrass). 
+	 
+	 \section{\en{L'Hôpital's rule (LH)}}
+	 לופיטל קנה את הזכויות לכלל מברנולי. כאילו ליטרלי. הבעיה בגבולות מתחילה כאשר $f, g$ שואפים ל־0 ומנסים לחלק אותם אחד בשני. לכן, בינתיים נניח $\limxz f(x) = \limxz g(x) = 0$. 
+	 \[ \limxz \frac{f(x)}{g(x)} = \limxz \frac{f(x) - f(x_0)}{g(x) - g(x_0)} = \limxz \frac{\frac{f(x) - f(x_0)}{x - x_0}}{\frac{g(x) - g(x_0)}{x - x_0}} \sqq \cl{\limxz \frac{f(x) - f(x_0)}{x - x_0}} \Bigg / \cl{\limxz \frac{g(x) - g(x_0)}{x - x_0}} = \frac{f'(x)}{g'(x)} \]
+	 חוץ מההנחה שאפשר לפצל את הגבולות, "לא רימיתי בשום דבר" (עברי). 
+	 
+	 "הצורה הכי פורמלית שעדיין הגדרנו". יהיו $f, g$ פונקציות גזירות בסביבה בסביבה נקובה של $t$. נניח: 
+	 \begin{enumerate}
+	 	\item $\lim_{x \to t} f(x) = 0$ 
+	 	\item $\lim_{x \to t} g(x) = 0$
+	 	\item $g'(x) \neq 0$ בסביבה נקובה של $t$. 
+	 	\item קיים הגבול $L = \lim_{x \to t} \frac{f'(x)}{g'(x)}$
+	 \end{enumerate}
+	 אם ארבעת התנאים להלן מתקיימים, אז קיים הגבול $L = \lim_{x \to t} \frac{f(x)}{g(x)}$ וגם $L = L'$. התנאי הרביעי מאוד חשוב. בד"כ שוכחים אותו. אפשר להשתמש בלופיטל כמה פעמים. תקף גם עבור קבולות חד־צדיים, ובפרט עבור $t = \pm \inf$. יש גם כלל לופיטל עבור $\frac{()}{\inf}$, כלומר כאשר אין תנאי 1, ותנאי 2 הופך ל־$\lim_{x \to t} g(x) = \pm \inf$. 
+	 
+	 דוגמאות: 
+	 \[ \lim_{x \to 0} \frac{1 - \cosx}{\sinx^2} = \limz \frac{\sinx}{2x\cosx^2} = \frac{1}{2}\limz \frac{\sinx}{x} = \frac{1}{2} \]
+	 יש לזה גבול אז השוויון בהתחלה היה תקין. 
+	 
+	 דוג': 
+	 \begin{gather*}
+	 	\limz = \frac{\sin(\sinx) - \sinx}{x^3} \overset{LH}{=} = \limz \frac{\cos(\sinx)\cosx - \cosx}{3x^2} = \frac{1}{3}\limz \frac{\cos(\sinx) -1 }{x^2} \slh \frac{1}{3}\limz \frac{-\sin(\sinx)\cosx}{2x} = \\ -\frac{1}{6}\limz \frac{(\sin(\sinx))}{x} \slh -\frac{1}{6} \limz\frac{\cos(\sinx)\cosx}{1} = -\frac{1}{6}
+	 \end{gather*}
+	 הבהרה: רק לאחר שראינו שהגבול קיים, בדיעבד נוכל לדעת שכל השוויונות שמבוססים על $LH$ הם תקינים. 
+	 
+	 "גבול שאתם צריכים לדעת אבל תנסו לחשב אותו עם לופיטל": 
+	 \[ \limi \frac{\ln x}{x} \slh \limi \frac{1/x}{x} = 0 \]
+	 שימו לב – \textbf{לא להשתמש בטיעונים מעגליים}. דוגמה: 
+	 \[ \limxz = \frac{\sinx}{x} \slh \limz \frac{\cosx}{1} = 1 \]
+	 בשביל לעשות את הגבול הזה ניאלצנו לגזור את $\sinx$, אך בשביל לעשות זאת ניאצלנו לחשב את הגבול. 
+	 
+	 
+	 
+	
+\end{document}

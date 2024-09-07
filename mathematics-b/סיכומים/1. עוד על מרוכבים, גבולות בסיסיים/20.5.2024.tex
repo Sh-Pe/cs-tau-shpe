@@ -1,0 +1,317 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+
+\newcommand\ninf  {-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\title{מתמטיקה B $\sim$ עוד על מרוכבים, גבולות בסיסיים}
+\author{שחר פרץ}
+\date{20 ליוני 2024}
+
+\begin{document}
+	\maketitle
+	
+	\section{מתמטיקה B – הרחבה על מרוכבים}
+	\subsection{תרגיל פתיחה}
+	\textbf{שאלה: }פתרו את המשוואה הבאה: 
+	\[ 3x^2 + 2x + 10 = 0 \]
+	\textbf{פתרון: }
+	\[ x_{1, 2} = \frac{-2 \pm \sqrt{2^2  - 4 \cdot 3 \cdot 10}}{2 \cdot 3} = \frac{-2 \pm i \sqrt{116}}{6} = -\frac{1}{3} \pm \sqrt{29}i \]
+	
+	באופן דומה: 
+	\[ x^2 + (5 - 3i)x + (4 - 9i) \implies x = \frac{1}{2}(-5 + 3i \pm \underbrace{\sqrt{(5 - 3i)^2 - 4(4 - 9i)})}_{\sqrt{25 - 9 - 30i - 16 + 36i = 6i}} = \frac{1}{2}(i5 + 3i \pm \sqrt6 \sqrt i) \]
+	תזכורת: 
+	\[ \sqrt i = \pm \frac{1 + i}{\sqrt2} \]
+	
+	נשים לב שפתורנות המשוואה הראשונה צמודים זה של זה. נגיע לטענה: 
+	\subsection{חרא כזה או אחר}
+	הבהרה: $\R[x]$ מתייחס לפולינמים במשתנה $x$ עם מקדמים ממשיים. 
+	
+	\textbf{טענה: }לכל פולינום ממשי $p(x) \in \R[x]$, מתקיים ש־$\forall z \in \C. p(z) = 0 \iff p(\bar z) = 0$. 
+	
+	\begin{proof}
+		נסמן את הפולינום $p(x) = a_nx^n + \dots + a_0 $ כאשר $a_i \in \R$, ונניח $p(z) = 0$. צ.ל. $p(\bar z) = 0$. נציב ונקבל: 
+		\[p(\bar z) = a_n(\bar z)^n + \dots + a_k(\bar z)^k + \dots + a_0 = a_n\bar{z^n} + \dots + a_k\bar{z^k} + \dots + a_0 =\bar{a_n z^n} + \dots \bar{a_kz^k} + \dots + \bar{a_0} = \bar{a_nz^n + \dots + a_0} = \bar{p(z)} = 0 \]
+		\textbf{טענה: }צמוד של מכפלה הוא מכפלת הצמודים. (השתמשנו בטענה זו בזמן ההוכחה והיא תופיע גם בשיעורי הבית)
+		הגרירה השנייה מתקיימת מסימטריה. 
+	\end{proof}
+	
+	ננסה לעשות טרינום לכל הפולינומים. בשביל לעשות זאת, נחלק פולינומים. 
+	\[ \frac{p(x)}{x - x_0} = ? \]
+	ננסה להוכיח קיום $q(x)$ כך ש־$p(x) = q(x)(x - x_0) + r$, ונרצה למצוא את $q(x)$. נסמן $q(x) = b_{n = 1}x^{n + 1} + \dots  + b_0 $
+	\[ q(x)(x - x_0) = \sumnk x^k (-x_0b_k + b_{k - 1}) \]
+	לכן: 
+	\[ a_n = b_{n - 1}, a_{n - 1} = b_{n - 2} - x_0b_{n - 1} \ \cdots \ a_k = b_{k - 1} - x_0b_k \ \cdots \ a_0 = r - x_0b_0 \]
+	
+	עכשיו, ננסה להגדיר חילוק פולינומים בעבור פולינומים שהם לא ליניאריים. 
+	\textit{דוגמה לחילוק ארוך שכרגע על דף}
+	
+	\textbf{משפט: }$p(x_0) = 0 \iff (x - x_0) \mid p(x)$
+	\begin{proof}
+		\textbf{כיוון ראשון: }נניח $(x - x_0) \mid p(x) \implies p(x) = q(x)(x - x_0)$ ואז $p(x_0) = q(x_0) \cdot 0 = 0$ \\
+		\textbf{כיוון שני: }נניח $p(x_0) = 0$. נחלק עם שארית $p(x) = q(x)(x - x_0) + r$. ידוע $0 = p(x_0) = r$ כלומר אין שארית ולכן $(x - x_0) \mid p(x)$. 
+	\end{proof}
+	
+	\subsection{המשפט היסודי של האלגברה}
+	``זה בעצם משפט באנליזה'' $\sim$ עברי
+	
+	\large \textit{\textbf{לכל פולינום לא קבוע מעל }$\bm{\C}$\textbf{ קיים שורש ב־}$\bm{\C}$.}
+	\normalsize	כלומר $\C$ סגור אלגברית, בשפה גבוהה. 
+	לא קבוע = לא ממעלה 0
+	
+	יהי $p(x) \in \C[x]$. לכן ניתן לרשום אותו בצורה של $p(x) = (x - x_1)q(x)$. אך גם ל־$q(x)$ יש שורש! לכן נוקבל להמשיך לכתוב זאת בצורה הזו באינדוקציה, ולקבל $p(x) = (x - x_1)(x - x_2) \dots (x - x_n) \cdot a_n $. למעשה, כך הוכחנו באינדוקציה, שלכל פולינום מעל המרוכבים אפשר לכתוב בצורה של גורמים ליניאריים או משהו כזה. יש לו $n$ שורשים (ולכל היותר $n$ שורשים שונים, כי ייתכן ואחד מהם מופיע פעמיים). 
+	
+	\textit{הערה: }הפירוק הזה הוא יחיד. אפשר להוכיח זאת באמצעות כלים של חדו''א. 
+	
+	\subsection{ועכשיו לאפילו עוד חרא על מעגלים}
+	להלן משוואה, לא פולינומיאלית: 
+	\[ |z + 3i| = 3|z| \]
+	נרצה למצוא את כל הפתרונות המתאימים. ננסה לפתור. נציב $z = a + bi$, כאשר $a, b \in \R$. נעלה את שני האגפים בריבוע (מותר כי שני האגפים אי־שליליים) ונקבל: 
+	\[ |z + 3i|^2 = 9|z|^2 \implies |a + bi + 3i|^2 = 9|a + bi|^2 \implies a^2 + (b + 3)^2 = 9(a^2 + b^2) \]
+	טוב נתחיל לעשות אנטרים שזה יהיה קריא: 
+	\begin{gather*}
+		3b^2 - 6b - 8 + 8a^2 = 0 \\
+		b^2 - \frac{3}{4}b - \frac{9}{8} + a^2 = 0 \\
+		\left ( b - \frac{3}{8} \right )^2 +  -\frac{9}{8} - \left (\frac{3}{8} \right )^2  + a^2 = 0 \\
+		\left (b - \frac{3}{8} \right ) + a^2 = \frac{9}{8} + \frac{9}{64} = \frac{81}{64} = \left (\frac{9}{8}\right )^2
+	\end{gather*}
+	
+	למעשה, קיבלנו שכל הנקודות המתאימות מציירות מעגל על מרחב המרוכבים (תציירו ב־desmos או תיצרו איתי קשר אם זה לא ברור). מרכזו יהיה ב־$0 + \frac{3}{8}i$, ורדיוסו $\frac{9}{8}$. 
+	
+	\subsection{סתם תרגיל אקראי}
+	תרגיל: פתרו את המשוואה $\bar z = 2i(z - 1)$. נציב $z = a + bi$. נקבל: 
+	\begin{gather}
+		a - bi = 2i(a + bi - 1) \\
+		a - bi = 2ai - b - 2i \\
+		a - 2ai = -b -bi - 2i \\
+		a(1 - 2i) = - (b + bi + 2i) \\
+		a = \frac{b + bi + 2i}{1 - 2i} \\
+		z = \frac{b + bi + 2i}{1 - 2i} + bi
+	\end{gather}
+	
+	וזו לא השיטה. צריך להעביר את כל המספרים לצד שמאל, ולקבל: 
+	\begin{gather}
+		\begin{cases}
+			a + 2b = 0 \\
+			-b - 2(a - 1) = 0
+		\end{cases}
+		\implies a = \frac{4}{3}, b = \frac{-2}{3} \implies z = \frac{4}{3} - \frac{2}{3}i
+	\end{gather}
+	
+	\section{חדו''א}
+	``גבולות וכאלו''
+	
+	חלק מהחומר יהיה לא פורמלי, בניגוד לקורס בחדו''א שיהיה פורמלי מאוד. 
+	
+	\textbf{גבול: }לאן פונקציה ``הולכת'' בנקודה מסויימת. 
+	
+	\[ \lim_{x \to x_0} f(x) = L \]
+	משמעו שככל ש־$x$ יותר קרוב ל־$x_0 $ הפונקציה יותר קרובה ל־$L$. הגבול של הפונקציה לא תלוי בערך של הפונקציה בנקודה. 
+	לדוגמה $\lim_{x \to 3} x^2 = 9$ וגם $\lim_{x \to 0} \sin x = 0$. ישנם גם גבולות חד צדדיים: $\lim_{x \to 0^+} \sqrt{x} = 0 $ (כלומר, ככל שהגבול יותר קרוב ל־0 מצד ימין אז הוא יתקרב ל־0). 
+	ניקח לדוגמה את הפונקציה: 
+	$g(x) = \begin{cases}
+		7 &x \le x_0 \\
+		5 &x > x_0
+	\end{cases}$
+	אז: 
+	\[ \lim_{x \to x_0^+} g(x) = 7, \ \lim_{x \to x_0^-} g(x) = 5, \ \lim_{x \to x_0} g(x) \in \emptyset \]
+	
+	באופן דומה: 
+	\[ h(x) = \begin{cases}
+		1 & x \neq 3 \\
+		10 & x = 3
+	\end{cases} \]
+	אזי: 
+	\[ \lim_{x \to 3} h(x) = 1 \]
+	עוד גבולות: 
+	\[ \lim_{x \to 2}\frac{x^2 - 4}{x - 2} = \lim_{x \to 2} x + 2 = 4 \]
+	פרט לאי־רציפות, לא יהיה גבול בנקודה מסויימת. לדוגמה: 
+	\[ \lim_{x \to 0} \sin \frac{1}{x} \in \emptyset, \ \lim_{x \to 1} \sin \frac{1}{x} = \sin 1 \]
+	האינטואציה לכך היא שככל השסינוס יתקרב ל־0 הוא יעשה יותר מחרוזים. לא משנה כמה נתקרב, היא תתבלגן עוד יותר. אפשר לצייר על דסמוס כדי להבהיר. 
+	לפונקציית ירכלה אין גבול באף נקודה: 
+	\[ D(x) = \begin{cases}
+		1 & x \in \Q  \\
+	0 & x \in \R \setminus \Q
+	\end{cases} \implies \lim_{x \to a} D(x) \in \emptyset \]
+	כמו דוגמאות שכבר ראינו: 
+	\[ \lim_{x \to 0}\frac{1}{x} \in \emptyset, \ \lim_{x \to 0^\pm}\frac{1}{x} \pm \infty \]
+	
+	אם הפונקציה רציפה, פשוט אפשר להציב. אפשר גם לדבר על גבולות אינסופיים: 
+	\[ \lim_{x \to \infty} = \infty, \ \limi \frac{1}{x} = 0, \ \limni x^3 = - \infty \]
+	
+	
+\end{document}

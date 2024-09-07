@@ -1,0 +1,284 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+
+\newcommand\ninf  {-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\title{קומבי 2 – עקרון שובך היונים}
+\author{שחר פרץ}
+\date{20 למאי 2024}
+
+\begin{document}
+	\maketitle
+	
+	
+	\section{המשפט}
+	שובך יונים – בתוכו יש תאים (לא אומרים שובכים, בתוך השובך יש תאים).   טענה: כל עוד יש יותר יונים מכמות התאים בו, אם הן נכנסות לתוך השובך, ישנו תא עם לפחות שתי יונים (יונים לא מתפצלות ל־2 למרות שהן רובטוים). ייתכן שכל היונים יכנסו לאותו התא, אך התנאי עדיין מתקיים. 
+	
+	בכלליות: יהי $n \in \N$, בהינתן $n + 1 $ יונים ושובך עם $n$ תאים, בהכרח יהיה תא שבו לפחות 2 יונים. 
+	
+	באופן יותר כללי (\textbf{עקרון שובך היונים המוכלל}): בהינתן $m$ יונים ושובך עם $n$ תאים, בהכרח קיים תא שבו לפחות $\lc \frac{m}{m} \rc$ יונים. אלו חמש יונים, לא חמישה יונים. 
+	
+	\textbf{ובאופן פורמלי: }
+	\[ \forall m, n \in \N. \forall f \colon A \to B. |A| = m, |B| = n. \exists b \in B. \sof{f\op[\{b\}]} \ge \lc \frac{m}{n} \rc \]
+	
+	\section{תרגילים}
+	\subsection{תרגיל ראשון}
+	\textbf{שאלה: }נתון ריבוע שאורך צלעו $2$. הוכיחו שבכל בחירה של חמש נקודות בתוך הריבוע, קיימות 2 נקודות ממרחק קטן מ־$\sqrt2 $. \\
+	\textbf{פתרון: } נחלק את הריבוע ל־4 חלקים בלי צלא 1. 
+	
+	\textit{יונים:} 5 הנקודות. 
+	
+	\textit{תאים: }4 הריבועים.
+	
+	נכניס יונה לתא. לפי הריבוע שבו הנקודה נמצאת . לפי עקרון שובך היונים, קיים ריבוע שבו נמצאות שתיים מהנקודות. המרחק ביניהן הוא לכל היותר האלכסון של הריבוע, שהוא $\sqrt 2 $ מפיתגורס, וגמרנו. 
+	
+	מומלץ בחום להגדיר יונים ותאים, ולהסביר איך הכניסו יונה לתא. בהרבה מקרים נופלי נקודות על זה. חפפנות גם גורמת לחשש לחירטוט. הבהרה נוספת: ההוכחה להלן מספיק פומרלית. 
+	\subsection{תרגיל שני}
+	\textbf{שאלה: }בכיתה $30$ תלמידים. כל אחד מהתלמידים שולח משלוח מנות ל־15 תלמידים מהכיתה. הוא רוטשילד. הוכיחו שישנים שני תלמידים שקיבלו משלוח מנות זה מזה. 
+	
+	\textbf{פתרון: }מספר משלוחי המנות שנשלחו הוא $30 \cdot 15 = 450$. מספר זוגות התלמידים שיש בכיתה הוא $\binom{30}{2} = \frac{30!}{28! \cdot 2!} = 30 \cdot 29 \cdot 0.5  $. 
+	
+	\textit{יונים: }משלוחי המנות.
+	
+	\textit{תאים: }זוגות התלמידים בכיתה. 
+	
+	נכניס יונה לתא לפי זוג התלמידים שביניהם נשלח משלוח המנות. נוכל להפעיל את שובך היונים באופן תקין כי $ 30 \cdot 29 \cdot 0.5 > 30 \cdot 15 $.
+	
+	\subsection{תרגיל שלישי}
+	\textbf{שאלה: }הוכיחו שבדרה הבאה: 
+	\[ 7, 77, 777, 7777 \dots \]
+	קיים איבר בסרה המתחלק ב־7 ו־2023. 
+	
+	\textbf{פתרון: }נוכיח שכבר ב־2023 האיברים הראשונים בסדרה, קיים מספר מתאים. 
+	
+	נניח בשלילה שלא קיים ב־2023 המספרים הראשונים מספר המתחלק ב־2023. נסתכל על שאריות החלוקה האפשריות ב־2023; $\not 0, 1, 2 \dots 2022$ (כי לפי הנחת השלילה לא קיים איבר ששארית החלוקה ב־2023 היא 0). 
+	
+	\textit{יונים: }2923 האיברים הראשונים
+	
+	\textit{תאים: }2022 שאריות החלוקה
+	
+	נתאים יונה לתא לפי שארית החלוקה של המספר ב־2023. לפי עקרו ןשובך היונים, קיימים שני איברים שונים בעלי אותה שארית החלוקה. נסמן $x_i$ המספר ה־$i$ בסדרה, וב־$1 \le r_i \le 2022$ את השארית החלוקה של $x_i$ ב־2023. לכן, קיימים $i \neq j \in \N$ שונים כך ש־$r_i = r_j$. בה''כ $i > j$. כלומר: 
+	\[ \begin{cases}
+		x_i = 2023 \cdot c_i + r_i \\
+		x_j = 2023 \cdot c_j + r_j
+	\end{cases} \ (c_i, c_j \in \N) \
+	\implies x_i - x_j = 2023\underbrace{(c_i - c_j)}_{\in \N} + \cancel{r_i - r_j}
+	\implies 2023 \mid x_i - x_j \]
+	
+	מצד שני: 
+	\[ 2023 \mid x_i - x_j = \underbrace{777 \dots 7}_{i \mathrm{\ times}} - \underbrace{77 \dots 7}_{j \mathrm{\ times}} = \underbrace{777 \dots}_{i - j \mathrm{\ times}} 0 \dots 0 = x_{i - j} \cdot 10^{j} \]
+	
+	כלומר, המספר שקיבלנו מתחלק ב־2023. מכיוון ש־2023 זר ל־10, נובע ש־$x_{i - j}$ מתחלק ב־2023, וזו סתירה להנחת השלילה. 
+	
+	\textit{הערה: }נפוץ להשתמש בשאריות חלוקה בעת שימוש בשובך היונים. 
+	
+	\subsection{תרגיל רביעי}
+	\textbf{שאלה: }מתוך המספרים $1, \dots, 2n$ בוחרים $n + 1$ מספרים. הוכיחו שבהכרח ישנם שני מספרים מתוכם שאחד מהם מתחלק בשני. 
+	
+	\textbf{פתרון: }כל מספר $x$ נרשום בצורה: 
+	\[ x = 2^{a_x} \cdot b_x \]
+	כאשר $b_x \in \Nodd$ ו־$a_x \in \N$. 
+	
+	\textit{יונים: }כל $n + 1 $ המספרים שנבחרו
+	
+	\textit{תאים: }המספרים $1, 3, 5, \dots, 2n - 1$ (יהיו $n$ תאים) שהם כל האפשרויות ל־$b_x$־ים שונים. 
+	
+	נכניס יונה $x$ לתא לפי ה־$b_x$ המתאים לו. נובע מעקרון שובך היונים שקיימים $x, y$ שונים כך ש־$b_x = b_y$. בה''כ $x > y$ כלומר $a_x > a_y$. לכן: 
+	\[ \frac{x}{y} = \frac{2^{a_x} \cdot b_x}{2^{a_y} \cdot b_y} = 2^{a_x - a_y} \in \N \]
+	
+	סה''כ $x \mid y $ כדרוש. 
+	\subsection{תרגיל חמישי – הוכחת משפט ארדֹש־סקרש}
+	הרדֹש פרסם המון מאמרים עם משותפים (בניגוד לאוילר לדוגמה, שפרסם לרוב לבד). השני בכמות המאמרים על שמו, לאחר אוילר. מספר ארדש – המרחק בין לעבוד עם ארדש (לדוגמה, אם הוא פרסם עם הרגש מספר ההרדש שלו הוא 1, אם פרסם אם מישהו שפרסם עם הרגש המספר הוא 2, וכו'). 
+	
+	יהיו $a, b$ טבעיים חיוביים ותהי $x_1, x_2, \dots x_{ab + 1} $ סדרה של מספרים ממשיים שונים. אז, קיימת תת סדרה מונוטונית עולה ממש באורך $a + 1$ או שקיימת ת''ס (תת סדרה) מונוטונית יורדת ממש באורך $b + 1 $. 
+	
+	לצורך ההדגמה: עבור $a = 2, b = 3 $: הסדרה תהיה: $1, 7, 5.2, 12^7, \sqrt3, e, \pi$. נמצא $1, 5.2, 12^7 $ ת''ס מונוטונית עולה. 
+	
+	\begin{proof}
+		לכל $1 \le i \le ab + 1$ נסמן $= u_i$ אורך הסדרה העולה הארוכה ביותר שמתחילה ב־$x_i$. ב־$= d_i$ נסמן את אורך הסדרה היורדת הארוכה ביותר המתחילה ב־$x_i$. נניח בשלילה שלא קיימת ת''ס כאלה במצויין בצ.ל.. אז לכל $i$, $1 \le u_i \le a$ וגם $1 \le d_i \le b$. 
+		
+		\textit{יונים: }$\la u_1, d_1 \ra \dots, \la u_{ab + 1}, d_{ab + 1} \ra$ (גודל $ab + 1$)
+		
+		\textit{תאים: }$[a] \times [b]$ (גודל $ab$)
+		
+		לכן קיימים שני זוגות זהים $i \neq j$ כך ש־$\la u_i, d_i \ra = \la u)j, d_j \ra$. בה''כ $i > j$. מכך ש־$u_i = u_j$ נסיק ש־$x_j \ge x_i$. משום ש־$d_i = d_j$ יתקיים $x_j \le x_i$. סה''כ מאנטי־סימטריות $x_j = x_i$ וזו סתירה לכך שערכי הסדרה שונים. 
+		
+		\textit{הערה: אם משהו לא ברור בסוף של ההוכחה, תנסה לצייר את הסדרה או שתפנה אלי בפרטי. }
+	\end{proof}	
+	
+\end{document}

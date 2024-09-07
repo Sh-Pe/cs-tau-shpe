@@ -1,0 +1,217 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[legalpaper, margin=0.5in]{geometry}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\al    {\aleph}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\p     {\text{, }}
+
+\title{מתמטיקה בדידה – עוצמות 5}
+\author{שחר פרץ}
+\date{11 למרץ 2024}
+
+\begin{document}
+	\maketitle
+	\section*{חזרה ותזכורות}
+	\begin{itemize}
+		\item הגדרנו $ \taz := |\N \to \{0, 1\}| $
+		\item הגדרנו $ |\R| := \al $ – לעיתים נקרא \textit{עוצמת הרצף}
+		\item הוכחנו כי $ \al = \taz $ (שניהם סימונים שיומושיים, בהקשרים שונים)
+		\item כלומר $ \al = \taz = |\N\to \{0, 1\}| = |\ps(\N)| = |\R| $
+	\end{itemize}
+	\textbf{משפט: }מתקיים כי $ |\R \times \R| = |\R| $ (הוכחנו משפט דומה על $ \N $). 
+	\begin{proof}
+		נוכיח באמצעות זיווג. משום ש־$ |A'| = |A| \land |B'| = |B| \implies |A' \times B'| = |A \times B| $ אזי מאחר ו־$ ||\R| = |\N\to \{0. 1\} $, נוכל למצוא זיווג $ \vphi \colon (\N \to \{0, 1\}^2) \to (\N\to \{0, 1\}) $. \textit{אינטואיציה: $ f $ היא סדרה של $ 0, 1 $ וגם $ g $ היא סדרה כזו, נרצה לבנות באופן חח"ע סדרה שתבנה מהסדרות האלו. נסביר את האינטואיציה: }
+			\[ f \colon f(0), f(1), f(2) \dots \]
+			\[ g \colon g(0), g(1), g(2) \dots \]
+			נגדיר: 
+			\[ \vphi = \lambda \la f, g \ra \in (\N\to \{0, 1\})^2. \lambda n \in \N. \begin{cases}
+				f(\tfrac{n}{2}) &n \in \Neven \\
+				g(\tfrac{n - 1}{2}) &n \in \Nodd
+			\end{cases} \]
+		נוכיח ש‏־$ \vphi $ חח"ע. יהיו $ ^2\la f, g \ra, \la f', g' \ra \in (\N\to \{0, 1\}) $ שונים, ונוכיח $ \vphi(\la f, g \ra) \neq \vphi(\la f', g' \ra) $ (אי שוויון פונקציות). בה"כ נניח $ f \neq f' $ (מהטענת המרכזית של זוגות סדורים). לכן, קיים $ \tilde{n} \in \N $ כך ש־$ f(\tilde{n}) \neq f'(\tilde{n}) $. נסמן $ n = \tilde{n} $ כי אין לי כוח לכתוב ~ כל פעם. צ.ל. $ \exists m \in \N $ כך ש־$ \vphi(\la f, g\ra)(m) \neq \vphi*\la f', g'\ra)(m) $. נבחר $ m = 2n $, לכן $ 2 \mid m $, כלומר $ m \in \Neven $, וסה"כ 
+		\[ \vphi(\la f, g \ra)(m) = \tfrac{m}{2} = \tfrac{2n}{2} = n = f(n) \neq f'(n) = \vphi(\la f', g' \ra)\]
+		וקבילנו $ \vphi  $ חח"ע כדרוש. \\
+		נוכיח $ \vphi $ על. תהי $ h \colon \N \to \{0, 1\} $, נגדיר: 
+		\[ h = \lambda n \in \N. h(2n), \ g = \lambda n \in \N. h*2n _ 1() \]. 
+		נוכיח ש־$ \vphi(\la f, g \ra = g $. אלו שתי פונקציות בעלות אות התחום, $ \N $. יהי $ n \in \N $, נקבל 
+		\[ h(\la f, g \ra)(n) = \begin{cases} f(\tfrac{n}{2}) & n \in \Neven \\
+			{g(\tfrac{n - 1}{2})} & n \in \Nodd
+		\end{cases} =\begin{cases}
+		h(n) & n \in \Neven \\
+		h(n) &n \in \Nodd
+	\end{cases} \]
+
+	\end{proof}
+
+	משפט: $ |\R^n| = |\R| $ לכל $ n \in \N_+ $
+	
+	משפט: 
+	$ |(a, b)| = |[a, b]| = |(a, b)| = |[a, b)| = |\R| = \taz $
+	נוכיח כי $ \forall (a, b) \le |[a, b( \le |[a, b]| \le |\R| \le |(a, b)|) $, שיגמור לנו הכל עם קש"ב. הרוב נובע מהכלה או שקל להוכיח. נוכיח את השוויון האחרון. מתקיים $ |(a, b)| = |(-1, 1)| $
+	\[ g(x) = \begin{cases}
+		\tfrac{1}{x} - 1 &x \in [0, 1) \\
+		0 & x = 1 \\
+		\tfrac{1}{x} + 1 &x \in (-1, 0)
+	\end{cases} \]
+	וסה"כ $ g \colon (-1, 1) \to \R $
+	\section*{חשבון עוצמות}
+	הנושא האחרון בתוך עוצמות, שזה הנושא האחרון בתוך תקב"צ. 
+	\textbf{הגדרה: }יהיו $ A, B $ קבוצות, נגדיר: 
+	\selectlanguage{english}
+	\begin{itemize}
+		\item $ |A| + |B| := |(A \times \{0\}) \uplus (B \times \{1\})| $
+		\item $ |A \cdot B| := |A \times B| $
+		\item $ |A|^{|B|} := |B \to A| = |A^B| = |^BA|$
+	\end{itemize}
+	\selectlanguage{hebrew}
+	\textit{הערה: }אם $ A, B $ זרות, אז $ |A| + |B| = |A \uplus B| $ \\
+	\textit{הערה נוספת: }אלו ההגדרות היחידות של חשבון עוצמות, \textbf{חיבור וחיסור עוצמות אינם מוגדרים}, לא בקורס הזה ולא מחוצה לו. 
+	\textbf{משפט (חוקים בסיסיים): }לכל שלוש עוצמות $ a, b, c $ מתקיים: 
+	\begin{itemize}
+		\item קומטטיביות (חילופיות): $ a + b = b + a, \ a \cdot b = b \cdot a $
+		\item אסוציאטיביות (קיבוציות): $ a \cdot (b  \cdot c) = (a \cdot b) \cdot c, \ a + (b + c) = (a + b) + c $
+		\item דיסטרבוטיביות (פילוג): $ a \cdot (b + c) = a \cdot b + a \cdot c $
+		\item טענות על איברים קטנים: $ a + 0 = a, \ a \cdot 1 = a, \ a \cdot 0 = 0 $
+		\item $ \forall n \in \N_+. \underbrace{a + a + \cdot + a}_{n times} = a \cdot n, \ \underbrace{a \cdot a \cdot \dots \cdot a}_{n times} = a^n $
+	\end{itemize}
+	1. נוכיח $ a \cdot b = b \cdot a $: 
+	\begin{proof}
+		יהיו $ A, B $ קבוצות ונסמן $ a = |A|, \ b = |B| $. צ.ל. $ |A \times B| = |B \times A| $. נבחר $ f \colon A \times B \to B \times A $ המוגדרת לפי $ f(\la x, y \ra) = \la y, x \ra $. $ f $ זיווג. 
+	\end{proof}
+	2. נוכיח $ a + (b + c) = (a + b) + c $. 
+	\begin{proof}
+		יהיו $ A, B, C $ קבוצות זרות כך ש־$ a = |A|, \ b = |B|, \ c = |C| $. לכן: 
+		\[ a + (b + c) = |A \uplus (B \uplus C)| = |(A \uplus B) \uplus C| = (a + b) + c \]
+		כדרוש. 
+	\end{proof}
+	3. ידוע $ A \times (B \uplus C) = (A \times B) \uplus (A \times C) $ ומכאן דיסטריבוטיביות. 
+	4. תהי $ A $ קבוצה כך ש־$ a = |A| $. נוכיח כמה טענות: 
+	\begin{gather}
+		a + 0 = |A \uplus \emptyset| = |A| = a \quad \bs \\
+		a \cdot 0 = |A \times \emptyset| = |\emptyset| = 0 \quad \bs \\
+		a \cdot 1 = |A \times \{0\}| = |A| \; \; (ex. \ f = \lambda x \in A. \la x, 0 \ra) \quad \bs
+	\end{gather}
+	5. את הטענה האחרונה אפשר להוכיח באינדוקציה. מתנה לשיעורי הבית. 
+	
+	\textbf{טענה: }לכל עוצמה $ a $ מתקיים $ a^0 = 1, \ 1^a = 1 $, ולכל עוצמה $ a \neq 0 $ מתקיים $ 0^a\ = 0 $. 
+	תהי $ a $ עוצמה כלשהי. לכן $ a^0 = |\emptyset \to A| $, אך קיימת פונקציה יחידה כזו (הפונקציה הריקה). \hfill $ \bs $ \\
+	תהי $ a $ עוצמה, לכן $ a^1 = |A \to \{0\}| $, אך קיימת פונקציה יחידה כזו (הפונקציה הקבועה). \hfill $ \bs $ \\
+	תהי $ a \neq 0 $ עוצמה, לכן לא קיימת פונקציה $ A \to \{0\} $ ועל כן $ 0^a = 0 $. \hfill $\bs$
+	
+	
+	
+	
+	הבאהבאבהאאה מי צריך פורמליזם, שהמרצה מגדירה $ a = |A| $
+	
+	\end{document}

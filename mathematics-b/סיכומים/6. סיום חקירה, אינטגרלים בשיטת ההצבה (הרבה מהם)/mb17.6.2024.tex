@@ -1,0 +1,485 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.95,0.95,0.95}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=4pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\graphicspath{ {./} }
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelfont{rm}{David CLM}
+\babelfont{sf}{David CLM}
+\babelfont{tt}{Monaspace Argon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\small\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה ב' $\sim$ עברי נגר $\sim$ חקירה ואינטגרלים}
+\date{17 ליוני 2024}
+
+\begin{document}
+	\maketitle
+	\section{הערות אחרונות על חקירה}
+	באמצעות תכונות של חקירת פונקציות ונגזרות נוכל להוכיח אי־שיווינות! מן הסתם $f(x) > g(x) \not\implies f'(x) > g'(x)$. אבל כן נוכל לעשות דברים אחרים. 
+	
+	\begin{align}
+		f(x) &= \ln(1 + x) & f_1(x) &= x\\
+		f'(x) &= (x + 1) \op & f'_1(x) &= 1 & f_1(0) = f(0) = 0\\
+		f''(x) &= -(x + 1) ^{-2} & f(x) - f_1(x) \\
+		f'''(x) &= 2(x + 1) ^{-3} &f'(x) - f_1'(x) &= & f(0) - f_1(0) = 0\\
+		f^{(n)}(x) &= (n - 1)!(-1)^{n - 1}(x + 1)^{-n}  &=(x + 1)\op - 1 < 0 \\
+		\ && f(x) - f_1(x) &< 0 &\implies \ln(1 + x) < x
+	\end{align}
+	כי למעשה $f(x)$ ו־$f_1(x)$ שתיהן מתאפסות, אך אחת גדלה לאט יותר מהשנייה (כי חיסור הנגזרות שלהן שלילי). מכאן נסיק את אי־השווין. 
+	
+	עתה נגדיר $f_2(x) = x - \frac{x^2}{2}$. נקבל: 
+	\[ f(0) - f_2(0) = 0, \ f'(0) - f_2'(0) = 0, \ \underbrace{f(x) - f_2(x)}_{g_2(x)} \]
+	נגזור: 
+	\[ g'(x) = f''(x) - f_2''(x) = -(x + 1)^{-2} + 1 > 0 \]
+	\[ g'(0) = 0 \land g''(x) >0 \implies g'(x) > 0 \quad \quad \quad g'(x) > 0 \land g(0) = 0 \implies g(x) > 0 \]
+	
+	נמשיך באופן הזה: 
+	\[ f_3(x) = x - \frac{x^2}{2} + \frac{x^3}{3} \]
+	ונסמן
+	\begin{align}
+		g(x) &= f(x) - f_3(x) \\
+		g^{(3)}(x) &= 2(x + 1)^{-3} - 2 < 0
+	\end{align}
+	נעשה כמה מעברים: 
+	\begin{alignat}{9}
+		g''(0) &= 0 && \implies g''(x) &< 0 \\
+		g'(0) &= 0 && \implies g'(x) &< 0 \\
+		g(0) &= 0 &&\implies g(x) &< 0
+	\end{alignat}
+	
+	\textbf{משפט: }באמצעות שיטות שלמדנו, ו"משפטונון" בחדו"א ("הגיון בריא" לפי עברי), נסיק שאם $f'' < 0$ בקטע אז $f$ קעורה בקטע. (קעור זה מה שלא נראה כמו קערה), ולהיפך. 
+	
+	\begin{proof}[הוכחה (לא מלאה). ]
+		נרצה להוכיח כי: 
+		\[ f((1 - t)x + ty) > (1 - t) f(x) + tf(y) \]
+		כאשר $x, y \in I \land t \in (0, 1)$. זאת לפי ההגדרה של פונקציה קורה. לשם כך, נשתמש בפונקציה: 
+		\[ f(x) = f((1 - t)x + ty) - (1 - t) f(x) + tf(y) \]
+		וניעזר איכשהו בנגזרת השנייה שלה כדי להראות שהיא גדולה מ־0. 
+	\end{proof}
+	
+	\section{אינטגרלים}
+	
+	\[\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int\int \int\int\int \]
+	\textbf{הגדרה: }עבור $f(x)$, \underline{קדומה} שלה $F(x)$ היא פונ' שמקיימת $F'(x) = f(x)$
+	לדוגמה: 
+	\[ f(x) = x \implies F_1(x) = \frac{x^2}{2}, F_2(x) = \frac{x^2}{2} + 2 \dots \]
+	
+	טענה: אם $F_1, F_2$ שתי קדומות של $f$ בקטע, אז קיים קבוע $C \in \R$ כך ש־$F_1 - F_2 = C$
+	
+	\begin{proof}
+		נסמן $G = F_1 - F_2$, אזי $G'(x) = f(x) - f(x) = 0 $בכל הקטע כלומר $G(x)$ היא בהכרח קבוע. 
+		
+		\textbf{הגדרה: }אינטגרל (לא מסויים, ולפי $x$) / אנטי־נגזרת של פונקציה $f(x)$, זה אוסף כל הקדומות של $f$. נסמן: 
+		\[ [\text{אַסְכֶּמֶת}]\overbrace{f}^{\text{אינטגרנד}}(x) \mathrm{d}\underbrace{x}_{\mathclap{\text{משתנה אינטגרציה}}} = \int f(x) \dx = \underbrace{F(x)}_{\text{קדומה}} + \underbrace{C}_{\text{קבוע}} \]
+		\textbf{אל תכתבו אסכמת}
+		דוגמאות מוכרות: 
+		\begin{align}
+			(x^n)' &= nx^{n - 1} \\
+			\int x^{n} \dx &= \frac{x^{n + 1}}{n + 1} + C
+		\end{align}
+	\end{proof}
+
+	\sen If you forget the C you get a C
+	\she
+	
+			וגם: 
+		\[ \int \frac{1}{x}\dx = \int \frac{\dx}{x} = \ln x + C \]		אבל זה נכון רק בעבור $x > 0$. אם נרצה להרחיב: 
+		\[ \begin{cases}
+		x > 0 & \ln|x| = \ln x, \ (\ln |x|)' = \frac{1}{x} \\
+		x < 0 & \ln |x| = \ln (-x), \ (\ln |x|)' = -\frac{1}{x}(-1) = \frac{1}{x}
+	\end{cases} \]		סה"כ: 
+		\[ \int \frac{1}{x}\dx = \ln |x| + C \]		בכל תחום. 
+		
+	\subsection{דוגמאות}
+	\begin{align}
+		\int (x + 2)^{3} \dx &= \frac{(x + 2)^{4}}{4} + C \\
+		\int e^x \dx &= e^x + C \\
+		\int a^x \dx &= \frac{1}{\ln a}a^x + C \quad \quad \cl{(a^x)' = \ln a \cdot a^{x}} \\
+		\int a^x \mathrm{d}a &= \frac{a^{x + 1}}{x + 1} + C \quad \quad (x \neq -1)
+	\end{align}
+	\textbf{"נפשות זה לחלשים!"}
+	
+	\subsection{חוקים}
+	ליניאריות: 
+	\[ \int (f + g) \dx = \int f \dx + \int g \dx = F + G + C, \quad \quad \int af(x) \dx = a \int f(x) \dx = aF(x) + C \quad (a \text{ const.}) \]
+	טענה: 
+	\[ \int f(ax + b) = \frac{1}{a}\int F(ax + b) + C \]
+	
+	\subsection{פתרון דוגמאות "קצת יותר מסובכות"}
+	\subsubsection{}
+	\begin{align}
+		\int \frac{2x}{1 + x^2} = \ln (1 + x^2) + C
+	\end{align}
+	איך? פשוט תנחש. 
+	\subsubsection{}
+	אפשר גם עם טריגו: 
+	\[ \int \sinx \dx = - \cosx + C, \quad \int \cosx \dx = \sinx + C \]
+	
+	\subsubsection{}
+	\[ \int \sinx \cosx \dx = \int \frac{1}{2}\sin 2s \dx = -\frac{1}{4}\cos 2x + C \]
+	כי למעשה $\cos 2x$ יוציא החוצה קבוע $2$, ונצטרך לחלק ב־$2$ כדי להשמיד אותו. בהכפלה בחצי שבל מקרה יש לנו, הגענו לדרוש. יש דם דרך אחרת: 
+	\[ \int \sinx \cosx \dx = \int \sinx (\sinx)' \dx = \frac{1}{2}\sin^2x + C \]
+	לכאורה, קיבלנו שתי תשובות שונות, אך ההפרש בין שתיהן הוא בדיוק קבוע: 
+	\[ \cos 2x = 1 - 2 \sin^2x \]
+	\subsubsection{}
+	תהיה $t(x)$ פונ', נוכל לסמן $t'(x) = \frac{\mathrm{d}t}{\dx}$. בשעתו, דיברנו על כך שהשינוי בציר $y$ הוא $\Delta t$ ובציר ה־$x$ יהיה $\Delta x$. וזה לא בדיוק פורמלי להגיד שיש כאן קו שבר ואז אפשר להכפיל במכנה ולקבל $\dt = t'(x) \dx$. אבל trust me bro זה עובד , לדוגמה: 
+	\[ t(x) = \sinx, \ t'(x) = \cosx, \ \dt = \cosx \dx \]
+	וזה יאפשר לנו להשתמש בשיטת ההצבה. 
+	
+	\subsection{שיטת ההצבה}
+	\textbf{שיטת ההצבה: }
+	\[ \int f(t(x))t'(x)\dx = \int f(t) \dt \]
+	\begin{proof}
+		כאשר $LHS$ ו־$RHS$ אגפי המשוואה;
+		\begin{align}
+			(LHS)' &= f(t(x))t'(x) \\
+			\underbrace{(RHS)'}_{\displaystyle\frac{d(RHS)}{\dx}} &= f'(t) \cdot t'(x)
+		\end{align}
+	\end{proof}
+	
+	\subsubsection{דוגמה}
+	\[ \int \underbrace{\sinx}_{t} \overbrace{\underbrace{\cosx}_{t'} \dx}^{\dt} = \csb{\begin{cases}
+		t = \sinx, t' = \cosx \\
+		\dt = \cosx \dx 
+	\end{cases}} = \int t \cdot \dt = \frac{t^2}{2} + C = \frac{\sin^2x}{2} + C \]
+	
+	\subsubsection{דוג' 2}
+	\[ \int x \cdot \sqrt{5x^2 + 3} \dx = \csb{\begin{cases}
+			t = 5x^2 + 3 \implies t' = 10x \\
+			\dt = t' \cdot \dx = 10x \dx
+	\end{cases}} = \int \sqrt{t}\frac{1}{10}\dt = \frac{1}{10} \cdot \frac{t^{3/2}}{3/2} + C = \frac{(5x^2 + 3)^{3/2}}{10 \cdot 3/2} \]
+	
+	\subsubsection{דוג' 3}
+	\[ \int x e^{x^{2}} \dx = \csb{\begin{cases}
+			t = x^2, \ t' = 2x \\
+			 \dt = 2x \dx
+	\end{cases}} = \int e^{t}\frac{1}{2}\dt = \frac{1}{2}e^{t + C} = \frac{1}{2} e^{x^{2}} + C \]
+	
+	\[ \int x \dx = \csb{\begin{cases}
+			t = \frac{1}{2}e^{x^2}, \ t' = xe^{x^2} \\
+			\dt = xe^{x^2}\dx
+	\end{cases}} = \int \dt = t + C = \frac{1}{2}e^{x^{2}} + C \]
+
+	\subsubsection{דוג' "קצת פחות טרוויאלית"}
+	\[ \int \tanx \dx = \csb{\begin{cases}
+			t = \cosx \quad t' = \sinx \\
+			\dt = -\sinx \dx
+	\end{cases}} = \int \frac{-\dt}{t} = - \ln |t| + C = - \ln |\cosx| + C \]
+	כיוון שפחות עובד: 
+	\[ \int \tan \dx = \csb{\begin{cases}
+			t = \tanx \\
+			\dt = \sec^2x \dx
+	\end{cases}} = ??? \]
+	\subsubsection{ דוג' $\inf$}
+	\[ \int \frac{\dx}{1 + \sqrt x} = \csb{\begin{cases}
+			t = \sqrt x \quad x = t^2 \\
+			\dt = \frac{1}{2\sqrt x} \dx \quad \dx = 2 \sqrt{x} \dx = 2t \dt
+	\end{cases}} = \int \frac{2t\dt}{1 + t} = 2 \int \frac{t}{1 + t}\dt = 2 \int \frac{t + 1}{t + 1}\dt - 2 \int \frac{1}{ 1 + t}\dt \]
+	\[ = 2t - 2 \ln |1 + t| + C = 2 \sqrt{x} - 2 \ln |\sqrt{x} + 1| + C \]
+	
+	\subsubsection{דוג' $\inf + 1$}
+	\[ \int \frac{\dx}{1 + \sqrt x} = \csb{\begin{cases}
+			u = \sqrt{x + 1} \\
+			du = \frac{\dx}{2 \sqrt x}, \quad \dx = 2 \sqrt{x } du = 2(u - 1) du
+	\end{cases}} = \int \frac{2(u - 1)du}{u} \]
+
+	\subsubsection{דוג' כאוטי}
+	הצבות כאלו, לשם שינוי, לא צריך לראות: 
+	\[ \int \frac{\dx}{x^2 + a^2} = \csb{\begin{cases}
+			x = a \cdot \tan \theta, \quad x' = \frac{1}{\cos^2\theta} \\
+			\dx = \frac{a}{\cos^2\theta \theta}\dtt
+	\end{cases}} = \int \frac{\frac{a}{\cos^2\theta}\dtt}{a^2\tan^2 \theta + a^2} = \int \frac{a \cdot \sec^2 \theta \dtt}{a^2(\tan^2\theta + 1)} = \frac{1}{a}\int \dtt = \frac{1}{a}\theta + C = \frac{1}{a}\arctan\cl{\frac{x}{a}} + C \]
+
+	\subsubsection{אההההה}
+	\[ \int \frac{\dx}{\sqrt{a^2 - x^2}} = \csb{\begin{cases}
+			x = a \sin \theta \\
+			\dx = a \cos \theta \dtt
+	\end{cases}} = \int \frac{a \cos \theta \dtt}{\sqrt{a^2 - a^2 \cos^2\theta}} = \int \dtt = \theta + C = \sin\op\cl{\frac{x}{a}} + C \]
+	למעשה עברי טיפה רימה בהנחה ש־$\cos \theta < 0$ (כי השורש יפלוט משהו בערך מוחלט). אם נהיה זהירים נבחר את $\arcsin \in (-\pi/2, \pi/2)$. 
+
+	
+	
+	
+	
+
+
+\end{document}

@@ -1,0 +1,281 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+
+\renewcommand\inf {\infty}
+\newcommand\ninf  {-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+
+\author{שחר פרץ}
+\title{סיכום מתמטיקה B \del, חדו''א 2}
+\date{22 למאי 2024}
+
+
+\begin{document}
+	\maketitle
+	משימה לבית: להוכיח שלא קיים פולינום $p(z) \in \C[z]$ כך ש־$p(z) = p(\bar z)$. 
+	
+	\section{ליניאריות}
+	\textbf{טענה: }נניח כי קיימים הגבולות $]\limxz f(x) = L_f \land \limxz g(x) = L_g$ במובן הרחב (כלומר $L_f, L_g \in \R\cup \{\pm \inf\}$). אז, ל־$f + g$ יש גבול ב־$x_0$, $\limxz(f(x) + g(x)) = L_f + L_g$ \textbf {אם: }אם לפחות אחד מהגבולות מ־$L_f, L_g$ סופיים, או ש־$L_f = L_g = \pm\inf$. 
+	
+	לדוגמה: 
+	\[ \lim_{x \to 7} x^2 + x = 49 + 7, \ \limz \frac{1}{x^2} + \frac{1}{x^4} = \inf + \inf = \inf \]
+	אף לא בעבור: 
+	\begin{align}
+		1 &= \lim_{x \to 0} 1 = \lim_{x \to 0} \left [ 1 + \frac{1}{x^2} + 5 - \frac{1}{x^2} - 5 \right ] \\
+		&= \limz \underbrace{\frac{1}{x^2} + 5}_{\inf} - \underbrace{\frac{1}{x^2} - 4 }_{-\inf} \neq \inf - \inf \neq 0
+	\end{align}
+	אין משמעות לסכימת גבולות אינסופיים בכיוונים שונים. 
+	\textbf{טענה: }יתקיים $\limxz f(x)g(x) = L_fL_g$ אם: 
+	\begin{enumerate}
+		\item לפחות אחד מ־$L_f, L_g$ הוא לא $0$ או $\pm \inf$
+		\item שניהם $0$ או שניהם $\pm\inf$
+	\end{enumerate}
+	\textit{(הגרירה מהכיוון השני זה פשוט מנוסח מוזר)}
+	
+	והנה עוד דוגמאות...: 
+	\[ \lim_{x \to 5}x \sin x = 5 \sin 5, \ \limz x \sinx = 0 \cdot 0 = 0 \]
+	
+	הרשימה האדומה של עברי: \color{red} 
+	\[ \inf - \inf, \inf \cdot 0, \frac{0}{0}, \frac{\inf}{\inf} \]
+	\color{black} ועוד כל מיני דברים לא ממש מוגדרים שצריך לנתח בדרכים שונות. 
+	\section{גבולות לאינסוף}
+	להלן גבול כלשהו: 
+	\[ \limi \frac{x^2 + 3}{2x + 1} = \inf \]
+	כי $2x + 1$ גדל ``יותר מהר''. אך אפשר גם להראות פורמלית: 
+	\[ \limi \frac{x^2 + 3}{2x + 1} = \limi \frac{x + \frac{3}{x}}{2 + \frac{1}{x}} = \frac{\inf}{2} = \inf \]
+	באופן דומה: 
+	\[ \limi \frac{x + 3}{2n + 1} = \limi \frac{1 + \frac{3}{x}}{2 + \frac{1}{x}} = \frac{1}{2} \]
+	מקרה אחרון: 
+	\[ \limi \sqrt{x^2 + 1} - x = 0 \]
+	הדוגמה האחרונה נכונה אינטואיטיבית, וגם נכונה פורמלית, אך לבינתיים לא למדנו להוכיח אותה. הדרך הקלה לעשות זאת, היא הכפלה בצמוד: 
+	\begin{align}
+		&\limi \sqrt{x^2 + 4x + 1} - x = \limi (\sqrt{x^2 + 4x + 1} - x) \cdot \frac{\sqrt{x^2 + 4x + 1} + x}{\sqrt{x^2 + 4x + 1} + x} \\
+		=& \limi \frac{x^2 + 4x + 1 - x^2}{\sqrt{x^2 + 4x + 1} + x} \\
+		=& \limi \frac{4 + \frac{1}{x}}{\sqrt{1 + \frac{4}{x} + \frac{1}{x^2}} + 1} = \frac{4}{1 + 1} = 2
+	\end{align}
+	
+	\section{על פונקציות רציפות}
+	``פחות או יותר פונקציה שאפשר לצייר בקו אחד, לא צריך להרים את העט מהדף''. ע''פ הגדרה: פונקציה היא  רציפה בנקודה, אם יש לה קבול בנקודה והגבול שלה בנקודה שווה לערכה באותה הנקודה. פונקציות רציפות בקטע אמ''מ הן רציפות לכל הנקודות בקטע. פולינומים, לדוגמה, רציפים בכל נקודה. כן גם הפונקציות הטריגונומטריות, חזקות, שורשים, ערך מוחלט, כל פונקציה רציונלית (מנה של שתי פולינומים), כמובן בנקודות בהן הן מוגדרות. הכפלה, חיסור כפל וחילוק של פונקציות רציפות תשאיר את הפונקציה רציפה כל עוד הפעולות יחסית נורמליות. אפשר לדבר גם על רציפות מצד אחד. לדוגמה: 
+	\[ f(x) = \begin{cases}
+		0 & x < 0 \\
+		x^2 & 0 \le x < 1 \\
+		x & 1 \le x
+	\end{cases} \]
+	
+	בכל שלושת הקטעים, בנפרד, היא רציפה (כי פולינומים רציפים). גם יתקיים $\lim_{x \to 0^-} f(x) = \lim_{x \to 0^-} 0 = 0 $ וגם $\lim_{x \to 0^+} f(x) = \lim_{x \to 0^+} x^2 = 0$ כלומר $\limz f(x) = 0 = f(0)$, כלומר היא גם רציפה בנקודה הזו. כמו כן, $\lim_{x \to 1^\pm} f(x) = 1 = f(1)$ (אפשר להוכיח זאת בקלות) ולכן $f$ רציפה תמיד. ניתן לסרטטה כדי להשתכנע. 
+	
+	עבור הפונקציה $f(x) = \begin{cases}
+		1 & x< 0 \\
+		2 &\other
+	\end{cases}$
+	רציפה מימין בנקודה $x = 0 $ אך לא רציפה משמאל, ובכלליות לא רציפה בנקודה. 
+	
+	פונקציית יריכלה לא רציפה בכך נקודה; $D(x) = \begin{cases}
+		1 & x \in \Q \\ 0 &\other
+	\end{cases}$
+	
+	דוגמה אחרת לפונקציה לא רציפה: 
+	הסימונים $[x]$ ו־$\{x\}$ יציינו את החלק השלם והשברי של $x$ בהתאמה. גם הפונקציות האלו אינן רציפות, כי הן ``קופצות'' בין מספרים שלמים. 
+	
+	``המעבר הזה לא נכון מתמטית. אני אעשה אותו בכל זאת'' $\sim$ גולדשטיין המרצה של עברי כמו $\inf - \inf = 0 $
+	
+	\section{אסימפטוטות}
+	אם פונקציה מתבדרת בנקודה = הגבול בנקודה מאחד הצדדים הוא $\pm \inf$. אם פונקציה מתבדרת בנקודה תהיה לא אסימפטוטה אנכית. 
+	\section{חקירה}
+	במקרה הכינותי מראש פונקציה: 
+	\[ f(x) = \dfrac{3x^2 - 5}{(x - 1)|x + 4|} \]
+	ונרצה להבין איך היא מתנהגת, ואיך היא ניראית. 
+	\begin{itemize}
+		\item \textbf{ת.ה.: }$x \neq 1, 4$ (אסור לחלק ב־0, ואסור לקחת שורש למספר שלישי)
+		\item \textbf{חיתוך עם צירים: }$y: \ f(0) = \frac{5}{4} \implies (0, \frac{5}{4}), \quad x: \ x = \pm\sqrt{\frac{5}{3}} \implies \dots$
+		\item \textbf{סימן: }(חיוביות ושליליות) ניעזר בנקודות החיתוך בלה בלה בלה (די אילנה השמידה אותי עם החקירה שלה לא בא לי את זה גם כאן). זאת בהנחה שהפונקציה רציפה, אחרת נצטרך לקחת בחשבון נקודות בהן היא מתבדרת. 
+		\item \textbf{אסימפטוטות: }יהיו אסימפטוטות בעבור $\pm \inf, 1, 4$. יתקיים $\limi f(x) = 3$ (תחלקו ב־$x^2$ ותקוו לטוב). באותו האופן $\limi f(x) = -3$. נרצה גם לחקור את האסימפטוטות האנכיות: 
+		\begin{gather}
+			\lim_{x \to 1^+} f(x) = \frac{+}{- \cdot +}\inf = -\inf, \ \lim_{x \to 1^-} f(x) = +\inf \\
+			\lim_{x \to -4^+} f(x) = - \inf, \lim_{x \to -4^-} = -\inf
+		\end{gather}
+		נוודא שזה מתאים למה שכתבנו בעבור הסימן. [הערה: במבחן אפשר להוציא מתוך הסימן את הכיוון של הגבול, אך מומלץ לחשב אותו באופן בלתי־תלוי כדי לוודא שהתשובה נכונה]. 
+	\end{itemize}
+	אפשר גם לבדקו האם הפונקציה עולה מעל האסימפטוטות האופקיות. נוכל לבדוק זאת ע''י הוכחת כי שוויון: $(x \to -\inf) f(x) - (-3) < \lor > 0 $ וגם $(x \to \inf) f(x) - 3 < \lor > 0 $. 
+	
+	כאשר מבקשים לחקור פונקציות: אסימפטוטות, חיתוך, סימן, ות.ה.. 
+	
+	
+	
+\end{document}

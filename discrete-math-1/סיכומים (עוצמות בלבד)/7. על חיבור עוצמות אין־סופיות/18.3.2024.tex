@@ -1,0 +1,157 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[legalpaper, margin=0.5in]{geometry}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\al    {\aleph}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\p     {\text{, }}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+\newcommand\tl[1] {\tilde{#1}}
+
+\title{עוצמות 7}
+\author{שחר פרץ}
+
+\begin{document}
+	\maketitle
+	שיעור הבא – ברביעי הבא. תזכורות: 
+	\begin{enumerate}
+		\item \begin{itemize}
+			\item $ \az + az = az \cdot\az = \az $
+			\item $ \al + \al = \al \cdot \al = \al $
+			\item $ \az + \al= \az \cdot \al = \al $
+		\end{itemize}
+		\item $ \forall n \in \N. \az + n = \az, \ \forall n \in \N_+. \az \cdot n = \az $ 
+		\item לכל עוצמה אינסופית $ a $ מתקיים $ a + \az = a $, ולכל מספר טבעי $ a + n = a $. 
+	\end{enumerate}
+	\textbf{טענה: }$ | \R \setminus \Q | = \al  $
+	\begin{proof}
+		$ |\R| = |(\R \setminus \Q) \uplus \Q| = |\R \setminus \Q| + |\Q| = |\R \setminus \Q| + \az $. נניח בשלילה $ |\R \setminus \Q| < \az $, מכאן שהיא סופית כלומר קיים $ n \in \N $ כך ש־$ |\R \setminus \Q| = n $ ואז נקבל $ |\R| = n + \az = \az $ וזו סתירה. סה"כ $ |\R + \Q| \ge \az $ (כלומר, אינסופית),ומטענה ידועה $ |\R \setminus \Q| + \az = |\R \setminus \Q| $ ומרטזניטביות $ |\R\setminus\Q| = \al $ כדרוש. 
+	\end{proof}
+	\subsubsection{תרגילים}
+	\begin{enumerate}
+		\item חשבו את $ |\N \to \N| $. \textbf{פתרון: }לפי הגדרה, $ |\N \to \N| = \az^{\az} $. נפשט.  $ \taz \le \az^{\az} \le (\taz)^{\az} = 2^{\az \cdot \az} = \taz $ (ממונוטוניות) וסה"כ מקש"ב והצבה $ |\N \to \N| = \al $. 
+		\item חשבו את $ |\R \to (\Q\to \Q)| $. \textbf{פתרון: }לפי הגדרה, $ |\R \to (\Q \to \Q)| = |\Q \to \Q|^\R = (\Q^\Q)^\R = (\az^{\az})^\al = (\taz)^\az = 2^{\al \cdot \az} = 2^\al $
+		\item נתון יחס השקילות הבא מעל $ \R\times\R $: $ S = \{\la x_2, y_2 \ra, \la x_2, y_2 \ra\ \in (\R \times \R)^4 \mid x_1^2 + y_1^2 = x_2^2 + y_2^2\} $ (נק' שקולות אמ"מ מרחק שווה מהראשית). חשבו את $ |(\R\times\R) / S| $. \textbf{פתרון: } נגדיר את הפונקציה $ f(r) = [\la 0, r \ra]_S $ ונוכיח שהיא זיווג \textit{חח"ע: }. משום ש־$ 0 \le r_1 \neq r_2 $ מספיק כדי להראות $ \la \la 0, r_1 \ra, \la 0, 2_r \ra \ra \not\in S $ וגם $ 0^2 -  r_1^2 + r_2^2 = 0 + r_2^2 $ ולכן $ \la \la -, r_1 \ra, \la 0, r_2 \ra \ra \not\in S $. \textit{על: }יהי $ [\la x, y_1 \ra ]_S \in (\R\times \R) / S $, נבחר $ \tl{r} = \sqrt{x_1^2 + y_1^2} $ אז $ 0^2 + \tl{r}^2 = x_1^2 + y_1^2 $ ולכן $ f(\tl{r}) = [\la 0, \tl{r} \ra ]_S = [\la x_1, y_1 \ra] $. סה"כ $ (\R \times \R) / S = |[0, \infty]| = \al $ כדרוש. 
+		\item מצאו את עוצמת היחסים הרפלקסיביים מעל $ \R $. \textbf{פתרון: }מצד אחד, $ A \subseteq \ps(\R\times \R) $ ולכן $ |A| \le \ps(\R\times\R)| = 2^{\al\cdot\al} = 2^\al $. מצד שני: נגדיר פונקציה $ f \colon \ps([0, 1]) \to A $ ע"י $ f = \lambda X \in \ps([0, 1]). (X \times \{17\}) $. נוכיח $ f $ \textbf{מוגדרת היטב (מליאות): }יהי $ X \in \ps([0, 1]) $ ונוכיח $ f(X) \in A $. ראשית $ f(x) \subseteq \R\times \R $. בנוסף, $ id_\R\subseteq f(X) $ ולכן $ f(X) $ רפלקסיבי מעל $ \R $. \textbf{חח"ע: }נניח $ X_1, X_2 \in \ps([0, 1]) $ שונות. אז קיים בה"כ $ x_0 \in X_1 \setminus X_2 $ ולכן $ \la x_0, 17 \ra \in X_1 \times \{17\} \subseteq f(X_1) $ ומצד שני $ x_0 \neq 17 $ ולכן $ \la x_0, 17 \ra \not\in id_\R $ וכן $ \la x_0, 17 \neq x_2 \times \}17 $ וסה"כ $ \la x_0, 17 \ra \in f(x_2) $. \\
+		לכן, $ 2^\al = 2^{|[0, 1]} = |\ps([0, 1])| \le |A| $. סה"כ מקש"ב $ |A| = 2^\al $. 
+		\item מצאו את העוצמה של הקבוצה כל הפונקציות החח"ע על $ \N $ שסימונה $ B $. \textbf{פתרון: }$ B \subseteq \N \to \N $ ולכן $ |B| \le \az^\{\az\} = \taz $. מצד שני, נגדיר פונ' $ f \colon \ps(\N) \to B $ ע"י: 
+		\[ f = \lambda X \in \ps(\N). \lambda n \in \N. \begin{cases}
+			2n & n \in X \\
+			2n + 1 &n \not\in X
+		\end{cases} \]
+	$ \bm{f} $ \textbf{מוגדרת היטב: }צ.ל. שלכל $ X \in \ps(\N) $, $ f(X) $ פונקציה חח"ע. יהיו $ n_1, n_2 \in \N $ שונים. אם $ n_1 \in X \land x_2 \not\in X $ אז בהכרח $ f(X)(n_1) = 2n_1 \neq 2n_2 + 1 = f(X)(n_2) $. אחרת, נניח $ x_1, x_2 \in X $, אז $ 2n_1 \neq 2n_2 $ וגמרנו, ואם $ x_1, x_2 \not\in X $ אז באופן דומה $ 2n_1 + 1 \neq 2n_2 + 1 $. \\
+	$ \bm{f} $\textbf{חח"ע: }יהיו $ X_1, X_2 \in \ps(\N) $ שונות, אז בהכרח $ _0 \in X_1 \setminus X_2 $, ניקח $ n = x_0 $ ונקבל $ f(X_1)(x_1) = 2x_0 \neq 2x_0 + 1 = f(X_2)(x_0) $ ולכן $ f $ חח"ע. \\
+	אזי, $ \taz = |\ps(A)| \le |B| $ וסה"כ מקש"ב $ |B| = \al $. 
+	\end{enumerate}
+	
+\end{document}

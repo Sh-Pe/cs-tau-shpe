@@ -1,0 +1,401 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Neon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+
+% Graph Theory Shortcuts
+\DeclareMathOperator{\dist}   {dist}
+
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה בדידה $\sim$ נטלי שלום $\sim$ צביעת צמתי גרף}
+
+\begin{document}
+	\maketitle
+	\section{\en{Motivation}}
+	\textbf{הגדרה ומוטיבציה}
+	\textbf{מוטיבציה: }נניח שיש לנו את הקוסים הבאים: בדידה 1, חדו"א 1, מבוא למדמ"ח, ליניארית 1, בדידה 2, תוכנה 1, הסתברות. כל אחד מהם, יהיה צומת בגרף שלנו. נעביר קשת, בין כל שני קורסים שלא נרצה שיתנגשו במערכת השעות. לעת עתה, נניח שכל הקורסים לוקחים שעתיים בשבוע. 
+	
+	עבור השעה $8:00-10:00$, נשייך צבע אדום, לדוגמה, מ־$10:00-12:00$ צבע אחר, וכן הלאה. נצבע צמתים בהתאם לשעות שינתן בהם השיעור. נרצה למזער את מספר הצמתים כדי להבטיח מספר שעות מינימלי במערכת, אך לא נוכל ששני צמתים עם קשת ביניהם יהיו בעלי אותו הצבע. בהתאם לציור שציור בכיתה (שם ניתנו גם את הקשתות ביניהם), אפשר לצבוע את הגרף ב־$3$ צבעים אך לא ב־$2$. הסברים יותר ברורים, עם ציורים – בסיכומים של אחרים. 
+	
+	\textbf{הגדרה: }בהינתן גרף $G = \la V, E \ra$, \textit{צביעה חוקית של צמתי הגרף } ב־$k$ צבעים היא פונקציה $f \colon V \to [k] = \{1, \dots, k\}$, כך שלכל קשת $\{u, v\} \in E$ יתקיים $f(u) \neq f(v)$. 
+	
+	\textbf{הגדרה: }נאמר שדרף $G$ הוא $k$-צביע אם קיימת צביעה חוקית של $G$ ב־$k$ צבעים. 
+	
+	\textbf{מסקנה: }אם גרף $k$-צביע, אז הוא גם $k'$-צביע לכל $k' \ge k$. 
+	
+	\textbf{הגדרה: }מספר הצביעה של גרף $G$, מסומן $\chi(G)$ (האות חִי, מלשון \en{chroma} \ – צבע יוונית) הוא ה־ $k$ המינימלי שעבורו $G$ הוא $k$־צביע. 
+	
+	לדוגמה, מספר הצביעה של הגרף בחלק של המוטיבציה, הוא $\chi(G) = 3$. עבור מעגל בגודל $6$, לדוגמה, יתקיים $\chi(C_6) = 2$. אך על מעגל באורך $5$ יתקיים $\chi(G_7) = 3$, ועבור $K_5$, יתקיים $\chi(K_5) = 5$. בשביל גרף עם קדוקוד יחיד, $\chi(G) = 1$. 
+	
+	\section{\en{True/False}}
+	\begin{enumerate}
+		\item לכל גרף $G = \la V, E \ra$ מתקיים $\chi(G) \le |V|$. \textbf{נכון. }נצבע כל צומת בצבע אחד ונשתמש ב־$|V|$ צבעים, וזהי צביעה חוקית. 
+		\item הגרף היחיד עם $n$ צמתים שעבורו $\chi(G) = n$ הוא $K_n$. \textbf{נכון. }בכל גרף $G \neq K_n \ (n \ge 2)$ קיימים $u, v$ כך ש־$\{u, v\}\notin E$ נבצע את $u, v$ באותו הצבע, ואת יתר הצמתים בצבעים שונים. השתמשנו ב־$n - 1$ צבעים והראנו קיום $f \colon V \to [n - 1]$ צביעה חוקית [צ.ל. את זה בהוכחה פורמלית], אזי $\chi(G) \le n - 1$. 
+		
+		\textit{מסקנה: }$\forall G \neq K_n. \chi(G) \le n - 1$. 
+		\item \textit{(מתבסס על חלק (3))} כל עץ הוא $2$-צביע. \textbf{נכון. }אין בו מעגלים אי־זוגיים, באופן ריק. 
+		\item \textit{(מתבסס על חלק (3))} $\chi(G) = 2 \iff G \ \text{דו"צ}$. \textbf{לא נכון. }גרף דו"צ יכול לקיים $\chi(G) = 1$, אם הוא חסר קשתות. [הוא אכן $2$-צביע, אך מספר הציבעה שלו קטן יותר]. 
+	\end{enumerate}
+	
+	\section{\en{Two-Sided Graphs}}
+	\textbf{הגדרה: }גרף $G = \la V, E \ra$ נקרא דו־צדדי, אם ניתן לחלק את $V$ לשתי קבוצות זרות $V_1, V_2$, כך שכל הקשתות מחברות מחברות צמתים מקבוצות שונות. 
+	
+	\textbf{סימון: }אם $G = \la V, E \ra$ הוא דו"צ עם קבוצות $V_1, V_2$, נהוג לסמן $G = \la V_1, V_2, E \ra$. 
+	
+	\textbf{מסקנה: }גרף דו־צדדי אמ"מ הוא $2$־צביע (כלומר, קיימת לו צביעה חוקית עם $2$ צבעים) (בה"כ $V_1$ באדום ו־$V_2$ בכחול). 
+	
+	\textbf{משפט: }(תנאי הכרחי ומספיק לגרף דו־צדדי) גרף הוא דו־צדדי אמ"מ כל המעגלים בו הם בעלי אורך זוגי. 	\textit{ניסוח שקול: }אין מעגלים בעלי אורך אי־זוגי. 
+	
+	\begin{proof}
+		נוכיח גרירה דו־כיוונית. 
+		\begin{itemize}
+			\item[$\impliedby$] נניח ש־$G$ דו"צ $G = \la V_1, V_2, E \ra$. אם אין ב־$G$ מעגל, סיימנו (התנאי מתקיים). אחרת, יהי מעגל $\la v_0, \dots v_m \ra$ ב־$G$. $u_0 = u_m$. בה"כ $u_0 \in V_!$, וידוע $\{u_0, u_1 \} \in E$ ולכן $u_1 \in V_2$, וכך ממשיכים לסירוגין. מקבלים ש־$u_i \in V_1 \iff i \in \Neven$. מאחר ש־$u_m = u_0 \in V_1$ מתקיים ש־$m$ זוגי, ולכן אורך המעגל זוגי. 
+			\item[$\implies$] נניח שכל המעגלים ב־$G$ בעלי אורך זוגי. יהי $u \in V$. בה"כ נניח שהגרף קשיר, אחרת נפעיל על כל רכיב קשירות בנפרד. 			נגדיר: 
+			\[ V_1 = \{v \in V \mid \dist(v, u) \in \Neven\}, \quad V_2 = \{v \in V \mid \dist(v, u) \in \Nodd\} \]
+			נוכיח שאין קשתות בתוך $V_1$ ובתוך $V_2$. נניח בשלילה ובה"כ שקיימים $v, w \in V_1$ כך ש־$\{v, w\} \in V_1$. אז המרחק בין $u$ ל־$v$ זוגי, והמרחק בין $u$ ל־$w$ זוגי. ניקח את המסלולים הקצרים ביותר, בין $u$ לשני הצמתים $v, w$: 
+			\[ \underbrace{u, \dots, }_{\text{even}}\underbrace{v, w}_{1}\underbrace{, \dots, u}_{\text{even}} \]
+			אם המסלולים $u, \dots, v$ והמסלול $w, \dots u$ זרים בקשתות, אז קיבלנו מעגל אי־זוגי. אם המסלולים אינם זרים בקשתות, אז נבחר את הקודקוד האחרון $x$ ב־$u, \dots, v$ שמופיע גם ב־$w, \dots, u$ ודרכו נעבור בין המסלולים. המסלול מ־$u$ ל־$x$ המוכל ב־$u, \dots v$ הוא מינימלי, מכיוון ש־$u,\dots v$ מינימלי. באופן דומה, המסלול מ־$u$ ל־$x$ המוכל ב־$w, \dots, u$ גם הוא מינימלי (כי $w, \dots, u $ מינימלי). לכן שני המסלולים הנ"ל הם באותו האורך. מההילוך $u, \dots v, w, \dots u$ נצטמצם להילוך $x, \dots, v, w, \dots, x$ זהו מעגל (אין קשת שחוזרת על עצמה, לפי הבחירה של $x$) ואורכו הוא $odd - even = odd$ (החסרנו פעמיים את המרחק בין $x$ ל־$u$). סה"כ סתירה לכל המקרים, לכך שב־$G$ אין מעגלים אי־זוגיים. 
+		\end{itemize}
+		שתי הגרירות הוכחו. 
+	\end{proof}
+	
+	\section{\en{The 4 Colors Theorem}}
+	\textit{הערה: }בדיקה של צביעות עבור מספר גדול מ־$2$, נחשבת בעיה קשה. אך יש מקרה מיוחד, שדווקא כן אפשר לחפור עליו. 
+	
+	\textbf{משפט ארבעת הצבעים: }כל מפה מישורית רגילה, אפשר לצבוע ב־$4$ צבעים. 
+	
+	(גרף מישורי, הוא גרף שניתן לצייר אותו במישור ללא חיתוכי קשתות. לדוגמה $K_5$ לא מישורי אך מעגל כן). זה שקול לציור מפה של מדינות, בייצוג כל מדינה כצומת, נעביר קשת אם קיים גבול הין המדינות. 
+	
+	בשנת 1852, המשפט נוסח כהשערה, ובמשך מעל ל־120 שנה, לא הצליחו להוכיח אותו עד 1976, כאשר ההוכחה הוכיחה שניתן לסווג כל מפה אפשרית ל־1936 סוגי מפות, ובדקו על מחשב שכל אחת מהן עומדת בתנאי. 20 שנה אחר כך, הוכח כי מספיקות 633 מפות. 
+	
+	
+	{\vfil \hfil \Large \textbf{\textit{סוף החומר, מתמטיקה בדידה, אודיסאה 2024}} \hfil \vfil}
+	
+	\npage
+	
+	\section{\en{6.b}}
+	הגדרנו $u := \{0, 1\}^{2n}$ לכל $1 \le i \le 2n -1$. הגדרנו: 
+	\[ A_i := \{x \in U \mid x_i = 0 \land x_{i + 1} = 1\} \]
+	
+	\begin{enumerate}
+	\item  תהי $J \in \ps_r([2n - 1])$. מה העוצמה של $\bigcap_{j \in J} A_j$? תשובה: 
+		\[ \sof{\bigcap_{j \in J} A_j} = \begin{cases}
+			0 & \text{\textit{אם} $J$ \textit{מכילה מספרים עוקבים}} \\
+			2^{2n - 2r} & \other
+		\end{cases} \]
+		
+		\textbf{המשך השאלה: }כמה $J$ ישנם עבורם החיתוך לא ריק בגודל $r$? תשובה: $\binom{2n - r}{r}$ – נוריד $r$ מקומות שאסור לבחור אותם מתוך ה־$2n$, ונבחר מתוכם $r$ מקומות. 
+		
+	\item הוכיחו קומבינוטרית: 
+	\[ \sum_{r = 0}^{n}(-1)^{r}\binom{2n - r}{r}2^{2n - 2r} = 2n + 1 \]	
+	\textit{סיפור: }כמה מחרוזות מעל $0, 1$ באורך $2n $ לא מכילות את $01$ רצוף. 
+	
+	\textit{אגף שמאל: }הכלה והדחה, אך האיבר הראשון הוא $r = 0$, ואפשר לקבל ששזה עקרון המשלים להכלה והדחה רגילה (כי עבור $r = 1$ נקבל $1 \cdot \binom{2n}{0} \cdot 2^{2n} = |u|$). סה"כ מדובר באגף שמאל על  $\sof{\bigcap_{i  = 1}^{2n - 1}A_i^{c}}$ – כל המחרוזת שאין בהם את הרצף $01$ בכלל. 
+	
+	\textit{אגף ימין: }$0, \dot 0$ או שיש $1$ ואז $2n$ מקומות אפשריים לאפסים וסה"כ $2n + 1$ כדרוש. 
+	\end{enumerate}
+	
+	
+	
+	
+\end{document}

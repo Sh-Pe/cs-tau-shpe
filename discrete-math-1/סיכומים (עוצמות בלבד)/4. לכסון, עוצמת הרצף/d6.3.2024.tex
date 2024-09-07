@@ -1,0 +1,162 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[legalpaper, margin=0.3in]{geometry}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\anz   {\aleph}
+\newcommand\azz   {2^{\aleph_0}}
+
+\newcommand\n     {$n$־יה\ }
+
+\title{מתמטיקה בדידה – עוצמות 4}
+\author{שחר פרץ}
+\date{6 למרץ 2024}
+
+\begin{document}
+	\maketitle
+	
+	\subsection*{תזכורות: }
+	\begin{itemize}
+		\item $ 2^{\az} = |\N \to \{0, 1\}| $
+		\item $ 2^{|A|} := |A \to \{0, 1\}|$
+		\item $ \az \le \azz $
+		\item $ \forall A. |\ps(A)| = 2^{|A|} $ ובפרט עבור $ |\ps(\N)| = 2^{|\N|} $
+		\item משפט קנטור: $ \forall A. |A| < |\ps(A)| $
+		\item $ \anz := |\R| $
+		\item $ \anz = \azz $
+	\end{itemize}
+	
+	הוכחה למשפט האחרון מהרשימה: נשתמש בקש"ב. בכיוון הראשון, $ |\R| \le |\ps(\Q)| $ ע"י הגדרת הפונקציה: 
+	\[ f \colon \R \to \ps(\Q), \ f(r) = \{q \in \Q \mid q \le r\} \]
+	נוכיח ש־$ f $ חח"ע. יהיו $ r_1, r_2 \in \R  $ שונים. בה"כ $ r_1 < r_2 $. מצפיפות הרציונליים בממשיים, קיים $ q_0 \in \Q $ כך ש־$ r_1 < q_0 < r_2 $. לכן, $ q_0 \in \{q \in \Q \mid q \le r_2\} = f(r_2)$ וגם $ q \neq \{q \in \Q\mid q \le r_1\}  = f(r_1) $ וסה"כ $ q_0 \in f(r_2) \setminus f(r_1) $ ולכן $ f(r_1) \neq f(r_2) $ וסה"כ $ f $ חח"ע. [להוסיף בהוכחה יותר פורמלית: $ \ps(\Q) = \ps(\N) = \azz$]
+	
+	בכיוון השני: צ.ל. $ \azz \le |\R| $. ניעזר בתכונה הבאה של $ \R $: לכל סדרה $ \{a_n \mid n \in \N\} $ של ספרות $ \{0, \dots, 9\} $, קיים מספר ממשי שהוא $ 0.a_0a_1a_2\dots $ (זה אולי נשמע טרוויאלי, אבל זה לא נכון על $ \Q $ לדוגמה). מתקיים לכל $ n \in \N $: אם $ a_n < 9 $ אז $ 0.a_0a_1 \dots a_n \dots \le 0.a_0 \dots (a_n + 1) $ (דוגמה: $ 0.134794... \le 0.1348 $). (למה נכתב $ \le $ ולא $ > $? יתכן שוויון עבור $ 0.09999\dots = 0.1 $ [כל הבלגן הזה כדי להמנע מלהכנס להגדרה של ממשיים, כמו שעשינו עם ארז]. \\
+	נגדיר פונקציה $ g \colon (\N \to \{0, 2\}) \to \R $ ע"י $ g = \lambda h \in \N \to \{0, 1\}.                                                                                                   0.h(0)h(1)h(2) \dots $. לפי התכונה הנ"ל. הטווח של $ g $ הוא אכן $ \R $. נוכיח ש־$ g $ חח"ע. יהיו $ h_1, h_2 \in \N \to \{0, 2\} $. אז קיים $ n_0 \in \N $ כך ש־$ h_1(n_0) \neq h_2(n_0) $. בה"כ נניח ש־$ h_1(n_0) = 0 \land h_2(n_0) = 2 $. אז: 
+	\[ g(h_1) = 0.h_1(0) \dots \underbrace{h_1(n_0)}_{=0} \dots < 0.h_1(0) \dots 1 < 0.h_1(0) \dots 2 = 0.h_2(0) \dots 2 \le g(h_2) \]
+	זאת בהנחה שבחרנו את ה־$ n_0 $ הקטן ביותר האפשרי, כך ש־$ \forall n < n_0. h_1(n) = h_2(n) $. סה"כ $ g(h_1) < g(h_2) $ ולכן $ g $ חח"ע. 
+	
+	\textbf{"בואו נוכיח, ונעשה שיהיה לנו פשוט"} (נטלי). לא ההוכחה הכי פורמלית...
+	
+	סה"כ, "הוכחנו" ש־$ \azz \le |R| $, ולסיכום מקש"ב $ \anz = \azz $. 
+	
+	\subsection*{הערה: }
+	דוגמאות לקבוצות מעוצמה $ \azz $: 
+	\begin{itemize}
+		\item $ \N \to \{0, 1\}, \Q\to \{0, 1\} $ וכו'
+		\item $ \R $
+		\item $ \ps(\N), \ps(\Q), \ps(\Z), \ps(\N \times \N), \ps(\Neven) $ וכו'
+	\end{itemize}
+	
+	\subsection*{הערה 2: }
+	השערת הרצף: לא קיימת קבוצה $ X $ כך ש־$ \az < |X| < \azz $ (במילים אחרות, $ \azz $ היא העוצמה הראשונה שגדולה ממש מ־$ \az $). 
+	השערת הרצף התחילה בתור השערה, אבל הוא לא באמת השערה בימנו אנו: הוכיחו כי הטענה הזו בלתי תלויה באקסיומות, כלומר ש\textbf{אי אפשר להוכיח אותה באמצעות ZFC אבל גם אי־אפשר להפריכה}. עושים את זה באמצעות כלים מתמטיים יחסית מתקמים. 
+	\subsection*{הערה 3: }
+	לא בחומר: $ \anz_1 $ היא העוצמה הראשונה שגדולה יותר מ־$ \az $
+	\section*{קצת תרגול בלכסון}
+	\subsection*{א}
+	הוכיחו ע"י לכסון שהקבוצה הבאה אינה בת מנייה: 
+	$ A = \{f \in \N \to \{0, 1\} \mid \forall i \in \N. f(i) \cdot f(i + 1) = 0\} $ \\
+	פתרון: נניח בשלילה ש־$ |A| = \az $. אז קיים זיווג $ F \colon \N\to A $. נבנה $ g \in A $ באופן הבא: 
+	\[ g = \lambda n \in \N. \begin{cases}
+		1 - F\left (\tfrac{n}{2} \right )(n) &n \in \Neven \\
+		0 &n \in \Nodd
+	\end{cases} \]
+	נוכיח ש־$ g \in A $: ראשית, לכל $ n \in \Neven $ מתקיים $ f(\tfrac{n}{2}) \in \N \to \{0, 1\} $ ולכן $ F(n/2)(n) \in \{0, 1\} $ ולכן $ g(n) = 1 - f(n/2)(n) \in \{0, 1\} $, ולכל $ n \in \Nodd $ הגדרנו $ g(n) = 0 $, ולכן $ \{0, 1\} $ הוא טווח עבור $ g $, כלומר $ g \in \N \to \{0, 1\} $. בנוסף, לכל $ i \in \N $ מתקיים שאחד מבין $ i, i + 1 $ הוא אי זוגי, ולכן $ g(i) = 0 \lor g( i + 1 ) = 0 $ אז $ g(i) \cdot g(i + 1) = 0 $. סה"כ $ g \in A $. עכשיו נוכיח ש־$ \forall m \in \N. g \neq F(m) $. יהי $ m \in \N $. צ.ל. $  \n in \N $ כך ש־$ g(n) \neq F(m)(n)) $. נבחר $ n = 2m $. אז $ g(2m) = 1 - F(2m / 2)(2m) = 1 - F(m)(2m) \neq F(m(2m))$. לכן $ g(2m) \neq F(m)(2m) $ ולכן $ G \neq F(n)/ $. סה"כ $ g \not\in \Img F $ אך כן $ g \in A $ ולכן $ |A| \neq \az $
+	\subsection*{ב}
+	הוכיחו ע"י לכסון שקבוצת כל הפונקציות החח"ע מ־$ \N \to \N $ (נסמנה $ A $) אינה בת מנייה. 
+	פתרון: נניח בשלילה $ F \colon \N \to A $ זיווג. נגדיר: 
+	\[ g = \lambda n \in \N. \sum_{i = 0}^{n} (F(i)(i) + 1) + 1 \]
+	(מי שלא היה: היא הסבירה הרבה על הפונקציה הזו בע"פ, אז תכתבו לי אם לא ברור למה זה עובד. בכללי זה מונוטוני עולה אז זה חח"ע)
+\end{document}

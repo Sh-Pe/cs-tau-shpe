@@ -1,0 +1,488 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Neon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{גרפים 5 $\sim$ נטלי שלום $\sim$ טענות על עצים, משפט קיילי, תורת רמזי}
+
+\begin{document}
+	\maketitle
+	\section{\sen Reminders \she}
+	\begin{itemize}
+		\item \textbf{הגדרות: }
+		\begin{itemize}
+			\item \textbf{גרף קשיר} הוא גרף שבו בין כל שני צמתים יש מסלול. 
+			\item \textbf{עץ} הוא גרף קשיר חסר מעגלים. 
+			\item \textbf{יער: }גרף חסר מעגלים. 
+			\item \textbf{עלה: }צומת ביער (ובפרט עץ) בעל דרגה $1$. 
+			\item \textbf{צומת מבודד: }צומת מדרגה $0$. 
+		\end{itemize}
+		\item \textbf{טענות: }
+		\begin{itemize}
+			\item \textbf{למה 1: }בגרף קשיר שבו $|V| \ge 2$ ובנוסף $|E| < |V|$ קיים צומת מדרגה $1$. 
+			\item \textbf{למה 2: }בגרף קשיר, כאשר מסירים צומת מדרגה $1$ הגרף נישאר קשיר. 
+			\item \textbf{משפט: }בגרף קשיר, מתקיים $|E| \ge |V| - 1$. 
+			\item \textbf{למה 3: }אם מסירים קשת מגרף חסר מעגלים, מספר רכיבי הקשירות גדל. 
+			
+			\textit{תרגיל: }אם מסירים קשת מגרף חסר מעגלים, מספר רכיבי הקשירות גדל בדיוק ב־$1$ (זה משפט שצריך להוכיח)
+			
+			\item \textbf{משפט: }בגרף חסר מעגלים, מתקיים $|E| \le |V| - 1$. 
+		\end{itemize}
+	\end{itemize}
+	\section{\en{Implifications}}
+	\begin{itemize}
+		\item \textbf{משפט: }\textit{(מסקנה משני המשפטים לעיל)} בעץ, מתקיים $|E| = |V| - 1$.
+		\item (כלומר, בעץ בעל $n$ צמתים יש $n - 1$ קשתות). 
+		\item \textbf{מסקנות מהלמות: }
+		\begin{itemize}
+			\item \textbf{מסקנה מלמה 1: }בכל עץ שבו $|V| \ge 2$ יש עלה. 
+			\item \textbf{מסקנה מלמה 2: }בכל עץ, אם מסירים עלה, הגרף נישאר עץ. 
+			\item \textbf{מסקנה מלמה 3: }אם מסירים קשת מגרף חסר מעגלים, מקבלים הוא הפך ליער שאינו עץ. 
+		\end{itemize}
+		\item \textbf{מסקנות מהמסקנות מהלמות: }
+		\begin{itemize}
+			\item עץ הוא גרף קשיר מינימלי (אם נסיר קשת, הגרף לא ישאר קשיר). 
+			\item עץ הוא גרף חסר מעגלים מקסימלי (אם נוסיף קשת, הגרף לא ישאר חסר מעגלים). 
+		\end{itemize}
+		\item \textbf{משפט: }בהינתן גרף $G = \la V, E \ra$ התנאים הבאים שקולים: 
+		\begin{enumerate}
+			\item $G$ עץ
+			\item $G$ קשיר, ובכל תת גרף שלו יש צומת מדרגה $0$ או $1$. 
+			\item $G$ קשיר ו־$|E| = |V| - 1$. 
+			\item $G$ גרף קשיר מינימלי (אם מסירים קשת, הגרף לא יהיה קשיר). 
+			\item בין כל שני צמתים קיים מסלול יחיד (והוא בהכרח פשוט). 
+			\item $G$ חסר מעגלים ו־$|E| = |V| - 1$. 
+			\item $G$ חסר מעגלים מקסימלי (אם מוסיפים קשת, יווצר מעגל בגרף). 
+		\end{enumerate}
+		\begin{proof}
+			לא נוכיח הכל, אך לבינתיים נוכיח שקילות בין (5) ל־(6). 
+			\begin{itemize}
+				\item[$\impliedby$] נניח שבין כל שני צמתים קיים מסלול יחיד. ראשית, מחר שקיים מסלול בין על שני צמתים, אז הגרף קשיר ולכן לפי משפט $|E| \ge |V| - 1$. נניח בשלילה שקיים מעגל $v_0, \dots v_m$ ($v_0 = v_m$). מתקיים $m > 2$, כי $\la v_0, v_1 \ra \ (v_0 = v_1)$ אינו מעגל מאחר שבגרף פשוט אין קשת מצומת לעצמו, ובנוסף $\la v_0, v_1, v_2 \ra \ (v_0 = v_2)$ אינו מעגל כי הקשת $\{v_0, v_1\}$ חוזרת פעמיים. נתסכל על $v_1$. בהכרח $v_1 \neq v_0, v_m$. קיימים שני מסלולים שונים מ־$v_1$ ל־$v_0$: $\la v_0, v_1 \ra, \ \underbrace{\la v_1, v_2, \dot, v_m \ra}_{\text{באורך גדול מ־$2$}}$. וסה"כ סתירה להנחה, כלומר אין ב־$G$ מעגל, ולפי משפט נובע $|E| \le |V| - 1$. סה"כ $G$ חסר מעגלים וגם $|E| = |V| - 1$. 
+				\item[$\implies$]נניח $G$ חסר מעגלים ו־$|E| = |V| - 1$, ש־$G$ חסר מעגלים, ו־$|E| = |V| - 1$. נוכיח שבין כל שני צמתים קיים מסלול יחיד. נניח בשלילה שקיימים שני צמתים שביניהם שני מסלולים שונים (הערה: המסלולים בהכרח פשוטים כי בגרף אין מעגלים). נפריד למקרים: 
+				\begin{itemize}[\textbf{–}]
+					\item אם שני המסלולים זרים בקשתות, אז ניתן לשרשר אותם ולסגור מעגל – וזו סתירה. 
+					\item אז קיים צומת המופיע בשני המסלולים, ניקח את הצומת הראשון במסלול $v_0, \dots, v_m$ שמופיע גם במסלול השני, נניח שהוא $v_j = u_i$ ונשרשר דרכו, כלומר $a, \dots, v_j, u_{i + 1}, a$. קיבלנו מעגל, סתירה. 
+				\end{itemize}
+				עד כה, הוכחנו שבין כל שני צמתים יש לכל היותר מסלול אחד. נוכיח קיום. נניח בשלילה קיום $a \neq b$ צמתים שביניהם אין מסלול. בפרט, $\{a, b\}\notin E$. נוסיף את הקשת $\{a, b\}$ לגרף, לא יתכן שסגרנו מעגל, כי אז נובע שיש מסלול אחר בין $a$ ל־$b$ בגרף המקורי, בסתירה להנחה. מצד שני, מספר הקשתות אחרי ההוספה הוא $|V|$, בסתירה לכך שבגרף חסר מעגלים יש לכל היותר $|V| - 1$ קשתות. סה"כ בין כל שני צמתים קיים מסלול, והוא יחיד. 
+			\end{itemize}
+			סה"כ הוכחו שתי הגרירות, כדרוש. 
+		\end{proof}
+	\end{itemize}
+	
+	\section{\en{Cayley Theorem}}
+	כמה עצים קיימים על קבוצת הצמתים $V = [n] = \{1, \dots, n\}$?
+	
+	מקרים פשרטיים: 
+	\begin{itemize}
+		\item $n = 1$: עץ אחד
+		\item $n = 2$: עץ אחד
+		\item $n = 3$: 3 אפשרויות. 
+		\item $n = 4$: יהיו שני סוגים של עצים (תמונות אצל סיכומים אחרים). יש 16 אפשרויות. 
+	\end{itemize}
+	
+	\textbf{משפט קיילי: }מספר העצים מעל $V = [n]$ (כאשר $n \ge 2$) הוא $n^{n - 2}$. 
+	
+	\textit{רעיון להוכחה: }(כי לא ברור אם זה יהיה חלק מהקורס או לא אז לא ניכנס לפרטים) למצוא התאמה חח"ע ועל, בין העצים על $V = [n]$ לבין המחרוזות באורך $n - 2$ מעל $V$. נתאר פונקציה $F$ שמתאימה לכל עץ כנ"ל מחרוזת ב־$V^{n - 2}$. \textit{(הערה: השיטה הזו נקראת קוד \en{Prufer})} בהינתן עץ $\la V, E \ra$, יהי $v$ העלה עם המספר הקטן ביותר, ויהי $u$ שכנו. נכניס למחרוזת את $u$, ונמחק את $v$ מהעץ (הדרגה של $u$ תקטן ב־$1$). נמשיך בתהליך (כשמסירים עלה מעץ, נשאר עץ) עד שבגרף ישארו שני צמתים, שניהם עלים בהכרח. 
+	
+	\textbf{דוגמה: }נתבונן בעץ הבא, ונבנה מחרוזת לפי האלגו'
+	
+	\begin{center}
+		\sen\begin{forest}
+			[7[1][6][4[3[9]][5][8]]]
+		\end{forest}\she
+	\end{center}
+	
+	מכאן, נבנה את המחרוזת
+	$7472443$
+	כאשר מחקנו לפי הסדר את
+	$1, 5, 6, 7, 8, 2, 8, 4$. 
+	
+	\textbf{תובנות: }
+	\begin{itemize}
+		\item כל העלים בעץ המקורי, לא מופיעים במחרוזת. 
+		\item כמות המופיעים של מספר $v$ המחרוזת, היא $d(v) - 1$ (בפרט, נגררת מכאן התובנה הקודמת). 
+	\end{itemize}
+	\textit{עתה, נתאר את ההתאמה ההופכית לאלגו' פרופר. }בהינתן מחרוזת באורך $n - 2$, נחשב את הדרגות של הצמתים (מס' המופעים + 1). נבצע תהליך: בשלב $1 \le i \le n - 2$, ניקח את המספר הקטן ביותר $j$ המקיים $d(j) = 1$. נבנה קשת בין $j$ לבין $a_i$ כאשר $a_i$ הוא התו ה־$i$ המחרוזת. נעדכן את הדרגות: $d(j) = 0, \ d(a_i) \leftarrow d(a_i) - 1$. לבסוף, נוסיף קשת בין שני הצמתים האחרונים שנותרו (בעלי דרגה $1$). 
+	
+	לא נוכיח לבינתיים, אך זהו אכן ההופכי, והשאלה מוגדרת היטב. לאחר שזאת יוכח, מצאנו פונקציה והופכית לה, כלומר יש זיווג. 
+	\npage
+	\section{\en{Ramzi Theory}}
+	התורה עוסקת בשאלה, "כמה אויבייקט (אצלנו, גרף) צריך להיות גדול בשביל להכיל משהו מסויים". 
+	
+	\textbf{משפט: }בכל קבוצה של $6$ אנשים קיימים $3$ אנשים שמכירים זה את זה, או $3$ אנשים שלא מכירים זה את זה. 
+	
+	\textit{בדיחה של נטלי: }אנשים שלא מכירים זה את זה, הם זרים בזוגות. 
+	
+	\textbf{משפט: }(אותו המשפט, בניסוח תורת הגרפים) בכל צביעה של קשתות הגרף השלם על $6$ צמתים בכחול ואדום, קיים משולש מונוכרומטי. 
+	
+	כלומר, בהינתן גרף מלא, נשייך צבע כחול או אדום לכל קשת, והטענה אומרת שבצביעה כזו קיים משולש בצבע אחיד. 
+	\begin{proof}
+		תהי איזושהי צביעה של הקשתות בכחול ואדום על הגרף השלם $K_6$. יהי $v$ קודקוד כלשהו. יוצאות ממנו $5$ קשתות. מעקרון שובך היונים, משום שיש שני צבעים, הכרח קיימות לפחות שלוש קשתות שיוצאות ממנו באותו הצבע, בה"כ אדום. נניח כי $u, x, w$ הם שלושה שכנים של $v$ המחוברים אליו באדום. אם קיימת קשת אדומה בין שניים מהם, אז נקבל משולש אדום (יחד עם $v$). אם לא קיימת כזו, אז הקשתות בין $x, u, w$ הן כחולות, ונקבל משולש מונוכרומטי כחול ביניהן. 
+	\end{proof}
+	
+	\textbf{הגדרה: }עבור $m \ge 1$ טבעי, $m$\textit{-קליקה} היא תת גרף על $m$ צמתים (כלומר, תת גרף שהוא $K_m$). 
+	
+	\textbf{הגדרה: }\textit{צביעה} של הצלעות של גרף $G = \la V, E \ra$ ב־$\ell$ צבעים היא פונקציה $f \colon E \to [\ml]$. 
+	
+	\textbf{סימון/הגדרה: }\textit{מספר רמזי} ה־$k, \ml$, מסומן $R(k, \ml)$, הוא המספר המינימלי של צמתים בגרף השלם מבטיח שכל צביעה של קשתות הגרף בכחול ואדום שתכיל בכחול ואדום תכיל $k$-קליקה אדומה או $\ml$-קליקה כחולה. 
+	
+	\textit{הערה: }$R(k, \ml) = R(\ml, k)$. 
+	
+	\textbf{הגדרה: }$R(k, k)$ נקרא \textit{מספר רמזי האלכסוני}. 
+	
+	\textbf{דוגמאות: }
+	\begin{enumerate}
+		\item־$R(3, 3) \le 6$ (הוכחנו). נוכיח שמדובר בשוויון. \begin{proof}
+			נתבונן ב־$K_5$, ונראה צביעה שסותרת (אני לא משלב כאן גרפים אז תגמבו מסיכומים אחרים). 
+		\end{proof}
+		\item לכל $k \ge 1$: 
+		$ R(k, 1) = R(1, k) = 1 $
+		\item לכל $k \ge 1$:
+		$ R(k, 2) = R(2, k) = k $ 
+		
+		\textit{הסבר: }אם בגרף יש פחות מ־$k$ צמתים, נובל לצבוע את כל הקשתות באגום ונקבל קליקה אדומה קטנה מ־$k$ צמתים, ואין קליקה כחולה בגודל בגרף $K_k$, אם קימת בצביעה קשת כחולה, אז קיבלנו $K_2$ כחול – כדרוש. אם לא קיימת כזו, אז כל הקשתות אדומות כלומר זהו $K_k$ אדום. 
+		
+		\item $R(3, 4) = 9$ – תרגיל להוכחה בבית.  
+		\item $R(4, 4) = 18$
+	\end{enumerate}
+	בהצלחה לכם בלמצוא נוסחה כללית ל־$R$, כי $R(5, 5)$ שאלה פתוחה. יודעים שזה בין 43 ל־48. 
+	
+	\textbf{משפט: }לכל $k, \ml \ge 1$ טבעיים, קיים $R(k, \ml)$. 
+	
+	נוכיח טענה חזקה יותר, שבפרט תוכיח לנו את המשפט: 
+	
+	\textbf{משפט: }לכל $k, \ml > 1$ טבעיים, מתקיים $R(k, \ml) \le R(k, \ml - 1) + R(k + 1, \ml)$
+	
+	\begin{proof}
+		נסמן $N = R(k, \ml - 1) + R(k - 1, \ml)$. נתבונן ב־$K_N$. תהי $c \colon E \to \{R, B\}$. נסמן: 
+		\[ V_R = \{v \in [N] \mid c(\{1, v\}) = R\}, \ V_B = \{v \i [N] \mid c(\{1, v\}) = B \} \]
+		מילולית: $V_R$ יסמן את כל הצמתים שמחוברים ל־$1$ באדום, ו־$V_B$ אותו הדבר בכחול. נשים לב, שיתקיים
+		\[|V_R| + |V_B| = |V_R \uplus V_B| = N - 1 = R(k, \ml - 1) + R(k - 1, \ml) - 1\]
+		 כי $V_R \uplus V_B$ יכיל את כל הצמתים חוץ מ־1. ומכאן, נובע שבהכח מתקיים אחד מהשניים: $|V_R| \ge R(k - 1, \ml)$ או ש־$|V_B| \ge R(k, \ml - 1)$, כי אחרת: 
+		 \[ |V_R| \le R(k - 1, \ml) - 1, \ |V_B| \le R(k, \ml - 1) - 1 \implies |V_R| + |V_B| \le N - 2 \]
+		 בסתירה לנמצא. נניח בה"כ $|V_R| \ge R(k - 1, \ml)$. אז ב־$V_R$ קיימת $\ml$-קליקה כחולה, או $(k - 1)$-קליקה אדומה, ויחד עם הצומת $1$ (שאינו מופיע ב־$V_R$) נקבל $k$-קליקה אדומה. 
+		 
+		\textbf{שני חסמים ידועיים על רמזי האלכסוני: }
+		\[ 2^{\frac{k}{2}} \le R(k, k) \le 4^{k} \]
+	\end{proof}
+	
+	\section{\en{Exercises}}
+	\subsection{}
+	\textbf{תרגיל: }נתונים שני עצים $G_1 = \la V, E_1 \ra, \ G_2 = \la V, E_2 \ra$. נתבונן בגרף $G = \la V, E_1 \cup E_2 \ra$. הוכיחו שקיים ב־$G$ קודקוד שדרגתו לכל היותר $3$. 
+	
+	\begin{proof}
+		נניח בשלילה שלא קיים קדקוד כזה, כלומר $\forall v \in V. d_G (v) \ge 4$. לכן, ממשפט על סכום הדרגות: 
+		\[ 2|E_1 \cup E_2| = \sum_{v \in V}\underbrace{d_g(v)}_{\ge 4} \ge 4 |V| \implies |E_1 \cup E_2| \ge 2 |V| \]
+		מהצד השני, $G_1, G_2$ עצים ולכן: 
+		\[ |E_1| = |E_2| = |V| - 1 \implies |E_1 \cup E_2| \le |E_1| + |E_2| = 2|V| - 2 \]
+		סה"כ סתירה. 
+	\end{proof}
+	
+	\subsection{}
+	\textbf{תרגיל: }נתון גרף $G = \la V, E \ra$, $|V| \ge 3$ כך שעבור כל קשת $e \in E$ מתקיים שהגרף המתקבל מהסרתהּ $\la V, E \setminus \{e\} \ra$ הוא עץ. הוכיחו, שלכל קוקוד ב־$G$ הוא מדרגה $2$. 
+	\begin{proof}
+		לצורך הפתרון, נוכיח טענת עזר [צריך להכיר אותה, אבל יש להוכיחה בעת שימוש]: בכל עץ עם לפחות $2$ צמתים, יש לפחות שני עלים. 
+		\textit{הוכחת טנת העזר: }נניח בשלילה שיש לכל היותר עלה אחד. אז: 
+		\[ 2 \cdot |E| = \sum_{v \in V} d(v) \ge 2 \cdot \underbrace{(|V| - 1)}_{\mathclap{\text{כמות הצמתים בעלי דרגה שהיא לפחות $2$}}} + 1 = 2 |V| - 1 \implies |E| \ge |V| - 1 + \frac{1}{2} > |V| - 1 \]
+		
+		קיבלנו $|E| > |V| - 1$, סתירה להיות הגרף עץ. 
+		
+		נחזור להוכחה המקורית. למעשה לא נעשה את זה כי נגמר השיעור. 
+	\end{proof}
+	
+	
+\end{document}
