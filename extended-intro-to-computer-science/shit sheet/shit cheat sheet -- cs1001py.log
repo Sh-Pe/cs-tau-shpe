@@ -1,62 +1,27 @@
-This is LuaHBTeX, Version 1.18.2 (MiKTeX 24.4) (format=lualatex 2024.6.30)  3 SEP 2024 15:01
- restricted system commands enabled.
-**"shit cheat sheet -- cs1001py.tex"
-("./shit cheat sheet -- cs1001py.tex"
+This is XeTeX, Version 3.141592653-2.6-0.999996 (MiKTeX 24.4) (preloaded format=xelatex 2024.7.25)  7 SEP 2024 15:21
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**"./shit cheat sheet -- cs1001py.tex"
+(shit cheat sheet -- cs1001py.tex
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
-Lua module: luaotfload 2024-02-14 3.28 Lua based OpenType font support
-Lua module: lualibs 2023-07-13 2.76 ConTeXt Lua standard libraries.
-Lua module: lualibs-extended 2023-07-13 2.76 ConTeXt Lua libraries -- extended c
-ollection.
-luaotfload | conf : Root cache directory is "/home/shpe/.miktex/texmfs/data/luat
-ex-cache/generic/names".
-luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-res
-olved path "/home/shpe/.miktex/texmfs/install/tex/luatex/luaotfload/fontloader-2
-023-12-28.lua".
-Lua-only attribute luaotfload@noligature = 1
-luaotfload | init : Context OpenType loader version 3.134
-Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
-Inserting `luaotfload.node_processor' in `hpack_filter'.
-Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
-Inserting `luaotfload.define_font' in `define_font'.
-Lua-only attribute luaotfload_color_attribute = 2
-luaotfload | conf : Root cache directory is "/home/shpe/.miktex/texmfs/data/luat
-ex-cache/generic/names".
-Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
-Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
-Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
-Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
-Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
-Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
-Inserting `luaotfload.cleanup_files' in `wrapup_run'.
-Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
-Inserting `luaotfload.glyphinfo' in `glyph_info'.
-Lua-only attribute luaotfload.letterspace_done = 3
-Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
-Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
-Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
-Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
-Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
-Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
-Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
-Inserting `tracingstacklevels' in `input_level_string'. (/home/shpe/.miktex/tex
-mfs/install/tex/latex/base/article.cls
+(/home/shpe/.miktex/texmfs/install/tex/latex/base/article.cls
 Document Class: article 2024/02/08 v1.4n Standard LaTeX document class
 (/home/shpe/.miktex/texmfs/install/tex/latex/base/size10.clo
 File: size10.clo 2024/02/08 v1.4n Standard LaTeX file (size option)
-luaotfload | db : Font names database loaded from /home/shpe/.miktex/texmfs/data
-/luatex-cache/generic/names/luaotfload-names.luc.gz)
-\c@part=\count192
-\c@section=\count193
-\c@subsection=\count194
-\c@subsubsection=\count195
-\c@paragraph=\count196
-\c@subparagraph=\count197
-\c@figure=\count198
-\c@table=\count199
+)
+\c@part=\count190
+\c@section=\count191
+\c@subsection=\count192
+\c@subsubsection=\count193
+\c@paragraph=\count194
+\c@subparagraph=\count195
+\c@figure=\count196
+\c@table=\count197
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
-\bibindent=\dimen140
+\bibindent=\dimen141
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/graphics/color.sty
 Package: color 2024/01/14 v1.3d Standard LaTeX Color (DPC)
@@ -64,10 +29,10 @@ Package: color 2024/01/14 v1.3d Standard LaTeX Color (DPC)
 (/home/shpe/.miktex/texmfs/install/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package color Info: Driver file: luatex.def on input line 149.
+Package color Info: Driver file: xetex.def on input line 149.
 
-(/home/shpe/.miktex/texmfs/install/tex/latex/graphics-def/luatex.def
-File: luatex.def 2024/04/13 v1.2e Graphics/color driver for luatex
+(/home/shpe/.miktex/texmfs/install/tex/latex/graphics-def/xetex.def
+File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/graphics/mathcolor.ltx))
 (/home/shpe/.miktex/texmfs/install/tex/latex/forest/forest.sty
@@ -78,8 +43,8 @@ Package: forest 2017/07/14 v2.1.5 Drawing (linguistic) trees
 (/home/shpe/.miktex/texmfs/install/tex/latex/pgf/utilities/pgfrcs.sty
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks17
-\pgfutil@tempdima=\dimen141
-\pgfutil@tempdimb=\dimen142
+\pgfutil@tempdima=\dimen142
+\pgfutil@tempdimb=\dimen143
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box52
@@ -106,10 +71,10 @@ Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 (/home/shpe/.miktex/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: luatex.def on input line 106.
+Package graphics Info: Driver file: xetex.def on input line 106.
 )
-\Gin@req@height=\dimen143
-\Gin@req@width=\dimen144
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/pgf/systemlayer/pgfsys.sty
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys.code.tex
@@ -123,45 +88,50 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 ered.code.tex
 \pgfkeys@tmptoks=\toks21
 ))
-\pgf@x=\dimen145
-\pgf@y=\dimen146
-\pgf@xa=\dimen147
-\pgf@ya=\dimen148
-\pgf@xb=\dimen149
-\pgf@yb=\dimen150
-\pgf@xc=\dimen151
-\pgf@yc=\dimen152
-\pgf@xd=\dimen153
-\pgf@yd=\dimen154
+\pgf@x=\dimen146
+\pgf@y=\dimen147
+\pgf@xa=\dimen148
+\pgf@ya=\dimen149
+\pgf@xb=\dimen150
+\pgf@yb=\dimen151
+\pgf@xc=\dimen152
+\pgf@yc=\dimen153
+\pgf@xd=\dimen154
+\pgf@yd=\dimen155
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count266
-\c@pgf@countb=\count267
-\c@pgf@countc=\count268
-\c@pgf@countd=\count269
+\c@pgf@counta=\count198
+\c@pgf@countb=\count199
+\c@pgf@countc=\count266
+\c@pgf@countd=\count267
 \t@pgf@toka=\toks22
 \t@pgf@tokb=\toks23
 \t@pgf@tokc=\toks24
-\pgf@sys@id@count=\count270
+\pgf@sys@id@count=\count268
 
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
-Driver file for pgf: pgfsys-luatex.def
+Driver file for pgf: pgfsys-xetex.def
 
-(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-luatex.de
-f
-File: pgfsys-luatex.def 2023-01-15 v3.1.10 (3.1.10)
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+File: pgfsys-xetex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.
+def
+File: pgfsys-dvipdfmx.def 2023-01-15 v3.1.10 (3.1.10)
 
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-common-pd
 f.def
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)
+\pgfsys@objnum=\count269
 )))
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsyssoftpath.c
 ode.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count271
-\pgfsyssoftpath@bigbuffer@items=\count272
+\pgfsyssoftpath@smallbuffer@items=\count270
+\pgfsyssoftpath@bigbuffer@items=\count271
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsysprotocol.c
 ode.tex
@@ -172,12 +142,11 @@ Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
 (/home/shpe/.miktex/texmfs/install/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: luatex.def on input line 274.
+Package xcolor Info: Driver file: xetex.def on input line 274.
 LaTeX Info: Redefining \color on input line 758.
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
 Package xcolor Info: Model `RGB' extended on input line 1366.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
@@ -192,8 +161,8 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmath.code.tex
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen155
-\pgfmath@count=\count273
+\pgfmath@dimen=\dimen156
+\pgfmath@count=\count272
 \pgfmath@box=\box53
 \pgfmath@toks=\toks25
 \pgfmath@stack@operand=\toks26
@@ -219,37 +188,37 @@ ode.tex)
 rarithmetics.code.tex)
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathcalc.code.tex)
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count274
+\c@pgfmathroundto@lastzeros=\count273
 )) (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfint.code.tex)
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepoints.cod
 e.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen156
-\pgf@picmaxx=\dimen157
-\pgf@picminy=\dimen158
-\pgf@picmaxy=\dimen159
-\pgf@pathminx=\dimen160
-\pgf@pathmaxx=\dimen161
-\pgf@pathminy=\dimen162
-\pgf@pathmaxy=\dimen163
-\pgf@xx=\dimen164
-\pgf@xy=\dimen165
-\pgf@yx=\dimen166
-\pgf@yy=\dimen167
-\pgf@zx=\dimen168
-\pgf@zy=\dimen169
+\pgf@picminx=\dimen157
+\pgf@picmaxx=\dimen158
+\pgf@picminy=\dimen159
+\pgf@picmaxy=\dimen160
+\pgf@pathminx=\dimen161
+\pgf@pathmaxx=\dimen162
+\pgf@pathminy=\dimen163
+\pgf@pathmaxy=\dimen164
+\pgf@xx=\dimen165
+\pgf@xy=\dimen166
+\pgf@yx=\dimen167
+\pgf@yy=\dimen168
+\pgf@zx=\dimen169
+\pgf@zy=\dimen170
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepathconstr
 uct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen170
-\pgf@path@lasty=\dimen171
+\pgf@path@lastx=\dimen171
+\pgf@path@lasty=\dimen172
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepathusage.
 code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen172
-\pgf@shorten@start@additional=\dimen173
+\pgf@shorten@end@additional=\dimen173
+\pgf@shorten@start@additional=\dimen174
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorescopes.cod
 e.tex
@@ -257,19 +226,19 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box54
 \pgf@hbox=\box55
 \pgf@layerbox@main=\box56
-\pgf@picture@serial@count=\count275
+\pgf@picture@serial@count=\count274
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoregraphicsta
 te.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen174
+\pgflinewidth=\dimen175
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoretransforma
 tions.code.tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen175
-\pgf@pt@y=\dimen176
-\pgf@pt@temp=\dimen177
+\pgf@pt@x=\dimen176
+\pgf@pt@y=\dimen177
+\pgf@pt@temp=\dimen178
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorequick.code
 .tex
@@ -286,14 +255,14 @@ File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorearrows.cod
 e.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen178
+\pgfarrowsep=\dimen179
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreshade.code
 .tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen179
-\pgf@sys@shading@range@num=\count276
-\pgf@shadingcount=\count277
+\pgf@max=\dimen180
+\pgf@sys@shading@range@num=\count275
+\pgf@shadingcount=\count276
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreimage.code
 .tex
@@ -332,8 +301,8 @@ File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/home/shpe/.miktex/texmfs/install/tex/latex/pgf/compatibility/pgfcomp-version-
 0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen180
-\pgf@nodesepend=\dimen181
+\pgf@nodesepstart=\dimen181
+\pgf@nodesepend=\dimen182
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/pgf/compatibility/pgfcomp-version-
 1-18.sty
@@ -341,12 +310,13 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 ))
 (/home/shpe/.miktex/texmfs/install/tex/latex/pgf/utilities/pgffor.sty
 (/home/shpe/.miktex/texmfs/install/tex/latex/pgf/utilities/pgfkeys.sty
-(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/home/shpe/.miktex/texmfs/install/tex/latex/pgf/math/pgfmath.sty
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/home/shpe/.miktex/texmfs/install/tex/latex/pgf/math/pgfmath.sty
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/math/pgfmath.code.tex))
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen182
-\pgffor@skip=\dimen183
+\pgffor@iter=\dimen183
+\pgffor@skip=\dimen184
 \pgffor@stack=\toks28
 \pgffor@toks=\toks29
 ))
@@ -357,34 +327,34 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryplothand
 lers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count278
-\pgfplotmarksize=\dimen184
+\pgf@plot@mark@count=\count277
+\pgfplotmarksize=\dimen185
 )
-\tikz@lastx=\dimen185
-\tikz@lasty=\dimen186
-\tikz@lastxsaved=\dimen187
-\tikz@lastysaved=\dimen188
-\tikz@lastmovetox=\dimen189
-\tikz@lastmovetoy=\dimen190
-\tikzleveldistance=\dimen191
-\tikzsiblingdistance=\dimen192
+\tikz@lastx=\dimen186
+\tikz@lasty=\dimen187
+\tikz@lastxsaved=\dimen188
+\tikz@lastysaved=\dimen189
+\tikz@lastmovetox=\dimen190
+\tikz@lastmovetoy=\dimen191
+\tikzleveldistance=\dimen192
+\tikzsiblingdistance=\dimen193
 \tikz@figbox=\box59
 \tikz@figbox@bg=\box60
 \tikz@tempbox=\box61
 \tikz@tempbox@bg=\box62
-\tikztreelevel=\count279
-\tikznumberofchildren=\count280
-\tikznumberofcurrentchild=\count281
-\tikz@fig@count=\count282
+\tikztreelevel=\count278
+\tikznumberofchildren=\count279
+\tikznumberofcurrentchild=\count280
+\tikz@fig@count=\count281
 
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmodulematrix.code
 .tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count283
-\pgfmatrixcurrentcolumn=\count284
-\pgf@matrix@numberofcolumns=\count285
+\pgfmatrixcurrentrow=\count282
+\pgfmatrixcurrentcolumn=\count283
+\pgf@matrix@numberofcolumns=\count284
 )
-\tikz@expandcount=\count286
+\tikz@expandcount=\count285
 
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
 /tikzlibrarytopaths.code.tex
@@ -470,7 +440,7 @@ File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 tions.code.tex
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryfpu.code
 .tex)
-\pgf@intersect@solutions=\count287
+\pgf@intersect@solutions=\count286
 ) (/home/shpe/.miktex/texmfs/install/tex/latex/pgfopts/pgfopts.sty
 Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
 \pgfopts@list@add@a@toks=\toks30
@@ -478,7 +448,7 @@ Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count288
+\etb@tempcnta=\count287
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/elocalloc/elocalloc.sty
 Package: elocalloc 2016/12/15 v0.03 local allocation for LaTeX 2015+ (DPC)
@@ -495,65 +465,66 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 (/home/shpe/.miktex/texmfs/install/tex/latex/l3kernel/expl3.sty
 Package: expl3 2024-05-27 L3 programming layer (loader) 
 
-(/home/shpe/.miktex/texmfs/install/tex/latex/l3backend/l3backend-luatex.def
-File: l3backend-luatex.def 2024-05-08 L3 backend support: PDF output (LuaTeX)
-\l__color_backend_stack_int=\count289
-Inserting `l3color' in `luaotfload.parse_color'.
+(/home/shpe/.miktex/texmfs/install/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
+\g__graphics_track_int=\count288
 \l__pdf_internal_box=\box83
+\g__pdf_backend_annotation_int=\count289
+\g__pdf_backend_link_int=\count290
 ))
 Package: xparse 2024-05-08 L3 Experimental document command parser
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/inlinedef/inlinedef.sty
 Package: inlinedef 2008/07/10 v1.0 Inlined expansions within definitions
 \ID@toks=\toks33
-\ID@count=\count290
+\ID@count=\count291
 )
 \ID@usercommands=\toks34
-\safeloop@depth=\count291
-\safeRKloop@depth=\count292
-\forest@temp@dimen=\dimen193
-\forest@temp@count=\count293
-\forest@n=\count294
-\forest@temp@global@count=\count295
+\safeloop@depth=\count292
+\safeRKloop@depth=\count293
+\forest@temp@dimen=\dimen194
+\forest@temp@count=\count294
+\forest@n=\count295
+\forest@temp@global@count=\count296
 \forest@temp@toks=\toks35
-\forest@temparray@M=\count296
-\forest@temparray@N=\count297
-\forest@global@temparray@M=\count298
-\forest@global@temparray@N=\count299
-\forest@isnum@count=\count300
-\forest@isdim@nonintpart=\count301
-\forest@isdim@dimen=\dimen194
-\forest@sort@m=\count302
-\forest@sort@k=\count303
-\forest@sort@p=\count304
+\forest@temparray@M=\count297
+\forest@temparray@N=\count298
+\forest@global@temparray@M=\count299
+\forest@global@temparray@N=\count300
+\forest@isnum@count=\count301
+\forest@isdim@nonintpart=\count302
+\forest@isdim@dimen=\dimen195
+\forest@sort@m=\count303
+\forest@sort@k=\count304
+\forest@sort@p=\count305
 \bracket@content=\toks36
 \bracket@afterthought=\toks37
-\forest@node@maxid=\count305
-\forest@process@left@M=\count306
-\forest@process@left@N=\count307
-\forest@process@right@M=\count308
-\forest@process@right@N=\count309
-\forest@process@saved@M=\count310
-\forest@process@saved@N=\count311
-\forest@process@result@M=\count312
-\forest@process@result@N=\count313
-\forest@process@n=\count314
+\forest@node@maxid=\count306
+\forest@process@left@M=\count307
+\forest@process@left@N=\count308
+\forest@process@right@M=\count309
+\forest@process@right@N=\count310
+\forest@process@saved@M=\count311
+\forest@process@saved@N=\count312
+\forest@process@result@M=\count313
+\forest@process@result@N=\count314
+\forest@process@n=\count315
 \forest@nodewalk@branch@toks=\toks38
 \forest@nodewalk@shortsteps@resolution=\toks39
 \forest@do@dynamics=\toks40
 \forest@box=\box84
-\forest@xg=\dimen195
-\forest@yg=\dimen196
-\forest@xs=\dimen197
-\forest@ys=\dimen198
+\forest@xg=\dimen196
+\forest@yg=\dimen197
+\forest@xs=\dimen198
+\forest@ys=\dimen199
 \forest@pi@toks=\toks41
 \forest@segment@toks=\toks42
 \forest@PIi@toks=\toks43
 \forest@PIii@toks=\toks44
 \forest@copy@in=\read3
 \forest@copy@out=\write4
-\forest@externalize@max@outer@n=\count315
-\forest@externalize@inner@n=\count316
+\forest@externalize@max@outer@n=\count316
+\forest@externalize@inner@n=\count317
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/iftex/ifxetex.sty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
@@ -575,23 +546,23 @@ Package: amstext 2021/08/26 v2.01 AMS text
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks45
-\ex@=\dimen199
+\ex@=\dimen256
 ))
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen256
+\pmbraise@=\dimen257
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count317
-LaTeX Info: Redefining \frac on input line 235.
-\uproot@=\count318
-\leftroot@=\count319
+\inf@bad=\count318
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count319
+\leftroot@=\count320
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count320
-\DOTSCASE@=\count321
+\classnum@=\count321
+\DOTSCASE@=\count322
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -601,30 +572,30 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen257
+\big@size=\dimen258
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count322
+\macc@depth=\count323
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count323
+\c@MaxMatrixCols=\count324
 \dotsspace@=\muskip17
-\c@parentequation=\count324
-\dspbrk@lvl=\count325
+\c@parentequation=\count325
+\dspbrk@lvl=\count326
 \tag@help=\toks46
-\row@=\count326
-\column@=\count327
-\maxfields@=\count328
+\row@=\count327
+\column@=\count328
+\maxfields@=\count329
 \andhelp@=\toks47
-\eqnshift@=\dimen258
-\alignsep@=\dimen259
-\tagshift@=\dimen260
-\tagwidth@=\dimen261
-\totwidth@=\dimen262
-\lineht@=\dimen263
+\eqnshift@=\dimen259
+\alignsep@=\dimen260
+\tagshift@=\dimen261
+\tagwidth@=\dimen262
+\totwidth@=\dimen263
+\lineht@=\dimen264
 \@envbody=\toks48
 \multlinegap=\skip52
 \multlinetaggap=\skip53
@@ -663,10 +634,10 @@ Package: amsthm 2020/05/29 v2.20.6
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryarrows.m
 eta.code.tex
 File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowinset=\dimen264
-\pgfarrowlength=\dimen265
-\pgfarrowwidth=\dimen266
-\pgfarrowlinewidth=\dimen267
+\pgfarrowinset=\dimen265
+\pgfarrowlength=\dimen266
+\pgfarrowwidth=\dimen267
+\pgfarrowlinewidth=\dimen268
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmodulebending.cod
 e.tex
@@ -675,18 +646,18 @@ File: pgfmodulebending.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmodulenonlineartr
 ansformations.code.tex
 File: pgfmodulenonlineartransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgftransformnonlinearflatness=\dimen268
+\pgftransformnonlinearflatness=\dimen269
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibrarycurvilin
 ear.code.tex
 File: pgflibrarycurvilinear.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@curvilinear@time@a=\dimen269
-\pgf@curvilinear@length@a=\dimen270
-\pgf@curvilinear@length@b=\dimen271
-\pgf@curvilinear@length@c=\dimen272
-\pgf@curvilinear@length@d=\dimen273
+\pgf@curvilinear@time@a=\dimen270
+\pgf@curvilinear@length@a=\dimen271
+\pgf@curvilinear@length@b=\dimen272
+\pgf@curvilinear@length@c=\dimen273
+\pgf@curvilinear@length@d=\dimen274
 )
-\pgf@arrows@the@rigidity=\dimen274
+\pgf@arrows@the@rigidity=\dimen275
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2024-05-08 LaTeX2e option processing using LaTeX3 keys
@@ -697,28 +668,28 @@ Package: witharrows 2023/08/24 v2.8b Draws arrows for explanations on the right
 (/home/shpe/.miktex/texmfs/install/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box87
-\sift@deathcycles=\count329
-\@vwid@loff=\dimen275
-\@vwid@roff=\dimen276
+\sift@deathcycles=\count330
+\@vwid@loff=\dimen276
+\@vwid@roff=\dimen277
 )
-\g__witharrows_last_env_int=\count330
-\l__witharrows_pos_env_int=\count331
-\l__witharrows_pos_arrow_int=\count332
-\g__witharrows_arrow_int=\count333
-\g__witharrows_line_int=\count334
-\g__witharrows_col_int=\count335
-\g__witharrows_static_col_int=\count336
-\l__witharrows_nb_cols_int=\count337
-\l__witharrows_arrow_width_dim=\dimen277
-\l__witharrows_up_and_down_radius_dim=\dimen278
-\l__witharrows_xoffset_for_o_arrows_dim=\dimen279
-\l__witharrows_max_length_of_arrow_dim=\dimen280
-\l__witharrows_ygap_dim=\dimen281
-\l__witharrows_ystart_dim=\dimen282
-\l__witharrows_xoffset_dim=\dimen283
+\g__witharrows_last_env_int=\count331
+\l__witharrows_pos_env_int=\count332
+\l__witharrows_pos_arrow_int=\count333
+\g__witharrows_arrow_int=\count334
+\g__witharrows_line_int=\count335
+\g__witharrows_col_int=\count336
+\g__witharrows_static_col_int=\count337
+\l__witharrows_nb_cols_int=\count338
+\l__witharrows_arrow_width_dim=\dimen278
+\l__witharrows_up_and_down_radius_dim=\dimen279
+\l__witharrows_xoffset_for_o_arrows_dim=\dimen280
+\l__witharrows_max_length_of_arrow_dim=\dimen281
+\l__witharrows_ygap_dim=\dimen282
+\l__witharrows_ystart_dim=\dimen283
+\l__witharrows_xoffset_dim=\dimen284
 \l__witharrows_interline_skip=\skip57
-\l__witharrows_start_adjust_dim=\dimen284
-\l__witharrows_end_adjust_dim=\dimen285
+\l__witharrows_start_adjust_dim=\dimen285
+\l__witharrows_end_adjust_dim=\dimen286
 \l__witharrows_mathindent_skip=\skip58
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/mathtools/mathtools.sty
@@ -726,31 +697,31 @@ Package: mathtools 2024/03/11 v1.30 mathematical typesetting tools
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/tools/calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count338
-\calc@Bcount=\count339
-\calc@Adimen=\dimen286
-\calc@Bdimen=\dimen287
+\calc@Acount=\count339
+\calc@Bcount=\count340
+\calc@Adimen=\dimen287
+\calc@Bdimen=\dimen288
 \calc@Askip=\skip59
 \calc@Bskip=\skip60
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count340
+\calc@Ccount=\count341
 \calc@Cskip=\skip61
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count341
-\l_MT_multwidth_dim=\dimen288
+\g_MT_multlinerow_int=\count342
+\l_MT_multwidth_dim=\dimen289
 \origjot=\skip62
-\l_MT_shortvdotswithinadjustabove_dim=\dimen289
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen290
-\l_MT_above_intertext_sep=\dimen291
-\l_MT_below_intertext_sep=\dimen292
-\l_MT_above_shortintertext_sep=\dimen293
-\l_MT_below_shortintertext_sep=\dimen294
+\l_MT_shortvdotswithinadjustabove_dim=\dimen290
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen291
+\l_MT_above_intertext_sep=\dimen292
+\l_MT_below_intertext_sep=\dimen293
+\l_MT_above_shortintertext_sep=\dimen294
+\l_MT_below_shortintertext_sep=\dimen295
 \xmathstrut@box=\box88
-\xmathstrut@dim=\dimen295
+\xmathstrut@dim=\dimen296
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
@@ -770,26 +741,26 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 Package: esdiff 
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/listings/listings.sty
-\lst@mode=\count342
+\lst@mode=\count343
 \lst@gtempboxa=\box89
 \lst@token=\toks56
-\lst@length=\count343
-\lst@currlwidth=\dimen296
-\lst@column=\count344
-\lst@pos=\count345
-\lst@lostspace=\dimen297
-\lst@width=\dimen298
-\lst@newlines=\count346
-\lst@lineno=\count347
-\lst@maxwidth=\dimen299
+\lst@length=\count344
+\lst@currlwidth=\dimen297
+\lst@column=\count345
+\lst@pos=\count346
+\lst@lostspace=\dimen298
+\lst@width=\dimen299
+\lst@newlines=\count347
+\lst@lineno=\count348
+\lst@maxwidth=\dimen300
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
-\c@lstnumber=\count348
-\lst@skipnumbers=\count349
+\c@lstnumber=\count349
+\lst@skipnumbers=\count350
 \lst@framebox=\box90
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/listings/listings.cfg
@@ -829,8 +800,7 @@ Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-\pdftexcmds@toks=\toks57
+Package pdftexcmds Info: \pdfdraftmode not found.
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
@@ -842,14 +812,14 @@ Package zref Info: New property list: main on input line 767.
 Package zref Info: New property: default on input line 768.
 Package zref Info: New property: page on input line 769.
 )
-\c@abspage=\count350
+\c@abspage=\count351
 Package zref Info: New property: abspage on input line 67.
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip63
-\c@mdf@globalstyle@cnt=\count351
+\c@mdf@globalstyle@cnt=\count352
 \mdf@skipabove@length=\skip64
 \mdf@skipbelow@length=\skip65
 \mdf@leftmargin@length=\skip66
@@ -931,16 +901,16 @@ File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
 \mdf@horizontalspaceofbox=\skip127
 \mdfsubtitleheight=\skip128
 \mdfsubsubtitleheight=\skip129
-\c@mdfcountframes=\count352
+\c@mdfcountframes=\count353
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count353
-\c@mdf@env@i=\count354
-\c@mdf@env@ii=\count355
-\c@mdf@zref@counter=\count356
+\mdf@envdepth=\count354
+\c@mdf@env@i=\count355
+\c@mdf@env@ii=\count356
+\c@mdf@zref@counter=\count357
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/caption/caption.sty
@@ -948,18 +918,18 @@ Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen300
-\captionmargin=\dimen301
-\caption@leftmargin=\dimen302
-\caption@rightmargin=\dimen303
-\caption@width=\dimen304
-\caption@indent=\dimen305
-\caption@parindent=\dimen306
-\caption@hangindent=\dimen307
+\caption@tempdima=\dimen301
+\captionmargin=\dimen302
+\caption@leftmargin=\dimen303
+\caption@rightmargin=\dimen304
+\caption@width=\dimen305
+\caption@indent=\dimen306
+\caption@parindent=\dimen307
+\caption@hangindent=\dimen308
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count357
-\c@continuedfloat=\count358
+\c@caption@flags=\count358
+\c@continuedfloat=\count359
 Package caption Info: listings package is loaded.
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
@@ -968,40 +938,40 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 (/home/shpe/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count359
-\Gm@cntv=\count360
-\c@Gm@tempcnt=\count361
-\Gm@bindingoffset=\dimen308
-\Gm@wd@mp=\dimen309
-\Gm@odd@mp=\dimen310
-\Gm@even@mp=\dimen311
-\Gm@layoutwidth=\dimen312
-\Gm@layoutheight=\dimen313
-\Gm@layouthoffset=\dimen314
-\Gm@layoutvoffset=\dimen315
-\Gm@dimlist=\toks58
+\Gm@cnth=\count360
+\Gm@cntv=\count361
+\c@Gm@tempcnt=\count362
+\Gm@bindingoffset=\dimen309
+\Gm@wd@mp=\dimen310
+\Gm@odd@mp=\dimen311
+\Gm@even@mp=\dimen312
+\Gm@layoutwidth=\dimen313
+\Gm@layoutheight=\dimen314
+\Gm@layouthoffset=\dimen315
+\Gm@layoutvoffset=\dimen316
+\Gm@dimlist=\toks57
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
 (/home/shpe/.miktex/texmfs/install/tex/latex/tools/multicol.sty
 Package: multicol 2024/05/23 v1.9h multicolumn formatting (FMi)
-\c@tracingmulticols=\count362
+\c@tracingmulticols=\count363
 \mult@box=\box96
-\multicol@leftmargin=\dimen316
-\c@unbalance=\count363
-\c@collectmore=\count364
-\doublecol@number=\count365
-\multicoltolerance=\count366
-\multicolpretolerance=\count367
-\full@width=\dimen317
-\page@free=\dimen318
-\premulticols=\dimen319
-\postmulticols=\dimen320
+\multicol@leftmargin=\dimen317
+\c@unbalance=\count364
+\c@collectmore=\count365
+\doublecol@number=\count366
+\multicoltolerance=\count367
+\multicolpretolerance=\count368
+\full@width=\dimen318
+\page@free=\dimen319
+\premulticols=\dimen320
+\postmulticols=\dimen321
 \multicolsep=\skip130
 \multicolbaselineskip=\skip131
 \partial@page=\box97
 \last@line=\box98
 \mc@boxedresult=\box99
-\maxbalancingoverflow=\dimen321
+\maxbalancingoverflow=\dimen322
 \mult@rightbox=\box100
 \mult@grightbox=\box101
 \mult@firstbox=\box102
@@ -1042,15 +1012,15 @@ Package: multicol 2024/05/23 v1.9h multicolumn formatting (FMi)
 \@tempa=\box137
 \@tempa=\box138
 \@tempa=\box139
-\c@minrows=\count368
-\c@columnbadness=\count369
-\c@finalcolumnbadness=\count370
-\last@try=\dimen322
-\multicolovershoot=\dimen323
-\multicolundershoot=\dimen324
+\c@minrows=\count369
+\c@columnbadness=\count370
+\c@finalcolumnbadness=\count371
+\last@try=\dimen323
+\multicolovershoot=\dimen324
+\multicolundershoot=\dimen325
 \mult@nat@firstbox=\box140
 \colbreak@box=\box141
-\mc@col@check@num=\count371
+\mc@col@check@num=\count372
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/parskip/parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
@@ -1059,28 +1029,28 @@ Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 \UL@box=\box142
 \UL@hyphenbox=\box143
 \UL@skip=\skip132
-\UL@hook=\toks59
-\UL@height=\dimen325
-\UL@pe=\count372
-\UL@pixel=\dimen326
+\UL@hook=\toks58
+\UL@height=\dimen326
+\UL@pe=\count373
+\UL@pixel=\dimen327
 \ULC@box=\box144
 Package: ulem 2019/11/18
-\ULdepth=\dimen327
+\ULdepth=\dimen328
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \ttl@box=\box145
 \beforetitleunit=\skip133
 \aftertitleunit=\skip134
-\ttl@plus=\dimen328
-\ttl@minus=\dimen329
-\ttl@toksa=\toks60
-\titlewidth=\dimen330
-\titlewidthlast=\dimen331
-\titlewidthfirst=\dimen332
+\ttl@plus=\dimen329
+\ttl@minus=\dimen330
+\ttl@toksa=\toks59
+\titlewidth=\dimen331
+\titlewidthlast=\dimen332
+\titlewidthfirst=\dimen333
 )
-("./shit cheat sheet -- cs1001py.aux")
-\openout1 = shit cheat sheet -- cs1001py.aux
+(shit cheat sheet -- cs1001py.aux)
+\openout1 = `"shit cheat sheet -- cs1001py.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 325.
 LaTeX Font Info:    ... okay on input line 325.
@@ -1104,36 +1074,14 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 325.
 LaTeX Font Info:    ... okay on input line 325.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 325.
 LaTeX Font Info:    ... okay on input line 325.
-
-(/home/shpe/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count373
-\scratchdimen=\dimen333
-\scratchbox=\box146
-\nofMPsegments=\count374
-\nofMParguments=\count375
-\everyMPshowfont=\toks61
-\MPscratchCnt=\count376
-\MPscratchDim=\dimen334
-\MPnumerator=\count377
-\makeMPintoPDFobject=\count378
-\everyMPtoPDFconversion=\toks62
-) (/home/shpe/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(/home/shpe/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))
-\c@lstlisting=\count379
+\c@lstlisting=\count374
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: luatex
+*geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
-* driver: luatex
+* driver: xetex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -1194,12 +1142,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 338--351
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 354--361
-\TU/lmtt/m/n/10 a[len(a):] = b := a += b, insert(i, object) -> None,
+\TU/lmtt/m/n/10 a[len(a):] = b := a += b, insert(i, object) ->
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 354--361
-\TU/lmtt/m/n/10 pop(int) -> any, count(x) -> int, copy() -> list,
+\TU/lmtt/m/n/10 None, pop(int) -> any, count(x) -> int, copy() ->
  []
 
 
@@ -1209,19 +1157,19 @@ Overfull \hbox (5.01006pt too wide) in paragraph at lines 362--368
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 362--368
-\TU/lmtt/m/n/10 -> iterable, items() -> iterable[tuple] \TU/lmr/m/n/10 (keys and
-
+\TU/lmtt/m/n/10 -> iterable, items() -> iterable[tuple] \TU/lmr/m/n/10 (keys an
+d
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 362--368
-\TU/lmr/m/n/10 val-ues com-bined)\TU/lmtt/m/n/10 , clear() -> None, copy() -> di
-ct,
+\TU/lmr/m/n/10 values combined)\TU/lmtt/m/n/10 , clear() -> None, copy() -> dic
+t,
  []
 
 [1
 
-{/home/shpe/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
+]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 480.
@@ -1263,53 +1211,19 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 620.
 
 
-[4] ("./shit cheat sheet -- cs1001py.aux")
+[4] (shit cheat sheet -- cs1001py.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
-)
+ ) 
+Here is how much of TeX's memory you used:
+ 30556 strings out of 409050
+ 692585 string characters out of 5759437
+ 2090557 words of memory out of 5000000
+ 52748 multiletter control sequences out of 15000+600000
+ 573286 words of font info for 113 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 116i,12n,121p,1690b,1488s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Here is how much of LuaTeX's memory you used:
- 31520 strings out of 475931
- 382912,1977958 words of node,token memory allocated
- 908 words of node memory still in use:
-   8 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 43 attribute, 103 glue_spe
-c, 43 attribute_list, 2 write nodes
-   avail lists: 1:7,2:5194,3:1296,4:4670,5:4773,6:128,7:16617,8:58,9:13036,10:29
-,11:985
- 53362 multiletter control sequences out of 65536+600000
- 101 fonts using 7246959 bytes
- 116i,12n,114p,1687b,1265s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman9-italic.otf>
-</home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-bolditalic
-.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmmono8-regular
-.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman7-regula
-r.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman7-bold.
-otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmmono10-italic.
-otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-italic
-.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-bold.
-otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmmono10-regular
-.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman12-bold.
-otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-regula
-r.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman12-regu
-lar.otf></home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman17-re
-gular.otf></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx
-10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.
-pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb></h
-ome/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/
-shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmib10.pfb></home/sh
-pe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/shpe/.
-miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr5.pfb></home/shpe/.mikte
-x/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/shpe/.miktex/tex
-mfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs
-/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/ins
-tall/fonts/type1/public/amsfonts/cm/cmti7.pfb></home/shpe/.miktex/texmfs/install
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on shit cheat sheet -- cs1001py.pdf (4 pages, 232825 bytes).
-
-PDF statistics: 161 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 131072)
- 16 words of extra memory for PDF output out of 10000 (max. 100000000)
-
+Output written on shit cheat sheet -- cs1001py.pdf (4 pages).
