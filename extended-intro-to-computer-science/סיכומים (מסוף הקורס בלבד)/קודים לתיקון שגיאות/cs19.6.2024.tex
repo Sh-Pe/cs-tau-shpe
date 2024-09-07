@@ -1,0 +1,424 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.95,0.95,0.95}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=4pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\graphicspath{ {./} }
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelfont{rm}{David CLM}
+\babelfont{sf}{David CLM}
+\babelfont{tt}{Monaspace Argon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\small\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\bin}   {bin}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מ.מ.למדמ"ח $\sim$ עמית ווינשטין $\sim$ קודים לתיקון שגיאות}
+\date{19 ליוני 2024}
+
+\begin{document}
+	\maketitle
+	\section{חזרה}
+	הודעה מקודית באורך $k$. \\
+	נשלח הודעה באורך $m$. \\
+	פונ' קידוד $E \colon \{0, 1\}^{k} \to \{0, 1\}^{m}$. \\
+	יתקיים $|\Img(E)| = 2^{k}$, ונסמן $C = \Img(E)$. 
+	מרחק האמינג: $\Delta(x, y) = |\{i \mid x_i \neq y_i\}|$. \\
+	מרחק של קוד: $d = \Delta(C) = \min_{x \neq y \in \{0, 1\}\}} \Delta(E(x), E(y))$. \\
+	מטרה: $d$ גדול ו־$n$ קטן. החסם יהיה $d \le n - k + 1$. \\
+	כמה שגיאות ניתן לזהות? $d - 1$; עבור כדור האמינג סביב $E(x)$ (כל האפשרויות במרחק האמינג $d - 1$ בהכרח $E(y)$ לא יכול להיות שם ולכן בוודאות נוכל לזהות זאת) \\
+	כמה שגיאות ניתן לתקן? $\lf \frac{d - 1}{2} \rf$ כי כך כדורי ה־humming לא ידעו זה בזה ($\lf \frac{d - 1 }{2} \rf + \lf \frac{d - 1}{2} \rf < d$) כלומר אין חיתוך בין הכדורים, ובהכרח יהיה אפשר לזהות בצורה כזו או אחרת לתקן את הטעויות. 
+	
+	\section{אלגו'ים}
+	אלגו' 1: לעבור על כל $2^k $ המילים ולמצוא את המרחק האמיניג המינימלי של מילה נתונה $x$, שידוע שהוא מתחת לחסם הדרוש כדי לתקן שגיאות, כלומר באיזה כדור האמינג היא נמצאת. סיבוכיות $2^k \cdot n$. תחת ההנחה שלהפעיל את הקוד לוקח $O(1)$. 
+	
+	אלגו' 2: נשנה את המילים עד שנקבל משהו מינימלי. סיבוכיות: $n^{\lf \frac{d - 1}{2}\rf}$. 
+	
+	אלו אלגוריתמים שמתבססים על ההנחה שהכי סביר להחזיר את המילה הקרובה ביותר במרחק humming. 
+	
+	\section{דוג'ים}
+	לדוגמה עבורים $Rap_3$ (לחזור על כל ביט 3 פעמים) יתקיים $k = 1, n = 3, d = 3$, או באופן כללי $n = 3k, d = 3$ (עבור שינוי מינמלי של אות אחת, שיגרור מרחק האמינג של 3). עוד כמה דוגמאות: 
+	\begin{center}
+		\begin{tabular}{|c|ccc|c|} \hline
+			name & $k$ &$n$ &$d$ &תיאור  \\ \hline 
+			$Rep_3$ & $k$ & $3k$ & $3$ &חזרה 3 פעמים\\ \hline 
+			$Rep_t$ & $k$ & $tk$ & $t$ &חזרה $t$ פעמים \\ \hline
+			$Par$ & $2$ & $3$ & $2$ &הוספת ביט זוגיות \\ \hline
+			$Par$ & $k$ & $k + 1$ & $2$ & ראה לעיל \\ \hline
+			משחק קלפים & $5^2$ & $6^2$ & $4$ & משהו מהשבוע שעבר \\ \hline
+		\end{tabular}
+	\end{center}
+	
+	\textit{הערה: }הוספת ביט זוגיות הוא ה־xor של כל הערכים, שמסומן ב־$\oplus$ – ההפוך לאמ"מ, או אך ורק אחד משתי האפשרויות (כמו לשאול ילד, אתה רוצה גליה או עוגת שוקולד). בפייתון נשתמש ב־\^{} בשביל xor. תכונות: 
+	\[ A \oplus B = 0 \iff A = B, \ (A \oplus B)\oplus C = A \oplus (B \oplus C), \ A \oplus B = B \oplus A \]
+	xor של  רצף ערכים בינאי ייצג את הזוגיות של העמודה. 
+	
+	וכפועל: קיסרנו, נקסר, הקסרה. 
+	
+	\section{Index Code}
+	נבחר $k = 2^{\ell} - 1$ עבור $\ell$ כלשהו. 
+	
+	נקודד הודעה $x_1, \dots, x_k$ באופן הבא: 
+
+	נגדיר: 
+	\[ EC(x) = \bigoplus \big\{ \bin(i) \mid \iota i. x_i = 1 \big\} \]
+	וגם (עיגול קטן מסמל שירשור)
+	\[ E(x) = x ^\circ EC(X) \]
+	דוג':  
+	
+	\sen
+	\ttt{\ \ 1234567} \\
+	\ttt{\ \ 0110110} \\
+	\ttt{2 010} \\
+	\ttt{3 011} \\
+	\ttt{5 101} \\
+	\ttt{6 110} \\
+	\ttt{---------} \\
+	\ttt{\ \ 010} 
+	
+	\she
+	כלומר $EC(x) = 010, E(x) = 0110110010$. 
+	יתקיים $n = k + \ell = k + \log(k)$. 
+	
+	ועבור $d$? טענה: $d \ge 2$. הסבר: אם $\Delta(x, y) \ge 2$, סיימנו. אחרת, אם $\Delta(x, y) = 1$, אזי בהכרח קיים אינדקס יחיד $i$ כך ש־$x_i \neq y_i$, ולכן $EC(x)$ ו־$EC9y)$ שונים, כלומר $\Delta(EC(x), EC(y)) \ge 2$. 
+	
+	הוכחה ש־$d \le 2$: נראה דוג'
+	\begin{align}
+		&EC(x) = 000, \ &x \colon 0000000 \\
+		&EC(y) = 001, \ &y \colon 1000000
+	\end{align}
+	
+	סה"כ $d = 2$ כי הוכחנו שני חסמים. 
+	
+	לא מדהים. 
+	\subsection{לא מדהים, גרסה 2}
+	רעיון: נשרשר את $EC(x)$ פעמיים: 
+	$E(x) = x \circ EC(x) \circ EC(x)$
+	עתה, יתקיים $ = 2^{\ell} - 1$, וגם $n = k + \ell = k + 2\log k$, ואחרונה $d = 3$: ניתן חסם תחתון ועליון. 
+	
+	$d \ge 3$: אם $\Delta(x, y) \ge 3$ סיימנו. אם $\Delta(x, y) = 1$ אזי $EC(x) \neq EC(y) \implies \Delta(E(x), E(y)) \ge 3$. אם $\Delta(x, y) = 2 $ אזי $\exists i, i'. x_i \neq y_i \land x_i' \neq y_i'$. כלומר, $EC(x) \oplus EC(y) = i \oplus i'$ כלומר $\Delta(E(x), E(y)) \ge 4$. 
+	
+	כיוון שני: $d \le 3$. נשתמש באותה הדוגמה. $x = 0000000$, $y = 1000000$, נקבל $E(x) = 000, EC(y) = 001$ וסה"כ נקבל מרחק $3$. 
+	
+	סה"כ $d = 3$. 
+	
+	\subsubsection{זיהוי שגיאות}
+	תיאורטית, ניתן לתקן שגיאה אחת. איך נעשה זאת, באופן יעיל? 
+	קלט: $y = x \circ EC_1, EC_2$, שזה שיבוש לכל היותר אחד על $x' \circ EC(x') \circ EC(x')$. נפלג למקרים: 
+	\begin{itemize}
+		\item $\impliedby EC_1 \neq EC_2 $ יש שגיאה ב־$EC_1$ או $EC_2$, כלומר $x$ תקין ונחזיר אותו. 
+		\item $\impliedby EC_1 = EC_2$ 
+		\begin{itemize}
+			\item אם $EC(x) = EC_1$, אז אין שגיאה, ונחזיר את $x$. 
+			\item אחרת, האינדקס ב־$x$ בו יש טעות הוא $EC(x) \oplus EC_1(x)$, ונחזיר את $x$ אחרי שנהפוך את הקלט הזה. 
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection{יותר מדהים}
+	רעיון: נשרשר ביט זוגיות (נקסר את כל $x$): 
+	\[ E(x) = x \circ EC(x) \circ EC(x) \circ Par(x) \]
+	\textbf{טענה: }$d = 4$. 
+	
+	\textbf{טענה: }עבור קוד עם מרחק אי־זוגי $d$, הוספת ביט זוגיות מעלה את המחק ל־$d + 1$. 
+	
+	\begin{proof}
+		נפצל למקרים. 
+		\begin{itemize}
+			\item $\Delta(E(x), E(y)) \ge d + 1$: סיימנו
+			\item $\Delta(E(x), E(y)) = d $: ביט הזוגיות יהיה כונה ולכן נקבל מרחק $d + 1$. 
+		\end{itemize}
+	\end{proof}
+	
+	\section{קוד Hamming}
+	שמם נגזר (למיטב זכורנו של המורה) מהעובדה שכדורי ההאמינג ברדיוס $1$ מהווים ריצוף מרחק של המושלם או משהו כזה. 
+	משפחת קודים של $(n, k, d) = (2^{t}, 2^{t} - 1, 3)$. הדוגמה הכי פופולארית: 
+	בפרט, קוד $(7, 4, 3)$. נניח שהקלט הוא $x_3, x_5, x_6, x_7$. נוסיף את הביטים החסרים. נוסיף את הביטים: 
+	\begin{align*}
+		x_1 = x_3 \oplus x_5 \oplus x_7 \\
+		x_2 = x_3 \oplus  x_6 \oplus x_7 \\
+		x_4 = x_5 \oplus x_6 \oplus x_7
+	\end{align*}
+	
+	זהו קוד עבורו $d = 3$. 
+	\begin{proof}
+		תעברו על המילים ותבדקו
+	\end{proof}
+	
+\end{document}

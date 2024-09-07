@@ -1,0 +1,343 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% tikz
+\usepackage{tikz,pgfplots}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil}
+\newcommand\ndoc  {\dotfill \\ \vfil \hfil \textbf{\textit{שחר פרץ, 2024}} \hfil \vfil}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sseq  {\overset{?}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limhz {\lim_{h \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה B $\sim$ עברי נגר $\sim$ משפט דרבו, $e$, גזירת פונקציות לוגוריתמיות ומערכיות}
+
+\begin{document}
+	\maketitle
+	
+	נותר לנו להבין איך גוזרים כמה פונקציות נוספות. לדוגמה: $2^{x}, \log_2x$. 
+	\section{$e$}
+	נגיד ויש לנו $100\%$ ריבית בשנה: $1 \to 2$. 
+	
+	בנק אחר, יגיד שיש לנו $50\%$ כל חצי שנה: $1 \to 1.5 \to 2.25 $. בכלליות: 
+	\[ e_n = \left (1 + \frac{1}{n}\right )^{n} \]
+	שזה המספר בו הוא יכפיל את הסכום בשנה, בעבור $\frac{1}{n} \cdot 100\% $ ריבית. 
+	
+	\textbf{טענה: }הסדרה $e_n$ היא מונוטונית עולה. נשתמש ב־$AMGM$ (א''ש הממוצעים גיאומטרי־אריתמטי): 
+	\[ 1 + \frac{1}{n + 1} = \frac{1 + n(1 + \frac{1}{n})}{n + 1} \ge \cl{1 \cdot \cl{1 + \frac{1}{n}}^{n}}^{1/n + 1} \implies e_{n + 1} \ge e_n \]
+	
+	\textbf{טענה: }$e_n \le 3$: ניעזר בבינום של ניוטון. 
+	\[ e_n = \sumnk \bink \frac{1}{n^{k}} \]
+	נוכל לחסום זאת, כי: 
+	\[ \bink \frac{1}{n^{k}} = \frac{n(n - 1) \cdots (n - k + 1)}{k!} \cdot \frac{1}{n^{k}} = \frac{n(n - 1) \cdots (n - k + 1)}{n \cdot n \cdots n} \frac{1}{k!} \le \frac{1}{k!} \le \frac{1}{2^{k - 1}} \]
+	נחזור לביטוי המקורי: 
+	\[ e_n = \sumnk \bink \frac{1}{n^{k}} \le 1 + \sumnko \frac{1}{^{k - 1}} \le 1 + \sum_{k = 1}^{\inf} 2^{-k + 1} = 3 \]
+	כאשר השוויון האחרון מטור גיאומטרי. 
+	
+	ישנו משפט, שסדרה מונוטנית עולה החסומה מלמעלה היא בעלת גבול. נסמנו: 
+	\[ \limi e_n \equiv e \]
+	ולמרות שטכנית עברנו עם $n \in \N$, זה לא משנה ברמת הגבול. 
+	
+	\textbf{טענה: }$e_n \ge 2$: 
+	\[ e_n = \sumnk \bink \frac{1}{n^{k}} \ge \frac{n}{0}\frac{1}{n^{0}} + \frac{n}{1}\frac{1}{n} \ge 2 \]
+	
+	\textit{הערה: }אם נחשב אותו, נקבל $e \approx 2.718\dots$ (הוא אי־רציונלי). 
+	
+	\section{נגזרות}
+	אז למה איכפת לנו מ־$e$?
+	
+	נסמן: 
+	\begin{align}
+		f(x) = \log_ax, \ f'(x) &= \lim_{h \to 0}\frac{f(x + h) - f(x)}{h}\\
+		&=\limhz \frac{\log_a(1 + \frac{b}{x})}{h} \\
+		&=\limhz \frac{1}{x}\cdot \frac{x}{h} \cdot \log_a\left (1 + \frac{h}{x} \right ) \\
+		&= \lim_{t \to \inf} \frac{1}{x}\log_a\cl{\cl{1+\frac{1}{t}}^{t}} \quad \cl{t = \frac{x}{h}} \\
+		&= \frac{1}{x} \underbrace{\lim_{t \to \inf}\log_a \left [ \cl{1 + \frac{1}{t}} \right ]^{t}}_{C_a}\\
+		&= C_a \frac{1}{x} = \frac{1}{x}\log_a e = \frac{1}{\ln a}\cdot \frac{1}{x}
+	\end{align}
+	אם נציב, נקבל $(\ln x)' = \frac{1}{x}$. 
+	
+	עתה נוכל לגזור לוגוריתמים. לדוגמה: 
+	\[ x = \log_a(a^{x}) \implies 1 = \frac{1}{\ln a} \cdot \frac{1}{x} \cdot (a^{x})' \implies \bm{(a^{x})' = \ln a \cdot a^{x}} \]
+	אם נציב $a = e$, נקבל: $(e^{x})' = e^{x}$. 
+	
+	\textbf{טענה: }אם $f'(x) = f(x)$ בקטע, אז קיים קבוע $c \in \R$ כך ש־$f(x) = ce^{x}$. 
+	
+	מומלץ לנסות להוכיח את הטענה. 
+	
+	\section{תרגילים}
+	גזרו את הפונקציה הבאה: 
+	\[ [e^{x^2\cosx}]' =e^{x^2\cosx} \cdot [x^2 \cosx]' = e^{x^2\cosx}(-x^2\sinx + 2x\cosx) = e^{x^2\cosx}x(-x\sinx + 2\cosx) \]
+	דוגמה 2: 
+	\[ f(x) = x^{x} = e^{x \ln x} \implies f'(x) = e^{x \ln x} \cdot (\ln x + x \cdot \frac{1}{x}) = x^{x}(\ln x + 1) \]
+	
+	דוגמה 3: 
+	\[ (\sinh(x))' = \left [\frac{e^{x} - e^{-x}}{2}\right ] = \cosh x = \frac{e^x+ e^{-x}}{2} \]
+	באופן דומה: $ (\cosh x)' = \sinh $ ו־: 
+	\[ \tanh x = \frac{\sinh x}{\cosh x} \implies (\tan x)' = \frac{\cosh^2 x - \sinh^2x}{\cosh^x} = \frac{1}{\cosh^x} \]
+	הערה: שיעור שעבר נכתב על הלוח את הנגזרת $\tanx' = -\cos^{-2}x$ אך זה רק $\cos^{-2}x$. 
+	
+	\section{ללא כותרת}
+	נוכל לדעת אם פונקציה היא מונוטונית עולה או מונוטונית יורדת בהתאם לסימן. לדוגמה, לפונקציה $x^2$ תהיה הנגזרת $2x$. הנגזרת של $x^2$ חיובית כאשר $x$ חיובי ולהיפך שהוא שלילי, ולכן היא מונוטונית עולה ויורדת בהתאם לסימן. באופן דומה, $x^3$ נגזרתה תהיה $3x^2$, פונקציה חיובית בכל תחום, לכן הפונקציה עולה בכל תחום. 
+	
+	נוכל לגזור שוב את $x^2$ ולקבל שהנגזרת השנייה, תהיה $2$, כלומר הנגזרת עולה בכל תחום – קצב גידול הפונקציה הולך וגדל. באופן דומה, עבור $x^3$ עבורה השלישית $6x$. 
+	
+	מכאן, ש־$f''(x) > 0$ יגרור שהפונקציה תהיה (קעורה) $\cup$ ואם $f''<0 $ אז הפונקציה קמורה $\cap$. יש לשנן לפני המבחן את השמות שיכול להיות שהופיעו לא נכון כאן (בגלל זה נכתבו בסוגריים). 
+	
+	המשיק לפונקציה בנקודה, הוא הישר שעובר בנקודה ושיפועו כנגזרת הפונקציה. אפשר להרחיב את הגדרת המשיק לפונקציות שאין להם בהכרח נגזרת בנקודה (לדוגמה $|x|$ כאשר $x = 0$) אך לא נתעסק בכך כאן. 
+	
+	לדוגמה, המשיק ל־$e^x$ בנקודה $(t, e^{x})$ הוא $y =  e^{t}(x - t) + e^{t}$. 
+	
+	\section{מינימום מקסימום}
+	
+	\subsection{משפט דרבו (Darbuax)}
+	אם $f$ גזירה בקטע, אז $f'$ מקיימת את תכונת ערך הביניים. 
+	\subsection{חזרה לקיצון לוקאלי}
+	הנגזרת בנקודה בנק' קיצון לוקאלי (נקודה לפניה הפונקציה עולה ולאחריה יורדת), מתאפסת, לפי משפט דרבו. [הכנס כאן ערימה של דוגמאות למציאת קיצון שאני כבר מכיר]. המשוואה $f'(x) = 0$ תהיה תנאי מספיק למציאת קיצון בנקודה. 
+	
+\end{document}

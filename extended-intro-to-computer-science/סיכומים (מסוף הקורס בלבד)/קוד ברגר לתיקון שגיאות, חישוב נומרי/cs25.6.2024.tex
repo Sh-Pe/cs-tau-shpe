@@ -1,0 +1,426 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Neon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מ.מ.למדמ"ח $\sim$ עמית וינשטיין $\sim$ קוד ברגר וחישוב נומרי}
+\date{25 ליוני 2024}
+
+\begin{document}
+	\maketitle
+	\section{\sen Reminders \she}
+	\sen
+	\subsection{Index Code}
+	
+	\begin{alignat*}{9}
+		&&& EC(x) = \bigoplus_{x_i = 1}i \\
+		IC:  \quad &&& x \circ EC(x) & \quad d = 2\\
+		IC_2:\quad &&& x \circ EC(x) \circ EC(x) & \quad d = 3\\
+		IC_3:\quad &&& x \circ EC(x) \circ EC(x) \circ par(x) & \quad d = 4
+	\end{alignat*}
+	\subsection{Hamming Code (743)}
+	The messeage: $x_3x_5x_6x_7$ ($2^{4}$ options)
+	
+	We adds: 
+	\begin{align*}
+		x_1 &= x_3 \oplus x_5 \oplus x_7\\
+		x_2 &= x_3 \oplus x_6 \oplus x_7 \\
+		x_4 &= x_5 \oplus x_6 \oplus x_7
+	\end{align*}
+	And in general, hamming code will acts as $(2^{t} - 1, 2^{t} - t - 1, 3)$
+	\she
+	
+	ניתן להסתכל על $2^{4}$ מילות הקוד ולוודא שאכן מתקיים $d = 3$. לחילופין, אפשר לפלג ל־3 מקרים עבור השתנות של כל מספר תווים, ולהראות שזה ישנה כמות נתונה של ביטי זוגיות. לכן, ניתן לתקן ששששששגיאה בודדת. איך? 
+	נניח רצו לשלוח את ההודעה $x_1x_2x_3x_4x_5x_6x_7$. בפועל, קיבלנו את $y_1y_2y_3y_4y_5y_6y_7$. נניח שקיימת לכל היותר שגיאה בודדת. נחשב: 
+	\begin{align*}
+		y_1' &= y_3 \oplus y_5 \oplus y_7 \\
+		y_2' &= y_3 \oplus y_6 \oplus y_7 \\
+		y_4' &= y_5 \oplus y_6 \oplus y_7
+	\end{align*}
+	
+	נבדוק באילו מבין $y_1, y_2, y_4$ שונים מ־$y_1', y_2', y_4'$. נחשב את האינדקס: 
+	\[ i = 4 \cdot [y_4 \oplus y_4'] + 2 \cdot [y_2 \oplus y_2'] + 1 \cdot [y_1 \oplus y_1'] \] 
+	כאשר הכפל במספרים הוא כדי לייצד להתחשב בהיות המספר בינארי, וקיסור ייבדוק האם הם שונים. נתקן את ההודעה: נהפוך את $y_i$ עבור ה־$i$ שחישבנו, ונחזיר את הערכים באינדקסים $3, 5, 6, 7$. 
+	
+	\textbf{טענה: }עבור $j \neq i$, $x_j = y_j$, ובנוסף, $x_i \neq y_i$ ($i$ משתנה קשור, $j$ חופשי. לא מנוסח בבהירות). 
+	
+	אינטואיציה שאני כתבתי: אם הטעות בתיקון השגיאות, אז ישתנה איבר יחיד מבין $y_1, y_2, y_3$ ולכן הקיסור כחלק מציאת האינדקס יתחלף במיקום יחיד, ולא נשנה את $y_3, y_5, y_6, y_7$ (תבדקו ידנית). כחלק מהבנייה של $i$, נמצא יותר ביטי זוגיות יתהפכו, בנינו את הקוד בצורה כזו שהאינדקס יתאים (לדוגמא, טעות ב־$y-7$ תגרור שלוש שגיאות, ולכן נגיע לאינדקס האחרון; כן טעות באחרים יגררו שתי שגיאות שיובילו למיקום המדוייק גם כן). 
+	
+	אינטואיציה שהמורה כתב: כאשר ביו מתהפך, הוא משפיע על $y_1', y_2', y_4'$ בהדיוק לפי היבטים הדוקים בייצוג הבינאי של האינדקס שלו. לכן, אך יש עוד שיבוש יחיד, נתקן בדיוק אותו. 
+	\section{\sen Berger Code \she}
+	
+	נגדיר $k = 2^{\ell} -  1$. נגדיר: 
+	\[ \mathrm{Berger}(x) = x \circ \underbrace{\mathrm{bin}\cl{\text{כמות ביטי האפסים ב־$x$}}}_{EC(x)} \]
+	
+	\textbf{דוגמה: }$\ell = 3, \ x = 110001, EC(x) = 011$ (כי יש $3$ ביטי אפסים ב־$x$)
+	
+	אורך מילת קוד? $2^{\ell} - 1 + \ell$
+	
+	מרחק מינימל? $d = 2$. 
+	
+	לא מאפשר לתקן טעויות. אבל יש לו תכונה מעניינת. נניח, וידוע שרק אפסים יהפכו לאחדים ($0 \mapsto 1$). אינטואיציה: ה־$EC$ יוכל רק לגדול, וכמות האפסים ב־$x$ תוכל רק לקטון, ולכן, תחת ההנחה שהשינוי הוא $0 \mapsto 1$ בלבד, נוכל לזהות כל מספר של טעויות מהסוג הזה. נפרמל. 
+	\textbf{טענה: }נוכל לזהות כל מהפס ר של טעויות חד־צצדיות שבהן $0$ הופך ל־$1$ (וזה עובד גם הפוך). 
+	
+	\begin{proof}
+		כל טעות בחלק של $x$ מקטינה את מס' ה־$0$ ב־$x$ שאמורים להיות שווים ב־$EC(x)$. מצד שני, כל טעות כזו ב־$EC(x)$ מגדילה את מס' האפסים שאנחנו מצפים לראות ב־$x$. לכן, לא משנה כמה טעויות כאלה תהינה, נראה אי־התאמה בין $x$ המשודר ו־$EC(x)$ הישודר. 
+	\end{proof}
+	
+	\textit{הבחנה: }אותה ההוכחה תעבוד גם עבור שגיאות בכיוון ההפוך. 
+	
+	\section{\sen Numeric Calculations \she}
+	מיועד לביצוע חישובים בעזרת המחשב, בין עם מתמטיים ובין אם לאו. 
+	\subsection{מציאת שורש}
+	נתונה לנו פונקציה $f \colon \R\to \R$ (עד לכדי דיוק של \ttt{float}). רוצים למצוא את שורש של הפונ', כלומר ערך $a$ כך ש־$f(a) = 0$, או לפחות $|f(a)| < \vepsi$ עבור $\vepsi$ קטן שהוגדר מראש. בעיות: 
+	
+	\begin{enumerate}
+		\item בעיה ראשונה: האם יש שורש? 
+		\item בעיה שנייה: האם הפונקציה רציפה? 
+	\end{enumerate}
+	
+	דוגמה: 
+	\sen
+	\begin{lstlisting}
+lambda x: 0 if x==0.123456 else 1\end{lstlisting}
+	\she
+	קשה למצוא שורש כי זה די אקראי, לפונקציה כזו.
+	
+	הנחות מקלות: נניח שהפונקציה רציפה ובהכרח נתונים לנו $u, l$ כך ש־$f(u) \ge 0, f(l) \le 0$. תחת ההנחה הזו, ממשפט ערך הביניים, בין שתי הנקודות הללו יהיה שורש (כלומר קיימת נק' $L < a < u$ כך ש־$f(a) = 0$, בה"כ $L < u$).
+	
+	\textbf{אלגו': }נביע מעין חיפוש בינאי המרחב "רציף". נחשב בכל צעד את הערך $x = \frac{L + u}{2}$ ו־$f(x)$. נפלג למקרים. 
+	\begin{itemize}
+		\item אם $|f(x)| < \vepsi$ אז סיימנו ונחזיר את $x$. 
+		\item אחרת: 
+		\begin{itemize}
+			\item אם $f(x) > 0$ נחליף בין $u$ ל־$x$. 
+			\item אם $f(x) < 0$ נחליף בין $L$ ל־$x$. 
+		\end{itemize}
+	\end{itemize}
+	
+	פונקציות שמקבלות פונקציות אחרות כפרמטר, או מחזירות פונקציות בערך ההחזרה – נקראות high-order functions. בפייתון זה מאוד טבעי. חתימה: 
+\sen
+	\begin{lstlisting}
+def find_root(f: Callable, L: float, u: float, epsi: float) -> float: ...
+\end{lstlisting}
+\she
+	כדי לחשב, לדוגמה, את $\sqrt2$, נוכל להעביר לפונקציה \ttt{f = lambda x: x * x - 2} \ עם הקצוות 1 ו־2 שכן $1 < \sqrt2 < 2$.
+	
+	\subsection{חישוב $\bm{\pi}$}
+	נתבונן במעגל היחידה, וברביוע החוסם אותו. ברביע הראשון, היחס בין שטח הריבוע ($1^2 = 1$) לבין רבע המעגל ($\pi \cdot 1 \cdot 0.25 = \frac{\pi}{4}$) וסה"כ נחלק ונמצא את יחס השטחים.  
+	
+	\textbf{הרעיון: }נגריל ערכים ברביעו, ונבדוק כמה מהם נמצאים בתוך רבע העיגול – 	בהינתן נק' $(x, y)$ נבדוק האם $x^{2} + y^{2} = 1$.  נדגום $n$ נקודות ונחשב כמה מתוכן נופלות בתוך רבע העיגול. נניח $k$ נפלו ברבע העיגול, נחזיר $\frac{4k}{n}$. ההתפלגות של הערכים הנכונים, תהיה התפלגות בינומית. ניסויים מהסוג הזה נקראים Monte Carlo. 
+	
+	\subsection{נגזרת ואינטגרל נומריים}
+	\subsubsection{נגזרת}
+	הגדרת נגזרת: 
+	\[ f'(x) = \limh \frac{f(x + h) - f(x)}{h} \]
+	נרצה פונקציה בשם \ttt{diff} שמקבלת את $f$ כקלט (ונניח גם את $h$) ומחזירה פונקציה חדשה $f'$. דוגמה: 
+	\sen\begin{lstlisting}
+def diff(f: Callable, h:float=.001) -> Callable: 
+	return lambda x: (f(x + h) - f(x)) / h	\end{lstlisting}\she
+	במקום לקחת $h$ קבוע, אפשר לנסות לזהות מתי הנגזרת משתגעת ובתהאם לכך לבחור $h$ יותר קטן. 
+	\subsubsection{אינטגרל}
+	הגדרה של אינטגרל (מסויים): (ציור של שטח מתחת לפונקציה). סוכמים את שטח הפונ' מעל ציר ה־$x$ פחות השטח שמתחת לציר במיקום במקטע. 
+	
+	ניתן לחלק את השטח למקטעים קטנים, ולסכום מלבנים ברוחב הקטן לפי ערך הפונקציה. עבור הקטע $a, b$ מחשבים את הסכום: 
+	\[ h \cdot f(h) + h \cdot f(a + h) + \dots + h \cdot f(a + ih) + \dots + h \cdot f\cl{a + \lf\frac{b - a}{h}\rf h} \]
+	כלומר את: 
+	\[ h \cdot \sum_{i = 0}^{\lf \frac{b - a}{h} \rf}f(a + ih) \]
+	קוד: 
+	\sen\begin{lstlisting}
+def integral(f: Callable, h: float) -> Callable: 
+	return lambda a, b: h * sum(f(a + i * h) for i in range(1 + int((a - b) // h)))\end{lstlisting}\she
+\end{document}

@@ -1,0 +1,412 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.95,0.95,0.95}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=4pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelfont{rm}{David CLM}
+\babelfont{sf}{David CLM}
+\babelfont{tt}{Monaspace Argon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\small\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{גרפים 3 $\sim$ נטלי שלום $\sim$ קשירות, עצים}
+\date{24 ליוני 2024}
+
+\begin{document}
+	\maketitle
+	\section{תזכורות}
+	\begin{itemize}
+		\item גרף מסמנים  ב־$G = \la V, E \ra$
+		\item $d(v)$ היא הדרגה של קודקוד $v$. 
+		\item מסלול מקודקוד $a$ ל־$b$ הוא סדרה של קודקודים $\la v_0, \dots v_m \ra$ כך ש־$v_0 = a, v_m = b$ וכך ש־: 
+		\begin{enumerate}
+			\item בין קל שני קודקודים עוקבים סדרה, יש קשת, כלומר $\forall 0 \le i < m. \{v_i, v_{i + 1}\} \in E$
+			\item אין קשת שחוזרת פעמיים, כלומר $\forall i \neq j. \{v_{i}, v_{i + 1}\} \neq \{v_j, v_{j + 1}\}$. קודקוד יכול לחזור פעמיים. 
+		\end{enumerate}
+		\item אורך של מסלול, הוא מס' הקשתות שבו. בפרט, סדרה באורך $1$ היא מסלול באורך $0$. 
+		\item מעגל: מסלול $v_0, \dots v_m$ שבו $v_0 = v_m$ ו־$m> 0$, נקרא מעגל. 
+		\item מסלול פשוט, הוא מסלול שבו שעל הצמתים שונים זה מזה. 
+		\item מעגל פשוט, הוא מסלול שבו כל הצמתים שונים זה מזה, פרט לכך שהראשון והאחרון זהים. 
+	\end{itemize}
+	\subsection{תרגיל}
+	נתון גרף $G = \la V, E \ra$ כך שהדרגה של כל קודקוד היא לפחות $d \ge 2$, ונתון $|V| \le d^2 - d$. הוכיחו, שיש ב־$G$ מעגל באורך $4$. 
+	\begin{proof}
+		נניח בשלילה שקיים $G$ כזה ללא מעגלים באורך $4$. יהי $v \in V$, אז קיימים לו לפחות $d$ שכנים, נסמן $d$ מתוכם: $A = \{u_1, \dots, u_d\}$. נבחין בכמה דברים: 
+		\begin{itemize}
+			\item לכל שני שכנים $u_i, u_j$ של $v$, לא ייתכן קיום שכן משותף שאינו $v$, כי אחרת, אם היה קיים $w$ כזה, אז קיים מעגל באורך $4$ שהוא $v, u_i, w, u_j, v$. 
+			\item כל $u_i$ הוא שכן של לכל היותר מקודקוד אחד ב־$A$, כי אם $u_i$ שכן של $u_j, u_k$                      ($i \neq j \neq k$) אז נקבל מעגל $v, u_j, u_i, u_k, v$. 
+		\end{itemize}
+		לכן, לכל שכן של $v$ יש לפחות $d - 2$ שכנים שאינם $v$. נקבל: 
+		\[ |V| \ge \underbrace{1}_{\mathclap{\text{הקודקוד $v$}}} + \underbrace{d}_{A} + \underbrace{d}_{A} + \underbrace{d(d - 2)}_{\mathclap{\text{השכנים של $A$ ללא $v$ ו־$A$}}} = d^2 - d + 1 \]
+		סה"כ סתירה לחסם $|V| \le d^2 - d$. 		
+	\end{proof}
+	
+	\section{קשירות}
+	\textbf{הגדרה: }יהי $G = \la V, E \ra$ גרף. נגדיר יחס $\sim$ מעל $V$ באופן הבא: $\forall a, b \in V. a \sim b \iff \text{קיים מסלול בין $a$ ל־$b$}$
+	
+	\textbf{טענה: }$\sim$ יחס שקילות מעל $V$. 
+	\begin{proof}[הוכחה (קצת מעפנה). ]
+		רפלקסיביות, סימטריות – "קל``. 
+		
+		טרנזיטיביות: לא טרוויאלי. הבעיה: קשתות שיעשו overlapping. הוכחה לא קונסטקטיבית: על בסיס קיום הילוך ידוע קיום מסלול פשוט ביניהם, בלי לבנות את המסלול. הוכחה קונסטרקטיבית: 
+		
+		יהי $a = v_0, \dots v_m = b$, $b = u_0, \dots u_k = c$. ניקח את הקודקוד הראשון ב־$v_0, \dots v_m$ כך שקיים $0 \le j \le k$ שמופיע גם ב־$u_0, \dots u_k$. נניח שהוא $v_i = u_j$, אז ניקח את המסלול $v_0, \dots v_{i}, u_{j + 1},\dots, u_k$. 		
+	\end{proof}
+	\textbf{הגדרה: }כל מחלקת שקילות ביחס $\sim$ מעל $V$, נקראת \textit{רכיב קשירות}. 
+	
+	\textit{הערה: }מספר רכיבי הקשירות בגרף הוא תכונה שנשמרת תחת איזומורפיזם. 
+	
+	\textbf{הגדרה: }גרף נקרא \textit{קשיר} (connected) אם יש בו רכיב קשירות יחיד. 
+	
+	כלומר, גרף הוא קשיר אם בין כל שני קודקודים בו קיים מסלול. 
+	
+	\textit{הערה: }כל מחלקת שקילות (כל רכיב קשירות) הוא תת־גרף קשיר של הגרף המקורי. 
+	
+	\textbf{משפט: }בגרף קשיר, בין כל שני קודקודים קיים מסלול פשוט. 
+	(הוכחנו, בשיעור הקודם, טענה האומרת שאם יש מסלול בין שני קודקודים אז יש מסלול פשוט ביניהם). 
+	
+	\textit{תזכורת: }הגרף המשלים של $G = \la V, E \ra$ הוא $\ol G = \la V, \ol E \ra$ כך ש־$\ol E = \ps_2(V) \setminus E$. 
+	
+	\textbf{משפט: }לכל כרף $G = \la V, E \ra$, לפחות אחד מבין הגרפים $G, \ol G$ הוא קשיר. 
+	
+	\begin{proof}
+		אם $G$ קשיר, סיימנו. לכן, נניח ש־$G$ לא קשיר ונוכיח ש־$\ol G$ קשיר. יהיו $u, v \in V$. נוכיח שקיים ביניהם מסלול ב־$\ol G$. נפריד למקרים: 
+		\begin{itemize}
+			\item אם היה קיים ביניהם מסלול ב־$G$, אז מאחר ש־$G$ לא קשיר, אז קיים קודקוד $a$ כך שאין מסלול ב־$G$ בינו לבין $u$. ולכן גם אין מסלול ב־$G$ בין $a$ ל־$v$, ובפרט, הקשתות $\{a, u\}, \{a, v\}$ לא ב־$G$ ולכן הן שייכות ל־$\ol E$, ואז נקבל שיש מלסול ב־$\ol G$ בין $u$ ו־$v$: $u, a, v$. 
+			\item אם לא היה קיים מסלול בין $u$ ל־$v$ בגרף $G$: אז בפרט $\{u, v\} \notin E$ כלומר $\{u, v\}\in \ol E$ וסה"כ המסלול $\la u, v \ra$ הוא מסלול בין $u$ ל־$v$. 
+		\end{itemize}
+		סה"כ בין כל שני קודקודים ב־$\ol G$ יש מסלול ולכן הוא קשיר. 
+	\end{proof}
+	
+	\textbf{משפט: }\textit{(מספר הקשתות המינימלי בגרף קשיר)} עבור $G$ גרף קשיר, מתקיים $|E| \ge |V| - 1$. 
+	
+	\textit{הערה: }ההפך לא נכון. 
+	
+	אינטואיציה: נרצה לחבר אותם בקו ישר. 
+	
+	\begin{proof}
+		לשם ההוכחה, נרצה נראה שתי למות (טענת עזר, שהיא לא ממש משפט): 
+		\begin{itemize}
+			\item \textbf{למה 1. }בגרף קשיר שבו $|E| < |V|$ ו־$|V| \ge 2$, קיים קודקוד מדרגה 1. 
+			\begin{proof}[הוכחה של למה 1. ]
+				דרגה $0$ לא תיתכן כי אז יהיה קודקוד מבודד [=קודקוד ללא שכנים] ואז לא יהיה מסלול בינו לבין יתר הקודקודים. לכן, אם נניח בשלילה שלא קיים קודקוד מדרגה 1, אז כל הקודקודים מדרגה לפחות $2$. ואז: 
+				 		\[ 2 \cdot |E| = \sum_{v \in V} d(v) \ge 2 \cdot |V| \implies |E| \ge |V| \]
+				 		וזו סתירה לנתון $|E| < |V|$. 
+			\end{proof}
+			\item 		\textbf{למה 2. }אם מסירים מגרף קשיר צומת [=קודקוד] בעל דרגה $1$ [כןכן צומת זה זכר] ואת הקשת שנוגעת בו, אז הגרף נישאר קשיר. 
+			\begin{proof}[הוכחה של למה 2. ]
+			יהי $G = \la V, E \ra$ קשיר, $u \in V$ קודקוד מדרגה $1$, ונסיר אותו. עלינו להוכיח שתת הגרף על $V \setminus \{u\}$ קשיר. יהיו $x, y \in V \setminus \{u\}$. מאחר ש־$G$ קשיר, היה ביניהם מסלול ב־$G$. לא ייתכן שהמסלול הנ"ל עבר ב־$u$ מכיוון שהיינו אמורים לחזור פעמיים על אותה הקשת היחידה שיוצאת מ־$u$. 
+			\end{proof}
+		\end{itemize}
+		נעבור להוכחת המשפט (יאי 🎊). נוכיח באינדוקציה על $|V| = n$. 
+		\begin{itemize}
+			\item \textbf{בסיס: }בעבור $n = 1$ מתקיים $|E| = 0 \ge |V| - 1 = 0$
+			\item \textbf{צעד: }נניח שהטענה נכונה עבור $n - 1$, כלומר שבגרף קשיר על $n - 1 $קודקודים מתקיים שמספר הקשתות הוא לפחות $n -2$. נוכיח עבור $n$. יהי $G$ גרף קשיר על $n$. נניח בשלילה שיש בו $|E| \le n - 2 < n = |V|$. לפי למה 1, קיים בו צומת מדרגה $1$. לפי למה 2, נוכל להסיר אותו, ולהיוותר עם גרף קשיר. נקבל גרף קשיר עם $n - 1$ קודקודים שבו $|E| \le n - 3$, לכן, מהנחת האינד', נקבל סתירה, שהרי $|E| \ge n - 2$. 
+		\end{itemize}		
+	סה"כ הטענה הוכחה. 
+	\end{proof}
+	
+	\section{עצים}
+	\textbf{הגדרה: }\textit{עץ} הוא גרף קשיר ללא מעגלים. 
+	
+	\textbf{הגדרה: }\textit{יער} הוא גרף ללא מעגלים. 
+	
+	\textbf{הגדרה: }\textit{עלה} הוא צומת ביער בעל דרגה $1$. 
+	
+	\textbf{משפט: }\textit{(מספר הקשתות המקסימלי ביער)} בגרף חסר מעגלים בעל $n$ צמתים, יש לכל היותר $n - 1$ קשתות. כלומר $|E| \le |V| - 1$. 
+	
+	\textit{הערה: }ההפך לא נכון. 
+	\begin{proof}
+		לצורך הוכחת המשפט, נראה למה. 
+		
+		\textbf{למה 3. }אם מסירים קשת מגרף חסר מהגלים, אז מספר רכיבי הקשירות בגרף גדל [בדיוק באחד, אך לא נצטרך להוכיח זאת]. "אני לא רושמת את ההוכחה" (tbh זה יחסית קל)
+		
+		נעבור להוכחת המשפט. באינדוקציה על $|V| = n$: 
+		\begin{itemize}
+			\item \textit{בסיס: }עבור $n = 1$, יתקיים $|E| = 0 \le |V| - 1 = 0$. 
+			\item \textit{צעד: }נניח שהטענה נכונה עבור כל $1 \le k < n$, ונוכיח עבור $n$. יהי $G$ גרף חסר מעגלים על $n$ צמתים. נסיר ממנו את הקשת $\{x, y\}$. לפי למה 3, מספר רכיבי הקשירות (אותו נסמן ב־$t$) לאחר ההסרה גדל, כלומר $t \ge 2$. נסמן את רכיבי הקשירות של $G$ לאחר הסרת הקשת ב־$G_i = \la V_i, E_i \ra$ עבור $1 \le i \le t$. כל רכיב קשירות מקיים $|V_i| < |V| = n$, והוא חסר מעגלים. לכן, מה"א $|E_i| \le |V_i| - 1$. לכן, מספר הקשתות בגרף המקורי, (לפני ההסרה של $x, y$) הוא: 
+			\[ |E| \le \underbrace{1}_{\{x, y\}} + \sum_{i = 1}^{t}|E_i| \le 1 + \sum_{i = 1}^{t}|V_i| - 1 = 1 - t + \underbrace{\sum_{i = 1}^{t}|V_i|}_{|V|} \underset{t \le 2}{\le} |V| - 1  \]
+		\end{itemize}
+	\end{proof}
+\end{document}

@@ -1,0 +1,423 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{סוף מתמטיקה B, סייבר, 2024}} \\ \scriptsize \textit{עברי נגר}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה B $\sim$ עברי נגר $\sim$ גומרים}
+\date{11 ליולי 2024}
+
+
+\begin{document}
+	\maketitle
+	\section{\en{Swift UI}}
+	תזכורות: 
+	\begin{gather*}
+		\sinx = \sum_{k = 0}^{\inf} \frac{(-1)^k}{(2k + 1)!}x^{2k + 1} = x - \frac{x^3}{6} + \frac{x^5}{120} + O(x^7) \\
+		\cosx = \sum_{k = 0}^{\inf} \frac{(-1)^k}{(2k)!} = 1 - \frac{x^2}{2} + \frac{x^4}{24} + O(x^6)
+	\end{gather*}
+	תזכורת: $O(x^n)$ הוא בשאיפה ל־0 (כלומר, כל דברים שהולכים ל־0 יותר מהר מ־$x^n$, ובפרט $x^{n>}$). 
+	
+	"פעם הבאה תשיב מאמי" (עברי, על רתם)
+	\[ \limz \underbrace{\frac{\sinx - x}{x^2(1 - \cos\sqrt x)}}_{f(x)} \]
+	נקבל: 
+	\[ f(x) = \frac{x - \frac{x^3}{6} + \frac{x^5}{120} + O(x^7)}{x^2\cl{1 - \cl{1 - \frac{x^2}{2} + \frac{x^4}{24} + O(x^6)}}}
+	= \frac{-\frac{x^3}{6} + O(x^5)}{\frac{x^3}{2} + O(x^4)} \cdot \frac{\frac{1}{x^3}}{\frac{1}{x^3}}= \frac{-\frac{1}{6} + O(x^2)}{\frac{1}{2} + O(x)} \]
+	וסה"כ: 
+	\[ \limz f(x) = \frac{-1/6}{1 / 2} = -\frac{1}{3} \]
+	יכולנו גם לפתור את הגבול עם לופיטל. בעצם, מה שעשינו זה כמו להפעיל לופיטל 3 פעמים. טור טיילור הוא "קיצור דרך" לכך. 
+	
+	\subsection{$\bm{e^{-\frac{1}{x^2}}}$}
+	נגדיר $f(0) = 0$, כי זה גם הגבול ונרצה שהיא תהיה רציפה בנקודה הזו. 
+	\[ f'(x) = e^{-1/x^2}\cl{2 \cdot \frac{1}{x^3}}, \ f''(x) = e^{-1/x^2}\cl{2 \cdot \frac{1}{x^3} 2\frac{1}{x^3} + \frac{6}{x^4}} \]
+	וגם כאן נגדיר $f'(0) = 0$, והאסיפמטוטות יוותרו. באופן כללי, $f^{(k)} = e^{-1/x^2}Q\cl{\frac{1}{x}}$ ומשום שפולינום גדל לאט יותר ואקספוננט, אזי בגבול $f^{(k)}(0) = 0$. סה"כ, טור הטיילור שלה סביב $0$ יתאפס, כי כל הנגזרות סביב $0$ יתאפסו: 
+	\[ g(x) = \sum_{k = 0}^{\inf}\frac{g^{(k)}(0)}{k!}(x - x_0)^k = 0 \]
+	"הפונקציה רציפה אחושרמוטה" (עברי). לפחות תחת ההנחה שהגדרנו שזה הערך שלה ב־0, וזה לא ממש בעיה כי היא רציפה. 
+	\section{\en{Euiler Formula}}
+	נרצה להרחיב את הגדרת החזקה למספרים מרוכבים. שיעור שעבר ראינו את טור הטיילור של $e^x$: 
+	\[ e^x = \sum_{k = 0}^{\inf}\frac{1}{k!}x^k =: e(x) \]
+	נבחר, להגדיר את הפונקציה $e(x)$ כטור הטיילור להלן. נוכיח שההגדרה שלנו מקיימת חוקי חזקות: נוכיח את הטענה $e(x + y) = e(x) + e(y)$ (תחת ההנחה שזו הגדרה ל־$e^x$, ואי אפשר להשתמש בטענות קודמות על הפונקציה הזו). 
+	\begin{alignat}{9}
+		e^{(x + y)} &= \sum_{k = 0}^{\inf}\frac{1}{k!}(x + y)^k &&= \sum_{k = 0}^{\inf}\sum_{m = 0}^{k}\frac{1}{k!}\binom{k}{m}x^my^{k - m} \\
+		&= \sum_{m = 0}^{\inf}\sum_{k = m}^{\inf}\frac{x^m}{m!} \cdot \frac{y^{k - m}}{m!} &&\overset{n = k - m}{=}\sum_{m = 0}^{\inf}\sum_{k = 0}^{\inf}\frac{x^m}{m!}\frac{y^n}{n!} = \cl{\sum_{m = 0}^{\inf}\frac{x^n}{n!}}\cl{\sum_{k = 0}^{\inf}\frac{y^n}{y!} = e(x)e(y)}
+	\end{alignat}
+	נגדיר: 
+	\[ \forall x \in \C. e^x = e(x) = \sum_{k = 0}^{\inf}\frac{x^k}{k!} \]
+	ההוכחה שלנו לחוק החזקות עובדת גם על מרוכבים, אז מצאנו סיבה לבצע את ההגדרה הזו – ההרחבה משמרת את חוקי החזקות. באופן דומה, נגדיר $\sinx, \cosx$ עבור $x \in \C$ לפי טורי הטיילור שלהם. 
+	\[ e^{ix} = \sum_{k = 0}^{\inf}\frac{1}{k!}(ix)^k = \sum_{k = 0}^{\inf}\frac{1}{k!}x^ki^k = \sum_{k = 0}^{\inf} \frac{1}{(4m)!}x^{4m} + \sum_{k = 0}^{\inf}\frac{i}{(4m + 1)!}x^{4m + 1} + \sum_{k = 0}^{\inf}\frac{-1}{(4m + 2)}x^{4m + 2} + \sum_{k = 0}^{\inf}\frac{-i}{(4m + 3)!}x^{4m + 3} \]
+	הסתמכנו על כך ש־: 
+	\[ i^k = \begin{cases}
+		1 & k \equiv 0  \\
+		i & k \equiv 1 \\
+		-1 & k \equiv 2 \\
+		-i & k \equiv 3
+	\end{cases}\bmod 4 \]
+	נסדר את הטורים: 
+	\[ \dots = \cl{\sum_{{n \in \Neven}}^{\inf} \frac{1}{(2n)!}x^{2n} + \sum_{n \in \Nodd}^{\inf}\frac{-1}{(2n)!}x^{2n}} + i\cl{\sum_{{n \in \Neven}}^{\inf} \frac{1}{(2n)!}x^{2n} + \sum_{n \in \Nodd}^{\inf}\frac{-1}{(2n)!}x^{2n}} \]
+	ניעזר בעובדה ש־$(-1)^n = \begin{cases}
+		1 & n \in \Neven \\
+		-1 & n \in \Nodd
+	\end{cases}$
+	ולכן נוכל לאחד את הסכומים, ולקבל: 
+	\[ \dots = \sum_{n = 0}^{\inf}\frac{(-1)^{n}}{(2n)!}x^{2n} + i \sum_{n = 0}^{\inf}\frac{(-1)^{n}}{(2n + 1)}x^{2n + 1} = e^{ix} = \cosx + i\sinx \]
+	את הטורים האלו אנו מזהים כטורי הטיילור של החזקות. סה"כ קיבלנו את נוסחאת אויילר. 
+	
+	נשחק עם זה.
+	\[ x = a + bi, \ a, b \in \R. e^{x} = e^{a + bi} = e^{a}e^{bi} = e^{a}(\cos b + i \sin b) \]
+	כלומר, המספר $e^x$ הוא מספר שאורכו $e^a$ והזווית שלו היא $b$; $|e^x| = e^x, = e^{\Re(x)}$, באופן דומה על זווית. מהצד השני, אם נפרק מספר מרוכב $z \in \C$: 
+	\[ z = r(\cost + i \sint) = e^{\ln r + i \ta} = re^{i\ta} \]
+	בהתאם לחוקי החזקות, נוכל לקבל הבנה נוספת של מה משמעותו של הכפל:
+	\[ z_1z_2 = (r_1e^{i\ta_1})(r_2e^{i\ta_2}) = r_1r_2e^{i(\ta_1\ta_2)} \]
+	הכפלנו את האורך ב־$r$, וסובבנו ב־$\ta$. ולמי שזוכר את ההוכחה ההיא משיעורי הבית: 
+	\[ z = a + bi, \ z^{n} = (re^{i\ta})^{n} = r^ne^{i\ta} = r^n(\sin\ta + i\cos\ta) \]
+	שבאותה התקופה, ניאלצנו להיעזר באינדוקציה או באמצעים אחרים, מסובכים יותר. השתמשנו באותה הזהות בשביל למצוא את שורשי היחידה, המספרים שמקיימים $z^n = 1$. הוכחנו, $z = u_n^k$ כאשר $u_n = \cl{\cos \cl{\frac{2\pi}{n}} + i \sin \cl{\frac{2\pi}{n}}}$. הם, המספרים שייקימו את המשוואה: 
+	\[ r^ne^{in\ta} = r^n(\cos n \ta + i \sin n \ta) \seq 1 \]
+	עבורה בהכרח צריך להתקיים $n\ta = 2 \pi k$ כלומר $\ta = \frac{2\pi k}{n}$. נוכל להבין זאת גיאומטרית – נחלק את הזווית על מעגל היחידה ל־$n$ חלקים, ואז נרצה להסתובב עליהם $n$ פעמים עד לחזרה לנקודת ההתחלה. 
+	
+	\subsection{}
+	נפתור את המשוואה 
+	$z^2 = 1 + i \sqrt3$.
+	לפי הייצוג הפולארי: 
+	\[ \begin{cases}
+		R = \sqrt{i^2 + \sqrt3^2} = 2 \\
+		\tan\alpha = \frac{\sqrt3}{1} \implies \alpha = \tan\op\sqrt3 = \frac{\pi}{3}
+	\end{cases} \]
+	כלומר: 
+	\[ z = re^\ta, , \ r = \sqrt 2, \ r^2e^{i2\ta} = 2 e^{i \frac{\pi}{3}} = r^2(\cos2\ta + i \sin2\ta) = 2(\cos\pi/3 + i \sin \pi/3) \]
+	סה"כ: 
+	\[ 2\ta = \frac{\pi}{3} + 2 \pi k \implies \ta = \frac{\pi}{6} + \pi k \]
+	סה"כ $z = \sqrt2 e^{i\frac{\pi}{k} + i\pi k }$. סה"כ יש לנו 2 פתרונות, כי: 
+	\begin{align}
+		k = 0 & z = \sqrt2e^{i\pi/6} \\
+		k = 1 & z = \sqrt2e^{i \frac{7\pi}{6}} \\
+		k = 3 & z = \sqrt2e^{i \pi/6 + i 2\pi} = z_0
+	\end{align}
+	נוכל גם לקבל את זהות אוילר בצורותיה השונות: 
+	\[ e^{2\pi i} = 1, \ e^{i\pi} = -1, \ e^{i\pi} + 1 = 0 \]
+	תרגיל: 
+	\begin{align}
+		w^3 = 1 + i \sqrt3 &= 2e^{i\pi/3} \\
+		r^3\cos3\ta + i \sin \ta &= 2\cl{\cos \pi/3 + i \sin \pi/3}
+	\end{align}
+	נקבל: 
+	\[ w = re^{i\ta}, \implies r = \sqrt[3]{2} \ 3 \ta = \frac{\pi}{3} + 2 \pi k \implies \ta = \frac{\pi}{9} + \frac{2\pi k}{3} \]
+	נקבל את הפתרונות: 
+	\[ w_0 = \sqrt[3]{2}e^{i \pi/9}, \ w_1 = \sqrt[3]{2}e^{i7\pi/9}, \ w_2 = \sqrt[3]{2}e^{i 13 \pi /9} \]
+	
+	
+	עשינו סיבוב $2\pi$. התחלנו ממרוכבים וחזרנו אליהם. 
+	
+	\ndoc
+	
+\end{document}

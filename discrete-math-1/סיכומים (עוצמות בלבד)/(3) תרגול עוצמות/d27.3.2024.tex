@@ -1,0 +1,180 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[A4, margin=0.5in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\p     {\text{, }}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\title{עוצמות 8}
+\author{שחר פרץ}
+\date{27 במרץ 2024}
+
+\begin{document}
+	\maketitle
+	
+	\section{דוגמאות מתרגילים מש.ב. 9}
+	\subsection{תרגיל 9}
+	הגדרה: נאמר ש־$ f, g \colon \N \to \R $ הן "כמעט מסכימות" אם קיים $ i $ כך שלכל $ j \ge i $ מתקיים $ f(j) = g(j) $. [נסיק: $ i \in \N $]. 
+	נגדיר: 
+	\[ R = \{\la f, g \ra \in (\R^\N)^2 \mid f, g \text{agrees \ almost } \} \]
+	\begin{enumerate}[(a)]
+		\item אמור להיות קל
+		\item מצאו את העוצמה של כל מחלקת שקילות; תהי $ f \in \N \to \R $. נחשב את $ |[f]_R| $. עוזר לאינטואיציה, ולרוב גם להוכחה: מצד אחד, $ [f]_R \subseteq \R^\N $ ולכן $ |[f]_R| \le |\R^\N| = (\taz)\uaz = \taz =\al $. מהכיוון השני: נגדיר $ G \colon \R\to [f]_R $ ע"י: 
+		\[ g = \lambda r \in \R. \lambda x \in \N. \begin{cases}
+			r, & n = 0 \\
+			f(n), & n \ge 1
+		\end{cases} \]
+		צריך להוכיח שהיא מוגדרת היטב (מגיעה לטווח מתאים: $ \forall r \in \R. g(r) \in [f]_R $) ושהיא חח"ע. כרגע לא נוכיח זאת כאן [אני אנצל את זה בשביל להגיד שיש לי הוכחה פורמלית על הפונקציה הזו בדיוק בענן, שאמורה להיות \textit{יחסית} נכונה]. 
+		
+		מקיום הפונקציה, $ \al = |\R| \le |[f]_R| $. סה"כ מקש"ב $ |[f]_R| = \al $. 
+		\item מצאו את העוצמה של קבוצת המנה; $ |(\N \to \R) / R| = ? $. טעות נפוצה הייתה היא, להתבונן בחסם העליון של ההכלה ולהניח כי הוא החסם העליון. במקרה הזה, $ (\N \to \R) / R \subseteq \ps(\ps(\N \to \R)) $, ומכאן נובע החסם העליון $ 2\utal $ (הערה: מותר גם בלי סוגריים והכוונה היא לזה). החסם העליון הזה לעוצמה הוא לא ההדוק ביותר! ראוי לציון שלכל יחס שקילות $ R $ מעל $ A $ תמקיים $ |A / R| \le |A| $ – אומנם אסור להשתמש בזה כמשפט, אבל הוא מאפשר להקטין את החסם יותר כשמדברים על מחלקות שקילות. אין זה משפט, אבל די לנמקו בקצרה: $ A / R = \{[x]_R \mid x \in A\} $. ניקח $ A' \subseteq A $ מערכת נציגים ליחס $ R $ (AC)\ \del . כעת $ \lambda a \in A'. [a]_R $ היא זיווג $ A' \to A / R $ ולכן $ |A/R| = |A'| \le |A| $ (אין צורך להוכיח מעבר לכך). \textbf{זו הדרך הנוחה למצוא חסם עליון לקבוצות מנה}. 
+		
+		דיברנו די; נחזור להוכחה. מהטענה לעיל, $ |(\N \to \R) / R| \le |\N \to \R| = (\taz)\uaz = \taz = \al $. בעבור הכיוון השני: נתבונן בכל הפונקציות הקבועות האפשרויות, שברור כי הן אינן מסכימות (נידרש להוכיח זאת בהמשך). נגדיר $ F \colon \R\to (\N \to \R) / R $ ע"י: 
+		\[ F = \lambda r \in \R. [\lambda x \in \N. r]_R \]
+		אין צורך להוכיח ש־$ F $ מוגדרת היטב כי אנחנו מחזירים מחלקת שקילות של $ R $ וזה די ישיר. יש צורך להוכיח שהיא חח"ע (כלומר $ \forall r_1 \neq r_2 \in \R. \la x \in \N. r_1, \lambda x \in \N. r_2 \ra \not \in R $). 
+		[הערה: אם אתם תחפשו את ההוכחה המוגמרת אצלי, תמצאו בעיקר חרא, אז אל תעשו את זה. כל שאר התרגילים חוץ מהסעיף הזה כתובים טוב]
+	\end{enumerate}
+	\subsection{סעיף 10)}
+	נגדיר: 
+	\[ S = \{\la A< B \ra \in \ps(\Z) \times \ps(\Z) \colon |A| = |B| = |A \cup B| \} \]
+	\begin{enumerate}
+		\item $ [\N]_S = \{X \in \ps(\Z) \mid |X| = \az\}, \ [\{2, 3\}]_S = \big \{\{2, 3\}\big \} $. בהכללה, אפשר להכיח אשר $ \forall A \ \text{finite}. [A]_S = \{A\}, \ \forall A \in \ps(\Z) \ \text{infinite}. [A]_S = [\N]_S $. 
+		\item מהי קבוצת המנה? מהי עוצמתה? קבוצת המנה: 
+		\[ \ps(\Z) / S = \{[A]_S \mid A \in \ps(\Z)\} = \big\{ \{A\} \mid A \in \underbrace{\{X \in \ps(\Z) \mid |X| < \az\}}_{:=\ps_{\textrm{finite}}(\Z)} \big\} \uplus \big\{ \underbrace{\{X \in \ps(\Z) \mid |X| = \az\}}_{[\N]_S}\big\} \]. מכאן: $ |\ps(\Z) / S| = |\ps_{\textrm{finite}}(\Z)| + 1 $. טענה: $ |\ps_{\textrm{finite}}(\Z)| = \az $ (כדאי לזכור את זה). נוכיח זאת. $ \ps_{\textrm{finite}} \subseteq \bigcup_{n \in \N}\underbrace{\ps(\underbrace{\{-n, \dots, n\}}_{2n + 1})}_{2^{2n + 1}\implies \ \text{ finite}} $
+		סה"כ איחוד בן מניה של קבוצות סופיות, הוא לכל היותר בן מניה. מצד שני, $ \lambda n \in \N. \{n\} $ היא חח"ע $ \Z\to \ps_{\textrm{finite}}(\Z) $, לכן $ |\ps_{\textrm{finite}}(\Z)| \ge \az $. סה"כ שוויון מקש"ב. סיימנו: $ |\ps(\Z) / S| = \az + 1 = \az $ כדרוש. 
+	\end{enumerate}
+\end{document}

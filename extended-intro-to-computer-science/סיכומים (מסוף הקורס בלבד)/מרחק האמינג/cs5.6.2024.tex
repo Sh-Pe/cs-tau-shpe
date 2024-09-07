@@ -1,0 +1,356 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+%\titleformat{\section}[block]
+%	{\fontsize{15}{15}}
+%	{\sen \dotfill \, \!\!\! \thesection \,\! \dotfill \she}
+%	{1em}
+%	{\MakeUppercase}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil}
+\newcommand\ndoc  {\dotfill \\ \vfil \hfil \textbf{\textit{שחר פרץ, 2024}} \hfil \vfil}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מ.מ.למדמ''ח $\sim$ עמית וינשטיין $\sim$ קוד לתיקון שגיאות}
+\date{5 ליוני 2024}
+
+\begin{document}
+	\maketitle
+	\section{משהו}
+	\[ Alice \longrightarrow Bob \]
+	מה מקשה על אליס ובוב לדבר?
+	\begin{itemize}
+		\item רעש / noise $\impliedby$ קוד לתיקון שגיאות
+		\item מחיר / cost $\impliedby$ כיווץ (למפל זיוג, האפמן)
+		\item ציטוט / eavesdropping $\impliedby$ הצפנה (דיופי־הלמן)
+	\end{itemize}
+	
+	\subsection{ביקורת בתעודה}
+	חישוב ספרת ביקורת: \\
+	\sen
+	\texttt{1 2 3 4 5 6 \ 7 8 \ 9 \_}\\
+	\texttt{1 2 1 2 1 2 \ 1 2 \ 1 \_}\\
+	\texttt{--------------------} \\
+	\texttt{1 4 3 8 6 5 12 7 16} =$38$ $n=:$
+	
+	\she
+	ספרת הביקורת תהיה $10 - n \bmod 10 $ (כאשר $n$ סכום ספרות לאחר ההכפלות).
+	
+	כל ספרה שנשנה, תשנה את ספרת הביקורת, וגם לרוב חילופי הספרות העוקבים. כך, ספרת הביקורת תתפוס את רוב השגיאות הנפוצות. 
+	\subsection{דוגמה נוספת}
+	נסדר $25 $ קלפים לבנים (0)/שחורים (1), בסידור של $5 \times 5$. אחר כך, נוסיף בכל שורה קלף לכן או שחור כדי שיהיה מספר זוגי של קלפים שחורים בשורה. באופן דומה, נוסיף שורה שישית כך שבכל עמודה יהיה מספר זוגי של קלפים שחורים. 
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=0.3]
+			\draw[step=\sqw] (0,0) grid (6*\sqw, 6*\sqw);
+			\squ{2}{5}{black};
+			\squ{5}{5}{black}; 
+			\squ{3}{4}{black};
+			\squ{4}{4}{black};
+			\squ{2}{2}{black};
+			\squ{5}{2}{black};
+			\squ{3}{1}{black};
+			\squ{5}{1}{black};
+			\squ{4}{0}{black};
+			\squ{5}{0}{black}
+		\end{tikzpicture}
+	\end{center}
+	
+	ניתן לתקן שגירה של קלף בודד: נהפוך את הקלף היחיד שבשורה שלו מס' הסלפים השחורים אי־זוגי וגם שבעמודה שלו מס' הקךפים השחורים אי־זוגי. 
+	מסתכלים על המודל שבו כל ביט מתחלף בהסתברות של $p\ll1$. ניתן לזהות שגיאות של עד $3$ קלפים/ביטים שיתחלפו. 
+	
+	\section{מרחק Hamming}
+	בהינתן $x, y \in \Si^n$, המרחק ביניהן מוגדר להיות כמות המקומות שאותם יש לשנות על מנת לעבור מ־$x$ ל־$y$. 
+	\[ \Delta(x, y) = |\{i \in \{0, 1\} \mid x_i \neq y_i\}| \]
+	תכונות: 
+	\sen
+	\begin{itemize}
+		\item $\forall x. \Delta(x, x) = 0, \ \forall x \neq y. \Delta(x, y) \neq 0$
+		\item $\forall x, y. \Delta(x, y) = \Delta(y, x) \ge 0$
+		\item $\forall x, y, z. \Delta(x, y) \le \Delta(x, z) + \Delta(z, y) $
+	\end{itemize}
+	\she
+	ואכן, הוא חיובי/0 קמטטיבי, ומקיים את א''ש המשולש, ושווה ל־0 אמ''מ ערכים זהים. 
+	
+	\textbf{קוד לתיקון שגיאות} הוא פונקציה $C \colon \{0, 1\}^{k} \to \{0, 1\}^{n} \quad (n>k)$ 
+	
+	נגדיר \textbf{מרחק של קוד לתיקון שגיאות} להיות: 
+	\[ d = \Delta(C) = \min_{x \neq y} \Delta(C(x), C(y)) \]
+	באופן פורמלי, ננננאפיין קוד בעזרת $(n, k, d)$ כאשר $=n$ אורך ההודעה המשודרת, $=k$ אורך ההודעה המקורית $=d$ מרחק. 
+	
+	\textbf{מטרה: }בהינתן $k$ קבוע, ש־$n$ יהיה כמה שיותר קטן ו־$d$ כמה שיותר גדול. 
+	
+	אלגו' decoding \del: למצוא מילת קוד קרובה ביותר, ולהחזיר את ההודעה שמתאימה לה. $D \colon \{0, 1\}^{n} \to \{0,  1\}^{k}$. $=D(x')$ הערך $x \in \{0, 1\}^{k}$ כך ש־$D(x') = \Delta(C(x), x') = \min_{y \in \{0, 1\}^{k}}\Delta(C(y), x')$. 
+	
+	לדוגמה, בעבור ספרת ביקורת: 
+	$n = 9, k = 8, d = 2$, לזהות שגיאות $1=$, לתקן שגיאות $0=$. 
+	
+	ובעבור משחק הקלפים: 
+	$d = 4, \ k = 25, \ n = 36$ לזהות שגיאות $3=$, לתקן שגיאות $1=$. 
+	
+	ובעבור קוד חזרה ($0 \to 000, \ 1 \to 111$): 
+	$(n, k, d) = (3, 1, 3)$
+	
+	קוד ביט זוגיות (parity-bit) \del: $(n, k, d) = (3, 2, 2)$. דוגמאות: 
+	$00 \to 000, 01 \to 011, 10 \to 101, 11 \to 110$ (הוספת ביט לפי XOR \del)
+	
+	\textbf{טענה: }עבור קוד ממרחק $d$, לכל מילה $x$, כדור hummaing (המילים במרחק hummaing שהוא $x$) ברדיוס $d - 1$ סביב $C(x)$ מכיל רק אותה מבין $\Img(C)$. לכן, ניתן לזהות לכל היותר $d - 1 $ שגיאות. 
+	
+	\textbf{טענה: }עבור קוד ממרחק $d$ ניתן לתקן עד $\lf\frac{d - 1}{2}\rf$. 
+	
+	באופן דומה, כדורי ה־humming של $C(x), C(y)$ ברדיוס $\lf\frac{d - 1}{2}\rf$ סביב מילות קוד, זרים (הכדורים), שכן אם קיים איברם בחיתוכם, נקבל שהמרחק בין $C(x)$ ל־$C(y)$ כלשהם קטן ממש מ־$d$ וזו סתירה. 
+	
+	קשר בין $n, k, d$: 
+	\[ d \le n - k + 1 \]
+	
+	\begin{proof}
+		נניח ויש לנו $2^{k}$ מילים באורך $n$ ביטים. ידוע שהמרחק בין כל שתי מילים, הוא לפחות $d$. אם נמחק את $d - 1 $ התווים הראשונים, יתרת המחרוזות באורך $n - d + 1 $, שנוכל לדעת שהן שונות. סה''כ, קיבלנו $2^{k }$ מחרוזות שונות שנכנסות למרחק של $2^{n - d + 1}$. סה''כ, $2^{k} \le 2^{n - d + 1 }$. נוציא לוג ונקבל $k \le n - d + 1$, נעביר אגפים וסה''כ $d \le n - k + 1$. 
+	\end{proof}
+	
+\end{document}

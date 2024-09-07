@@ -1,0 +1,467 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה B $\sim$עברי נגר $\sim$ טיילור סוויפט ובית חולים}
+\date{10 ביולי 2024}
+
+\begin{document}
+	\maketitle
+	\section{\en{The Hospital Rule}}
+	תזכורת: $f, g$ גזירות בסביבה נקובה של $t$, ומתקיים: 
+	\begin{enumerate}
+		\item $\lim_{x \to t} f(x) = 0$
+		\item $\lim_{x \to t} g(x) = 0$
+		\item $g'(x) \neq 0$ בסביבה נקובה של $t$. 
+		\item $\lim_{x \to t} \frac{f'(x)}{g'(x)} = L'$
+	\end{enumerate}
+	או שבמקום $1, 2$ מתקיים $\lim_{x \to t}g(x) = \pm \inf$, אז $\lim_{x \to t} \frac{f(x)}{g(x)} = L'$. 
+	\subsection{דוגמאות}
+	\[ \limi \frac{\sinx}{x} \cancel{\slh} = \limi \frac{\cosx}{1} \in \emptyset \]
+	הגבול לא קיים ולכן לא נוכל להשתמש בלופיטל. אבל לא תהיה בעיה להגיד שזה הולך ל־0 כי $\sinx$ חסום ע"י $x$. 
+	נוכל להשתמש בכלל בית החולים גם עבור פונקציות אחרות: 
+	\[ \lim_{x \to 0^+} x\ln x = \lim_{x \to 0^+} \frac{\lnx}{1/x} \slh \limz \frac{1/x}{-1/x^2} = \limz x = 0 \]
+	תרגיל: 
+	\[ \limz x^x = \limz e^{\lnx^x} = e^{x\lnx} = e^1 = 1 \]
+	נוכל להעביר את הגבול לתוך האסקספוננט, או באופן כללי לתוך הפונקציה, אם הפונקציה  רציפה באותה הנקודה (במקרה הזה, $e^x$ רציף ב־$0$). 
+	
+	\subsection{עוד כמה דברים אקראיים}
+	\textbf{טענה: }אם הגבול $\limi f(x) = c \in \R$ קבוע, (ו־$f(x)$ גזירה), אז $\limi f'(x) = 0$ (כי לכאורה הפונקציה לא משתנה מספיק מהר, אחרת לא יהיה גבול). 
+	\begin{proof}
+		זה לא נכון. 
+	\end{proof}
+	היה איזה הסבר בכיתה שלא העתקתי. תבדקו בסיכומים אחרים. 
+	
+	\textbf{טענה (נכונה): }תחת אותם התנאים, $\limi f'(x)$ קיים, אז $\limi f'(x) = 0$. 
+	
+	\begin{proof}
+		\[ \begin{WithArrows}[groups]
+			   &\limi f(x) = c \in \R \\
+			   \implies &\limi \frac{f(x)}{x} \Arrow[new-group]{קיים הגבול מההנחה} \\
+			   \slh &\limi \frac{f'(x)}{1}
+		\end{WithArrows} \]
+	\end{proof}
+	
+	\section{\en{Taylor Swift Series}}
+	נוכל לקרב באמצעות פולינומים פונקציות רציפות – תחילה, הפונקציה תראה כמו קו ישר, וכאשר נתרחק נראה אט־אט שיפוע, וכו'. תהי פונקציה $f(x)$, נתבונן בנקודה $x_0 \in \R$. נרצה סביב $x_0$ לקרב את הפונקציה כמה שנוכל, באמצעות פולינומים ממעלות שונות: 
+	\begin{enumerate}
+		\item פולינום ממעלה 0: $f(x) \approxeq p_0(x) = a_0$. נבחר $a_0 = f(x_0) = p_0$
+		\item מעלה 1: $f(x) \approxeq p_1(x) = ax + b$. נדרוש $f(x_0) = p_1(x_0) = ax_0 + b, \ f'(x_0) = p'(x_0) = a$. סה"כ נפתור את המשוואות ונקבל $a = f'(x_0), \ b = f(x_0) - ax_0$ וסה"כ $p_1(x) = f'(x_0)x + f(x_0) - f'(x_0)x_0 = f'(x_0)(x - x_0) + \underbrace{f(x_0)}_{p_0(x)}$. 
+		\item מעלה 2: $f(x) \approxeq p_2(x) = ax62 + bx + c$. נדרוש $f'(x_0) = p'(x_0) = 2ax + b, \ f''(x_0) = p''(x_0) = 2a$. נפתור עבור $a, b, c$ ונקבל $a = \frac{1}{2}f''(x_0), \ f'(x_0) = f'(x_0) - f''(x_0)x_2, \ c = f(x_0) - \cl{f'(x_0) - f''(x_0)x_0}x_0 - \frac{1}{2}f''(x_0)x_0^2$. נציב ונקבל 
+		\[ p_2(x) = \frac{1}{2}f''(x_0)x^2 + (f'(x_0) - f''(x_0)x_0)x + f(x_0) - (f'(x_0) - f''(x_0)x_0) - \frac{1}{2}f''(x_0)x_0^2 \]
+		נשלים לריבוע: 
+		\[ p_2(x) = \underbrace{\frac{1}{2}f''(x_0)(x - x_0)^2 + \frac{1}{2}f''(x_0)xx_0 - \frac{1}{2}f''(x)}_{\frac{1}{2}f''(x_0)x^2} + \dots \]
+		נשים לב שההשלמה לריבוע מתבטלת ביחס למקדמים אחרים שבשאר הפונקציה. הביטויים יצטמצם וניוותר עם: 
+		\[ p_2(x) = \frac{1}{2}f''(x_0)(x - x_0)^2 + f'(x_0)x + f(x_0) - f'(x_0)x_0 = \frac{1}{2}f'(x_0)(x - x_0)^2 + \underbrace{f'(x_0)(x - x_0) + f(x_0)}_{p_1(x)} \]
+	\end{enumerate}
+	נשים לב שהקירובים קשורים זה לזה. נרחיב למקרה ה־$n$־י. אנחנו לא רוצים לפתור מערכות משוואות מגעילות, ולכן נמרכז סביב $x_0$. 
+	\[ f(x) \approxeq p_n(x) = \sum_{k = 0}^{n}a_k(x - x_0)^k, \ f^{(m)}(x_0) = p_n^{(m)}(x_0) \]
+	לפי הנוסחא לחישוב נגזרת, כאשר נגזור מונום מדרגה $k$, $m$ פעמים, הדרגה תהפוך להיות $k  - m$, ונוריד $k$, ואז $k - 1$, ואז $k - 2$, עד $k - m + 1$. 
+	\[ \begin{WithArrows}
+		p_n^{(m)} &= \sum_{k = 0}^{n}a_k k(k - 1)(k - 2)\cdots(k - m + 1)(x - x_0)^{k - m} \\
+		&= \sum_{k = m}^{n}a_k k(k - 1)\cdots (k- m + 1)(x - x_0)^{k - m}
+	\end{WithArrows} \]
+	כאשר $x = x_0$ (או לפחות שואף לו), הכל מתאפס פרט ל־$k = m$, משום שחזרות חיוביות של $0$ הן $0$, וחזקות שליליות יתאפסו במקדם. נקבל: 
+	\[ p_n^{(m)}(x_0) = a_m \cdot m(m - 1) \dots 2 \cdot 2 \cdot \underbrace{(k - m + 1)}_{= 1} \cdot \underbrace{(x - x_0)^{k - m}}_{=1} = a_mm! \]
+	ולכן $a_m = \frac{f^{(m)}(x_0)}{m!}$. נחזור לפונקציה למעלה. 
+	\[ f(x) \approxeq p_n(x) = \sum_{k = 0}^{n}a_k(x - x_0)^k = \sumnko \frac{f^{(k)!}}{k!}(x - x_0)^k \]
+	זהו פולינום טיילור. 
+	אז מה זה הקירוב הזה? נצפה שככל שנתקרב ל־$x_0$, פולינום טיילור ישאף אליו. גם נצפה שככל שניקח $n \to \inf$ נקבל קירוב יותר טוב של הפונקציה ואכן יש לנו את השוויונות הבאים: 
+	\[ x \to x_0 \colon \quad f(x) = p_n(x) + O((x - x_0)^{n + 1}) \]
+	זה נכון תחת ההנחה ש־$f$ גזירה $n + 1$ פעמים בקטע סביב $x_0$. 
+	"אתם יודעים מה זה $O$ גדול, הגדירו לכן אותו" (אותו הדבר כמו שהגדירו רק $x \to 0$ במקום $x \to \inf$). (נושף למיקרופון כי אנחנו עושים רעש) "אהאהאהאה לול". 
+	
+	וכאשר $n \to \inf$ הקירוב משתפר. (באיזשהו תחום). אפשר לשאול מה הוא הטור: 
+	$\sum_{k = 0}^{\inf} \frac{f^{(n)}(x_0)}{k!}(x - x_0)^k$ (זהו טור טיילור). 
+	
+	\textbf{טענה: }טור טיילור מקיים שוויון ל־$f(x)$ עבור "הרבה פונקציות". 
+	
+	\subsection{דוגמאות}
+		\subsubsection{ניתוח סינוסים}
+		כאשר עושים טור טיילור עבור $x_0 = 0$ (טור טיילור סביב $0$), קוראים לזה טור מק'לרון. נעשה טור מק'לרון עבור $\sinx$: 
+		\[ f(x) = \sinx, \ f^{(m)}(x) = \begin{cases}
+			\sinx & m \equiv 0 \\
+			\cosx & m \equiv 1 \\
+			-\sinx & m \equiv 2 \\
+			-\cosx & m \equiv 3
+		\end{cases} \bmod 4, \ f^{(m)}(0) = \begin{cases}
+		0 & m \equiv 0 \\
+		1 & m \equiv 1 \\
+		0 & m \equiv 2 \\
+		-1 & m \equiv 3
+		\end{cases}\bmod 4 \]
+		באופן כללי, $f^{\overbrace{2k + 1}^m} = (-1)^{k}$. לסיכום: 
+		\[ \sinx = \sum_{k = 0}^{\inf}\frac{(-1)^{k}}{(\underbrace{2k + 1}_{m})!}x^{2k + 1} \]
+		(הנחנו שכל הזוגיים מתאפסים, וסכמנו את האי־זוגיים). 
+		\subsubsection{$\bm{e^x}$}
+		עבור $e^x$: ידוע $f^{(m)}(x) = e^x$. נעשה לזה טור מק'לורן. $f^{(m)}(0) = 1$. נקבל: 
+		\[ e^x = \sum_{k = 0}^{\inf}\frac{1}{k!}x^k \]
+		\subsubsection{תרגיל}
+		אותו הדבר עבור $\cosx$. ידוע: 
+		\[ f(x) = \cosx, \ f^{(n)}(x) = \begin{cases}
+			\cosx & n \equiv 0 \\
+			-\sinx & n \equiv 1 \\
+			-\cosx & n \equiv 2 \\
+			\sinx & n \equiv 3
+		\end{cases}, \ f^{(n)}(0) = 1, 0, -1, 0 \]
+		באופן כללי $f^{(2k)} = (-1)^{k}$ וסה"כ: 
+		\[ \cosx = \sum_{k = 0}^{\infty}\frac{(-1)^{k}}{(2k)!}x^{2k} \]
+		דרך נוספת היא: 
+		\[ \sinx = \sumnk \frac{(-1)^k}{(2k + 1)!}x^{2k + 1} + O(x^{3j + 3}) \]
+		נגזור את השוויון: 
+		\[ \cosx = \sum_{k = 0}^{n}\frac{(-1)^{k}}{(2k)!} + O(x^{2n + 2}) \]
+		שזהו הפולינום טיילור שקיבלנו עבור $\cosx$. 
+		\subsubsection{$\bm{\frac{1}{x}}, \lnx$}
+		נבחר $x_0 = -1$ (הפעם לא מק'לורן). 
+		\[ f(x) = \frac{1}{x} = x^{-1} \implies f^{(m)}(x) = (-1)(-2)\dots(-n) \cdot x^{-m - 1} = (-1)^{m}m!x^{-m-1}, \ f^{(m)}(x_0) = -m! \]
+		סה"כ (ואכן נראה שוויון לטור גיאומטרי): 
+		\[ \frac{1}{x} = \sum_{m = 0}^{\inf}-(x + 1)^{m} = -\frac{1}{1 - (x + 1)} = \frac{1}{x} \]
+		במקרה הזה זה יעבוד רק עבור $-2 \le x \le 0$. זה הגיוני כי הטור הגיאומטרי מתכנס עבור $|x + 1| < 1$. תזכורת: 
+		\[ \sum_{k = 0}^{\inf}a^k = \frac{1}{1 - a} \]
+		כאשר $|a| < 1$ (אחרת זה פשוט אינסוף). מכאן, נוציא אינטגרל ונקבל: 
+		\[ \ln(1 - x) = \sumnk - \frac{x^k}{k} \]
+		
+		\subsection{הערות}
+		\begin{enumerate}
+			\item לפונקציות זוגיות/אי־זוגיות, יש רק איברים זוגיים/אי־זוגיים (בהתאמה) בטור מק'לורן (לדוגמה, $\sinx$ אי־זוגית ויש לה רק איברים זוגיים). 
+			\item כך אפשר להגדיר $\sinx, \cosx$, ופונקציות נוספות, במקום באמצעות גיאומטריה מפוקפקת. אפשר להוכיח מתוך הטור תכונות אלגבריות כמו $\sin(x + y) = \dots$. 
+			\item צריך לדעת בע"פ את הטורים שראינו כאן היום. 
+		\end{enumerate}
+		ידוע גם: 
+		\[ f(x) = p_n(x) + O((x - x_0)^{n + 1}) \]
+		דוגמה: 
+		\[ e^x = \sumnko \frac{x^k}{k!} + O(x^{n + 1|}), \implies e^{x^2} = \sumnko \frac{x^{2k}}{k!} + O(x^{2k + 2}) \]
+		
+		ומליניאריות הנגזרת, כאשר $\approxeq$ מסמן את טור הטיילור של הפונקציה: 
+		\[ f(x) \approxeq p_n, \tl f(x) \approxeq \tl p_n, \implies f(x) + \tl f(x) = p_n + \tl p_n \]
+		
+		\subsection{חישוב טורי טיילור נוספים}
+		\subsection{דוג'}
+		פולינום טיילור סביב 0 מסדר $3$ של $f(x) = e^x\cosx$. אפשר ללכת לנוסחא ולגזור 3 פעמים. אבל אפשר להשתמש בטורי הטיילור שאנו יודעים: 
+		\[ e^x = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + O(x^4), \ \cosx = 1 - \frac{x^2}{2} + O(x^4) \]
+		סה"כ: 
+		\[ e^x = \cl{1 + x + \frac{x^2}{2} + \frac{x^3}{6} + O(x^4)}\cl{1 - \frac{x^2}{2} + O(x^4)} - 1 + x - \frac{x^3}{3} + O(x^4) \]
+		
+		\subsection{דוג' 2}
+		פולינום טיילור סביב $0$ מסדר $4$ של $f(x) = e^{\cosx}$. 
+		\begin{gather*}
+			\cosx = 1  \underbrace{- \frac{x^2}{2} + \frac{x^4}{24} + O(x^6)}_{y}, \implies f(x) = e^{1  - \frac{x^2}{2} + \frac{x^4}{24} + O(x^6)} = e \cdot e^{y} \\
+			= e\cl{1 + y + \frac{y^2}{2} + O(y^3)} = \frac{1}{e}f(x) = 1 + \frac{-x^2}{2} + \frac{x^4}{24} + O(x^6) + \frac{1}{2}\cl{\frac{-x^2}{2} + \frac{x^4}{24} + O(x^6)} _ O\cl{\cl{\frac{-x^2}{2} + \frac{x^4}{24} + O(x^6)}^3} \\
+			= 1 - \frac{x^2}{2} + \frac{x^4}{24} + \frac{x^4}{8} + O(x^6) + \frac{x^4}{4} + O(x^6) + O(x^6) = \bm{1 - \frac{x^2}{2} + \frac{x^4}{6}}
+		\end{gather*}
+		
+		
+	
+	
+\end{document}

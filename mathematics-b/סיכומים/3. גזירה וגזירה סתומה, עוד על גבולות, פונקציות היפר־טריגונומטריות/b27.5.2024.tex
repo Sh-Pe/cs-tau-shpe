@@ -1,0 +1,345 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+
+\renewcommand\inf {\infty}
+\newcommand\ninf  {-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+
+\author{שחר פרץ}
+\title{מתמטיקה B $\sim$ הרבה דברים}
+\date{27 למאי 2024}
+
+\begin{document}
+	\maketitle
+	\section{עוד על גבולות}
+	\subsection{משפטים נוספים}
+	\textbf{הגדרה: }$f \colon I \to \R$ (כאשר $I $ קטע) יש את תכונת ערך הביניים אם לכל $a, b \in I$ קיים $c$ בין $b$ ל־$a$ כך ש־$f(c)$ בין $f(b)$ ל־$f(c)$. 
+	
+	\textbf{משפט ערך הביניים: }בפונקציות רציפות מתקיימת תכונת ערך הביניים. 
+	
+	יש דוגמאות ``מאוד סוציופתיות'' שמקיימות את תכונת ערך הביניים אך אינן רציפות. 
+	
+	אופסי. הניסוח של עברי נוראי וכולל משום מה את פונקציית ירכלה. נגדיר מחדש את תכונת ערך הביניים. 
+	... אם לכל $a, b \in I$ ולכל $\xi$ בין $f(a)$ ל־$f(b)$ קיים $c$ בין $b$ ל־$a$ כך ש־$f(c) = \xi $. 
+	
+	\textbf{משפט הסנדוויץ': }אם מתקיים ש־$\lim_{x \to a} f(x) = \lim_{x \to a} h(x) = L$ וגם $f \le g \le h$ בסביבה נקובה של $a$ אז $\lim_{x \to a} g(x) = L$. ידוע גם בשם ``משפט שני שוטרים ושיכור''. 
+	
+	\section{שימושים במשפטים האלו}
+	\subsection{}
+	נניח ואנו מעוניינים לחשב את הגבול $\lim_{x \to 0} \frac{\sinx}{x}$. 
+	
+	מתוך הגבול היחיד הזה, שאותו נחשב באמצעות כלים גיאוטרים, נוכל לקבל את הגבולות האחרים שיעניינו אותנו בנוגע לגיאומטריה. 
+	
+	נתבונן במעגל היחידה, כאשר $x$ שואף ל־$0$. ראה סרטוט. השטח של המשולש הירוק הוא $\frac{1}{2} \sinx $ ושטח הגזרה הוא $\pi \cdot \frac{x}{2\pi}$. השטח של המשולש הירוק יהיה $\frac{1}{2}\tanx$. מתוך זה ברור מהסרטוט, $\frac{1}{2} \sinx < \pi \cdot \frac{x}{2\pi } < \frac{1}{2} \tanx$. מכמה מעברים אלגברים נקבל $\sinx < x < \tanx$. מצג אחד $\sinx <x \implies \frac{\sinx}{x} < 1 $, ומצד שני $x < \tanx  = \frac{\sinx}{\cosx} \implies \frac{\sinx}{x} > \cosx$. לפי משפט הסנדוויץ, בגלל ש־$\limz 1 = \limz \cosx = 1$ ממשפט הסנדוויץ'; $\limz \frac{\sinx}{x} = 1 $. [הערה: האי־שוויונות האלו צריכים להתקיים רק בסביבה של $x \to 0$]
+	
+	\textit{הערה: }הנחנו ש־$x$ חיובי, אך $\frac{\sinx}{x}$ זוגית ולכן זה לא משנה. 
+	
+	\textit{הערה 2: }הנחנו גם ש־$x$ ברדיאנים. נרחיב עבור כל מידה: $\limz \frac{\sin(ax)}{x} = \limz a \cdot \frac{\sin ax}{ax}\overset{t = ax}{=} \lim_{t \to 0}a \frac{\sin t}{t} = a \cdot 1 = a$
+	
+	ובפרט עבור מעלות. 
+	
+	\subsection{שימוש במשפט}
+	\begin{itemize}
+		\item נשתמש באותו הגבול עכשיו: 
+		\[ \lim_{x \to 0} \frac{1 - \cosx }{x^2} = \frac{2\sin^2 \left (\frac{x}{2}\right )}{x^2} = 2 \left (\frac{\sin \frac{x}{2}}{x^2} \right )^2 = 2 \cdot \left (\frac{1}{2} \right ) = \frac{1}{2} \] 
+		\item 
+		\[ \limz \frac{\sin ax}{\sin bx} = \limz \frac{\sin ax}{x} \cdot \frac{x}{\sin bx} = a \cdot \frac{1}{b} = \frac{a}{b} \]
+		\item תרגיל: 
+		\[ \lim_{x \to \inf} \sin \left [\underbrace{\frac{x^2 + 3}{\sqrt{x^6 + 18x - 1}}}_{u \to 0}\right ] = \lim_{u \to 0^+} \sin (u) = 0 \]
+	\end{itemize}
+	
+	\section{פונקציות היפר־טריגונומטריות}
+	ישנה הפונקציה $e^x$ המעריכית. 
+	חלקה האי־זוגי: $\frac{e^x - e^{-x}}{2}$ / החלק הזוגי: $ \frac{e^x + e^{-x}}{2} $
+	
+	החלק הזוגי יהיה $\cosh$ והאי־זוגי $\sinh$. ואכן חיבורם יהיה $e^x$. 
+	
+	גרפים אני לא עושה כאן, תעשו על דסמוס. 
+	
+	באופן דומה $\tanh x = \frac{\sinh x}{\cosh x}$. 
+	
+	טענה: $\sinh$ תהיה מונוטונית עולה בתחומה החיובי: 
+	\[ \underbrace{\cosh x+ \cosh y}_{\frac{e^x - e^y + e^{_x} - e^{-y}}{2}} = \frac{1}{2}e^x(1 - e^{-x - y})(1 - e^{-x + y}) \] 
+	אם $x > y > 0$ אז $-x + y $ שלילי כלומר $e^{-x + y } < 1 $. באופן דומה $1 - e^{-x - y }$ קטן מ־1. סה''כ מכפילים שני עגפים חיוביים וגמרנו. 
+	
+	משום שהפונקציה אי־זוגית אז זה מוכיח גם את המונוטוניות מהצד השני. 
+	\subsection{אז למה קוראים להן טריגונומטריות?}
+	\[ \cosh^2 x = \frac{e^{2x} + 2 + e^{-2x}}{4} = \frac{1}{2} + \frac{e^{2x} + e^{-2x}}{4} = \frac{1}{2} + \frac{1}{2}\cosh 2x = \frac{1 + \cosh 2x}{2} \]
+	\[ \sinh^2 = \frac{e^{2x} - 2 + e^{-2x}}{4}= -\frac{1}{2} + \frac{1}{2}\cosh 2x = \frac{\cosh 2x - 1}{2} \]
+	\[ \cosh^2x - \sinh^2x = 1 \]
+	\begin{align}
+		\sinh(x + y) &= \frac{e^{x + y}- e ^{-x - y}}{2} = \frac{e^{x + y} - e^{x - y} + e^{x - y} - e^{-x - y}}{2} \\
+		&= e^x \frac{e^y - e^{-y}}{2} + e^{-y} \frac{e^x - e^{-x}}{2} \\
+		&= e^x \frac{e^y - e^{-y}}{2} + e^{-y} \frac{e^x - e^{-x}}{2} + e^{-x}\frac{e^y - e^{-y}}{2} - e^{-x}\frac{e^y - e^{-y}}{2}
+	\end{align}
+	אוקי עכשיו עברי החליט שהוא מעדיף לפתור את זה בדרך אחרת: 
+	\begin{align}
+		\sinh(x + y) &= \frac{1}{4}(2 e^{x + y} - 2e^{-x - y} \bm{- e^{x - y} - e^{y - x} + e^{x - y} + e^{y - x}}) \\
+		&= \frac{1}{2}\left [ e^x\frac{e^y - e^{-y}}{2} + e^y \frac{e^x - e^{-x}}{2} + e^{-y} \frac{e^x-e^{-x}}{2} + e^{-x}\frac{e^y - e^{-y}}{2} \right ] \\
+		&= \frac{e^x - e^{-y}}{2} \cdot \frac{e^x + e^{-x}}{2} + \frac{e^x - e^{-x}}{2} \cdot \frac{e^y + e^{-y}}{2}\\
+		&= \sinh y \cdot \cosh x + \sinh x \cosh y
+	\end{align}
+	\textit{(בבולד מה שעברי הוסיף והחסיר אך לא משנה את הערך)}
+	כלומר, הזהויות שאנו מכירים מהפונקציות הטריגונומטריות מתנהגות באופן דומה לפונקציות הטריגונומטריות, עד לכדי סימן. בהמשך נראה למה. 
+	
+	\subsection{תרגיל}
+	\begin{align}
+		\cosh x \cdot \cosh y + \sinh x \cdot \sinh y &\seq \cosh(x + y) \\
+		\cosh x \cdot \cosh y + \sinh x \cdot \sinh y &= \frac{e^x + e^{-x}}{2} \cdot \frac{e^y + e^{-y}}{2} + \frac{e^x - e^{-x}}{2} \cdot \frac{e^y - e^{-y}}{2}\\
+		&=\frac{1}{2}\left [ 2e^x + 2e^{-x} + 2e^y + 2e^{-y} \right ] \\
+		&=e^{x + y} + e^{-x - y} = 2\cosh(x + y)
+	\end{align}
+	טוב עשיתי טעות ואין לי זמן למצוא איפה
+	
+	\subsection{הפונקציות ההופכיות לפונקציות ההיפר־טריגונומטריות}
+	\[ \begin{WithArrows}
+		y &= \sinh x= \frac{e^x - e^{-x}}{2} \Arrow{$\cdot e^x$} \\
+		ye^x &= \frac{(e^x)^2 - 1}{2} \\
+		(e^x)^2 &- 2ye^x - 1 \\
+		e^x &= y \pm \sqrt{y^2 + 1} \\
+		x &= \sinh^{-1} = \ln(y + \sqrt{y^2 + 1})
+	\end{WithArrows} \]
+	
+	\section{נגזרות}
+	בקורס חדו''א מגיעים לנגזרות בשבוע 7 אז תגידו תודה. עברי אומר שהוא יסתמך על החומר של המכינה ``של השמחות''. 
+	\[ f'(x) = \frac{\mathrm{d}f}{\dx} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \]
+	$h$ מייצג את $\dx$
+	נקודות על נגזרות: 
+	\begin{enumerate}
+		\item ליניאריות (בגלל שגבול מקיים את התכונות הללו): 
+		\[ (f + g)' = f' + g', \quad (a \cdot f') = a \cdot f' \]
+		\item מכפלה ומנה: 
+		\begin{align}
+			(f \cdot g) &= f'g + fg' \\
+			\left (\frac{f}{g}\right )' &= \frac{f'g - g'f}{g^2} \\
+			(x^n)' = nx^{n - 1}, \quad \sinx' = \cosx, &\quad \cosx' = -\sinx, \quad \tanx' = - \frac{1}{\cos^x}\\
+			(f \circ g) &= f'(g(x)) \cdot g'(x)
+		\end{align}
+		וזה נכון גם על אובייקטים לא קומטטביים כמו וקטורים (לפעמים). 
+		אפשר לגבר גם על נגזרת, ראשונה, שנייה, שלישית וכו':
+		\[ (\sinx)' = \cosx, \ (\sinx)'' = -\sinx, \ (\sinx)''' = -\cosx, \ (\sinx)'''' = \sinx \]
+		את הנגזרת ה־$n$־ית של פונקצייה כללית, נסמן ב־: 
+		\[ f^{\underbrace{''''''}_{\times n}} = f^{(n)}(x) = \frac{d^nf}{dx^n} \]
+		לפיכך, נוכל לכתוב: 
+		\[ (\sinx)^{(n)} = \begin{cases}
+			\cos x & n \equiv 1 \\
+			-\sinx & n \equiv 2 \\
+			-\cosx & n \equiv 3 \\
+			\sinx  & n \equiv 0
+		\end{cases} \mod 4 \]
+	\end{enumerate}
+		\subsection{נגזרת סתומה}
+		באנגלית – diffrenetation implicit (המלצה של עברי: לתרגם את זה דרך ויקיפדיה)
+		\[ xy = 1 \quad \quad y = \frac{1}{x} \quad \quad y' = - \frac{1}{x^2} \]
+		הטענה, היא שהיה אפשר לעבוד גם בסדר ההפוך: 
+		\[ y + y'x = (xy)' = 1' = 0 \implies y' = -\frac{y}{x} = -\frac{1}{x^2} \]
+		אז למה זה מועיל? 
+		\begin{align}
+			x^3y(x)^5 + 3x &= 8y(x)^3 + 1 \\
+			3x^2y^5 + 5y^4y'x^3 +3 &= 8 \cdot 3y^2y'+ 0 \\
+			y' = \frac{3x^2y^3 + 3}{246^2 - 5y^4x^3}
+		\end{align}
+		
+		יש מקרים שבהם אי אפשר לגזור עבור $y$ אך בגלל קסם באמצעות גזירה סתומה זה יעבוד. במקרים אחרים סתם יהיה יותר נוח להציב בנגזרת הסתומה במקרים לכזור מפלצות. 
+		\subsubsection{''תרגילונון''}
+		\begin{align}
+			y^2 + x\sin y &= \cosx^2 \\
+			2y y' + \sin y + x \cdot \cos y \cdot y' &= -\sin(x^2) \cdot 2x \\
+			\implies y' &= \frac{-2x\sin(x^2) - \sin y}{2y + \cos y \cdot x}
+		\end{align}
+		\subsection{שימוש בעולם האמיתי}
+		ידוע לנו הנגזרת של $x^a$. נרצה להרחיב עבור $a = \frac{n}{m}$ רציונלי ($n \in \Z, \ m \in \N$). כלומר, $y = x^\frac{n}{m}$ (תחת ההנחה שהיא מוגדרת). 
+		\begin{alignat}{9}
+			&y = x^{\frac{n}{m}} \implies y^m = x^n \\
+			\implies & my^{m - 1}y' = nx^{n - 1} \implies y' = \frac{nx^{n - 1}}{my^{m - 1}} \\
+			\implies & y' = \frac{nx^{n - 1}}{m x^{n - \frac{n}{m}}} = \frac{n}{m}x^{\frac{n}{m} - 1} \\
+			\implies &ax^{a - 1}
+		\end{alignat}
+		כלומר הנוסחה עובדת גם עבור אי־רציונליים. אם נגדיר כמו שצריך ממשיים אז זה יעבוד גם עליהם. וכנ''ל על מרוכבים. 
+		
+		\subsection{עוד דוגמאות}
+		לפי חוקי חזקות: 
+		\[ (\sqrt{x}) = \frac{1}{2} \cdot \frac{1}{\sqrt{x}} \]
+		תרגיל: תגזרו: 
+		\begin{align}
+			y(x) &= \cos(x^{5 / 3} \tan^{7 / 2}(x)) \\
+			y'(x) &= -\sin(x^{5 / 3} \tan^{7 / 2}(x)) \cdot \frac{5}{3}x^{2 / 3} \tan^{7/ 2}x \cdot \frac{7}{2} \cdot \tan^{5 / 2}(x) \cdot \frac{1}{\cos^2x}
+		\end{align}
+		
+\end{document}

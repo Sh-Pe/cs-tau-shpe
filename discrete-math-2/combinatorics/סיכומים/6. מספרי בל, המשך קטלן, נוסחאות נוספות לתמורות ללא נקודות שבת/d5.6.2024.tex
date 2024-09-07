@@ -1,0 +1,331 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+%\titleformat{\section}[block]
+%	{\fontsize{15}{15}}
+%	{\sen \dotfill \, \!\!\! \thesection \,\! \dotfill \she}
+%	{1em}
+%	{\MakeUppercase}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil}
+\newcommand\ndoc  {\dotfill \\ \vfil \hfil \textbf{\textit{שחר פרץ, 2024}} \hfil \vfil}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{קומבי 8 $\sim$ נטלי שלום }
+\date{5 ביוני 2024}
+
+\begin{document}
+	\maketitle
+	\section{המשך ההוכחה מהשיעור הקודם}
+	תזכורת להגדרה ולסימון: $=\cc_n$ מספר קטלן ה־$n$־י, מספר הסדרות המאוזנות באורך $2n$. 
+	
+	\textbf{טענה: }$\begin{cases}
+		\cc_n = \sum_{i = 0}^{n - 1}\cc_i \cdot \cc_{n - i - 1}\\
+		\cc_0 = 1
+	\end{cases}$
+	
+	\textbf{טענה: }(הביטוי הסגור ל־$\cc_n$) $\cc_n = \binom{2n}{n} - \binom{2n}{n + 1}$. 
+	
+	\begin{proof}
+		\ [המשך ההוכחה מהשיעור הקודם] [ההוכחה קומבינטורית]. הבעיה שרצינו לראות שקילות לה, היא מה מספר הדרכים במישור, להגיע מהנקודה $(0, 0)$ ל־$(n, n)$ ע''י צעדים של ימינה ומעלה, מבלי להיות מעל האלכסון $y = x$?
+		
+		אגף שמאל, כבור הוסבר בשיעור הקודם. 
+		
+		נסביר את אגף ימין (הביטוי הבינומי). נסתכל על כל ההכילוכים של ימינה ולמעלה מ־$(0, 0)$ ל־$(n, n)$. עלינו לבצע $n$ צעדים ימינה, ו־$n$ צעדים למעלה. נבחר מתוך $2n$ צעדים, אילו $n$ הם ימינה, סה''כ $\binom{2n}{n}$. 
+		
+		נסתכל על הליוך לא חוקי כלשהו. נתבונן בנקודה הראשונה בה עברנו את האלכסון, שערכה בהכרח יהיה $(k, k + 1)$. כמות הצעדים ימינה שנותרו עד הנקודה $(n, n)$, היא $n - k$. וכמות הצעדים למעלה $m - k - 1 $. \textit{(עקרון השיקוף)} מהנקודה הזו והלאה נשקף את המשך ההילוך. כלומר, כל צעד ימינה נחליף בלמעלה ולהפך. כלומר: ימינה $n - k - 1 $ ולמעלה $n - k $. נסיים בנקודה $(k + m - k - 1, k + 1 + n - k) = (n - 1, n + 1)$. כלומר, ההתאמה בין הילוכים לא חוקיים להילוכים כלשהם מ־$(0, 0)$ ל־$(n - 1, n + 1)$ היא חח''ע ועל. לכן, כמות ההילוכים הלא חוקיים היא $\binom{2n}{n + 1}$ (קצת כמו קודם, נבחר מתוך $2n$ צעדים, מהם ה־$n + 1$ צעדים למעלה). מעקרון המשלים נקבל את הדרוש. 
+	\end{proof}
+	
+	שימושי לדעת, שניתן לפשט את הביטוי הסגור, ולקבל: 
+	\[ \cc_n = \binom{2n}{n} - \binom{2n}{n + 1} = \frac{1}{n + 1} \binom{2n}{n} = \prod_{k = 2}^{n}\frac{n + k}{k} \]
+	
+	\section{מספרי בל}
+	\textbf{הגדרה: }$\bc_n$ (מספר בל ה־$n$־י) הוא מספר החלוקות של הקבוצה $\{1, \dots, n\}$. דוגמה: 
+	\[ \bc_3 = |\{\{\{1, 2, 3\}\}, \ \{\{1\}, \{2, 3\}\}, \ \{\{2\}, \ \{1, 3\}\}, \ \{\{3\}, \{1, 2\}\}, \ \{\{1\}, \{2\}, \{3\}\}\}| \]
+	
+	\textbf{טענה: }(נוסחת נסיגה עבור $\bc_n$): 
+	\[ \begin{cases}
+		\bc_n = \sumnko \binom{n - 1}{k - 1} \cdot \b_{n - k} \\
+		\bc_0 = 1
+	\end{cases} \]
+	
+	\begin{proof}
+		נסתכל על המספר $n$. נניח שהוא נמצא בחלוקה, בקבוצה שגודלה $k$ ($1 \le k \le n$). כמות האפשרויות ליתר $k - 1 $ האיברים בקבוצה היא $\binom{n - 1}{k - 1}$. את $n - k$ האיברים הנותרים, נחלק בדרך כלשהי. לכך יש $\bc_{n - k }$ אפשרויות. סה''כ מעקרון הכפל והסכום, נקבל את הדרוש. 
+	\end{proof}
+	הנוסחה הסגורה למספרי בל תהיה: 
+	\[ \bc_n = \frac{1}{e} \sum_{k = 0}^{\inf} \frac{k^{n}}{k!} \]
+	לא נוכיח אותה, כי נדרשים כלים בחדו''א על־מנת להגיע אליה. 
+	\section{הערות נוספות}
+	\subsection{תמורות ללא נקודות שבת}. 
+	\textbf{תזכורת: }מספר התמורות על $n$ איברים ללא נקודות שבת הוא
+	\[\begin{cases}
+		D_n = n! \sum_{i = 0}^{n}\frac{(-1)^{i}}{i!} \\
+		D_1 = 0
+	\end{cases}\]
+	שתי נוסחאות נסיגה נוספות שניתן להוכיח, הן: 
+	\begin{gather}
+		D_n = n! - \sumnko \bink D_{n - k} \\
+		D_n = (n - 1) (D_{n - 1} + D_{n - 2})
+	\end{gather}
+	נוכל להוכיח את שתיהן קומבינטורית. 
+	
+	\subsection*{תרגיל – שילוש מצולעים קמורים}
+	\textit{הערה: }כדי להצליח לפתור דברים בעזרת קטלן, נרצה להוכיח התאמה חח''ע ועל לבעיה אחרת. 
+	
+	\textbf{תרגיל: }בכמה דרכים ניתן לשלש (לחלק למשולשים בעזרת אלכסונים שאינן חותכים) מצולע קמור בעל $n /= 2$ קודקודים ממוספרים? נסמן ב־$T_n$. 
+	
+	\textbf{םתרון: }נמספר את הקודקודים בסדר עולה. נתבונן בצלע $(1, 2)$, ונראה לאיזה משולש היא שייכת. נפריד למקרים. 
+	\begin{itemize}
+		\item אם היא נמצאת במשולש עם הקודקוד $3$ או $n + 2$ (הקודקודים הצמודים) אז נותרנו עם מצולע בעל $n + 1$ קודקודים שעלינו לשלש, ויש $T_{n - 1}$ אפשרויותץ 
+		\item אחרת, אם הקודקוד השלישי הוא $4 \le k \le n + 1$ אז נותרנו עם מצולע בגודל $k - 1$ ומצולע בגודל $n - k + 4$. לכן: 
+		\[ T_n = 2T_{n - 1} + \sum_{k = 4}^{n + 1}T_{k - 3}T_{n - k + 2} = \open \set j = k - 3 \close \quad 2t_{n - 1} + \sum_{j = 0}^{n - 2} T_{j}T_{n - k - 1} = \sum_{j = 0}^{n - 1} T_j \dot T_{n - j - 1} = \cc_n \]
+		יש לנו גם את אותו תאי ההתחלה, $T_0 = \cc_0 = 1 $ ולכן סה''כ $T_n = \cc_n$. 
+	\end{itemize}
+	
+\end{document}
