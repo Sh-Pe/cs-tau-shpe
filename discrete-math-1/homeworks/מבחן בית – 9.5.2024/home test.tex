@@ -1,0 +1,287 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% combinatorics
+\newcommand\p     {\mathcall{p}}
+\newcommand\C     {\mathcall{c}}
+\newcommand\s     {\mathcall{s}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\sumnk {\sum_{k = 0}^{n}}
+\newcommand\sumni {\sum_{i = 0}^{n}}
+\newcommand\sumnko{\sum_{k = 1}^{n}}
+\newcommand\sumnio{\sum_{i = 1}^{n}}
+
+\title{מבחן בית במתמטיקה בדידה, סיכום תקב"צ}
+\author{שחר פרץ}
+\date{תשפ"ד, 9.5.2024}
+
+\begin{document}
+	\maketitle
+	\section{עוצמות}
+	
+	\begin{enumerate}[(a)]
+		\item נניח בשהשערת הרצף נכונה. נפריך קיום חלוקה $\Pi$ של $\R$ כך ש־$|\Pi| < \taz \land \forall X \in \Pi. |X| < \taz$. 
+		\begin{proof}
+			נניח בשלילה קיום חלוקה כזו. נוכיח, לכל עוצמה $a$ יתקיים $a < \taz \implies a \le \az$, תחת הנחת השערת הרצף. נניח בשלילה שלא כן, כלומר קיימת $a$ עוצמה כך ש־$a < \taz \land \lnot (a \le \az)$, לכן גם $a > \az$, כלומר $\az < a < \taz$ וזו סתירה להשערת הרצף. \\
+			בפרט, מהנתונים נסיק כי $|X| \le \az$ וגם לכל $X \in \Pi$ יתקיים $|X| \le \az$. משום ש־$\Pi$ חלוקה של $\R$, אזי ידוע $\bigcup_{X \in \Pi} X = \R$ ומשום ש־$|X| \le \az$ אז האיחוד לכל היותר בן מנייה, ומשום ש־$|X| \le \az$ אז האיחוד הוא של קבוצות בנות מנייה, ואיחוד בן מנייה של קבוצות לפחות בנות מנייה הוא בן מנייה כלומר $|\R| = \Big | \bigcup_{X \in \Pi}\Big| \le \az$ וסה"כ $\taz \le \az$ וזו סתירה למשפט קנטור. 
+		\end{proof}
+		\item צ.ל. קיום חלוקה $|\Pi| = \taz$ של $\R$ כך שלכל $X \in \Pi$ יתקיים $|X| = \taz$ \begin{proof}
+			\newcommand\Rge {\R_{\ge 0}}
+			לצורך הנוחות, נגדיר את הפונקציה:
+			\[ \Sigma \colon \Rge \to \R, \ \Sigma = \lambda r \in \Rge. \sum_{x \in \{r' \mid r' < r\}} x \]
+			. נתבונן בקבוצה הבאה: 
+			\[ \Pi = \Big \{ [\Sigma(r), \Sigma(r) + r ) \mid r \in \R_{> 0} \Big \} \]
+			נוכיח שהקבוצה להלן היא חלוקה של $\Rge$ המקיימת את התנאים הנדרשים. נסמן                 $\cc_r := [\Sigma(r), \Sigma(r) + r) $
+			\begin{itemize}
+				\item \textbf{זרות בזוגות: }יהיו $R_1, R_2 \in \Pi$, כאשר $r_1, r_2 \in \R$ הם הקבועים המקיימים $\cc_{r_1} = R_1, \cc_{r_2} = R_2$ הקיימים מעקרון ההחלפה. נניח בשלילה $R_1 \cap R_2 \neq \emptyset$, ולכן קיים $r \in R_1 \cap R_2$ בה"כ $r \in R_1 \setminus R_2$. מהנתונים $r \in [\Sigma(r_1), \Sigma(r_1) + r_1) \land r \in [\Sigma(r_2), \Sigma(r_2) + r_2)$. אם $r_1 < r_2$ אז $\Sigma(r_1) + r_1 \le \Sigma(r_2)$ אך $r < \Sigma(r_1) + r_1 \land r \ge \Sigma(r_2) $ וסה"כ זו סתירה, באופן דומה אם $r_1 > r_2$ אז נקבל סתירה, ואם $r_1 = r_2$ אז $\cc_{r_1} = \cc_{r_2}$ כלומר $R_1 = R_2$ ואז אין בעיה. 
+				\item \textbf{שוויון האיחוד: }נרצה להוכיח $\bigcup \Pi = \R_{>0}$. נוכיח בהכלה דו־כיוונית.
+				\begin{itemize}
+					\item יהי $r \in \R$, נוכיח $r \in \bigcup \Pi$ כלומר קיים $X \in \Pi$ כך ש־$r \in X$. קיים סכום של ממשיים רצופים שערכו $r$, ואת החסם העליון שלהם נסמן ב־$a$. נתבונן ב־$\cc_a$ שקיים ב־$\Pi$ מעקרון ההחלפה, עבורו יתקיים $\Sigma(a) = r \implies r \in \cc_a$ (לפי הבחירה של $a$), ועבור $X = \cc_a$ סיימנו. 
+					\item יהי $r \in \bigcup\Pi$, לכן קיים $X \in \Pi$ כך ש־$r \in X$ ומשום ש־$X \in \ps(\R)$ אז $r \in \R$ כדרוש. 
+				\end{itemize}
+				\item \textbf{קבוצות שאינן ריקות: }נניח בשלילה קיום קבוצה ריקה $R$, אז קיים $r \in \R_{> 0}$ כך ש־$\cc_r = \emptyset$, אך $\Sigma(r) \ge 0$ (כי זהו סכום של מספרים חיוביים), וגם $r > 0$, וסה"כ $\nexists x \in [\Sigma(r), \Sigma(r) + r)$ כלומר $\nexists \Sigma(r) \le x < \Sigma(r) + r $ וסה"כ $\nexists 0<x<r$ אך זו סתירה לכך ש־$r > 0$ ולצפיפות הממשיים. 
+				\item \textbf{עוצמת קבוצות: }יהי $X \in \Pi$, נוכיח $|X| = \taz$. משום ש־$[\Sigma(r), \Sigma(r) + r)$ (כאשר $r$ מוגדר באופן דומה לאיך שכבר הוגדר בסעיף זה) אינטרוואל תקין ולא ריק, לפי משפט עוצמתו $\taz$ כדרוש. 
+				\item \textbf{עוצמת החלוקה: }נתבונן בזיווג $f \colon \R \to \Pi, \ f = \lambda r \in \R. \cc_r$. נוכיח שהוא זיווג. נניח בשלילה אינו חח"ע, לכן $\exists r_1, r_2. r_1 \neq r_2 \land \cc_{r_1} = \cc_{r_2}$ אך זה נסתר כאשר הוכחנו זרות בזוגות, ונניח בשלילה שהוא לא על כלומר קיים $X \in \Pi$ כך ש־$\forall r \in \R. \cc_r \neq X$ וזו סתירה לעקרון ההפרדה. 
+			\end{itemize}
+		עתה הוכחנו שקיימת חלוקה שעונה על הדרישות על הממשיים הגדולים ממש מ־0. קיים זיווג $F \colon \R_{>0} \to \R$ כי $\Rge$ קרן ועוצמתה $\al$ לפי משפט, ולכן החלוקה $\Pi_2 = \{F(X) \mid X \in \Pi\}$ תענה על התנאים כי אין הזיווג ישנה את תכונות החלוקה. 			
+		\end{proof}
+		
+		\item נתון יחס שקילות $R = \big \{ \la f, g \ra \in (\R \to \R)^2 \colon | \{ x \in \R \mid f(x) \neq g(x) \} | \le \az \big \} $. צ.ל. $ |(\R \to \R) / R| = \al $ 
+		
+		\begin{proof}
+			נוכיח באמצעות קש"ב. 
+			\begin{itemize}
+				\item \textbf{חסם עליון: }נמצא פונקציה חח"ע. מתאימה. נתבונן בפונקציה הבאה: 
+				\[ F \colon (\R \to \R)/R \to \R \times \R, \  F = \lambda [f]_R. \overline{\bigcap_{k \in [f]_R} k} \]
+				כאשר $\overline A$ הוא המשלים של $A$ בעבור עולם דיון $\R \times \R$. נוכיח שהיא חח"ע. 
+				\begin{itemize}
+					\item \textbf{מוגדרת היטב: }אין צורך להוכיח בלתי־תלות בנציג משום שהנציג אינו קשור בפונקציה. 
+					\item \textbf{חח"ע: }יהיו $[f]_R, \ [g]_R$ מחלוקות שקילות שונות. נוכיח $F([f]_R) \neq F([g]_R)$. נניח בשלילה שוויון, אזי יתקיים השוויון $\ac :=  \overline {\bigcap_{k \in [f]_R} k} = \overline{\bigcap_{k \in [g]_R} k} $. נניח בשלילה $|[f]_R| = 1$, נתבונן ב־$f' = f \setminus \la 0, f(x) \ra \cup \la 0, f(x) + 1 \ra$ ונמצא סתירה. לכן, $|[f]_R| > 1$ וקיימת שם לפחות פונקציה אחת נוספת. נבחר $f' \in [f]_R$, ידוע $|\{x \in \R \mid f(x) \neq f'(x)\}| \le \az$ כלומר כמות האיברים השונים ביניהם קטנה מ־$\az$ ומשום ש־$F([f]_R) = \ac$ מוגבל להכיל את כל האיברים השונים בין כל הפונקציות במחלקת השקילות, אז $\ac  \le \az$. נסיק, שבפרט $f \cap g \subseteq \ac$ יקיים $|f \cap g| = |\{x \in \R \mid f(x) \neq f(x)\}| \le |\ac| \le \az$ ולכן $fRg$ כלומר $[f]_R = [g]_R$ וזו סתירה לכך שמחלקות השקילות שונות. 
+				\end{itemize}
+				סה"כ $|(\R \to \R)^2 / R| \le |\R \times \R| = \al$. 
+				\item \textbf{חסם תחתון: }נתבונן בפונקציה הבאה: 
+				\[ G \colon \ps(\N) \to (\R \to \R) / R, \ G = \lambda f \in \N \to \N. [\lambda r \in \R. f(\lf r \rf)]_R \]
+				ברור היא התחום והטווח שלה נכונים. נוכיח שהיא חח"ע. יהיו $f_1, f_2 \in \N \to \N$ פונקציות שונות. לכן, קיים $n \in \N$ כך ש־$f_1(n) \neq f_2(n)$. צ.ל. $G(f_1) \neq G(f_2)$. נתבונן בנציג $g_1=  \lambda r \in \R. f(\lf r \rf)$ מ־$[f_1]_R$ ובנציג $g_2 = \lambda r \in \R. f(\lf r \rf)$ מ־$[f_r]_R$. עבור $r \in [n, n + 1)$ יתקיים $\lf r \rf = n$ ולכן $g_1(r) \neq g_2(r)$, וידוע $\ [n, n + 1) \subseteq \{x \in \R \mid f(x) \neq g(x)\} =: \cc$ כלומר $\al = |[n, n + 1)| \le \cc$ בניגוד לתנאי ההכרחי והמספיק $\cc \le \az$ לקיום $g_1Rg_2$ ולכן $\lnot g_1 R g_2$, כלומר $G(f_1) = [g_1]_R \neq [g_2]_R = G(f_2)$ כדרוש. מקיום אותה הפונקציה נסיק $\al = |\ps(\N)| \le |(\R\to \R)^2/R|$. 
+			\end{itemize}
+			הוכחנו $\al \le |(\R \to \R)^2 / R| \le \al$ ומקש"ב $|(\R \to \R)^2 / R| = \al$ כדרוש. 
+		\end{proof}
+		
+	\end{enumerate}
+	
+	\section{יחסי סדר}
+	תהי $\la A, \preceq \ra$ קבוצה סדורה חלש. נגדיר $f \colon A \to \ps(A)$ באמצעות $f = \lambda a \in A. \{b \in A \mid a \preceq b\}$
+	\begin{enumerate}[(a)]
+		\item צ.ל. $f$ חח"ע. \begin{proof}
+			נניח בשלילה $f$ אינה חח"ע. לכן, קיימים $a, b \in A$ שונים כך ש־$f(a) = f(b)$. מכלל $\beta$ נסיק ש־:
+			\[ \ac := \{a' \in A \mid a \preceq a'\} = \{b' \in A \mid a \preceq b'\} =: \bc \]
+			משום שהיחס יחס סדר חלש, אזי $a \in \ac \land b \in \bc$, לכן משוויון קבוצות גם $a \in \bc \land b \in \ac$ כלומר $b \preceq a \land a \preceq b$ ומאנטי־סימטריות חלשה סה"כ $a = b$ וזו סתירה לכך שהם שונים, כלומר $f$ חח"ע כדרוש. 
+		\end{proof}
+		\item נגדיר את קבוצת האיברים המינימליים להיות $X$. נוכיח $\cc = \bigcup_{a \in X} f(a) = A$. 
+		\begin{proof}
+			נביא דוגמא ניגדית. נקבע $A = \R$, ונתבונן ביחס הסדר הבא: 
+			\[ \preceq = (\le_\R \setminus \Z^2) \ \cup \le_\N \cup \ \{ \la z, z \ra \mid z \in \Z\} \]
+			מפילוג למקרים יהיה ניתן להוכיח בקלות כי הוא יחס סדר. יתקיים שבעבורו $0$ איבר מינימלי, כי נניח בשלילה קיום איבר $r \neq 0 \land r \preceq 0$, אזי או ש־$r (\le_R \setminus \Z^2) 0$ וזו סתירה כי $0$ שלם ובפרט אינו בר השוואה ביחס הזה, או ש־$r \le_\N 0$ וזו סתירה. גם ידוע כי אין איברים מינימלים נוספים, כי ל־$(\le_R \setminus \Z^2)$ אין מינימום ובעבור $\le_\N$ אין איברים הנמצאים ביחס הסדר נמוך מ־0 וגם הוא קווי. נניח בשלילה ש־$-1 \in \cc$, לפיכך קיים $a \in X$ (כאשר $X$ קבוצות כל המינימליים, וכבר הוכח ש־$0$ הוא האיבר המינימלי היחיד כלומר $a = 0$) כך ש־$-1 \in f(a)$. בעקבות כך ש־$-1 \in \Z$, אז $-1$ לא בר השוואה ביחס $\le_R \setminus \Z^2$, ולכן נסיק שבהכח $-1 = 0 \lor 0 \le_\N -1 $ וכך או אחרת זו סתירה. 
+		\end{proof}
+		\item תהי $B \subseteq A$ קבוצה. נגדיר חסם מלמעלה של $B$ לאיבר $m \in A$ אמ"מ $\forall b \in B. b \preceq m$. נגדיר ש־$m \in A$ חסם עליון של $B$ אמ"מ הוא חסם מלמעלה ולכל $m'$ חסם מתמעלה יתקיים $m \preceq m'$. נוכיח $\bigcap_{b \in B} f(b) =  f(m)$. \begin{proof}
+			נוכיח באמצעות הכלה דו כיוונית. 
+			\begin{itemize}
+				\item יהי $c \in f(m)$ כלומר $c \in A \land m \preceq c$. נוכיח $c \in \bigcap_{b \in B} f(b)$, או באופן שקול, יהי $b \in B$, נוכיח $c \in f(b)$. ידוע $m$ חסם מלמעלה לכן לכל $b \preceq m$, ומטרנזיטיביות $b \preceq c$ ומכאן $c \in \{a \in A \mid b \preceq a\} = f(b)$ כדרוש. 
+				\item יהי $c \in \bigcap_{b \in B}f(b)$ כלומר $\forall b \in B. c \in f(b)$, נוכיח $c \in f(m)$. נניח בשלילה $c \notin f(m)$. אם $c \preceq m$: ידוע שלכל $b \in B$ יתקיים כי $b \preceq c$ (כי $c \in f(b)$), ונסיק ש־$c$ חוסם מלמעלה את $B$. לכן, בגלל ש־$m$ חסם עליון, אז $m \preceq c$. כלומר $c \in f(m)$ וזו סתירה. 
+			\end{itemize}
+			סה"כ מהכלה דו כיוונית יתקיים שוויון כנדרש. 
+		\end{proof}
+		
+		\end{enumerate}
+	
+	\pagebreak
+	\section{פונקציות}
+	תהי $f \colon \N \to \N$ פונקציה. פונקציה $g \colon \N \to \N$ היא שורש של $f$ אמ"מ $f = g \circ g$. 
+	\begin{enumerate}[(a)]
+		\item נניח $f$ הפיכה, ותהי $g$ שורש של $f$, נוכיח $g$ הפיכה. \begin{proof}
+			נניח בשלילה $g$ אינה הפיכה, או באופן שקול היא אינה חח"ע או שאינה על. נפלג למקרים. 
+			\begin{itemize}
+				\item נניח והיא אינה חח"ע. מכאן, קיים איברים שונים $n, m \in \N$ כך ש־$f(n) = f(m)$. לכן, $g(n) = (f \circ f)(n) = f(f(n)) = f(f(m)) = (f \circ f)(m) = g(m)$ כלומר $g(n) = g(m)$ כלומר $g$ לא חח"ע וזו סתירה. 
+				\item נניח והיא אינה על. אזי, קיים $n \in \N$ כך ש־$\forall a \in \N. f(a) \neq n$. נניח בשלילה קיום $m \in \N$ כך ש־$g(m) = n$, נסיק $(f \circ f)(m) = n \implies f(f(m)) = n$ ומכאן קיים $a = f(m)$ כך ש־$f(a) = n$ וזו סתירה, לכן $g$ לא על וזו סתירה. 
+			\end{itemize}
+			סה"כ הגענו לסתירה בכל המקרים כלומר $f$ בהכרח זיווג כדרוש. 
+		\end{proof}
+		\item נרצה להוכיח שהקבוצה $A = \{g \in \N \to \N \mid g \ \mathrm{a \ root \ of } \ id_\N \}$ מקיימת $|A| = \al$. \begin{proof}
+			נתבונן בפונקציה הבאה: 
+			\[ F \colon (\N \to \{0, 1\}) \to A. F = \lambda f \in \N \to \{0, 1\}. \lambda n \in \N. \begin{cases}
+				n + 1  &  n \in \Neven \land f\left (\frac{n}{2} \right ) = 1 \\
+				n - 1  &  n \in \Nodd \land f\left (\frac{n - 1}{2} \right ) = 1 \\
+				n & \other
+			\end{cases} \]
+			נוכיח שהיא חח"ע ומוגדרת היטב. 
+			\begin{itemize}
+				\item \textbf{מוגדרת היטב: }יהי $n \in \N$, נוכיח $f := F(n) \in A$. לשם כך, צ.ל. $f \circ f = id_\N$ כלומר יהי $m \in \N$, נוכיח $(f \circ f)(m) = id_\N(m)$. נפלג למקרים. אם $n \in \Neven$ וגם $f(n/2) = 1$ אז $f(n) = n + 1$, וגם $n + 1 \in \Nodd$ ו־$f((n + 1 - 1)/2) = f(n/2) = 1$  כלומר $f(n + 1) = n + 1 - 1 = n $. סה"כ $(f \circ f)(n) = f(f(n)) = f(n + 1) = n = id_\N(n) $ כדרוש. באופן דומה אם $n \in \Neven $ נגיע לתוצאות זהות. בכל מקרה אחר, $f(f(n)) = f(n) = n = id_\N(n)$ כדרוש גם־כן. סה"כ בכל המקרים יתקיים השוויון הנדרש. כמו כן $f(\dots)$ תמיד מוגדר היטב כי אם $n \in \Neven$ אז $n/ 1 \in \N$ ואם $n \in \Nodd$ אז $(n - 1)/2 \in \N$, וגם $n \ge 1$ כלומר $n - 1 \ge 0 \implies n - 1 \in \N \implies f(n) \in \N$. 
+				\item \textbf{חח"ע: }יהיו $f_1, f_2 \in \N \to \{0, 1\}$ פונקציות שונות, כלומר קיים $n \in \N$ כך ש־$f_1(n) \neq f_2(n)$, ובה"כ $f_1(n) = 0, f_2(n) = 1$ (הרי יש רק שתי אופציות). לכן, $F(f_1)(2n) = n \neq n + 1 = F(f_2)(n)$ ומשוויון פונקציות $F(f_1) \neq F(f_2)$ כדרוש. 
+			\end{itemize}
+			סה"כ $\al = |\N \to \{0, 1\}| \le |A|$ וגם $A \subseteq \N \to \N$ כלומר $|A| = |\N \to \N| = \az\uaz = \al$ כי $\al = \taz \le \az\uaz \le (\taz)\uaz = \taz$ ולכן $|A| = \al$ מקש"ב, כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{לכסון}
+	נגדיר: 
+	\[ X = \{ f \in \N \to \N \mid \forall n \in \N. f(n^2) = f(n) \} \]
+	נוכיח באמצעות לכסון כי $|X| \neq \az$. 
+	\begin{proof}
+		נניח בשלילה קיום פונקציה $F \colon \N \to X$ זיווג. נסמן את קבוצת כל הראשוניים ב־$P$. ידוע שהיא אינסופית ומוכלת בטבעיים, כלומר $\az \le |P| \le \az$ משמע $|P| = \az$ כלומר קיימת פונקציית זיווג בין הטבעיים לבינה, נסמנה $f_p$. נסמן $P_n = f_p(n)$ לכל $n \in \N$. 
+		
+		ניגש להגדיר את פונקציית הלכסון: 
+		\[ g \colon \N \to \N, \ g = \lambda n \in \N. \begin{cases}
+			F(m)(P_m) + 1 &  \exists m, k \in \N. P_m^{k} = n \\
+			0 & \other
+		\end{cases} \]
+		
+		נוכיח כמה דברים על מנת להתקדם הלאה. 
+		\begin{itemize}
+			\item $\bm{g}$ \textbf{מוגדרת היטב: }בזמן הגדרת הפונקציה השתמשנו ב־$m, k$ הקשורים ב־$n$, אך איננו יודעים שהם קשורים ל־$n$ באופן חח"ע, כלומר יתכן וההגדרה אמביגציונית כך ש־$g$ לא ח"ע. לכן כך, יהי $n$, נניח $\exists m, k \in \N. P_m^k = n$ ונוכיח שהם יחידים. נניח בשלילה שקיימים $m' \neq m, k' \neq k$ כך ש־$P_{m'}^{k'} = n$. משום ש־$P_m$ ו־$P_{m'}$ ראשוניים, הפירוק לגורמים ראשוניים של $n$ הוא הן $\underbrace{P_m \cdot P_m}_{k \ \mathrm{times}}$ והן $\underbrace{P_{m'} \cdot P_{m'}}_{k' \ \mathrm{times}}$ כלומר הפירוק לגורמים ראשוניים לא יחיד וזו סתירה למשפט היסודי של האריתמטיקה. המקרה השני לא תלוי בשום דבר ולכן הוא תקין. נותר להוכיח כי $\range(g) = \N$, דבר שיתקיים כי $0 \in \N$ וגם $F(m)(m) \in \N$ כלומר $F(m)(m) + 1 \in \N$ וכל המקרים טבעיים. 
+			\item $\bm{g \in A}$\textbf{: }יהי $n \in \N$, נרצה להוכיח $f(n^2) = f(n)$. נפלג למקרים. 
+			\begin{itemize}
+				\item אם $\exists m \in \N. P_m = n$, אז $f(n) = F(m)(P_m) + 1$ כאשר $k = 1$. בעבור $k = 2$ ואותו ה־$m$ יתקיים $f(n^2) = F(m)(P_m) + 1 = f(n)$.
+				\item אם $\nexists m, k. P_m^k = n$ אז $f(n) = 0$, ו־$f(n^2) = 0$ גם כן כי נניח בשלילה שקיימים $m, k$ כך ש־$P_m^k = n^2$, נסיק $P_m^{0.5k} = n$. אם $2 \mid k$ אז $k' = 0.5k$ וזו סתירה, אם לא אז קיים $j \in \N$ כך ש־$k = j + 0.5$ ולכן $P_m^{0.5k} = P_m^{j + 0.5} = P_m^j \cdot \sqrt{P_m} \in \N$ כלומר $\sqrt{P_m} \in \N$ (כי כפל טבעי ובאי־טבעי הוא אי־טבעי) וסה"כ סתירה כי זה אומר שקיים $P' \in \N$ כך ש־$P'^2 = P_m$ אך $P_m$ ראשוני, ומהלמה של אוקלידס, אי־פריק – סתירה. 
+			\end{itemize}
+			\item $\bm{g \notin \Img(F)}$\textbf{: }באופן שקול נוכיח $\forall m \in \N. F(m) \neq g$. יהי $m \in \N$, נניח בשלילה $F(m) = g$. משוויון פונקציות $\forall n \in \N. F(m) = g$. משום שישנם אינסוף ראשוניים, קיים $n := P_m \in P$, ונסיק $F(m)(n) = g(n)$ ומכיוון שבעבור $k' = 1, m' = m$ יתקיים $P_{m'}^k = n$ אז $f(n) = F(m)(P_m) + 1$ ומטרזנטיביות $F(m)(P_m) + 1 = F(m)(P_m)$ כלומר $0 = 1$ וזו סתירה. 
+		\end{itemize}
+		
+		סה"כ, $g$ היא פונקציה שנמצאת ב־$A$ אך אינה בתמונה של $F$, כלומר $F$ אינה על חרף היותה זיווג, וזו סתירה. על כן $|X| \neq \az$. 
+	\end{proof}
+\end{document}
