@@ -1,0 +1,461 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+% tikz
+\usepackage{tikz,pgfplots}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill \; \thesection \; \dotfill \she}
+{0em}
+{\MakeUppercase}
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelfont{rm}{David CLM}
+\babelfont{sf}{David CLM}
+\babelfont{tt}{Monaspace Argon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\del   {$ \!\! $}
+\newcommand\quadtw{\quad \quad}
+\newcommand\quadtr{\quad \quad \quad}
+\newcommand\quadq {\quad \quad \quad \quad}
+\newcommand\quado {\quadq \quadq}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil}
+\newcommand\ndoc  {\dotfill \\ \vfil \hfil \textbf{\textit{שחר פרץ, 2024}} \hfil \vfil}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sex   {\sec x}        % NICE
+\newcommand\cotx  {\cot x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+
+\newcommand\coshx  {\cosh x}
+\newcommand\sinhx  {\sinh x}
+\newcommand\tanhx  {\tanh x}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limhz {\lim_{h \to 0}}
+\newcommand\limh  {\lim_{h \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+
+\newcommand\op    {^{-1}}
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה B $\sim$ תרגיל בית 2 $\sim$ גבולות, נגזרות ופונקציות היפרבוליות}
+
+\begin{document}
+	\maketitle
+	\subsection*{טענות עזר (לא באמת השתמשתי בהן אבל לא בא לי למחוק)}
+	הגבול הבא: 
+	\[ \lim_{x \to 0^{\pm}} \frac{\cosx}{ax} = \lim_{x \to 0^{\pm}} \frac{1}{x} = \pm\inf \]
+	
+	נרצה להוכיח $\tanhx < x < \sinhx$, לכל $x > 0 $. ראשית כל נוכיח את אי־השוויון $\tanhx < x$: 
+	\[ \begin{WithArrows}
+		\tanhx < x \iff &\frac{e^x - e^{-x}}{e^{x} + e^{-x}} < x \Arrow{$\cdot (e^{x} + e^{-x})$}\\
+		\impliedby \; &e^{x} - e^{-x} < e^{x + 1}  - e^{-x + 1} \Arrow{$-e^{x + 1} + e^{-x}$} \\
+		\iff &e^{x} - e^{x + 1} < e^{-x} - e^{-x + 1} \\
+		\iff &e^{x}(1 - e) < e^{-x}(1 - e) \Arrow{$\cdot (1  - e)^{-1}$}\\
+		\iff &e^{x} < e^{-x} \Arrow{$\ln$} \\
+		\iff &x < -x
+	\end{WithArrows} \]
+	כאשר הא''ש האחרון לכל $x > 0$, כדרוש. 
+	ועבור הכיוון השני: 
+	\begin{align*}
+		x < \sinhx \iff x < \frac{e^x - e^{-x}}{2} \impliedby \frac{1}{2} < e^{x - 1} - e^{-x - 1} < e^{x - 1} - e^{-x + 1} = \sinh(x - 1)
+	\end{align*}
+	ומשום שיש שוויון הדוק עבור בסיס $0$, הטענה תתקיים באינדוקציה לכל $x \in \N$, וממשפט ערך הביניים, לכל $x \ge 0 $ כדרוש. 
+	
+	\section{} %%1
+	נרצה לחשב את הגבולות הבאים: 
+	\begin{enumerate}[a.]
+		\item 
+		\begin{alignat*}{9}
+			\limz \frac{\cos ax - \cos bx}{x^2} &= \limz \frac{-2 \sin(0.5x(a + b))\sin(0.5x(a - b)))}{x^2} \\
+			&= -2 \limz \frac{\sin(x0.5(a + b))}{x}\cdot\frac{\sin(x0.5(a - b))}{x} \\
+			&= -2 \limz 0.5(a + b) \cdot 0.5(a - b) = \bm{\frac{1}{2}\cl{a^2 - b^2}}
+		\end{alignat*}
+		\item 
+		\[ \begin{WithArrows}
+			\limz \frac{1 - \cos(\sinx)}{x^2} &= \limz \frac{1 - \cos(\sinx)}{x^2} \cdot \frac{1 + \cos(\sinx)}{1 + \cos(\sinx)} = \limz \frac{1^2 - \cos^2(\sinx)}{x^2(1 + \cos(\sinx))} \\
+			&= \limz \frac{\sin^2(\sinx)}{2x^2} = \frac{1}{2} \limz \cl{\frac{\sin(\sinx)}{x}}^2 = \frac{1}{2}\cl{\limz \frac{\sin(\sinx)}{\sinx} \cdot \frac{\sinx}{x}}^2 \Arrow{$\set t := \sinx$}\\
+			&= \frac{1}{2}\bigg(\limz \frac{\sinx}{x} \cdot \lim_{t \to 0} \frac{\sin t}{t}\bigg)^2 = \frac{1}{2} \cdot 1^2 = \bm{\frac{1}{2}}
+		\end{WithArrows} \]
+		\textit{(מותר להוציא את הריבוע מהגבול תחת ההנחה שקיים גבול סופי)}
+		
+		\item 
+		\begin{alignat*}{9}
+			\limz \cl{\frac{\tan(5x + 3)}{\sec(\sqrt x + 2)}\sin(\cos x)} = \limz \frac{\sin(5x + 3)\cos(\sqrt x + 2)\sin(\cos x)}{\cos(5x + 3)} = \frac{\sin 3 + \cos 2 + \sin1}{\cos 3} = \bm{0.05}
+		\end{alignat*}
+		\item נרצה לחשב את הגבול $\limz \frac{e^{ax} - e^{bx}}{x}$. 
+		כדי לפתור את הגבול לעיל, ניעזר בגבול הבא: 
+		\[ \begin{WithArrows}
+			  &\lim_{x \to 0}\frac{e^x - 1}{x} \Arrow{$\set t = \frac{1}{x}$} \\
+			= &\lim_{t \to \inf} t \cdot \cl{\sqrt[t]{e} - 1} \Arrow{Since $\lim_{t \to \inf} \csb{\cl{1 + \frac{1}{t}}^t = e \implies \sqrt[t]{e}= 1 + \frac{1}{t}}$} \\
+			= &\lim_{t \to \inf} t \cdot \cl{1 + \frac{1}{t} - 1} \Arrow{Simplification} \\
+			= &\lim_{t \to \inf}t \cdot \frac{1}{t} = \lim_{t \to \inf} \frac{t}{t} = 1
+		\end{WithArrows} \]
+		\textit{(אני לא יודע, אבל אני מקווה שלהוציא שורש בתוך גבול זה חוקי).} נחזור לגבול המקורי: 
+		\[ \begin{WithArrows}[groups]
+			\limz \frac{e^{ax} - e^{bx}}{x} &= \limz \frac{e^{bx}(e^{(a - b)x} - 1)}{x} \\
+			&= \limz \underbrace{e^{bx}}_{=1} \cdot (a - b) \frac{e^{(a - b)x} - 1}{(a - b)x} \Arrow{$\set t = (a - b)x$} \\
+			&= \lim_{t \to 0} (a - b) \cdot \frac{e^{t} - 1}{t} \Arrow[new-group]{לפי הגבול שכבר הוכח} \\
+			&= \bm{a - b}
+		\end{WithArrows} \]
+		
+		
+		\item לפי הסעיף הקודם: 
+		\begin{alignat*}{9}
+			\limz \frac{a^x - b^x}{x} = \limz \frac{e^{x\ln a} - e^{x\ln b}}{x} = \bm{\ln a - \ln b}
+		\end{alignat*}
+		
+	\end{enumerate}
+	\section{} %%2
+	\begin{enumerate}[a.]
+		\item 
+		\[ \begin{WithArrows}[groups]
+			\tanh(x \pm y) &= \frac{\sinh(x \pm y)}{\cosh(x \pm y)}= \frac{\cosh x\sinh y \pm \sinhx \cosh y}{\cosh x \cosh y \pm \sinhx \sinh y} \Arrow{$\ \cdot \displaystyle \frac{1}{\cosh x \cosh y}$} \\
+			&= \frac{\frac{\sinh y}{\cosh y} \pm \frac{\sinhx}{\coshx}}{1 \pm \frac{\sinhx\sinh y}{\coshx \cosh y}} = \frac{\tanh x \pm \tanh y}{1 \pm \tanh\tanh y}
+		\end{WithArrows} \]
+		\item נתבסס על הזהות $\sinh (-x) = -\sinhx$, כדי להוכיח את הזהות לחיבור $\sinh$, שמתקיימת כי: 
+		\[ \begin{WithArrows}
+			\sinh (-x) = \frac{e^{-x} - e^{x}}{2} = -\frac{e^{x} - e^{-x}}{2} = -\sinhx
+		\end{WithArrows} \]
+		כדי להוכיח את הזהות: 
+		\[ \begin{WithArrows}[groups]
+			&2\sinh \cl{\frac{x\pm y}{2}}\cosh\cl{\frac{x \mp y}{2}} \Arrow[up]{לפי הגדרה} \\
+			=&   \, \cl{e^{0.5(x\pm y)} - e^{0.5(-x \mp y})}\cl{e^{0.5(x \mp y)} + e^{0.5(-x \pm y)}} \Arrow[up, xoffset=10pt]{גורם משותף}\\
+			=& \;\, e^{0.5(x \mp y)}\cl{e^{0.5(x\pm y)} - e^{0.5(-x \mp y)}} + e^{0.5(-x \pm y)}\cl{e^{0.5(x\pm y)} - e^{0.5(-x \mp y)}} \\
+			=& \;\, e^{x} - e^{\mp y} + e^{\pm y} - e^{-x} = e^{x} - e^{-x} + e^{\pm y} - e^{\mp y} \\
+			=& \;\, \sinh x + \sinh \pm y \Arrow[new-group]{לפי הזהות לעיל}\\
+			=& \;\, \sinhx \pm \sinh y
+		\end{WithArrows} \]
+		\item ניחוש: 
+		\[ \cosh(x + y) = \coshx \cosh y + \sinh x \sinh y \]
+		(הנוסחה הטרגיונומטרית + החלפת סימן)
+		\item 
+		\[ \arccosh x \seq \ln(x + \sqrt{x^2 + 1}) := y \]
+		כדי להוכיח זאת, נגדיר $y = \iota y \ge 0. x = \cosh y$ (כי $\cosh$ פונקציה זוגית, לכן נרצה לבחור מראש תחום לפונקציה ההופכית). נקבל: 
+		\[ \cosh y = x \iff \frac{e^y + e^{-y}}{2} = x \iff e^{2y} + 1 = 2xe^{y} \]
+		משום שהפונקציה $\coshx$ חח''ע (מהיותה מונוטונית עולה חזק) בתחום $x \ge 0$, אזי אם נציב את ערך $y$ ונקבל טואטולוגיה, נסיק שזהו הערך היחיד שיענה על ההגדרה: 
+		\begin{align*}
+			(x + \sqrt{x^2 - 1})^2 + 1 &= 2x(x + \sqrt{x^2 - 1}) \\
+			x^2 + 2x\sqrt{x^2 - 1} + x^2 - 1 +  1 &= 2x^2 + 2x\sqrt{x^2 - 1}\\
+			2x^2 + 2x\sqrt{x^2 - 1} &= 2x^2 + 2x\sqrt{x^2 - 1} \\
+			0 &= 0
+		\end{align*}
+		ואכן מצאנו טוטולוגיה. 
+	\end{enumerate}
+	
+	\section{} %%3
+	\begin{enumerate}[a.]
+		\item נגזרת הפונקציה $f(x) = \sqrt x$ לפי הגדרה: 
+		\begin{align*}
+			f(x) = \dfdx &= \dit = \limhz \frac{\sqrt{x + h} - \sqrt{x}}{h} \\
+			&= \limh \frac{\sqrt{x + h} - \sqrt{x}}{h} \cdot \frac{\sqrt{x + h} + \sqrt x}{\sqrt{x + h} + \sqrt x} \\
+			&= \limh \frac{x + h - x}{h\sqrt{x + h} + h\sqrt{x}} = \frac{h}{h(\sqrt{x + h} + \sqrt{x})} \\
+			&= \limh \frac{1}{\sqrt{x + h} + \sqrt x} = \frac{1}{\sqrt x + \sqrt{x}} \\
+			&= \bm{\frac{1}{2}x^{-0.5}}
+		\end{align*}
+		\item נגזרת הפונקציה $f(x) = \cosx$ לפי הגדרה: 
+		\begin{align*}
+			  f'(x) = \dfdx = \limh \frac{\cos(x + h) - \cosx}{h}
+			= \limh \frac{-2 \sin \left ( \frac{x + h + (-x)}{2}\right )\sin\left (\frac{x + h - (-x)}{2}\right )}{h}
+			= -\sin(x) \underbrace{\limh\frac{\sin\left (\frac{h}{2}\right )}{\frac{h}{2}}}_{=1} 
+			= \bm{-\sinx}
+		\end{align*}
+	\end{enumerate}
+	\section{} %%4
+	\begin{enumerate}
+		\item 
+		\[ \csb{\ln (\tanx)}' = \frac{1}{\tanx} \cdot \frac{1}{\cos^2x} = \cotx \sec^2x \]
+		\item
+		\[ \csb{\sin\cl{e^{\cos(x^2)}}}' = -\cos\cl{e^{\cosx^2}} e^{\cos x^2} \sin x^2 \cdot 2x \]
+	\end{enumerate}
+	\section{} %%5
+	\begin{enumerate}[a.]
+		\item צ.ל. $f \colon I \to J \subseteq \R$ גזיקה והפיכה בקטע $I \subseteq \R$, גורר שהנגזרת בנקודה $y \in J$ של הפונקציה הבאה היא: 
+		\[ (f\op)'(y) = \frac{1}{f(f\op(y))} \]
+		\begin{proof}
+			נוכיח באמצעות הנוסחה להרכבת פונקציות: 
+			\[ \begin{WithArrows}[groups]
+				\csb{f(f\op(y))}' &= f'(f\op(y)) (f\op)'(y) \Arrow{$\cdot \frac{1}{f'(f\op(y))}$} \\
+				\frac{[f(f\op(y))]'}{f'(f\op(y))} &= (f\op)'(y) \Arrow[new-group]{Since $f(f\op(x)) = x$} \\
+				(f\op)'(y) &= \frac{1}{f'(f\op(y))}
+			\end{WithArrows} \]
+		\end{proof}
+		\item נחשב את הנגזרות של ההופכיות לפונקציות הטריגונומטריות וההיפר־טריגונומטריות. 
+		
+		\textbf{פונקציות טריגונומטריות: }
+		\begin{alignat*}{9}
+   \bm{\arcsin'} &= \frac{1}{\sin'(\sin\op)} \frac{1}{\cos(\arcsin)} = \sec(\arcsin) \\
+ 		         &= \frac{1}{\sqrt{\cos^2(\arcsin)}}  = \frac{1}{\sqrt{1 - \sin^2(\arcsin)}} = \bm{\frac{1}{\sqrt{1 - x^2}}} \\
+   \bm{\arccos'} &= \frac{1}{\cos'(\cos\op)} \frac{1}{-\sin(\arccos)} = -\csc(\arcsin) \\
+ 		         &= \frac{1}{-\sqrt{\sin^2(\arccos)}} = -\frac{1}{\sqrt{1 - \cos^2(\arccos)}} = \bm{-\frac{1}{\sqrt{1 - x^2}}} \\
+   \bm{\arctan'} &=\frac{1}{\tan'(\tan\op)} = \frac{1}{\cos^{-2}(\arctan)} = \cos^2(\arctan) \\
+		         &= \frac{1}{\sec^2(\arctan)} = \frac{1}{\tan^2(\arctan) + 1} = \bm{\frac{1}{x^2 + 1}}
+		\end{alignat*}
+		\textbf{פונקציות היפרבוליות: }
+			\begin{alignat*}{9}
+ \bm{\arcsinh'} &= \frac{1}{\cosh(\arcsinh)} &&= \frac{1}{\sqrt{\cosh^2(\arcsinh)}} = \frac{1}{\sqrt{1 + \sinh^2(\arcsinh)}} = \bm{\frac{1}{\sqrt{1 + x^2}}} \\
+ \bm{\arccosh'} &= \frac{1}{\sinh(\arccosh)} &&= \frac{1}{\sqrt{\sinh^2(\arccosh)}} = \frac{1}{\sqrt{\cosh^2(\arcsinh)} - 1} = \bm{\frac{1}{\sqrt{x^2 - 1}}} \\
+ \bm{\arctanh'} &= \frac{1}{\sech^2(\arctanh)} &&= \frac{1}{1 - \tanh^2(\arctan)} = \bm{\frac{1}{1 - x^2}}
+		\end{alignat*}
+		
+	\end{enumerate}
+	
+	\section{} %%6
+	\begin{alignat*}{9}
+		&&x^2 \tan y + y^{10} \sex &= 2x\\
+		\implies \quad && 2x\tan y + x^2y'\sec^2y + 10yy'\sex + y^{10} \tanx \sex &= 2 \\
+		\implies \quad && y'(x^2\sec^2 y + 10y\sex) &= 2 - 2x\tan y - y^{10}\tanx \sex \\
+		\implies \quad && \bm{y'} &= \bm{\frac{2 - 2x\tan y - y^{10}\tanx \sex}{x^2\sec^2 y + 10y\sex}}
+	\end{alignat*}
+	\ndoc
+\end{document}

@@ -1,0 +1,636 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.95,0.95,0.95}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=4pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\en{\dotfill \thesection \dotfill}}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\small\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{אההה כן טקסט תחתון}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\hence     {$\!\!\impliedby\!\!$}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{תרגיל בית 3 $\sim$ עברי נגר $\sim$ נגזרות וחקירה}
+
+\begin{document}
+	\maketitle
+	\section{}
+	\begin{enumerate}
+		\item השתכנעתי
+		\item נמצא את כמות הזמן שיקח למצילה לעבור כתלות ב־$\ta_1$. נשתמש ב־$x_1, y_1, x_2, y_2$ כמו בסרטוט הבא:
+		
+		לפי הגדרת הפונקציות הטריגונומטריות, וכלל החיבור, יתקיים: 
+		\[ \tan \ta_2 = \frac{x_2}{\ml_2}, \ \tan \ta_1 = \frac{x_1}{\ml_1}, \ x + y = d \]
+		\textbf{טענה 1. }נציב ונקבל קשר גיאומטרי בין הזוויות: 
+		\[ d = \underbrace{\ml_1\tan\ta_1}_{x_1} + \underbrace{\ml_2\tan\ta_2}_{x_2} \implies \ml_2\tan\ta_2 = d - \ml_1 \tan\ta_1 \implies \ta_2 = \arctan\cl{\frac{d - \ml_1\tan\ta_1}{\ml_2}} \]
+		עתה, נרצה למצוא ישירות את $t(\ta_1)$. משום ש־$s = t\cdot v$ אז $t = \frac{s}{v}$. נסמן ב־$t_1$ את כמות הזמן שלוקח לעבור את $y_1$, וב־$t_2$ את כמות הזמן שלוקח לעבור את $y_2$. 
+		\[ t(\ta_1) = t_1 + t_2 = \frac{y_1}{v_1} + \frac{y_2}{v_2} \]
+		באמצעות הגדרת ה־$\cos$ נמצא את $y_1, y_2$: 
+		\[ \cos\ta_1 = \frac{\ml_1}{y_1}, \ \cos\ta_2 = \frac{\ml_2}{y_2} \implies y_1 = \frac{\ml_1}{\cos\ta_1}, \ y_2 = \frac{\ml_2}{\cos\ta_2} \]
+		\textbf{טענה 2. }נציב: 
+		\[ t(\ta_1) = \frac{\ml_1}{v_1\cos\ta_1} + \frac{\ml_2}{v_2\cos\ta_2} \]
+		ננסה למצוא את הערך של $\frac{1}{\cos\ta_2}$: 
+		\[ \begin{WithArrows}[groups]
+			\frac{1}{\cos\ta_2} = \sec\ta_2 &= \sqrt{\sec^2\ta_2} \Arrow[ll][xoffset=0.6em]{since $\sec^2 = 1 + \tan^2$} \\
+			&= \sqrt{1 + \tan^2 \ta_2} \Arrow[new-group][up]{לפי טענה 1} \\
+			&= \sqrt{1 + \tan^2\cl{\arctan\cl{\frac{d - \ml_1\tan\ta_1}{\ml_2}}}} \Arrow{since $\tan(\arctan x) = x$}\\
+			&= \sqrt{1 + \cl{\frac{d - \ml_1\tan\ta_1}{\ml_2}}} 
+		\end{WithArrows} \]
+		\textbf{טענה 3. }נציב חזרה בטענה 1. נשתמש בעובדה ש־$x^2 = (-x)^2$: 
+		\[ t(\ta_1) = \frac{\ml_1}{v_1\cos\ta_1} + \frac{\ml_2}{v_2} \cdot \sqrt{1 + \cl{\frac{\ml_1\tan\ta_1 - d}{\ml_2}}}  \]
+		\item כדי למצוא את הזמן המינימלי, נגזור את $t(\ta_1)$, לפי הנוסחה של טענה 2. 
+		\[ t'(\ta_1) = -\frac{\ml_1 \sin \ta_1 + v_1 \cos \ta_1}{v_1^2\cos^2\ta_1} -\frac{\ml_2 \sin \ta_2 + v_2 \cos \ta_2}{v_2^2\cos^2\ta_2} \]
+		נשווה ל־$0$ כדי לנסות למצוא את נקודות סטציונריות. 
+		\[ \frac{\ml_1 \sin \ta_1 + v_1 \cos \ta_1}{v_1^2\cos^2\ta_1} = -\frac{\ml_2 \sin \ta_2 + v_2 \cos \ta_2}{v_2^2\cos^2\ta_2} \]
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}
+		\item \textbf{שאלה: }מסך קולנוע נמצא בגובה 10 מטר מהרצפה וגובהו 20 מטר. באיזה מרחק $x$ ממנו יש לשבת על מנת שזווית הראיה $\ta$ תהיה מקסימלית? 
+		
+		\textbf{תשובה: }מתוך הסרטוט שבשיעורי הבית: 
+		
+		\[ \ta = \tan \frac{20 + 10}{x} - \tan \frac{10}{x} = \tan \frac{30}{x} - \tan \frac{10}{x} \]
+		נרצה ש־$\ta$ תהיה מקסימלית. נגזור נסמן $\ta(x) = \ta$ כתלות ב־$x$. נגזור ונשווה ל־$0$ כדי למצוא נקודות סטציונריות: 
+		\[ \begin{WithArrows}[groups]
+			\ta(x)' = \frac{30}{x^2} \cdot \sec^2 \cl{\frac{30}{x}} - \frac{10}{x^2} \cdot \cl{\sec^2 \frac{10}{x}} &= 0 \Arrow{$\cdot x^2$}\\
+			\sec^2 \frac{30}{x} - \sec^{2} \frac{10}{x} &= 0 \Arrow[new-group]{$+ \sect \frac{10}{x}$} \\
+			\sect \frac{30}{x} &= \sec2 \frac{10}{x} \Arrow{$\arcsec$} \\
+			\frac{30}{x} &= \frac{10}{x} + 2\pi k \Arrow{$\cdot x, \ -10$} \\
+			20 &= 2x\pi k \Arrow[new-group]{$\cdot \frac{1}{2\pi k}$} \\
+			\frac{10}{\pi k} &= x
+		\end{WithArrows} \]
+		ידוע ת.ה. $\ta$
+		
+		\item \textbf{שאלה: }מהן אורכי הצלעות של המבחן עם היקף מינימלי ששטחו $S$?
+		
+		\textbf{תשובה: }בהינתן שטח $S$, נסמן צלע אחת ב־$x$ ועבור הצלע השנייה $y$ יתקיים $S = xy \implies y = \frac{S}{x}$. נתבונן בפונקציית ההיקף $P$ וננסה למצוא לה מינימום:
+		\[ P(x) = 2x + 2y = 2\cl{x + \frac{S}{x}} \]
+		נגזור ונשווה ל־$0$ כדי למצוא נקודות סטציונריות: 
+		\[ \begin{WithArrows}
+			P'(x) = 2\cl{1 - \frac{S}{x^2}} &= 0 \Arrow{$\cdot \frac{x^2}{2}$}\\
+			x^2 - S &= 0 \Arrow{$ +S, \sqrt{\quad } $} \\
+			x &= \pm \sqrt S
+		\end{WithArrows} \]
+		בהתחשב בתחום הגדרה $x \ge 0$, נמצא שהנקודה הסטציונרית היחידה היא $x = \sqrt{S}$. נציב בטבלה כדי למצוא סוג קיצון: 
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|}
+				\hline $x$ & $\frac{\sqrt S}{2}$ & $S$ & $S + 1$ \\
+				\hline $f'$ & $-$ & $0$ & $+$ \\
+				\hline $f$ & $\searrow $ & $\cup$ & $\nearrow$ \\ \hline 
+			\end{tabular}
+		\end{center}
+		בהתאם לחישובים הבאים: 
+		\begin{gather*}
+			f'\cl{\frac{\sqrt S}{2}} = 2 - 2 \cdot \frac{S}{S / 4} = 2 - 4 = -2 \le 0 \\
+			f'(S + 1) = 2 - 2 \cdot \underbrace{\frac{S}{(S + 1)^2}}_{\le 1} \ge 0
+		\end{gather*}
+		סה"כ מינימום לוקאלי ב־$x = \sqrt S$, בו יתקיים: 
+		\[ P(x) = P(\sqrt S) = 2\sqrt{S} + 2 \cdot \frac{S}{S} = 2(\sqrt S + 1) \]
+		נבדוק קיצון קצה: 
+		\[ \limi f(x) = 2x + \cancel{\frac{S}{x}} = \inf \le 2\sqrt S + 2, \ \lim_{x \to 0^{+}}f(x) = \cancel{2x} + \frac{S}{x} = + \inf \le 2 \sqrt S + 2 \]
+		סה"כ ב־$x = 0$ מינימום מוחלט. נחשב את צלעות המלבן: 
+		\[ x = \sqrt S, \ y = \frac{S}{\sqrt S} = S, \implies \bm{x = y = \sqrt S} \]
+		
+		\item \textbf{שאלה: }מבין כל הגלילים הסגורים משני הצדדים, עם שטח פנים של $50cm^{2}$, מה היחס בין גובה הגליל לבסיסו במקרה של הגליל עם הנפח הגדול ביותר? 
+		
+		ידועה ההגבלה ידוע שהמעטפת היא $2\pi r h$ ושהבסיסים הם $\pi r^2$ כל אחד; אזי, שטח הפנים יהיה $50 = 2\pi r(r + h)$. נמצא את הנפח $V$ יהיה: 
+		\begin{gather*}
+			25 = \pi r^2 + rh \implies rh = 25 - \pi r^2 \implies h = \frac{25}{r} - \pi r \\
+			V = \pi r^2 h \implies V(r) = \pi r^2 \cdot \cl{\frac{25}{r} - \pi r} = \pi \cl{25 r - r^3}
+		\end{gather*}
+		נגזור את הנפח כדי למצוא מקסימום: 
+		\[ V'(r) = 25 - 3r^2 = 0 \implies r^2 = \frac{25}{3} \implies r = \pm \frac{5}{\sqrt 3} \]
+		כאשר הפתרון השלילי מחוץ לתחום ההגדרה $0 \le r$. באותה הנקודה, יתקיים שהנפח יהיה $V \approx 151$. נתבונן בקצוות תחום ההגדרה $0 \le r$: 
+		\begin{gather*}
+			\lim_{r \to \inf} V(r) = \lim_{r \to \inf} \pi r(25 - r^2) = \cl{\lim_{r \to \inf} \pi r} \cdot \cl{\lim_{r \to \inf} 25 - r^2} = \inf \cdot (-\inf) = -\inf \le 151 \\
+			\lim_{r \to 0^+} \pi r (25 - r^2) = 0 \le 151
+		\end{gather*}
+		סה"כ $r = \frac{5}{\sqrt3}$ קיצון מוחלט. אזי, שטח בסיס הוא $\pi r^2 = \frac{5\pi}{\sqrt 3}$, וגובה הגליל הוא $h = \frac{25\sqrt 3}{5} - \frac{5 \pi}{\sqrt 3}$. סה"כ, היחס יהיה: 
+		\[ \frac{S}{h} = \frac{\frac{5\pi}{\sqrt 3}}{5 \sqrt3 - \frac{5\pi}{\sqrt3}} \]
+		בעיה: זה לא עובד. 
+		
+		
+	\end{enumerate}
+	\section{}
+	
+	\begin{enumerate}
+		\item נחקור את הפונקציה $f(x) = \frac{e^{x}}{1 + x}$. 
+		\begin{itemize}
+			\item \textbf{תחום הגדרה}:
+				$1 + x \neq 0 \implies \bm{x \neq -1}$
+			\item \textbf{סימטריה:} סתירה; $x = 2 \implies f(2) = 2.43 \neq \pm -0.135 = f(-2)$
+			\item \textbf{חיתוך עם הצירים:} $f(0) = \frac{e^{0}}{1 + 0} = 1$7
+			\[ f(x) = 0 \implies \frac{e^{x}}{x + 1} = 0 \implies e^{x} = 0 \implies x = \ln 0 \in \varnothing \]
+			סה"כ נקודות החיתוך היחידה $\la 0, 1 \ra$. 
+			\item \textbf{סטציונריות וסוגן:} נגזור. 
+			\[ f'(x) = \frac{(1 + x)e^{x} - e^x \cdot 1}{(1 + x)^2} = \frac{e^x + xe^x - e^x}{(1 + x)^2} = \frac{e^x}{(1 + x)^2} \]
+			נשווה ל־0: 
+			\[ \frac{xe^x}{(1 + x)^2} = 0 \implies xe^x = 0 \implies x = 0 \]
+			נמצא את סוג הנקודה. נתבונן בסימן של הנגזרת. 
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|}
+					\hline $x$ & $-2$& $-1$ & $-0.5$ & $0$ & $1$ \\
+					\hline $f'(x)$ & $-$ & $0$ & $-$ & $0$ & $+$ \\
+					\hline $f(x)$ & $\searrow$ & $\varnothing$ & $\searrow$ & $\cup$ & $\nearrow$ \\
+					\hline
+				\end{tabular}
+			\end{center}
+			כלומר כאשר $x = 0$ המינימום היחיד קיים. משמע $\la 0, 1 \ra$ נקודת המינימום היחידה. 
+			\item \textbf{נקודות עוגף: }נתבונן בנגזרת השנייה, ונשוואה אותה ל־0: 
+			\[ f''(x) = [xe^x]' = e^x + xe^x = 0 \implies e^x(x + 1) = 0 \implies \begin{cases}
+				e^x = 0 \implies x = \ln 0 \in \varnothing \\
+				x + 1 = 0 \implies x = -1
+			\end{cases} \]
+			נתבונן בכיוון הנגזרת השנייה בין בתחומים המוגדרים ובין נקודות ה־0: 
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|}
+					\hline $x$ & $-2$ & $-1$ & $0$ \\
+					\hline $f''(x)$ & $-$ & $0$ & $+$ \\
+					\hline $f(x)$ & $\cap$ & $\varnothing$ & $\cup$ \\
+					\hline
+				\end{tabular}
+			\end{center}
+			סה"כ אין נקודות עוקף. 
+			\item \textbf{אסימפטוטות: }
+			\begin{alignat*}{9}
+				\limi &f(x) = \limi \frac{e^x}{x + 1} &&= \frac{e^\inf}{\inf} &&= \bm{+ \inf} \\
+				\limni &f(x) = \limni \frac{e^x}{x + 1} &&= \frac{\frac{e}{\inf}}{-\inf} &&= \frac{0}{-\inf} = \bm{0} \\
+				\lim_{x \to -1^+} &f(x) = \lim_{x \to -1^+} \frac{e^{x}}{x + 1} &&= \frac{e^{-1}}{+0} &&= \bm{\inf} \\
+				\lim_{x \to -1^-} &f(x) = \lim_{x \to -1^-} \frac{e^{x}}{x + 1} &&= \frac{e^{-1}}{-0} &&= \bm{- \inf }
+			\end{alignat*}
+			\item \textbf{תחומי עלייה/ירידה: }על בסיס הטבלה של הנגזרת הראשונה; \textit{עליה: }$x > 0$ /  \textit{ירידה: }$x < 0 \land x \neq -1$
+			
+			\item \textbf{תחומי קעירות/קמירות: }על בסיס הטבלה של הנגזרת השנייה; \textit{קעירות: }$x < 1$ / \textit{קמירות: }$x > -1$
+		\end{itemize}
+		\item נחקור את הפונקציה $f(x) = \frac{(x + a)^2}{1 - |x|}$. 
+		\begin{itemize}
+			\item \textbf{תחום הגדרה: }$1 - |x| \neq 0 \implies |x| \neq 1 \implies \bm{x \neq \pm 1}$
+			\item \textbf{סימטריה: }עבור $x \ge 0$ כללי: 
+			\[ \begin{WithArrows}
+				f(x) = \frac{(x + a)^2}{1 - x} &\seq \frac{(a - x)^2}{1 - x} = f(-x) \Arrow{$\cdot (1 - x)$}\\
+				(x + a)^2 &= (x - a)^2 \Arrow{$\sqrt{\quad}$} \\
+				x + a &= x - a \\
+				2a &= 0 \implies \bm{a = 0}
+			\end{WithArrows} \]
+			סה"כ הפונקציה תהיה זוגית אמ"מ $a = 0$. אם נרצה שהיא תהיה אי־זוגית, באופן דומה נקבל $x + a = -x + a$ כלומר $2x = 0 \implies x = 0$, וזו סתירה עבור $x = 2$. 
+			\item \textbf{חיתוך עם הצירים: }$f(0) = \frac{(0 + a)^2}{1 - |0|} = a^2$
+			\[ f(x) = 0 \implies \frac{(x + a)^2}{1 - |x|} = 0 \implies (x + a)^2 = 0 \implies x + a = \pm0 \implies x = -a \]
+			סה"כ נקודות חיתוך $\la 0, a^2 \ra, \ \la -a, 0 \ra $
+			\item \textbf{נק' סטציונריות וסוגן: }נגזור ונשווה ל־0. נפריד למקרים: אם $x > 0$ ואם $x < 0$
+			\[ f'(x) = \begin{cases}
+				\displaystyle \frac{2(x + a)|x| - 1}{1 - 2|x| + x^2} & x > 0 \\
+				\displaystyle \frac{2(x + a)|x| + 1}{1 - 2|x| + x^2} & x < 0
+			\end{cases} \]
+			בהשוואה ל־0: 
+			\[ \frac{2(x + a)|x| \pm 1}{\dots} = 0 \implies 2(x + a)|x| \pm 1 = 0 \implies 2x|x| + 2a \pm 1 = 0 \]
+			נפריד למקרים. אם $x > 0$: 
+			\[ 2x^2 + 2a - 1 = 0 \implies \xot = \frac{-2a + \sqrt{4a^2 + 4 \cdot 2 }}{-2} \]
+			\item \textbf{נק' פיתול: }נתבונן בנגזתר השנייה: 
+			\[ f''(x) = \begin{cases}
+				2|x| \cdot 2(x + a)
+			\end{cases} \]
+			\item \textbf{אסימפטוטות וגבולות: }
+			\item \textbf{תחומי עלייה/ירידה: }
+			\item \textbf{תחומי קמירות/קעירות: }
+			\item \textbf{סרטוט: }
+		\end{itemize}
+		
+		\item נחקור את הפונקציה $f(x) = \sqrt{(a^2 - x^2)(1 + 2x^2)}$
+		\begin{itemize}
+			\item \textbf{תחום הגדרה: }$g(x) := (a^{2} - x^2)(1 + 2x^2) \ge 0 $. נמצא נקודות חיתוך עם ציר ה־$x$ ונבדוק כיוון. 
+			\[ \begin{cases}
+				a^2 - x^2 = 0  & \implies a^2 = x^2 \implies x = \pm a\\
+				\lor 1 + 2x^2 = 0 &\implies x^2 = -0.5 \implies x \in \C \setminus \R
+			\end{cases} \]
+			\begin{align*}
+				g(0) &= (a^2 - 0^2)(1 + 2\cdot 0^2) = a^2 \ge 0\\
+				g(2a) &= (a^2 - 4a^2)(2 + 8a^2) = -4a^2 - 16a^4 \le 0 \\
+				g(-2a) &= (a^2 - 4a^2)(2 + 8a^2) = -4a^2 - 16a^4 \le 0 \\
+			\end{align*}
+			נציב בטבלה: 
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|}
+					\hline $x$ & $-2a$ & $-a$ & $0$ & $a$ & $2a$ \\
+					\hline $g(x)$ & $-$ & $0$ & $+$ & $0$ & $-$ \\
+					\hline
+				\end{tabular}
+			\end{center}
+			סה"כ, הפונקציה מוגדרת בעבור $g(x) \ge 0$, כלומר $\bm{-a \le x \le a}$. 
+			\item \textbf{סימטריה: }
+			\[ \forall x \in \R. f(x) = \sqrt{(a^2 - x^2)(1 + 2x^2)} = \sqrt{(a^2 - (-x)^2)(1 + 2(-x)^2)} = f(-x) \]
+			סה"כ \textbf{הפונקציה זוגית}, לכל $a$. היא לא פונקציית קו ישר ולכן לא ייתכן שהיא גם אי־זוגית. 
+			\item \textbf{חיתוך עם הצירים: }$f(0) = \sqrt{(a^2 - 0)(1 + 2 \cdot 0)} = a\sqrt{2}$
+			\[ f(x) = 0 \iff \sqrt{g(x)} = 0 \iff g(x) = 0 \iff x = \pm a \]
+			אזי $\bm{\la a, 0, \ra, \la -a, 0 \ra, \la 0, a \sqrt 2 \ra}$ נקודות החיתוך עם הצירים. 
+			\item \textbf{נק' סטציונריות וסוגן: }נגזור ונשווה ל־$0$. 
+			\[ f'(x) = \frac{-2x(1 + 2x^2) + 4x(a^2 - x^2)}{\sqrt{(a^2 - x^2)(1 + 2x^2)}} = \frac{2x(- 1 + 2a^2 - 4x^2 )}{\sqrt{(a^2 - x^2)(1 + 2x^2)}} = 0 \implies 2x(- 1 + 2a^2 - 4x^2) = 0 \]
+				נפלג למקרים. אם $2x = 0 $ אז עבור $x =0$ השוויון יתקיים, אחרת, השוויון הבא יצטרך להתקיים: 
+				\[ - 1 + 2a^2 - 4x^2 = 0 \implies x^2 = \frac{-1 + 2a^2}{4} \implies x = \pm \frac{1}{2}\sqrt{-1 + 2a^2} \]
+				נשים לב שהנקודה הזו קיימת אמ"מ $-1 + 2a^2 \ge 0$. נמצא נקודות חיתוך כדי להבין מתי השוויון מתקיים. 
+				\[2a^2 -1 = 0 \implies a^2 = 0.5 \implies a = \pm \frac{1}{\sqrt 2}\]
+				ידוע כי $-2^{-0.5} \le 0 \le 2^{-0.5}$, כלומר עבור $a = 0$ נוכל לבדוק מה יתקיים. שם, נמצא $-1 + 2 \cdot 0^2 = -1 \le 0$, ומשום שזו פרבולות בקצוות האחרים של התחום היא תהיה חיובית, וסה"כ הא"ש יתקיים אמ"מ $a \notin (-2^{0.5}, 2^{0.5})$. נרצה גם לדעת שבהינתן $a$ שעבורן הן מוגדרות, האם הן יהיו בתחום ההגדרה. נפתור את אי־השווין $\frac{1}{2}\sqrt{-1 + 2a^2} \le a $. נמצא נקודות חיתוך של שתי הפונקציות: 
+				\[ \implies -1 + 2a^2 = 4a^2 \iff 2a^2 = -1 \iff a = \sqrt{-0.5} \in \C \setminus \R \]
+				כלומר אין נקודות חיתוך, משמע נוכל לבחור ערך $a$ אקראי בתחום ההגדרה ולבדוק אם עליו יתקיים אי־השוויון, ומכאן יגרר על השאר. עבור $a = 2 > 2^{0.5}$, נציב ונקבל ש־$\frac{1}{2}\sqrt{-1 + 4} \le  2$, כדרוש. באופן דומה אי־השוויון $-a \le -\frac{1}{2}\sqrt{-1 + a^2}$ יתקיים גם הוא. נסכם: שתי הנקודות הללו קיימות אמ"מ $a \notin (-2^{0.5}, 2^{0.5})$, לכל ערך $a$. 
+				
+				
+				נמצא את סוג הנקודות הסטציונריות: נפלג למקרים. 
+				
+				\textbf{אם $a \in \R_+ \setminus (-2^{-0.5}, 2^{0.5}) \implies \bm{a > \sqrt{2}^{-1}}$}: 
+				\begin{center}
+					\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+						\hline $-a$ & $\frac{- a - \frac{1}{2}\sqrt{-1 + 2a^2}}{2}$ & $- \frac{1}{2}\sqrt{-1 + 2a^2}$ & $- \frac{1}{4}\sqrt{-1 + 2a^2}$ & $0$ & $\frac{1}{4}\sqrt{-1 + 2a^2}$ & $\frac{1}{2}\sqrt{-1 + 2a^2}$ & $\frac{a + \frac{1}{2}\sqrt{-1 + 2a^2}}{2}$ & $a$ \\
+						\hline $0$ & $+$ & $0$ & $-$ & $0$ & $-$ & $0$ & $+$ & $0$ \\
+						\hline $\cup$ & $\nearrow$ & $\cap$ & $\searrow$ & $\cup $ & $\nearrow$ & $\cap$ & $\searrow$ & $\cup$ \\
+						\hline 
+					\end{tabular}
+				\end{center}
+				ניעזרתי בכיוון של ההצבות הבאות: 
+				\begin{gather*}
+					f'\cl{\frac{- a - \frac{1}{2}\sqrt{-1 + 2a^2}}{2}} = \frac{\overbrace{\cl{- a - \frac{1}{2}\sqrt{-1 + 2a^2}}}^{\le 0}(\cancel{- 1 + 2a^2} - (\overbrace{4(-a^2 - a\sqrt{-1 + 2a^2})}^{\ge 0} \cancel{-1+ 2a^2}) )}{\underbrace{\sqrt{\dots}}_{\ge 0}} = \frac{(+)(-)^2}{(+)} \ge 0 \\
+					f'\cl{- \frac{1}{4}\sqrt{-1 + 2a^2}} = \frac{\overbrace{(- \frac{1}{2}\sqrt{-1 + 2a^2})}^{\le 0}(-1 + \overbrace{2a^2 + \sqrt{-1 + 2a^2}}^{\ge 1})}{\underbrace{\sqrt{\dots}}_{\ge 0}} = \frac{(-)(+)}{+} \le 0
+				\end{gather*}
+				
+				כאשר ידוע $|a| \ge 2^{0.5}$ ולכן $2a^2 \ge 4 \ge 1$ וסה"כ אי־השוויון בסוגריים תקין. 
+				
+				באופן דומה, ערכם של המקבילים לערכים אלו החיוביים יהיה זהה (כיוון הביטוי בסוגריים הימניות בו $x$ ממעלה שנייה לא ישתנה, אך המקדם שלהם בסוגריים השמאליות כן ישנה את כיוונו כי הוא ממעלה ראשונה). נמצא את ערכי ה־$y$ של נקודות הקיצון שמצאנו: 
+				\[ f\cl{\pm\frac{1}{2}\sqrt{-1 + 2a^2}} = \sqrt{\cl{a^2 - \frac{1}{4}(-1 + 2a^2)}\cl{1 + -\frac{1}{2}(-1 + 2a^2)}} = \sqrt{\cl{\frac{1}{2}a^2 - \frac{1}{4}}\cl{\frac{3}{2} - a^2}} \]
+				\[ f(0) = \sqrt{(a^2 - 0^2)(1 + 2 \cdot 0^2)} = \sqrt{a^2} = |a| = a \]
+				\[ f(\pm a) = \sqrt{a^2 - (\pm a)^2}(1 + 2a^2) = 0 \]
+				
+			\textbf{אם $\bm{a \in (0, 2^{0.5}]}$: }
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|}
+					\hline $x$ & $-a$ & $-0.5a$ & $0$ & $0.5a$ & $a$ \\
+					\hline $f'(x)$ & $0$ & $+$ & $0$ & $-$ & $0$ \\
+					\hline $f(x)$ & $\cup$ & $\nearrow$ & $\cap$ & $\searrow$ & $\cup$ \\
+					\hline
+				\end{tabular}
+			\end{center}
+			ניעזרתי בכיוון של ההצבות הבאות: 
+			\begin{gather*}
+				f'(-0.5a) = \frac{-a(-1 + 2a^2 -4 \cdot \frac{1}{4}a^2)}{\sqrt{\dots}} = \frac{-a(-1 + a^2)}{\sqrt{\dots}} = \frac{\overbrace{a - a^2}^{\ge 0}}{\underbrace{\sqrt{\dots}}_{\ge 0}} \ge 0 \\
+				f'(0.5a) = \frac{a(-1 + 2a^2 - 4 \frac{1}{4}a^2)}{\sqrt{\dots}} = \frac{\overbrace{a^2 - a}^{\le 0}}{\underbrace{\sqrt{\dots}}_{\ge 0}} \le 0
+			\end{gather*}
+			כאשר מתקיים אי‏־השוויון $a^2 < a$ כי $a < \frac{1}{\sqrt2} < 1$ (ראה \textit{למה 1} בסעיף 6). 
+			
+			סה"כ, נקודות הקיצון הן: 
+			\[ \begin{cases}
+				\begin{WithArrows}
+					&\left \la \pm \frac{1}{2}\sqrt{-1 + 2a^2}, \ \sqrt{\cl{\frac{1}{2}a^2 - \frac{1}{4}}\cl{\frac{3}{2} - a^2}} \right \ra \ &\max \\
+					&\left \la 0, a \right \ra, \la \pm a, 0 \ra \ &\min
+				\end{WithArrows} & a \in (\sqrt{2}^{-1}, \inf) \\
+				\begin{WithArrows}
+					&\la 0, a \ra & \ \max \\
+					&\la 0, \pm a \ra & \ \min
+				\end{WithArrows} & a \in (0, \sqrt{2}^{-1}]
+			\end{cases} \]
+			
+			\item \textbf{נק' פיתול: }אין צורך בסעיף זה. 
+			\item \textbf{אסימפטוטות וגבולות: }לא מצאנו נקודות אי־הגדרה, והפונקציה מוגדרת בקצוות תחום ההגדרה שלה. אזי, הפונקציה רציפה בכל תחום, וללא אסימפטוטות אופקיות. 
+			\item \textbf{תחומי עלייה/ירידה: }על בסיס הטבלה שבעזרתה מצאנו נקודות סטציונריות, תחומי העלייה והרידה הם: 
+			\begin{alignat*}{9}
+				&\nearrow \colon && \quad \begin{cases}
+					x \in \cl{a, -\frac{1}{2}\sqrt{-1 + 2a^2}} \cup \cl{0, \frac{1}{2}\sqrt{-1 + 2a^2}} & a \in (\sqrt{2}^{-1}, \inf) \\
+					x \in \cl{-a, 0} & a \in (0, \sqrt{2}^{-1}]
+				\end{cases} \\
+				&\searrow \colon && \quad \begin{cases}
+					x \in \cl{-\frac{1}{2}\sqrt{-1 + 2a^2}, 0} \cup \cl{\frac{1}{2}\sqrt{-1 + 2a^2}, a} & a \in (\sqrt{2}^{-1}, \inf) \\
+					x \in \cl{0, a} & a \in (0, \sqrt{2}^{-1}]
+				\end{cases}
+			\end{alignat*}
+			\item \textbf{תחומי קמירות/קעירות: }אין צורך בסעיף זה. 
+			\item \textbf{סרטוט: }
+		\end{itemize}
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}[A)]
+		\item \textbf{שאלה: }לאילו ערכי $a$ של הפונקציה $f(x) = x^4 + ax^3 + 6x^2$ שתי נקודות פיתול. 
+		
+		\textbf{פתרון: }נשווה ל־0 את הנגזרת השנייה כדי למצוא נקודות חשודות פיתול: 
+		\[ f''(x) = 4x^3 + 3ax^2 + 12x = 0 \implies f''(x) = 12x^2 + 6ax + 12 = 0 \implies \xot = \frac{6a \pm \sqrt{9a^2 - 576}}{24} \]
+		הנקודות הללו יהיו קיימות אמ"מ $9a^2 - 576 \ge 0$. שורשי הפררבולה הזו (כתלות ב־$a$) יהיו $a_{1, 2} = \pm 8$, ומשום שזו פרבולה שמחה, אי־השוויון יתקיים כאשר ${a \not\in (-8, 8)}$. אך, כאשר אי־השוויון יתקיים באופן הדוק השורש יוציא רק נקודה אחת, אזי שתי נקודות פיתול שונות ימצאו כאשר $x \not\in [-8, 8]$. 
+		\item עבור ערך ה־$a$ שבו הדיסקמיננטה של הנגזרת השנייה תהיה $0$, כלומר הנגזרת השנייה תשתווה ל־$0$ בנקודה אחת בלבד. זה יקרה בעת ש־$9a^2 - 576 = 0 \implies \bm{a = \pm 8}$. 
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}[a)]
+		\item נרצה להוכיח $\forall x \in \R_+. \sin x < x$. נתבונן ב־$f(x) = \sinx - x$, ונוכיח את אי־השוויון $f(x) < 0$. נתבונן בנגזרתה של הפונקציה: $f'(x) = \cosx - 1$. נרצה למצוא לה נקודות קיצון. נתבונן בא"ש $\cosx = 1 \implies x = 0.5\pi k$, וממחזוריות $\cosx$ והגדרת הזזה אופקית, בפרט $x = k \pi $ נקודות המקסימום היחידות, ו־$x = 0.5 + \pi k$ נקודות המינימום היחידות. בפרט עבור $k = 0$ נמצא $x = 0, x = 0.5\pi$ נקודות מינימום ומקסימום בהתאמה, כלומר $f(x)$ מונוטונית יורדת בתחום $x \in [0, 0.5\pi]$. משום ש־$f(0) = \sin 0 - 0 = 0$, אזי $f(x) \le 0$ עבור $x \in [0, 0.5\pi]$. מכיוון שאין קיצון נוסף בתחום, נסיק $\forall x \in (0, 0.5\pi]. f(x) < 0$. עבור $x > 0.5\pi$, נתון $\sin x \le 1 < 0.5 \pi < x$, כלומר גם כאן יתקיים אי־השוויון המבוקש. סה"כ הוכח אי־השוויון לכל $x \in \R_+$. 
+		\item נרצה להוכיח $\forall x \in \R_+. \cosx > 1 - \frac{x^2}{2}$. נתבונן בפונקציה $f(x) = \cosx -1 + \frac{x^2}{2}$, ונוכיח את אי־השוויון $f(x) > 0$. נגזור אותה, ונקבל $f'(x) = -\sinx - x$. נגזור שוב, ונקבל $f''(x) = -\cosx - 1$, שהיא פונקציה קטנה או שווה ל־$0$ בכל תחומה (מהגדרת הזזה). לכן, $f'(x)$ מונוטונית יורדת בכל תחומה. יתקיים $f'(0) = -\sin 0 - 0 = 0$, כלומר לכל $x > 0$ נדע $f'(x) \le 0$. אזי, גם $f(x)$ מונוטונית יורדת חזק, ובגלל ש־$f(0) = \cos0 - 1 - \frac{0^2}{2} = 0$ אז סה"כ גם הפונקציה הזו תקיים $f(x) < 0$ כדרוש. 
+		\item נרצה להוכיח $\sinx > x - \frac{x^3}{6}$. נתבונן בפונקציה $f(x) = \sinx - x + \frac{x^3}{6}$, ונוכיח את אי השוויון $f(x) < 0$. נגזור ונקבל $f'(x) = \cosx - 1 + 0.5x^2, \ f''(x) = -\sinx + x, \ f'''(x) = -\cosx + 1 < 0$. ידוע שמתקיים $f(0) = f'(0) = f''(0) = f'''(0) = 0$, ולכן $f'''$ מונוטונית יורדת מתחת ל־$0$, וכן $f'', f'$ ו־$f(x)$ כדרוש (מונוטיני יורד תחת ציר ה־$0$ \hence \ $\forall x \in \R_+. f(x) < 0$). 
+	\end{enumerate}
+	
+	\section{}
+	צ.ל. $\forall x \ge -1, 0 \le a \le 1. (1 + x)^{a} \le 1 + ax$. יהיו $x \ge -1, 0 \le a \le 1$. נעביר אגפים ונמצא שקילות להוכחת הא"ש $f(x) := (1 + x)^a - 1 + ax \le 0$, כלומר $f(x) \le 0$. נגזור: 
+	\begin{align*}
+		f(x) &= (1 + x)^a - 1 + ax & f(0) &= 1^a - 1 + a \cdot 0 = 0 \\
+		f'(x) &= a(1 + x)^{a - 1} - a & f'(0) &= a(1 + 0)^{a - 1} - a = a - a = 0 \\
+		f''(x) &= \underbrace{(a^2 - a)}_{\le 0}\underbrace{(1 + x)}_{\ge 0} \le 0
+	\end{align*}
+	הסתמכנו שני אי־שוויונים בטענות לעיל. הראשון, $x + 1 \ge 0$, שנגרר ישירות מכך ש־$x \ge -1$ (נוסיף 2 לשני האגפים). השני, $g(a) = a^2 - a$, נכון כי $g'(a) = 2a - 1 $ יהיה קטן ממש מ־$0$ לכל $0 \le a \le 1$, כלומר $g(a)$ מונוטוני יורד החל מנקודת ההתחלה שלו $g(0) = 0$, אזי $g(a) \le 0$. סה"כ הטענות לעיל אכן נכונות, תחת הנתונים. באופן דומה להסקות שהתבצעו בשאלה קודמת, $f'' < 0 $ ולכן $f'$ מונוטוני יורד, ומשום ש־$f'(0) = 0$ אז $\forall x \ge 0. f'(x) \le 0$, ובאופן דומה $f(x) \le 0$ גם כן (תחת אותם התנאים שניתנו), כדרוש. 
+	
+	עתה, נותר להוכיח שוויון אמ"מ $a = 1 \lor x = -1$. משיקולים דומים, לכל $x \le -1$ נדע $f'''(x) \ge 0$ וכך (באופן דומה להוכחת אי־השוויון לעיל) יגרר $f(x)$ מונוטונית עולה באותו התחום, כלומר הקיצון היחיד הוא קיצון מקסימום כאשר $x = -1$, שם אכן יתקיים $f(x) = 0$ (כלומר, שוויון). נדע, שהפונקציה תעלה/תרד חזק בכל תחום אחר כי היא לא קבועה, אלא אם $a = 1$, בעת הזו $f(x) = (1 + x)^1 - 1 - x \cdot 1 = 0$ (כלומר, שוויון גם במקרה הזה). סה"כ אלו המקרים היחידים בהם ייתכן שוויון. 
+	
+	\section{\en{PID}}
+	
+	
+	\ndoc
+\end{document}

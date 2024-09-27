@@ -1,0 +1,175 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[A4, margin=0.5in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\p     {\text{, }}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\author{שחר פרץ}
+\title{סיכום חדו"א מהמכינה}
+
+\begin{document}
+	\maketitle
+	\dotfill \\
+	נגדיר את הנגזרת של פונקציה ע"י: 
+	\[  f'(x) = \frac{\Delta f}{\Delta x}  \equiv \lim_{\Delta x \to 0} \frac{f(x + \Delta x) -  f(x)}{\Delta x} \]
+	כלומר, נחשב את השיפוע כאשר $x$ שואף ל־$0$. 
+	דוגמה לגזירה לפי הגדרה של $\sin$:
+	\[ \lim_{\Delta x \to 0} \frac{\sin(x + \Delta x) \overbrace{- \sin x}^{= + \sin(-x)}}{\Delta x}
+	   = \lim_{\Delta x \to 0} \frac{2 \sin \left ( \frac{x + \Delta x + (-x)}{2}\right )\cos\left (\frac{x + \Delta x - (-x)}{2}\right )}{\Delta x}
+	   = \underbrace{\lim_{\Delta x \to 0}\frac{\sin\left (\frac{\Delta x}{2}\right )}{\frac{\Delta x}{2}}}_{=1} \cos(x)
+	   = \cos(x) \]
+	פעולת האינטגרל "תוגדר" כהפוכה לגזירה. החלק שבתוך האינטגרל יקרא "אינטגרנד". אינטגרלים ונגזרות הם הדיטיביים, כלומר ניתן לחבר אותם. 
+	כמה חוקים שימושיים: 
+	\begin{gather}
+		f(x) = (ax  + b)^n \implies f'(x) = n(ax + b)^{n - 1} \cdot a  \\
+		\lim_{x \to 0} \frac{\sin x}{x} = 1 \\
+		f(g(x))' = f'(g(x)) \cdot g'(x) \\
+		(f \cdot g)' = f'g + g'f \\
+		\left ( \frac{f}{g} \right ) ' = \frac{f'g - g'f}{g^2} \\
+		\sin'(x) = \cos(x) \\
+		\cos'(x) = -\sin(x) \\		
+		\int(ax + b)^ndx = \frac{(ax + b)^{n + 1}}{n} \cdot a + c \\
+		\int\sin(x)dx = -\cos(x) + c \\
+		\int\cos(x)dx = \sin(x) + c \\
+		\int \frac{\Delta f }{\Delta x}dx = f(x) + c \\
+		\int f + g = \int f + \int g \\
+		(f + g)'  = f' + g'
+	\end{gather}
+	
+	
+\end{document}
