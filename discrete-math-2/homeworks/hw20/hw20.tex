@@ -1,0 +1,662 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+	{\fontsize{15}{15}}
+	{\sen \quad \dotfill \, \!\!\! \thesection \,\! \dotfill \she}
+	{1em}
+	{\MakeUppercase}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil}
+\newcommand\ndoc  {\quad \sen \dotfill \she \\ \vfil \hfil \textbf{\textit{שחר פרץ, 2024}} \hfil \vfil}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה בדידה $\sim$ שיעורי בית 20 $\sim$ נוסחאות נסיגה}
+
+\begin{document}
+	\maketitle
+	
+	\section{} %%1
+	נסמן $=a_n$ מספר האפשרויות לרצף שביל באורך $n$ ע''י שימוש במרצפות אדומות באורך $2$, ירוקות באורך $2$ ושחורות באורך $1$. 
+	\begin{enumerate}[a)]
+		\item \textbf{שאלה: }כיתבו נוסחת נסיגה ל־$a_n$. 
+		
+		\textbf{פתרון: }נפלג למקרים, לפי האריח הראשון. 
+		\begin{itemize}
+			\item אם נתחיל לרצף במשבצות אדומות, אז ישארו $n - 2$ משבצות לבחור, ולכך יהיו $a_{n - 2}$ אפשרויות. 
+			\item אם נתחיל לרצף במשבצות ירוקות, אז ישארו $n - 2$ משבצות לבחור, ולכך יהיו $a_{n - 2}$ אפשרויות. 
+			\item אם נתחיל לרצף במשבצות לבנות, אז ישארו $n - 1$ משבצות לבחור, ולכך יהיו $a_{n - 1}$ אפשרויות. 
+		\end{itemize}
+		כאשר מקרי הבסיס שלנו $a_0 = 1, a_1 = 1 $. 
+		סה''כ, נחבר את המקרים הזרים ונקבל: 
+		\[ \begin{cases}
+			\bm{a_{n} = a_{n - 1} + 2a_{n - 2}} \\
+			\bm{a_0 = 1, a_1 = 1}
+		\end{cases} \]
+		\item הפולינום האופייני יהי $f(x) = x^2 - 1x - 2$, ושורשיו $x_{1, 2} = 2, -1$. נציב הקומבינציות הליניאריות: 
+		\[ a_n = 2^nA (-1)^n \cdot B, \ \begin{cases}
+			A + B = 1 \\
+			2A - B = 1
+		\end{cases} \implies \begin{cases}
+			2A = 2 - 2B \\
+			2A = 1 + B
+		\end{cases} \implies 1 + B = 2 - 2B \implies B = \frac{1}{3}, \ A = \frac{2}{3}\]
+		סה''כ, התשובה היא: 
+		\[ \bm{a_n = \frac{1}{3} \cdot (-1)^n + \frac{2}{3} \cdot 2^n} \]
+	\end{enumerate}
+	\section{} %%2
+	נסמן ב־$a_n$ את מספר המחרוזות באורך $n$ מעל $\{a, b, c, d\}$ כך שכל מופעי $a$ נמצאים לפני כל מופעי $b$. 
+	\begin{enumerate}
+		\item \textbf{שאלה: }כתבו נוסחת נסידה ל־$a_n$ יחד עם תנאי התחלה. 
+		
+		\textbf{תשובה: }נפלג למקרים, לפי התו הראשון: 
+		\begin{enumerate}
+			\item אם הוא $a, c, d$: אין הגבלה, ועבור $n - 1$ התווים הנותרים, יהיו $a_{n - 1}$ אפשרויות. 
+			\item אם הוא $b$, אז לא יכול להופיע יותר $a$, ולכן אין חשיבות להגבלה כי $a$ יופיע לפני $b$, כלומר יהיו $3^{n - 1}$ אפשרויות (כמות התווים האשריים בכל מיקום, כפול כמות המיקומים). 
+		\end{enumerate}
+		כאשר מקרי הבסיס $a_0 = 1, a_1 = 4 $. 
+		סה''כ, נקבל את הנוסחה הבאה: 
+		\[ \begin{cases}
+			\bm{a_n = 3a_{n - 1} + 3^{n - 1}} \\
+			\bm{a_0 = 1}
+		\end{cases} \]
+		\item נוכיח באינדוקציה $\bm{a_n = 3^n + n3^{n - 1}}$. \begin{proof}
+			\textit{בסיס: }$a_0 = (0 + 1) \cdot 3^{0} = 1 $ כדרוש. \textit{צעד: }נניח על $a_n$ ונוכיח על $a_{n + 1}$: 
+			\[ a_{n + 1} = 3a_n + 3^{n} = 3(\underbrace{3^{n} + n3^{n - 1}}_{\mathrm{Induction}}) + 3^{n} = 3^{n + 1} + n3^{n} + 3^{n} = 3^{n + 1} + (n + 1)3^{n} \]
+			כדרוש. לכן, נצמצם את אשר הוכחנו באינדוקציה ונקבל: 
+			\[\bm{\ans = \left (1 + \frac{n}{3}\right )3^{n}} \]
+		\end{proof}
+	\end{enumerate}
+	\section{} %%3
+	\begin{enumerate}
+		\item \textbf{שאלה: }כמה סדרות טנאריות לא מכילות את הרצף 00?
+		
+		\textbf{תשובה: }נפלג למקרים לפי התו הראשון. 
+		\begin{itemize}
+			\item אם נבחרו להיות $0$, אז הכרח הוא שהתו הבא יהיה $1$ או $2$, ועבור $n - 2$ התווים הנותרים יהיו $a_{n - 2}$ אפשרויות. 
+			\item אם נבחרו להיות $1$ או $2$, אז עבור $n - 1$ התווים הנותרים יהיו $a_{n - 1}$ אפשרויות
+		\end{itemize}
+		מקרי הבסיס יהיו $a_0 = 1, a_1 = 3 $ וסה''כ: 
+		\[ \begin{cases}
+			\bm{a_n = 2a_{n - 1} + 2a_{n - 2}} \\
+			\bm{a_0 = 1, \ a_1 = 3}
+		\end{cases} \]
+		\item \textbf{שאלה: }כמה סדרות טנאריות לא מכילות את הרצפים 01 או 02?
+		
+		\textbf{תשובה: }נפלג למקרים לפי התו הראשון.
+		\begin{itemize}
+			\item אם הוא מתחיל ב־$0$, אז התו הבא לא יכול להיות $1$ או $2$ כלומר הוא $0$, וכן הלאה; כלומר כל התווים שלאחריו הם $0$, ובהכרח תהיה רק אפשרות אחת. 
+			\item אם הוא מתחיל ב־$1$ או $2$ אז אין שום הגבלה ו‏ל־$n - 1$ התווים הנותרים יהיו $a_{n - 1}$ אפשרויות. 
+		\end{itemize}
+		סה''כ מקרי בסיס $a_0 = 1 $, ונקבל: 
+		\[ \begin{cases}
+			\bm{a_n = 1 + 2a_{n - 1}} \\
+			\bm{a_0 = 1}
+		\end{cases} \]
+		
+		\item \textbf{שאלה: }כמה סדרות טנאריות לא מכילות את הרצף 01?
+		
+		\textbf{תשובה: }נפלג למקרים לפי התו הראשון. 
+		\begin{itemize}
+			\item אם הוא מתחיל ב־$0$, אז יהיו $a_{n - 1}$ אפשרויות להמשך, אך מעקרון המשלים נרצה לחסר את כל הלא־תקינות – אלו שמתחילות ב־1 – ולהן, יהיו $a_{n - 2}$ אפשרויות, כלומר סה''כ $a_{n - 1} - a_{n - 2}$. 
+			\item אם הוא מתחיל ב־$2$ או $1$, אז אין שום הגבלה ולכן ל־$n - 1$ התווים הנותרים יהיו $a_{n - 1}$ אפשרויות. 
+		\end{itemize}
+		מקרי בסיס $a_0 = 1, a_1 = 3 $. לכן נקבל: 
+		\[ \begin{cases}
+			a_n = 2a_{n - 1} + a_{n - 1} - a_{n - 2}\\
+			a_0 = 1, a_1 = 3
+		\end{cases} \implies \begin{cases}
+			\bm{a_n = 3a_{n - 1} - a_{n - 2}} \\
+			\bm{a_0 = 1, a_1 = 3}
+		\end{cases} \]
+		
+	\end{enumerate}
+	\section{} %%4
+	\textbf{שאלה: }נתון שביל באורך $n$. יהיו משבצות ירוקות בממדים $1 \times 1$, כחולות בממדים $1 \times 2$, ואדומות בממדים $1 \times 3$. כמה ריצופים אפשריים יש בלי מרצפות כחולות וירוקות סמוכות?
+	
+	\textbf{פתרון: }$=a_n$ מספרים הריצופים החוקיים, $=b_n$ הריצופים בלי משבצת ראשונה כחולה, $=c_n$ מספר הריצופים בלי משבצת ראשונה ירוקה. 
+	
+	נמצא ביטוי לכל אחד מהם. עבור $a_n$: 
+	\begin{itemize}
+		\item אם נתחיל במשבצת ירוקה, אז יוותרו $n - 1$ משבצות ולא נוכל להתחיל בכחולה ולכן יהיו $b_{n - 1}$ אפשרויות. 
+		\item אם נתחיל במשבצת כחולה, אז נרצה את כמות האפשרויות ל־$n - 2$ משבצות בלי שלא מתחילות במשבצת ירוקה, וזה $c_{n - 2}$. 
+		\item אם נתחיל במשבצת אדומה, אז באופן דומה יהיו $a_{n - 3}$ אפשרויות כי אין שום הגבלה. 
+	\end{itemize}
+	עבור $b_n$: 
+	\begin{itemize}
+		\item בכחולה, לא נתחיל. 
+		\item בירוקה, אם נתחיל אז יוותרו $n - 1$ ולא נוכל להתחיל מכחולה $b_{n - 1}$ אפשרויות. 
+		\item באדומה, אם נתחיל אז יוותרו $n - 3$ משבצות בלי הגבלה כלומר $a_{n - 3}$. 
+	\end{itemize}
+	עבור $c_n$: 
+	\begin{itemize}
+		\item בירוקה, לא נתחיל. 
+		\item באדומה, אז יוותרו $n - 3$ משבצות בלי הגבלה כלומר $a_{n - 3}$ אפשרויות. 
+		\item בכחולה, אז יוותרו $n - 2$ משבצות שלא יתחילו בירוקה כלומר $c_{n - 2}$ אפשרויות. 
+	\end{itemize}
+	סה''כ, קיבלנו: 
+	\[ \begin{cases}
+		(\rn{1}) &a_n = a_{n - 3} + b_{n - 1} + c_{n - 2} \\
+		(\rn{2}) &b_n = b_{n - 1} + a_{n - 3} \\
+		(\rn{3}) &c_n = c_{n - 2} + a_{n - 3}
+	\end{cases} \]
+	ממערכת המשוואות, נסיק: 
+	\begin{align*}
+		 \rn{2} - \rn{1} &\implies  &\rn{3} - \rn{1} &\implies   &\rn{1} &\implies \\
+		b_n - a_n &= -c_{n - 2}     &c_n - a_n &= -b_{n - 1}     &a_n &= a_{n - 3} + b_{n - 1} + c_{n - 2}  \\
+		b_n &= a_n - c_{n - 2}      &c_n &= a_n - b_{n - 1}      &a_n &= a_{n - 3} + b_{n - 2} + a_{n - 4} + c_{n - 2}  \quad \open \mathrm{eq. \; \rn{2}}\close \\
+		    &                       &    &                       &-b_{n - 2} - c_{n - 2} &= a_{n - 3} + a_{n - 4} - a_n \\
+		    &                       &    &                       &-b_{n - 3} - c_{n - 3} &= a_{n - 4} + a_{n - 5} - a_{n - 1}
+	\end{align*}
+	נציב: 
+	\begin{alignat*}{9}
+		\rn{1} \implies \: && a_n &= a_{n - 3} + b_{n - 1} + c_{n - 2} \\
+		                   && a_n &= a_{n - 3} + \underbrace{a_{n - 1} - c_{n - 3}}_{= b_{n - 1}} + \underbrace{a_{n - 2} - b_{n - 3}}_{= c_{n - 2}} \\
+		                   && a_n &= a_{n - 3} + a_{n - 2} + a_{n - 1} + \underbrace{a_{n - 4} + a_{n - 5} - a_{n - 1}}_{= -b_{n - 3} -c_{n - 3} } \\
+		                   && a_n &= a_{n - 2} + a_{n - 3} + a_{n - 4} + a_{n - 5}
+	\end{alignat*}
+	סה''כ, יחדיו עם תנאי ההתחלה, התשובה תהיה: 
+	\[ \begin{cases}
+		\bm{a_n = a_{n - 2} + a_{n - 3} + a_{n - 4} + a_{n - 5}} \\
+		\bm{a_0 = 1, a_1 = 1, \ a_2 = 2, \ a_3 = 2, \ a_4 = 4}
+	\end{cases} \]
+	
+	\section{} %%5
+	נפתור את נוסחאות הנסיגה הבאות: 
+	\begin{enumerate}
+		\item \textbf{הנוסחה: }
+		\[ \begin{cases}
+			a_n = 2\ano + 3\ant \\
+			a_0 = 3, \ a_1 = 5
+		\end{cases} \]
+		
+		ניעזר בשיטת הפולינום האופייני. הפולינום האופייני יהיה $x^2 - 2x - 3 $ ושורשיו $\xot = 3, -1 $. לכן, הצורה הכללית של נוסחת הנסיגה תהיה $a_n = 3^nA + (-1)^nB $, וממקרי הבסיס נקבל את מערכת המשוואות הבאה: 
+		\[ \begin{cases}
+			a_0 = 3^0A + (-1)^{0}B &= A + B = 3 \implies B = 3 - A \\
+			a_1 = 3^{1}A (-1)^{1}B &= 3A - (3 - A) = 5
+		\end{cases} \implies 4A - 3 = 5 \implies 4A = 8 \implies A = 2, B = 1 \]
+		נציב ונקבל שערך נוסחת הנסיגה: 
+		\[ \bm{a_n} = 2 \cdot 3^{n} + 1 \cdot (-1)^{n} = \bm{2 \cdot 3^{n} + (-1)^{n}} \]
+		\item \textbf{הנוסחה: }
+		\[ \begin{cases}
+			a_n = \sum_{k = 2}^{n} 2 a_{n - k} \\
+			a_0 = 0, \ a_1 = 6
+		\end{cases} \]
+		\textbf{תשובה: }נטען, שהביטוי הוא $a_n = a_{n - 1} + 2a_{n - 2}$, לכל $n \ge 3$. נוכיח באינדוקציה. 
+		
+		\textit{בסיס: }
+		\[a_{3} = 2a_2 + 2a_1 + 2a_{0} = 6 = 2a_2 + a_1\]
+		\textit{צעד: }
+			יהי $n \in \N$. נניח את נכונות הטענה בעבור $a_n$, ונוכיח עבור $a_{n + 1}$: 
+		\begin{align*}
+			a_{n + 1} &= \sum_{k = 2}^{n + 1} 2a_{n + 1 - k} = \sum_{k = 0}^{n - 1}2a_{k} \\
+			&= 2a_{n - 1} + \sum_{k = 0}^{n - 2}a_k \\
+			&= 2a_{n - 1} + \sum_{k = 2}^{n}a_{n - k} = 2a_{n - 1} + a_{n} \\
+			&= 2a_{(n + 1) - 2} + a_{(n + 1) - 1}
+		\end{align*}
+		כדרוש. 
+		הפולינום האופייני יהיה $x^2 - 1x - 2$ ושורשיו $\xot = 2, -1$. לכן, הפתרון הכללי יהיה $a_n = A2^n + B(-1)^{n}$. עתה, נפתור את מערכת המשוואות ביחס למקרי הבסיס: 
+		\[ \begin{cases}
+			a_0 = 0 = A \cdot 2^{0} + B \cdot (-1)^{0} \implies A = -B \\
+			a_1 = 6 = 2A - B \implies 6 = 2A + A \implies A = 2, B = -2
+		\end{cases} \]
+		סה''כ, נקבל שהתשובה הסופית תהיה: 
+		\[ \bm{a_n} = 2 \cdot 2^{n} -2(-1)^{n} \bm{= 2^{n + 1} - 2(-1)^{n}} \]
+		
+	
+	\end{enumerate}
+	\section{} %%6
+	
+	\begin{enumerate}
+		\item \textbf{שאלה: }$n$ אנשים יושבים על ספסל. בכמה אופנים נוכל לשנות את סדר ישיבתם כך שאף אחד לא יזוז יותר ממקום אחד? 
+		
+		\textbf{תשובה: }נפלג למקרים לפי האדם הראשון בספסל: 
+		\begin{itemize}
+			\item אם הוא יזוז ימינה, אז הוא והאדם שיחליף איתו לא יכולו עוד לזוז, לכן נותרו $n - 2$ אנשים צמודים אם יכולת תזוזה, להם יהיו $a_{n - 2}$ אפשרויות. 
+			\item אם הוא לא יזוז, אז יוותרו $a_{n - 1}$ אנשים שלא נקבע אם יזוזו או לא צמודים, להם יהיו $\ano$ אפשרויות תזוזה. 
+		\end{itemize}
+		עבור מקרי בסיס $a_0 = 1, a_1 = 1 $
+		סה''כ, נקבל שכמות האפשרויות היא: 
+		\[ \bm{a_n} = a_{n - 1} + a_{n - 2} = \bm{F_{n + 1}} = \frac{1}{\sqrt5}\cl{\frac{1 + \sqrt{5}}{2}}^{n + 1} - \frac{1}{\sqrt5} \cl{\frac{1 - \sqrt5}{2}}^{n + 1} \]
+		כאשר ההזחה קדימה את $F_n$ נובעת ממקרי בסיס שונים כמעה. 
+		\item \textbf{שאלה: }$n$ אנשים יושבים במקומם סביב שולחן עגול. בכמה אופנים אפשר לשנות את סדר ישיבתם כך שאף אחד לא יזוז יותר ממקום אחד?
+		בה''כ נבחר אדם ``ראשון'', ונפלג למקרים לפי אופי התזוזה שלו: 
+		\begin{itemize}
+			\item אם הוא לא יזוז ממקומו, ניוותר עם $n - 1$ אנשים, כאשר שני האנשים בקצוות לא יכלו לשנות את מקומם אם אחד מהאנשים שצמודים להם (הוא האגם שבחרנו שלא יזוז ממקומו); כלומר, התשובה תהיה זהה לזו של השאלה עם הספסל, כלומר $F_{n - 1}$. 
+			\item אם הוא יזוז ימינה, אז באופן דומה יקבעו מקומות של שני אנשים, ויוותרו $n - 2$ אנשים ביישוב דומה לזה של ספסל, כלומר $F_{n - 2}$ אפשרויות. 
+			\item אם יזוז שמאלה, אז באופן זהה לתזוזה ימינה יהיו $F_{n - 2}$ אפשרויות. 
+			\item אם אף אחד לא יתחלף עם אף אחד, אז או שכולם יזוזו ימינה או שכולם יזוזו שמאלה – סה"כ $2$ אפשרויות. 
+		\end{itemize}
+		
+		למען נוחות, נגדיר $\phi=  \frac{1 + \sqrt 5}{2}$. 
+		סה''כ, שכמות האפשרויות היא: 
+		\begin{align*}
+			\ans &= a_{n - 1} + a_{n - 2} + 2 = F_{n} + 2F_{n - 1} + 2 \\
+			     &= 5^{-0.5}\phi^{n} - 5^{-0.5}(\phi - \sqrt5)^{n} + \frac{2}{\sqrt5}\phi^{n - 1} - \frac{2}{\sqrt5}(\phi - \sqrt5)^{n - 1} + 2 \\
+			     &= 5^{-0.5}(\phi^{n} - (\phi - \sqrt5)^{n} + 2\phi^{n - 1} - 2 (\phi - \sqrt5)^{n - 1}) + 2 \\
+			     &= \bm{5^{-0.5}\big(\phi^{n}\cl{1 + 2n^{-1}} + (\phi - \sqrt5)^{n}\cl{1 + 2n^{-1}}\big) + 2}
+		\end{align*}
+	\end{enumerate}
+	
+	\npage
+	\section{} %%7
+	נגדיר $a_n$ כמות הפתרונות למרצפות המתחילות ב־
+	\begin{tikzpicture}[scale=0.2]
+		\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+	\end{tikzpicture}
+	ואת $b_n$ ככמות הפתרונות המרצפות המתחילות ב-
+	\begin{tikzpicture}[scale=0.2]
+		\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+		\squ{0}{0}{black}
+	\end{tikzpicture}
+	עד לכדי סיבוב. נסמן ב־$... \implies ... $ כדי לציין סידור לוח שהכחי בהתאם למה שהיה קודם. 
+	
+	כדי לכמת את $a_n$, כתלות ב־$n$ בנוסחת נסיגה, נפלג למקרים כתלות באיבר במיקום העליון־שמאלה ביותר;
+	\begin{itemize}
+		\item נניח התחלה ב־\begin{tikzpicture}[scale=0.2]
+			\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+			\squ{0}{1}{black};
+			\squ{0}{2}{black};
+		\end{tikzpicture}$ \impliedby $ \begin{tikzpicture}[scale=0.2]
+			\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+			\squ{0}{0}{black};
+			\squ{0}{1}{black};
+			\squ{0}{2}{black};
+			\squ{1}{0}{black};
+		\end{tikzpicture} וסה''כ הגענו ל־$b_{n - 1}$. 
+		\item נניח התחלה ב־\begin{tikzpicture}[scale=0.2]
+			\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+			\squ{0}{2}{black};
+			\squ{1}{2}{black};
+		\end{tikzpicture}
+		ונפלג ממנה, לשני מקרים. 
+		\begin{itemize}
+			\item אם \begin{tikzpicture}[scale=0.2]
+				\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+				\squ{0}{2}{black};
+				\squ{1}{2}{black};
+				\squ{0}{1}{black};
+				\squ{1}{1}{black};
+			\end{tikzpicture} $\impliedby$ \begin{tikzpicture}[scale=0.2]
+			\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+				\squ{0}{2}{black};
+				\squ{1}{2}{black};
+				\squ{0}{1}{black};
+				\squ{1}{1}{black};
+				\squ{0}{0}{black};
+				\squ{1}{0}{black};
+			\end{tikzpicture} והגענו ל־$a_{n - 2}$. 
+			\item אם \begin{tikzpicture}[scale=0.2]
+				\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+				\squ{0}{2}{black};
+				\squ{1}{2}{black};
+				\squ{0}{0}{black};
+				\squ{0}{1}{black};
+			\end{tikzpicture} אז הגענו ל־$b_{n - 1}$. 
+			\end{itemize}
+	\end{itemize}
+	סה''כ קיבלנו $a_n = 2b_{n - 1} + a_{n - 2}$. עתה, באופן דומה נרצה למצוא את $b_n$: 
+	\begin{itemize}
+		\item נניח התחלה ב־	\begin{tikzpicture}[scale=0.2]
+			\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+			\squ{0}{0}{black};
+			\squ{0}{1}{black};
+			\squ{0}{2}{black};
+		\end{tikzpicture}, אז קיבלנו $a_{n - 1}$. 
+		\item נניח התחלה ב־	\begin{tikzpicture}[scale=0.2]
+			\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+			\squ{0}{0}{black};
+			\squ{0}{2}{black};
+			\squ{1}{2}{black};
+		\end{tikzpicture} $\impliedby$ \begin{tikzpicture}[scale=0.2]
+			\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+			\squ{0}{0}{black};
+			\squ{0}{2}{black};
+			\squ{1}{2}{black};
+			\squ{0}{1}{black};
+			\squ{1}{1}{black};
+		\end{tikzpicture} $\impliedby$ \begin{tikzpicture}[scale=0.2]
+			\draw[step=\sqw] (0,0) grid (3*\sqw, 3*\sqw);
+			\squ{0}{0}{black};
+			\squ{0}{2}{black};
+			\squ{1}{2}{black};
+			\squ{0}{1}{black};
+			\squ{1}{1}{black};
+			\squ{1}{0}{black};
+			\squ{2}{0}{black};
+		\end{tikzpicture} 
+		ולכן קיבלנו במקרה הזה $b_{n - 2}$. 
+	\end{itemize}
+	סה''כ קיבלנו $b_n = a_{n - 1} + b_{n - 2}$. נקבל את מערכת המשוואות: 
+	\[ \begin{cases}
+		b_n = a_{n - 1} + b_{n - 2} \\
+		a_n = 2b_{n - 1} + a_{n - 2}
+	\end{cases} \implies \begin{cases}
+		\rn{1} &2b_n = 2a_{n - 1} + 2b_{n - 2} \\
+		\rn{2} &a_{n - 1} = 2b_{n - 2} + a_{n - 3}
+	\end{cases} \]
+	
+	נחסר $\rn{1} - \rn{2}$ ונקבל: 
+	\[ 2b_n - a_{n - 1} = 2a_{n - 1} - a_{n - 3} \implies 2b_n = 3a_{n - 1} - a_{n - 3} \implies 2b_{n - 1} = 3a_{n - 2} - a_{n - 4} \]
+	נציב חזרה ונמצא: 
+	\[ a_{n} = 2b_{n - 1} + a_{n - 2} = 4a_{n - 2} - a_{n - 4} \]
+	נגדיר מקרי בסיס, ונגיע לנוסחת נסיגה סופית: 
+	\[ \begin{cases}
+		a_n = 4a_{n - 2} - a_{n - 4} \\
+		a_0 = 1, a_1 = 0, a_2 = 3, a_3 = 0, a_4 = 10
+	\end{cases} \]
+	
+	נשים לב, שאפשר לרצף אך ורק עבור $n \in \Neven$, כלומר לכל $n \in \Nodd$ יתקיים $a_n = 0$. לכן, נוכל להגדיר $m = 2n $ ולקבל: 
+	\[ \begin{cases}
+		a_m = 4a_{m - 1} - a_{m - 2} \\
+		a_0 = 1, a_1 = 3, a_2 = 10
+	\end{cases} \]
+	ניעזר בשיטת הפולינום האופייני כדי למצוא לזה ערך. הפולינום האופייני, יהיה $x^2 - 4x + 1$, ושורשיו $2 \pm \sqrt3$. לכן: 
+	\[ a_m = A(2 + \sqrt3)^m + B(2 - \sqrt3)^m \implies \begin{cases}
+		a_0 = A + B = 1 \implies B = 1 - A \\
+		a_1 = (2 + \sqrt3)A + (2 - \sqrt3)B = 3
+	\end{cases} \]
+	נציב ונקבל: 
+	\[ \begin{WithArrows}
+		(2 + \sqrt3)A - (2 - \sqrt3)A - \sqrt3 + 2 &= 3 \Arrow{$+ \sqrt3 - 2$} \\
+		A(2 + \sqrt3 - 2 + \sqrt3) &= 1 + \sqrt3 \Arrow{$\cdot \frac{1}{2\sqrt3}$} \\
+		A &= \frac{3 + \sqrt3}{6}
+	\end{WithArrows} \]
+	ולכן $B = 1 - A = \frac{3 - \sqrt3}{6}$. נציב חזרה כדי לקבל תוצאה סופית: 
+	\[ a_m = \frac{3 + \sqrt3}{6}(2 + \sqrt3)^{m} + \frac{3 - \sqrt3}{6}(2 - \sqrt3)^{m} \]
+	ועבור $n$ כללי, נדע $n = 0.5m$, כלומר: 
+	\[ \bm{a_n} = \begin{cases}
+		\bm{\frac{3 + \sqrt3}{6}(2 + \sqrt3)^{0.5n} + \frac{3 - \sqrt3}{6}(2 - \sqrt3)^{0.5n}} & \bm{n \in \Neven} \\
+		\bm{0} & \bm{n \in \Nodd}
+	\end{cases} \]
+	
+	\section{} %%8
+	\textbf{שאלה: }כמה מחרוזות באורך $n$ ישנן, על $\{0, 1, 2\}$, כך שבין כל שתי הופעות של המספר $2$ תופיעה הספרה $0$?
+	
+	\textbf{תשובה: }נסמן ב־$a_n$ את כמות האפשרויות, וב־$b_n$ את אותו הדבר בעבור מחרוזת שכבר הופיע בה $2$. 
+	
+	נפצל למקרים לפי התו הראשון במחרוזת: 
+	\begin{itemize}
+		\item אם הוא יתחיל ב־$0$: אז לא ישתנה דבר, ויהיו $a_{n - 1}$ אפשרויות. 
+		\item אם הוא יתחיל ב־$1$, אז באופן דומה יהיו $a_{n - 1}$ אפשרויות. 
+		\item אם הוא יתחיל ב־$2$, אז לפי הגדרה יהיו $b_{n - 1}$ אפשרויות. 
+	\end{itemize}
+	
+	ועבור התו הראשון במחרוזת, שתתנהג כאילו כבר הופיע בה $2$: 
+	\begin{itemize}
+		\item היא לא תוכל להתחיל ב־$2$, כי לא הופיע $0$ לפני כן. 
+		\item אם היא תתחיל ב־$1$, דבר לא ישתנה ונקבל $b_{n - 1}$ אפשרויות. 
+		\item אם היא תתחיל ב־$0$, אז יוכל להופיע המספר $2$ כלומר יהיו $a_{n - 1}$ אפשרויות. 
+	\end{itemize}
+	
+	סה''כ נקבל את מערכת המשוואות הבאה: 
+	\[ \begin{cases}
+		a_n = 2a_{n - 1} + b_{n - 1} \\
+		b_n = b_{n - 1} + a_{n - 1}
+	\end{cases} \]
+	נחסר את המשוואות: 
+	\[ b_n - a_n = a_{n - 1} - 2a_{n - 1} = -a_{n - 1} \implies b_n = a_n - a_{n - 1} \implies b_{n - 1} = a_{n - 1} - a_{n - 2} \]
+	נציב: 
+	\[ a_n = 2a_{n - 1} + a_{n - 1} - a_{n - 2} =3a_{n - 1} - a_{n - 2} \]
+	ומקרי בסיס $a_0 = 1, a_1 = 3, $. הפולינום האופייני של נוסחאת הנסיגה יהיה $x^2 - 3x + 1 $, ושורשיו $\frac{3 \pm \sqrt5}{2}$. לכן, באופן כללי נוסחת הנסיגה תהיה $a_n = A\frac{3 + \sqrt5}{2}^{n} + B\frac{3 - \sqrt5}{2}^{n}$. נשווה למקרי הבסיס בשביל למצוא את ערך $A, B$: 
+	\begin{alignat*}{9}
+		&&&\begin{cases}
+			a_0 = 1 = A\frac{3 + \sqrt5}{2}^{0} + B\frac{3 - \sqrt5}{2}^{0} = A + B \implies A = 1 - B\\
+			a_1 = 3 = A\frac{3 + \sqrt5}{2}^{1} + B\frac{3 - \sqrt5}{2}^{1}
+		\end{cases} \\
+		\implies \quad &&3  &\seq A\frac{3 + \sqrt5}{2} + (1 - A)\frac{3 - \sqrt5}{2} = 3A + \frac{3 - \sqrt5}{2} \\
+		\implies \quad &&3A &\seq \frac{3 - 6 - \sqrt{5}}{2} \implies A = -\frac{\sqrt5}{6} -0.5 \implies B = \frac{\sqrt5}{6} + 0.5 \\
+		\implies \quad &&\bm{a_n} &= -\left (\frac{\sqrt5}{6} + 0.5\right )\cl{\frac{3 + \sqrt5}{2}}^{n} + \left  (\frac{\sqrt5}{6} + 0.5 \right  )\cl{\frac{3 - \sqrt5}{2}}^{n} \\
+		         \quad &&         &= \bm{\cl{\frac{\sqrt5}{6} + 0.5}\cl{\cl{\frac{3 - \sqrt 5}{2}}^n - \cl{\frac{3 + \sqrt5}{2}}^n}}
+	\end{alignat*}
+	
+	
+	\ndoc
+	
+\end{document}

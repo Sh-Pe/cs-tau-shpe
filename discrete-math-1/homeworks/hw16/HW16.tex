@@ -1,0 +1,374 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[legalpaper, margin=0.5in]{geometry}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\renewcommand\labelitemi{$\bullet$}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+\AtBeginEnvironment{alignat}{\setcounter{equation}{0}}
+\AtBeginEnvironment{WithArrows}{\setcounter{equation}{0}}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\al    {\aleph}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\final {\begin{center}
+		$\sim \; \sim \; \sim $ סוף $ \sim \; \sim \; \sim $
+	\end{center}}
+
+\title{מתמטיקה בדידה – תרגיל בית 16}
+\author{שחר פרץ}
+
+\begin{document}
+	\maketitle
+	\section*{שאלה 1}
+	בכל סעיף, צ.ל. עוצמת הקבוצה המוגדרת גדולה ממש מ־$ \az $. 
+	\subsection*{סעיף (א)}
+	נזמן ב־$ A $ את קבוצת הפונקציות ב־$ \N \to \N $ שאינן חח"ע. צ.ל. $ A < \az $
+	\begin{proof} נוכיח גדול ולא שווה. 
+		\begin{itemize}
+			\item $ \bm{\le} $\textbf{: }נבחר פונקציה $ h \colon \N \to A $ מתאימה. 
+			\[ h = \lambda n \in\ \N. \lambda m \in \N. n \]
+			נוכיח כמה טענות: 
+			\begin{itemize}
+				\item $ \bm{\mathbf{range}(F) = A} $\textbf{: }יהי $ n \in \N $, נוכיח $ h(n) \in A $ כלומר $ h(n) $ אינה חח"ע. נניח בשלילה $ h(n) $ חח"ע, נקבל $ \forall i, j \in\N. h(n)(i) = h(n)(j) \implies i = j $, סתירה לכך שבעבור $ i = 0, j = 1 $ יתקיים $ h(n)(i) = h(n)(j) = n $ למרות ש־$ i \neq j $ כי $ 0 \neq 1 $. סה"כ הגענו לסתירה כלומר $ h(n) $ אינה חח"ע, משמע $ h(n) \in A $. 
+				\item $ \bm{h} $\textbf{ חח"ע: }יהיו $ n, m \in \N $, ונניח $ h(n) = h(m) $, נוכיח $ n = m $. נניח בשלילה $ n \neq m $, לפיכך משוויון פונקציות $ \forall i \in \N. h(n)(i) = n \neq m = h(m)(i) $ וזו סתירה, לכן $ n = m $ כדרוש. 
+			\end{itemize}
+			סה"כ מצאנו פונקציה חח"ע בטווח המתאים ולכן $ \az \le A $. 
+			\item $ \bm{\neq} $\textbf{: }נניח בשלילה קיום $ F \colon \N \to A $ זיווג. נתבונן בפונקציה הבאה: 
+			\[ g = \lambda n \in \N. \begin{cases}
+				0 & n = 0 \lor n = 1 \\
+				F(n - 2)(n) + 1 &\other
+			\end{cases} \]
+			נוכיח כמה טענות. 
+			\begin{itemize}
+				\item $ \bm{g \in A} $\textbf{: }נוכיח $ g $ לא חח"ע, נניח בשלילה שהיא חח"ע ונקבל סתירה בעבור $ g(1) = 0 = g(0) $ למרות ש־$ 0 \neq 1 $. 
+				\item $ \bm{\forall n \in \N. F(n) \neq g} $\textbf{: }יהי $ n \in \N $, נוכיח $ F(n) \neq g $. נניח בשלילה שוויון, לכן משוויון פונקציות ערכי החזרתן יהיו שווים לכל $ i \in \N $, ובפרט בעבור $ i = n + 2 $. לכן, $ F(n)(n + 2) = g(n + 2) = F(n \cancel{+ 2 - 2})(n + 2) + 1 $ כלומר נחסר אגפים ונקבל $ 0 = 1 $ – סתירה. 
+			\end{itemize}
+			סה"כ מצאנו פונקציה $ g \in A \land \forall n \in\ N. F(n) \neq g $ כלומר $ F $ לא על $ A $ וזו סתירה לכך ש־$ F $ זיווג. על־כן, $ \az \neq |A| $. 
+		\end{itemize}
+		נסכם: $ \az \le |A| \land \az \neq |A| $ כלומר $ |A| > \az $ כדרוש. 
+	\end{proof}
+	\subsection*{סעיף (ב)} 
+	נסמן ב־$ A $ את קבוצת הפונקציות ב־$ \N \to \N $ שהן על $ \N $. צ.ל. באמצעות לכסון $ A < \az $. 
+	\begin{proof}
+		נוכיח אי שוויון עוצמות חזק. 
+		\begin{itemize}
+			\item $ \bm{\le} $\textbf{: }נניח בשלילה קיום זיווג $ F \colon \N \to A $. נתבונן בפונקציה הבאה: 
+			\[ g = \lambda n \in \N. \begin{cases}
+				\tfrac{n}{2} & n \in \Neven \\
+				F(\tfrac{n-  1}{2})(n) + 1 & n \in \Nodd
+			\end{cases} \]
+		נוכיח כמה טענות: 
+			\begin{itemize}
+				\item \textbf{מוגדר היטב: }הביטוי $ F(\tfrac{n - 1}{2}) $ מוגדר היטב לכל $ n \in \Nodd $ כי $ 2 \mid n - 1 $ וגם $ n - 1 \le 0 $ ולכן $ \tfrac{n - 1}{2} \in \N $. סה"כ כל שאר הביטויים מוגדרים גם הם. 
+				\item $ \bm{g \in A} $\textbf{: }צ.ל. $ g \in \N \to \N $ (שמתקיים מתחשיב למדא + $ F(n) \colon \N \to \N $ ולכן $ F(n)(n) \in \N $), וכי הוכח בסעיף הקודם כי $ g $ פונקציה. נוסף על כך, צ.ל. $ g $ על. יהי $ n \in \N $, צ.ל. קיום $ m \in \N $ כך ש־$ g(m) = n $. נבחר $ m = 2n $. משום ש־$ 2 \mid 2n $ אזי $ g(2n) = \tfrac{2n}{2} = n $ כדרוש. סה"כ $ g \in A $. 
+				\item $ \bm{\forall n \in \N. F(n) \neq g} $\textbf{: }יהי $ n \in \N $, צ.ל $ F(n) \neq g $ כלומר משלילת שוויון פונקציות צריך למצוא $ m \in \N $ כך ש־$ F(n)(m) \neq g(m) $. נבחר $ m = 2n + 1 $, נניח בשלילה קיום שוויון ונקבל: 
+				\[ \begin{WithArrows}
+					F(n)(2n + 1) &= g(2n + 1) \Arrow{$ \beta \land 2 \nmid 2n + 1 $}\\
+					F(n)(2n + 1) &= F(\tfrac{2n + 1}{2})(2n + 1) + 1 = F(n)(2n + 1) + 1\Arrow{$ -F(n)(2n + 1) $} \\
+					0 &= 1
+				\end{WithArrows} \]
+				וזו סתירה, כלומר מצאנו $ m $ מתאים לדרישות והפרכנו קיום $ n \in \N $ כך ש־$ F(n) = g $. 
+			\end{itemize}
+			סה"כ, $ g \in A \land \forall n \in \N. F(n) \neq g $, כלומר $ F $ אינה על $ A $, וזו סתירה לכך ש־$ F $ זיווג. 
+			הפרכנו את טענת השלילה ומצאנו כי $ \az \neq |A| $
+			\item $ \bm{\le} $\textbf{: }נמצא פונקציה חח"ע $ h \colon \N \to A $: 
+			\[ h = \lambda n \in \N. \lambda m \in \N. \begin{cases}
+				m & m \le n \\
+				m - 1 & m > n
+			\end{cases} \]
+			נוכיח כמה טענות: 
+			\begin{itemize}
+				\item $ \bm{\mathbf{range}(h))} = A $\textbf{: }יהי $ n \in\N $, נוכיח $ h(n) \in A $ כלומר $ h(n) $ על, או באופן שקול, יהי $ m \in \N $, נמצא $ k \in \N $ כך ש־$ g(k) = m $ נפלג למקרים. אם $ k \le n $, נבחר $ k = m $ ויתקיים ישירות $ h(n)(k) = h(n)(m) = m $ כדרוש. אם $ m + 1 > m > n $, אז נבחר $ k = m + 1 $ וסה"כ $ h(n)(k) = h(n)(m + 1) = m + 1 - 1 = m $ כדרוש. 
+				\item $ \bm{g} $\textbf{ חח"ע: }יהיו $ m, n \in \N $, נניח $ h(n) = h(m) $ ונוכיח $ n = m $. נניח בשלילה $ n \neq m $,  בה"כ $ n > m $ משוויון פונקציות, $ \forall i \in \N. h(n)(i) = h(m)(i) $ ובפרט בעבור $ i = m > n $, נקבל $ h(n)(m) = m - 1 \neq h(m)(m) $, וזו סתירה. סה"כ $ n =m $ כדרוש. 
+			\end{itemize}
+			נסכם: $ h $ חח"ע ובעלת הטווח המתאים, ולכן $ \az \le |A| $
+		\end{itemize}
+		סה"כ $ \az \le |A| \land \az \neq |A| $ כלומר $ |A| > \az $ כדרוש. 
+	\end{proof}
+	\subsection*{סעיף (ג)}
+	נגדיר $ A = \{f \colon \N \to \N \mid \forall n \in \N. f(n) \le n\} $. צ.ל. $ A < \az $
+	\begin{proof} נוכיח אי שוויון עוצמות חזק. 
+	\begin{itemize}
+		\item $ \bm{\le} $\textbf{: }פונקציה חח"ע: 
+		\[h \colon \N \to A, f = \lambda n \in \N. \lambda m \in \N. \begin{cases}
+			0 &m \le n \\
+			m &\other
+		\end{cases} \]
+	נוכיח שהיא חח"ע. יהי $ i, j \in \N $, בה"כ $ i \le j $, נניח $ h(i) = h(j) $. משוויון פונקציות, $ \forall n \in \N. h(i)(n) = h(j)(n) $, בפרט בעבור $ n = i $. לכן, $ h(i)(i) = 0 = h(j)(i) $. נוכל להניח $ j \neq 0 $ כי אם לא כן אז $ i \le j = 0 $ כלומר $ i = 0 $ וסיימנו. נניח בשלילה $ j \neq i $, לכן $ j > i $ כלומר $ h(j)(i) = i \neq 0 $ וזו סתירה. סה"כ $ i = j $ כדרוש. [לתקן מקרי קצה]. נותר להוכיח ש־$ \range(h) = A $. יהי $ n \in \N $, צ.ל. $ h(n) \in A $. יהי $ m \in \N $, נפלג למקרים. אם $ m \le n $ אז $ f(n)(m) = 0 \le m $ כדרוש. אחרת, $ f(n)(m) = m \le m $ כדרוש. \\
+	מצאנו פונקציה חח"ע מתאימה ולכן $ \az \le |A| $. 
+		\item $ \bm{\neq} $\textbf{: }נניח בשלילה קיום $ F \colon \N \to A $ פונקציה חח"ע. נתבונן בפונקציה הבאה: 
+		\[ g \colon \N \to \N, \ g = \lambda n \in \N. \begin{cases}
+			0 & n = 0 \\
+			\min(n, h(i + 1)(i)) - 1 & n > 0
+		\end{cases} \]
+		נוכיח כמה טענות שייסיעו לנו: 
+		\begin{itemize}
+			\item $ \bm{\forall n \in \N. F(n) \neq g} $\textbf{: }יהי $ n \in \N $, נניח בשלילה $ F(n) = g $, לכן משוויון פונקציות, הן יהיו שוון בערכן לכל איבר מתחומן, ובפרט $ n - 1 $. נפצל למקרים: 
+			\begin{itemize}
+				\item נניח בשלילה $ n = 0 $ ולכן $ n - 1 \not\in \N $ כלומר $ F(n)(n - 1) $ אינו מוגדר וזו סתירה. 
+				\item אם $ F(n)(n - 1) > n > n - 1 $ ולכן $ F(n)(n - 1) \neq n - 1 $ וגם $ g(n - 1) = \min(F(n - 1 + 1)(n - 1), n) - 1 = n - 1 \neq F(n)(n - 1) $ וסה"כ $ F(n)(n - 1) \neq g(n - 1) $ וזו סתירה. 
+				\item אם $ F(n)(n - 1) \le n $ אז $ \min(F(n)(n - 1), n) = F(n)(n - 1) $ ולכן $ g(n -1) = F(n - 1 + 1)(n - 1) - 1 = F(n)(n - 1) \neq F(n)(n - 1) $ וזו סתירה.
+			\end{itemize}
+			סה"כ בכל המקרים הגענו לסתירה כלומר לא קיימת פונקציה $ F(n) = g $. 
+			\item $ \bm{g \in A} $\textbf{: }ראשית, דרוש כי $ g \colon \N \to \N $. יהי $ n \in \N $, נוכיח $ g(n) \in \N $. אם $ n = 0 $ אז $ g(n) = 0 $ כדרוש, אם $ n \neq 0 $ אז $ n \le 1 $ ולכן $ \min(n, x) > 1 $ וכי $ F(n)(n) \in \N $ אז סה"כ $ g(n) > 0 \land g(n) \in \Z $ כלומר $ g(n) \in \N $ כדרוש. שנית, נוכיח $ \forall n \in \N. f(n) \le n $. יהי $ n \in \N $, נפלג למקרים. אם $ n = 0 $ אז $ f(n) = 0 \le 0 = n $ כדרוש. אם $ n \neq 0 $ אז $ g(n) = \min(n, F(n)(n)) - 1 < n $ כדרוש. סה"כ $ g \in A $ מעקרון ההפרדה. 
+		\end{itemize}
+		לסיכום, $ \forall n \in \N. g \neq F(n) \land g \in A$ כלומר $ F $ לא על $ A $ וזו סתירה, לכן $ \az \neq |A| $. 
+	\end{itemize}
+	נסכם: $ \az \neq |A| \land |\az| \le |A| $ לכן לפי הגדרה $ \az < |A| $ כדרוש. 
+\end{proof}
+	\subsection*{סעיף (ד)}
+	יהי $ a \in \R \setminus \{0\} $. נגדיר 
+	$ B = \{ f \in \N\to \{0, a\} \mid \nexists n \in \N. f(n) = f(n + 1) = a \} $
+	, צ.ל. $ |B| < \az $.
+	\begin{proof}
+		נוכיח אי שוויון עוצמות חזק: 
+		\begin{itemize}
+			\item $ \bm{\le} $\textbf{: }נתבונן בפונקציה הבאה: 
+			 \[ h = \lambda n \in \N. \lambda m \in \N. \begin{cases}
+			 	0 & m \neq n \\
+			 	a &\other
+			 \end{cases} \]
+			נוכיח שהיא פונקציה חח"ע ל־$ B $. נניח $ n, m \in \N \land h(n) = h(m) $, לכן מתחשיב למדא $ \forall i \in \N. h(n)(i) = h(m)(i) $ ובפרט בעבור $ i = n $ יתקיים $ h(n)(i) = 0 $, נניח בשלילה $ n \neq m $, לכן $ h(m)(i) = a $, ומרטנזיטיביות $ a = 0 $ וזו סתירה לכך ש־$ a \in \R \setminus \{0\} $, לכן $ n = m $ והפונקציה חח"ע. עתה, נוכיח $ \range h = A $. יהי $ n \in \N $, צ.ל. $ \nexists m \in \N. f(n)(m) = f(n)(m + 1) = a $. נניח בשלילה קיום $ n $ כזה, ונסמן $ h(n) = f $. נפלג למקרים. אם $ n = a $ אז $ n + 1 \neq a $ כלומר $ f(n) = a = f(n + 1) = 0 = a $ וזו סתירה כי $ a \neq 0 $. אם $ n \neq a $ אז $ f(n) = 0 = f(n + 1) = a $ וזו סתירה. סה"כ $ h \colon \N \to A $ זיווג, כלומר $ \az \le |A| $ כדרוש. 
+			\item $ \bm{\neq} $\textbf{: }נניח בשלילה קיום זיווג $ F \colon \N \to A $. נתבונן בפונקציה הבאה: 
+			\[ g = \lambda n \in \N. \begin{cases}
+				0 & n \in \Nodd \\
+				a - F\left(\tfrac{n}{2}\right)(n) & n \in \Neven
+			\end{cases} \]
+			נוכיח כמה טענות. ראשית כל, $ g \in A $, כי נניח בשלילה קיום $ n \in \N $ כך ש־$ f(n) = f(n + 1) = a $. אם $ n \in \Neven $ אז $ g(n + 1) = 0 \neq a $ וזו סתירה, ואם $ n \in \Nodd $ אז $ g(n) = 0 \neq a $ וזו סתירה. לכן, מהיות $ F $ זיווג ולכן על $ A $, בהכרח קיים $ n \in \N $ כך ש־$ F(n) = g $. משוויון פונקציות, בפרט יתקיים שוויון עבור הכנסת הערך $ 2n $. ידוע $ 2 \mid 2n $ לכן $ 2n \in \Neven $, סה"כ $ g(2n) = a - F\left(\tfrac{2n}{2}\right)(2n) $. מטרנזיטיביות $ a - F(n)(2n) = F(n)(2n) $ כלומר $ a = 0 $ וזו סתירה לקיומו של $ n $, כלומר $ F $ אינו זיווג, סתירה להנחת השלילה, לכן $ |A| \neq \az $
+		\end{itemize}
+	סה"כ $ |A| \neq \az \land |A| \ge \az $ כלומר $ |A| > \az $ כדרוש. 
+	\end{proof}
+	\subsection*{סעיף (ה)}
+	נגדיר $ C = \{f \in \N \to \N \colon \forall n \in \N. f(n) + f(n + 1) \equiv 1 \mod 3\} $. צ.ל. $ |C| > \az $. 
+	\begin{proof}
+		נוכיח אי־שוויון עוצמות חזק. 
+		\begin{itemize}
+			\item $ \bm{\le} $\textbf{: }נמצא פונקציה חח"ע מתאימה. נבחר: 
+			\[ f \colon \N \to C, \ f = \lambda m \in \N. \lambda n \in \N. \begin{cases}
+				 1 &n \in \Neven \\
+				 3m &\other
+			\end{cases} \]
+			נוכיח $ f $ חח"ע ובטווח המתאים. \textbf{חח"ע: }יהי $ n, m \in \N $, נניח $ f(n) = f(m) $, לכן משוויון פונקציות $ \forall i \in \N. f(n)(i) = f(m)(i) $ ובפרט עבור $ i = 1  $ נקבל $ 3n = 3m $ וסה"כ $ n = m $ כדרוש. \textbf{טווח: }יהי $ n \in \N $. צ.ל. $ f(n) \in C $. ברור כי $ f(n) \colon \N \to \N $. יהי $ i \in \N $, צ.ל. $ f(n)(i) + f(n)(i + 1) \equiv 1 \pmod 3 $. מכיוון שחיבור הוא קומוטטיבי, נוכל בה"כ להניח $ i \in \Neven $. סה"כ $ f(n)(i) = 1, f(n)(i + 1) = 3n $, כלומר $ f(n)(i) + f(n)(i + 1) = 3n + 1 $ ומשום ש־$ n \in \N $ אזי $ (3n + 1)\bmod 3 = 1 $ כדרוש. 
+			\item $ \bm{\neq} $\textbf{: }נניח בשלילה קיום זיווג $ h \colon \N \to C $. נתבונן בפונקציה: 
+			\[ g \colon \N \to \N, g = \lambda n \in \N. \begin{cases}
+				3(h(i)(i) + 1) &n \in \Neven \\
+				3(h(i)(i) + 3 ) &n \in \Nodd
+			\end{cases} \]
+		ראשית כל, נוכיח ש־$ g \in C $. יהי $ i \in \N $, צ.ל. $ g(n) + g(n + 1) \equiv 1 \pmod 3 $. משום שחיבור הוא קומטטיבי, נוכל להניח בה"כ $ i \in \Neven $, סה"כ
+		$ g(i) + g(i + 1) = 3(h(i)(i) + 1) + 3(h(i)(i) + 3) = 6(h(i)(i)) + 4 \equiv 1 \mod 3 $
+		(השקילות מתקיימת כי $ h(i)(i) \in \N $), ולכן $ g \in C $. נניח בשלילה שקיים $ n \in \N $ כך ש־$ h(n) = g $. משוויון פונקציות $ \forall i \in \N. h(n)(i) = g(i) $ ובפרט בעבור $ n = i $. נפלג למקרים: אם $ n \in \Neven $, אז $ h(n)(n) = 3h(n)(n) + 1 $, נעביר אגפים ונקבל $ h(n)(n) = -0.5 $ וזו סתירה. באופן דומה, אם $ n \in \Nodd $ אז $ h(n)(n) = -1.5 $ וזו גם סתירה. סה"כ $ g \in A / \Img h $ כלומר $ h $ לא על בסתירה לכך ש־$ h $ זיווג, לכן $ |C| \neq \az $. 
+		\end{itemize}
+	הוכחנו $ |C| \le \az \land |C| \neq \az  $ או באופן שקול $ |C| > \az $ כדרוש. 
+	\end{proof}
+	\subsection*{סעיף (ו)}
+	נגדיר $ Y = \ps(\N \times \N) \setminus (\N\to \N) $. צ.ל. $ \az > |Y| $. 
+	\begin{proof}
+		נוכיח גדול אך לא שווה. 
+		\begin{itemize}
+			\item $ \bm{\le} $\textbf{: }נתבונן בפונקציה $ h \colon \N \to Y $ הבאה: 
+			\[ h = \lambda n \in \N. \{\la 0, n \ra\} \]
+			ידוע $ \range(h) = Y $ כי לכל $ n \in \N $ יתקיים $ h(n) = \{\la 0, n \ra\} $ ומשום ש־$ 0, n \in \N $ אז $ \la 0, n \ra \in \N \times \N  $ ולכן $ \{\la 0, n \ra\} \in \ps(\N \times \N) $ וגם $ h(n) \not\in \N \to \N $ כי $ h $ אינה מלאה (דוגמה ניגדית $ h(1) $ אינו מוגדר). סה"כ $ h(n) \in Y $ לפי הגדרת $ \setminus $ כדרוש. נותר להוכיח $ h $ חח"ע. יהי $ n, m \in \N $, נניח $ h(n) = h(m) $, לכן $ \{\la 0, n \ra\} = \{\la 0, m\} $. משוויון קבוצות, $ \la 0, n \ra = \la 0, m \ra $ ומשוויון פונקציות $ 0 = 0 \land n = m $ כלומר $ n = m $ כדרוש. 
+			\item $ \bm{\neq} $\textbf{: }נניח בשלילה קיום זיווג $ F(n) \colon \N \to Y $, ונסמן $ \forall n \in \N. R_n = F(n) $. נתבונן ביחס הבא: 
+			\[ S = \bigcup_{i = 1}^n \Big(\big \{ \la n - 1, x \ra \mid x \not\in \{m \in \N \mid (n - 1)R_{n - 1}m \} \big\} \Big) \cup \{\la 0, 0 \ra, \ \la 0, 1 \ra \}\]
+			נוכיח כמה טענות שייסייעו לנו: 
+			\begin{itemize}
+				\item $ \bm{\forall n \in \N. F(n) \neq S} $\textbf{: }יהי $ n \in \N $, נניח $ F(n) = R_n = S $, ולכן מהכלה דו כיונית, בפרט $ \la n + 1, x \ra \in S \implies \la n + 1, x \ra \in R_n$. אם $ \la n - 1, x \ra \in S $, אז $ x \not\in \{m \mid (n + 1)R_{n - 1 + 1}m\} $ כלומר $ \lnot nR_nx $ כלומר $ \la n + 1, x \ra \not\in R_n $ וזו סתירה. 
+				\item $ \bm{S \in Y} $\textbf{: }נניח בשלילה $ S $ פונקציה, לכן לכל $ x, y \in \N. \la 0, x \ra, \ \la 0, y \ra \in S \implies x = y$ אך בעבור $ x = 0, y = 1 $ מתקיים $ \la 0, 0 \ra, \ \la 0, 1 \ra \in S $ למרות ש־$ 0 \neq 1 $ וזו סתירה. 
+			\end{itemize}
+			סה"כ, מצאנו $ S \in Y $ אך בניגוד לכך $ \forall n \in \N. F(n) \neq Y $, כלומר $ F $ אינה על $ Y $ וזו סתירה לכך ש־$ |Y| = \az $. 
+		\end{itemize}
+		נסכם: $ |Y| \neq \az \land |Y| \ge \az $ כלומר $ |Y| > \az $ כדרוש. 
+	\end{proof}
+	\subsection*{סעיף (ז)}
+	נגדיר
+	$ X = \{f \in \N \to \N \colon \forall n \in \N. |f^{-1}[\{n\}]| \ge 2\} $
+	. צ.ל. $ |X| > \az $. 
+	\begin{proof}
+		נוכיח אי־שוויון עוצמות חזק. 
+		\begin{itemize}
+			\item $ \bm{\le} $\textbf{: }נגדיר את הפונקציה הבאה: 
+			\[ f = \lambda n \in \N. \lambda m \in \N \begin{cases}
+				0 & m \le n + 1 \\
+				\tfrac{m + n}{2} + 1 & m + n \in \Neven \\
+				\tfrac{m + n + 1}{2} + 1 & m + n \in \Nodd
+			\end{cases} \]
+		נוכיח שהיא פונקציה חח"ע בעלת טווח מתאים. 
+			\begin{itemize}
+				\item \textbf{חח"ע: }יהיו $ i, j \in \N $, ונניח $ f(i) = f(j) $. בה"כ נניח $ i \ge j $. משוויון פונקציות, נסיק שהפונקציות שתיקבלו יחזירו ערכים זהים לכל ערך, ובפרט בעבור $ n = i - 2 $. לכן, נקבל $ 0 = f(i)(i - 2) = f(j)(i - 2) $. נניח בשלילה $ j > i $, ונסיק $ 0 = h(i) $ כאשר $ h(i) > \le i $ (כאילו אין לי כוח לפלג לעוד מקרים) ומשום ש־$ i > 1 $ זו סתירה, לכן $ i \ge j \land j \ge i $ כלומר $ i = j $ כדרוש. במקרה ו־$ i = 0 $ אז $ i \ge j $ כלומר $ j = 0 = i $. אם $ i = 1 $ אז נניח בשלילה $ j = 0 $ ונקבל בעבור $ 3 $ אשר $ f(i)(3) = 0 \neq h(3, 0) = f(i)(3) $ וזו סתירה, לכן $ i = j = 1 $ כדרוש. סה"כ בכל המקרים $ i = j $ כלומר $ f $ חח"ע. 
+				\item \textbf{טווח: }נרצה להוכיח $ \range(f) = X $. יהי $ n \in \N $, נוכיח $ g := f(n) \in X $. יהי $ m \in \N $, צ.ל. $ |g^{-1}[\{m\}]| \ge 2 $, כלומר את קיום $ i, j \in \N $ שונים כך ש־$ g(i) = g(j) = m $. עבור $ n = 0 $ נבחר $ i = 0, j = 1 $ ונקבל פסוק אמת. עבור $ n > 0 $ נבחר $ i = 2m - 3 - n, j = 2m - 2 - n $ וסה"כ נקבל פסוק אמת מכלל $ \beta $. 
+			\end{itemize}
+			\item $ \bm{\neq} $\textbf{: }נניח בשלילה קיום זיווג $ F \colon \N \to X $. מטעמי נוחות, נסמן $ F(n) := f_n $. נתבונן בפונקציה הבאה: 
+			\[ g \colon \N \to \N, \ g = \lambda n \in \N. \begin{cases}
+				0 &n = 0 \lor n = 1 \\
+				F(\tfrac{n}{3} - 1)(3n + 3) + 1 & n \equiv 0 \\
+				\tfrac{n + 2}{2} & n \equiv 1 \\
+				\tfrac{n + 1}{2} & n \equiv 2
+			\end{cases} \pmod 3\]
+		כדי להראות סתירה, נוכיח $ \forall n \in \N. f_n \neq g \land g \in X $. 
+			\begin{itemize}
+				\item $ f_n \neq g $: יהי $ n \in \N $, נוכיח $ f_n \neq g $. נניח בשלילה קיום שוויון, לכן $ \forall i \in \N. f_n(i) = g(i) $ ובפרט בעבור $ i = 3n + 3 $, כלומר $ f_n(3n + 3) = g(3n + 3) $. משום ש־$ 3n + 3 \equiv 0 \mod 3 \land 3n + 3 \neq 0, 1 $ אזי מהגדרת $ g $ המפוצלת נקבל $ f_n(3n + 3) = F(\tfrac{3n + 3}{3} - 1)(3n + 3) + 1 = f_n(3n + 3) + 1 = f_n(3n + 3) $ וסה"כ $ 0 = 1 $ וזו סתירה. נסיק $ f_n \neq g $
+				\item $ g \in X $: יהי $ n \in \N $, צ.ל. $ |g^{-1}[\{x\}]| \ge 2 $ כלומר $ \exists i, j \in \N. i \neq j \land g(i) = g(j) = n $. נפלג למקרים. 
+				\begin{itemize}
+					\item אם $ n = 0 $, נבחר $ i = 0, j = 1 $ וסה"כ $ g(i) = g(j) = 0 $ כדרוש. 
+					\item אם $ n \neq 0 $ נבחר $ i = 2n - 2, j = 2n - 1 $. משום ש־$ i \equiv 1, j \equiv 2 \pmod 3 $ אז $ g(i) = \tfrac{2n - 2 + 2}{2} = n = \tfrac{2n - 1 + 1}{2} = g(j)$ וסה"כ $ g(i) = g(j) = n $ כדרוש. 
+				\end{itemize}
+				נסכם: $ g \in X $ אבל $ \forall n \in \N. F(n) \neq g $, ובאופן שקול $ F $ לא על, בסתירה לכך ש־$ F $ זיווג. 
+			\end{itemize}
+		\end{itemize}
+		הוכחנו $ |X| \le \az \land |X| \neq \az  $ או באופן שקול $ |X| > \az $ כדרוש. 
+	\end{proof}
+	\section*{שאלה 2}
+	\subsection*{סעיף (א)}
+	הטעות בפתרון של אדון שוקו הינה שהוא מניח כי $ f $ ב־$ X $, הנחה שדרושה בשביל לסתור את היות $ F $ חח"ע. $ f $ תלויה ליניארית ב־$ F $, פונקציה שאינה ידוע עליה כלום פרט לכך שהיא זיווג, וודאי שלא ידוע עליה שום מידע בדבר המצאותה ב־$ X $. 
+	\subsection*{סעיף (ב)}
+	\begin{proof}
+		
+		נניח בשלילה שקיימת פונקציה $ F \colon \N \to (\N \to \N) $. נתבונן בפוקציה הבאה: 
+		\[  g = \lambda n \in \N. \sum_{i = 0}^{n}(F(i)(i) + 1) + 1 \]
+		ברור כי $ g \colon \N \to \N $. מהנחת השלילה, קיים $ n \in \N $ כך ש־$ F(n) = g $. לכן: 
+		\[ h(n)(n) = \sum_{i = 0}^{n}F(i)(i) + n + 1 \ge F(n)(n) + 2 \]
+		סה"כ מטרנזיטיביות נקבל $ F(n)(n) \ge F(n)(n) + 2 $, נחסיר $ F(n)(n) $ משני האגפים ונקבל $ 0 \ge 2 $, וזו סתירה. 
+		
+		עתה, נותר להוכיח כי $ F \in X $, כלומר $ F $ פונקציה עולה. יהיו $ m, n \in \N $, ונניח $ n \le m $ (כלומר $ m - n \le 0 $). צ.ל. $ f(n) \le f(m) $, כלומר: 
+		\begin{alignat}{9}
+			\iff \quad &&f(n) &\le f(m) \\
+			\iff \quad &&\sum_{i = 0}^{n} (F(i)(i) + 1) + 1 &\le \sum_{i = 0}^{m} (F(i)(i) + 1) + 1 \\
+			\iff \quad &&\sum_{i = 0}^{n} (F(i)(i)) + n + 1 &\le \sum_{i = 0}^{m} (F(i)(i)) + m + 1 \\
+			\iff \quad &&0 &\le \sum_{i = n}^{m} (\underbrace{F(i)(i)}_{\in \N}) + \underbrace{m - n}_{\ge 0}
+		\end{alignat}
+		חיבור של מספרים טבעיים / חיוביים הוא חיובי בעצמו, וסה"כ מצאנו שקילות לפסוק אמת, כדרוש.
+		נסכם: $ g \in X \land \nexists n \in \N. F(n) = g $ כלומר $ F $ לא על, סתירה לכך שהיא זיוווג. 
+	\end{proof}
+	\section*{שאלה 3}
+	נגדיר את יחס השקילות $ H $ באופן הבא: 
+	\[ H \in (\N \to \N)^2, \ \forall f, g, \in \N \to \N fHg \iff \forall n \in \N. \sum_{i = 0}^2 f(3n + i) = \sum_{i = 0}^{2} g(3n + i) \]
+	\subsection*{סעיף (א)}
+	טענה: $ gHid_\N \land g \neq id_\N $. $ g $ מוגדרת באופן הבא: 
+	\[ g \colon \N \to \N, \ g = \lambda n \in \N. \begin{cases}
+		n &n \equiv 0 \\
+		n + 1 &n \equiv 1 \\
+		n - 1 &n \equiv 2
+	\end{cases} \pmod 3 \]
+	\subsection*{סעיף (ב)}
+	תהי קבוצת פונקציות $ f_0, f_1, f_2, \dots \in \N \to \N $ בת מנייה. טענה: $ h $ המוגדרת באופן הבא מקיימת $ \forall i \in \N. \lnot f_iHh $: 
+	\[ h \colon \N \to \N, \ h = \lambda n \in \N. \begin{cases}
+		f_{\tfrac{n}{3}}(n) + 1 &n \equiv 0 \\
+		f_{\tfrac{n - 1}{3}}(n) &n \equiv 1 \\
+		f_{\tfrac{n - 2}{3}}(n) &n \equiv 2
+	\end{cases} \pmod 3 \]
+	\begin{proof}
+		נניח בשלילה שקיימת פונקציה $ f_i $ כך ש־$ f_iHg $. מכאן, יתקיים שוויון לכל $ n \in \N $ כמפורט ביחס השקילות, ובפרט בעבור $ n = 3i $. נציב ונחשב אלגברית: 
+		\begin{alignat}{9}
+			\iff \quad &&\sum_{i = 0}^2 f(3n + i) &= \sum_{i = 0}^{2} g(3n + i) \\
+			\iff \quad &&g(9i) + g(9i + 1) + g(9i + 2) &= f_i(9i) + f_i(9i + 1) + f_i(9i + 2) \\
+			\iff \quad &&f_i(9i) + 1 + f_i(9i + 1) + f_i(9i + 2) &= f_i(9i) + f_i(9i + 1) + f_i(9i + 2) \\
+			\iff \quad &&1 &= 0
+		\end{alignat}
+	וזו סתירה. 
+	\end{proof}
+	\final
+\end{document}
