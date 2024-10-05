@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  28 SEP 2024 20:19
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  5 OCT 2024 12:23
  restricted system commands enabled.
 **hw_final.tex
 (./hw_final.tex
@@ -769,18 +769,24 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 (/home/shpe/.miktex/texmfs/install/tex/latex/esdiff/esdiff.sty
 Package: esdiff 
 )
+(/home/shpe/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries
+/graphs/tikzlibrarygraphs.code.tex
+File: tikzlibrarygraphs.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\tikz@lib@auto@number=\count342
+\tikz@qnode@count=\count343
+)
 (/home/shpe/.miktex/texmfs/install/tex/latex/listings/listings.sty
-\lst@mode=\count342
+\lst@mode=\count344
 \lst@gtempboxa=\box89
 \lst@token=\toks56
-\lst@length=\count343
+\lst@length=\count345
 \lst@currlwidth=\dimen296
-\lst@column=\count344
-\lst@pos=\count345
+\lst@column=\count346
+\lst@pos=\count347
 \lst@lostspace=\dimen297
 \lst@width=\dimen298
-\lst@newlines=\count346
-\lst@lineno=\count347
+\lst@newlines=\count348
+\lst@lineno=\count349
 \lst@maxwidth=\dimen299
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/listings/lstpatch.sty
@@ -788,8 +794,8 @@ File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
-\c@lstnumber=\count348
-\lst@skipnumbers=\count349
+\c@lstnumber=\count350
+\lst@skipnumbers=\count351
 \lst@framebox=\box90
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/listings/listings.cfg
@@ -842,14 +848,14 @@ Package zref Info: New property list: main on input line 767.
 Package zref Info: New property: default on input line 768.
 Package zref Info: New property: page on input line 769.
 )
-\c@abspage=\count350
+\c@abspage=\count352
 Package zref Info: New property: abspage on input line 67.
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip63
-\c@mdf@globalstyle@cnt=\count351
+\c@mdf@globalstyle@cnt=\count353
 \mdf@skipabove@length=\skip64
 \mdf@skipbelow@length=\skip65
 \mdf@leftmargin@length=\skip66
@@ -931,16 +937,16 @@ File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
 \mdf@horizontalspaceofbox=\skip127
 \mdfsubtitleheight=\skip128
 \mdfsubsubtitleheight=\skip129
-\c@mdfcountframes=\count352
+\c@mdfcountframes=\count354
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count353
-\c@mdf@env@i=\count354
-\c@mdf@env@ii=\count355
-\c@mdf@zref@counter=\count356
+\mdf@envdepth=\count355
+\c@mdf@env@i=\count356
+\c@mdf@env@ii=\count357
+\c@mdf@zref@counter=\count358
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/caption/caption.sty
@@ -958,8 +964,8 @@ Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@hangindent=\dimen307
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count357
-\c@continuedfloat=\count358
+\c@caption@flags=\count359
+\c@continuedfloat=\count360
 Package caption Info: listings package is loaded.
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
@@ -968,9 +974,9 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 (/home/shpe/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count359
-\Gm@cntv=\count360
-\c@Gm@tempcnt=\count361
+\Gm@cnth=\count361
+\Gm@cntv=\count362
+\c@Gm@tempcnt=\count363
 \Gm@bindingoffset=\dimen308
 \Gm@wd@mp=\dimen309
 \Gm@odd@mp=\dimen310
@@ -984,14 +990,14 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (/home/shpe/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
 (/home/shpe/.miktex/texmfs/install/tex/latex/tools/multicol.sty
 Package: multicol 2024/05/23 v1.9h multicolumn formatting (FMi)
-\c@tracingmulticols=\count362
+\c@tracingmulticols=\count364
 \mult@box=\box96
 \multicol@leftmargin=\dimen316
-\c@unbalance=\count363
-\c@collectmore=\count364
-\doublecol@number=\count365
-\multicoltolerance=\count366
-\multicolpretolerance=\count367
+\c@unbalance=\count365
+\c@collectmore=\count366
+\doublecol@number=\count367
+\multicoltolerance=\count368
+\multicolpretolerance=\count369
 \full@width=\dimen317
 \page@free=\dimen318
 \premulticols=\dimen319
@@ -1042,15 +1048,15 @@ Package: multicol 2024/05/23 v1.9h multicolumn formatting (FMi)
 \@tempa=\box137
 \@tempa=\box138
 \@tempa=\box139
-\c@minrows=\count368
-\c@columnbadness=\count369
-\c@finalcolumnbadness=\count370
+\c@minrows=\count370
+\c@columnbadness=\count371
+\c@finalcolumnbadness=\count372
 \last@try=\dimen322
 \multicolovershoot=\dimen323
 \multicolundershoot=\dimen324
 \mult@nat@firstbox=\box140
 \colbreak@box=\box141
-\mc@col@check@num=\count371
+\mc@col@check@num=\count373
 )
 (/home/shpe/.miktex/texmfs/install/tex/latex/parskip/parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
@@ -1061,7 +1067,7 @@ Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 \UL@skip=\skip132
 \UL@hook=\toks59
 \UL@height=\dimen325
-\UL@pe=\count372
+\UL@pe=\count374
 \UL@pixel=\dimen326
 \ULC@box=\box144
 Package: ulem 2019/11/18
@@ -1165,7 +1171,7 @@ Package babel Info: Non-standard hyphenation setup on input line 118.
 \babelcatcodetablenum=\catcodetable14
 \bbl@pattcodes=\catcodetable15
 )
-\babel@savecnt=\count373
+\babel@savecnt=\count375
 \U@D=\dimen333
 \l@unhyphenated=\language79
 
@@ -1177,7 +1183,7 @@ Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX
 
 (/home/shpe/.miktex/texmfs/install/tex/luatex/ctablestack/ctablestack.sty
 Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
-\@catcodetablestackcnt=\count374
+\@catcodetablestackcnt=\count376
 )
 \CatcodeTableOther=\catcodetable16
 \CatcodeTableExpl=\catcodetable17
@@ -1209,41 +1215,41 @@ Language: nil 2024/06/02 v24.6 Nil language
 (/home/shpe/.miktex/texmfs/install/tex/generic/babel/locale/he/babel-hebrew.tex
 )
 Package babel Info: Importing data for hebrew
-(babel)             from babel-he.ini. Reported on input line 91.
+(babel)             from babel-he.ini. Reported on input line 92.
 Package babel Info: Hyphen rules for 'hebrew' set to \l@nil
-(babel)             (\language80). Reported on input line 91.
+(babel)             (\language80). Reported on input line 92.
 
 (/home/shpe/.miktex/texmfs/install/tex/generic/babel/locale/he/babel-hebrew.tex
 ) (/home/shpe/.miktex/texmfs/install/tex/generic/babel/babel-ca-hebrew.tex
-\bbl@cntcommon=\count375
-\bbl@hebrday=\count376
-\bbl@hebrmonth=\count377
-\bbl@hebryear=\count378
-\bbl@gregday=\count379
-\bbl@gregmonth=\count380
-\bbl@gregyear=\count381
+\bbl@cntcommon=\count377
+\bbl@hebrday=\count378
+\bbl@hebrmonth=\count379
+\bbl@hebryear=\count380
+\bbl@gregday=\count381
+\bbl@gregmonth=\count382
+\bbl@gregyear=\count383
 )
 (/home/shpe/.miktex/texmfs/install/tex/generic/babel/locale/en/babel-english.te
 x)
 Package babel Info: Importing data for english
-(babel)             from babel-en.ini. Reported on input line 92.
+(babel)             from babel-en.ini. Reported on input line 93.
  (/home/shpe/.miktex/texmfs/install/tex/latex/fontspec/fontspec.sty
 Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
 Lua module: fontspec 2024/05/11 2.9e Font selection for XeLaTeX and LuaLaTeX
 (/home/shpe/.miktex/texmfs/install/tex/latex/fontspec/fontspec-luatex.sty
 Package: fontspec-luatex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaT
 eX
-\l__fontspec_script_int=\count382
-\l__fontspec_language_int=\count383
-\l__fontspec_strnum_int=\count384
-\l__fontspec_tmp_int=\count385
-\l__fontspec_tmpa_int=\count386
-\l__fontspec_tmpb_int=\count387
-\l__fontspec_tmpc_int=\count388
-\l__fontspec_em_int=\count389
-\l__fontspec_emdef_int=\count390
-\l__fontspec_strong_int=\count391
-\l__fontspec_strongdef_int=\count392
+\l__fontspec_script_int=\count384
+\l__fontspec_language_int=\count385
+\l__fontspec_strnum_int=\count386
+\l__fontspec_tmp_int=\count387
+\l__fontspec_tmpa_int=\count388
+\l__fontspec_tmpb_int=\count389
+\l__fontspec_tmpc_int=\count390
+\l__fontspec_em_int=\count391
+\l__fontspec_emdef_int=\count392
+\l__fontspec_strong_int=\count393
+\l__fontspec_strongdef_int=\count394
 \l__fontspec_tmpa_dim=\dimen334
 \l__fontspec_tmpb_dim=\dimen335
 \l__fontspec_tmpc_dim=\dimen336
@@ -1258,11 +1264,11 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@outerparindent=\dimen337
 \enit@toks=\toks61
 \enit@inbox=\box146
-\enit@count@id=\count393
-\enitdp@description=\count394
+\enit@count@id=\count395
+\enitdp@description=\count396
 )
-\c@hebenumi=\count395
-\enitdp@hebenum=\count396
+\c@hebenumi=\count397
+\enitdp@hebenum=\count398
 
 (./hw_final.aux
 
@@ -1528,40 +1534,40 @@ Space,Script=Latin,Language=English,RawFeature={family=tt}].
 )
 \openout1 = hw_final.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 319.
-LaTeX Font Info:    ... okay on input line 319.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 319.
-LaTeX Font Info:    ... okay on input line 319.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 319.
-LaTeX Font Info:    ... okay on input line 319.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 319.
-LaTeX Font Info:    ... okay on input line 319.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 319.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 326.
+LaTeX Font Info:    ... okay on input line 326.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 326.
+LaTeX Font Info:    ... okay on input line 326.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 326.
+LaTeX Font Info:    ... okay on input line 326.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 326.
+LaTeX Font Info:    ... okay on input line 326.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 326.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 3
-19.
+26.
  (/home/shpe/.miktex/texmfs/install/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 319.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 319.
-LaTeX Font Info:    ... okay on input line 319.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 319.
-LaTeX Font Info:    ... okay on input line 319.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 319.
-LaTeX Font Info:    ... okay on input line 319.
+LaTeX Font Info:    ... okay on input line 326.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 326.
+LaTeX Font Info:    ... okay on input line 326.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 326.
+LaTeX Font Info:    ... okay on input line 326.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 326.
+LaTeX Font Info:    ... okay on input line 326.
 
 (/home/shpe/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count397
+\scratchcounter=\count399
 \scratchdimen=\dimen338
 \scratchbox=\box147
-\nofMPsegments=\count398
-\nofMParguments=\count399
+\nofMPsegments=\count400
+\nofMParguments=\count401
 \everyMPshowfont=\toks62
-\MPscratchCnt=\count400
+\MPscratchCnt=\count402
 \MPscratchDim=\dimen339
-\MPnumerator=\count401
-\makeMPintoPDFobject=\count402
+\MPnumerator=\count403
+\makeMPintoPDFobject=\count404
 \everyMPtoPDFconversion=\toks63
 ) (/home/shpe/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1579,7 +1585,7 @@ G,.JBIG2,.JB2,.eps]
 (/home/shpe/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count403
+\c@lstlisting=\count405
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
@@ -1624,19 +1630,19 @@ Inserting `Babel.math_box_dir' in `hpack_filter'.
 Inserting `Babel.pre_otfload_h' in `hpack_filter'.
 Inserting `luaotfload.node_processor' in `hpack_filter'.
 Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 320
+LaTeX Font Info:    Trying to load font information for U+msa on input line 327
 .
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 320
+LaTeX Font Info:    Trying to load font information for U+msb on input line 327
 .
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 32
-0.
+7.
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/jknappen/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -1644,7 +1650,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/n' in size <10> not available
 
 (Font)              Font shape `TU/DavidCLM(0)/b/n' tried instead on input line
- 326.
+ 333.
 
 
 [1
@@ -1661,40 +1667,41 @@ L3 programming layer <2024-05-27>
 )
 
 Here is how much of LuaTeX's memory you used:
- 35444 strings out of 475931
+ 36316 strings out of 475931
  125375,1977958 words of node,token memory allocated
- 1519 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 4 dir, 2 glue, 4 kern, 1 glyph, 288 attribute, 103 
-glue_spec, 98 attribute_list, 2 write nodes
-   avail lists: 1:3,2:1628,3:247,4:26,5:383,6:36,7:4987,8:58,9:677,10:6,11:6
- 57195 multiletter control sequences out of 65536+600000
+ 2009 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 6 dir, 2 glue, 4 kern, 1 glyph, 468 attribute, 103 
+glue_spec, 158 attribute_list, 2 write nodes
+   avail lists: 1:7,2:2616,3:485,4:38,5:459,6:42,7:5822,8:70,9:731,10:6,11:6
+ 58060 multiletter control sequences out of 65536+600000
  115 fonts using 7644983 bytes
- 116i,18n,114p,1665b,529s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/fonts/OTF/DavidCLM-Bold.otf></home/shpe/.miktex/texmfs/install/fonts
-/opentype/public/lm/lmroman17-regular.otf></home/shpe/.miktex/texmfs/install/fon
-ts/opentype/public/lm/lmroman12-bold.otf></usr/share/fonts/OTF/DavidCLM-Medium.o
-tf></usr/share/fonts/OTF/DavidCLM-MediumItalic.otf></home/shpe/.miktex/texmfs/in
-stall/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/shpe/.miktex/texmfs/inst
-all/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb></home/shpe/.miktex/texmfs/in
-stall/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/shpe/.miktex/texmfs/insta
-ll/fonts/type1/public/amsfonts/cm/cmbx7.pfb></home/shpe/.miktex/texmfs/install/f
-onts/type1/public/amsfonts/cm/cmex10.pfb></home/shpe/.miktex/texmfs/install/font
-s/type1/public/amsfonts/cm/cmmi10.pfb></home/shpe/.miktex/texmfs/install/fonts/t
-ype1/public/amsfonts/cm/cmmi5.pfb></home/shpe/.miktex/texmfs/install/fonts/type1
-/public/amsfonts/cm/cmmi7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/pub
-lic/amsfonts/cm/cmmib10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/publi
-c/amsfonts/cmextra/cmmib7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/
-amsfonts/cm/cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
-cmti10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfo
-nt/line10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/rsfs/rsfs1
-0.pfb>
-Output written on hw_final.pdf (3 pages, 179226 bytes).
+ 116i,18n,114p,1665b,1491s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-regular.ot
+f></usr/share/fonts/OTF/DavidCLM-Bold.otf></home/shpe/.miktex/texmfs/install/fon
+ts/opentype/public/lm/lmroman17-regular.otf></home/shpe/.miktex/texmfs/install/f
+onts/opentype/public/lm/lmroman12-bold.otf></usr/share/fonts/OTF/DavidCLM-Medium
+.otf></usr/share/fonts/OTF/DavidCLM-MediumItalic.otf></home/shpe/.miktex/texmfs/
+install/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/shpe/.miktex/texmfs/in
+stall/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb></home/shpe/.miktex/texmfs/
+install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/shpe/.miktex/texmfs/ins
+tall/fonts/type1/public/amsfonts/cm/cmbx7.pfb></home/shpe/.miktex/texmfs/install
+/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/shpe/.miktex/texmfs/install/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></home/shpe/.miktex/texmfs/install/fonts
+/type1/public/amsfonts/cm/cmmi5.pfb></home/shpe/.miktex/texmfs/install/fonts/typ
+e1/public/amsfonts/cm/cmmi7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/p
+ublic/amsfonts/cm/cmmib10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/pub
+lic/amsfonts/cmextra/cmmib7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/c
+m/cmti10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/latx
+font/line10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/s
+ymbols/msbm10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/rsfs/rsf
+s10.pfb>
+Output written on hw_final.pdf (3 pages, 189391 bytes).
 
-PDF statistics: 122 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 129 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
