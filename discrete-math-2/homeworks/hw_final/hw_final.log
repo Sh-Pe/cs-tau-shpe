@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  5 OCT 2024 12:23
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  5 OCT 2024 19:55
  restricted system commands enabled.
 **hw_final.tex
 (./hw_final.tex
@@ -1672,10 +1672,10 @@ Here is how much of LuaTeX's memory you used:
  2009 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 6 dir, 2 glue, 4 kern, 1 glyph, 468 attribute, 103 
 glue_spec, 158 attribute_list, 2 write nodes
-   avail lists: 1:7,2:2616,3:485,4:38,5:459,6:42,7:5822,8:70,9:731,10:6,11:6
+   avail lists: 1:7,2:2668,3:497,4:38,5:459,6:42,7:5822,8:70,9:731,10:6,11:6
  58060 multiletter control sequences out of 65536+600000
  115 fonts using 7644983 bytes
- 116i,18n,114p,1665b,1491s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,18n,114p,1665b,1497s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-regular.ot
 f></usr/share/fonts/OTF/DavidCLM-Bold.otf></home/shpe/.miktex/texmfs/install/fon
 ts/opentype/public/lm/lmroman17-regular.otf></home/shpe/.miktex/texmfs/install/f
@@ -1699,7 +1699,7 @@ m/cmti10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/latx
 font/line10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/rsfs/rsf
 s10.pfb>
-Output written on hw_final.pdf (3 pages, 189391 bytes).
+Output written on hw_final.pdf (3 pages, 192259 bytes).
 
 PDF statistics: 129 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
