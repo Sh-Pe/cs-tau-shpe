@@ -11,6 +11,7 @@
 
 % tikz
 \usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing} % Importing the decoration library for braces
 \newcommand\sqw{1}
 \newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
 
@@ -307,7 +308,7 @@
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{תרגיל בית 3 $\sim$ עברי נגר $\sim$ נגזרות וחקירה}
+\title{\textit{תרגיל בית 3} $\sim$ \textit{עברי נגר} $\sim$ \textit{נגזרות וחקירה}}
 
 \begin{document}
 	\maketitle
@@ -315,9 +316,47 @@
 	\begin{enumerate}
 		\item השתכנעתי
 		\item נמצא את כמות הזמן שיקח למצילה לעבור כתלות ב־$\ta_1$. נשתמש ב־$x_1, y_1, x_2, y_2$ כמו בסרטוט הבא:
+		\begin{center}
+			\sen
+			\begin{tikzpicture}
+				
+				% Axis
+				\draw[thin,->] (-3,0) -- (3,0) node[right] {};
+				\draw[thin,->] (0,-2.5) -- (0,2) node[above] {};
+				
+				% Lines l1 and l2
+				\draw[dashed] (0, 0) -- (-3,1.5) node[right] {}; % l1
+				\draw[dashed] (0, 0) -- (2,-2.5) node[right] {};     % l2
+				
+				\draw[fill=black] (-1.5, 0.75) circle (0pt) node[above] {$y_1$};
+				\draw[fill=black] (1, -1.25) circle (0pt) node[below] {$y_2$};
+				
+				% Coordinates on the axis
+				\draw[fill=black] (-3,1.5) circle (1pt); % Point on l1
+				\draw[fill=black] (2,-2.5) circle (1pt); % Point on l2
+				
+				% Braces for x1 and x2
+				\draw[decorate,decoration={brace,amplitude=10pt},xshift=-2pt,yshift=0cm] (-3,0) -- (-3,1.5) node[midway,left=0.3cm] {$x_1$};
+				\draw[decorate,decoration={brace,amplitude=10pt},xshift=0.1cm,yshift=-0.05cm] (2,0) -- (2,-2.45) node[midway,right=0.3cm] {$x_2$};
+								
+				% Braces for l1 and l2
+				\draw[decorate,decoration={brace,amplitude=10pt},xshift=-2pt,yshift=-0.1cm] (0,0) -- (-2.9,0) node[midway,below=0.3cm] {$\ell_1$};
+				\draw[decorate,decoration={brace,amplitude=10pt},xshift=0.1cm,yshift=0.1cm] (0,0) -- (2,0) node[midway,above=0.3cm] {$\ell_2$};
+				
+				% Angle theta_1
+				\draw[] (-0.6,0) arc[start angle=180, end angle=153, radius=0.6];
+				\node at (-0.8,0.2) {$\theta_1$};
+				
+				% Angle theta_2
+				\draw[] (0.6,0) arc[start angle=0, end angle=-52, radius=0.6];
+				\node at (0.8,-0.3) {$\theta_2$};
+				
+			\end{tikzpicture}
+			\she
+		\end{center}
 		
 		לפי הגדרת הפונקציות הטריגונומטריות, וכלל החיבור, יתקיים: 
-		\[ \tan \ta_2 = \frac{x_2}{\ml_2}, \ \tan \ta_1 = \frac{x_1}{\ml_1}, \ x + y = d \]
+		\[ \tan \ta_2 = \frac{x_2}{\ml_2}, \ \tan \ta_1 = \frac{x_1}{\ml_1}, \ x_1 + x_2 = d \]
 		\textbf{טענה 1. }נציב ונקבל קשר גיאומטרי בין הזוויות: 
 		\[ d = \underbrace{\ml_1\tan\ta_1}_{x_1} + \underbrace{\ml_2\tan\ta_2}_{x_2} \implies \ml_2\tan\ta_2 = d - \ml_1 \tan\ta_1 \implies \ta_2 = \arctan\cl{\frac{d - \ml_1\tan\ta_1}{\ml_2}} \]
 		עתה, נרצה למצוא ישירות את $t(\ta_1)$. משום ש־$s = t\cdot v$ אז $t = \frac{s}{v}$. נסמן ב־$t_1$ את כמות הזמן שלוקח לעבור את $y_1$, וב־$t_2$ את כמות הזמן שלוקח לעבור את $y_2$. 
@@ -336,9 +375,18 @@
 		\textbf{טענה 3. }נציב חזרה בטענה 1. נשתמש בעובדה ש־$x^2 = (-x)^2$: 
 		\[ t(\ta_1) = \frac{\ml_1}{v_1\cos\ta_1} + \frac{\ml_2}{v_2} \cdot \sqrt{1 + \cl{\frac{\ml_1\tan\ta_1 - d}{\ml_2}}}  \]
 		\item כדי למצוא את הזמן המינימלי, נגזור את $t(\ta_1)$, לפי הנוסחה של טענה 2. 
-		\[ t'(\ta_1) = -\frac{\ml_1 \sin \ta_1 + v_1 \cos \ta_1}{v_1^2\cos^2\ta_1} -\frac{\ml_2 \sin \ta_2 + v_2 \cos \ta_2}{v_2^2\cos^2\ta_2} \]
-		נשווה ל־$0$ כדי לנסות למצוא את נקודות סטציונריות. 
-		\[ \frac{\ml_1 \sin \ta_1 + v_1 \cos \ta_1}{v_1^2\cos^2\ta_1} = -\frac{\ml_2 \sin \ta_2 + v_2 \cos \ta_2}{v_2^2\cos^2\ta_2} \]
+		\begin{align*}
+			t'(\ta_1) &= -\frac{\ml_1v_1\cos\ta_1}{v_1^2\cos^2\ta_1} + \frac{\ell_2}{v_2} \cl{\frac{1 + \cl{\displaystyle \frac{\ml_1\tan\ta_1 - d}{\ml_2}}}{2\sqrt{\displaystyle \frac{\frac{\ml_1\ml_2}{\cos^2\ta_1}}{\ml_2^2}}}} \\
+			&= -\frac{\ml_1v_1\cos\ta_1}{v_1^2\cos^2\ta_1} + \frac{\ell_2}{v_2} \cl{\frac{\displaystyle \frac{\ml_1\tan\ta_1 - d + \ml_2}{\ml_2}} {\sqrt{\displaystyle 4 \frac{\ml_1}{\cos^2\ta_1\ml_2}}}} \\
+			&= -\frac{\ml_1v_1\cos\ta_1}{v_1^2\cos^2\ta_1} + \displaystyle \frac{\ml_1\tan\ta_1 - d + \ml_2} {v_2\sqrt{\displaystyle 4 \frac{\ml_1}{\cos^2\ta_1\ml_2}}}
+		\end{align*}
+		
+		נשווה ל־$0$ כדי לנסות למצוא את נקודות סטציונריות. נכפיל במכפלת האגפים התחתונים. 
+		\[ \begin{WithArrows}
+			t'(\ta_1) = 0 \iff -\ml_1v_1\cos\ta_1 v_2\sqrt{4 \frac{\ml_1}{\cos^2\ta_1\ml_2}} + \cl{\ml_1\tan\ta_1 - d + \ml_2} \cdot v_1^2\cos^2\ta_1 &= 0 \Arrow{צמצום} \\
+			2\ml_1^{1.5}v_1v_2\ml_2^{-0.5} + \cl{\ml_1\tan\ta_1 - d + \ml_2} \cdot v_1^2\cos^2\ta_1 &= 0
+		\end{WithArrows} \]
+		
 	\end{enumerate}
 	
 	\section{}
@@ -347,17 +395,20 @@
 		
 		\textbf{תשובה: }מתוך הסרטוט שבשיעורי הבית: 
 		
-		\[ \ta = \tan \frac{20 + 10}{x} - \tan \frac{10}{x} = \tan \frac{30}{x} - \tan \frac{10}{x} \]
-		נרצה ש־$\ta$ תהיה מקסימלית. נגזור נסמן $\ta(x) = \ta$ כתלות ב־$x$. נגזור ונשווה ל־$0$ כדי למצוא נקודות סטציונריות: 
-		\[ \begin{WithArrows}[groups]
-			\ta(x)' = \frac{30}{x^2} \cdot \sec^2 \cl{\frac{30}{x}} - \frac{10}{x^2} \cdot \cl{\sec^2 \frac{10}{x}} &= 0 \Arrow{$\cdot x^2$}\\
-			\sec^2 \frac{30}{x} - \sec^{2} \frac{10}{x} &= 0 \Arrow[new-group]{$+ \sect \frac{10}{x}$} \\
-			\sect \frac{30}{x} &= \sec2 \frac{10}{x} \Arrow{$\arcsec$} \\
-			\frac{30}{x} &= \frac{10}{x} + 2\pi k \Arrow{$\cdot x, \ -10$} \\
-			20 &= 2x\pi k \Arrow[new-group]{$\cdot \frac{1}{2\pi k}$} \\
-			\frac{10}{\pi k} &= x
+		\begin{alignat*}{9}
+			\ta(x) &= \tan \frac{20 + 10}{x} - \tan \frac{10}{x} &= \tan \frac{30}{x} - \tan \frac{10}{x}
+		\end{alignat*}
+		
+		כאשר תחום ההגדרה של הזווית יהיה כאשר $\ta(x) = \frac{\pi}{2}$, כלומר $x>0$. נגזור ונשווה ל־0 כדי למצוא נקודות סטציונריות:
+		\[ \begin{WithArrows}
+			\ta'(x) = -\csc^2\cl{\frac{30}{x}}\frac{30}{x^2} + \csc^2\cl{\frac{10}{x}}\frac{10}{x^2} &\seq 0 \Arrow{$\cdot x^2$} \\
+			30\csc^2\cl{\frac{10}{x}} - 10\csc^2\cl{\frac{30}{x}} &\seq 0 \Arrow{$\csc$} \\
+			\frac{10}{\cos^2(10x\op)} - \frac{30}{\cos^2(30x\op)} &\seq 0 \Arrow{$\times$} \\
+			10\cos^2(30x\op) - 30\cos^2(10x\op) &\seq 0 \Arrow{$\cdot 0.2$} \\
+			-2 + \cos(60x\op) + \cos(20x\op) &\seq 0 \\
+			\cos\cl{\frac{80}{x}}\cos\cl{\frac{40}{x}}&\seq 2
 		\end{WithArrows} \]
-		ידוע ת.ה. $\ta$
+		עתה, 
 		
 		\item \textbf{שאלה: }מהן אורכי הצלעות של המבחן עם היקף מינימלי ששטחו $S$?
 		
@@ -628,8 +679,7 @@
 	הסתמכנו שני אי־שוויונים בטענות לעיל. הראשון, $x + 1 \ge 0$, שנגרר ישירות מכך ש־$x \ge -1$ (נוסיף 2 לשני האגפים). השני, $g(a) = a^2 - a$, נכון כי $g'(a) = 2a - 1 $ יהיה קטן ממש מ־$0$ לכל $0 \le a \le 1$, כלומר $g(a)$ מונוטוני יורד החל מנקודת ההתחלה שלו $g(0) = 0$, אזי $g(a) \le 0$. סה"כ הטענות לעיל אכן נכונות, תחת הנתונים. באופן דומה להסקות שהתבצעו בשאלה קודמת, $f'' < 0 $ ולכן $f'$ מונוטוני יורד, ומשום ש־$f'(0) = 0$ אז $\forall x \ge 0. f'(x) \le 0$, ובאופן דומה $f(x) \le 0$ גם כן (תחת אותם התנאים שניתנו), כדרוש. 
 	
 	עתה, נותר להוכיח שוויון אמ"מ $a = 1 \lor x = -1$. משיקולים דומים, לכל $x \le -1$ נדע $f'''(x) \ge 0$ וכך (באופן דומה להוכחת אי־השוויון לעיל) יגרר $f(x)$ מונוטונית עולה באותו התחום, כלומר הקיצון היחיד הוא קיצון מקסימום כאשר $x = -1$, שם אכן יתקיים $f(x) = 0$ (כלומר, שוויון). נדע, שהפונקציה תעלה/תרד חזק בכל תחום אחר כי היא לא קבועה, אלא אם $a = 1$, בעת הזו $f(x) = (1 + x)^1 - 1 - x \cdot 1 = 0$ (כלומר, שוויון גם במקרה הזה). סה"כ אלו המקרים היחידים בהם ייתכן שוויון. 
-	
-	\section{\en{PID}}
+
 	
 	
 	\ndoc
