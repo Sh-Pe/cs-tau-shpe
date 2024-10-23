@@ -268,6 +268,10 @@
 			&u = #1 \quad u' = #2 \\
 			&\du = #2 #3
 	\end{aligned}}}
+\newcommand\pus[2]{\csb{\begin{aligned}
+			u &= #1 \\
+			\du &= #2
+\end{aligned}}}
 \newcommand\ptt[3]{\csb{\begin{aligned}
 			&\theta = #1 \quad \theta' = #2 \\
 			&\dtt = #2 #3
@@ -360,61 +364,63 @@ x &= #1\\
 	\section{}
 	\begin{enumerate}
 		\item 
-		\[ \int \cos^3x \sinx \dx = \pu{\cosx}{-\sinx}{\dx} = \int -u^3 = -\frac{1}{4}u^4 = \bm{-\frac{\cos^4x}{4} + C} \]
+			\[ \int \cos^3x \sinx \dx = \pu{\cosx}{-\sinx}{\dx} = \int -u^3 = -\frac{1}{4}u^4 = \bm{-\frac{\cos^4x}{4} + C} \]
 		\item 
-		\[ \int \sqrt{\frac{\arcsin x}{1 - x^2}} \dx = \int \sqrt{\arcsin x} \arcsin' \dx = \ptt{\arcsin x}{\arcsin'}{\dx} = \int \sqrt\theta \dtt = \frac{2}{3}\theta^{1.5} = \bm{\frac{\arcsin^{1.5} x}{1.5} + C} \]
+			\[ \int \sqrt{\frac{\arcsin x}{1 - x^2}} \dx = \int \sqrt{\arcsin x} \arcsin' \dx = \ptt{\arcsin x}{\arcsin'}{\dx} = \int \sqrt\theta \dtt = \frac{2}{3}\theta^{1.5} = \bm{\frac{\arcsin^{1.5} x}{1.5} + C} \]
 		\item 
-		\[ \int \frac{\ln^2x}{x} \dx = \pu{\lnx}{\tfrac{1}{x}}{\dx} = \int u^2 \du = \frac{1}{3}u^3 = \bm{\frac{\ln^3x}{3} + C} \]
+			\[ \int \frac{\ln^2x}{x} \dx = \pu{\lnx}{\tfrac{1}{x}}{\dx} = \int u^2 \du = \frac{1}{3}u^3 = \bm{\frac{\ln^3x}{3} + C} \]
 		\item 
-		\begin{multline*}
-			\int \frac{\dx}{\sqrt x + \sqrt[3]{x}} = \pu{x^{\frac{1}{6}}}{\tfrac{1}{6}x^{-\frac{5}{6}}}{\dx \quad \dx = 6u^5\du } = \int \frac{6u^5\du}{u^3 + u^2} = \int \frac{\cancel{u^2}6u^3\du}{\cancel{u^2}(1 + u)} = \ptu{u + 1}{u}{} \\
-			 = \frac{6t^2\dt}{t} = 6 \int t \dt = 3t^2 = 3(u + 1)^2 = 3u^2 + 6u + 1 = \bm{3\sqrt[3]{x} + 6\sqrt[6]{x} + 1 + C}
-		\end{multline*}
+			\begin{multline*}
+				\int \frac{\dx}{\sqrt x + \sqrt[3]{x}} = \pu{x^{\frac{1}{6}}}{\tfrac{1}{6}x^{-\frac{5}{6}}}{\dx \quad \dx = 6u^5\du } = \int \frac{6u^5\du}{u^3 + u^2} = \int \frac{\cancel{u^2}6u^3\du}{\cancel{u^2}(1 + u)} = \ptu{u + 1}{u}{} \\
+				 = \frac{6t^2\dt}{t} = 6 \int t \dt = 3t^2 = 3(u + 1)^2 = 3u^2 + 6u + 1 = \bm{3\sqrt[3]{x} + 6\sqrt[6]{x} + 1 + C}
+			\end{multline*}
 		\item 
-		\begin{multline*}
-			\int x^3(3x^2 - 1)^{15}\dx = \px{\tfrac{1}{\sqrt3}\sint}{\tfrac{1}{\sqrt3\cos t}}{\dt} = \int \frac{1}{9\sqrt3}\sin^3 t \cdot (\sin^2 - 1)^{15} \frac{1}{\sqrt3}\cos t\dt = \int 27\op \sin^3 t \cos^{31}t \dt \\
-			= \ptt{\sin t}{\cos t}{\dt} = \int 27\op \ta^3 \cos^{30}(\arcsin \ta)\dtt = \frac{1}{27} \int \ta^3(1 - \sin^2\arcsin\ta)^{15}\dtt = \frac{1}{27} \int \ta^3(1 - \ta^2)^{15}\dtt \\
-			= \int \ta^5((1 - \ta^2))^5\dtt = \csb{\begin{aligned}
-					u = 1 - \ta^2 & \quad x = \sqrt{1 - u} \\
-					\du = 2\ta\dtt
-			\end{aligned}} = \int u^5(1 - u)^2 \; 0.5\du  = \frac{1}{2}\int u^7 - \int u^6 + \frac{1}{2} \int u^5 \\
-			= \frac{u^8}{14} - \frac{u^6}{6} + \frac{u^5}{10} + C = \frac{(1 - \ta^2)^8}{14} - \frac{(1 - \ta^2)^6}{6} + \frac{(1 - \ta^2)^5}{10} + C = \frac{\cos^{16}t}{14} - \frac{\cos^{12}t}{6} + \frac{\cos^{10}t}{10} +C \\
-			= \bm{\frac{\cos^{16}\cl{3^{-0.5}x}}{14} - \frac{\cos^{12}\cl{3^{-0.5}x}}{6} + \frac{\cos^{10}\cl{3^{-0.5}x}}{10} + C}
-		\end{multline*}
+			\begin{multline*}
+				\int x^3(3x^2 - 1)^{15}\dx = \px{\tfrac{1}{\sqrt3}\sint}{\tfrac{1}{\sqrt3\cos t}}{\dt} = \int \frac{1}{9\sqrt3}\sin^3 t \cdot (\sin^2 - 1)^{15} \frac{1}{\sqrt3}\cos t\dt = \int 27\op \sin^3 t \cos^{31}t \dt \\
+				= \ptt{\sin t}{\cos t}{\dt} = \int 27\op \ta^3 \cos^{30}(\arcsin \ta)\dtt = \frac{1}{27} \int \ta^3(1 - \sin^2\arcsin\ta)^{15}\dtt = \frac{1}{27} \int \ta^3(1 - \ta^2)^{15}\dtt \\
+				= \int \ta^5((1 - \ta^2))^5\dtt = \csb{\begin{aligned}
+						u = 1 - \ta^2 & \quad x = \sqrt{1 - u} \\
+						\du = 2\ta\dtt
+				\end{aligned}} = \int u^5(1 - u)^2 \; 0.5\du  = \frac{1}{2}\int u^7 - \int u^6 + \frac{1}{2} \int u^5 \\
+				= \frac{u^8}{14} - \frac{u^6}{6} + \frac{u^5}{10} + C = \frac{(1 - \ta^2)^8}{14} - \frac{(1 - \ta^2)^6}{6} + \frac{(1 - \ta^2)^5}{10} + C = \frac{\cos^{16}t}{14} - \frac{\cos^{12}t}{6} + \frac{\cos^{10}t}{10} +C \\
+				= \bm{\frac{\cos^{16}\cl{3^{-0.5}x}}{14} - \frac{\cos^{12}\cl{3^{-0.5}x}}{6} + \frac{\cos^{10}\cl{3^{-0.5}x}}{10} + C}
+			\end{multline*}
 		\item 
-		\begin{multline*}
-			\int \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \int x(x + 3)^{-\frac{1}{5}} = \int \sum_{i = 0}^{5}\binom{5}{i}x^{5 - i + 1}3^{i}\dx = \sum_{i = = 0}^{5} \csb{\binom{5}{i}3^{i} \int \cl{x^{6 - i}}\dx} = \sum_{i = 0}^{5}\binom{5}{i}\frac{3^{i}}{6 - i} x^{6 - i} \\ 
-			= \bm{\tfrac{1}{6}x^6 + 3x^5 + 22.5x^4 + 90x^3 + 202.5x^2 + 243x + C}
-		\end{multline*}
+			\[ \int \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \pus{x + 3}{\dx} = \int \frac{u - 3}{\sqrt[5]{u}}\du = \int u^{\frac{4}{5}}\du - 3\int u^{-\frac{1}{5}}\du = \bm{\frac{5}{9}u^{1.8} - 3.75u^{\frac{4}{5}} + C} \]
 	\end{enumerate}
 	\section{}
 	\section{}
 	\begin{enumerate}[a.]
 		\item 
-		\begin{multline*}
-			\int \frac{\sqrt{25x^2 - 4}}{x}\dx = \px{0.4\sinhx}{0.4\coshx}{\dtt} = \int \frac{\sqrt{4(6.25 \cdot 0.4^2\sinh^2x - 1)}}{0.4\sinhx} 0.4\coshx\dtt \\
-			= \int \frac{\cancel{0.4}\sqrt2\sqrt{\sinh^2x - 1}}{\cancel{0.4}\sinhx}\coshx = \sqrt{2}\coshx \frac{\coshx}{\sinhx} = \bm{\sqrt2 \coshx \coth x}
-		\end{multline*}
+			\begin{multline*}
+				\int \frac{\sqrt{25x^2 - 4}}{x}\dx = \px{0.4\sinhx}{0.4\coshx}{\dtt} = \int \frac{\sqrt{4(6.25 \cdot 0.4^2\sinh^2x - 1)}}{0.4\sinhx} 0.4\coshx\dtt \\
+				= \int \frac{\cancel{0.4}\sqrt2\sqrt{\sinh^2x - 1}}{\cancel{0.4}\sinhx}\coshx = \sqrt{2}\coshx \frac{\coshx}{\sinhx} = \bm{\sqrt2 \coshx \coth x}
+			\end{multline*}
 		\item למען הנוחות, נגדיר $a = 1 + \frac{3}{\sqrt2}$: 
-		\begin{multline*}
-			\int \frac{x}{\sqrt{2x^2 - 4x - 7}} \dx = \frac{x}{\sqrt{\cl{x - 1 - \frac{3}{\sqrt2}}\cl{x - 1 + \frac{3}{\sqrt2}}}} \dt = \pt{x - 1}{1}{} = \int \frac{t + 1}{t^2 + a^2}\dt \\
-			= \int \frac{1}{t^2 + a^2} \dt + \int \frac{t}{t^2 + a^2} \dt = \frac{1}{a}\arctan\cl{\frac{x}{a}} + \int \frac{t}{t^2 + a^2}
-		\end{multline*}
-		נפתור את האינטגרל שנותרנו עימו בנפרד: 
-		\[ \int \frac{t}{t^2 + a^2} \dt = \udv{t}{1}{\arctan t}{\tfrac{1}{t^2 + a^2}} = t \arctan t - \int \arctan t \dt \]
-		כאשר האינטגרל של $\arctan$: 
-		\begin{multline*}
-			\int \arctan x \dx = \pxs{\tant\dx}{\tfrac{1}{\cos^2\ta}\dtt} = \int \arctan \tant \cdot \frac{\dtt}{\cos^2 \ta} = \int \frac{\ta \dtt}{\cos^2\ta} = \udv{\ta}{1}{\tan\ta}{\sec^2\ta} \\
-			= \ta \tan \ta - \int \frac{\sin\ta}{\cos\ta}\dtt = \pts{\cos \ta}{-\sin \ta \dtt} = \ta \tan \ta  - \underbrace{\int -\frac{1}{t} \dt}_{-\ln |t|} = \ta \tan \ta + \ln |\cos \ta| + C \\
-			= \arctan x \cdot (\tan \arctan x) + \ln (\cos(\arctan x)) + C = x \arctan x + \ln \cl{\tfrac{1}{\sqrt{1 + x^2}}} + C = x\arctan x - 0.5 \ln (1 + x^2) + C
-		\end{multline*}
-		זאת כי נזכר שהוכח בשיעורי בית 2 כי $\arctan' = \cos^2(\arctan) = \frac{1}{x^2 + 1}$, כלומר $\cos(\arctan x) = \frac{1}{\sqrt{x^2 + 1}}$. סה"כ, הראנו כי: 
-		\[ \int \frac{t}{t^2 + a^2} = \cancel{+\ t \arctan t - t \arctan t} - 0.5\ln(1 + t^2) \]
-		ניזכר למה עשינו את זה מלכתחילה, ונציב באינטגרל המקורי: 
-		\begin{multline*}
-			\cdots = a\op \arctan\cl{\frac{x}{a}} - 0.5\ln(1 + t^2) = \cl{1 + \frac{3}{\sqrt2}}\op \arctan \cl{\frac{(3 + \sqrt2)(x - 1)}{\sqrt2}} - 0.5 \ln (1 + (t - 1)^2) \\
-			= \bm{\frac{\sqrt 2}{\sqrt 2 + 3} \arctan \cl{1 + \frac{3(x - 1)}{\sqrt2}} - 0.5\ln(x^2 - 2x + 2)}
-		\end{multline*}
-		
+			\begin{multline*}
+				\int \frac{x}{\sqrt{2x^2 - 4x - 7}} \dx = \frac{x}{\sqrt{\cl{x - 1 - \frac{3}{\sqrt2}}\cl{x - 1 + \frac{3}{\sqrt2}}}} \dt = \pt{x - 1}{1}{} = \int \frac{t + 1}{t^2 + a^2}\dt \\
+				= \int \frac{1}{t^2 + a^2} \dt + \int \frac{t}{t^2 + a^2} \dt = \frac{1}{a}\arctan\cl{\frac{x}{a}} + \int \frac{t}{t^2 + a^2}
+			\end{multline*}
+			נפתור את האינטגרל שנותרנו עימו בנפרד: 
+			\[ \int \frac{t}{t^2 + a^2} \dt = \udv{t}{1}{\arctan t}{\tfrac{1}{t^2 + a^2}} = t \arctan t - \int \arctan t \dt \]
+			כאשר האינטגרל של $\arctan$: 
+			\begin{multline*}
+				\int \arctan x \dx = \pxs{\tant\dx}{\tfrac{1}{\cos^2\ta}\dtt} = \int \arctan \tant \cdot \frac{\dtt}{\cos^2 \ta} = \int \frac{\ta \dtt}{\cos^2\ta} = \udv{\ta}{1}{\tan\ta}{\sec^2\ta} \\
+				= \ta \tan \ta - \int \frac{\sin\ta}{\cos\ta}\dtt = \pts{\cos \ta}{-\sin \ta \dtt} = \ta \tan \ta  - \underbrace{\int -\frac{1}{t} \dt}_{-\ln |t|} = \ta \tan \ta + \ln |\cos \ta| + C \\
+				= \arctan x \cdot (\tan \arctan x) + \ln (\cos(\arctan x)) + C = x \arctan x + \ln \cl{\tfrac{1}{\sqrt{1 + x^2}}} + C = x\arctan x - 0.5 \ln (1 + x^2) + C
+			\end{multline*}
+			זאת כי נזכר שהוכח בשיעורי בית 2 כי $\arctan' = \cos^2(\arctan) = \frac{1}{x^2 + 1}$, כלומר $\cos(\arctan x) = \frac{1}{\sqrt{x^2 + 1}}$. סה"כ, הראנו כי: 
+			\[ \int \frac{t}{t^2 + a^2} = \cancel{+\ t \arctan t - t \arctan t} - 0.5\ln(1 + t^2) \]
+			ניזכר למה עשינו את זה מלכתחילה, ונציב באינטגרל המקורי: 
+			\begin{multline*}
+				\cdots = a\op \arctan\cl{\frac{x}{a}} - 0.5\ln(1 + t^2) = \cl{1 + \frac{3}{\sqrt2}}\op \arctan \cl{\frac{(3 + \sqrt2)(x - 1)}{\sqrt2}} - 0.5 \ln (1 + (t - 1)^2) \\
+				= \bm{\frac{\sqrt 2}{\sqrt 2 + 3} \arctan \cl{1 + \frac{3(x - 1)}{\sqrt2}} - 0.5\ln(x^2 - 2x + 2)}
+			\end{multline*}
+		\item 
+			\begin{multline*}
+				\int e^{4x}\sqrt{1 + e^{2x}} = \pts{e^{x}}{e^{x}\dx} = \int t^3\sqrt{1 + t^2} = \pts{\tant}{\sec^2\dt} = \int \tan^3 \cdot \overbrace{\sqrt{1 + \tan^2 \ta}}^{\sec\ta} \sec^2x \dtt = \int \tan^3\ta\sec^3\ta \dtt \\
+				= \int (1 - \sec^2\ta) \sec^2\ta \tan\ta\sec\ta \dtt \pus{\sec \ta}{\sect\tant\dtt} = \int (1 - u^2)u^2 \du = \int u^2 - \int u^4 = \frac{u^3}{3} - \frac{u^5}{5} + C = \frac{\sec^3 \ta}{3} - \frac{\sec^5\ta}{5} +C \\
+				= \frac{\sec^3(\arctan t)}{3} - \frac{\sec^5(\arctan t)}{5} + C = ((1 - t^2)^{3 / 2}3\op - (1 - t^2)^{5 / 2}5\op) + C = \bm{(1 - t^2)^{1.5}3\op + (1 - t^2)^{2.5}5\op + C}
+			\end{multline*}
 		\end{enumerate}
 \end{document}
