@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  23 OCT 2024 19:00
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  23 OCT 2024 21:32
  restricted system commands enabled.
 **mbhw4.tex
 (./mbhw4.tex
@@ -1651,16 +1651,28 @@ m/m/it/10 t \OT1/cmr/m/n/10 = [] 27[] [][] \OML/cmm/m/it/10 t [][] t \OT1/cmr/m
  []
 
 
+Overfull \hbox (29.15176pt too wide) detected at line 389
+[] [] \OT1/cmr/m/n/10 d\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 = [] = [] [] d\OML/cm
+m/m/it/10 u \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 d\OML/cmm
+/m/it/10 u \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 3 [] \OML/cmm/m/it/10 u[] \OT1/
+cmr/m/n/10 d\OML/cmm/m/it/10 u \OT1/cmr/m/n/10 = []\OML/cmm/m/it/10 u[] \OMS/cm
+sy/m/n/10 ^^@ \OT1/cmr/m/n/10 3\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 75\OML/cmm/m/i
+t/10 u[] \OT1/cmr/m/n/10 = []\OT1/cmr/bx/n/10 (\OML/cmm/b/it/10 x \OT1/cmr/bx/n
+/10 + 3)[] \OMS/cmsy/b/n/10 ^^@ \OT1/cmr/bx/n/10 3\OML/cmm/b/it/10 :\OT1/cmr/bx
+/n/10 75(\OML/cmm/b/it/10 x \OT1/cmr/bx/n/10 + 3)[] + \OML/cmm/b/it/10 C
+ []
+
+
 
 [1
 
 {/home/shpe/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (25.58508pt too wide) detected at line 424
+Overfull \hbox (25.58508pt too wide) detected at line 434
  []$[]   [] \OML/cmm/m/it/10 e[][] \OT1/cmr/m/n/10 = [] = [] \OML/cmm/m/it/10 t[][] \OT1/cmr/m/n/10 = [] = [] [][] \OMS/cmsy/m/n/10  [] [][] \OML/cmm/m/it/10 x \OT1/cmr/m/n/10 d\OML/cmm/m/it/10  \OT1/cmr/m/n/10 = [] [][] \OML/cmm/m/it/10  [][]  \OT1/cmr/m/n/10 d\OML/cmm/m/it/10 $ 
  []
 
 
-Overfull \hbox (32.42578pt too wide) detected at line 424
+Overfull \hbox (32.42578pt too wide) detected at line 434
  []$[] \OT1/cmr/m/n/10 = [](1 \OMS/cmsy/m/n/10 ^^@ [][] \OML/cmm/m/it/10 \OT1/
 cmr/m/n/10 ) [][] \OML/cmm/m/it/10  []  []  \OT1/cmr/m/n/10 d\OML/cmm/m/it/1
 0  [] \OT1/cmr/m/n/10 = [](1 \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 u[]\OT1/cmr
@@ -1672,7 +1684,22 @@ T1/cmr/m/n/10 = [] \OMS/cmsy/m/n/10 ^^@ [] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 C$
 
 
 
-[2] (./mbhw4.aux)
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 437--437
+
+ []
+
+LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/n' in size <10> not available
+
+(Font)              Font shape `TU/DavidCLM(0)/b/n' tried instead on input line
+ 437.
+LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/it' in size <10> not availabl
+e
+(Font)              Font shape `TU/DavidCLM(0)/b/it' tried instead on input lin
+e 437.
+
+
+[3] (./mbhw4.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
@@ -1680,36 +1707,37 @@ L3 programming layer <2024-05-27>
 )
 
 Here is how much of LuaTeX's memory you used:
- 35459 strings out of 475931
+ 35466 strings out of 475931
  125375,1977958 words of node,token memory allocated
- 810 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 33 attribute, 103 glue_spe
-c, 13 attribute_list, 2 write nodes
-   avail lists: 1:1,2:3266,3:176,4:40,5:784,6:24,7:4776,8:99,9:2273,10:6
- 57210 multiletter control sequences out of 65536+600000
- 116 fonts using 7633343 bytes
+ 866 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 54 attribute, 103 glue_spe
+c, 20 attribute_list, 2 write nodes
+   avail lists: 1:2,2:2994,3:187,4:44,5:762,6:26,7:4860,8:109,9:2319,10:6
+ 57217 multiletter control sequences out of 65536+600000
+ 123 fonts using 7923223 bytes
  116i,19n,114p,1662b,529s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman17-regular.ot
-f></usr/share/fonts/OTF/DavidCLM-Medium.otf></home/shpe/.miktex/texmfs/install/f
-onts/type1/public/amsfonts/cm/cmbsy10.pfb></home/shpe/.miktex/texmfs/install/fon
-ts/type1/public/amsfonts/cmextra/cmbsy7.pfb></home/shpe/.miktex/texmfs/install/f
-onts/type1/public/amsfonts/cm/cmbx10.pfb></home/shpe/.miktex/texmfs/install/font
-s/type1/public/amsfonts/cm/cmbx5.pfb></home/shpe/.miktex/texmfs/install/fonts/ty
-pe1/public/amsfonts/cm/cmbx7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/
-public/amsfonts/cm/cmex10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/pub
-lic/amsfonts/cm/cmmi10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public
-/amsfonts/cm/cmmi7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/ams
-fonts/cm/cmmib10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfo
-nts/cmextra/cmmib7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfont
-s/cm/cmr5.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
-cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pf
-b></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont/line10
-.pfb>
-Output written on mbhw4.pdf (2 pages, 163059 bytes).
+</usr/share/fonts/OTF/DavidCLM-BoldItalic.otf></home/shpe/.miktex/texmfs/install
+/fonts/opentype/public/lm/lmroman17-regular.otf></usr/share/fonts/OTF/DavidCLM-M
+edium.otf></usr/share/fonts/OTF/DavidCLM-MediumItalic.otf></home/shpe/.miktex/te
+xmfs/install/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/shpe/.miktex/texm
+fs/install/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb></home/shpe/.miktex/te
+xmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/shpe/.miktex/texmf
+s/install/fonts/type1/public/amsfonts/cm/cmbx5.pfb></home/shpe/.miktex/texmfs/in
+stall/fonts/type1/public/amsfonts/cm/cmbx7.pfb></home/shpe/.miktex/texmfs/instal
+l/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/shpe/.miktex/texmfs/install/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></home/shpe/.miktex/texmfs/install/font
+s/type1/public/amsfonts/cm/cmmi7.pfb></home/shpe/.miktex/texmfs/install/fonts/ty
+pe1/public/amsfonts/cm/cmmib10.pfb></home/shpe/.miktex/texmfs/install/fonts/type
+1/public/amsfonts/cmextra/cmmib7.pfb></home/shpe/.miktex/texmfs/install/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/
+public/amsfonts/cm/cmr5.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/l
+atxfont/line10.pfb>
+Output written on mbhw4.pdf (3 pages, 177841 bytes).
 
-PDF statistics: 90 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 107 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 

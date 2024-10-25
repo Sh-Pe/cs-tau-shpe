@@ -169,7 +169,7 @@
 \newcommand\rle   {\text{ rule}}
 \newcommand\other {\text{else}}
 \newcommand\set   {\ell et \text{ }}
-\newcommand\ans   {\mathit{Ans.}}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
 
 % Set theory shortcuts
 \newcommand\ra    {\rangle}
@@ -249,6 +249,7 @@
 \DeclareMathOperator{\arcsech}{arcsech}
 \DeclareMathOperator{\arccsch}{arccsch}
 \DeclareMathOperator{\arccoth}{arccoth} 
+\DeclareMathOperator{\sgn}    {sgn}
 
 \newcommand\dx    {\,\mathrm{d}x}
 \newcommand\dt    {\,\mathrm{d}t}
@@ -440,23 +441,32 @@
 		סה"כ ב־$x = 0$ מינימום מוחלט. נחשב את צלעות המלבן: 
 		\[ x = \sqrt S, \ y = \frac{S}{\sqrt S} = S, \implies \bm{x = y = \sqrt S} \]
 		
-		\item \textbf{שאלה: }מבין כל הגלילים הסגורים משני הצדדים, עם שטח פנים של $50cm^{2}$, מה היחס בין גובה הגליל לבסיסו במקרה של הגליל עם הנפח הגדול ביותר? 
-		
-		ידועה ההגבלה ידוע שהמעטפת היא $2\pi r h$ ושהבסיסים הם $\pi r^2$ כל אחד; אזי, שטח הפנים יהיה $50 = 2\pi r(r + h)$. נמצא את הנפח $V$ יהיה: 
-		\begin{gather*}
-			25 = \pi r^2 + rh \implies rh = 25 - \pi r^2 \implies h = \frac{25}{r} - \pi r \\
-			V = \pi r^2 h \implies V(r) = \pi r^2 \cdot \cl{\frac{25}{r} - \pi r} = \pi \cl{25 r - r^3}
-		\end{gather*}
-		נגזור את הנפח כדי למצוא מקסימום: 
-		\[ V'(r) = 25 - 3r^2 = 0 \implies r^2 = \frac{25}{3} \implies r = \pm \frac{5}{\sqrt 3} \]
-		כאשר הפתרון השלילי מחוץ לתחום ההגדרה $0 \le r$. באותה הנקודה, יתקיים שהנפח יהיה $V \approx 151$. נתבונן בקצוות תחום ההגדרה $0 \le r$: 
-		\begin{gather*}
-			\lim_{r \to \inf} V(r) = \lim_{r \to \inf} \pi r(25 - r^2) = \cl{\lim_{r \to \inf} \pi r} \cdot \cl{\lim_{r \to \inf} 25 - r^2} = \inf \cdot (-\inf) = -\inf \le 151 \\
-			\lim_{r \to 0^+} \pi r (25 - r^2) = 0 \le 151
-		\end{gather*}
-		סה"כ $r = \frac{5}{\sqrt3}$ קיצון מוחלט. אזי, שטח בסיס הוא $\pi r^2 = \frac{5\pi}{\sqrt 3}$, וגובה הגליל הוא $h = \frac{25\sqrt 3}{5} - \frac{5 \pi}{\sqrt 3}$. סה"כ, היחס יהיה: 
-		\[ \frac{S}{h} = \frac{\frac{5\pi}{\sqrt 3}}{5 \sqrt3 - \frac{5\pi}{\sqrt3}} \]
-		בעיה: זה לא עובד. 
+			\item \textbf{שאלה: }מבין כל הגלילים הסגורים משני הצדדים, עם שטח פנים של $50cm^2$, מה היחס בין גובה הגליל לבסיסו במקרה של הגליל עם הנפח הגדול ביותר? 
+			
+			גליל מוגדר לפי הרדיוס $r$ שלו, וגובה $h$. נגביל אותו כך ששטח הפנים יהיו $50cm^2$. השטח של שני ה"מכסים" בצורת עיגול שתוחמים אותו, יהיו $\pi r^2$ לכל אחד, כלומר $2\pi r^2$ בסה"כ. ללא אותם הבסיסים, שטח הפנים של המעטפת יהיה $2\pi rh$. כלומר, סה"כ, שטח הפנים יהיה: 
+			\[ \begin{WithArrows}
+				2\pi r^2 + 2\pi rh &= 50 \Arrow[ll]{$-2\pi r^2$}\\
+				2 \pi rh &= 50 - 2\pi r^2 \Arrow{$\cdot \frac{1}{2\pi r}$} \\
+				h &= \frac{50 - 2\pi r^2}{2\pi r} \\
+				&= \frac{25}{\pi r} - r
+			\end{WithArrows} \]
+			מכאן, נסיק ת.ה.: 
+			\[ r > 0 \land h > 0 \iff 25 - \pi r^2 > 0 \land r > 0 \iff 0 < x < 2.82095 \]
+			נסמן ב־$V(r)$ את נפח הגליל: 
+			\[ V(r) = \pi r^2 h = \pi r^2 \cl{\frac{25}{\pi r} - r} = 25r - \pi r^3 \]
+			נגזור במטרה למצוא נקודות סטציונריות, אשר חשודות להוות קיצון מקסימום. 
+			\[ V'(r) = 25 - 3\pi r^2 = 0 \iff r^2 = \frac{25}{3\pi} \iff r \approx \pm 1.6287 := \tl r \]
+			לא ייתכן רדיוס שלילי, ולכן נשלול את התוצאה השלילית. נותר לוודא שהתוצאה אכן קיצון מקסימום. 
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|}
+					\hline $x$ & $0.1$ & $\tl r$ & $0.2$ \\
+					\hline $f'(x)$ & $+$ & $0$ & $-$ \\
+					\hline $f(x)$ & $\nearrow$ & & $\searrow$ \\
+					\hline
+				\end{tabular}
+			\end{center}
+			זהו אכן קיצון מקסימום, כלומר נפח הגליל יהיה מקסימלי בהינתן ערך $r = \tl r$ זה. נותר תמצוא את התשובה, היא היחס $h / r$ בעבור אות וה־$r$. 
+			\[ \ans = \frac{\tl h}{\tl r} = \frac{\frac{25}{\pi \cdot 1.6287}1.6287}{1.6287} = \bm{4.886} \]
 		
 		
 	\end{enumerate}
@@ -525,15 +535,16 @@
 			\item \textbf{חיתוך עם הצירים: }$f(0) = \frac{(0 + a)^2}{1 - |0|} = a^2$
 			\[ f(x) = 0 \implies \frac{(x + a)^2}{1 - |x|} = 0 \implies (x + a)^2 = 0 \implies x + a = \pm0 \implies x = -a \]
 			סה"כ נקודות חיתוך $\la 0, a^2 \ra, \ \la -a, 0 \ra $
-			\item \textbf{נק' סטציונריות וסוגן: }נגזור ונשווה ל־0. נפריד למקרים: אם $x > 0$ ואם $x < 0$
-			\[ f'(x) = \begin{cases}
-				\displaystyle \frac{2(x + a)|x| - 1}{1 - 2|x| + x^2} & x > 0 \\
-				\displaystyle \frac{2(x + a)|x| + 1}{1 - 2|x| + x^2} & x < 0
-			\end{cases} \]
-			בהשוואה ל־0: 
-			\[ \frac{2(x + a)|x| \pm 1}{\dots} = 0 \implies 2(x + a)|x| \pm 1 = 0 \implies 2x|x| + 2a \pm 1 = 0 \]
-			נפריד למקרים. אם $x > 0$: 
-			\[ 2x^2 + 2a - 1 = 0 \implies \xot = \frac{-2a + \sqrt{4a^2 + 4 \cdot 2 }}{-2} \]
+			\item \textbf{נק' סטציונריות וסוגן: }ראשית, נגזור את הפונקציה, ונשווה את אשר קיבלנו ל־$0$ כדי למצוא נקודות סטציונריות. מעדן הנוחות, נסמן $\sgn(x) := s_x \in \{-1, 1\}$ (נשים לב כי $s_xx = |x|$, וכי $s_x^2 = 1$). (נשים לב ש־$s_x$ בקונטסקסט של פתרון למשוואה ריבועית, הוא למעשה פיצול לשני מקרים)
+			\[ \begin{WithArrows}
+				f'(x) = \frac{(2x + 2a)(1 - |x|) + \sgn(x)(x + a)^2}{1 - 2|x| + x^2} &= 0 \Arrow[ll]{$\cdot (1 - 2|x| + x^2)$} \\
+				2x + 2a - s_x2x^2 \cancel{- s_x2ax} + s_xx^2 \cancel{+ s_x2ax} + s_xa^2 &= 0 \\
+				-s_x \, x^2 + 2x^{1} + (2a + s_xa)x^{0} &= 0\\
+				\frac{-2 \pm \sqrt{4 + 4s_x(2a + s_xa^2)}}{-2s_x} &= \xot \\
+				s_x \mp \sqrt{\frac{4 + 4s_x(2a + s_xa^2)}{4}} = s_x \mp \sqrt{16a^2 + 8s_xa + 4} &= \xot \\
+				1 \mp (a \pm 2) &= \xot
+			\end{WithArrows} \]
+			
 			\item \textbf{נק' פיתול: }נתבונן בנגזתר השנייה: 
 			\[ f''(x) = \begin{cases}
 				2|x| \cdot 2(x + a)

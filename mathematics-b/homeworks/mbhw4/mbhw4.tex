@@ -104,7 +104,7 @@
 \newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
 
 \newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
-\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{אההה כותרת משנה}} \end{center}} \vfil	}
 
 \newcommand{\rn}[1]{
 	\textup{\uppercase\expandafter{\romannumeral#1}}
@@ -357,24 +357,24 @@ x &= #1\\
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{מתמטיקה B $\sim$ תרגיל בית 4}
+\title{\textit{מתמטיקה B} $\sim$ \textit{תרגיל בית 4}}
 \begin{document}
 	\maketitle
 	
 	\section{}
 	\begin{enumerate}
-		\item 
+		\item[2.]
 			\[ \int \cos^3x \sinx \dx = \pu{\cosx}{-\sinx}{\dx} = \int -u^3 = -\frac{1}{4}u^4 = \bm{-\frac{\cos^4x}{4} + C} \]
-		\item 
+		\item[4.] 
 			\[ \int \sqrt{\frac{\arcsin x}{1 - x^2}} \dx = \int \sqrt{\arcsin x} \arcsin' \dx = \ptt{\arcsin x}{\arcsin'}{\dx} = \int \sqrt\theta \dtt = \frac{2}{3}\theta^{1.5} = \bm{\frac{\arcsin^{1.5} x}{1.5} + C} \]
-		\item 
+		\item[6.]
 			\[ \int \frac{\ln^2x}{x} \dx = \pu{\lnx}{\tfrac{1}{x}}{\dx} = \int u^2 \du = \frac{1}{3}u^3 = \bm{\frac{\ln^3x}{3} + C} \]
-		\item 
+		\item[8.]
 			\begin{multline*}
 				\int \frac{\dx}{\sqrt x + \sqrt[3]{x}} = \pu{x^{\frac{1}{6}}}{\tfrac{1}{6}x^{-\frac{5}{6}}}{\dx \quad \dx = 6u^5\du } = \int \frac{6u^5\du}{u^3 + u^2} = \int \frac{\cancel{u^2}6u^3\du}{\cancel{u^2}(1 + u)} = \ptu{u + 1}{u}{} \\
 				 = \frac{6t^2\dt}{t} = 6 \int t \dt = 3t^2 = 3(u + 1)^2 = 3u^2 + 6u + 1 = \bm{3\sqrt[3]{x} + 6\sqrt[6]{x} + 1 + C}
 			\end{multline*}
-		\item 
+		\item[10.]
 			\begin{multline*}
 				\int x^3(3x^2 - 1)^{15}\dx = \px{\tfrac{1}{\sqrt3}\sint}{\tfrac{1}{\sqrt3\cos t}}{\dt} = \int \frac{1}{9\sqrt3}\sin^3 t \cdot (\sin^2 - 1)^{15} \frac{1}{\sqrt3}\cos t\dt = \int 27\op \sin^3 t \cos^{31}t \dt \\
 				= \ptt{\sin t}{\cos t}{\dt} = \int 27\op \ta^3 \cos^{30}(\arcsin \ta)\dtt = \frac{1}{27} \int \ta^3(1 - \sin^2\arcsin\ta)^{15}\dtt = \frac{1}{27} \int \ta^3(1 - \ta^2)^{15}\dtt \\
@@ -385,10 +385,20 @@ x &= #1\\
 				= \frac{u^8}{14} - \frac{u^6}{6} + \frac{u^5}{10} + C = \frac{(1 - \ta^2)^8}{14} - \frac{(1 - \ta^2)^6}{6} + \frac{(1 - \ta^2)^5}{10} + C = \frac{\cos^{16}t}{14} - \frac{\cos^{12}t}{6} + \frac{\cos^{10}t}{10} +C \\
 				= \bm{\frac{\cos^{16}\cl{3^{-0.5}x}}{14} - \frac{\cos^{12}\cl{3^{-0.5}x}}{6} + \frac{\cos^{10}\cl{3^{-0.5}x}}{10} + C}
 			\end{multline*}
-		\item 
-			\[ \int \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \pus{x + 3}{\dx} = \int \frac{u - 3}{\sqrt[5]{u}}\du = \int u^{\frac{4}{5}}\du - 3\int u^{-\frac{1}{5}}\du = \bm{\frac{5}{9}u^{1.8} - 3.75u^{\frac{4}{5}} + C} \]
+		\item[12.]
+			\[ \int \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \pus{x + 3}{\dx} = \int \frac{u - 3}{\sqrt[5]{u}}\du = \int u^{\frac{4}{5}}\du - 3\int u^{-\frac{1}{5}}\du = \frac{5}{9}u^{1.8} - 3.75u^{\frac{4}{5}} = \bm{\frac{5}{9}(x + 3)^{1.8} - 3.75(x + 3)^{\frac{4}{5}} + C} \]
 	\end{enumerate}
 	\section{}
+	\begin{enumerate}
+		\item[2.]
+		\[ \int_2^{23} \cos^3x \sinx = -\frac{\cos^4 2}{4} + \frac{\cos^4 23}{4} \approx  \]
+		\item[6.]
+		\[ \int_6^{19} \frac{\ln^2x}{x} \dx = \frac{\ln^3x}{3} \Bigg\lvert^{19}_{6} \approx 8.50915 - 1.9174 = 6.5917 \]
+		\item[10.]
+		\[ \int_{10}^{15} x^3(3x^2 - 1)^{15} = \frac{\cos^{16}\cl{3^{-0.5}x}}{14} - \frac{\cos^{12}\cl{3^{-0.5}x}}{6} + \frac{\cos^{10}\cl{3^{-0.5}x}}{10} \Bigg\lvert^{15}_{10} \approx 0.0009 - 0.0012 = -0.00029 \]
+		\item[12.]
+		\[ \int_{12}^{13} \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \frac{5}{9}(x + 3)^{1.8} - 3.75(x + 3)^{\frac{4}{5}} \Bigg\lvert_{12}^{13} \approx 47.2243 - 39.9995 = 7.2248 \]
+	\end{enumerate}
 	\section{}
 	\begin{enumerate}[a.]
 		\item 
@@ -423,4 +433,6 @@ x &= #1\\
 				= \frac{\sec^3(\arctan t)}{3} - \frac{\sec^5(\arctan t)}{5} + C = ((1 - t^2)^{3 / 2}3\op - (1 - t^2)^{5 / 2}5\op) + C = \bm{(1 - t^2)^{1.5}3\op + (1 - t^2)^{2.5}5\op + C}
 			\end{multline*}
 		\end{enumerate}
+		
+		\ndoc
 \end{document}
