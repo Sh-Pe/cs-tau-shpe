@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  25 OCT 2024 22:28
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  26 OCT 2024 14:57
  restricted system commands enabled.
 **hw_final.tex
 (./hw_final.tex
@@ -1677,7 +1677,7 @@ LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/n' in size <10> not available
 
 
 [3]
-Overfull \hbox (2.00577pt too wide) detected at line 467
+Overfull \hbox (2.00577pt too wide) detected at line 472
 \OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 m \OMS/cmsy/m/n/10 6\OT1/cmr/m/n/10 = \OML/c
 mm/m/it/10 n: m \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 n \OT1/cmr/m/n/10 = 100 \OMS
 /cmsy/m/n/10 ^ \OML/cmm/m/it/10 E \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ff\OML/cmm
@@ -1699,7 +1699,9 @@ m/n/10 j \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 m\OMS/cmsy/m/n/10 g    \OT1/cmr/m/n
 
 [4]
 
-[5] (./hw_final.aux)
+[5]
+
+[6] (./hw_final.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
@@ -1707,13 +1709,13 @@ L3 programming layer <2024-05-27>
 )
 
 Here is how much of LuaTeX's memory you used:
- 36442 strings out of 475931
+ 36507 strings out of 475931
  125375,1977958 words of node,token memory allocated
- 2073 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 6 dir, 2 glue, 4 kern, 1 glyph, 492 attribute, 103 
-glue_spec, 166 attribute_list, 2 write nodes
-   avail lists: 1:7,2:3595,3:718,4:50,5:881,6:47,7:9080,8:93,9:774,10:16,11:6
- 58186 multiletter control sequences out of 65536+600000
+ 2099 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 8 dir, 2 glue, 4 kern, 1 glyph, 498 attribute, 103 
+glue_spec, 168 attribute_list, 2 write nodes
+   avail lists: 1:7,2:3547,3:695,4:48,5:863,6:46,7:8651,8:93,9:800,10:16,11:6
+ 58251 multiletter control sequences out of 65536+600000
  130 fonts using 8498983 bytes
  116i,18n,114p,1665b,1505s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman10-regular.ot
@@ -1736,16 +1738,17 @@ c/amsfonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/am
 sfonts/cm/cmr5.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfont
 s/cm/cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
 cmr9.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pf
-b></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy9.pfb></
-home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pfb></hom
-e/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont/line10.pfb></
-home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-</home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pf
-b></home/shpe/.miktex/texmfs/install/fonts/type1/public/rsfs/rsfs10.pfb>
-Output written on hw_final.pdf (5 pages, 263613 bytes).
+0.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy5.pf
+b></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb></
+home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy9.pfb></home
+/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/sh
+pe/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont/line10.pfb></home
+/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb></ho
+me/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb></
+home/shpe/.miktex/texmfs/install/fonts/type1/public/rsfs/rsfs10.pfb>
+Output written on hw_final.pdf (6 pages, 282587 bytes).
 
-PDF statistics: 155 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 162 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
