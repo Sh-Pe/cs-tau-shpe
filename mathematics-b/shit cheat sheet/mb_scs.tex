@@ -77,12 +77,14 @@
 \renewcommand\labelitemi{$\bullet$}
 \usepackage{titlesec}
 \titleformat{\section}[block]
-{\fontsize{15}{15}}
-{\sen \dotfill (\thesection) \dotfill \she}
+{\fontsize{16}{16}}
+{(\thesection) \dotfill}
 {0em}
 {\MakeUppercase}
 \usepackage{graphicx}
 \graphicspath{ {./} }
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
 
 
 % Hebrew initialzing
@@ -104,7 +106,7 @@
 \newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
 
 \newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
-\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{אההה כותרת משנה}} \end{center}} \vfil	}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
 
 \newcommand{\rn}[1]{
 	\textup{\uppercase\expandafter{\romannumeral#1}}
@@ -253,7 +255,8 @@
 \DeclareMathOperator{\arctanh}{arctanh}
 \DeclareMathOperator{\arcsech}{arcsech}
 \DeclareMathOperator{\arccsch}{arccsch}
-\DeclareMathOperator{\arccoth}{arccoth} 
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
 
 \newcommand\dx    {\,\mathrm{d}x}
 \newcommand\dt    {\,\mathrm{d}t}
@@ -263,48 +266,6 @@
 \newcommand\df    {\mathrm{d}f}
 \newcommand\dfdx  {\diff{f}{x}}
 \newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
-
-\newcommand\pu[3]{\csb{\begin{aligned}
-			&u = #1 \quad u' = #2 \\
-			&\du = #2 #3
-	\end{aligned}}}
-\newcommand\pus[2]{\csb{\begin{aligned}
-			u &= #1 \\
-			\du &= #2
-\end{aligned}}}
-\newcommand\ptt[3]{\csb{\begin{aligned}
-			&\theta = #1 \quad \theta' = #2 \\
-			&\dtt = #2 #3
-\end{aligned}}}
-\newcommand\ptts[2]{\csb{\begin{aligned}
-\theta &= #1\\
-\dtt &= #2
-\end{aligned}}}
-\newcommand\pt[3]{\csb{\begin{aligned}
-			&t = #1 \quad t' = #2 \\
-			&\dt = #2 \dx #3
-\end{aligned}}}
-\newcommand\pts[2]{\csb{\begin{aligned}
-t &= #1 \quad \\
-\dt &= #2
-\end{aligned}}}
-\newcommand\ptu[3]{\csb{\begin{aligned}
-			&t = #1 \quad t' = #2 \\
-			&\dt = #2 \du #3
-\end{aligned}}}
-\newcommand\px[3]{\csb{\begin{aligned}
-&x = #1 \quad x' = #2 \\
-&\dx = #2 #3
-\end{aligned}}}
-\newcommand\pxs[2]{\csb{\begin{aligned}
-x &= #1\\
-\dx &= #2
-\end{aligned}}}
-
-\newcommand\udv[4]{\csb{\begin{aligned}
-			u &= #1  \ & v &= #3 \\
-			du &= #2 \ & dv &= #4
-\end{aligned}}}
 
 \newcommand\nt[1] {\frac{#1}{#1}}
 
@@ -356,83 +317,161 @@ x &= #1\\
 
 %! ~~~ Document ~~~
 
-\author{שחר פרץ}
-\title{\textit{מתמטיקה B} $\sim$ \textit{תרגיל בית 4}}
+\author{Shahar Perets}
+\title{Course B $\sim$ Shit Cheat Sheet}
 \begin{document}
+	\sen
 	\maketitle
+	\begin{multicols}{2}
+		\section{General}
+		\begin{definition}
+			$\R[x]$ is the group of all polynomials with real coefficients. 
+		\end{definition}
+		\begin{theorem}
+			$\forall p(x) \in \R[x]. \forall z \in \C. p(z) = 0 \iff p(\bar z)$
+		\end{theorem}
+		\begin{definition}
+			$\C[x]$ is the group of all polynomials with complex coefficient. 
+		\end{definition}
+		\begin{theorem}
+			$p(x_0) = 0 \iff (x - x_0) \mid p(x_0)$
+		\end{theorem}
+		\begin{theorem}[Fundamental theorem of algebra]
+			For all $p(x) \in \C$ non-constant, exists $z \in \C$ such as $p(z) = 0$. 
+		\end{theorem}
+		\begin{theorem}[Lhopital rule]
+			Assuming $\limxz f'(x) = L_f, \limxz g'(x) = L_g$ both exists, then: 
+			\[ \limxz \frac{f(x)}{g(x)} = \frac{L_f}{L_g} \]
+		\end{theorem}
+		\section{Limits etc.}
+		\begin{definition}[Dirichlet function]
+			\[ D(x) \equiv \begin{cases}
+				1 & x \in \Q \\
+				0 & x \in \R
+			\end{cases} = \mathbf{1}_\Q \]
+		\end{definition}
+		\begin{theorem}
+			Assuming $\limxz f(x) = L_f $ and $\limxz g(x) = L_g$ where $L_f, L_g \in \R \lor L_f = L_g = \pm\inf$, then $\limxz f + g = L_f + L_g$, and $\limxz f \cdot g = L_fL_g$. 
+		\end{theorem}
+		\begin{definition}
+			A function $f(x) \in \R \to \R$ is continues in $x_0$ iff $\limxz f(x_0) = f(x_0)$. 
+		\end{definition}
+		\begin{definition}
+			$f \in I \to \R$ has the intermediate value property iff $\forall a, b \in I. \exists c \in [a, b]. f(c) \in [f(a), f(b)]$. 
+		\end{definition}
+		\begin{theorem}[Intermediate value theorem]
+			If $f \in I \to \R$ is continues, then $f$ has the intermediate value property. 
+		\end{theorem}
+		\begin{theorem}
+			If $\limxz f(x) = \limxz h(x) = L$ and $\forall x \in [a, b] \neq \emptyset. f(x) \le g(x) \le h(x) \land x_0 \in [a, b]$, then $\limxz g(x) = L$. 
+		\end{theorem}
+		\section{Trigo and Hypr-Trigo}
+		\begin{definition}[Hypr-Trigo func.]
+			\[ \coshx = \frac{e^x + e^{-x}}{2}, \ \sinhx = \frac{e^x - e^{-x}}{2} \]
+		\end{definition}
+		\begin{theorem}
+			\begin{gather*}
+				\cosh^2x - \sinh^2x = 1, \\
+				\sinh(x + y) = \sinh y \coshx + \sinhx \cosh y, \\ 
+				\arcsinh x = \ln(x + \sqrt{x^2 + 1})
+			\end{gather*}
+		\end{theorem}
+		\section{Derivatives}
+		\begin{definition}[implicit diffrentiation]
+			diffrentiating both sides of the equation. E.g.: 
+			\[ y = f(x), \ xf(x) = 1 \to f(x) + f'(x)x = 1' = 0 \to y' = -\frac{y}{x} \]
+		\end{definition}
+		\begin{definition}
+			\[ e_n \equiv \cl{1 + \frac{1}{n}}^n \]
+		\end{definition}
+		\begin{theorem}
+			$e_n$ is monotonically increasing
+		\end{theorem}
+		\begin{definition}
+			\[ e \equiv \limi \cl{1 + \frac{1}{n}}^{n} \]
+		\end{definition}
+		\begin{theorem}
+			\begin{gather*}
+				f(x) = \log_ax \implies f'(x) = \frac{1}{x\ln a} \\
+				f(x) = a^x \implies f'(x) = \ln a \cdot a^{x}
+			\end{gather*}
+		\end{theorem}
+		\begin{theorem}
+			\[ \exists I \ \mathrm{interval}. \forall x \in I. f'(x) = f(x) \implies \exists c \in \R. f(x) = ce^x \]
+		\end{theorem}
+		\begin{theorem}[Darbuax Theorm]
+			If $f$ diffrentiatable in $I \subseteq \R$, then $f'$ has the intermediate value property. 
+		\end{theorem}
+		\section{Integrals}
+		\begin{definition}
+			$F(x)$ is an antiderivative of $f(x)$ if $F'(x) = f(x)$. 
+		\end{definition}
+		\begin{theorem}
+			If $F_1, F_2$ antiderivatives of $f$ in $I \subseteq \R$, then exists $C \in \R$ such as $F_1 - F_2 = C$. 
+		\end{theorem}
+		\begin{theorem}
+			\begin{gather*}
+				\int (f + g)\dx = \int f\dx + \int g \dx = F + G + C \\
+				\int af(x) \dx = a \int f(x)\dx = aF(x) + C \\
+				\int f(ax + b)\dx  = \frac{1}{a} F(ax + b) + C
+			\end{gather*}
+		\end{theorem}
+		\begin{theorem}
+			\[ \int f(t(x))t'(x)\dx = \int f(t)\dt \]
+		\end{theorem}
+		\begin{theorem}[L...]
+			Let $F$ be an antiderivative of $f$ in $[c, d]$. Then exists $c \le x \le d$ such as: 
+			\[ f(x) = \frac{F(d) - F(c)}{c - d} \]
+		\end{theorem}
+		\begin{theorem}[Fundamental theorem of calc]
+			\[ S = \int^b_a f(x)\dx = F(b) - F(a) \]
+			Where $S$ is the area under $f(x)$ in range $[a, b]$. 
+		\end{theorem}
+		\begin{theorem}
+			\[ \int^a_b f(x) \dx = -\int^b_a f(x) \dx \]
+		\end{theorem}
+		\begin{theorem}[Integration by parts (IBP)]
+			\[ \int u\dv = uv - \int v\du \]
+		\end{theorem}
+		\section{Taylow Series}
+		\begin{definition}[Taylow Series]
+			Taylow series around $x_0 \in \R$ for $f \in \R^\R$ is: 
+			\[ \sum_{k = 0}^{\inf}\frac{f^{(n)}(x_0)}{k!}(x - x_0)^k \]
+		\end{definition}
+		\begin{theorem}
+			The taylor series for $f(x)$ is equal to $f(x)$ for "many functions". 
+		\end{theorem}
+		\begin{definition}[Maclaurin Series] is taylor series around $0$:
+			\[ \sum_{n = 0}^{\inf}\frac{f^{(n)}(0)}{n!}x^n \]
+		\end{definition}
+		\begin{theorem}[Maclaurin Series for common functions]
+			\begin{alignat*}{9}
+				\sinx &= \sum_{k = 0}^{\inf}\frac{(-1)^k}{(2k + 1)!}x^{2k + 1} \\
+				\cosx &= \sum_{k = 0}^{\inf}\frac{(-1)^k}{(2k)!}x^{2k} \\
+				e^x &= \sum_{k = 0}^{\inf}\frac{x^k}{k!} \\
+				\frac{1}{x} &= \sum_{m = 0}^{\inf}-(x + 1)^m && \quad [-2 \le x \le 0] \\
+				\ln(1 - x) &= \sum_{k = 0}^{\inf} -\frac{x^k}{k}
+			\end{alignat*}
+		\end{theorem}
+		Note that Maclaurin Series for $e^{-\frac{1}{x^2}}$ equals $0$. 
+		\section{Complex Numbers}
+		\begin{definition}
+			For $z \in \C$, $\sin z, \cos z$ and $e^z$ is defined to be the result of the Maclaurin Series' output for $z$. 
+		\end{definition}
+		\begin{theorem}
+			\[\forall x, y \in \C, e^{x + y} = e^x + e^y\]
+		\end{theorem}
+		\begin{theorem}[Euler Formula]
+			\[ \forall x \in \C. \ e^{ix} = \cosx + i\sinx \]
+		\end{theorem}
+		Hence, for all $\C \ni x = a + bi = \Re(x) + \Im(x)i$ where $a, b \in \R$, we know that $r \equiv |e^x| = e^{\Re(x)}$ and the angle of $e^x$ is $b$. To summrize: 
+		\begin{theorem}
+			\[ z = r(\cos\theta + i\sin\theta) = e^{\ln r + i\theta} = re^{i\theta} \]
+		\end{theorem}
+		\begin{theorem}
+			\[ z^n = r^n(\sin\theta + i\cos\theta) \]
+		\end{theorem}
+	\end{multicols}
 	
-	\section{}
-	\begin{enumerate}
-		\item[2.]
-			\[ \int \cos^3x \sinx \dx = \pu{\cosx}{-\sinx}{\dx} = \int -u^3 = -\frac{1}{4}u^4 = \bm{-\frac{\cos^4x}{4} + C} \]
-		\item[4.] 
-			\[ \int \sqrt{\frac{\arcsin x}{1 - x^2}} \dx = \int \sqrt{\arcsin x} \arcsin' \dx = \ptt{\arcsin x}{\arcsin'}{\dx} = \int \sqrt\theta \dtt = \frac{2}{3}\theta^{1.5} = \bm{\frac{\arcsin^{1.5} x}{1.5} + C} \]
-		\item[6.]
-			\[ \int \frac{\ln^2x}{x} \dx = \pu{\lnx}{\tfrac{1}{x}}{\dx} = \int u^2 \du = \frac{1}{3}u^3 = \bm{\frac{\ln^3x}{3} + C} \]
-		\item[8.]
-			\begin{multline*}
-				\int \frac{\dx}{\sqrt x + \sqrt[3]{x}} = \pu{x^{\frac{1}{6}}}{\tfrac{1}{6}x^{-\frac{5}{6}}}{\dx \quad \dx = 6u^5\du } = \int \frac{6u^5\du}{u^3 + u^2} = \int \frac{\cancel{u^2}6u^3\du}{\cancel{u^2}(1 + u)} = \ptu{u + 1}{u}{} \\
-				 = \frac{6t^2\dt}{t} = 6 \int t \dt = 3t^2 = 3(u + 1)^2 = 3u^2 + 6u + 1 = \bm{3\sqrt[3]{x} + 6\sqrt[6]{x} + 1 + C}
-			\end{multline*}
-		\item[10.]
-			\begin{multline*}
-				\int x^3(3x^2 - 1)^{15}\dx = \px{\tfrac{1}{\sqrt3}\sint}{\tfrac{1}{\sqrt3\cos t}}{\dt} = \int \frac{1}{9\sqrt3}\sin^3 t \cdot (\sin^2 - 1)^{15} \frac{1}{\sqrt3}\cos t\dt = \int 27\op \sin^3 t \cos^{31}t \dt \\
-				= \ptt{\sin t}{\cos t}{\dt} = \int 27\op \ta^3 \cos^{30}(\arcsin \ta)\dtt = \frac{1}{27} \int \ta^3(1 - \sin^2\arcsin\ta)^{15}\dtt = \frac{1}{27} \int \ta^3(1 - \ta^2)^{15}\dtt \\
-				= \int \ta^5((1 - \ta^2))^5\dtt = \csb{\begin{aligned}
-						u = 1 - \ta^2 & \quad x = \sqrt{1 - u} \\
-						\du = 2\ta\dtt
-				\end{aligned}} = \int u^5(1 - u)^2 \; 0.5\du  = \frac{1}{2}\int u^7 - \int u^6 + \frac{1}{2} \int u^5 \\
-				= \frac{u^8}{14} - \frac{u^6}{6} + \frac{u^5}{10} + C = \frac{(1 - \ta^2)^8}{14} - \frac{(1 - \ta^2)^6}{6} + \frac{(1 - \ta^2)^5}{10} + C = \frac{\cos^{16}t}{14} - \frac{\cos^{12}t}{6} + \frac{\cos^{10}t}{10} +C \\
-				= \bm{\frac{\cos^{16}\cl{3^{-0.5}x}}{14} - \frac{\cos^{12}\cl{3^{-0.5}x}}{6} + \frac{\cos^{10}\cl{3^{-0.5}x}}{10} + C}
-			\end{multline*}
-		\item[12.]
-			\[ \int \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \pus{x + 3}{\dx} = \int \frac{u - 3}{\sqrt[5]{u}}\du = \int u^{\frac{4}{5}}\du - 3\int u^{-\frac{1}{5}}\du = \frac{5}{9}u^{1.8} - 3.75u^{\frac{4}{5}} = \bm{\frac{5}{9}(x + 3)^{1.8} - 3.75(x + 3)^{\frac{4}{5}} + C} \]
-	\end{enumerate}
-	\section{}
-	\begin{enumerate}
-		\item[2.]
-		\[ \int_2^{23} \cos^3x \sinx = -\frac{\cos^4 2}{4} + \frac{\cos^4 23}{4} \approx  \]
-		\item[6.]
-		\[ \int_6^{19} \frac{\ln^2x}{x} \dx = \frac{\ln^3x}{3} \Bigg\lvert^{19}_{6} \approx 8.50915 - 1.9174 = 6.5917 \]
-		\item[10.]
-		\[ \int_{10}^{15} x^3(3x^2 - 1)^{15} = \frac{\cos^{16}\cl{3^{-0.5}x}}{14} - \frac{\cos^{12}\cl{3^{-0.5}x}}{6} + \frac{\cos^{10}\cl{3^{-0.5}x}}{10} \Bigg\lvert^{15}_{10} \approx 0.0009 - 0.0012 = -0.00029 \]
-		\item[12.]
-		\[ \int_{12}^{13} \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \frac{5}{9}(x + 3)^{1.8} - 3.75(x + 3)^{\frac{4}{5}} \Bigg\lvert_{12}^{13} \approx 47.2243 - 39.9995 = 7.2248 \]
-	\end{enumerate}
-	\section{}
-	\begin{enumerate}[a.]
-		\item 
-			\begin{multline*}
-				\int \frac{\sqrt{25x^2 - 4}}{x}\dx = \px{0.4\sinhx}{0.4\coshx}{\dtt} = \int \frac{\sqrt{4(6.25 \cdot 0.4^2\sinh^2x - 1)}}{0.4\sinhx} 0.4\coshx\dtt \\
-				= \int \frac{\cancel{0.4}\sqrt2\sqrt{\sinh^2x - 1}}{\cancel{0.4}\sinhx}\coshx = \sqrt{2}\coshx \frac{\coshx}{\sinhx} = \bm{\sqrt2 \coshx \coth x}
-			\end{multline*}
-		\item למען הנוחות, נגדיר $a = 1 + \frac{3}{\sqrt2}$: 
-			\begin{multline*}
-				\int \frac{x}{\sqrt{2x^2 - 4x - 7}} \dx = \frac{x}{\sqrt{\cl{x - 1 - \frac{3}{\sqrt2}}\cl{x - 1 + \frac{3}{\sqrt2}}}} \dt = \pt{x - 1}{1}{} = \int \frac{t + 1}{t^2 + a^2}\dt \\
-				= \int \frac{1}{t^2 + a^2} \dt + \int \frac{t}{t^2 + a^2} \dt = \frac{1}{a}\arctan\cl{\frac{x}{a}} + \int \frac{t}{t^2 + a^2}
-			\end{multline*}
-			נפתור את האינטגרל שנותרנו עימו בנפרד: 
-			\[ \int \frac{t}{t^2 + a^2} \dt = \udv{t}{1}{\arctan t}{\tfrac{1}{t^2 + a^2}} = t \arctan t - \int \arctan t \dt \]
-			כאשר האינטגרל של $\arctan$: 
-			\begin{multline*}
-				\int \arctan x \dx = \pxs{\tant\dx}{\tfrac{1}{\cos^2\ta}\dtt} = \int \arctan \tant \cdot \frac{\dtt}{\cos^2 \ta} = \int \frac{\ta \dtt}{\cos^2\ta} = \udv{\ta}{1}{\tan\ta}{\sec^2\ta} \\
-				= \ta \tan \ta - \int \frac{\sin\ta}{\cos\ta}\dtt = \pts{\cos \ta}{-\sin \ta \dtt} = \ta \tan \ta  - \underbrace{\int -\frac{1}{t} \dt}_{-\ln |t|} = \ta \tan \ta + \ln |\cos \ta| + C \\
-				= \arctan x \cdot (\tan \arctan x) + \ln (\cos(\arctan x)) + C = x \arctan x + \ln \cl{\tfrac{1}{\sqrt{1 + x^2}}} + C = x\arctan x - 0.5 \ln (1 + x^2) + C
-			\end{multline*}
-			זאת כי נזכר שהוכח בשיעורי בית 2 כי $\arctan' = \cos^2(\arctan) = \frac{1}{x^2 + 1}$, כלומר $\cos(\arctan x) = \frac{1}{\sqrt{x^2 + 1}}$. סה"כ, הראנו כי: 
-			\[ \int \frac{t}{t^2 + a^2} = \cancel{+\ t \arctan t - t \arctan t} - 0.5\ln(1 + t^2) \]
-			ניזכר למה עשינו את זה מלכתחילה, ונציב באינטגרל המקורי: 
-			\begin{multline*}
-				\cdots = a\op \arctan\cl{\frac{x}{a}} - 0.5\ln(1 + t^2) = \cl{1 + \frac{3}{\sqrt2}}\op \arctan \cl{\frac{(3 + \sqrt2)(x - 1)}{\sqrt2}} - 0.5 \ln (1 + (t - 1)^2) \\
-				= \bm{\frac{\sqrt 2}{\sqrt 2 + 3} \arctan \cl{1 + \frac{3(x - 1)}{\sqrt2}} - 0.5\ln(x^2 - 2x + 2)}
-			\end{multline*}
-		\item 
-			\begin{multline*}
-				\int e^{4x}\sqrt{1 + e^{2x}} = \pts{e^{x}}{e^{x}\dx} = \int t^3\sqrt{1 + t^2} = \pts{\tant}{\sec^2\dt} = \int \tan^3 \cdot \overbrace{\sqrt{1 + \tan^2 \ta}}^{\sec\ta} \sec^2x \dtt = \int \tan^3\ta\sec^3\ta \dtt \\
-				= \int (1 - \sec^2\ta) \sec^2\ta \tan\ta\sec\ta \dtt \pus{\sec \ta}{\sect\tant\dtt} = \int (1 - u^2)u^2 \du = \int u^2 - \int u^4 = \frac{u^3}{3} - \frac{u^5}{5} + C = \frac{\sec^3 \ta}{3} - \frac{\sec^5\ta}{5} +C \\
-				= \frac{\sec^3(\arctan t)}{3} - \frac{\sec^5(\arctan t)}{5} + C = ((1 - t^2)^{3 / 2}3\op - (1 - t^2)^{5 / 2}5\op) + C = \bm{(1 - t^2)^{1.5}3\op + (1 - t^2)^{2.5}5\op + C}
-			\end{multline*}
-		\end{enumerate}
-		
-		\ndoc
+	\she
 \end{document}
