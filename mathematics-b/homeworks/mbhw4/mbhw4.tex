@@ -403,7 +403,7 @@ x &= #1\\
 	\begin{enumerate}[a.]
 		\item 
 			\begin{multline*}
-				\int \frac{\sqrt{25x^2 - 4}}{x}\dx = \px{0.4\sinhx}{0.4\coshx}{\dtt} = \int \frac{\sqrt{4(6.25 \cdot 0.4^2\sinh^2x - 1)}}{0.4\sinhx} 0.4\coshx\dtt \\
+				\int \frac{\sqrt{25\ta^2 - 4}}{\ta}\dx = \ptt{0.4\sinhx}{0.4\coshx}{\dtt} = \int \frac{\sqrt{4(6.25 \cdot 0.4^2\sinh^2x - 1)}}{0.4\sinhx} 0.4\coshx\dtt \\
 				= \int \frac{\cancel{0.4}\sqrt2\sqrt{\sinh^2x - 1}}{\cancel{0.4}\sinhx}\coshx = \sqrt{2}\coshx \frac{\coshx}{\sinhx} = \bm{\sqrt2 \coshx \coth x}
 			\end{multline*}
 		\item למען הנוחות, נגדיר $a = 1 + \frac{3}{\sqrt2}$: 
@@ -423,8 +423,8 @@ x &= #1\\
 			\[ \int \frac{t}{t^2 + a^2} = \cancel{+\ t \arctan t - t \arctan t} - 0.5\ln(1 + t^2) \]
 			ניזכר למה עשינו את זה מלכתחילה, ונציב באינטגרל המקורי: 
 			\begin{multline*}
-				\cdots = a\op \arctan\cl{\frac{x}{a}} - 0.5\ln(1 + t^2) = \cl{1 + \frac{3}{\sqrt2}}\op \arctan \cl{\frac{(3 + \sqrt2)(x - 1)}{\sqrt2}} - 0.5 \ln (1 + (t - 1)^2) \\
-				= \bm{\frac{\sqrt 2}{\sqrt 2 + 3} \arctan \cl{1 + \frac{3(x - 1)}{\sqrt2}} - 0.5\ln(x^2 - 2x + 2)}
+				\cdots = a\op \arctan\cl{\frac{t}{a}} - 0.5\ln(1 + t^2) = \cl{1 + \frac{3}{\sqrt2}}\op \arctan \cl{\frac{(3 + \sqrt2)(t - 1)}{\sqrt2}} - 0.5 \ln (1 + (t - 1)^2) \\
+				= \bm{\frac{\sqrt 2}{\sqrt 2 + 3} \arctan \cl{\frac{(1.2 + \frac{\sqrt8}{5})(\sinh\ta - 1))}{\sqrt2}} - 0.5\ln(0.16\sinh^2\ta - 0.8\sinh\ta + 2)}
 			\end{multline*}
 		\item 
 			\begin{multline*}
