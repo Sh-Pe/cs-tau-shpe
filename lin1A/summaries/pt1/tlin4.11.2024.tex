@@ -1,0 +1,442 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{תרגול ליניארית}
+\begin{document}
+	\maketitle
+	עומרי, בוגר סייבר. סיים תואר ראשון במתמטיקה/מדמח. עובד על תואר שני במדמח, ושנה הבאה מתגייס. איחורים – פשוט תוותרו. תגיעו בזמן. תרגילי בית שבועיים. השעות כל יום בשני. רביעי הרצאה. תרגילי בית יעלו בחמישי, ולהגשה בראשון שבוע וחצי לאחר מכן. התרגולים על החומר שהיה בהרצאה. אפשר לפנות למייל: omrisdeor@mail.tau.ac.il. תרגילי הבית פנימיים ועומרי יכין אותם. אם התרגילים קשים מדי, דברו עם עומרי. הדפים מהם המרצה כותב על הלוח, יועלו למודל. 
+	
+	הקורס נקרא אלגברה ליניארית. הוא מתמקד באובייקט של מערכת משוואות ליניארית ובפתרונן. בתחילת הקורס נראה אלכוריתם שפותר אותן, ונתעסק באבסטקרציה של אלו. נגדיר מטריצות, מערכת משוואות ליניארית, ועוד. 
+	
+	\section{\en{Complex Numbers}}
+	\subsection{הגדרה}
+	\textbf{הגדרה. }נגדיר את קבוצת המספרים המרוכבים $\C = \{ (a, b) \mid a, b \in \R \} = \R \times \R$. נגדיר את הפעולות הבאות:
+	\[ (a, b) + (c, d) = (a + b, c + d), \ (a, b) \cdot (c, d) = (ac - bd, ad + bc) \]
+	נשים לב שמתקיים $(0, 1) \cdot (0, 1) = (-1, 0)$. נסמן $i = (0, 1)$. כעת מתקיים: 
+	\[ (a , b) = (a, 0) + (0, b) = a(1, 0) + b(0, 1) = a + bi \]
+	עם ההצגה הזו נעבוד. 
+	
+	פעולות החיבור והכפל עובדות בצורה רגילה כאשר $i^2 = -1$. 
+	
+	אפשר לייצג אותם על ציר המרוכבים ולחבר שני וקטורים אה לא מספרים מרוכבים. ראינו את החומר הזה במתמטיקה B. מספרים מרוכבים מקיימים את כלל המקבילית. 
+	
+	\textbf{סימון. }עבור מספר מרוכב $z = a + bi$ עם $a, b \in \R$ נסמן $\Re(z) = a, \Im(z) = b$ כאשר שמותיהם החלק הממשי והמרוכב של $z$ בהתאמה. האיבר הנגדי של $z$ הוא $-z = -a + -bi$. מתקיים $z - z = 0$. האיבר ההופכי הוא: 
+	\[ z\op = \frac{a}{a^2 + b^2} - \frac{b}{a^2 + b^2}i \]
+	ונוכל להגדיר גם חילוק: \[ \frac{z}{w} = z \cdot w\op \]. דוגמה: 
+	\[ \frac{2}{1 - i} = 2\cl{\frac{1}{2} - \frac{1}{2}i} = 1 - i \]
+	\textbf{הגדרה. }עבור מספר מרוכב $a + bi$, נגדיר את הנורמה שלו $|z| = \sqrt{a^2 + b^2}$ (נשים לב שההגדרה מקיימת הומורפיה בתחום הממשי להגדרה על הממשיים). 
+	
+	\textbf{דוגמה. }
+	\[ |\frac{1}{2} - (2 + 3i)| = |-i - 2 - 3i| = |-2  - 4i| = \sqrt{2^2 + 4^2} = \sqrt{20} \]
+	תכונות בסיסיות: 
+	
+	
+	$\forall z, w \in \C. $
+	\begin{enumerate}
+		\item $|z| = 0 \iff z = 0$ 
+		\item $|z \cdot w| = |z||w|$
+		\item $|z| \ge \Im(z), \Re(z)$
+		\item א"ש המשולש: $|z + w| \le |z| + |w|$
+	\end{enumerate}
+	
+	\textbf{הגדרה. }עבור מספר מרוכב $z = a + bi$, נגדיר הצמוד המרוכב להיות $\bar z = a - bi$. הבחנה: $z \cdot \bar z = |z|^2$. 
+	
+	\textbf{מסקנה. }בהינתן $w \neq 0$, יתקיים $\forall z \in \C \setminus \{0\}. z\op = \frac{\bar z}{|z|^2}$. 
+	
+	\textbf{תכונות. }
+	\begin{gather*}
+		\bar{z + w}  = \bar z + \bar w \ \land \ \bar{z \cdot w} = \bar z \cdot \bar w, \ \land \ \bar{\bar z} = z, \ \land \ [z \in \R \iff z = \bar z ] \ \land \ [\exists t \in \R. it = r \iff \bar z = -z] \ \land \ \Re(z) = \frac{z + \bar z}{z}\\
+		\Im(z) = \frac{z - \bar z}{2i}, \ \land \ |z| = |\bar z| \ \land \ (z \neq 0 \implies \ol{z\op} = (\bar z) \op)
+	\end{gather*}
+	
+	הוכחה לא"ש המשולש: (אפשר להעלות בריבוע כי שניהם מספרים אי־שליליים)
+	\[ |z + w|^2 = (z + w)(\bar {z + w}) = (z + w)(\bar z + \bar w) = z \bar z + z \bar w + \bar z w + w \bar w = |z|^2 + \underbrace{z \bar w + \ol{z + \bar w}}_{2\Re(z\bar w)} + |w|^2 \le |z|^2 + 2|z \bar w| + |w^2| = (|z| + |w|)^2 \]
+	נוציא שורש כי אפשר ונקבל את הדרוש. 
+	
+	\subsection{הצגה פולארית}
+	נתאר וקטור אה רגע מספר ע"י גודל וזווית. יהי $r \ge 0, \ \ta \in [0, 2\pi]$. ההצגה הפולארית יחידה בעבור כל מספר, חוץ מ־0. נקבל $z = r(\cos\ta + i\sin\ta)$ (כי כאילו טריגו). 
+	
+	\textbf{משפט אוילר. }
+	\[ \forall a \in \C. \cos a + i \sin a = e^{ia} \]
+	להוכחה – חפשו את סיכום 10 בעברי B (המתרגל לא הוכיח כאן). אם מציבים $\ta = \pi$ נקבל $e^{i\pi} = -1$. ידועה בתור זהות אוילר. 
+	
+	בייצוג פולארי נוח לעשות פעולות כפל. 
+	\[ (r_1e^{i\ta_1}) \cdot (r_2e^{r\ta_2}) = r_1r_2e^{i\ta_1\ta_2} \]
+	וזה נותן לנו משמעות ויזואלית לכפל מרוכבים. 
+	
+	הערות: 
+	\[ |re^{i\ta}| = r, \ |re^{i\ta}| = re^{-i\ta}, \ (re^{i\ta})\op = \frac{1}{r}e^{-i\ta} \]
+	
+	\textbf{דוגמה. }מצאו ביטוי ל־$\cos(\alpha + \beta)$. פתרון: 
+	\begin{gather}
+		\cos(\alpha + \beta) + i\sin(\alpha + \beta) = e^{i(\alpha + \beta)} = e^{i\alpha}e^{i\beta} \\
+		(\cos\alpha i \sin\alpha) = (\cos\alpha \cos\beta - \sin\alpha\sin\beta) + i(\cos\alpha\sin\beta + \sin\alpha\cos\beta)
+	\end{gather}
+	קיבלנו: 
+	\[ \cos(\alpha + \beta) = \cos\alpha\cos\beta - \sin\alpha\sin\beta, \ \sin(\alpha + \beta) = \cos\alpha\sin\beta + \sin\alpha + \cos\beta \]
+	
+	\subsubsection{מעבר מהצגה קרטזית לפולארית}
+	הכי: $r = \sqrt{a^2 + b^2}$. ידוע $\tan(\ta) = \frac{b}{a}$. אבל לא בכיוון ההופכי כי זה תופס רק רבע מהציר. יש פונקציה $\mathrm{atan2}$ שעושה את זה, וזמינה במחשבון. 
+	
+	הצגה פולארית טובה לכפל, והצגה קרטזית טובה לחיבור. 
+	
+	\subsection{מציאת שורש למספר מרוכב}
+	נניח שרוצים למצוא $z \in \C$ שמקיים $z^{n} = w$. עבור $w \in \C$ קבוע. נכתוב $w = re^{i\ta}$. נרשום: 
+	\[ z^n = re^{i\ta} \overset{\sqrt[n]{\ }}{\to} z = \sqrt[n]{r}e^{i\frac{\ta}{n}} \]
+	אבל מהמשפט היסודי של האלגברה או משהו כזה אנחנו רוצים $n$ שורשים. למעשה, $e^{i\ta}$ מחזורית ב־$2\pi$. לכן, הפתרונות הם: 
+	\[ z = \sqrt[n]{r} \cdot e^{i \frac{\ta + 2\pi k}{n}}  \quad k \in \{0, \dots n - 1\}\]
+	
+	\section{\en{Modular Calculations}}
+	לכל $n \in \N \setminus \{0, 1\}$ נגדיר: 
+	$ \Z_n = \{0, \dots n - 1\} $. הסיבה? לכל $a, b \in \Z_n$ נגדיר את $a + b$ להיות $(a + b) \mod n$ (בשביל סגירות). חלק מה־$\Z_n$־ים האלו הם שדות. 
+	
+	\subsection{איברים הפיכים}
+	\textbf{טענה. }יהי $n \ge 2, a \in \Z_n$. אז ל־$a$ יש הופכי מודולו $n$ אמ"מ $a, n$ זרים. 
+	
+	\textbf{הלמה של בזו. } $a, n$ זרים אז $ax + ny = 1$ (מתקיים גם באמ"מ). 
+	
+	לשימושים שלנו, $ax \equiv 1 \mod n$ (בהקשר של הלמה של בזו). 
+	
+	\textbf{מסקנה. }עבור $p$ ראשוני, לכל $a \in \Z_p \setminus \{0\}$ קיים הופכי. (התכונה הזו מתקיימת גם באמ"מ). 
+	
+	\textbf{משפט פרמה הקטן. }אם $a, p$ זרים אז $a^{p - 1} \equiv 1 \mod p$
+	
+	(שקילות של $\equiv$ בקורס משמעותה עמידה ביחס $\bmod n$). 
+	
+	\begin{proof}
+		יהי $a\in \N$. נתבונן בהעתקה: 
+		\[ \phi \Z \setminus \{0\} \to \Z_p \setminus \{0\} , \ \phi(b) = a \cdot b  \]
+		הכי חח"ע ועל ולכן הפיכה. לכן: 
+		\[ \prod_{\mathclap{b \in \Z_p \setminus \{0\}}} b = \prod_{b \in \Z_p \setminus \{0\}} \underbrace{\phi(b)}_{a \cdot b} = a^{p - 1} \prod_{b \in \Z \setminus \{0\}}b  \]
+		כי רק שנינו את הסדר, וידוע $|\Z_p \setminus \{0\}| = p - 1$. נכפיל ב־$(\prod b)\op$ ונקבל: 
+		\[ a^{p - 1} \equiv 1 \mod p \]
+	\end{proof}
+	
+	\section{\en{Linear Equations Systems}}
+	\textbf{דוגמה: }
+	\[ \begin{cases}
+		2x + 3y = b \\
+		-y + 4y = 5
+	\end{cases} \]
+	דרך ראשונה: לבודד משתנים. דרך שנייה: נוסיף לראשונה פעמיים את השנייה:
+	\[ 
+		11y = 16 \implies y = \frac{16}{11} \to x = \frac{9}{11} \]
+	שלוש משוואות – אותו הרעיון. לא לכל מערכת משוואות יש פתרון, ואם קיים כזה, הוא לא בהכרח יחיד. הסיבה – אם משוואות "לא נותנות מידע חדש" (ואז מקבלים דרגות חופש) או שסותרות אחת את השנייה. 
+	
+	
+\end{document}
