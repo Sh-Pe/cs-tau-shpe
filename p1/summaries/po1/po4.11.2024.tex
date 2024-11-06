@@ -1,0 +1,439 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{תוכנה 1}
+\begin{document}
+	\maketitle
+	\section{\en{random stuff}}
+	\subsection{על טל}
+	\begin{itemize}
+		\item טל פרנג,י – קו"ח מרצועיים
+		\item בומר 
+		\item אוהב bitcoin
+		\item תחרות הסמסטר – מי קורה יותר מטבעות קריפטוגרפיים
+	\end{itemize}
+	מנהל פיתוח, מהנדס בכיר בגוגל, סמנכ"ך פיתוח של חברת מידע פיננסי קטנה, 7 שנים יועץ ב־big-data, לימד כאן במשך שלוש שנים. כרגע ראש צוות מהנדסים ב־ebay שמייעץ בנודע ל־AI. 
+	
+	מעבר על דרכים לעשות אלגוריתם פשוט של חלוקת string למילים. 
+	
+	\subsection{דברים כלליים}
+	מבחן אמצע סמסטר ־ 30.12. אמצע שנה – 2.5, 16.2. 
+	
+	\subsection{מה אנחנו נעשה}
+	(במסגרת הפרויקט). נבנה רשת של כריית מטבעות (מטבעות וירטואלים בשם דמי חנוכה). 
+	
+	\subsection{דלית}
+	הציונים יגיעו (לא היום). "מתי הכי מוקדם זה יפורסם?" "זה יפורסם אל תדאג". \textbf{לא למתוח את הגבולות של הגשת התרגילים}. אם דברים נהיהים לחוצים, אז אפשר לפנות לדלית. תרגילים יהיו כל שבוע. לעשות משימות של הפקולטה בקורס של תוכנה 1. לא להניח הנחות – לשאול את דלית או את פרנג'י. העתקות, בעיות בתרגילים ועוד – הן בעיות שיש לסטודנטים בתוכנה 1 ובמבני נתונים. (אני באופן אישי לא אעלה פתרונות). 
+	
+	המרה לבגרות – כרגע חסרים 30\% – 10 על בדידה 2 ו־20 על ליניארית. כשהכל יגמר, אז נקבל אישור לזכאות להמרה. לציונים לוקח המון זמן להתעדכן (אבל נדע לחשב אותו לפני כן). רישמית, אסור לתת פטורים (למרות שבתי ספר מאפשרים). לא למתוח גבולות מבחינת בית הספר. רישמית, מותר לשחרר לאחר 70\% המרה ולאחר י"א. 
+	\section{\en{BitCoin}}
+	כל הנאמר שנוי במחלוקת. אל תרוצו לקחת כסף מאמא לקנות ביטקוין. 
+	תפקיד הכסף: 
+	\begin{itemize}
+		\item אכסון ערך
+		\item יחידת חליפין (מסחר) 
+		\item יחידות חישוב מחיר אחידה
+		\item ולאחרונה – לאפשר קניית מוצרים אלקטרוניים. 
+	\end{itemize}
+	
+	מראים שהציווליזציות התחילו באמצעות בהן גידלו דגנים שאפשר לשמר. 
+	
+	מסחר התחיל בהחלפת סחורות. כסף מאפשר חלופה לזאת. יחידת המידה המקובלת בעולם כיום היא הדולר האמריקאי. 
+	הזהב שימש כמטבע האוניברסלי כבר 5000 שנה. באיזשהו שלב הבנקים החליטו שהם מחזיקים זהב אצלם, המגבה את הכסף, בצ'קים שהם נותנים. ב־1971 ניקסון הכריז כי ארה"ב מתנתקת מתקן הזהב  (כלומר הבנק לא חייב להחזיק הזהב כנגד כל דולר). בכך, הסחורות התנתקו מסחורה ממשית. מדינות אחרות מיהרו לעשות דברים דומים. המצב הנוכחי הדפיס 9T דולר (כלומר, הוא מוכר אגח"ים למדינות אחרות ומקבל דולרים. זהו החוב של הבנק). 
+	
+	"כסף הוא דת" – הוא לא קיים אם לא מאמינים בו. אין ערך למה שבארנק אם לא תסכים לקבלו כסחורה. 
+	
+	בנק הוא למעשה רשיון להדפסת כסף. הבנק צריך להחזיק רק 10\% מכל ההלוואות הוא נותן – הוא יצר פי 10 מזה "מהאוויר". ההנחה היא שלא כולם מוציאים כסף בבת אחת. 
+	
+	\subsection{תכונות של כסף}
+	\begin{multicols}{3}
+		\begin{itemize}
+			\item נדירות
+			\item עמידות
+			\item ניתן לחלוקה
+			\item קשה לזיוף
+			\item קל להעברה
+			\item חוסר יייחוד (קילו אחד של זהב = קילו אחר. לא כמו יהלומים)
+		\end{itemize}
+	\end{multicols}
+	
+	ביטקוין יותר טוב מזהב
+	\begin{multicols}{3}
+		\begin{itemize}
+			\item \textbf{נדירות} – כמות הביטקויינים החדשים קטנה בחצי כל 4 שנים. בשנת 2140 לא יהיה ניתן לכרות יותר (מטבע דיפלציוני ־ הערך תמיד עולה, לעומת מטבע אינפציוני שאפשר להדפיס ממנו עוד)
+			\item \textbf{עמידות} – למטבע אלקטרוני אין שחיקה
+			\item \textbf{ניתן לחלוקה }– ביטקוין ניתן לחלוקה 8 ספרות אחרי הנקודה. עד מאית מיליונית היטקוין. גם אם הוא יהיה שווה מיליון דולר, יהיה אפשר להעביר סנט. 
+			\item \textbf{קשה לזייף} – אי אפשר להדפיס ביטקוין מזוייף. הוא מוגן קריפטוגרפית בבסיס נתונים שמשוכפל על אלפי מחשבים. 
+			\item \textbf{קל להעברה} – לא צריך להעביר דבר פיזית. 
+			\item \textbf{חוסר ייחוד} – יש בעיה. הביטקוין שומר את היסטוריית הטקנסזקציות. יש מטבעות שמנסים להעלים את זה. 
+		\end{itemize}
+	\end{multicols}
+	
+	
+	\subsection{טכנולוגיה}
+	מפתח ציבורי, גיבוב קרפיטוגרפי (הטכנולוגיה המאפשרת כרייה) וה־blockchain – הטכנולוגיה המאפשרת חוסר תלות בבנק. היום גודלו 40GB. 
+	\section{\en{Cryptography}}
+	ביטקוין משתמש בשתי שיטות קריפטוגרפיה שפותחו ב־20 השנה האחרונות. 
+	הראשונה – הצפנה עם מפתח פרטי/ציבורי, והשנייה – פונקציית גיבוב (hash function). ("או שזה גיבוב של שטויות"). 
+	
+	חתימה אלקטרונית – כל העולם יכול להשתמש במפתח הציבורי ובכך יכול להבין מה המידע. בכך נוכל לאמת שבעל המפתח הפרטי הוא באמת היוצר של הקובץ. 
+	
+	פונקציית האש קריפטוגרפית (לא "סתם" כזאת של מבנה נתונים) בעלות התכונה שקשה לייצר שתי הודעות בעלות אותו ה־hash. 
+	
+	מחוץ להקשר של ביטקוין – בגלל שזהו שימוש "כבד" יחסית מבחינת עלות חישוב (אם כי לא אקספוננציאלי) להצפין מסמך שלב, מייצרים האש קריפטוגרפי, עליו חותמים. האש הוא קל חישובית בכיוון אחד. 
+	
+	בביטקוין השתמשו ב־hash כמו "חידה". לדוגמה, תייצר טקסט כך שה־hash יתחיל ב־3 אפסים. 
+	
+	\section{\en{Back to economy}}
+	\subsection{מה זה בנק?}
+	ערימה של חשבונות וכמה כסף יש בהם. פשוט ספר רישומים ענק. וההנחה היא שכולם סומכים עליו. ואם המחשב נהרס? נרצה לבזר את המידע. ואם כן, איך אפשר לבצע העברה ולעדכן את כל העותקים? 
+	\subsection{ה־blockchain}
+	רשימת הטקנזקציות בעולם. רשת הסיטקוין מכילה כ־12K (לפני כמה שנים) ציברי מחשבים בחרבי העולם הנקראים "צמתים". כל פעם שיש שינוי, הצומת שולח את העדכון ל־8 צמתים אקראיים ברשימה. שינוי מתפשט לכמעט על המחשבים לאחר כ־40 שניות. כל מי ש"חותם" אוסף של טקנזאקציות (אוסף כזה נקרא בלוק), מקבל שבריר מטקבע ביטקוין. זהו האינטרס לקבל ארזנקציות, לתחזק את בסיס הנתונים ולשדר ולקבל עידכונים מצמתים אחרים. חתימה דורשת למצוא האש מתאים – ומי שמצליח לאיסוף אוסף טראנזקציות ושולח אותן ל־blockchain הכי מהר, מקבל את שבריר הביטקוין בתמורה לזה. 
+	
+	\subsubsection{למה לא לחתום בלוקים בעצמי}
+	כי אם אני אאריך את ה־blockchain שלי בהתאם למה שאני אוסיף לעצמי, אז כולם ייקחו את ה־block היותר ארוך שנשלח ע"י מישהו אחר. לכן ברגע שהחידה פוצחה ומצאנו האש מתאים, חותמים ושולחים מיד. לא רוצים שאחרים יישיגו אותך. 
+	
+	\section{\en{programming 1 stuff}}
+	בבית תעברו עם שיעורי הבית, ותבינו את הצד הטעני. לפני 4 שנים היה קורס "מזעזע" (ברמת, בו נכנס לפינות הכי רחוקות של ג'אווה, בלי סיבה). המרצה החדשה, מנסה גם ללמד עקרונות של פיתוח תוכנה. "הרבה מהדברים האלו הם בולשיט". פרנג'י אומר שיש רעיונות טובים, אבל אנשים מקצינים איתם והופכים אותם לדת. 
+	
+	נצטרך להכיר מספר פרדיגמות תכנות. java, לדוגמה, היא שפה מתקמפלת, עם OOP. שפות שכדאי לדעת: 
+	\sen
+	\begin{itemize}
+		\item bash (scripting)
+		\item python / js / ruby (inteptated)
+		\item Java / Rust / cpp / Go (compiled)
+		\item List / Scheme (functional)
+	\end{itemize}
+	\she
+	
+	חשוב להגיע למצב שאפשר לכתוב hello world ולהריץ. הרצה באמצעות: 
+	\ttt{java -cp /target/... *arguments}
+	
+	\subsection{\en{compiling etc.}}
+	הסברים קצרים על מה זה קימפול (אני לא אעתיק אותם, אני מניח שאתם יודעים את זה). פייתון שומר .pyc כשלב pre-compiling. 
+	
+	ג'אווה מריץ דברים בתוך ה־JVM – java virtual machine – שיש לה שפת מכונה בעצמה. קובץ ג'אווה עובר \textbf{קימפול} לקוד jvm, ואז מבצעת \textbf{אינטרפיטציה} לקוד מכונה אמיתי. זה נותן אפשרות להריץ ב־cross-platfrom. ה־JRE, הוא java runtime envirement, הוא סוג של אינטרפטר שמעביר קוד jvm לקוד מכונה. ל־JRE חדשים יש מקמפל GIC -- just in time compiler, עליו דיברנו בקורס הקודם.
+	
+	בהינתן ה־apple silicon המפונפן עם M4, והמפתח רוצה להריץ משהו על arch linux עם חומרת אינטל. יוצא קובץ executable מקומפל מקוד ה־C, שיכול לרוץ על מעבד כללי. אבל מה אם נרצה להריץ על האינטל? נוכל להשתמש ב־cross compiler שיקמפל להוראות מכונה של אינטל. אם נכתוב ב־Java, אם נצא עם קובץ יחיד שאפשר להריץ על שניהם. ה־JRE יהיה יחודי בעבור כל אחד מהמחשבים, אבל ה־executable הוא cross-platform. בשביל זה יש לנו גרסאות שונות של JRE שעושות לנו בלגן. קוד ה־JRE, הוא בעצם zip שמכיל את הבצים המקומפלים, נקרא JAR -- java acrhive. 
+	
+	יש עוד שפות מתקמפלות ל־JVM. לדוגמה: scala, Kotlin, ועוד. הן גם יכולות להשתמש בספרויות של java. אפשר גם לכתוב דברים כמו Jython, שהוא python שרץ על jvm. 
+	
+	יש מעט מאוד שפות שאין להם runtime. אולי חוץ מ־C שטכנית אפשר להריץ בלי. ה־runtime liberary. 
+	
+	
+\end{document}

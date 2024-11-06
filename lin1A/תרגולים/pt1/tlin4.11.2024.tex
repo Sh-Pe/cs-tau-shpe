@@ -78,7 +78,7 @@
 \usepackage{titlesec}
 \titleformat{\section}[block]
 {\fontsize{15}{15}}
-{\sen \dotfill (\thesection) \dotfill \she}
+{\sen \dotfill (\thesection) \she}
 {0em}
 {\MakeUppercase}
 \usepackage{graphicx}
@@ -104,7 +104,7 @@
 \newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
 
 \newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
-\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{אההה כותרת משנה}} \end{center}} \vfil	}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
 
 \newcommand{\rn}[1]{
 	\textup{\uppercase\expandafter{\romannumeral#1}}
@@ -253,7 +253,8 @@
 \DeclareMathOperator{\arctanh}{arctanh}
 \DeclareMathOperator{\arcsech}{arcsech}
 \DeclareMathOperator{\arccsch}{arccsch}
-\DeclareMathOperator{\arccoth}{arccoth} 
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
 
 \newcommand\dx    {\,\mathrm{d}x}
 \newcommand\dt    {\,\mathrm{d}t}
@@ -263,48 +264,6 @@
 \newcommand\df    {\mathrm{d}f}
 \newcommand\dfdx  {\diff{f}{x}}
 \newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
-
-\newcommand\pu[3]{\csb{\begin{aligned}
-			&u = #1 \quad u' = #2 \\
-			&\du = #2 #3
-	\end{aligned}}}
-\newcommand\pus[2]{\csb{\begin{aligned}
-			u &= #1 \\
-			\du &= #2
-\end{aligned}}}
-\newcommand\ptt[3]{\csb{\begin{aligned}
-			&\theta = #1 \quad \theta' = #2 \\
-			&\dtt = #2 #3
-\end{aligned}}}
-\newcommand\ptts[2]{\csb{\begin{aligned}
-\theta &= #1\\
-\dtt &= #2
-\end{aligned}}}
-\newcommand\pt[3]{\csb{\begin{aligned}
-			&t = #1 \quad t' = #2 \\
-			&\dt = #2 \dx #3
-\end{aligned}}}
-\newcommand\pts[2]{\csb{\begin{aligned}
-t &= #1 \quad \\
-\dt &= #2
-\end{aligned}}}
-\newcommand\ptu[3]{\csb{\begin{aligned}
-			&t = #1 \quad t' = #2 \\
-			&\dt = #2 \du #3
-\end{aligned}}}
-\newcommand\px[3]{\csb{\begin{aligned}
-&x = #1 \quad x' = #2 \\
-&\dx = #2 #3
-\end{aligned}}}
-\newcommand\pxs[2]{\csb{\begin{aligned}
-x &= #1\\
-\dx &= #2
-\end{aligned}}}
-
-\newcommand\udv[4]{\csb{\begin{aligned}
-			u &= #1  \ & v &= #3 \\
-			du &= #2 \ & dv &= #4
-\end{aligned}}}
 
 \newcommand\nt[1] {\frac{#1}{#1}}
 
@@ -357,82 +316,127 @@ x &= #1\\
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{\textit{מתמטיקה B} $\sim$ \textit{תרגיל בית 4}}
+\title{תרגול ליניארית}
 \begin{document}
 	\maketitle
+	עומרי, בוגר סייבר. סיים תואר ראשון במתמטיקה/מדמח. עובד על תואר שני במדמח, ושנה הבאה מתגייס. איחורים – פשוט תוותרו. תגיעו בזמן. תרגילי בית שבועיים. השעות כל יום בשני. רביעי הרצאה. תרגילי בית יעלו בחמישי, ולהגשה בראשון שבוע וחצי לאחר מכן. התרגולים על החומר שהיה בהרצאה. אפשר לפנות למייל: omrisdeor@mail.tau.ac.il. תרגילי הבית פנימיים ועומרי יכין אותם. אם התרגילים קשים מדי, דברו עם עומרי. הדפים מהם המרצה כותב על הלוח, יועלו למודל. 
 	
-	\section{}
+	הקורס נקרא אלגברה ליניארית. הוא מתמקד באובייקט של מערכת משוואות ליניארית ובפתרונן. בתחילת הקורס נראה אלכוריתם שפותר אותן, ונתעסק באבסטקרציה של אלו. נגדיר מטריצות, מערכת משוואות ליניארית, ועוד. 
+	
+	\section{\en{Complex Numbers}}
+	\subsection{הגדרה}
+	\textbf{הגדרה. }נגדיר את קבוצת המספרים המרוכבים $\C = \{ (a, b) \mid a, b \in \R \} = \R \times \R$. נגדיר את הפעולות הבאות:
+	\[ (a, b) + (c, d) = (a + b, c + d), \ (a, b) \cdot (c, d) = (ac - bd, ad + bc) \]
+	נשים לב שמתקיים $(0, 1) \cdot (0, 1) = (-1, 0)$. נסמן $i = (0, 1)$. כעת מתקיים: 
+	\[ (a , b) = (a, 0) + (0, b) = a(1, 0) + b(0, 1) = a + bi \]
+	עם ההצגה הזו נעבוד. 
+	
+	פעולות החיבור והכפל עובדות בצורה רגילה כאשר $i^2 = -1$. 
+	
+	אפשר לייצג אותם על ציר המרוכבים ולחבר שני וקטורים אה לא מספרים מרוכבים. ראינו את החומר הזה במתמטיקה B. מספרים מרוכבים מקיימים את כלל המקבילית. 
+	
+	\textbf{סימון. }עבור מספר מרוכב $z = a + bi$ עם $a, b \in \R$ נסמן $\Re(z) = a, \Im(z) = b$ כאשר שמותיהם החלק הממשי והמרוכב של $z$ בהתאמה. האיבר הנגדי של $z$ הוא $-z = -a + -bi$. מתקיים $z - z = 0$. האיבר ההופכי הוא: 
+	\[ z\op = \frac{a}{a^2 + b^2} - \frac{b}{a^2 + b^2}i \]
+	ונוכל להגדיר גם חילוק: \[ \frac{z}{w} = z \cdot w\op \]. דוגמה: 
+	\[ \frac{2}{1 - i} = 2\cl{\frac{1}{2} - \frac{1}{2}i} = 1 - i \]
+	\textbf{הגדרה. }עבור מספר מרוכב $a + bi$, נגדיר את הנורמה שלו $|z| = \sqrt{a^2 + b^2}$ (נשים לב שההגדרה מקיימת הומורפיה בתחום הממשי להגדרה על הממשיים). 
+	
+	\textbf{דוגמה. }
+	\[ |\frac{1}{2} - (2 + 3i)| = |-i - 2 - 3i| = |-2  - 4i| = \sqrt{2^2 + 4^2} = \sqrt{20} \]
+	תכונות בסיסיות: 
+	
+	
+	$\forall z, w \in \C. $
 	\begin{enumerate}
-		\item[2.]
-			\[ \int \cos^3x \sinx \dx = \pu{\cosx}{-\sinx}{\dx} = \int -u^3 = -\frac{1}{4}u^4 = \bm{-\frac{\cos^4x}{4} + C} \]
-		\item[4.] 
-			\[ \int \sqrt{\frac{\arcsin x}{1 - x^2}} \dx = \int \sqrt{\arcsin x} \arcsin' \dx = \ptt{\arcsin x}{\arcsin'}{\dx} = \int \sqrt\theta \dtt = \frac{2}{3}\theta^{1.5} = \bm{\frac{\arcsin^{1.5} x}{1.5} + C} \]
-		\item[6.]
-			\[ \int \frac{\ln^2x}{x} \dx = \pu{\lnx}{\tfrac{1}{x}}{\dx} = \int u^2 \du = \frac{1}{3}u^3 = \bm{\frac{\ln^3x}{3} + C} \]
-		\item[8.]
-			\begin{multline*}
-				\int \frac{\dx}{\sqrt x + \sqrt[3]{x}} = \pu{x^{\frac{1}{6}}}{\tfrac{1}{6}x^{-\frac{5}{6}}}{\dx \quad \dx = 6u^5\du } = \int \frac{6u^5\du}{u^3 + u^2} = \int \frac{\cancel{u^2}6u^3\du}{\cancel{u^2}(1 + u)} = \ptu{u + 1}{u}{} \\
-				 = \frac{6t^2\dt}{t} = 6 \int t \dt = 3t^2 = 3(u + 1)^2 = 3u^2 + 6u + 1 = \bm{3\sqrt[3]{x} + 6\sqrt[6]{x} + 1 + C}
-			\end{multline*}
-		\item[10.]
-			\begin{multline*}
-				\int x^3(3x^2 - 1)^{15}\dx = \px{\tfrac{1}{\sqrt3}\sint}{\tfrac{1}{\sqrt3\cos t}}{\dt} = \int \frac{1}{9\sqrt3}\sin^3 t \cdot (\sin^2 - 1)^{15} \frac{1}{\sqrt3}\cos t\dt = \int 27\op \sin^3 t \cos^{31}t \dt \\
-				= \ptt{\sin t}{\cos t}{\dt} = \int 27\op \ta^3 \cos^{30}(\arcsin \ta)\dtt = \frac{1}{27} \int \ta^3(1 - \sin^2\arcsin\ta)^{15}\dtt = \frac{1}{27} \int \ta^3(1 - \ta^2)^{15}\dtt \\
-				= \int \ta^5((1 - \ta^2))^5\dtt = \csb{\begin{aligned}
-						u = 1 - \ta^2 & \quad x = \sqrt{1 - u} \\
-						\du = 2\ta\dtt
-				\end{aligned}} = \int u^5(1 - u)^2 \; 0.5\du  = \frac{1}{2}\int u^7 - \int u^6 + \frac{1}{2} \int u^5 \\
-				= \frac{u^8}{14} - \frac{u^6}{6} + \frac{u^5}{10} + C = \frac{(1 - \ta^2)^8}{14} - \frac{(1 - \ta^2)^6}{6} + \frac{(1 - \ta^2)^5}{10} + C = \frac{\cos^{16}t}{14} - \frac{\cos^{12}t}{6} + \frac{\cos^{10}t}{10} +C \\
-				= \bm{\frac{\cos^{16}\cl{3^{-0.5}x}}{14} - \frac{\cos^{12}\cl{3^{-0.5}x}}{6} + \frac{\cos^{10}\cl{3^{-0.5}x}}{10} + C}
-			\end{multline*}
-		\item[12.]
-			\[ \int \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \pus{x + 3}{\dx} = \int \frac{u - 3}{\sqrt[5]{u}}\du = \int u^{\frac{4}{5}}\du - 3\int u^{-\frac{1}{5}}\du = \frac{5}{9}u^{1.8} - 3.75u^{\frac{4}{5}} = \bm{\frac{5}{9}(x + 3)^{1.8} - 3.75(x + 3)^{\frac{4}{5}} + C} \]
+		\item $|z| = 0 \iff z = 0$ 
+		\item $|z \cdot w| = |z||w|$
+		\item $|z| \ge \Im(z), \Re(z)$
+		\item א"ש המשולש: $|z + w| \le |z| + |w|$
 	\end{enumerate}
-	\section{}
-	\begin{enumerate}
-		\item[2.]
-		\[ \int_2^{23} \cos^3x \sinx = -\frac{\cos^4 2}{4} + \frac{\cos^4 23}{4} \approx  \]
-		\item[6.]
-		\[ \int_6^{19} \frac{\ln^2x}{x} \dx = \frac{\ln^3x}{3} \Bigg\lvert^{19}_{6} \approx 8.50915 - 1.9174 = 6.5917 \]
-		\item[10.]
-		\[ \int_{10}^{15} x^3(3x^2 - 1)^{15} = \frac{\cos^{16}\cl{3^{-0.5}x}}{14} - \frac{\cos^{12}\cl{3^{-0.5}x}}{6} + \frac{\cos^{10}\cl{3^{-0.5}x}}{10} \Bigg\lvert^{15}_{10} \approx 0.0009 - 0.0012 = -0.00029 \]
-		\item[12.]
-		\[ \int_{12}^{13} \frac{x}{(x + 3)^{\frac{1}{5}}}\dx = \frac{5}{9}(x + 3)^{1.8} - 3.75(x + 3)^{\frac{4}{5}} \Bigg\lvert_{12}^{13} \approx 47.2243 - 39.9995 = 7.2248 \]
-	\end{enumerate}
-	\section{}
-	\begin{enumerate}[a.]
-		\item 
-			\begin{multline*}
-				\int \frac{\sqrt{25\ta^2 - 4}}{\ta}\dx = \ptt{0.4\sinhx}{0.4\coshx}{\dtt} = \int \frac{\sqrt{4(6.25 \cdot 0.4^2\sinh^2x - 1)}}{0.4\sinhx} 0.4\coshx\dtt \\
-				= \int \frac{\cancel{0.4}\sqrt2\sqrt{\sinh^2x - 1}}{\cancel{0.4}\sinhx}\coshx = \sqrt{2}\coshx \frac{\coshx}{\sinhx} = \bm{\sqrt2 \coshx \coth x}
-			\end{multline*}
-		\item למען הנוחות, נגדיר $a = 1 + \frac{3}{\sqrt2}$: 
-			\begin{multline*}
-				\int \frac{x}{\sqrt{2x^2 - 4x - 7}} \dx = \frac{x}{\sqrt{\cl{x - 1 - \frac{3}{\sqrt2}}\cl{x - 1 + \frac{3}{\sqrt2}}}} \dt = \pt{x - 1}{1}{} = \int \frac{t + 1}{t^2 + a^2}\dt \\
-				= \int \frac{1}{t^2 + a^2} \dt + \int \frac{t}{t^2 + a^2} \dt = \frac{1}{a}\arctan\cl{\frac{x}{a}} + \int \frac{t}{t^2 + a^2}
-			\end{multline*}
-			נפתור את האינטגרל שנותרנו עימו בנפרד: 
-			\[ \int \frac{t}{t^2 + a^2} \dt = \udv{t}{1}{\arctan t}{\tfrac{1}{t^2 + a^2}} = t \arctan t - \int \arctan t \dt \]
-			כאשר האינטגרל של $\arctan$: 
-			\begin{multline*}
-				\int \arctan x \dx = \pxs{\tant\dx}{\tfrac{1}{\cos^2\ta}\dtt} = \int \arctan \tant \cdot \frac{\dtt}{\cos^2 \ta} = \int \frac{\ta \dtt}{\cos^2\ta} = \udv{\ta}{1}{\tan\ta}{\sec^2\ta} \\
-				= \ta \tan \ta - \int \frac{\sin\ta}{\cos\ta}\dtt = \pts{\cos \ta}{-\sin \ta \dtt} = \ta \tan \ta  - \underbrace{\int -\frac{1}{t} \dt}_{-\ln |t|} = \ta \tan \ta + \ln |\cos \ta| + C \\
-				= \arctan x \cdot (\tan \arctan x) + \ln (\cos(\arctan x)) + C = x \arctan x + \ln \cl{\tfrac{1}{\sqrt{1 + x^2}}} + C = x\arctan x - 0.5 \ln (1 + x^2) + C
-			\end{multline*}
-			זאת כי נזכר שהוכח בשיעורי בית 2 כי $\arctan' = \cos^2(\arctan) = \frac{1}{x^2 + 1}$, כלומר $\cos(\arctan x) = \frac{1}{\sqrt{x^2 + 1}}$. סה"כ, הראנו כי: 
-			\[ \int \frac{t}{t^2 + a^2} = \cancel{+\ t \arctan t - t \arctan t} - 0.5\ln(1 + t^2) \]
-			ניזכר למה עשינו את זה מלכתחילה, ונציב באינטגרל המקורי: 
-			\begin{multline*}
-				\cdots = a\op \arctan\cl{\frac{t}{a}} - 0.5\ln(1 + t^2) = \cl{1 + \frac{3}{\sqrt2}}\op \arctan \cl{\frac{(3 + \sqrt2)(t - 1)}{\sqrt2}} - 0.5 \ln (1 + (t - 1)^2) \\
-				= \bm{\frac{\sqrt 2}{\sqrt 2 + 3} \arctan \cl{\frac{(1.2 + \frac{\sqrt8}{5})(\sinh\ta - 1))}{\sqrt2}} - 0.5\ln(0.16\sinh^2\ta - 0.8\sinh\ta + 2)}
-			\end{multline*}
-		\item 
-			\begin{multline*}
-				\int e^{4x}\sqrt{1 + e^{2x}} = \pts{e^{x}}{e^{x}\dx} = \int t^3\sqrt{1 + t^2} = \pts{\tant}{\sec^2\dt} = \int \tan^3 \cdot \overbrace{\sqrt{1 + \tan^2 \ta}}^{\sec\ta} \sec^2x \dtt = \int \tan^3\ta\sec^3\ta \dtt \\
-				= \int (1 - \sec^2\ta) \sec^2\ta \tan\ta\sec\ta \dtt \pus{\sec \ta}{\sect\tant\dtt} = \int (1 - u^2)u^2 \du = \int u^2 - \int u^4 = \frac{u^3}{3} - \frac{u^5}{5} + C = \frac{\sec^3 \ta}{3} - \frac{\sec^5\ta}{5} +C \\
-				= \frac{\sec^3(\arctan t)}{3} - \frac{\sec^5(\arctan t)}{5} + C = ((1 - t^2)^{3 / 2}3\op - (1 - t^2)^{5 / 2}5\op) + C = \bm{(1 - t^2)^{1.5}3\op + (1 - t^2)^{2.5}5\op + C}
-			\end{multline*}
-		\end{enumerate}
-		
-		\ndoc
+	
+	\textbf{הגדרה. }עבור מספר מרוכב $z = a + bi$, נגדיר הצמוד המרוכב להיות $\bar z = a - bi$. הבחנה: $z \cdot \bar z = |z|^2$. 
+	
+	\textbf{מסקנה. }בהינתן $w \neq 0$, יתקיים $\forall z \in \C \setminus \{0\}. z\op = \frac{\bar z}{|z|^2}$. 
+	
+	\textbf{תכונות. }
+	\begin{gather*}
+		\bar{z + w}  = \bar z + \bar w \ \land \ \bar{z \cdot w} = \bar z \cdot \bar w, \ \land \ \bar{\bar z} = z, \ \land \ [z \in \R \iff z = \bar z ] \ \land \ [\exists t \in \R. it = r \iff \bar z = -z] \ \land \ \Re(z) = \frac{z + \bar z}{z}\\
+		\Im(z) = \frac{z - \bar z}{2i}, \ \land \ |z| = |\bar z| \ \land \ (z \neq 0 \implies \ol{z\op} = (\bar z) \op)
+	\end{gather*}
+	
+	הוכחה לא"ש המשולש: (אפשר להעלות בריבוע כי שניהם מספרים אי־שליליים)
+	\[ |z + w|^2 = (z + w)(\bar {z + w}) = (z + w)(\bar z + \bar w) = z \bar z + z \bar w + \bar z w + w \bar w = |z|^2 + \underbrace{z \bar w + \ol{z + \bar w}}_{2\Re(z\bar w)} + |w|^2 \le |z|^2 + 2|z \bar w| + |w^2| = (|z| + |w|)^2 \]
+	נוציא שורש כי אפשר ונקבל את הדרוש. 
+	
+	\subsection{הצגה פולארית}
+	נתאר וקטור אה רגע מספר ע"י גודל וזווית. יהי $r \ge 0, \ \ta \in [0, 2\pi]$. ההצגה הפולארית יחידה בעבור כל מספר, חוץ מ־0. נקבל $z = r(\cos\ta + i\sin\ta)$ (כי כאילו טריגו). 
+	
+	\textbf{משפט אוילר. }
+	\[ \forall a \in \C. \cos a + i \sin a = e^{ia} \]
+	להוכחה – חפשו את סיכום 10 בעברי B (המתרגל לא הוכיח כאן). אם מציבים $\ta = \pi$ נקבל $e^{i\pi} = -1$. ידועה בתור זהות אוילר. 
+	
+	בייצוג פולארי נוח לעשות פעולות כפל. 
+	\[ (r_1e^{i\ta_1}) \cdot (r_2e^{r\ta_2}) = r_1r_2e^{i\ta_1\ta_2} \]
+	וזה נותן לנו משמעות ויזואלית לכפל מרוכבים. 
+	
+	הערות: 
+	\[ |re^{i\ta}| = r, \ |re^{i\ta}| = re^{-i\ta}, \ (re^{i\ta})\op = \frac{1}{r}e^{-i\ta} \]
+	
+	\textbf{דוגמה. }מצאו ביטוי ל־$\cos(\alpha + \beta)$. פתרון: 
+	\begin{gather}
+		\cos(\alpha + \beta) + i\sin(\alpha + \beta) = e^{i(\alpha + \beta)} = e^{i\alpha}e^{i\beta} \\
+		(\cos\alpha i \sin\alpha) = (\cos\alpha \cos\beta - \sin\alpha\sin\beta) + i(\cos\alpha\sin\beta + \sin\alpha\cos\beta)
+	\end{gather}
+	קיבלנו: 
+	\[ \cos(\alpha + \beta) = \cos\alpha\cos\beta - \sin\alpha\sin\beta, \ \sin(\alpha + \beta) = \cos\alpha\sin\beta + \sin\alpha + \cos\beta \]
+	
+	\subsubsection{מעבר מהצגה קרטזית לפולארית}
+	הכי: $r = \sqrt{a^2 + b^2}$. ידוע $\tan(\ta) = \frac{b}{a}$. אבל לא בכיוון ההופכי כי זה תופס רק רבע מהציר. יש פונקציה $\mathrm{atan2}$ שעושה את זה, וזמינה במחשבון. 
+	
+	הצגה פולארית טובה לכפל, והצגה קרטזית טובה לחיבור. 
+	
+	\subsection{מציאת שורש למספר מרוכב}
+	נניח שרוצים למצוא $z \in \C$ שמקיים $z^{n} = w$. עבור $w \in \C$ קבוע. נכתוב $w = re^{i\ta}$. נרשום: 
+	\[ z^n = re^{i\ta} \overset{\sqrt[n]{\ }}{\to} z = \sqrt[n]{r}e^{i\frac{\ta}{n}} \]
+	אבל מהמשפט היסודי של האלגברה או משהו כזה אנחנו רוצים $n$ שורשים. למעשה, $e^{i\ta}$ מחזורית ב־$2\pi$. לכן, הפתרונות הם: 
+	\[ z = \sqrt[n]{r} \cdot e^{i \frac{\ta + 2\pi k}{n}}  \quad k \in \{0, \dots n - 1\}\]
+	
+	\section{\en{Modular Calculations}}
+	לכל $n \in \N \setminus \{0, 1\}$ נגדיר: 
+	$ \Z_n = \{0, \dots n - 1\} $. הסיבה? לכל $a, b \in \Z_n$ נגדיר את $a + b$ להיות $(a + b) \mod n$ (בשביל סגירות). חלק מה־$\Z_n$־ים האלו הם שדות. 
+	
+	\subsection{איברים הפיכים}
+	\textbf{טענה. }יהי $n \ge 2, a \in \Z_n$. אז ל־$a$ יש הופכי מודולו $n$ אמ"מ $a, n$ זרים. 
+	
+	\textbf{הלמה של בזו. } $a, n$ זרים אז $ax + ny = 1$ (מתקיים גם באמ"מ). 
+	
+	לשימושים שלנו, $ax \equiv 1 \mod n$ (בהקשר של הלמה של בזו). 
+	
+	\textbf{מסקנה. }עבור $p$ ראשוני, לכל $a \in \Z_p \setminus \{0\}$ קיים הופכי. (התכונה הזו מתקיימת גם באמ"מ). 
+	
+	\textbf{משפט פרמה הקטן. }אם $a, p$ זרים אז $a^{p - 1} \equiv 1 \mod p$
+	
+	(שקילות של $\equiv$ בקורס משמעותה עמידה ביחס $\bmod n$). 
+	
+	\begin{proof}
+		יהי $a\in \N$. נתבונן בהעתקה: 
+		\[ \phi \Z \setminus \{0\} \to \Z_p \setminus \{0\} , \ \phi(b) = a \cdot b  \]
+		הכי חח"ע ועל ולכן הפיכה. לכן: 
+		\[ \prod_{\mathclap{b \in \Z_p \setminus \{0\}}} b = \prod_{b \in \Z_p \setminus \{0\}} \underbrace{\phi(b)}_{a \cdot b} = a^{p - 1} \prod_{b \in \Z \setminus \{0\}}b  \]
+		כי רק שנינו את הסדר, וידוע $|\Z_p \setminus \{0\}| = p - 1$. נכפיל ב־$(\prod b)\op$ ונקבל: 
+		\[ a^{p - 1} \equiv 1 \mod p \]
+	\end{proof}
+	
+	\section{\en{Linear Equations Systems}}
+	\textbf{דוגמה: }
+	\[ \begin{cases}
+		2x + 3y = b \\
+		-y + 4y = 5
+	\end{cases} \]
+	דרך ראשונה: לבודד משתנים. דרך שנייה: נוסיף לראשונה פעמיים את השנייה:
+	\[ 
+		11y = 16 \implies y = \frac{16}{11} \to x = \frac{9}{11} \]
+	שלוש משוואות – אותו הרעיון. לא לכל מערכת משוואות יש פתרון, ואם קיים כזה, הוא לא בהכרח יחיד. הסיבה – אם משוואות "לא נותנות מידע חדש" (ואז מקבלים דרגות חופש) או שסותרות אחת את השנייה. 
+	
+	
 \end{document}
