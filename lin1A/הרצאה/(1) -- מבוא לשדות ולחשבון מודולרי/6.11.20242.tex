@@ -1,0 +1,526 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{ליניארית 1}
+\begin{document}
+	\maketitle
+	\section{\en{ABOUT}}
+	בן 29, בוגר ארזים. סטודנט לפסיגולוגיה. מייל: 	
+	\en{kligman@mail.tau.ac.il}
+	. עדיף לפנות למתרגל לשאלות. 
+	
+	\section{\en{intro}}
+	הקורס מתעסק במשוואות ליניאריות, כמו שהוצגו בשיעור הקודם. משוואות ליניאריות הן כמעט המשוואות היחידות שכבני אדם נוכל לפתור באופן פשוט. 
+	
+	יש מגוון אובייקטים שניתנים לתיאור באמצעות אלגברה ליניארית. לדוגמה, מישור בטוך מרחב תלת ממדי. דדוקציה משאלות כאלו למשוואות ליניאריות היא כלי חזק. 
+	
+	ניתן לתאר מערכת משוואות ליניאריות באמצעות מטרציות (מעין טבלה). אפילו תיאור נגזרות של פונקציה ממרחב גבוהה מתוארות באמצעות אלגברה ליניארית. 
+	
+	תיאור כללי של הקורס: 
+	\begin{enumerate}
+		\item שדות (בערך שליש מהקרוס)
+		\item מרחב וקטורי
+		\item העתקות ליניאריות (בהרחבה)
+		\item מטרציות, בהקשר למבנים שראינו קודם
+		\item בקורסים מתדמים נראה אובייקטים נוספים
+	\end{enumerate}
+	
+	\section{\en{linear euqtions systems}}
+	נתבונן במשוואה הבאה: 
+	\[ a_1x_1  + a_2x_2 = d_1 \]
+	שימו לב: בתורת הקבוצות $a_1, a_2$ שייכים לקבוצה כלשהי. נבחר $a_1, a_2 \in A$. יהיה גם צורך להגדיר פעולת כפל בין $x_1$ ל־$a_1$. הוא יהיה פונקציה $f(a_1, x_2) \mapsto ?$. נצטרך פעולת חיבור גם. לאוסף הפעולות האלא נקרא שדה. 
+	
+	הרבה מהקושי הוא הפורמליות והדקדקנות. בניית דברים מאקסיומות יכולה להיות מתעתעת. זה רלוונטי בלמידה, בש"ב ובמבחנים. לפעמים, השאלה צריכה להיות שאלת פרמול בעקרה. לכן, מומלץ לפתור דברים באופן פורמלי – זה יעזור להצלחה בקורס, ועוד יותר יעזור בעתיד. 
+	\section{\en{Fields}}
+	\subsection{הגדרה}
+	נגדיר באופן פרמלי מה זה שדה. 
+	
+	\textbf{הגדרה. }$F$ קבוצה, וקיימת $a \colon F \times F \to F$ פונקציה הקרויה חיבור, וקיימת $m \colon F \times F \to F$ פונקציה הקרויה כפל, נאמר ש־$F$ עם $a, m$ \textit{שדה} אם: 
+	
+	\textbf{סימון. }\hfill $a(x, y) = x + y, \ m(x, y) = x \cdot y$
+	
+	\begin{enumerate}
+		\item איבר ניטרלי לחיבור: \hfill $\exists x \in F. \forall y \in F. y + x = y$ \\
+		\textbf{סימון. }האיבר ב־$0$ או $0_F$. נקרא לו \textit{איבר האפס}. 
+		\item אסוציאטיביות: \hfill $\forall x, y, z \in F: (x + y) + z = x + (y + z)$
+		\item חילופיות של חיבור: \hfill $\forall x,  \in F: x + y = y + x$
+		\item קיום איבר נגדי: \hfill $\forall x \in F: \exists y \in F. x + y = y + x = 0_F$ \\
+		\textbf{סימון. }איבר נגדי של $x$ הוא $(-x)$. 
+		\item ניטרלי לכפל: \hfill $\exists x \in F \colon \forall y \in F \colon x y = y x = y$
+		\item אסוציאטיביות של כפל: \hfill $\forall x , y, z \in F \colon (xy) \cdot z = x \cdot (yz)$
+		\item קיום הופכי: \hfill $\forall 0 \neq x \in F \exists y \in F \colon. xy = yx = 1$ \\
+		\textbf{סימון. }הופכי של $x$ יהיה $x\op$. נסמן גם עם חילוק (כלומר $\frac{1}{x}$). 
+		\item חילופיות כפל. \hfill $\forall x, y \in F \colon xy = yx$. 
+		\item דיסטרביוטיביות: \hfill $\forall x, y, z \in F \colon x(y + z) = xy + xz$
+		\item \hfil $1_F \neq 0_F$ \hfil
+	\end{enumerate}
+	\textbf{סימון. }איבר בשדה יקרא \textit{סקלר}. 
+	
+	\subsection{דוגמאות}
+	
+	\subsubsection{הרציונליים}
+	נבתונן ב־$\Q$. הרציונלים, הם שדה. קבוצתם היא בערך: 
+	\[ \Q = \left \{\frac{a}{b} \mid a, b \neq 0 \in \Z \right \} \]
+	\textbf{טענה}. $\Q$ הוא השדה המינימלי המכיל את $\Z$. משהו בסגנון, ניקח $a \in \Q$, נסמנו $\frac{x}{y}$ ובהתאם השדה שלנו יעיל את $\frac{x}{y}$ כי ניקח את $x \in \Z$, $0 \neq y \in \Z$, ונייצר $x \cdot y\op$. שדה מינימלי לא הוגדר פורמלית בקורס הזה. 
+	
+	שימו לב – ב־$\Q$ ההצגה היא לא יחידה (ומשפיע על חוסר הפורמליות בנתון לעיל). הרי $\frac{2}{3}  = \frac{4}{6}$. 
+	
+	\subsubsection{הממשיים}
+	גם $\R$ הם שדה. 	גם בשדה הזה הסימון לא יחיד. $0.99999... = 1$ (כי ככה מגדירים באנליזה). בנייה פורמלית בלי אקסיומת החסם העליון – ען=ם ארז. 
+	
+	\subsubsection{המרוכבים}
+	גם $\C$ הם שדה. 	הם סגורים אלגברית, כלומר לכל משוואה יש פתרון. נזהה את $\R^2 = \C^2$. נסמן את $(1, 0)$ אם איבר היחידה, ונגדיר: 
+	\[ (x, y) + (z, w) = (z + x, y + w), \ (x, z) \cdot (z, w) =  (xz - yw, xw + yz) \]
+	נסמן $(0, 1) = i, \ (x, y) = x + yi$. נקבל $i^2 = -1$, ואם נסמן $\bar z = x - iy$ וגם נסמן $|z| = \sqrt{z \cdot \bar z}$ נקבל ש־$z\op = |z| = \frac{z}{|z|^2} - \frac{x - iy}{x^2 + y^2}$. למעשה, דרך להראות ש־$\C$ הוא שדה, בפרט נרצה למצוא את ההופכי. 
+	
+	\textbf{משפט. }המשפט היסודי של האלגברה (ראה עברי) – בהינתן פולינום מרוכב עם מקדמים מרוכבים, נסמן $f(x) = a_nx^n \dots a_0$, אז $\exists z \in \C \colon f(z) = 0$. 
+	
+	\subsubsection{תתי קבוצות של המרוכבים}
+	מתברר, ש־$\Q \cup \{i\}$ הוא גם שדה. אם זאת $\R_{> 0}$ הוא אינו שדה. ניקח קבוצה $F = \{a, b\}$ ונגדיר טבלת כפל וחיבור:
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline $+$ &  $a$ & $b$ \\
+			\hline $a$ & $a$ & $b$ \\
+			\hline $b $& $b$ & $a$ \\ \hline 
+		\end{tabular} \quad \begin{tabular}{|c|c|c|}
+		 	\hline $\cdot$ & $a$ & $b$ \\
+		 	\hline $a$ & $a$ & $a$ \\
+		 	\hline $b$ & $a$ & $b$ \\ \hline 
+		\end{tabular}
+	\end{center}
+	ונגדיר $0_F = a, q_F = b$ אז $\mathbb{F} = \{0, 1\}$ שדה. 
+	
+	\subsection{טענות על שדות}
+	\textbf{משפטים. }
+	\begin{itemize}
+		\item ניטרלי לחיבור הוא יחיד. 
+		\item $\forall a \in F. 0 \cdot a = 0$ 
+		\item ניטרלי לכפל הוא יחיד. 
+		\item לכל $a \in F$ האיבר הנגדי יחיד וגם $-a = (-1) \cdot a$. 
+		\item לכל $0 \neq a \in F$ הופכי יחיד. 
+	\end{itemize}
+	\begin{proof}[הוכחה (1)]נניח בשלילה $x, y \in F$ כך ששניהם ניטרליים לחיבור, ונראה $x = y$. אז: 
+		\[ x = x + y = y \]
+		כי $y$ ניטרלי לחיבור, וכי $x$ ניטרלי לחיבור. סתירה. 
+	\end{proof}
+	
+	\begin{proof}[הוכחה (2)]
+		יהי $a \in F$, נראה $0 \cdot a = 0$. ואכן: 
+		\[ \begin{WithArrows}
+			0 \cdot a = (0 + 0) \cdot a = 0 \cdot a + 0 \cdot a
+		\end{WithArrows} \]
+		נוסיף $-(0a)$ לשני הצדדים. ומכאן, $0 = 0a$. (חוקי מח"ע)
+	\end{proof}
+	
+	\begin{proof}[הוכחה (3)]
+		יהי $a \in F$ וניקח $b, c \in F$. 
+		\[ b = b + 0 = b + (a + c) = (b + a) + c = 0 + c = c \]
+	\end{proof}
+	
+	\begin{proof}[הוכחה (4)]
+		נראה כי $(-1) \cdot a$ הוא נגדי ל־$a$, ולכן $-a = (-1) \cdot a$, כי זה הסימון. 
+		\[ a + (-1) \cdot a = a \cdot (1 + (-1)) = a \cdot 0 = 0 \]
+	\end{proof}
+	
+	\begin{proof}[הוכחה (5)]
+		יהי $0 \neq a \in F$, וניקח $b, c \in F$ הופכיים. 
+		\[ b = b \cdot (a \cdot c) = (b \cdot a) \cdot c = c \]
+	\end{proof}
+	
+	\subsection{טענות נוספות}
+	יהיו $a, b, c, d \in F$ כאשר $F$ שדה. 
+	\begin{enumerate}
+		\item \hfil $(b = 0 \lor a = 0) \iff ab = 0$ \hfil 
+		\item \hfil $b = c \iff a + b = a + c$ \hfil 
+		\item אם $a \neq 0 $ אז $b = c \iff ab = ac$
+	\end{enumerate}
+	
+	\begin{proof}[הוכחה (1)] \ 
+		\begin{itemize}
+			\item[$\implies$] הוכחנו מקודם. 
+			\item[$\impliedby$] $ab = 0$. אם $a = 0$, סיימנו. אחרת, $a \neq 0$, נראה כי $b = 0$: 
+			\[ b = 1 \cdot b = (a\op \cdot a)b = a\op\cdot (a \cdot b) = a \op \cdot 0 = 0 \]
+		\end{itemize}
+	\end{proof}
+	
+	\begin{proof}[הוכחה (2)]  
+		\begin{itemize}
+			\item[$\implies$] אם $b = c$ אז נוסיף $a $ לשני האגפים ונקבל $a + b = a + c$. 
+			\item[$\impliedby$] $a + b = c + d$, נוסיף $(-a)$ לשני האגפים, נקבל: $-a + a + b = -a + a + c$ ולכן $b = c$. 
+			
+			דרך אחרת לעשות זאת, היא: 
+			\[ b = 0 + b = (-a + a) + b = -a + (a + b) = -a + (a + c) = c \]
+		\end{itemize}
+	\end{proof}
+	
+	\begin{proof}[הוכחה (3)]
+		\begin{itemize}
+			\item[$\implies$] $b = c$ אז $a - b = a - c$
+			\item[$\impliedby$] באופן דומה: 
+			\[ b = 1 \cdot b = (a \op a)b = a\op \cdot (ab) = a\op \cdot (ac) = (a\op \cdot a )c = 1 \cdot c = c \]
+		\end{itemize}
+	\end{proof}
+	
+	\section{\en{Finite Fileds}}
+	\subsection{חשבון מודולרי}
+	המטרה: לראות איך חשבון מודולרי מייצג שדות סופיים. 
+	
+	\textbf{הגדרה. }אם $n \ge 1$ טבעי, אז נגדיר יחס על זוגות שלמים $x, y \in \Z$ הוא: 
+	\[ x \equiv y \bmod n \iff \exists k \in \N. x - y = nk \]
+	זהו יחס שקילות, שיוגדר באמצעות $\{\la x, y \ra \in \Z^2 \mid \exists k \in \Z. x - y = nk\} = \equiv_n$. 
+	
+	\textbf{למה. }אם $n \ge 1$, אז $x \equiv y \mod n $ הוא שקילות (רפלקסיבי, סימטרי, טרנזיטיבי). הוכחנו עם נטלי. 
+	
+	\textbf{הגדרה. }$x \in \Z, \ \Z \ni n \ge 1$. נגדיר $[x]_n = \{y \in \Z \mid x \equiv y \mod n\}$ -- מחלקת השקילות של $x$. 
+	
+	\textbf{טענה. }$[x]_n = \{x + nk \mid k \in \Z\}$. לעת עתה לא נוכיח. 
+	
+	\subsubsection{דוגמאות}
+	יהי $\N\ni n \ge 1$, אז: 
+	\begin{gather}
+		[0]_n = \{\dots, -2n, n, 0, n, 2n \dots \mid \mid n \in \N_+\} \\
+		[1]_n = \{\dots, 1 - n, 1, 1 + n \dots \} \\
+		[n]_1 = [0] \\
+		[n + 1] = [1]_n
+	\end{gather}
+	
+	\subsection{טענות נוספות}
+	\begin{itemize}
+		\item כל שתי מחלקות שקילו תשוות או זרות
+		\item בכל מחלקת שקילות יש בדיוק אחד מבין $\{0, \dots n - 1\}$. 
+	\end{itemize}
+	
+	\begin{proof}[הוכחה (1)]
+		יהיו $[a], [b]$ מחלקות שקילות. אם $[a] \cap [b] = \varnothing$ סיימנו. אחרת, קיים $c \in [a] \cap [b]$. נראה ש־$[a] \subseteq [b]$ ומסימטריה נקבל שוויון. 
+		
+		יהי $x \in [a]$, נראה $x \in [b]$ ע"י $x \equiv b \bmod n$. ע"י $x \equiv a \bmod n, \ c \equiv a \bmod n, \ x = c \bmod n$ והחיתוך $c \equiv b \bmod n$ (רעיון $x = a = b = c$) ולכן $x =b \bmod n$ ומרטנזיטיביות. 
+	\end{proof}
+	\begin{proof}[הוכחה (2)]
+		יהי $[a]_n$, $a \in \Z$. צ.ל. קיום $i \in \{0, \dots, n - 1\}$ כך ש־$i \in [a]_n$. נסתכל על $c = a - \lf \frac{a}{m}\rf \cdot n$. נראה ש־$c \in \{0, \dots, n - 1\}$. נשים לב ש־$\frac{a}{n} -1 > \lf \frac{a}{n}\rf \le \frac{a}{n}$. אזי: 
+		\[ 0 = a - \frac{a}{n} \le c = a - \lf \frac{a}{n} \rf n< a - \cl{\frac{a}{n} - 1}n  = n \]
+
+כדרוש. נראה יחידות. יהיו $r_1, r_2 \in \{0, \dots n - 1\}$ וגם $r_1, r_2 \in [a]_n$. נראה $r_1 = r_2$. מהשייכות ל־$[a]_n$ נקבל: 
+\[ r_1 \equiv a \equiv r_2 \mod n \implies r_1 - r_2 \]
+בה"כ $r_1 > r_2$, אי־שוויון וניצחנו. ולכן $0 \le r_1 - r_2 < n$ ואם שונים אז סתירה. 
+	\end{proof}
+	
+	\subsection{חידה}
+	תהי הקבוצה $\{[0], \dots, [n-1]\} = F$ והפעולות מודולו, צ.ל. ששדה $\iff$ $n$ ראשוני. 
+	
+\end{document}
