@@ -167,6 +167,8 @@
 \newcommand\Zodd  {\Z_{\mathrm{odd }}}
 \newcommand\Np    {\N_+}
 
+\newcommand\co    {\colon}
+
 % Text Shortcuts
 \newcommand\open  {\big(}
 \newcommand\qopen {\quad\big(}
@@ -251,6 +253,7 @@
 
 \newcommand\mlcm  {\mathrm{lcm}}
 
+% Math operators
 \DeclareMathOperator{\sech}   {sech}
 \DeclareMathOperator{\csch}   {csch}
 \DeclareMathOperator{\arcsec} {arcsec}
@@ -263,6 +266,7 @@
 \DeclareMathOperator{\arccsch}{arccsch}
 \DeclareMathOperator{\arccoth}{arccoth} 
 
+% Calc shorcuts
 \newcommand\dx    {\,\mathrm{d}x}
 \newcommand\dt    {\,\mathrm{d}t}
 \newcommand\dtt   {\,\mathrm{d}\theta}
@@ -281,11 +285,17 @@
 \newcommand\limni {\lim_{x \to - \infty}}
 \newcommand\limpmi{\lim_{x \to \pm \infty}}
 
-\newcommand\ta    {\theta}
-\newcommand\ap    {\alpha}
-
 \renewcommand\inf {\infty}
 \newcommand  \ninf{-\inf}
+
+% Greek letters shortcuts
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+\newcommand\ag    {\alpha}
+\newcommand\bg    {\beta}
+\newcommand\cg    {\gamma}
+\newcommand\pg    {\pi}
+\newcommand\sg    {\sigma}
 
 % Combinatorics shortcuts
 \newcommand\sumnk     {\sum_{k = 0}^{n}}
@@ -340,14 +350,14 @@
 		\textbf{תשובה: }נגדיר $=a_i$ כמות האפשרויות לסידור בו $i$ רצפים של 4 תווים. מובן כי $0 \le i \le \frac{52}{4} = 13$ (לא ייתכנו רצפים בסדר גודל הארוך יותר מהחפיסה כולה). 
 		
 			כדי למצוא את $a_i$, נבחר את הרצף הראשון מבין $13$ האפשרויות. ואת השני מבין $12$ האפשרויות שנותרו, ונמשיך הלאה. באופן דומה לסעיף הקודם, לכל אחד מהסדרות האלו נתייחס קקלף "גדול" יחודי אחד, לכל אחת מ־$i$ הסדרות סדר פנימי של $4!$, וסה"כ סדר כולל של $(52 - 4i + i)!$ אפשרויות ($-4i$ על הקלפים שנוציא החוצה, ו־$+i$ ל"קלף גדול" כמוהו לסדרה עצמה). סה"כ: 
-			\[ a_i = i(52 - 3i)!\, 4! \]
+			\[ a_i = (52 - 3i)!\, 4!^i \]
 			בכלליות:
 			
 			ומעקרון ההכלה וההדחה, אם $=A_i$ קבוצת כל הרצפים באורך 4 מסוג נתון, ומשום שאין הגבלה על הכלליות בבחירת קלף מסויים, $\sof{\bigcap_{i \in I}A_i}$ זהה בערכו לכל $I \in [n]$ כך ש־$|I|$ קבוע בגודל $k$, ובפרט שווה ל־$a_k$ (המקרה הסמטרי של העקרון), ובשילוב עם עקרון המשלים (על קבוצת על הקומבינציות שגודלה $52!$), נקבל: 
 			\begin{align*}
 				\ans &= 52! - \sum_{\mathclap{\varnothing \neq I \in [n]}} (-1)^{|I| - 1}\sof{\bigcap_{i \in I}A_i} \\
 				&= 52! - \sum_{k = 1}^{n} (-1)^{k - 1}\bink a_k \\
-				&= \bm{52! - \sum_{k = 1}^{n} (-1)^{k - 1}\bink k\, (52 - 3k)!\, 4!}
+				&= \bm{52! - \sum_{k = 1}^{n} (-1)^{k - 1}\bink (52 - 3k)!\, 4!^k}
 			\end{align*}
 	\end{enumerate}
 	\section{}
@@ -396,8 +406,13 @@
 	\section{}
 	\begin{enumerate}[(A)]
 		\item הוכיחו באופן קומבינרטורי: 
-		\[ \sum_{i = 0}^{n - 1}(-1)^{i} \binom{n}{i} \binom{n + r - i - 1}{r} = \binom{r - 1}{n - 1} \]
-		אין לי מושג... 
+		\[ \sum_{i = 0}^{n - 1}(-1)^{i} \binom{n}{i} \underbrace{\binom{n + r - i - 1}{r}}_{S(n - i, r)} = \underbrace{\binom{r - 1}{n - 1}}_{\mathclap{S(r - n + 2, n - 1)}} \]
+		\textbf{סיפור: }יש לחלק $n$ כדורים ל־$r$ תאים כך שאין אף תא ריק. 
+		
+		\textbf{אגף ימין: }נתבונן ב־$r$ הכדורים, ונחלק ל־$n$ התאים $n$ מהם. נקבל באופן ישיר את הדרוש. 
+				
+		\textbf{אגף שמאל: }נבחין שזו עקרון ההכלה וההפרדה עם סימן שלילי בהתחלה, ועם חיבור של איבר בעבורו $i = 0$. ניקח את $i = 0$ כקבוצה הכוללת – כמות האפשרויות לסדר $n$ כדורים ל־$r$ תאים (הבינום יהיה 1, ובפרט לכך נקבל $S(n, r)$). בעבור המשלים, נבחר $i$ כדורים להוציא החוצה (יהיו $\binom{n}{i}$ אפשרויות), ונכפול בכמות הדרכים לסדר את מה שנשאר (היא $S(n - i, r)$). נאחד את הכל, ונחסר את המשלים. סה"כ קיבלנו את הדרוש. 
+		
 		\item מצאו ביטוי ללא סכימה לאגף שמאל של המשוואה: 
 		\[ \sum_{k = 2}^{n} k(k - 1)\bink = n(n - 1) \cdot 2^{n - 2} \]
 		\textbf{סיפור: }מתוך $n - 1$ איברים, קבוצה של לפחות שני איברים, ומתוכה נבחר שניים שונים ונסמנם בכחול ובירוק. כמה אפשרויות יש לכך? 
@@ -466,8 +481,11 @@
 			\[ E_H = \{\{f(v_1), f(v_2) \colon \{v_1, v_2\} \in \underbrace{E_G}_{\varnothing}\}\} = \emptyset = E_G \]
 			ובאפן דומה $G = H$ כדרוש. 
 		\end{enumerate}
-		\item[$\impliedby$]נניח בשלילה $G \neq C_n \land E_G \neq \varnothing$. נוכיח קיום $H$ כך ש־$G \neq H$, בעבורו קיימת איזומורפיזם $f \colon [n] \to [n]$ כך ש־$G \sim H$. מהנחת השלילה, $E_G \neq \ps_2([n])$ ולכן קיימים $w, v \in [n]$ כך ש־$\{w, v\} \notin E_G$. 
+		\item[$\impliedby$]נניח בשלילה $G \neq C_n \land E_G \neq \varnothing$. נוכיח קיום $H$ כך ש־$G \neq H$, בעבורו קיימת איזומורפיזם $f \colon [n] \to [n]$ כך ש־$G \sim H$. מהנחת השלילה, $E_G \neq \ps_2([n])$ ולכן קיימים $w, v \in [n]$ כך ש־$\{w, v\} \notin E_G$. אם אין קשתות, סתירה לנתון. אם $d(v) = d(w) = 0$, אז קיים $q \in [n]$ כך ש־$d(q) > 0$, ואם לא, אז קיים $q$ שכן של בה"כ $v$. בעבור הגרף שיווצר מהאיזומורפיזם הבא: 
+		\[ h \colon [n] \to [n], \ w \mapsto q, q \mapsto w, x \in [n] \setminus \{w, q\} \mapsto x \]
+		הוא $H$, יתקיים $H$ איזומורפי ל־$G$ ונניח בשלילה $G = H$, אך ב־$H$ או ש־$w$ בעל $d(v) > 0$ וזו סתירה לכך ש־$d(v) = 0$, או שיש צומת בין  $w$ ל־$v$ כלומר $\{w, v\} \in E_h$ וזו סתירה ש־$\{w, v\}\in E_H = E_G \not\ni \{w, v\}$. סה"כ סתירה בכל המקרים
 	\end{itemize}
+	הוכחנו את הגרירה הדו־כיוונית, ובכך ההוכחה הושלמה. 
 	\section{}
 	\begin{proof}
 		לאורך כל ההוכחה, אלא אם ייצוין אחרת, $v, n, a, b \ge 1$. 
@@ -475,7 +493,7 @@
 		\[ V = [100], \ E_1 = \{\{a, b\} \in \ps_2(V) \colon |a - b| = 10 \lor |a - b| = 90\}, \ E_2 = \{\{a, b\} \in \ps_2(V) \colon |a - b| = 11 \lor |a - b| = 89\} \]
 		נוכיח ש־$G_1$ אינו איזומורפי ל־$G_2$. 
 		
-		\textbf{למה 1. }נוכיח את השוויון הבא: 
+		\textbf{למה 1. }\textit{השוויון להלן: }
 		\[ \exists m \neq n. \ m + n = 100 \land E = \{\{a, b\} \in \ps_2(V) \colon |a - b| = n \lor |a - b| = m\} \!\!\implies\!\! E \seq \{i \in [n] \colon \{i, i + m\}\} \cup \{i \in [m] \colon \{i, i + n\}\} =: \tl E \]
 		
 		כאשר $\tl E$ תקרא "ההגדרה המפושטת [של למה 1 בעבור $E$]``. 
@@ -530,7 +548,7 @@
 	\begin{proof}
 		יהי $T = \la V, E \ra$ עץ, ו־$v \in V$ קודקוד. נוכיח שבגרף $\tl T := \la \overbrace{V \setminus \{v\}}^{\tl V}, \overbrace{E \setminus \{e \in E \colon v \notin e\}}^{\tl E} \ra$ יש $d(v)$ רכיבי קשירות. 
 		
-		\textbf{למה 1. }כאשר מסירים צומת מגרף $G = \la V_G, E_G \ra$ חסר מעגלים, נסמן את הגרף שהתקבל $G'$, ב־$G'$ יש רכיב קשירות אחד נוסף.
+		\textbf{למה 1. }\textit{כאשר מסירים צומת מגרף $G = \la V_G, E_G \ra$ חסר מעגלים, נסמן את הגרף שהתקבל $G'$, ב־$G'$ יש רכיב קשירות אחד נוסף.}
 		
 		\textit{הוכחה. }נניח שהצומת שהוסרה היא חלק מרכיב הקשירות $U \subseteq V_G$. לא ייתכן שהיא חלק מרכיב קשירות נוסף, כי $\sim$ הוא יחס שקילות. נסמן $e = \{a, b\}$. 
 		\begin{itemize}
@@ -541,7 +559,7 @@
 				\item נותר להוכיח שלא קיים רכיב קשירות פרט ל־$U_1, U_2$ שמוכל ב־$U$. ידוע בה"כ $a \in U_1, b \in U_2$ כי $a, b \in U$ אך $\lnot a \sim_{G'} b$. נניח בשלילה קיום $U_3 \neq \varnothing$ כך ש־$U_3 \subsetneq U, U_3 \neq U_1, U_2$. מכיוון ש־$U_3$ מחלקת שקילות ב־$\sim_{G'}$ אז $U_3$ זר ל־$U_1, U_2$ גם הן מחלקות שקילות. הוא לא ריק, אזי $\exists c \in V_{G'}. c \in U_3$. בגלל ש־$c \notin U_2, U_1$ אז $\lnot (c \sim b \lor c \sim a)$ (דה מורגן לפישוט). מכיוון ש־$a, b, c \in U$ אז $c \sim_{G} b, c \sim_G a$ ונסמן את המסלולים ב־$G$ שנוצרו כ־$W_{c, b}, W_{c, a}$ בהתאמה. זו סתירה כי $W_{b, c} \oplus W_{c, a} \oplus \la a \ra$ מעגל ב־$G$ כי קיימת קשת $e = \{a, b\}$ וזו סתירה להיותו חסר מעגלים. 
 			\end{itemize}
 		\end{itemize}
-		\textbf{למה 2. }ב־$\tl T' = \la V, \tl E \ra$, הסינגלטון $\{v\}$ הוא רכיב קשירות. 
+		\textbf{למה 2. }\textit{ב־$\tl T' = \la V, \tl E \ra$, הסינגלטון $\{v\}$ הוא רכיב קשירות. }
 		
 		\textit{הוכחה. }נניח בשלילה שקיים $\bar v \in V$ כך ש־$\bar v \sim_{\tl T'} v$. אזי קיים מסלול $W$ ביניהם, הכולל את $v$ בסופו ועוד לפחות קודקוד נוסף $w$, ולכן $e := \{w, v\} \in \tl E$. מעקרון ההפרדה, $e \in E \land v \notin e$ וזו סתירה לכך ש־$v \in e = \{w, v\}$. 
 		
@@ -549,6 +567,24 @@
 	\end{proof}
 	\section{}
 	\section{}
+	נגדיר את $\chi(G)$ להיות מספר הצביעה החוקית המינימלי של הגרף $G$, ואת $\alpha(G)$ להיות גודל הקבוצה הבלתי־תלויה הקטנה ביותר, כאשר $U \subseteq V$ היא קבוצה בלתי־תלויה ב־$G = \la V, E \ra$ אמ"מ אין אף צלא בין שני קודקודים ב־$U$. 
+	\begin{enumerate}[(A)]
+		\item צ.ל. $|V| \le \chi(G) \cdot \ag(G)$. \begin{proof} \ \\
+			\textbf{למה 1. }\textit{קיימת קבוצה בלתי תלויה $U$ בגרף $G$ המקיימת $|U| = \alpha(G)$, ובעבורה $\forall v \in U\colon 2 = \min \{d(w, v) \mid v \neq w \in U\}$, בנחה שקיים רכיב קשירות עם יותר משני איברים. }
+			
+			בעבור חסם תחתון, אם $d(w, v) = 0$ אז הם אותו הקודקוד וזו סתירה, ואם $d(w, v) = 1$ אז קיימת קשת $\{w, v\}$ וזו סתירה לכך שהם בלתי־תלויים אחד בשני. לכן $d(w, v) \ge 2$. מצד שני, אם $d(w, v) > 3$ אז קיים מסלול $\{v, t_1, t_2 t_3, \dots, w\}$ ונוכל לבחור $\tl U = U \setminus \{w\} \cup t_2$ היקיים את הטענה. אם $t_2$ תלוי בקשת אחרת ב־$U$, אז יש מסלול יותר קצר בין $v$ לאותה הקשת, וזו סתירה לכך שזהו האורך המינימלי. לכן $\tl U$ היא קבוצה בלתי תלויה, וגם $|\tl U| = |U| - 1 + 1 - |U| = \ag(G)$ כדרוש. 
+			
+			נפצל למקרים. 
+			\begin{itemize}
+				\item אם $E \neq \varnothing$ וגם קיים רכיב קשירות בו לפחות שני צמתים, אז קיימת קשת $e = \{w, v\} \in E$, ולכן $c(w) \neq c(v)$ (כאשר $c$ פונקציית הצביעה בעבור $\chi(G)$) וסה"כ $\chi(G) \ge 3$. מלמה 1, נדע $3\ag(G) \ge |V|$ כי נוכל "לשייך" לכל צומת ב־$U$ לכל היותר שני צמתים הצמודים אליו בצורה שתחסה את הגרף. סה"כ $\alpha(G)\chi(G) \ge |V|$ כדרוש. 
+				\item אחרת, אם $V = \varnothing$ אז $|V| = 0 \ge \chi(G) \cdot \alpha(G)$ כי כפל חיובים הוא חיובי, וסיימנו
+				\item אחרת, אם $E = \varnothing$, אז $\chi(G) = 1$ כי נוכל לצבוע כל צומת באותו הצבע (לא ייתכן מספר נמוך יותר כי אז $\chi(v) \in \emptyset$) וגם $\alpha(G) = |V|$ כי אף צומת לא תלוי בשני (ולא ייתכן יותר מזה כי אז $U \nsubseteq V$) ונוכל לבחור $U = V$. 
+				\item אחרת, כל רכיבי הקשירות הם באורך לכל היותר שניים. אם כולם באורך אחד, אז $E = \emptyset$ וזו סתירה. אחרת, קיים רכיב קשירות באורך $2$ וממנו $\chi(G) = 2$, וברור כי $\ag(G) \ge n / 2$ (כי כל רכיבי הקשירות הם לכל היותר שניים) וסה"כ נעביר אגפים ונציב, $\chi(G)\ag(G) \ge |V|$ כדרוש. 
+			\end{itemize}
+			סה"כ הטענה הוכחה בכל המקרים האפשריים, כדרוש. 
+		\end{proof}
+		
+	\end{enumerate}
 	\section{}
 	יהי $G$ גרף עם $5n + 1$ קודקודים. נצבע את הקודקודים ב־$n$ צבעים. צ.ל. שב־$G$ או ב־$\ol G$ יש משולש שכל הקודקודים שלו צבועים באותו הצבע. 
 	
