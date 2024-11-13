@@ -567,40 +567,106 @@
 			2 & 0 & 1
 	\end{matrix} \middle\vert \begin{matrix}
 	1 \\ 3 \\ -1
-\end{matrix}} \overset{R_3 \to R_3 - 2R_1}{\to} \cl{\begin{matrix}
-			1 &1 & 1 \\
-			0 & 1 & 2\\
-			0 & -2 & -1
-\end{matrix}\middle\vert\begin{matrix}
-1 \\ 3 \\ -3
-\end{matrix}} \]
-
-\[ \overset{R_1 \to R_1 - R_2, R_3 \to R_3 + 2R_2}{\to} \cl{\begin{matrix}
-		1 & 0 & -1 \\
-		0 & 1 & 2 \\
-		0 & 0 & 3
-\end{matrix}\middle\vert\begin{matrix}
--2 \\ 3 \\ 3
-\end{matrix} \overset{J}{\to} \begin{matrix}
-1 & 0 & 0 \\
-0 & 1 & 0\\
-0 & 0 &1
-\end{matrix}\middle\vert\begin{matrix}
--1 \\ 1\\1
-\end{matrix}}
- \]
- כאשר $J$ אומר $R_3 \to 1 / 3R_3$ וגם $R_1 \to R_1 + R-3, \ R_2 \to R_2 - 2R_3$ . 
- 
- \textbf{הגדרה. }$A, B \in M_{n, m}$ מטריצות. נאמר ש־$A, B$ \textit{שקולות} אם ניתן לקבל מ־$B$ את $A$ ע"י מספר סופי של פעולות אלמנטריות. נסמן $A \sim B$. 
- 
- \textbf{טענה. }יחס זה הוא שקילות. 
-\begin{proof}
-	\begin{itemize}
-		\item $A \sim A$: ברור, כי 0 פעולות. 
-		\item $A \sim B, \ B \sim C$: נסמן בתור $E$ את רצף הפעולות מ־$A$ ל־$B$ וב־$E'$ את רצף הפעולות מ־$B$ ל־$C$. בהתאם, $E, E'$ יהיה מ־$A$ ל־$C$. 
-		\item $A \sim B$ ונראה $B \sim A$. נסמן את $E_1, \dots E_b$ שדה של פעולות עלמנטריות מ־$A$ ל־$B$ ונמצא $E\op$ כך שסדרה מ־$B$ ל־$A$. 
-	\end{itemize}
-\end{proof}
-
+	\end{matrix}} \overset{R_3 \to R_3 - 2R_1}{\to} \cl{\begin{matrix}
+				1 &1 & 1 \\
+				0 & 1 & 2\\
+				0 & -2 & -1
+	\end{matrix}\middle\vert\begin{matrix}
+	1 \\ 3 \\ -3
+	\end{matrix}} \]
 	
+	\[ \overset{R_1 \to R_1 - R_2, R_3 \to R_3 + 2R_2}{\to} \cl{\begin{matrix}
+			1 & 0 & -1 \\
+			0 & 1 & 2 \\
+			0 & 0 & 3
+	\end{matrix}\middle\vert\begin{matrix}
+	-2 \\ 3 \\ 3
+	\end{matrix}} \overset{J}{\to} \cl{\begin{matrix}
+	1 & 0 & 0 \\
+	0 & 1 & 0\\
+	0 & 0 &1
+	\end{matrix}\middle\vert\begin{matrix}
+	-1 \\ 1\\1
+	\end{matrix}}
+	 \]
+	 כאשר $J$ אומר $R_3 \to 1 / 3R_3$ וגם $R_1 \to R_1 + R-3, \ R_2 \to R_2 - 2R_3$ . 
+	 
+	 \textbf{הגדרה. }$A, B \in M_{n, m}$ מטריצות. נאמר ש־$A, B$ \textit{שקולות} אם ניתן לקבל מ־$B$ את $A$ ע"י מספר סופי של פעולות אלמנטריות. נסמן $A \sim B$. 
+	 
+	 \textbf{טענה. }יחס זה הוא שקילות. 
+	\begin{proof}\ 
+		\begin{itemize}
+			\item $A \sim A$: ברור, כי 0 פעולות. 
+			\item $A \sim B, \ B \sim C$: נסמן בתור $E$ את רצף הפעולות מ־$A$ ל־$B$ וב־$E'$ את רצף הפעולות מ־$B$ ל־$C$. בהתאם, $E, E'$ יהיה מ־$A$ ל־$C$. 
+			\item $A \sim B$ ונראה $B \sim A$. נסמן את $E_1, \dots E_b$ שדה של פעולות עלמנטריות מ־$A$ ל־$B$ ונמצא $E\op$ כך שסדרה מ־$B$ ל־$A$. נסתכל על $E_x$ ונמצא הפוכה. 
+			\begin{itemize}
+				\item החלפת שורות: $Ex = E\op x$
+				\item מכפלה בסלקר: $E\op x = \frac{1}{\lambda}R_{\text{שורה}}$
+				\item הוספת שורה כפולה:
+				$E\op x = R_{\text{שורה}} \to \lambda R_{\text{שורה אחרת}}$
+			\end{itemize}
+			ונסמן $E\op = E\op_t, E\op_{t - 1}, \dots E\op_1$. סה"כ מצאנו הוכפי. 
+		\end{itemize}
+	\end{proof}
+	
+	\textbf{הגדרה. }\textit{שורת האפסים} אם כל הרכיבים  $0$
+	
+	\textit{שורה שאיננה אפסים. }שאיננה שורת אפסים. 
+	
+	\textit{איבר פותח. }האיבר הכי שמאלי שאינו אפס. 
+	
+	\textit{מטריצה מדורגת} אם: 
+	\begin{enumerate}
+		\item כל שורות האפסים מתחת לשורות שאינן אפסים
+		\item האיבר פותח של שורה נמצא מימין לאיבר הפותח של השורה מעליה (מימין, אך לא בהכרח בעמודה אחת). 
+	\end{enumerate}
+	
+	\textbf{הגדרה. }$A$ מטריצה. $A$ \textit{מדורגת קאנונית} אם כל איבר פותח הוא $1$ וגם שאר האיברים בעמודה הם $0$, וגם שאר האיברים בעמודה הם $0$, וגם $A$ מדורגת. 
+	
+	\textbf{הגדרה. }מערכת משוואות אשר מיוצגת במטריצה ששקולת שורה למטריצה מדורגת כלשהי. 
+	
+	משתנה \textit{קשור} (תלוי) אם הוא מיוצג בעמודה שבה אם יש איבר פותח, המטריצה מדורגת. 
+	
+	\textbf{משפט. }כל מטריצה שקולה שורות למטריצה מגורדת קאנונית יחידה ("שיטת האלימינציה של גאוס"). 
+	\begin{proof}
+		(לא נוכיח יחידות). אלג' בצעדים אשר יגיע ליעד. 
+		\textbf{שלב 1. }$1 \le j \le n$ מספר הכי קטן של עמודה ששונה מ־$0$ $c_j$. נסמן $1 \le i \le n$ רכיב הכי קטן ב־$c_j$ שאיננו אפס. $a = a_{ij}$. (כלומר, מינימלי כך שמעל ומימין ל־$a_{ij}$ יש אפסים בלבד)
+		נבצע פעולות אלמנטריות: $R_1 \siff R_i, \ R_1 \to \frac{1}{a}R_1$. ונקבל: 
+		\[ \begin{pmatrix}
+			0... & 0 & ?? \\
+			0... & 1 & ??\\
+			0... & ?? & ?? \\
+			\vdots & \vdots & \vdots
+		\end{pmatrix} \]
+		\textbf{צעד 2. }עבור $i = 2\dots n$ נבצע $R_1 \to R_i - \ag_iR_1$ כאשר $\ag_i$ הוא הרכיב ה־$ij$ של $A_1$. בכך נפנה את כל מה שמתחת ל־1. 
+		
+		\textbf{צעד 3. }נחזור על שלבים $1, 2$ על העמודה ה־$2$ של $A_2$ ושורה $j + 1$. 
+		
+		\textbf{שלב 4}. נחזור על צעד 3 $n$ פעמים או עד שהמטריצה שנמצאת בפינה הימנית התחתונה תהיה אפסים ונקבל מטריצה מדורגת עם איבר פותח 1. 
+		קיבלנו מטריצה מדורגת, כמעט קאנונית. 
+		
+		\textbf{שלב 5. }עבור $i = 2 \dots n$, נעשה $R-1 \to R_1 - \ag_1R_i$ עבור $=\alpha$ הרכיב של השורה הראשונה שנמצא מעל האיבר הפותח של השורה ה־$i$. נעשה $R_2 \to R_2 - \beta R_i$ עבור $i = 3 \dots n$. 
+		
+		כדי לכנס את כל האיברים והעמודות עם איבר פותח פרט לאיבר המוביל. בסוף נקבל קאנונית. 
+	\end{proof}
+	\section{\en{Solutions to Linear Equation Systems}}
+	בעבור מערכת כמו $(0 \ \dots \ 0 \ 1)$ אין פתרון. גם בעבור: 
+	\[ \cl{\begin{matrix}
+			1 & 0 & 3 \\
+			0 & 1 & 2 \\
+			0 & 0 & 0 
+		\end{matrix} \middle\vert \begin{matrix}
+			4 \\
+			7 \\
+			0
+	\end{matrix}} \implies \cl{\begin{matrix}
+	1 & 0 \\
+	0 & 1
+\end{matrix}\middle\vert \begin{matrix}
+* \\
+*
+\end{matrix}} \]
+	ולכל $x_3$ נקבל פתרון: $\{(4 - 3t, 7 - 2t) \mid t \in \F\}$. מסקנה. 
+	\textbf{מסקנה. }מערכת משוואות עם $\text{מספר נעלמים} > \text{משפר משוואות}$ גורר (1) אין פתרונות, או (2) מספר הפתרונות לפחות $|F|$. \textit{(אם $\F$ אין־סופי, כך גם כמות הפתרונות)}. 
+
 \end{document}
