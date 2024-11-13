@@ -1,0 +1,606 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+\newcommand\ag    {\alpha}
+\newcommand\bg    {\beta}
+\newcommand\cg   {\gamma}
+\newcommand\F     {\mathbb{F}}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{ליניארית 1א 2}
+\begin{document}
+	\maketitle
+	\section{\en{Reminders}}
+	שייעור שעבר דיברנו על שגות, ועל מחלקת השקילות $\bmod$. 
+	
+	\section{\en{Modular Field}}
+	\textbf{הגדרה. }$\Z / _{n\Z} = \{[x]_n \mid x \in \Z\}$ ("מודולו $n$z")
+	
+	נגדיר פעולות להיות: 
+	\begin{gather*}
+		[x]_n + [y]_n = [x + y]_n \\
+		[x]_n \cdot [y]_n = [x \cdot y]_n
+	\end{gather*}
+	בשביל ח"ע, נדרוש שבפרט: 
+	\[ \Z_5 \implies [1]_5 = [6]_5 = [11]_5, \ [1]_5 + [2]_5 = [3]_5 \seq [8]_5 = [6]_5 + [2]_5 \]
+	
+	\textbf{למה. }חיבור וכפל ב־$\Z/_{n\Z}$ מוגדרים היטב ואינם תלויים בבחירת הנציגים. 
+	\begin{proof}
+		יהי $A, B \in \Z$ מחלקות שקילות. יהיו $a_1, a_2, a \in A, b_1. b_2, b \in B$. כלומר $[a_1] + [a_2] = A, \ [b_1] + [b_2] = B$. נראה כי $[a_1 + b_1] = [a_2 + b_2]$ וגם $[a_1 \cdot b_1] = [a_2 \cdot b_2]$. ואכן: 
+		\[ a_2 = a_1 + na, \ b_2 =b_1 + nb \]
+		אזי
+		\[ a_2 + b_2 = a_1 + b_1 + b(a + b) \equiv a_1 + b_1 \mod n \]
+		ובעבור כפל: 
+		\[ a_2b_2 = (a_1 + na) (b + nb) = \cdots = a_1b_1 \mod n \]
+	\end{proof}
+	
+	נרצה לחקור מתי הדבר הזה הוא שדה, ומתי הוא לא. 
+	
+	\textbf{טענה. }לכל $n> 1$ הקבוצה $\Z/_{n\Z}$ עם $[0]$ בתור איבר ה־$0$ ו־$[1] $ בתור איבר היחידה, מקיימת את כל התכונות של שדה פרט להופכי. 
+	
+	\subsection{דוגמאות}
+	\begin{align}
+		\Z_2 &= \{0, 1\}, \ 1 \cdot 1 \equiv 1 \mod 2 \\
+		\Z_3 &= \{1, 2, 3\}, \ 1 \cdot 1 \equiv \mod 3, \ 2 \cdot 2 = 4 \equiv 1 \mod 3 \\
+		\Z_4 &= \{1, 2, 3, 4\}, \ 2 \cdot 2 \equiv 4 \equiv 0 \\
+		\Z_5, \ 2 \cdot 3 = 6 \equiv 0 \mod 6
+	\end{align}
+	השניים האחרונים סתירה כי לא ייתכנו שני איברים שכפלם הוא 0. 
+	
+	\textbf{טענה. }$\Z/_{n\Z}$ שדה אמ"מ $n$ ראשוני. 
+	\textbf{תכונה של ראשוניים. }$p$ ראשוני וגם $p \mid n = ab$ ן־$a, b \in \Z$, אז $p \mid a \lor p \mid b$. 
+	\begin{proof}
+		\begin{enumerate}
+			\item[$\impliedby$] אם $n$ לא ראשוני, אז $\exists a, b \in \N. 1 \le ab < n, \ n = ab$. אזי $ab \not\equiv 0 \mod n$. אבל $ab \equiv - \mod n$, ולכן $\Z_n$ לא שדה. 
+			\item[$\implies$]נניח $p$ ראשוני. יהיה $x \in \Z_{n\Z}$ כך ש־$x \not\equiv 0 \mod p$. נראה כי $f \colon \Z_p \to \Z_p$ כאשר $f([y]) = [x][y]$ היא הפיכה. נראה שהיא חח"ע. יהיו $y_1, y_2 \in \Z_n$ נבקש $f(y_1) = f(y)2$ כלומר $xy_1 \equiv xy_2 \mod n$ וסה"כ $n \mid x(y_1 - y_2)$. אזי $n$ ($p$ שלכם) ראשוני ולכן: 
+			$p \mid x \lor p \mid (y_1 - y_2)$. לא ייתכן $p \mid x$ כי $x \equiv 0 \mod n$. סה"כ $p \mid (y_1 - y_2)[y_1] = [y_2]$. ולכן $f$ חחע. וכם על מקור ותמונה סופית וזהים בגודלם, ולכן $f$ על ולכן $\exists y \in \Z_n. f(y) = xy = 1$. ל־$x$ יש הופכי. 
+		\end{enumerate}
+	\end{proof}
+	
+	\section{\en{idk the name in english}}
+	\textbf{הגדרה. }יהי $F$ שדה, $a \in F, \Z \ni  n \ge 0$. נגדיר: 
+	\begin{gather}
+		n \cdot a := \underbrace{a + \dots + a}_{\times n} \\
+		(-n) \cdot a := -(na)
+	\end{gather}
+	נאמר שה\textit{מציין} של השדה הוא אפס אם $\forall n > 0. n \times 1_f \neq 0$. אחרת, המקדם של השדה יהיה: 
+	\[ \mathrm{char}(F) = \min\{n \in \N \mid n \cdot 1_f = 0\} \]
+	\textbf{משפט. }$F$ שדה. יהי $p \ge 0$ מציין של $F$. נגרר: 
+	\begin{enumerate}
+		\item $p = 0 \lor p \text{ ראשוני}$
+		
+		\begin{proof}
+			אם $p = 0$ אז $F$ מכיל עותק של $ 2$. אחרת, $F$ מכיל עותק שלם של $\Z$. 
+			אם אכן $n \in \N$ נבקש $n \cdot 1_F = 0 $ כלומר $\mathrm{char}(F) = 0$. 
+			
+			נזהה עם $\Q$. לכל $n \in \N$ נזהה את $n \cdot 1_F$ עם $n$ ולכן $F$ "מכיל" את הטבעיים. נזהה את $-(n \cdot 1_F)$ עם $-n$ כלומר $F$ "מכיל" את $\Z$. עכשיו לכל $m, n \in \Z$ מזהה את $m \cdot n\op$ עם $\frac{n}{m} \in \Q$. ולכן קיבלנו "עותק" של $\Q$ (למעשה, צריך פורמלית להראות קיםו איזומורפיזם). 
+			
+			במקרה השני, נניח $n \cdot 1_F = 0$. יהיה $p$ הטבעי המינימלי שמקיים $p = \mathrm{char(F0)}$. נניח בשלילה ש־$p$ לא ראשוני, אזי $a \le a, b, < p$ עבורם $p = ab$ קיימים. מכיוון ש־$p$ מינימלי עבור $p \cdot 1 = 0$. לכן: 
+			\begin{gather}
+				b \cdot 1 \neq 0, \ a \cdot 1 \neq 0, \ (ab) \cdot 1 = 0 \implies (a \cdot 1_F) \cdot (b \cdot 1_F) = 0
+			\end{gather}
+			בסתירה כי מצאנו $a, b \neq 0$ כך ש־$ab = 0$ וגם $a, b \in F$. 
+			
+			יהי $a \in \Z_p$. נזהה עם $a$ עם $1_F \cdot a$. נשים לב ש־$a \equiv \bmod \R \iff a = b + kp$. לכן: 
+			\[ a \cdot 1_F = (b + pk) \cdot 1 = b \cdot 1_F  + k(pk) = b1_F \]
+		\end{proof}
+		\item המציין של שדה סופי הוא חיובי. 
+		\begin{proof}
+				יש אינסוף טבעיים, אך $|F|$ סופית. לכן $n \cdot 1_F = m \cdot 1_F$ (שובך היונים). בה"כ $m > n$. לכן: 
+				\[ m \cdot 1_F -n \cdot 1_F = (m - n) \cdot 1_F = 0 \]
+				ובפרט $(m - n) \in \N$. משהו לגבי מינימום שלא הספקתי כי התעסקתי עם השלט של השם. 
+		\end{proof}
+		
+		
+	\end{enumerate}
+	
+	\section{\en{The Matrix}}
+	הפאנץ': בהינתן מערכת משוואות כמו: 
+	\[ \begin{cases}
+		3x + y = 7 \\
+		8 = 2x - y
+	\end{cases} \sim \begin{pmatrix}
+		3 & 1 \\
+		2 & -1
+	\end{pmatrix} \begin{matrix}
+	 7 \\
+	 8
+	\end{matrix} \]
+	נוכל לעשות משחקים על המטריצות כמו על משוואות רגילות, כמו לחלק ולחסר אגפים. 
+	
+	\subsection{מערכת משוואות ליניאריות}
+	\textbf{הגדרה. }\textit{משוואה ליניארית} מעל שדה $F$ ב־$n$ נעלמים $x_1, \dots, x_n$ עם $a_1, \dots a_n$ מקדמים היא משוואה מהצורה: 
+	\[ a_1x_1 + \dots + a_n x_n = b \]
+	(זהו הייצוג הסטנדטי)
+	לדוגמה $3x - 7 = 0$ ליניארי אך לא סטנדרטי, בעוד $y^2 + 7 = x$ כלל לא ליניארי. 
+	
+	\textbf{הגדרה. }\textit{מערכת של $m$ משוואות ב־$n$ נעלמים} מעל שדה $F$ הוא אוסף של $m$ משוואות מעל $F$ ב־$n$ נעלמים. צורת ריסום סטנדרטית: 
+	\[ \begin{cases}
+		a_{11}x_{1} + a_{12}x_{2} + \dots + a_{1n} = b_1 \\
+		a_{21}x_{1} + a_{22}x_{2} + \dots + a_{2n} = b_2 \\
+		\vdots \\
+		a_{n1}x_{n1} + \dots + a_{nn} = b_n
+	\end{cases} \]
+	ל־$b_1, \dots b_n \in $F  נקרא \textit{מקדמים חופשיים}. לדוגמה: 
+	\[ \begin{cases}
+		x_1 + 3x_2 = 2 \\
+		7x_1 - 6x_2 = 1
+	\end{cases} \]
+	יתקיים $a_{12} = 3, b_1 = 1$ וכו'. 
+	
+	\textbf{הגדרה. }$a_{ij} \in F$ \textit{מקדמים} $i \in \{1, \dots m\}, \ j \in \{1, \dots ,n\}$. 
+	
+	\textbf{הגדרה. }$A$ קבוצה לא ריקה, $n \in \N$. יהיו $a_1, \dots a_n$. נסמן את ה־\textit{\n שאיבריה לפי הסדר} בתור $(a_1, \dots a_n) \in A^n$. 
+	"שתי $n$־יות שוות אם שוות בכל $n$-מקום" (פרמול בבדידה). 
+	
+	\textbf{הגדרה. }\textit{פתרון למערכת משוואות} זה $(x_1 \dots x_n) \in F^n$ כך שכל המשוואות מתקיימת לאחר הצבה. 
+	
+	\textbf{הגדרה. }שתי מערכות משוואות נקראות \textit{שקולות} אם יש להן את אותה קבוצת הפתרונות. 
+	
+	\textbf{חידה. }בהינתן שדה $F = \Z_{17}$. הוכיחו, שאין מערכת משוואות עם בדיוק $16$ פתרונות. 
+	
+	דוגמה: בעבור $x + y = 0$, קבוצת הפתרונות היא $\{(\alpha, -\alpha) \mid \alpha \in \mathbb{F}\}$. 
+	ל־$x \in \F^n$ נקרא וקטור. $c \in \F$ יקרא סקלר. בעבור מערכת משוואות, נוכל לחסר משהו מהמשוואות, להפכיל אותן, וכו', ולשמר את קבוצת הפתרונות. 
+	
+	\textbf{הגדרה. }תהי מערכת משוואות. פעולה אלמנטרית היא אחת מבין: 
+	\begin{enumerate}
+		\item החלפת מיקום של שתי משוואות. 
+		\item הכפלה של משוואה אחת בסקלר שונה מ־$0$. 
+		\item הוספה לאחת המשוואות משוואה אחרת מוכפלת בסקלר. 
+	\end{enumerate}
+	\textbf{משפט. }פעולה אלמנטרית אל מערכת משוואות מעבירה למערכת שקולה. 
+	\begin{proof} \ 
+		
+		\textbf{החלפת סדר} לא משפיע על האם $x \in \F^n$ הוא פתרון. 
+		
+		נסתכל על מרעכת משוואות \textbf{מוכפלת בסקלר} $\lambda \neq 0$. 
+		\[ \begin{cases}
+			\sum_{i = 0}^{n}a_{1i}x_i = b_1 \\
+			\vdots \\
+			\lambda \sum_{i = 0}^{n}a_{ti}x_i = \lambda b_t \\
+			\vdots \\
+			\sum_{i = 0}^{n}a_{ni}x_i = b_n
+		\end{cases} \]
+		
+		יהי $(\ag_1, \dots ag_n) \in \F^n$ שפותר את המערכת המקורית. נראה שגם פותר את החדשה: 
+		\[ \lambda \underbrace{\sum x_{tj}x_j}_{bt} = \lambda b_t \]
+		כדרוש. 
+		נראה כיוון הפוך (כדי להראות שלא הוספנו פתרונות). יהי $\ag \in F^n$ פתרון של החדשה. נסתכל על מערכת משוואות חדשה מאוד, מוכפלת ב־$\frac{1}{\lambda}$. מההוכחה שלנו, $\alpha$ פתרון שלה, וזו בדיוק המקורית. 
+		
+		\textbf{הכפלה בסקלר וחיסור}. יהי $\ag \in F^n$ פתרון של המקורית. נראה שהוא של החדשה. 
+		\textit{לא פורמלי, תוכלו לפרמל בצעמכם. }הפעולה שעשינו היא על שורה $t$. חיבור $c \cdot \binom{\text{שורה}}{p}$. נקבל: 
+		\[ \underbrace{\sum x_j a_{tj}}_{bt} + \underbrace{\sum x_j a_{pj}}_{bp} = b_t + cb_p \]
+		כיוון הפוך אפשר לעשות באופן דומה ע"י יצירת משוואה חדשה מאוד. 
+		\textit{סוף קטע לא פורמלי. }
+		
+	\end{proof}
+	
+	\subsection{\en{Blue Pill, Red Pill}}
+	יהיו $m, n \in \N$. \textbf{מטריצה} מסדר $m\times n$ אוסף $mn$ סקלרים מסוגרים במבלן $a_{ij}$. יתקיים: 
+	\begin{gather}
+		i \in \{1 \dots m\}, \ j \in \{1 \dots n\} \\
+		A = (a_{ij})_{\begin{matrix}
+				i = 1\dots m \\
+				\small  j = 1 \dots n
+		\end{matrix}} = \begin{pmatrix}
+		a_{11} & a_{12} & \dots & a{1n} \\
+		a_{21} & a_{22} & \dots & a_{2n} \\
+		\vdots & \ & \ & \vdots \\
+		a_{m1} & a_{m2} & \dots & a_{mn}
+	\end{pmatrix}
+	\end{gather}
+	כאשר $R_i := (a_{1i}, \dots, a_{in}) \in \F^1$ יקרא \textit{וקטור השורה}. 
+	
+	$c_j := (a_1k, \dots, a_{mj}) \in \F^1$ יקרא \textit{וקטור עמודה}/ 
+	
+	\[ A =  \begin{pmatrix}
+		R_1 \\
+		R_2 \\
+		\vdots \\
+		R_n
+	\end{pmatrix} = \begin{pmatrix}
+	C_1 \dots C_n
+	\end{pmatrix} \]
+	
+	$:= M_{mn}(F)$ כל המטרציות מסדר $m\times n$ מעל שדה $\F$. 
+	
+	$:= M_{n}(F)$ כל המטריצות מסדר $n \times n$  מעל שדה $\F$ (\textit{מטריצות ריבועיות}). 
+	
+	לדוגמה: 
+	\[ (4) \in M_1(F), \ (1 \ 2 \ 3) \in M_{1 \times 3}(F), \ \begin{pmatrix}
+		1 \\
+		2 \\
+		3
+	\end{pmatrix} \in M_{3 \times 1}, \ \begin{pmatrix}
+	4 & -1 & 7\\
+	7 & -2 & 4
+	\end{pmatrix} \in M_{2 \times 3}(F) \]
+	
+	\textit{מטריצה של מערכת משוואות: }
+	\[ A = \begin{pmatrix}
+		a_{11} &\dots & a_n & b_1 \\
+		\vdots & \ & \ & \vdots \\
+		a_{m1} & \dots & a_{mn} & b_n
+	\end{pmatrix} \]
+	\textit{מטריצה מצומצמת} היא מטריצה בלי העמודה ה־$m + 1$. 
+	
+	\textbf{הגדרה. }פעולות אלמנטריות על מטריצה: 
+	\begin{enumerate}
+		\item החלפת מיקום שורות $R_i \siff R_j$\\
+		\item הכפלה של שורה בסקלר שונה מאפס: $R_i \to \lambda R_i$
+		\item הוספה לשורה אחרת מוכפלת בסקלר: $R_i \to R_i + C \cdot R_j, \ \neq 0 c \in \F$
+	\end{enumerate}
+	
+	דוגמה: 
+	\[ \begin{cases}
+		x + y + z = 1 \\
+		x + 2y + 3z = 4\\
+		2x + 0 + z = -1
+	\end{cases} \implies \left( 
+	\begin{matrix}
+		1  & 1 & 1\\
+		1 & 2 & 3 \\
+		2 & 0 & 1
+	\end{matrix}
+	\middle\vert
+	\begin{matrix}
+		1 \\
+		4 \\
+		-1
+	\end{matrix}
+	\right) \overset{R_2 \to R_2 - R_1}{\to} \cl{\begin{matrix}
+			1 & 1 &1 \\
+			0 & 1 & 2 \\
+			2 & 0 & 1
+	\end{matrix} \middle\vert \begin{matrix}
+	1 \\ 3 \\ -1
+\end{matrix}} \overset{R_3 \to R_3 - 2R_1}{\to} \cl{\begin{matrix}
+			1 &1 & 1 \\
+			0 & 1 & 2\\
+			0 & -2 & -1
+\end{matrix}\middle\vert\begin{matrix}
+1 \\ 3 \\ -3
+\end{matrix}} \]
+
+\[ \overset{R_1 \to R_1 - R_2, R_3 \to R_3 + 2R_2}{\to} \cl{\begin{matrix}
+		1 & 0 & -1 \\
+		0 & 1 & 2 \\
+		0 & 0 & 3
+\end{matrix}\middle\vert\begin{matrix}
+-2 \\ 3 \\ 3
+\end{matrix} \overset{J}{\to} \begin{matrix}
+1 & 0 & 0 \\
+0 & 1 & 0\\
+0 & 0 &1
+\end{matrix}\middle\vert\begin{matrix}
+-1 \\ 1\\1
+\end{matrix}}
+ \]
+ כאשר $J$ אומר $R_3 \to 1 / 3R_3$ וגם $R_1 \to R_1 + R-3, \ R_2 \to R_2 - 2R_3$ . 
+ 
+ \textbf{הגדרה. }$A, B \in M_{n, m}$ מטריצות. נאמר ש־$A, B$ \textit{שקולות} אם ניתן לקבל מ־$B$ את $A$ ע"י מספר סופי של פעולות אלמנטריות. נסמן $A \sim B$. 
+ 
+ \textbf{טענה. }יחס זה הוא שקילות. 
+\begin{proof}
+	\begin{itemize}
+		\item $A \sim A$: ברור, כי 0 פעולות. 
+		\item $A \sim B, \ B \sim C$: נסמן בתור $E$ את רצף הפעולות מ־$A$ ל־$B$ וב־$E'$ את רצף הפעולות מ־$B$ ל־$C$. בהתאם, $E, E'$ יהיה מ־$A$ ל־$C$. 
+		\item $A \sim B$ ונראה $B \sim A$. נסמן את $E_1, \dots E_b$ שדה של פעולות עלמנטריות מ־$A$ ל־$B$ ונמצא $E\op$ כך שסדרה מ־$B$ ל־$A$. 
+	\end{itemize}
+\end{proof}
+
+	
+\end{document}
