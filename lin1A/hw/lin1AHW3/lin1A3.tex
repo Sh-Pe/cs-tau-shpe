@@ -1,0 +1,666 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {Sp} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#1]{#2}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 1א תרגיל בית 3}}
+\begin{document}
+	\maketitle
+	
+	\textbf{הערה לבודק.}
+	לא הספקתי לסיים את שאלות 11 ו־10, מפאת קוצר זמן. העדפתי שלא לעשות שאלות של דירוג מטריצות על פני שאלות של הוכחה (ואם לא עשיתי שאלה, השתדלתי לספק הסבר כיצד לפתור אותה, עד לכדי דירוג מטריצה). אם היה עדיף אחרת, אשמח שתגיב לשיעורי בית אלו (אם כי אני בספק שאגיע שוב למצב שבו אני לא מספיק להגיש את שיעורי הבית, או מגיש אותם באופן חלקי). 
+	\section{}
+	פתרו את מערכת המשוואות הבאה: 
+	\begin{multline*}
+		\begin{cases}
+			3x_1 + 2x_2 - x_3 + x_4 = 7 \\
+			2x_1 + x_2 - 3x_3 - x_4 = 11
+		\end{cases} \tomat \tmat{\begin{matrix}
+				3 & 2 & -1 & 1 \\
+				2 & 1 & -3  & -1
+		\end{matrix}}{7 \\ 11} \rrr{r_1 \to \frac{R_1}{3}} = \tmat{1 & \frac{2}{3} & -\frac{1}{3} & \frac{1}{3} \\
+			2 & 1 & -3 & -1}{\frac{7}{3} \\ 11} \\ %%
+		\rrr{R_2 \to R_2 - 2R_1} \tmat{1 & \frac{2}{3} & -\frac{1}{3} & \frac{1}{3} \\
+		0 & -\frac{1}{3} & -\frac{11}{3} & -\frac{5}{3}}{\frac{7}{3} \\ \frac{19}{3}} \rrr{R_2 \to -3R_2} 
+		\tmat{1 & \frac{2}{3} & -\frac{1}{3} & \frac{1}{3} \\
+			0 & 1 & 11 & 5}{\frac{7}{3} \\ -19} \rrr{R_1 \to R_1 - \frac{2}{3}R_2} 
+		\tmat{1 & 0 & 7 & -3 \\
+			0 & 1 & 11 & 5}{15 \\ -19} \\ %% 
+		\implies \cl{\begin{pmatrix}
+				15 - 7t + 3s \\ -19 - 11t - 5s
+		\end{pmatrix} \middle\vert s, t \in \R}
+	\end{multline*}
+	
+	\section{}
+	\begin{enumerate}[A.]
+		\item 
+		\begin{multline*}
+			\begin{cases}
+				\lg x + y + z = 1 \\
+				x + \lg y + z = 1 \\
+				x + y + \lg z = 1
+			\end{cases} \tomat \tmat{\begin{matrix}
+				\lg & 1 & 1 \\ 1 & \lg & 1 \\ 1 & 1 & \lg
+			\end{matrix}}{1 \\ 1 \\ 1} \rrt{R_2 \to R_2 - \frac{R_1}{\lg}}{R_3 \to R_3 - \frac{R_1}{\lg}} 
+		\tmat{\lg & 1 & 1 \\ 0 & \frac{\lg^2 - 1}{\lg} & \frac{\lg - 1 }{\lg} \\ 0& \frac{\lg - 1 }{\lg} & \frac{\lg^2 - 1}{\lg} }{1 \\ \frac{\lg - 1}{\lg} \\ \frac{\lg - 1}{\lg}} \rrt{R_2 \to \frac{\lg}{\lg^2 - 1}R_2}{R_3 \to \frac{\lg}{\lg - 1}R_3}
+		\tmat{\lg & 1 & 1 \\ 0 & 1 & \frac{\lg - 1}{\lg^2 - 1} \\ 0 & 1 & \frac{\lg^2 - 1}{\lg - 1}}{1 \\ \frac{\lg - 1}{\lg^2 - 1} \\ 1} \\ \rrr{R_3 \to R_3 - R_1}
+		\tmat{\lg & 1 & 1 \\ 0 & 1 & \frac{1}{\lg + 1} \\ 0 & 0 & \frac{\lg^2 + 2\lg}{\lg + 1}}{1 \\ \frac{1}{\lg + 1} \\ \frac{\lg}{\lg + 1}} \rrt{R_1 \to \frac{R_1}{\lg}}{R_3 \to \frac{\lg + 1}{\lg^2 + 1}R_3} 
+		\tmat{1 & \frac{1}{\lg} & \frac{1}{\lg} \\ 0 & 1 & \frac{1}{\lg + 1} \\ 0 & 0 & 1}{\frac{1}{\lg} \\ \frac{1}{\lg + 1} \\ \frac{1}{\lg + 2}} \implies z = \frac{1}{\lg + 2}, \ y = \frac{1}{\lg + 1} - \frac{1}{\lg + 1}\cdot\frac{1}{\lg + 2} = \frac{1}{\lg + 2}, \\ z = \frac{1}{\lg} - \frac{1}{\lg}(z + y) = \frac{1}{\lg} - \frac{2}{\lg(\lg + 2)} = \frac{1}{\lg + 2}
+		\end{multline*}
+		סה"כ מצאנו פתרון יחיד הוא $\frac{1}{\lg + 2}$. נשים לב שהנחנו $\lg \neq 0, 1$. נפריד את המקרים האלו: 
+		\begin{multline*}
+			\tmat{0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0}{1 \\ 1 \\ 1} \rrr{R_2 \to R_2 - R_3} \tmat{0 & 1 & 1 \\ 0 & -1 & 1 \\ 1 & 1 & 0}{1 \\ 0 \\ 1} \rrt{R_1 \to R_1 + R_2}{R_2 \to -R_2} \tmat{0 & 0 & 2 \\ 0 &1 & -1 \\ 1 & 1 & 0}{1 \\ 0 \\ 1} \rrt{R_1 \to 0.5R_1}{R+2 \to R_2 + 0.5R_1} \tmat{0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 1 & 0}{1 \\ -0.5 \\ 1} \\ \implies x = 1, \ y = -0.5, \ z = 1 - y = 1.5, \implies \begin{pmatrix}
+				1 \\ -0.5 \\ 1.5
+			\end{pmatrix}
+		\end{multline*}
+		ואם $\lg = 1$: 
+		\[ \tmat{1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 &1 &1}{1 \\ 1 \\ 1} \rrt{R_3 \to R_3 - R_1}{R_2 \to R_2 - R_1} \tmat{1 & 1 & 1 \\ 0 & 0 & 0 \\ 0& 0 & 0}{1 \\ 0 \\ 0} \implies \left \{ \begin{pmatrix}
+			1 - s - t \\ s \\ t
+		\end{pmatrix} \Big\vert \; s, t \in \R \right \} \]
+		
+	\end{enumerate}
+	
+	\section{}
+	נוכיח שלהלן מרחב וקטורי: 
+	\[ (a_1, a_2, \dots) + (b_1, b_2, \dots) = (a_1 + b_1, \dots a_2 + b_2, \dots), \ \lg (a_1, a_2, \dots) = (\lg a_1, \ \lg a_2, \dots), \ \R^{\inf} := \{(a_1, a_2, \dots) \mid a_i \in \R\} \]
+	\begin{proof}זהו מרחב הפולינומים על $\R$ הוא $\R[x]$, אבל אני יודע שזה לא מה שרוצים שאוכיח. 
+		
+		יהי $a = (a_i)_{i \in \N} \in \R^{\inf}$, באופן דומה $b, c \in \R^{\inf}$. אזי: 
+		\begin{enumerate}
+			\item סגירות לחיבור. ידוע $\forall a, b \in \R\co a  +b \in \R$ מסגירות שדה הממשיים. 
+			\[ a + b = (\underbrace{a_i + b_i}_{\in \N})_{i\in \N} \in \R^{\inf} \]
+			\item סגירות לכפל. ידוע $\forall \lg, a \in \R\co \lg a \in \R$ מסגירות שדה הממשיים. 
+			\[ \forall \lg \in \R\co \lg a = (\underbrace{\lg a_i}_{ \in \R})_{i \in \N} \in \R^{\inf} \]
+			\item אסיציאטיביות חיבור. ידוע $\forall \ag, \bg, \cg \in \R. (\ag + \bg) + \cg = \ag + (\bg + \cg)$ מאסוציאטיביות חיבור בממשיים. 
+			\[ a + (b + c) = a + (b_i + c_i)_{i \in \N} = (a_i + (b_i + c_i))_{i \in \N} = ((a_i + b_i) + c_i)_{i \in \N} = (a + b) + c \]
+			\item דיסטריבוטיביות מצד אחד. ידוע $\forall \lg, \ag, \bg \in \R \co \lg(\ag + \bg) = \lg \ag + \lg \bg$ מדיסטרבוטיביות בשדה הממשיים. 
+			\[ \forall \lg \in \R\co \lg(a + b) = \lg(a_i + b_i)_{i \in \N} = (\lg(a_i + b_i))_{i \in \N} = (\lg a_i + \lg b_i)_{i \in \N} \]
+			\item דיסטריבוטיביות מהצד השני. 
+			\[ \forall \ag, \bg \in \R\co (\ag + \bg)a = (a_i\ag + a_i\bg)_{i \in \N} = (a_i \ag)_{i \in \N} + (b_i\bg)_{i \in \N} = a\ag + b\bg \]
+			\item קיום איבר $0$. נסמן $0_{\R^{\inf}} := (0)_{i \in \N}$
+			\[ \set -a = (-1)a = (-a_i)_{i \in \N}. \text{\ \en{then: }} a - a = (a_i - a_i)_{i \in \N} = (0)_{i \in \N} = 0_{\R^{\inf}} \]
+		\end{enumerate}
+		כדרוש. 
+	\end{proof}
+	
+	\section{}
+	בכל סעיף נוכיח או נפריך האם תת קבוצה היא תמ"ו של מ"ו נתון. 
+	\begin{enumerate}[A)]
+		\item $V := \{ax^2 + bx  + c \mid a, b \c \in \Z_5, b = a^5\}$ כתמ"ו של $\Z_5[x]$. \begin{proof}
+			נוכיח סגירות וקיום איבר $0$. 
+			\begin{itemize}
+				\item קיום איבר $0$. איבר ה־$0$ נשמר בעבור הקבועים $a, b, c \in \Z_5$ כך ש־$a, b, c = 0$ (ואכן $a^5 = b = 0$ לפי הדרישה מעקרון ההפרדה, כי כפל איבר ה־$0$ בשדה הוא $0$). זאת כי $0x^2 + 0x + 0$ הוא איבר ה־$0$ ב־$\Z_5[x]$. 
+				\item סגירות לחיבור. יהיו $v, w \in V$. נוכיח $v + w \in V$. מעקרון ההפרדה, קיימים $\tl a, \tl b, \tl c, \bar a, \bar b, \bar c \in \Z_5$ כך ש־: 
+				\[ v = \tl ax^2 + \tl b + \tl c, \ w = \bar a x^2 + \bar b x + \bar c x, \ \tl a^5 = \tl b, \ \bar a^5 = \bar b \]
+				ולכן: 
+				\[ v + w = (\underbrace{\tl a + \bar a}_{\in \Z_5})x^2 + (\underbrace{\tl b + \bar b}_{\in \Z_5})x + (\underbrace{\tl c + \bar c}_{\in \Z_5}), \ (\tl a + \bar a)^5 = \tl a^5 + \bar a^5 = \tl b + \bar b \]
+
+				(כי הוכחנו בתרגול משפט לפיו $\forall a, b \in \Z_n\co (a + b)^n = a^n + b^n$) כדרוש מעקרון ההפרדה. 
+				\item סגירות לכפל. יהיו $v \in V, \ \lg \in \Z_5$. נוכיח $\lg v \in V$. 
+				\[ \exists a, b, c \in \Z_5 \co v = ax^2 + bx + c \land b = a^5 \implies \lg v = \lg ax^2 + \lg b + \lg c, \ (\lg a)^5 = \lg^5a^5 = \lg^5 b = \lg b \]
+				כאשר $\lg ^5 = \lg$ כי: 
+				\[ 1^5 \equiv 1, \ 2^5 \equiv 2, \ 3^5 \equiv 3, \ 4^5 \equiv 4, \ 5^5 \equiv 5 \]
+				ו־$\lg a, \lg b, \lg c \in \Z_5$ מסגירות $\Z_5$. הוכחנו את הדרוש מעקרון ההפרדה. 
+			\end{itemize}
+		\end{proof}
+			
+		\item $V := \{(x_1 \dots x_n) \mid x_1^2 + \cdots + x_2^2 > 1\}$ כתמ"ו של $\R^n$. \begin{proof}[הפרכה. ]				נניח בשלילה שזהו תמ"ו. אזי איבר ה־$0$ של $\R^n$, הוא $(0) \times n$, נמצא ב־$V$. מעקרון ההפרדה $0^2 + \cdots + 0^2 > 1$ כלומר $0 > 1$ וזו סתירה. 
+		\end{proof}
+		
+		\item $V := \{(a_1, a_2, \dots) \in \R^{\inf} \mid \exists m \in \N. \forall n \ge m. a_n = 0\}$ כתמ"ו של $\R^{\inf}$. \begin{proof}
+			נוכיח סיגרות וקיום איבר $0$. 
+			\begin{itemize}
+				\item קיום איבר $0$. איבר ה־$0$ של $\R^{\inf}$ הוא $(0, 0, \dots)$ כמו שהוכח בסעיף הקודם. בפרט מתקיימת עליו הדרישה בעבור $m = 0$. 
+				\item סגירות לחיבור. יהיו $v, w \in V$. נתבונן ב־$v + w$. בה"כ $m_v > m_w$, אזי $\forall n \ge m_v. (v + w)_n = v_n + w_n = 0 + 0 = 0$ כדרוש. 
+				\item סגירות לכפל. יהיו $v \in V, \lg \in \R$, נתבונן ב־$\lg v$. קיים $m$ כך ש־$\forall n \ge m. v_n =0$. נכפיל את המשוואה ב־$\lg$ ונקבל $\forall g \ge m. \lg b_n = 0 \lg = 0$ ולכן $\lg v \in V$ כדרוש. 
+			\end{itemize}
+		\end{proof}
+		
+		\item תת הקבוצה של $\R^{\inf}$ המכילה את כל הסדרות המונוטוניות עולות חלש, נסמנה $V$. \begin{proof}[הפרכה. ]
+			נפריך סגירות לכפל. נתבונן בסקלר $-1$ ובוקטור $(0, 1, 2 \dots) \in \R^{\inf}$ אשר נסמן ב־$v$. אזי $(-1)v = (0, -1, -2, \dots)$ היא סדרה מונוטונית יורדת חזק ובפרט לא עולה חלש, וזו סתירה לסגירות לכפל לפיה $(-1)v \in V$ כלומר עולה חלש. 
+		\end{proof}
+		\item $V := \{f \co \R\to \R\mid \forall x \in \R. f(x) = f(-x)\}$ כתמ"ו של $\R^{\R}$. 
+		\begin{proof}
+			נוכיח לפי התנאים של תמ"ו. 
+			\begin{itemize}
+				\item קיום איבר $0$. איבר ה־$0$ הוא $f(x) = 0$ מקיים $\forall x \in \R. f(x) = 0 = f(-x)$ ולכן נמצא ב־$V$ כדרוש. 
+				\item סגירות לחיבור. יהיו $f, g \in V$, אזי: 
+				\begin{gather*}
+					\forall x \in \R. f(x) = f(-x), \ g(x) = g(-x),  \quad f + g = \lambda x \in \R. f(x) + g(x), \\ \forall x \in \R. (f + g)(x) = f(x) + g(x) = f(-x) + g(-x) = (f + g)(-x)
+				\end{gather*}
+				ולכן $f + g \in V$ כדרוש. 
+				\item סגירות לכפל. יהיו $f \in V, \ \lg \in \R$. אזי: 
+				\[ \forall x \in \R. f(x) = f(-x), \quad \lg f = \lambda x \in \R. \lg x, \quad \forall x \in \R. (\lg f)(x) = \lg f(x) = \lg f(-x) = (\lg f)(-x) \]
+				ולכן $\lg f \in V$ כדרוש. 
+			\end{itemize}
+		\end{proof}
+		
+	\end{enumerate}
+	
+	\section{}
+	יהי $V$ מ"ו מעל $\F$ שדה, ויהיו $S, T \subseteq V$ תתי־קבוצות סופיות ולא ריקות. נוכיח או נפריך את הטענות להלן. 
+	\begin{enumerate}[A)]
+		\item $S \cap T = \varnothing \implies S \cap \Sp(T) = \{0\}$ \begin{proof}[נפריך.]
+			נבחר $T$ להיות בסיס. אזי קיים $v \in T$ כלשהו, כאשר $v \neq 0$ כי $0$ לא יכול להיות איבר בבסיס מהגדרה, וגם קיים $\lg \in \F$ כלשהו. נבחר $|\F| \ge 2$. אזי קיים $\lg \in \F$ כך ש־$\lg \neq 0, 1$, ולכן $\lg v$ ת"ל ב־$v$ ולא שווה לו. נבחר $S = \{\lg v\}$, ונקבל שמסגירות $\lg v \in V$ ומהיות $T$ בסיס הוא פורש את $V$ כלומר $\lg v \in S$, משמע $\lg v \in S \cap \Sp(T) \neq \varnothing$. זאת בסתירה לכך ש־$v \lg$ תלוי ליניארית ב־$v$ ובפרט בבסיס $T$ כלומר $v \notin T $ וסה"כ $S \cap T = \varnothing$, כדרוש. 
+			
+		\end{proof}
+		\item $S \cap T = \varnothing \implies \Sp(S) \cap \Sp(T) = \{0\}$ \begin{proof}[נפריך.]
+			נבחר $S$ להיות הבסיס הסדטנדרטי ב־$\R^2$ ואת $T$ להיות $\{(1, 1)\}$. אזי $S \cap T = \varnothing$ אך $(1, 1) = (1, 0) + (0, 1)$ כלומר $\exists t \in T \co t \in \Sp(S)$ ומשום ש־$T \subseteq \Sp(T)$ אז סתירה. 
+		
+		\end{proof}
+		\item $S \cap \Sp(T) = \varnothing \implies T \cap \Sp(S) = \varnothing$ \begin{proof}[נפריך.]
+			נבחר $\F = \R$ ונבחר $S = \{(0, 1), (1, 0)\}$ ו־$T = \{(1, 1)\}$. יתקיים $S \notin \{(a, a) \mid a \in \R\} = \Sp(T)$, אך יתקיים $\Sp(S) = \R^2 \ni (1, 1) \in T$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נקבע האם הסדרות הבאות בת"ל או ת"ל. 
+	\begin{enumerate}[A)]
+		\item $(x^3 + 3x - 2, \ x + 5, x^2 - x + 1)$. נעביר למטריצה. ידוע שדירוג מצטריצות שומר על מרחב השורות. 
+		\[ \begin{pmatrix}
+			1 & 0 & 3 & -2 \\ 0 & 0 & 1 & 5 \\ 0 & 1 & -1 & 1
+		\end{pmatrix} \rrr{R_2 \lra R_3} \begin{pmatrix}
+			1 & 0 & 3 & -2 \\ 0 & 1 & -1 & 1 \\ 0 & 0 & 1 & 5
+		\end{pmatrix} \rrt{R_2 + R_3}{R_1 - 3R_3} \begin{pmatrix}
+			1 & 0 & 0 & -17 \\ 0 & 1 & 0 & 6 \\ 0 & 0 &1 & 5
+		\end{pmatrix} \]
+		לא מצאנו שורות שהן אפסים על אף שהמטריצה מדורגת קאנונית ולכן הסדרה \textbf{בת"ל}. 
+		\item $\left  \{ \begin{pmatrix}
+			2 & 5 \\ 0 & 2
+		\end{pmatrix}, \ \begin{pmatrix}
+			1 & 0 \\ 0 & 1
+		\end{pmatrix}, \begin{pmatrix}
+			7 & 7 \\ 0 & 7
+		\end{pmatrix} \right\} = \{v_1, v_2, v_3\}$. יתקיים: 
+		\[ 2v_2 + v_1 - \frac{5}{7}v_3 = \begin{pmatrix}
+			2 \cdot 1 + 5 - \frac{5}{7} \cdot 7 & 5 - \frac{5}{7} \cdot 7 \\ 0 & 2 \cdot 1 + 5 - \frac{5}{7} \cdot 7
+		\end{pmatrix} = \begin{pmatrix}
+		0 & 0 \\ 0 & 0
+		\end{pmatrix} = 0_{M_2(\R)} \]
+		ולכן הסדרה \textbf{ת"ל} לפי הגדרה. 
+		\item הפונקציות $(\cos(nx), \sin(nx))$ עבור $n \in \N$ כאיברים ב־$[0, 1] \to \R$ מעל $\R$. הסדרה ת"ל, כי אם הייתה בת"ל אז היו קיימים $a, b \in \R$ כך ש־$a\sin + b\cos = 0$ כלומר $\forall x \in \R_{\neq 0}\co a\sin nx + b \cos nx = 0_{\R}$. בפרט הטענה נכונה בעבור $x = 0$ שעבורו יתקיים $a\sin 0n + b \cos 0n = 0 + b = 0$ אך $b \neq 0$ כי $b \in \R_{\neq 0}$ וזו סתירה כדרוש. 
+	\end{enumerate}
+	
+	\section{}
+	נוכיח/נפריך: 
+	\begin{enumerate}[A)]
+		\item יהיו $(x_1, y_1), \ (x_2, y_2) \in \R^2$ שני וקטורים בת"ל. נוכיח $\forall z_1, z_2 \in \Z. (x_1, y_1, z_1)$ ו־$(x_2, y_2, z_2)$ בת"ל. \begin{proof}
+			נניח בשלילה שאינם בת"ל. אזי קיימים קבועים $a, b, c \in \R$ כך ש־: 
+			\[ a\begin{pmatrix}
+				x_1 \\ y_1 \\ z_1
+			\end{pmatrix} + b\begin{pmatrix}
+				x_2 \\ y_2 \\ z_2
+			\end{pmatrix} = \begin{pmatrix}
+				0 \\ 0 \\ 0
+			\end{pmatrix} \iff \begin{cases}
+				ax_1 + bx_2 = 0 \\
+				ay_1 + by_2 = 0 \\
+				az_1 + bz_2 = 0
+			\end{cases} \implies \begin{cases}
+			ax_1 + bx_2 = 0 \\
+			ay_1 + by_2 = 0
+			\end{cases} \implies a\begin{pmatrix}
+				x_1 \\ x_2
+			\end{pmatrix} + b\begin{pmatrix}
+				y_1 \\ y_2
+			\end{pmatrix} = \begin{pmatrix}
+				0 \\ 0
+			\end{pmatrix} = 0_{M_2(\R)} \]
+			ולכן $(x_1, y_1), (x_2, y_2)$ אינם בת"ל לפי הגדרה וזו סתירה. 
+		\end{proof}
+		\item נפריך את הטענה לפיה $(x_1, y_1, z_1), (x_2, y_2, z_2)$ בת"ל גורר $(x_1, y_1), (x_2, y_2)$ בת"ל. \begin{proof}
+			נבחר $x_1 = y_1 = z_1 = x_2 = y_2 = 1, z_2 = 0$. נניח בשלילה שהטענה נכונה. אזי: 
+			\[ \forall a \begin{pmatrix}
+				1 \\ 1 \\ 1
+			\end{pmatrix} + b \begin{pmatrix}
+				1 \\ 1 \\ 0
+			\end{pmatrix} = 0 \implies \begin{pmatrix}
+				a & b \\ a & b \\ a & 0
+			\end{pmatrix} \to \begin{pmatrix}
+				0 & b \\ 0 &b \\ a & 0
+			\end{pmatrix} \]
+			כלומר הפתרון האפשרי היחיד הוא הפתרון הטרוויאלי $(a, b) = (0, 0)$ ואכן הוקטורים התלת מימדיים בת"ל. מהנחת השלילה $(1, 1), (1, 1)$ בת"ל אך $(1, 1) - (1, 1) = (0, 0) = 0_{\R^2}$ וזו סתירה כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $V$ מ"ו מעל $\F$, ויהיו $v_1, \dots, v_4 \in V$ וקטורים. נתון $(v_1, v_2, v_3)$ בת"ל, $(v_1, v_2, v_4)$ בת"ל, ו־$\Sp(v_1, v_2, v_3) \cap \Sp(v_1, v_2, v_4) = \Sp(v_1 + v_2, v_1 - v_2)$. נוכיח $(v_1, v_2, v_3, v_4)$ בת"ל. 
+	\begin{proof}
+		מהנתון ש־$(v_1, v_2, v_3)$ בת"ל בפרט $v_1, v_2$ בת"ל. נכניס את הוקטורים למטריצה הומוגנית: 
+		\[ \begin{pmatrix}
+			\cdots & v_1 & \cdots \\
+			\cdots & v_2 & \cdots 
+		\end{pmatrix} \rrt{R_2 \to R_2 + R_1}{R_1 \to R_1 - R_2} \begin{pmatrix}
+			\cdots & v_1 + v_2 & \cdots \\ \cdots & v_1 - v_2 & \cdots
+		\end{pmatrix} \implies \Sp(v_1, v_2) = \Sp(v_1 + v_2, v_1 - v_2) = \Sp(v_1, v_2, v_3) \cap \Sp(v_1, v_2, v_4) \]
+		ולכן, לכל וקטור $v \in \Sp(v_1, v_2)$: 
+		\[ \exists a, b, \ag, \bg c, \tl a, \tl b, d \in \R. v = av_1 + bv_2 = \ag v_1 + \bg v_2 + c v_3 = \tl a v_1 + \tl b v_2 + d v_4 \]
+		נסמן $a - \ag - \tl a := A, b - \bg - \tl b = B$. נקבל: 
+		\[ Av_1 + Bv_2 - cv_3 - dv_4 = 0 \]
+		נסמן $C = -c, D = -d$. למעשה, $A, B, C, D$ מוגבלים אך ורק בהיותם ב־$\R$ משום שהם מורכבים מסכום מספרים ב־$\R$ ללא כל הגבלה נוספת. סה"כ, מצאנו שלכל $A, B, C, D$ יתקיים $Av_1 + Bv_2 + Cv_3 + Dv_4 = 0$ כלומר $(v_1, v_2, v_3, v_4)$ בת"ל כדרוש. 
+	\end{proof}
+	
+	\section{}
+	יהי $V$ מ"ו מעל שדה $\F$ ויהיו $v_1, \dots, v_4 \in V$ בת"לים. נוכיח ש־$v_1 + v_2, v_2 + v_3, v_3 + v_4, v_1 + v_4$ בת"ל. 
+	\begin{proof}
+		נסמן ב־$-a-$ את פריסת הוקטור $a$ על השורה במטריצה (כמו unpacking ב־python). נכניס את הוקטורים למטריצה הומוגנית: 
+		\[ \begin{pmatrix}
+			-v_1- \\ -v_2- \\ -v_3- \\ -v_4-
+		\end{pmatrix} \rrt{R_3 \to R_3 + R_4, \ R_4 \to R_4 + R_1}{R_1 \to R_1 + R_2, \ R_2 \to R_2 + R_3} \begin{pmatrix}
+			-v_1 + v_2- \\ -v_2 + v_3- \\ -v_3 + v_4- \\ -v_4 + v_1-
+		\end{pmatrix} \]
+		היא גם מטריצה הומוגנית ולכן הוקטורים בה בת"ל הם הוקטורים עליהם נדרשנו להוכיח בת"ליות (עכשיו זה גם תואר) כדרוש. 
+	\end{proof}
+	
+	\section{}
+	
+	נעביר את שורות הוקטורים למטריצה. נדרגה, ומשום שאיננה בת"ל נמצא עם שורות אפסים למטה, אותן נוכל להוריד ואז להפעיל את פעולת הדירוג חזרה (זה תקין בהנחה שלא החלפנו שורות, פעולה שאינה אלמנטרית אך הוכחה בהרצאה קיום צורה מדורגת קאנונית של מטריצה מבלי להשתמש בפעולה זו). ניפרד מחלק מהוקטורים שלנו. 	\textit{ראה הערה בתחילת התרגיל. }
+	
+	\section{}
+	
+	מדרגים מטריצה של פרישת הוקטורים כשורות, וכך מוצאים ערכי $a$ כך שהפתון טרוויאלי בהכרח. במידה ויש צורך לחלק ב־$a$ או באובייקטים מהצורה $a + \lg$ כך ש־$\lg \in \R$, אז נפלג למקרים בהם $a =0$, או $a = -\lg$. \textit{ראה הערה בתחילת התרגיל. }
+	
+	\section{}
+	יהי $(v_1, v_2, v_3)$ בסיס של מ"ו $V$ מעל שדה $\F$. נוכיח שגם $(v_1, v_1 + v_2, v_1 + v_2 + v_3)$ הוא בסיס של $V$. 
+	\begin{itemize}
+		\item בת"ל. באופן דומה לסעיף 9, נעביר את הוקטורים למטריצה הומוגנית ונבצע פעולות אלמנטריות עליה: 
+		\[ \begin{pmatrix}
+			-v_1- \\ -v_2- \\ -v_3-
+		\end{pmatrix} \rrt{R_3 \to R_3 + R_2 + R_1}{R_2 \to R_2 + R_1} \begin{pmatrix}
+			-v_1- \\ -v_1 + v_2- \\ -v_1 + v_2 + v_3-
+		\end{pmatrix} \]
+		ידוע ממשפט קיום פעולות הופכיות כך שנגיע והוקטורים עליהם צ.ל. לבסיס הנתון ובפרט בת"ל. אכן בת"ל כדרוש. 
+		\item פורש. השמת הוקטורים בשורות המטריצה ודירוגה לא משנה את מרחב השורות. הראינו כאשר הוכחנו בת"ליות שאפשר להגיע מקבוצת הוקטורים לקבוצה $(v_1, v_2, v_3)$ הפורש את $V$ מהנתון להיוותו בסיס (ובפרט בת"ל ופורש) ולכן גם קבוצת הוקטורים הזו פורשת. 
+	\end{itemize}
+	
+	סה"כ הראינו בת"ל ופורש ולכן בסיס כדרוש. 
+\end{document}
