@@ -1,0 +1,550 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#1]{#2}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+\renewcommand\phi     {\varphi}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{ליניארית 7}
+\begin{document}
+	\maketitle
+	\section{\en{Just Reminders}}
+	תזכורת: יהי $v \in V$ בעל $B = (v_1, \dots, v_n)$ בסיס, אז $v = \sum_{i = 1}^{|B|}\lg_iv_i$. הגדרנו $[v]_B = (\lg_1, \dots, \lg_n)$. הראינו ש־$[v]_B$ לכל $v \in B$ יכולים להגדיר באופן איזומטרי כל העתקה ליניארית. כלומר, $\phi(v_i) = u_i$ לכל $1 \le i \le n$ בהנחה שהיא ההעתקה ליניארית, אז היא יחידה (כאשר $\u_i \in U, v_i \in B$). פורמלית: 
+	
+	\textbf{טענה. }יהיו $V, U$ מ"ו עם בסיסים. $B$ בסיס של $V$. נסמן $B = (v_1, \dots, v_n)$ ויהיו $u_1, \dots, u_n \in U$. תהי $f \co V \to U$ כך ש־$\forall 1 \le i \le n \co \phi(v_i) = u_i$. נוכיח שקיימת יחידה $\phi$ ליניארית כך ש־$\phi(v_i) = u_i$. 
+	\begin{proof}
+		\textbf{קיום. }עבור $v \in V$ קיימים ויחידים $\{\lg_i\}_{i \in [n]}$ כך ש־$\sum \lg_iv_i = v$. (כי $B$ בסיס ולכן לכל וקטור קיימת ויחידה הצגה שלו כצירוף ליניארי). נסמן: 
+		\[ f(v) = \sum\lg_if(v_i) = \sum \lg_i u_i \] 
+		ובפרט יתקיים $\phi(v_i) = u_i$ כרצוי. 
+		
+		\textbf{ליניאריות. }נסמן $v = \sum\ag_iv_i, \ w = \sum \bg_iv_i$
+		נראה ש־$\phi$ ליניארית. יהיו $v, w \in V$ ויהיו $\lg_1, \lg_2 \in F$ ונראה ש־$\phi(\lg_1v + \lg_2w) = \lg_1\phi(v) + \lg_2\phi(u)$. ביחד עם הגדרת $\phi$ נגרר מהתון: 
+		\[ \phi(\lg_1 v + \lg_2 w) = \phi = \phi \cl{\sum v_i(\lg_1 \ag_i + \lg_2 \bg_i)} \]. לפי $\phi$ שהדרנו
+		\[ \sum(\lg_1\ag_1 + \lg_2\bg_i)\phi(v_i) = \lg_1\sum\ag_iu_i + \lg_2\sum\bg_iu_i) \]
+	\end{proof}
+	
+	\textbf{יחידות}. נתבונן ב$\lg - \sum 0\lg_i + v_u -=\sum \lg_if(v_i) = \sum \lg_i \psi (v_i)$
+	
+	\textbf{סימון. }יהי $V$ מ"ו כך ש־$\dim V =n$ ו־$B = (v_1, \dots, v_n)$ בסיס. נזמן $[v]_B$ להיות \textit{הקורדינאטות לפי הבסיס $B$} (או משהו דומה המרצה שכח) וההגדרה נמצאת בכל מקרה בפסקה הראשונ למעלה. 
+	
+	\textit{הערה. }מוגדר יכ לכל $u \in V$ קיימים ויחידים $(\lg_i)_{i \in [n]}$ כך ש־$\sum\lg_iv_i = w$. 
+	
+	\textbf{משפט. }יהי $V$ מ"ו ממימד $n$ ו־$B = \cdots$. אז $\phi = \phi_B \co F^n \to V$ שמוגדרת להיות $\phi(\la_1, \dots, v_n) = \sum_{i = 1}^{n}\lg_iv_i$ היא איזו' וגם ההופכית היא $\phi\op(v) = [v]_B$. 
+	
+	ההוכחה הוצגה בשיעור הקודם. 
+	
+	\textit{אינטואיציה. }בהינתן אתם יודעים מה, אם ידוע לכל $i$ מה הוא $\phi(v_i)$ אז ידוע $V$. 
+	
+	עבור $C$ בסיס של $[\phi(v_i)]_C$ לדוגמה $\R^3 \to \R^2$ העתקת השיכון (מוחק את הקורדינאטה האחרונה), יתקיים: 
+	\[ (x, y, z) \mapsto (x, y) \implies \phi((1, 0, 0)) = (1, 0) \]
+	ניתן את זה עכשיו כהגדרה מסודרת. 
+	
+	\textbf{הגדרה. }בעבור $\phi \co V \to U$, $V, U$ מ"ו, $B = (v_1, \dots, v_n), \ C = (u_1, \dots, u_n)$ בסיסים ל־$V, U$ בהתאמה, ה\textit{מטריצה המייצגת} לבסיסים של $B$ של $V$, $C$ של $U$: 
+	\[ 
+		[\phi]_C^B = \begin{pmatrix}
+			\vdots && \vdots \\
+			[\phi(v_1)]_C & \cdots & [\phi(v_n)]_C \\
+			\vdots && \vdots
+		\end{pmatrix} \in M_{m \times n}(F)
+	 \]
+	גובה $m$, רוחב $n$. 
+	\textbf{דוגמה. }נתבונן ב־$\phi \co F^2 \to F^3$ כך ש־$\phi(x, y) \mapsto (x, x + y x + 2y)$. $e$ בסיס סטנדרטי ל־$F^2$, ו־$e'$ בסיס סטנדרטי ל־$F^3$. שאלה: $[\phi]_{e'}^{e} = \ ?$. נחשב כל עמודה בנפרד. נשים לב שבעבור הסימונים בהגדרה $B = e = ((1, 0), (0, 1)) := (v_1, v_2), \ C = e' = \cdots$. 
+	\begin{gather*}
+		[\phi(v_1)]_C = [(1, 1, 1)]_C = (\lg_1, \lg_2, \lg_3) \co \sum\lg_i e'_i = 1 \implies (\lg_1, \lg_2, \lg_3) = (1, 1, 1) \\
+		[\phi(v_2)]_C = \phi((0, 1)) = (0, 1, 2) \implies [\phi(v_2)]_{e'} = (0, 1, 2)
+	\end{gather*}
+	נבחין כי $[v_1, \dots, v_n]_e = (v_1, \dots, v_n)$ בעבור $e$ בסיס סטנדרטי. אך לא כן לבסיסים אחרים. 
+	
+	\textbf{דוגמה. }בסיס בעבור $F^3$ להיות $C = ((1, 1, 1), (1, 0, 1), (0, 1, 1))$. נמצא את $[\phi]_C^e$. 
+	\begin{gather*}
+		\phi(v_1) = (1, 1, 1), \ [(1, 1, 1)]_C = (1, 0, 0), \ [\phi(v_2)]_C = [(0, 1, 2)]_C = (-1, 1, 2) \\
+		[\phi]_C^e = \begin{pmatrix}
+			1 & -1 \\ 0 & 1 \\ 0 & 2
+		\end{pmatrix}
+	\end{gather*}
+	
+	\section{\en{vec mul}}
+	עבור $v = \sum_{j = 1}^{n}x_jv_j$ עבור $x_j \in F$ עבור $1 \le j \le n$ ($v$ איברי הבסיס). נראה מהו $\phi(v)$ כתלות במטריצה המייצגת. נסמן $[\phi]_C^B = (a_{ij})$ כך ש־$1 \le i \le m, 1 \le j \le n$. יתקיים: 
+	\[ \phi(v) = \phi\cl{\sum x_jv_j} = \sum x_j \phi(v_j) = \sum_{j = 1}^{n} \cl{x_j \sum_{i = 1}^{m} u_i a_{ij}} = \sum_{i = 1}^{m}u_i \cl{\sum_{j = 1}^{n}x_ja_{ij}} \]
+	
+	\textbf{שאלה. }
+	\[ [\phi(v)]_C = \cl{\sum_{j = 1}^{n}x_ja_{ij}, \dots, \sum_{j = 1}^{m}x_ja_{mj}} = x_1\cdot C_1 + \cdots + x_n\cdot C_n \]
+	
+	\textbf{הגדרה. }יהי $F$ שדה. \textit{וקטור עמודה} עם הרכיבים ב־$F$ הוא איבר ב־$M_{n \times 1}(F)$. לפעמים נזהה בינו לבין איבר ב־$F^n$. 
+	
+	\textbf{הגדרה. }יהיו $A = (a_{ij}) \in M_{m \times n}(F), \ V(x_j)_{j \in [n]}$ וקטור עמודה. אזי: 
+	\[ Av := \begin{pmatrix}
+		\sum_{j = 1}^n a_{1j}x_j \\ \vdots \\ \sum_{j = 1}^{n}a_{mj}x_j
+	\end{pmatrix} = x_1C_1 + \cdots + x_nC_n \in M_{m \times 1} \]
+	הסבר לשווין (לא לסימון): 
+	\[ \sum_{i = 1}^{n} x_iC_i = \sum x_i \begin{pmatrix}
+		a_{1i} \\ \vdots \\ a_{mi}
+	\end{pmatrix} = \begin{pmatrix}
+		\sum_{j = 1}^n a_{1j}x_j \\ \vdots \\ \sum_{j = 1}^{n}a_{mj}x_j
+	\end{pmatrix} \]
+	נשים לב שגובה הוקטור הוא ברוחב המטריצה. 
+	\textbf{דוגמה. }$Ae_1 = C_1$
+	
+	\textbf{דוגמה. }
+	\[ \begin{pmatrix}
+		1 & 0 & 9 & 3 \\ 1 & -2 & 0 & 0 \\ 2 & -2 & 9 & 3
+	\end{pmatrix}\begin{pmatrix}
+		1 \\ 3\\ 1 \\ -1
+	\end{pmatrix} = \begin{pmatrix}
+		1 \cdot 1 + 0 \cdot 3 + 9 \cdot 1 + 3 \cdot (-1) \\
+		1 \cdot 1 + -2 \cdot 3 + 1 \cdot 0 + 1 \cdot 0 \\
+		1 \cdot 2 + -2 \cdot 3 + 9 \cdot 1  + 3 \cdot -1
+	\end{pmatrix} = \begin{pmatrix}
+		9 \\ -5 \\ 2
+	\end{pmatrix} \]
+	למעשה זוהי העתקה ליניארית מארבעה ממדים לשלושה ממדים. 
+	
+	\textbf{משפט. }יהיו $V, U$ מ"וים עם בסיסים $B = (v_1, \dots, v_n), C = (u_1, \dots, u_n)$ בהתאמה. תהי $\phi \co V \to U$ העתקה ליניארית. אזי $\forall v \in V_{[\phi(v)]_C} = [\phi(v)]_C^B \cdot [v]_B$. 
+	
+	\begin{proof}
+		נסמן $v = \sum x_jv_j$. 
+		לפי פיתוח אקראי מקודם בשיעור: 
+		]\[ \phi(v) = \sum_{i = 1}^m u_i \cdot \cl{\sum_{i = 1}^{m} x_ja_{ij}} \implies [\phi]_C = \sum_{j = 1}^{n}x_jC_j \]
+		עבור $C_j$ עמודות של $[\phi]_C^B$. וזוהי בדיוק הגדרת הכפל. 
+	\end{proof}
+	
+	\textbf{טענה. }תהי $A \in M_{m \times n} (F)$. אם נגדיר $\phi_A(v) = Av, \ \phi \co F^n \to F^m$ אז $\phi$ העתקה ליניארית וגם $[\phi_A]$ לפי בסיסים סטדנרטיים של $F^m, F^n$ היא $A$
+	
+	\begin{proof}
+		נגדיר פונ' $\psi$ מ־$F^n$ ל־$F^m$ כך ש־: 
+		\[ [\psi]^B_C = A \]
+		עבור $B, C$ סטנדרטיים. נראה ש־$\phi = \psi$. ואכן, תהי $v \in F^n$: 
+		\[ \begin{WithArrows}
+			&\psi(v) \Arrow{כי $c$ סטנדרטי} \\ 
+			 =& [\psi(v)]_C \Arrow{מטענה קודמת}\\
+			 = &[\psi]^B_C \cdot [v]_B \Arrow{כי $\psi$ מוגדרת כך, וכי $B$ סטנדרטי} \\
+			 A \cdot v =& \phi_A(v)
+		\end{WithArrows} \]
+		קיבלנו $\phi_A = \psi$ בדיוק ולכן $\phi_A$ ליניארית וגם $[\phi_A]_T = [\psi]^B_C = A$ כאשר $T$ סטנדרטי. $B, C$ סטנדרטיים. 
+	\end{proof}
+	
+	\textbf{טענה. }$U, V$ מ"ו מעל שדה $F$ ממימדים $n = \dim V, \ m = \dim U$ ו־$B = (v_1, \dots, v_n), C = (u_1, \dots, u_m)$ $\impliedby$ עבור $(a_{ij}) = A \in M_{m \times n}(F)$ (ממשיך בשורה הבאה)
+		נגדיר $\phi \co V \to U$ כך ש־: 
+		\[ \phi\cl{\sum_{j = 1}^{n}x_jv_j} = \sum_{\mathclap{(i, j) \in T}} x_ja_{ij}u_i \]
+		כאשר: 
+		\[ T = \left \{(x, y) \middle\vert \begin{matrix}
+			x \in [m] \\ y \in [n]
+		\end{matrix}\right \} \]
+		
+		נקבל ש־$\phi$ העתקה ליניארית וגם $[\phi]_C^B =A$. 
+		
+		\begin{proof}
+			יהי $A \in M_{m \times n}(F) = (a_{ij})$. נגדיר כבטענה ונפשט את $\phi(v)$. עבור $v = \sum_{j = 1}^n$ הוגדר: 
+			\[ \phi(v) = \sum_{(i, j) \in T}x_ja_{ij}u_i = \sum^m u_i \cl{\sum_{j = 1}^{n} x_ja_{ij}} \]
+			
+			והמרצה עשה טעות בהוכחה ונשלים את ההוכחה בשבוע הבא. 
+		\end{proof}
+	
+	בזמן שנותר נוכיח כל מיני דברים על מטריצות. 
+	\section{\en{Mat Mul}}
+	\textbf{הגדרה. }$(a_{ij}) = A \in M_{m \times n}(F)$ ויהי $(b_{ij}) = B \in M_{m \times n}(F)$
+	
+	נגדיר חיבור מטריצות: 
+	\[ A + B = (a_{ij} + b_{ij})_{i \in [m], j \in [n]} \in M_{m \times n}(F) \]
+	ונגדיר כפל בסקלר:
+	\[ \lambda A = (\lambda a_{ij})_{\cdots} \in M_{m \times n}(F) \]
+	
+	\textbf{למה. }יהיו $\phi, \psi \co V \to U$ ו־$B, C$ בסיסים של $U, V$ מ"ו, אז $[\phi + \psi]_{C}^B = [\phi]_C^B + [\psi]_C^B, \ [\lg \phi]_C^B = \lg [\phi]_C^B$
+	
+	\begin{proof}
+		נסמן $T = \phi + \psi$. נחשב $T(v_i)$ ונראה שזה בדיוק $\phi(v_i) + \psi(v_i)$ עבור $v_i$ איבר בבסיס $B$. 
+		\[ T(v_i) = (\phi + \psi)(v_i) = \phi(v_i) + \psi(v_i) \]
+		כאשר המעברים מהגדרת החיבור. נסמן $L = [\phi]_C^B, R = [\psi]_C^B$. 
+		\[  \]
+	\end{proof}
+	
+	בשלב הזה המורה קלט שהכיתה מנותקת לחלוטין ואין לרוב האנשים שום מושג על מה הוא מדבר והוא התחיל לנסות להסביר איך בונים מטריצה מייצגת.
+	
+\end{document}
