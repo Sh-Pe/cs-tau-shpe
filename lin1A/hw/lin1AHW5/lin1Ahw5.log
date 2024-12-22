@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  21 DEC 2024 00:34
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.12.21)  22 DEC 2024 13:31
  restricted system commands enabled.
 **lin1Ahw5.tex
 (./lin1Ahw5.tex
@@ -1564,27 +1564,27 @@ Space,Script=Latin,Language=English,RawFeature={family=tt}].
 )
 \openout1 = lin1Ahw5.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 403.
-LaTeX Font Info:    ... okay on input line 403.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 403.
-LaTeX Font Info:    ... okay on input line 403.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 403.
-LaTeX Font Info:    ... okay on input line 403.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 403.
-LaTeX Font Info:    ... okay on input line 403.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 403.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 417.
+LaTeX Font Info:    ... okay on input line 417.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 417.
+LaTeX Font Info:    ... okay on input line 417.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 417.
+LaTeX Font Info:    ... okay on input line 417.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 417.
+LaTeX Font Info:    ... okay on input line 417.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 417.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
-03.
+17.
  (/home/shpe/.miktex/texmfs/install/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 403.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 403.
-LaTeX Font Info:    ... okay on input line 403.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 403.
-LaTeX Font Info:    ... okay on input line 403.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 403.
-LaTeX Font Info:    ... okay on input line 403.
+LaTeX Font Info:    ... okay on input line 417.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 417.
+LaTeX Font Info:    ... okay on input line 417.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 417.
+LaTeX Font Info:    ... okay on input line 417.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 417.
+LaTeX Font Info:    ... okay on input line 417.
 
 (/home/shpe/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1660,19 +1660,19 @@ Inserting `Babel.math_box_dir' in `hpack_filter'.
 Inserting `Babel.pre_otfload_h' in `hpack_filter'.
 Inserting `luaotfload.node_processor' in `hpack_filter'.
 Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 404
+LaTeX Font Info:    Trying to load font information for U+msa on input line 418
 .
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 404
+LaTeX Font Info:    Trying to load font information for U+msb on input line 418
 .
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 40
-4.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 41
+8.
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/jknappen/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -1680,7 +1680,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/n' in size <10> not available
 
 (Font)              Font shape `TU/DavidCLM(0)/b/n' tried instead on input line
- 408.
+ 422.
 
 
 [1
@@ -1692,7 +1692,7 @@ LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/n' in size <10> not available
 [3]
 
 [4]
-Overfull \hbox (1.50587pt too wide) detected at line 532
+Overfull \hbox (1.50587pt too wide) detected at line 549
 \OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ax[] \OT1/cmr/m/n/10 + \OML
 /cmm/m/it/10 bx \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 c\OT1/cmr/m/n/10 ) = \OML/cm
 m/m/it/10 T [] \OT1/cmr/m/n/10 = [] = [] \OML/cmm/m/it/10 ;  B \OT1/cmr/m/n/10 
@@ -1702,8 +1702,21 @@ m/m/it/10 T [] \OT1/cmr/m/n/10 = [] = [] \OML/cmm/m/it/10 ;  B \OT1/cmr/m/n/10
  []
 
 
+Overfull \hbox (50.69711pt too wide) detected at line 558
+[][] \OT1/cmr/m/n/10 = [][] = [] \OML/cmm/m/it/10 ;  [][] \OT1/cmr/m/n/10 = [] 
+= [] \OML/cmm/m/it/10 ;  [][] \OT1/cmr/m/n/10 = [] = [] \OML/cmm/m/it/10 ; [][]
+ \OT1/cmr/m/n/10 = [] = []
+ []
 
-[5] (./lin1Ahw5.aux)
+
+
+[5]
+
+[6]
+
+[7]
+
+[8] (./lin1Ahw5.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
@@ -1711,34 +1724,37 @@ L3 programming layer <2024-05-27>
 )
 
 Here is how much of LuaTeX's memory you used:
- 36783 strings out of 475931
+ 36805 strings out of 475931
  156725,1977958 words of node,token memory allocated
- 1059 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 117 attribute, 108 glue_sp
-ec, 41 attribute_list, 2 write nodes
-   avail lists: 1:17,2:6585,3:146,4:31,5:2128,6:39,7:11493,8:69,9:3711,10:5,11:1
+ 1243 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 186 attribute, 108 glue_sp
+ec, 64 attribute_list, 2 write nodes
+   avail lists: 1:18,2:7023,3:226,4:38,5:2390,6:36,7:12663,8:87,9:4097,10:9,11:1
 
- 58502 multiletter control sequences out of 65536+600000
- 111 fonts using 7238351 bytes
- 98i,17n,107p,1674b,529s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 58524 multiletter control sequences out of 65536+600000
+ 112 fonts using 7279543 bytes
+ 98i,18n,107p,1674b,529s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/fonts/OTF/DavidCLM-Bold.otf></home/shpe/.miktex/texmfs/install/fonts
 /opentype/public/lm/lmroman17-regular.otf></usr/share/fonts/OTF/DavidCLM-Medium.
 otf></usr/share/fonts/OTF/DavidCLM-MediumItalic.otf></home/shpe/.miktex/texmfs/i
 nstall/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/shpe/.miktex/texmfs/inst
-all/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/shpe/.miktex/texmfs/install
-/fonts/type1/public/amsfonts/cm/cmmi5.pfb></home/shpe/.miktex/texmfs/install/fon
-ts/type1/public/amsfonts/cm/cmmi7.pfb></home/shpe/.miktex/texmfs/install/fonts/t
-ype1/public/amsfonts/cm/cmmib10.pfb></home/shpe/.miktex/texmfs/install/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/p
-ublic/amsfonts/cm/cmr5.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public
-/amsfonts/cm/cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfont
-s/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/sy
-mbols/msbm10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/
-symbols/msbm7.pfb>
-Output written on lin1Ahw5.pdf (5 pages, 154984 bytes).
+all/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></home/shpe/.miktex/texmfs/ins
+tall/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/shpe/.miktex/texmfs/instal
+l/fonts/type1/public/amsfonts/cm/cmmi5.pfb></home/shpe/.miktex/texmfs/install/fo
+nts/type1/public/amsfonts/cm/cmmi7.pfb></home/shpe/.miktex/texmfs/install/fonts/
+type1/public/amsfonts/cm/cmmib10.pfb></home/shpe/.miktex/texmfs/install/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/
+public/amsfonts/cm/cmr5.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfon
+ts/cm/cmsy5.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbo
+ls/msam10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/sym
+bols/msbm10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfonts/s
+ymbols/msbm7.pfb>
+Output written on lin1Ahw5.pdf (8 pages, 222617 bytes).
 
-PDF statistics: 97 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 118 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
