@@ -1,0 +1,579 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+\DeclareMathOperator\col   {Col}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 9}}
+\begin{document}
+	\maketitle
+	\section{\en{test}}
+	לגבי המבחן – כל השאלות אותן כמות הנקודות. יהיו 4 שאלות, בסכום של 110 נקודות, פרושות על שעתיים. החומר – כל מה שהיה, חוץ מהיום. הסיכום שהמורה מעתיק מכיל טעויות. רמת הפורמליות "כמו מבחן". מותר להשתמש בכל מה שקרוי "משפט, טענה, מסקנה". 
+	
+	\section{\en{Inverse Matrix}}
+	אז איך יוצאים מהמטריקס? נגדיר מטריצה הופכית והפיכה. 
+	
+	נדבר על מטריצות ריבועיות בלבד – בשביל לכפול משני הצדדים צריך כתנאי הכרחי בשביל שיהיה מוגדר, שהמטריצה תהיה ריבועית. 
+	תהי $A \in M_n{\F}$. 
+	
+	\textbf{הגדרה. }$A$ \textit{הפיכה מימין} אם קיימת $B \in M_{n}(\F)$ כך ש־$AB = I_n$
+	
+	\textbf{הגדרה. }$A$ \textit{הפיכה משמאל} אם נו באמת
+	
+	\textbf{הגדרה. }$A$ הפיכה אם קיימת $B \in M_n(\F)$ כך ש־$AB = BA = I_n$
+	
+	\textbf{סימון. }אם היא הפיכה, נסמן את ההופכית היחידה (תיכף נוכיח) שלה ב־$A\op$
+	
+	\textit{הערה. }בהינתן $A \in M_n(\F)$ אז $A$ הפיכה אמ"מ יש איזומורפיזם אמ"מ כל ההעתקות שהיא מייצגת הן איזומורפיזמים. 
+	
+	\begin{proof}
+		נוכיח שלוש גרירות. 
+		\begin{itemize}
+			\item תהי $A$ הפיכה, נגדיר $\phi \co F^n \to F^n$, כך ש־$\phi(v) = Av$. נראה ש־$\phi$ איזו'. מכירים ש־$\F^n$ נ"ו, $v \mapsto Av$ ט"ל. 
+			נראה ש־$\phi_A$ חח"ע ועל. 
+			
+			\textit{על. }נראה על $\phi_A$. יהי $y \in F^n$. נמצא $x$ כך ש־$\phi_A(x) = y$. נשים שבגלל ש־$A$ הכפירה קיימת $B$ כך ש־$AB = BA = I_n$ (מההגדרה). נחפש $x$ כך ש־$Ax = y$. ואכן, $Ax = y \iff BAx = By \iff x = By$ סה"כ $x = By$ מצאנו מקור ל־$y$. 
+			
+			\textit{חח"ע}נניח ש־$Ax = Ay$ (כמו $\phi_A(x) = \phi_A(y)$) ואז $BAx = BAy \implies x = y$ כדרוש. 
+			\item נניח שקיימת $\phi \co V \to U$ איזו כך ש־$[\phi] = A$ עבור בסיסים כלשהם. נראה $\exists B \in M_{n}(F) \quad AB = BA = I_n$. $\phi$ הפיכה גורר קיום $\psi$ כך ש־$(\phi \circ \psi) = I_v$ ודם $\psi \circ \phi = I_u$ ולכן $[\phi\circ\psi] = I_n$ ומטענה לכן עבור $B = [\psi]$ נקבל את הדרוש
+			
+			\item תהא $\phi \co V \to U$ ט"ל בתאמה לנתונים. נוכיח $\phi$ חח"ע. נתבונן בכזה $\phi(v) = Av$ לפי הייצוג לבסיסים סטנדרטיים ולכן $Av = Aw$, אזי $BAv = BAw$ וסה"כ $v = w$ וזה אמור להוכיח חחע אבל "יש כאן טיפה סיבוך". המרצה קצת תקוע ולא מצליח להוכיח כלום. טוב. לפחות הספקתי לישון בין הוכחות. "ההוכחה הזאת יוצאת משליטה ואני בכלל לא הייתי חייב לתת אותה. נחזור אליה אחרי ההפסקה". <מצלם את שברי ההוכחה שלו>. 
+		\end{itemize}
+	\end{proof}
+	
+	נ.ב. הטענה מופיע בסיכום שלו בלי הוכחה. 
+	
+	\textbf{טענה. }תהי $A \in M_n(F)$ הפיכה, אז ההופכית יחידה. (ההוכחה הזו כן מופיע בסיכום ולכן פתירה בהרצאה). נניח $B, C$ הופכיות, נראה שוויון: 
+	\[ B = BI_n = B(AC) = (BA)C = I_nC = C \]
+	
+	\textbf{טענה. }אם $A \in M_n(F)$ הפיכה משמאל והפיכה מימין אז היא הפיכה, וגם ההופכית משמאל היא ההופכית מימין שהיא ההופכית. די הוכחנו כבר את מה שדרוש לזה (יחידות בשביל שוויון ההופכיות, והטענה שהמורה לא הצליח להוכיח בשביל איזמורפיזם וכזה)
+	
+	\textbf{משפט. }$A$ הפיכה אמ"מ $A$ הפיכה משמאל אמ"מ $A$ הפיכה מימין. 
+	
+	\begin{proof}
+		\begin{itemize}
+			\item ימין גורר הפיך: נניח $B$ כך ש־$AB = I$ ונראה $\exists C\co CA = I$. נסתכל על $\phi_A \to F^n \to F^n, \ \phi(v) = Av$. נראה ש־$\phi_A$ הפיכה ונקבל ש־$A$ הפיכה (נבחין כי $[\phi_A] = A$ לפי בסיסים סטנדרטיים). נראה ש־$\phi_A$ על ונקבל יהי $y \in F^n$ נראה $\exists x . \phi_A(x) = y$ ואכן עבור $x = B(y)$ נקבל את הרצוי כי $\phi_A(C(y)) = A(B(y)) = ABy = y$. 
+			\item שמאל גורר הפיך: נניח $\exists B. BA = I$ ונראה ש־$A$ הפיכה. נגדיר $\phi$ כמקודם. נראה $\phi_A$ חח"ע. נניח ש־$F^n \to x, y$ כך ש־$\phi(x) = \phi(y)$ ונגרר $Ax = Ay$ ולכן $BAx = ABy$  כלומר $x =y$. 
+		\end{itemize}
+	\end{proof}
+	
+	\textit{אינטואיציה לנכונות הטענה (הערה שלי המסכם שיושב בהרצאה ולא ברור לו למה המרצה עושה בלגנים על הלוח): }מתבסס על הטענה העתקה $\phi \co V \to U$ איזו אמ"מ חח"ע ועל אמ"מ חח"ע ו־$\dim U = \dim V$ אמ"מ על ו־$\dim V = \dim U$. ולמעשה אנחנו עובדים עם מטריצה ריבועית אז $\dim V = \dim U$. 
+	
+	\section{\en{Computional Ideas for Inverce matrix}}
+	נתבונן במטריצה $\pms{1 & 1 \\ 1 & 1}$. האם היא הפיכה? 
+	
+	\textbf{דרך פרימיטיבית. }ננסה להכפיל במשהו ולקוות לטוב
+	\[ \pms{1 & 1 \\ 0 & 0}\pms{a & b \\ c & d} = \pms{a + c & b + d \\ a + c & b + d} \neq I \]
+	וזו סתירה. 
+	
+	\textbf{דוגמה אחרת. }$\pms{1 & 1 \\ 0 & 0}$ – בגלל שיש שורת אפסים, גם ביעד תהיה שורת אפסים, ולכן אחרי הכפל מימין אני אקבל שורת אפסים ובפרט לא מטריצת הזהות. 
+	
+	\textbf{דוגמה אחרת 2. }נתבונן ב־$\pms{0 & 1 \\ 0 & 1}$. באופן דומה, אם נכפול משמאל נקבל עמודת אפסים ובפרט לא שווה למטריצת ה־1. 
+	
+	
+	\textbf{דרך קונסטרקטיבית. }זה יותר קטע שלי כי אין לי מושג למה המורה עוד מתעקב על זה. נוכל לחשב את הכפל ולדרוש ושוויון למטריצת הזהות, לדרג ולמצוא את ההופכי. 
+	
+	\textbf{המרצה משתמש בדרך הקונסטרקטיבית מסיבה כלשהי במקום פשוט לדרג את המטריצה המקורית ולמצוא את הקרנל. }נסמן את המטריצה שקיבלנו ב־$A$ ואת $B = \binom{a \ b}{c \ d}$. נקבל: 
+	\[ AB = I \iff A\pms{a \\ c} = \pms{1 \\ 0}, \ A\pms{d \\ a} \]
+	זה השלב בשיעור שבו אנחנו צופים במרצה בוהה בדף במשך כמה דקות טובות. בינתיים אני עושה שיעורי בית. 
+	
+	"הרעיון": לדרג במקביל את $(A \mid I)$ כך שבסוף נקבל $(I \mid A\op)$. 
+	
+	הופכי עבור מטריצה אלכסונית: 
+	\[ A = \pms{a & \cdots & 0 \\ \cdots & \ddots & \vdots \\ 0 & \cdots & a_n}, \ A\op = \pms{\frac{1}{a} & \cdots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \cdots & \frac{1}{a_n}} \]
+	
+	\textbf{טענה. }$Ax = b$ מערכת משוואות עם $n$ נעלמים, $m$ פתרונות, $A \in M_n(F), \ x = (x_1 \dots x_n)$, וקטור משתנים $b = (b_1 \dots b_n)$, אז $A$ הפיכה גורר $x = A\op b$ $\impliedby$ יש למערכת פתרון יחיד. 
+	
+	\begin{proof}
+		\textit{קיום פתרון. }$x$ פתרון אמ"מ $Ax = b$ (מהגדרת מערכת משוואות) (הערת המסכם: לא זה לא לפי הגדרה. זה לפי משפט) ובפרט מתקיים $A \cdot (A\op)b = Ib = b$. 
+		
+		\textit{יחיד. }נניח $x, y$ פתרונות אז $Ax = Ay$ ומכאן $A\op Ax = A\op Ay$ ונגרר $x = y$. 
+	\end{proof}
+	
+	\textbf{טענה. }יהיו $A, B \in M_n(F)$ הפיכות, אז: 
+	\begin{enumerate}
+		\item $A\op$ הפיכה וגם $(A\op)\op = A$
+		\item $A^T$ הפיכה וגם $(A^T)\op = (A\op)^T$
+		\item $AB$ הפיכות ומתקיים $(AB)\op = B\op A\op$
+	\end{enumerate}
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item $A\op A = I$ גורר $A\op$ הפיכה וגם $A\op$ ההופכית שלה מהגדרה ושקילות להופכית מימין. 
+			\item נראה
+			\[ A^T \cdot (A\op)^T = I \implies A^T \cdot (A\op)^T = (A\op A)^T - I^T = I \]
+			\item 
+			\[ AB(B\op A\op) = A(BB\op)A\op = I \]
+		\end{enumerate}
+	\end{proof}
+	
+	\textbf{מסקנה. }(אפשר להוכיח באינדוקציה) – $(A_1 \cdots A_s)\op = A_s\op \cdots A_1\op$
+	
+	\textbf{הגדרה. }\textit{מטריצה אלמנטרית} היא מטריצה שמתקבלת ממטריצת היחידה ע"י הפעלת פעולה אלמנטרית אחת. 
+	
+	\textbf{דוגמה. }
+	\[ \pms{1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1}, \pms{2 \\ & 1 \\  && 1 \\ &&& 1} \]
+	
+	(ריק = אפסים). 
+	
+	\textit{הערה: }המורה מסמן $A^t$ כמשוחלפת אבל אני אשתמש ב־$A^T$ כי זה הסימון שאני רואה יותר פעמים. 
+	
+	\textbf{טענה. }תהי $\phi$ פעולה אלמנטרית ($\phi \co M_n \to M_n$). אז $E = \phi(I_n)$ גורר $\phi(A) = E \cdot A$. 
+	
+	\textit{הרעיון: }נחלק לפי מקרים את הפעולות האלמנטריות. לדוגמה, עבור החלפת שורות נסתכל על $E$ מתאימה ונראה שהשוויון מתקיים עבור $A$ כללית. 
+	
+	\textbf{מסקנה. }$A$ מטריצה אלמנטרית גורר $A$ הפיכה וההופכית שלה אלמנטרית. 
+	
+	\textbf{מסקנה. }מכפלה של אלמנטרית היא הפיכה. 
+	
+	\textbf{מסקנה. }$B \in M_{m \times n}$, אז קיים $A \in M_m(F)$ מכפלת אלמנטריות $B' \in M_{m \times n}(F)$ מדורגת קאנונית כך ש־$B = AB'$. 
+	
+	\begin{proof}
+		נדרג את $B$ עם פעולות $\phi_1 \dots \phi_s$. נסמן $B' = (\phi_s(\phi_{s - 1}(\cdots(\phi_1(B))))) = E_s \cdots E_s B$. $B$. $B$ מדורגת קאנונית, נסמן את $A$ להיות $(E_s \cdots E_1)\op$ ואכן $B\op =  A\op B \implies A B' = B$
+	\end{proof}
+	
+	\textbf{טענה. }$B \in M_n(F)$ מדורגת קאנונית. אז $B = I \iff B \ \mathrm{invertible}$. 
+	
+	\begin{proof}
+		\begin{itemize}
+			\item[$\implies$] הפיכה עבור $I$ הופכית. 
+			\item[$\impliedby$] ל־$B$ יש לכל היתור $n$ איברים פותחים. מספר הפותחים = $n$ ולכן $B = I$ (הסבר: כל פותח בשורה נפרדת ומימין ממש לזה מעליו. מספר השורות = מספר העמודות). אחרת, יש שורה בלי איבר פותח ולכן השורה אפסים כי הפותח הוא האיבר השמאלי ביותר (כי $B$ לא הפיכה, וראיני שיש ל־$B$ שורת אפסי םאז היא לא הפיכה)
+		\end{itemize}
+	\end{proof}
+	
+	\textbf{למה. }יהיו $A, B, C \in M_n(F)$ ונניח $A = CB$ ו־$C$ הפיכה, אז $B$ הפיכה אמ"מ $A$ הפיכה. 
+	
+	\begin{proof}
+		$B$ הפיכה גורר $A$ מכפלת הפיכות, $A$ הפיכה גורר $C\op A = B$ ולכן $B$ מכפלת הפיכות. 
+	\end{proof}
+	
+	\textbf{משפט. }$A \in M_n$, $B$ מטריצה קאנונית כך ש־$B = E_s \cdots E_1A$ עבור $E_i$ מטריצה אלמנטרית, אז: 
+	\begin{enumerate}
+		\item $A$ הפיכה אמ"מ $B = I$
+		\item אם $A$ הפיכה, אז $A\op = E_s \cdots E_1$
+	\end{enumerate}
+	
+	\textit{הערה. }עבור $A$ מטריצה, אם נרשום $(A \mid I)$ ונדרג עד שנקבל $(B \mid E_s \cdots E_1)$ כאשר $B$ קאנונית כלשהית, ו־$E_s \cdots E_1$ תוצאת הדירוג, עבור $\phi_s\dots\phi_1$ פעולות אלמנטריות לדירוג כך ש־$E_i = \phi_i(I)$, אז: 
+	\begin{itemize}
+		\item אם $A$ הפיכה נקבל $B = E_s\cdots E_1 A$ (כי  הפעלנו את הטענה עבור $A$ מטריצה ו־$E = \phi(I)$ עבור $\phi$ פעולה אלמנטרית $\phi(A) = E \cdot A$). 
+		\item אם $A$ הפיכה, אז $B = I$ מהמשפט והופכית בצד ימין, אחרת, נקבל $B \neq I$. 
+	\end{itemize}
+	
+	נחזור להוכחה ש"קצת התחרבשה קודם" (הזו שהוא התעקב עליה 45 דק'): 
+	... נראה ש־$\phi$ חח"ע – נראה ש–$\phi(x) = \phi(y) \implies x = y$. ואכן: 
+	\[ [\phi(x)]_C = [\phi]^B_C[x]_C \implies A[x]_C = [\phi(x)]_C = [\phi(y)]_C = A[y]_C \implies A\op A [x]_C = A\op A[y]_C \implies [x]_C = [y]_C \implies x= y \]
+	הנימוק למעבר האחרון הוא קיו םאיזו' מהקורדינאטות למרחב. אינטואציה: נעבוד בתוך מרחב הקורדינאטות (קצת כמו לעבוד על הבסיס הסטנדרטי) ואז נחזור חזרה. 
+	
+	
+	
+	
+\end{document}
