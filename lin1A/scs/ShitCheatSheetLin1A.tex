@@ -1,0 +1,790 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.3in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+	\titleformat{\section}[block]
+	{\fontsize{20}{20}}
+	{\Large \dotfill \ (\thesection) \dotfill}
+	{0em}
+	{\vspace{2pt} \newline \hfil \Large \filleft \filright \MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+\DeclareMathOperator\col   {Col}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+%! ~~~ Document ~~~
+
+\author{\en{Shahar Perets}}
+\title{\en{Shit Cheat Sheet $\sim$ Linear Algebra 1A $\sim$ TAU}}
+\date{\en{30.1.2025}}
+\begin{document}
+	\setlength{\abovedisplayskip}{3pt}
+	\setlength{\belowdisplayskip}{3pt}
+	
+	\begin{multicols}{2}
+		\defi{הטבעיים יסומנו ב־$\N$ ויכללו את אפס. }
+		\section{שדות}
+		\defi{תהי $\F$ קבוצה, ונניח קיום $a \co \F^2 \to \F$ \textit{חיבור} ו־$m \co \F^2 \to \F$ \textit{כפל}. $\F$ יקרה \textit{שדה} אמ"מ: 
+		\noti{
+		\[ \forall x, y \in \F\co m(x, y) := x \cdot y = xy, \ a(x, y) = x + y \]
+		}
+		\begin{enumerate}
+			\item קיום ניטרלי לחיבור: \hfill $\exists x \in \F \, \forall y \in \F\co x + y = y$
+			\noti{\textit{איבר האפס} יסומן ב־$0$ או $0_\F$, הוא $x$.}
+			\item אסוציאטיביות חיבור: \hfill $\forall x, y, z \in \F\co (x + y) + z = x + (y + z)$
+			\item חילופיות חיבור: \hfill $\forall x, y \in \F\co x + y = y + x$
+			\item קיום איבר נגדי: \hfill $\forall x \in \F \, \exists y \in \F \co x + y = y + x = 0_\F$
+			\noti{ה\textit{איבר הנגדי} של $x$ הוא $-x$, הוא $y$.}
+			\item קיום ניטרלי לכפל: \hfill $\exists x \in \F \, \forall y \in \F\co xy = y$
+			\noti{ה\textit{ניטרלי לכפל} יסומן ב־$1_\F$ או ב־$1$}
+			\item אסציאטיביות של כפל: \hfill $\forall x, y, z \in \F \co (xy)z = x(yz)$
+			\item קיום הופכי: \hfill $\forall 0 \neq x \in \F \, \exists y \in \F\co xy = yx = 1$
+			\noti{\textit{ההופכי} של $x$ יהיה $x\op$ או $\frac{1}{x}$}
+			\item חילופיות כפל: \hfill $\forall x, y \in \F \co xy = yx$
+			\item דיסטריביוטיביות: \hfill $\forall x, y, z \in \F\co x(y + z) = xy + xz$
+			\item \hfil $1_\F \neq 0_\F$
+		\end{enumerate}
+		}
+		
+		\theo{הרציונליים $\Q$, הממשיים $\R$, והמרוכבים $\C$ הם שדות. }
+		\theo{בעבור שדה כלשהו: 
+			\begin{enumerate}
+				\item ניטרלי לחיבור הוא יחיד. 
+				\item \hfil $\forall a \in \F \co 0 \cdot a = 0$
+				\item ניטרלי לכפל הוא יחיד. 
+				\item \hfil $\forall a \in \F \, (\exists! -a \co -a + a = 0) \land (-a = (-1) \cdot a)$
+				\item לכל $0 \neq a \in \F$ הופכי יחיד. 
+				\item \hfil $(b = 0 \lor a = 0) \iff ab = 0$
+				\item \hfil $b = c \iff a + b = a + c$
+				\item \hfil $a \neq 0 \implies b = c \iff ab = ac$
+				\item \hfil $\forall a \in \F \co -(-a) = a$
+				\item \hfil $\forall a, b \in \F \setminus \{0\} \co (ab)\op = a\op b\op$
+			\end{enumerate}
+		}
+		\defi{לכל $\N \ni n \ge 1$ טבעי, נגדיר יחס לכל $x, y \in \Z$ זוגות שלמים: 
+			\[ x \equiv y \mod n \iff \exists k \in \N \co x - y = nk \]
+		}
+		\lem{אם $n \ge 1$, אז $x \equiv y \mod n$ יחס שקילות. }
+		\defi{יהיו $x \in \Z, \ 1 \le n \in \Z$. נגדיר:
+			\[[x]_n := \{y \in \Z \mid x \equiv y \mod n\}\]
+			  להיות \textit{מחלקת השקילות} של $x$.}
+		\theo{$[x]_n = \{x + nk \mid k \in \Z\}$}
+		\theo{כל שתי מחלקות שקילות שוות או זרות. }
+		\theo{בעבור $[x]_n$, יש בדיוק אחד מבין $\{0, \dots, n - 1\}$. }
+		\theo{$\Z_p$ שדה אמ"מ $p$ ראשוני}
+		\theo{בהינתן שדה מגודל סופי $N$, קיים $p$ ראשוני כך ש־$\exists k \in \N\co p^k = N$.}
+		\defi{$\Z/_{nz} = \{[x]_n \mid x \in \Z\}$, כאשר הפעולות על השדה מוגדרות: 
+		\[ [x]_n + [y]_n = [x + y]_n, \ [x]_n \cdot [y]_n = [x \cdot y]_n \]
+		והם מוגדרים היטב, לא תלויים בנציגים. איבר האפס הוא $[0]$ ואיבר היחידה $[1]$.}
+		\defi{יהי $\F$ שדה, 
+			ה\textit{מקדם} (char) של השדה יהיה $0$ אם $\forall n > 0 \co n \cdot 1_\F \neq 0$ אחרת: 
+			\[ \mathrm{char}(F) = \min\{n \in \N\mid n \cdot 1_\F = 0\} \]
+			כאשר $n \cdot 1_\F := 1_\F + \cdots + 1_\F$, $n$ פעמים. 
+			}
+		\theo{יהי $\F$ שדה, ו־$0 $ מקדם השדה. אז: 
+		\begin{enumerate}
+			\item $p$ ראשוני הוא $p = 0$
+			\item המקדם של שדה סופי הוא חיובי. 
+		\end{enumerate}
+		}
+		\section{מערכת משוואות ליניארית}
+		\defi{\textit{משוואה ליניארית} מעל שדה $\F$ ב־$n$ נעלמים $x_1 \dots x_n$ עם מקדמים $a_1 \dots a_n$ היא משוואה מהצורה: 
+		\[ ax_1 + \cdots + a_nx_n = b \]
+		כאשר זהו ה\textit{ייצוג הסטנדרטי} של המשוואה. 
+		}
+		\defi{\textit{מערכת של $m$ משוורות ב־$n$ נעלמים מעל שדה $\F$} הוא אוסף של $m$ משוואות ב־$n$ נעלמים, כאשר הייצוג הסטנדרטי: 
+		\[ \begin{cases}
+			a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n} = b_1 \\
+			\vdots \\
+			a_{m1}x_{1} + \cdots + a_{mn} = b_n
+		\end{cases} \]}
+		\defi{תהי $A$ קבוצה לא ריקה, $n \in \N$, ו־$a_1 \dots a_n \in A$, נסמן את \textit{ה־\n שאיבריה לפי הסדר} להיות $(a_1 \dots a_n) \in A^n$. }
+		\defi{\textit{פתרון למערכת משוואות} הוא $(x_1 \dots x_n) \in \F^n$ כך שכל המשוואות מתקיימת לאחר הצבה. }
+		\defi{שתי מערכות משוואות נקראות \textit{שקולות} אם יש להן את אותה קבוצת הפתרונות. }
+		\defi{תהי מערכת משוואות. \textit{פעולה אלמנטרית} היא אחת מבין: 
+		\begin{enumerate}
+			\item החלפת מיקום של שתי משוואות. 
+			\item הכפלה של משוואה אחת בסקלר שונה מ־0. 
+			\item הוספה לאחת משוואות משוואה אחרת מוכפלת בסקלר. 
+		\end{enumerate}
+		}
+		\theo{פעולה אלמנטרית על מערכת משוואות מעבירה למערכת שקולה. }
+		\defi{\textit{מטריצה} מסדר $m \times n$ הוא אוסף של $mn$ סקלרים. יתקיים: 
+		\begin{gather*}
+			i \in \{1 \dots m\}, \ j \in \{1 \dots n\} \\ 
+			A = (a_{ij}) = \pms{a_{11} & a_{12} & \cdots & a_{1n} \\ \vdots &\vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}}
+		\end{gather*}}
+		\defi{\textit{וקטור שורה} הוא $R_i := (a_{1i} \dots a_{in}) \in \F^{n}$. }
+		\defi{\textit{וקטור עמודה} הוא $C_j := (a_{1j} \dots a_{mj}) \in \F^{m}$. }
+		\defi{$M_{mn}(\F)$ הוא מרחב המטריצות מסדר $m \times n$ מעל השדה $\F$. }
+		\defi{$M_n(\F)$ הוא מרחב ה\textit{מטריצות הריבועיות}, הוא מטריצות מסדר $n \times n$ מעל השדה $\F$. }
+		\defi{בהינתן מערכת משוואות עם מקדמים $a_{ij}$, ה\textit{מטריצה של מערכת המשוואות} תהיה $(a_{ij})$, כאשר ה\textit{מטריצה המצומצמת} שלה היא מטריצה בלי העמודה ה־$m + 1$. 
+		}
+		\defi{\textit{פעולות אלמנטריות על מטריצה} הן: 
+		\begin{enumerate}
+			\item החלפת מיקום שורות, תסומן $R_i \lra R_j$. 
+			\item הכפלה של שורה בסקלר שונה מ־$0$, תסומן ב־$R_i \to \lg R_i$. 
+			\item הוספה לשורה אחרת מוכפלת בסקלר, לסומן $R_i \to R_i + \lg R_j$ כאשר $0 \neq \lg \in \F$. 
+		\end{enumerate}}
+		\defi{יהיו $A, B \in M_{n, m}(\F)$ מטריצות. נאמר ש־$A, B$ \textit{שקולות} אם ניתן לקבל מ־$B$ את $A$ ע"י מספר סופי של פעולות אלמנטריות. נסמן $A \sim B$. }
+		\theo{$\sim$ יחס שקילות. }
+		\defi{\textit{שורה אפסים} שורה בה כל הרכיבים $0$.}
+		\defi{\textit{שורה שאיננה אפסים} היא שורה שאיננה אפסים. }
+		\defi{\textit{איבר פותח} הוא האיבר הכי שמאלי במטריצה שאינו 0. }
+		\defi{\textit{מטריצה מדורגת} אם: 
+		\begin{enumerate}
+			\item כל שורות האפסים מתחת לשורות שאינן אפסים. 
+			\item האיבר הפותח של שורה נמצא מימין לאיבר הפותח של השורה שמעליה. 
+		\end{enumerate}}
+		\defi{תהי $A$ מטריצה. $A$ \textit{מדורגת קאנונית} אם כל איבר פותח הוא $1$ וגם שאר האיברים בעמודה הם $0$, שאר האיברים בעמודה הם $0$, ו־$A$ מדורגת.}
+		\defi{\textit{משתנה קשןר (תלוי)} אם בעמדוה שלו, בצורה מדורגת קאנונית יש איבר פותח. }
+		\defi{\textit{משתנה חופשי} הוא משתנה לא תלוי. }
+		\theo{על מטריצה שקולת שורות למטריצה מדורגת קאנונית יחידה. }
+		\theo{בהינתן מערכת משוואות שבה יותר נעלמים ממשואות, אז אין פתרונות, או שמספר הפתרונות הוא לפחות $|\F|$.  }
+		\theo{בהינתן מערכת משוואות, אחד מהמקרים הבאים יתקיים: 
+		\begin{enumerate}
+			\item אין פתרונות. 
+			\item יש בדיוק פתרון אחד. 
+			\item יש לפחות $|\F|$ פתרונות. 
+		\end{enumerate}}
+		\defi{מערכת משוואות שכל מקדמיה החופשיים הם $0$ היא \textit{מערכת הומוגנית}. }
+		\defi{הפתרון $x_1 \dots x_n = 0$ הוא הפתרון הטרוויאלי. }
+		\theo{\, 
+		\begin{enumerate}
+			\item למערכת משוואות הומוגנית שבה מספר נעלמים גדול מהמשוואות, יש ממש יותר מ־$|\F|$ פתרונות. 
+			\item למערכת משוואות הומוגנית יש רק פתרון טרוויאלי או לפחות $|\F|$ פתרונות. 
+			\item המרצה מסמן מערכת משואות הומוגנית בהומו'. 
+		\end{enumerate}}
+		
+		\section{מרחבים וקטוריים}
+		\defi{בהינתן $\F$ שדה, \textit{מרחב וקטורי} (לעיתים קרוי גם \textit{מרחב ליניארי}) הוא $\la  V, a \co V^2 \to V, m \co \F \times V \to V\ra$ כאשר $a$ נקרא \textit{חיבור} ו־$m$ \textit{כפל בסקלר}, המקיים תכונות: 
+			\noti{\[ \forall v, w \in V, \ \lg \in \F\co \lg v = \lg \cdot v = m(\lg, v), \ v + w = a(v, w) \]}
+		\begin{enumerate}
+			\item חילופיות לחיבור. 
+			\item אסוציאטיביות לחיבור. 
+			\item קיום איבר אפס ניטרלי לחיבור. 
+			\noti{האיבר הניטרלי לחיבור יסומן ב־$0$ או $0_V$. }
+			\item קיום נגדי לחיבור. 
+			\noti{לכל $v$, נסמן ב־$-v$ את הנגדי לחיבור. }
+			\item דיסטריביוטיביות מסוג ראשון: \hfill $\forall \lg \in \F, \ u, v \in V \co \lg(u + v) = \lg u + \lg v$
+			\item דיסטריבטיוביות מסוג שני: \hfill $\forall \lg, \mu \in \F, v \in V \co (\lg + \mu) \cdot v = \lg v + \mu v$
+			\item אסוציאיטיביות של כפל: \hfill $\forall \lg, \mu \in \F \co (\lg \mu) v = \lg (\mu v)$
+			\item זהות באיבר היחידה: \hfill $\forall v \in V \co 1_\F \cdot v = v$
+		\end{enumerate}
+		}
+		
+		\theo{$M_{n \times m}$ ו־$\F$ הם מרחבים וקטוריים. }
+		\defi{יהי $V$ מ"ו, \textit{תת־מרחב־וקטורי (תמ"ו) של $V$} הוא $W \subseteq V$ אם: 
+		\begin{enumerate}
+			\item $W$ סגור לחיבור. 
+			\item $W$ סגור לכפל בסקלר. 
+		\end{enumerate}}
+		\theo{תמ"ו הוא מ"ו. }
+		\theo{קבוצת הפתרונות של מערכת משוואות הומוגנית היא תמ"ו ב־$\F^n$. }
+		\theo{\,
+		\begin{enumerate}
+			\item \hfil $ \forall \lg \in \F \co \lg \cdot 0_V = 0_V $
+			\item \hfil $\forall v \in V \co 0 \cdot v = 0$
+			\item \hfil $\lg v = 0 \implies \lg = 0 \lor v = 0_V$
+			\item \hfil $\forall v \in V \co -v = (-1) v$
+		\end{enumerate}}
+		\theo{יהי $V$ מ"ו מעל שדה $\F$, ויהיו $U, W \subseteq V$ תמ"וים של $V$. אז, $U \cap W$ ו־$U \cup W$ תמ"ו בנפרד, אמ"מ $U \subseteq W \lor W \subseteq U$. }
+		\defi{יהי $V$ מעל $\F$. יהיו $V, W \subseteq V$ תמ"וים. נגדיר $U + W = \{u + w \mid u \in V, w \in W\}$}
+		\defi{אם $U \cap W  = \{0\}$ תחת הקשירה לעיל, אז נסמן $U + W = U \oplus W$ ונקרא סכום זה \textit{סכום ישר}. }
+		\theo{יהי $V$ מעל שדה $\F$, ו־$U, W \subseteq V$ תמ"וים. אז $U + W$ תמ"ו של $V$. }
+		\theo{יהי $V$ מעל שדה $\F$, אז $U + W$ סכום ישר אמ"מ כל וקטור בסכום נין להגדיר בצורה חידה ע"י וקטור מ־$U$ או וקטור מ־$W$. }
+		
+		\section{ממדים}
+		\defi{יהי $0 \le s \in \Z$, וקטורים $v_1 \dots v_s \in V$ וסקלרים $\lg_1 \dots \lg_s \in \F$. ה\textit{צירוף הליניארי} שלהם הוא: 
+		\[ \sum_{i = 1}^{s} \lg_iv_i = \lg_1v_1 + \cdots \lg_sv_s \]}
+		\defi{צירוף ליניארי עבור סקלרים $\lg_i = 0$. }
+		\defi{יהי $B = (v_1 \dots v_s) \in V^s$, ו$V$ מ"ו. אז $B$ \textit{בסיס} אם לכל $v \in V$ קיים ויחיד צירוף ליניארי מהוקטורים ב־$B$, כלומר: 
+		\[ \forall v \in V \exists! (\lg_i)_{i = 1}^{|B|} \in \F \co v = \sum_{i = 1}^{s}\lg_ix_i \]}
+		\defi{$e_i \in \F^n$ מוגדר להיות $e:= (0 \dots 1 \dots 0)$ כאשר $1$ בקודאינאטה ה־$i$. }
+		\defi{$\{e_i\}_n$ הוא \textit{הבסיס הסטנדרטי}. }
+		\defi{בעבור $V$ מ"ו עם בסיס $B$, $\dim V := |B|$ (מוגדר היטב ממשפט יחידות גודל הבסיס). }
+		\defi{יהיו $v_1 \dots v_s \in V$ וקטורים, הם יקראו \textit{סדרה תלויה ליניארית} אם קיימים $\lg_1 \dots \lg_s$ כך אחד מהם שונה מ־$0$ וגם $\sum_{i = 1}^s\lg_is_i = 0$. }
+		\defi{\textit{סדרה בלתי תלויה ליניארית (בת"ל)} היא סדרה לא תלוי ליניארית. }
+		\theo{הוקטורים $v_1 \dots v_s \in V^s$ בת"ל אמ"מ $\forall (\lg_i)_{i = 1}^s\co \sum\lg_iv_i = 0$. }
+		\theo{בהינתן $v_1 \dots v_n \in \F^n$ ו־$A$ מטריצת העמודות שלה, הסדדרה בת"ל אמ"מ בצורה הקאנונית ששקולה ל־$A$ יש בכל שורה איבר פותח.}
+		\theo{הבסיס הסטנדטי הוא בסיס. }
+		\theo{בהינתן $U \subseteq V$ תמ"ו, ובהינתן $\{u_i\}_{i = 1} \subseteq U$, אז כל צירוף ליניארית שלהם ב־$U$.}
+		\defi{בהינתן $x = v_1 \dots v_s$ קבוצת וקטורים, אז \[\Sp(X) := \{\sum_{i = 1}^{s}\lg_iv_i \mid \{\lg_i\}^s_{i = 1} \in \F\}\]}
+		\theo{יהיו $V$ מ"ו, $X = (v_1 \dots v_s) \subseteq V$. אז $\Sp(X)$ הוא התמ"ו המינימלי (ביחס ההכלה) שמכיל את $X$. }
+		\defi{בהינתן $V$ מ"ו, $X \subseteq V$, נאמר ש־$X$ \textit{פורש} את $V$ אמ"מ $V = \Sp(X)$. לעיתים יקרא $X$ \textit{"קבוצת היוצרים"} של $V$. } 
+		\defi{בהינתן $V$ מ"ו, נאמר ש־$V$ נוצר סופית אם קיים $X \subseteq V$ סופי כך ש־$X$ פורש את $Y$. }
+		\theo{יהי $V$ נוצר סופית, $X \subseteq V$ פורשת סופית. כל סדרה בת"ל ב־$V$ גדולה לכל היותר $|X|$. }
+		\lem{יהי $X$ בת"ל ב־$V$ מ"ו. $u \in V \setminus \Sp(X)$ גורר $X \cup \{u\}$ בת"ל. }
+		\theo{בהינתן $V$ נוצר סופית, $X$ פורש, $v_1 \dots v_m$ בת"ל, קיימים $v_{m + 1} \dots v_n \in X$ כך ש־$v_1 \dots v_m, v_{m + 1} \dots v_n$ פורשת ובת"ל (כל בת"ל אפשר להשלים לבסיס). }
+		\theo{יהי $B = (v_1 \dots v_s) \in V$. אז $B$ בסיס אמ"מ פורש ובת"ל. }
+		\theo{בהינתן $V$ מ"ו, $X$ פורש:
+		\begin{enumerate}
+			\item כל שדה בת"ל ניתן להשלים ע"י וקטורים מ־$X$. 
+			\item בעבור $B_1, B_2$ בסיסים של מ"ו $V$, יתקיים $|B_1| = |B_2|$. 
+		\end{enumerate}} 
+		\defi{יהי $V$ מ"ו, $B$ בסיס. אז $|B| := \dim V$ \textit{("מימדו" של $V$)}. }
+		\theo{בהינתן $V$ מ"ו , $v_1 \dots v_s$ פורש, ניתן למצמצמה לבסיס. }
+		\theo{יהיו $V$ מ"ו
+		\begin{enumerate}
+			\item סדרה בת"ל מגודל מקסימלי היא בסיס. 
+			\item סדרה פורשת מגודל מינימלי היא בסיס. 
+			\item סדרה בת"ל/פורשת עם $\dim V$ איברים, היא בסיס. 
+		\end{enumerate}}
+		\theo{יהיו $V$ מ"ו ו־$U\subseteq V$ תמ"ו: 
+		\begin{enumerate}
+			\item $\dim U \le \dim V$
+			\item $\dim U = \dim V \iff U = V$
+		\end{enumerate}}
+		\theo{יהי $V \subseteq \F^n$ מרחב הפתרונות של משוואה הומוגנית. אז $\dim V$ מספר המשתנים החופשיים במטריצה הקאנונית המתאימה. }
+		\theo{(משפט הממדים) יהיו $U, W \subseteq V$ תמ"וים נוצרים סופית. אז: 
+		\[ \dim (U + W)  = \dim U + \dim W - \dim(U \cap W) \]}
+		
+		\section{טרנספורמציות ליניאריות}
+		\defi{בהינתן $V_1, V_s$ מ"ו מעל שדה $\F$, נניח קיום $\phi \co V_1 \to V_2$. נקרא את $\phi$ \textit{"העתקה ליניארית"} (לעיתים יקרא \textit{"טרנספורמציה ליניארית"} או בקיצור \textit{'ט"ל'}) אם: 
+		\begin{enumerate}
+			\item \hfil $\forall u, v \in v_1 \co \phi(u + v) = \phi(u) + \phi(v)$
+			\item \hfil $\forall \lg \in \F \co \phi(\lg v) = \lg\phi(v)$
+		\end{enumerate}}
+		\theo{$\phi$ העתקה ליניארית אמ"מ $\forall \lg_1, \lg_s \in \F, v_1, v_2 \in V \co \phi(\lg_1v_1 + \lg_2v_2) = \lg_1(\phi (v_1)) + \lg_2(\phi(v_2))$. }
+		\defi{פונקציה תיקרא \textit{שיכון} אמ"מ היא חח"ע. }
+		\noti{בהינתן $\phi \co V_1 \to V_2$ העתקה ליניארית, \textit{תמונה (Image)} תהיה: 
+			\[\Img(\phi) := \Img(\phi) := \{\phi(v) \mid v \in V_1\} \subseteq V_2\]}
+		\noti{בהינתן $v \co V_1 \to V_2$ העתקה ליניארית, \textit{גרעין (קרנל)} יהיה: 
+		\[ \ker\phi := \ker(\phi) = \{v \in V_1 \mid \phi(v) = 0\} \]}
+		\noti{\textit{הומומורפיזם} יהיה: 
+		\[ \hom_\F(V_1, V_2) = \{\phi \co V_1 \to V_2 \mid \text{העתקה ליניארית}\ \phi \} \]}
+		\noti{\hfil $\hom(V) := \hom(V, V)$}
+		\theo{יהי $\phi \co V \to U$, $\F$ שדה: 
+		\begin{enumerate}
+			\item \hfil $\phi(0_V) = 0_V$
+			\item $\Img\phi$ תמ"ו של $U$. 
+			\item $\ker\phi$ תמ"ו של $V$. 
+			\item $\phi$ על אמ"מ $\Img\phi = U$
+			\item $\phi$ חח"ע אמ"מ $\ker\phi = \{0\}$. 
+		\end{enumerate}}
+		\noti{$\phi$ \textit{העתקת האפס} אמ"מ $\Img\phi = \{0\}$ אמ"מ $\ker\phi = V$}
+		\defi{$\phi \co V_1 \to V_2$ יקרא \textit{איזומורפיזם (איזו')} אם קיימת $\psi$ ט"ל כך ש־$\psi \co V_2 \to V_1$ וגם: 
+		\[ \psi \circ \phi  = id_{V_1} \land \phi \circ \psi = id_{V_2} \]}
+		\noti{בקשירה בהגדרה לעיל, $\psi =: \phi\op$. }
+		\lem{תהי $\phi \co V_1 \to V_2$. אז: 
+		\begin{enumerate}
+			\item $\phi$ איזו אמ"מ $\phi$ חח"ע ועל. 
+			\item אם $\phi$ איזו, אז קיימת לה הופכית יחידה. 
+		\end{enumerate}}
+		\noti{נאמר שקבוצה היא \textit{איזומורפית} לקבוצה אחרת, אם קיים איזומורפיזם בינהם}
+		\theo{נתבונן ב־$\hom(V_1, V_2)$ מ"ו מעל $\F$ בעבור הפעולות: 
+		\[ (\phi + \psi)(v) := \phi(v) + \psi(v), \ (\lg\phi) := \lg\phi(v) \]}
+		\theo{בעבור $\phi \co V_1 \to V_2, \ \psi \co V_2 \to V_3$ העתקות ליניאריות, יתקיים $\psi \circ \phi$ העתקה ליניארית. }
+		\theo{הרכבת ט"לים, ביחס עם חיבור פונקציות, על $\hom(V_1, V_2)$ מקיים אסוציאטיביות בהרכבה, דיסטרביוטיביות משמאל ומימין, ותאימות עם כפל בסקלר. }
+		\theo{יהיו $\phi \co V \to U, \ V_1 \dots V_2 \in V$ ו־$\lg_1 \dots \lg_s \in \F$. אז 
+		\[ \phi(\sum\lg_iv_i) = \sum\lg_i\phi(v_i) \]}
+		\theo{יהי $V$ מ"ו עם בסיס $V = (v_1 \dots v_n)$, אז לכל $(u_1 \dots u_n) \subseteq U$ קיימת ויחידה העתקה ליניארית $\phi \co V \to U$ כך ש־$\forall i \in [n] \co \phi(v_i) = u_i$. }
+		\noti{יהיו $\phi V \to U$ ט"ל ו־$B = (v_1 \dots v_s)$ וקטורים ב־$V$. נסמן $\phi(B) := (\phi(v_1) \dots \phi(v_s))$ להיות \textit{סדרת התמונות}. }
+		\theo{בקשירה לעיל, 
+		\begin{enumerate}
+			\item אם $\phi(B)$ בת"ל, אז $B$ בת"ל. 
+			\item אם $B$ פורשת, אז $\phi(B)$ פורשת את $\Img\phi$. 
+			\item אם $\ker\phi = \{0\}$, אז ($B$ בת"ל אמ"מ $\phi(B)$ בת"ל). 
+			\item אם $\phi$ איזו, ($B$ בת"ל/פורשת/בסיס (בנפרד) גורר $\phi(B)$ בת"ל/פורשת/בסיס). 
+		\end{enumerate}}
+		\theo{\hfil $\dim V = \dim \ker\phi + \dim\Img\phi$}
+		\theo{תהי $\phi \co V \to U$ ט"ל. אם $\dim V$ סופי, אז: 
+		\begin{enumerate}
+			\item אם $\phi$ שיכון, אז $\dim V \le \dim U$. 
+			\item אם $\phi$ על, אז $\dim U \le \dim V$. 
+			\item אם $\phi$ איזו', אז $\dim V = \dim U$. 
+			\item אם $\phi$ חח"ע ועל, וגם $\dim V = \dim U$, אז $\phi$ איזו'. 
+		\end{enumerate}}
+		
+		\pagebreak
+		\section{ט"לים כמטריצות}
+		\theo{יהיו $U, V$ מ"ו ממימד $n$, $B = (v_1 \dots v_n)$ בסיס, אז ישנה ט"ל איזו' בין $\phi \co V \to U$ לבין בסיס של $U$. היא תוגדר באמצעות $\phi(B)$ עבור $\phi$ איזו, ועבור $C$ בסיס של $U$ נתאים את $\phi_C \co V \to U$ כך ש־$\forall i \in [n] \co \phi_C(v_i) = u_i$. }
+		\noti{
+		\[ [v]_B = (\lg_1 \dots \lg_n) \in \F^n, \ v = \sum_{i = 1}^{n}\lg_iv_i \]}
+		\theo{יהי $V$ מ"ו עם בסיס $B = (v_1 \dots v_n)$, נסמן $f(B) = \phi_B \co \F^n \to V$ כך ש־$\phi(\lg_1 \dots \lg_n) = \sum \lg_iv_i$. אז $f$ איזו' וההופכית שלה $f\op = \lg v \in V . [v]_B$.}
+		\defi{יהי $\phi \co V \to U$, $B = (v_i)^n_{i = 1}$ בסיס של $V$ ו־$C$ בסיס של $U$ מגודל $m$. נסמן: 
+		\[ [\phi]^B_C = \pms{\vdots & & \vdots \\ [\phi(v_1)]_C & \cdots & [\phi(v_n)]_C \\ \vdots & & \vdots} \in M_{m \times n} \]}
+		ונקראה \textit{המטריצה המייצגת של $\phi$ לבסי בסיס $B$ ו־$C$}. 
+		\theo{יהיו $U, V$ מ"וים מעל שדה $\F$ ממדים $n = \dim V, \ m = \dim U$. יהיו $C = (u_i) \subseteq U, \ B = (v_i) \subseteq V$ בסיסים. אז: 
+		\[ \sum_{\mathclap{i, j \in [m] \times [n]}}x_ja_{ij}u_j = \sum_{i = 1}^{m}u_i \cl{\sum_{j = 1}^{n}x_ja_{ij}} = \sum_{i = 1}^{n}u_ix_i\col_i \]}
+		
+		\section{כפל מטריצות}
+		\theo{יהיו $\phi, \psi$ העתקות ליניאריות, מבסיסים $B$ ל־$C$. אז: 
+			\[ [\psi + \phi]_C^B = [\phi]_C^B + [\psi]_C^B, \ [\lg\phi]_C^B = \lg[\phi]_C^B \]}
+		\theo{יהיו $U, V$ מ"וים, ו־$B, C$ בסיסים ממדים $m, n$, בהתאמה פעמיים. אז $T \co \hom(V, U0 \to M_{m \times n}(\F))$ המוגדרת לפי $T(\phi) = [\phi]_C^B$, היא איזומורפיזם. }
+		\defi{יהיו $A = (a_{ij}) \in M_{m \times s}, \ B = (b_{ij}) \in M_{s \times n}$ מטריצות. נגדיר: 
+		\[ AB := A \cdot B = \sum_{k = 1}^{s}a_{ik}b_{kj} \in M_{m \times n} \]}
+		\theo{יהיו $\phi \co V \to U, \ \psi \co U \to W$ ט"לים. $B_v, B_u, B_w$ בסיסיהן בהתאמה. אז: 
+		\[ [\psi \circ \phi]_{B_w}^{B_v} = [\psi]_{B_w}^{B_u} \cdot [\phi]_{B_u}^{B_w} \]}
+		\theo{יהיו $A, B, C$ מטריצות, אז: 
+		\begin{enumerate}
+			\item \hfil $(AB)C = A(BC)$
+			\item \hfil $A(B + C) = AB + AC$
+		\end{enumerate}}
+		\defi{
+		\[ I_n = \pms{1 & 0 & 0 & \cdots \\ 0 & 1 & 0 & \cdots \\ 0 & 0 & \ddots & \cdots \\ 0 & \cdots & 0 & 1} \]}
+		\theo{עבור $V$ מ"ו, אם $\dim V = n$ אז $[id_V]^B_B = I_n$}
+		\theo{תהי $A = (a_{ij}) \in M_{m \times n}(\F)$ מטריצה. יהי $x = (x_i) \in \F^m$ ו־$b = (b_i) \in \F^m$. אז $Ax = b$ אמ"מ $x$ פתרון למערכת המשוואות ש־$(A \mid b)$ מייצגת. }
+		\theo{תחת הקשירה של הטענה הקודמת, מרחב הפתרונות של $Ax = 0$ הוא מ"ו. }
+		\theo{תחת הקשירה של הטענה הקודמת, לכל $\phi$ ט"ל מ־$V$ ל־$U$ עם בסיסים $B, C$ בהתאמה, כך ש־$[\phi]_C^B = A$, יתקיים שמרחב הפתרונות של $(A \mid 0)$ יהיה $\ker \phi$. }
+		
+		\section{סוגי מטריצות}
+		\defi{בהינתן מטריצה $A \in M_{m \times n}(\F)$, \textit{המטריצה המשוחלפת שלה} תהיה 
+		$A^T = (a_{ji}) \in M_{n \times m}(\F)$. }
+		\theo{תהי $A$ מטריצה: 
+		\begin{enumerate}
+			\item \hfil $(A^T)^T = A$
+			\item \hfil $(\lg A)^T = \lg A^T$
+			\item \hfil $(A + B)^T = A^T + B^T$
+			\item \hfil $(AB)^T = B^TA^T$
+		\end{enumerate}}
+		\theo{יהיו $A \in M_{m \times n}(\F)$ מטריצה, $\phi \co \F^m \to \F^n$ העתקה' tz: 
+		\[ \phi_A := (\lg_1 \dots \lg_m) = (\lg_1 \dots \lg_n) \cdot A, \ [\phi_A]^E_E = A^T \] ???}
+		
+		\defi{$A$ \textit{הפיכה מימין} אם קיימת $\exists B \in M_{n}(\F) \co AB = I_n$. }
+		\defi{$A$ \textit{הפיכה משמאל} אם קיימת $\exists B \in M_{n}(\F) \co BA = I_n$. }
+		\defi{$A$ הפיכה אם קיימת $\exists B \in M_{n}(\F) \co AB = BA = I_n$. }
+		\theo{בהינתן $A \in M_n(\F)$, אז $A$ הפיכה אמ"מ היא מייצגת איזומורפיזם אמ"מ כל ההעתקות שהיא מייצגת הן איזומורפיזם. }
+		\defi{ההופכית למטריצה היא יחידה. }
+		\noti{בהינתן מטריצה הפיכה $A$, את ההופכית שלה נסמן ב־־$A\op$ (מוגדר היטב מיחידות). }
+		\theo{$A$ הפיכה מימין אמ"מ $A$ הפיכה משמאל אמ"מ $A$ הפיכה מימין. }
+		\theo{תהי $Ax = b$ מערכת משוואות עם $n$ נעלמים, $A \in M_{n}(\F), \ x = (x_i)^n_{i = 1}$, ווקטור משתנים $b = (b_i)_{i = 1}^n$. אז $A$ הפיכה גורר $A\op b = x$ פתרון יחיד. }
+		\theo{יהיו $A, B \in M_{n}(\F)$ הפיכות, אז: 
+		\begin{enumerate}
+			\item $A\op$ הפיכה. 
+			\item $(A\op)\op =A$. 
+			\item $A^T$ הפיכה. 
+			\item $(A^T)\op = (A\op)^T$. 
+			\item $AB$ הפיכה, ומתקיים $(AB)\op = B\op A\op$. 
+		\end{enumerate}}
+		\theo{\hfil $(A_1 \cdots A_s)\op = A_s\op \cdots A_1 \op$}
+		\defi{\textit{מטריצה אלמנטרית} היא מטריצה שמתקבלת ממטריצת היחידה ע"י פעולה אלמנטרית אחת. }
+		\theo{תהי $\phi$ פעולה אלמנטרית, $E := \phi(I_n)$, אז$\phi(A) = E \cdot A$. }
+		\theo{תהי $A$ מטריצה אלמנטרית, אזי $A$ הפיכה וההופכית שלה אלמנטרית. }
+		\theo{מכפלה של אלמנטרית היא הפיכה. }
+		\theo{יהי $B \in M_{m \times n}$, אז קיימת $A \in M_{m}(\F)$ מכפלת אלמנטריות, ו־$B' \in M_{m \times n}(\F)$ מדורגת קאנונית, כך ש־$B = AB'$. }
+		\theo{תהי $B \in M_{n}(\F)$ מדורגת קאנונית, אז $B = I_n$ אמ"מ $B$ הפיכה. }
+		\theo{יהיו $A, B, C \in M_n(\F)$, ונניח $A = CB$. אם $C$ הפיכה, אז $B$ הפיכה אמ"מ $A$ הפיכה. }
+		\theo{יהיו $A, B  \in M_n$ מטריצות מדורגות קאנונית כך ש־$B = E_s \cdots E_1A$ עבור $E_i$ מטריצה אלמנטרית. אז: 
+		\begin{enumerate}
+			\item $A$ הפיכה אמ"מ $B = I$
+			\item אם $A$ הפיכה, אז $A\op = E_s \cdots E_1$. 
+		\end{enumerate}}
+		\defi{$A$ תקרא \textit{סימטרית} אם $A^T = A$ (ובפרט $A$ ריבועית). }
+		\defi{$A$ אנטי־סימטרית אם $A^T = -A$. }
+		\defi{עבור מטריצה $A \in M_{m \times n}(\C)$, נגדיר $A^* \in M_{n \times m}(\C)$ ע"י $(A^*){ij} = \ol{A_{ij}}$ להיות \textit{המטריצה הצמודה של $A$}. }
+	\end{multicols}
+	{\let\newpage\relax\maketitle}
+	\maketitle
+	
+\end{document}
