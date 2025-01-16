@@ -446,7 +446,8 @@
 			
 			סה"כ קיבלנו $\dim \col A \ge \rk A + \rk B \land \dim \col E = \rk A$. נסמן $C_1 = (A, A), C_2 = (A, B)$. אז $C = \binom{C_1}{C_2}$. 
 			
-			[...] צריך לקשר בין $\rows$ ל־$\cols$ למרות שאני לא במטריצה ריבועית. 
+			לכן: 
+			\[ \dim \rows  \]
 			
 			באופן דומה ללמה 1, נקבל ש־: 
 			\[ \dim \rows C \le \dim \col C_1 + \dim \col C_2 \le \rk A + \rk B + \rk A = 2\rk A + \rk B \quad \top \]
@@ -489,7 +490,7 @@
 			\[ \begin{WithArrows}
 				\exists (\tl \lg_i)_{i = 0}^{r + 1} \co 0 &= \tl\lg_{1}B_1 + \cdots + \tl\lg_rB_r + \lg_{r + 1}v \Arrow{ $-\tl\lg_{r +1}v$} \\
 				- \lg_{r + 1}v &= \exists (\tl \lg_i)_{i = 0}^{r + 1} \co \tl\lg_{1}B_1 + \cdots + \tl\lg_rB_r \Arrow{$\cdot \frac{-1}{\tl \lg_{r + 1}}$} \\
-				v &= -\frac{\lg_1}{\lg_{r + 1}}B_1 - \cdots -\frac{\lg_r}{\lg_{r + 1}}B_1 \\
+				v &= -\frac{\tl\lg_1}{\tl\lg_{r + 1}}B_1 - \cdots -\frac{\tl\lg_r}{\tl\lg_{r + 1}}B_1 \\
 				:&= \lg_1B_1 + \cdots + \lg_rB_r
 			\end{WithArrows} \]
 			
@@ -516,15 +517,32 @@
 					\[ \Si = \sum_{i = 1}^{r}\lg^{j}_{f(i)} R_{f(i)} \overset{(1)}{=} \sum_{i = 1}^{r}\lg^{j}_{f(i)}R_{f(i)} \overset{(2)}{=} A_j \]
 					כדרוש. \textit{הערות: }
 					\begin{enumerate}
-						\item[\textit{(1)}]\textit{נכון מהיות $f$ על + שינוי סדר סכימה. }
-						\item[\textit{(2)}]\textit{נכון מהגדרת $(\lg_i)$, ע"פ זהות זו בדיוק. }
+						\item[$(1)$]\textit{נכון מהיות $f$ על + שינוי סדר סכימה. }
+						\item[$(2)$]\textit{נכון מהגדרת $(\lg_i)$, ע"פ זהות זו בדיוק. }
 					\end{enumerate}
 				\end{itemize}
-				סה"כ הוכחנו את הדרוש. 
+				סה"כ הוכחנו שאכן לסכום שוויון ל־$A$, וה־$\rk$ של כל מטריצה בסכום הוא $1$. 
 			\end{itemize}
-			
+			משהוכח לעיל ובגלל ש־$|(P_i)_{i = 0}^r| = r$, הוכחנו את הדרוש, ו־$(P_i)$ הסדרה המבוקשת. 			
 		\end{proof}
 		\item צ.ל. אי קיום $B_1 \dots B_{r - 1} \in M_{m \times n}(\F)$ כך ש־$A = \sum B_i \land \forall 1 \le i \le r - 1 \co \rk B_i = 1$. 
+		\begin{proof}
+			תהי $A \in M_n(\F)$, נסמן $\rk A = r$. נניח בשלילה קיום $B_1 \cdots B_{r - 1} \in M_{m \times n}(\F)$, נסמן $B := (B_i)_{i = 0}^{r - 1}$, כך ש־$\sum_{i =1}^{r - 1}B_i = A$. 
+	נסמן ב־$\rows P$ את קבוצת וקטורי השורה של המטריצה $P$. 
+	
+	בגלל ש־$\forall B_i \in B \co \rk B_i = 1 = \dim \Sp \rows B_i$, ומשום שקיימת שורה $R$ ב־$B_i$ כך ש־$R \neq 0$ כי אחרת $\rows B = \rows 0 = 0$ ו־$\rk B_i = 0$ סתירה, אז $R$ ב־$\Sp \rows B_i$ ואינו $0$ כלומר $\Sp\{R\}$ מממד $1$ גם כן, ותמ"ו ב־$\Sp\rows B_i$ כי $R \in B_i$, ממשפט תמ"ו של מ"ו זהה ממד הוא שווה מרחב, כלומר $\Sp \{R\} = \Sp \rows B_i$. משום שהממד הוא $1$ אז $\{R\}$ בסיס ל־$\rows B_i$. נסמן ב־$R^j_i$ את הוקטור ה־$j$ ב־$R_i$. אז משום ש־$R$ פורש את $\rows$ אז קיים $\lg$ כך ש־$\lg R = R^j_i$. נסמן אותו להיות $\lg_i^j$. נסמן את ה־$R$ המתאים לכל מטריצה $B_i$ ב־$R_i$. 
+	
+	נסמן ב־$A_i$ את השורה ה־$i$ ב־$A$. סה"כ: 
+	\[ A_i = \cl{\sum_{j = 1}^{r - 1}B_j}_{\mathclap{i}} \!= \sum_{j = 1}^{r - 1}R^i_j = \sum_{j = 1}^{r - 1} \lg^{i}_jR_j \]
+	לכל $v \in \Sp \rows A$ יתקיים קיום $(\ag_i)_{i = 1}^{n}$ כך ש־$v = \ag_1 A_1 + \cdots + \ag_nA_n$. אז: 
+	\[ v = \sum_{i = 1}^{n}\ag_iA_i = \sum_{i = 1}^{n}\cl{\ag_i\sum_{j = 1}^{r - 1}\lg^{i}_jR_i}
+	=\sum_{j = 1}^{r - 1}\Bigg[\underbrace{\cl{\sum_{i = 1}^{n}\ag_i\lg^i_j}}_{:= \bg_i}R_i \Bigg] = \sum_{i = 1}^{r - 1}\bg_iR_i
+	 \]
+	 סה"כ, $v$ ניתן לביטוי ע"י קומבינציה ליניארית עם מקדמים $(\bg_i)$ של $(R_i)_{i = 1}^{r - 1}$. סה"כ מצאנו בסיס מגודל $r - 1$ ל־$\Sp\rows A$, לכן $\dim \Sp\rows A = r - 1$. בגלל ש־$\rk A = r$ אז $\dim \Sp \rows A =r$ ומטרנזיטיביות $r = r - 1$. נחסיר $r$ משני האגפים ונקבל $0 = 1$, סתירה. 
+	 
+	 הגענו לסתירה, והנחת השלילה הופרכה. הוכחנו כי אכן לא קיימים $(B_i)_{i = 1}^{r - 1}$ המקיימים את התנאים לעיל. 
+	
+		\end{proof}
 	\end{enumerate}
 	
 	\section{}
