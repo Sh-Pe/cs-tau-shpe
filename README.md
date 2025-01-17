@@ -1,6 +1,4 @@
-# cs-tau-shpe
-My documents for computer science degree in Tel-Aviv University, with Odyssey program.
+# Computer Science Notes at Tel-Aviv University by Shahar Perets
+My documents for computer science degree in Tel-Aviv University, togather with Odyssey program.
 
-Currently available in Hebrew only. 
-
-_By Shahar Perets_
+Courses has been done in Hebrew unless noted otherwise.  
