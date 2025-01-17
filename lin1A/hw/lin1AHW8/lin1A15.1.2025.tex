@@ -1,0 +1,604 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2025}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{\en{, }}}
+\newcommand\defi  {\text{\en{ definition}}}
+\newcommand\defis {\text{\en{ definitions}}}
+\newcommand\given {\text{\en{given }}}
+\newcommand\case  {\text{\en{if }}}
+\newcommand\syx   {\text{\en{ syntax}}}
+\newcommand\rle   {\text{\en{ rule}}}
+\newcommand\other {\text{\en{else}}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+\DeclareMathOperator\col   {Col}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\sgn}    {sgn} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+\newcommand\dms[1]    {\left\vert\begin{matrix}
+		#1
+\end{matrix}\right\vert}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+% someone's code form the internet: https://tex.stackexchange.com/questions/12910/how-do-i-typeset-vertical-and-horizontal-lines-inside-a-matrix
+\newcommand*{\vertbar}{\rule[-.5ex]{0.5pt}{2.5ex}}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
+
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\rk}     {rank}
+\DeclareMathOperator{\cols}   {Col}
+\DeclareMathOperator{\rows}   {Row}
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+\newcommand\wmid      {\;\middle\vert\;}
+
+\renewcommand\phi     {\varphi}
+\newcommand\bcl[1]    {\big(#1\big)}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 8}}
+\begin{document}
+	\maketitle
+	\section{}
+	יהיו $A, B \in M_n(\F)$ מטריצות. נתבונן ב־: 
+	\[ C = \pms{A & A \\ A & B}_{2n \times 2n} \]
+	צ.ל. $\rk C \le 2\rk A + \rk B$. 
+	\begin{proof}
+			ידוע קיום $\tl A, \tl B$. ממשפט, לכל מטריצה $P$ קיימת צורה מדורגת קאנונית, נסמנה $\tl P$, וממשפט ידוע $\rk \tl P = \rk P$. נסמן ב־$\cols P$ את מרחב העמודות של $P$ וב־$\rows P$ את מרחב שורותיה. אם $P$ ריבועית, אז ממשפט $\rows P = \cols P = \rk P$. 
+			
+			
+			
+			\textbf{למה 1. }\textit{תהי $P = \binom{X}{Y}$ מטריצה, כאשר $X, Y$ ריבועיות. אז $\bar P = \binom{\tl X }{\tl Y}$ מקיים }
+			\[\dim \rows P = \dim \rows \bar P = \dim \rows \tl P \le \rk X + \rk Y\]
+			נתבונן ב־$\tl P$. 
+			אז כמות שורות שאינן אפסים ב־$\tl P$ היא $\rk \tl X + \rk \tl Y = \rk X + \rk Y$ משום שבצורה מדורגת של מטריצה הדרגה כי כמות השורות שאינן אפסים, ממשפט. מכיוון שבדירוג $X, Y$ בנפרד, למעשה דירגנו את שורותיהם בלבד, ושורותיהם שורות $P$, ומשום שדירוג הוא הכפלה בהרכבת פעולות אלמנטריות בלבד ממשפט, אז $\bar P$ הכפלה בהרכבת שרשור הפעולות האלמנטריות על $X, Y$ (חוקי כי כל אחד בשורות אחרות ולכן הפעולות זרות, והסדר לא משנה), כלומר $\bar P \sim P$. ממשפט, $\rows \bar P = \rows P$, וכמות הוקטורים (שאינם אפסים, שהם ת"ל בינם לבין עצמם) חסם עליון לגודל מ"ו, כלומר $\dim \rows \bar P \le \rk X + \rk Y$. מטרנזיטיביות נקבל את הדרוש. 
+			
+			נתבונן ב־$D = (A, B)$. ניכר כי $D^T = \binom{A^T}{B^T}$. כמו כן ידוע $\cols A = \rows A = \cols A^T = \rk A$ ובאופן זהה בעבור $B$, ולכן $\rk A^T = \rk A$ וכן על $B$. מטענות שהוצגו $\rk \tl A^T = \rk A$ וכנ"ל בעבור $B$. נתבונן ב־$\bar D = \binom{\tl A^T}{\tl B^T}$. מלמה 1 ומטרנזיטיביות, $\dim \rows \bar D \ge \rk A + \rk B$. 
+			
+			נתבונן ב־$E = (A, A)$. ניכר כי $E^T = \binom{A^T}{A^T}$. אז באופן דומה לנעשה על $D$, $\rk A = \rk A^T$. מלמה 1 נקבל $\dim \rows E^T = \dim \rows \bar E$, כאשר $\bar E = \binom{\tl A^T}{\tl A^T}$. בגלל ש־$\tl A^T = \tl A^T$ אז $\tl A^T \sim \tl A^T$ ולכן שורותיהם תלויות ליניארית, וסה"כ $\dim \rows E^T = \dim \tl E^T = \rk A$. 
+			
+			סה"כ קיבלנו $\dim \col A \ge \rk A + \rk B \land \dim \col E = \rk A$. נסמן $C_1 = (A, A), C_2 = (A, B)$. אז $C = \binom{C_1}{C_2}$. 
+			
+			בגלל ש־$A = A^T$:
+			\[ \dim \rows A = \dim \rows \pms{E \\ D} = \dim \cols A^T = \dim \cols \pms{E^T & D^T} = \dim \cols A = \dim \cols\pms{E & D} \]
+			בגלל שהוקטורים ב־$\col E$ ו־$\col D$ יחדיו פורשים את מ"ו $\col \pms{E & D}$, ולכן כל אחד מהם תמ"ו של המרחב, ו־$\col D + \col E = \col \pms{D & E}$. לכן ממשפט: 
+			\[ \dim \cols \pms{E & D} \le \dim \col E + \dim \col D \le \rk A + \rk B + \rk A = 2\rk A + \rk B \quad \top \]
+	\end{proof}
+	
+	\npage
+	\section{}
+	נגדיר: 
+	\[ v_1 = \pms{1 \\ 2 \\ 3}, \ v_2 = \pms{2 \\ 1 \\ 3}, \ v_3 = \pms{1 \\ 1 \\ 1} \]
+	\begin{enumerate}[A)]
+		\item נחשב את דרגת המטריצה $A = v_1v_1^T + v_2 + v_2^T + v_3v_3^T$. 
+		ראשית כל, נוכיח שהוקטורים בת"לים. נעשה זאת ע"י דירוגם בשורות. 
+		\[ \pms{1 & 1 & 1 \\ 1 & 2 & 3 \\ 2 & 1 & 3} \rrt{R_2 \to R_2 - R_1}{R_3 \to R_3 - 2R_1} = \pms{1 & 1 & 1  \\ 0 & 1 & 2 \\ 0 & -1 & 1} \rrr{R_3 \to R_3 + R_2} \pms{1 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 3} \]
+		מדורג עם $3$ איברים פותחים ולכן פורש מרחב ממימד $3$, וישנם $3$ וקטורים שפרשו את המרחב ולכן הם בסיס ובפרט בת"ל. 
+		
+		אזי, מסעיף ב', שהוכח באופן בלתי תלוי מסעיף א', נקבל ש־$\rk A = 3$. 
+		\item תהי $(v_1 \dots v_k)$ בת"ל. נמצא את דרגת $v_1v_1^T + \cdots + v_kv_k^T$. 
+		\begin{proof}
+			\textbf{למה 1. }\textit{לכל וקטור $v$, ולכל שורה $R$ ב־$vv^T$, יתקיים $\exists a \in \F \co R = av$. }
+			יהי $v$ וקטור מאורך $n$, ו־$A = vv^T$. אז: 
+			\[ (A)_{ij} = (v v^T)_{ij} = \sum_{j = 1}^{n = 1}v_{ij}v_{ji} = v_i \cdot v_j \implies (a_{ij})_{j = 0}^n = (v_i \cdot v_j)_{j = 0}^n = v_i \cdot (v_j)_{0}^n = v_i v \]
+			סה"כ בעבור כל שורה ב־$A$ יתקיים קיום $a \in v_i$ כך ש־$\col = av$, כדרוש. 
+			
+			תהי $(v_1 \dots v_k) \in \R^k$ סדרה בת"ל. נסמן $A_k := v_kv_k^T$. נתבונן במטריצה ־$\Si := \sum_{i = 1}^{k} A_k$. נסמן ב־$B_i$ את השורה ה־$i$ במטריצה הכללית $B$. 
+			\[ \exists (a_i)_{i = 1}^k \co (\Si)_i = \sum_{i = 1}^{k}(A_k)_i = \sum_{i = 1}^{k}a_i v_k \]
+			כאשר טענה הקיום נובעת מלמה 1 (באינדוקציה). מצאנו קומבינציה ליניארית של $(v_i)$, היא $(a_i)$ לכל שורות $\Si$. הקומבינציה הליניארית הזו יחידה משום ש־$(v_i)$ בת"ל, ואם אינה הייתה יחידה, היו בפריסה של $(v_i)$ שני וקטורים עם ייצוג זהה, אך $(v_i)$ בת"ל ופורש את המרחב שהוא עצמו פורש ולכן בסיס, וייצוג איברים מתוך בסיס איזו', ובפרט חח"ע – סתירה. 
+			
+			בגלל שהוקטורים במרחב השורות של $\Si$ ניתנים לייצוג כקומבינציה ליניארית של שורות $\Si$ מהגדרת $\Sp$, ואלו מוגדרות באופן יחיד מ־$(v_i)$, אז הם ניתנים לייצוג באופן יחיד ע"י וקטורים ב־$(v_i)$. סה"כ, $(v_i)$ בסיס לפי הגדרה למרחב השורות של $\Si$, שממדו זהה למימד $\rk \Si$ לפי הגדרה. בגלל ש־$\Si = v_1v_1^T + \cdots + v_kv_k^T$ וגם $|(v_i)| = k$, אז דרגת המטריצה $v_1v_1^T + \cdots + v_kv_k^T$ היא $k$, כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	$A \in M_{m \times n}(\F)$ כך ש־$\rk A = r$. 
+	\begin{enumerate}[A)]
+		\item צ.ל. קיום $B_1 \dots B_r \in M_{m \times n}(\F)$ כך ש־$A = \sum B_i \land \forall 1 \le i \le r \co \rk B_i = 1$. 
+		\begin{proof}
+			תהי $A \in M_{m \times n}$ מטריצה, ונסמן $\rk A = r$. נסמן את קבוצת וקטורי העמודה ב־$A$ ב־$\cols A$. אז מרחב העמודות $\Sp \cols A$ נפרש ע"י $\cols A$. משום ש־$\dim \Sp \cols A = \rk A = r$, ובגלל של־$A$ יש $n$ עמודות (כלומר $|\cols A| = n$) אז ממשפט ישנו בסיס בגודל $r$. ממשפט לכל $n \ge i > r$, $i$. אם לא קיימים $r$ וקטורים בת"ל ב־$\cols A$ אז נפרש מרחב מגודל קטן ממש מ־$r$ על ידי הבסיס, ושאר הוקטורים ת"ל ולא משנים ממד, כלומר ישנם $r$ וקטורים ב־$\cols A$ בסיס של $\Sp\cols A$, נסמנם $B$. נסמן גם $\ol B = \cols \setminus B$. 
+			
+			משום ש־$|\cols A| = r$ אז קיימת פונ' חח"ע ועל $R_i \co [r] \to \cols A$ מהגדרת עוצמה. עבור ההופכית לה $f(x)$ נסמן $v_i = f(v) \in [r]$. בה"כ הסדר $R_i$ זהה לסדר השורות המטריצה, משמאל לימין. 
+			אז, לכל $v \in \ol B$, אז $v \in \cols A$ ולכן ניתן לביטוי כקומבינציה ליניארית עם קבועים שנסמן $(\lg^{v_i}_{j})$ (עבור $j$ כך ש־$R_j \in B$). זאת כי: 
+			\[ \begin{WithArrows}
+				\exists (\tl \lg_i)_{i = 0}^{r + 1} \co 0 &= \tl\lg_{1}B_1 + \cdots + \tl\lg_rB_r + \lg_{r + 1}v \Arrow{ $-\tl\lg_{r +1}v$} \\
+				- \lg_{r + 1}v &= \exists (\tl \lg_i)_{i = 0}^{r + 1} \co \tl\lg_{1}B_1 + \cdots + \tl\lg_rB_r \Arrow{$\cdot \frac{-1}{\tl \lg_{r + 1}}$} \\
+				v &= -\frac{\tl\lg_1}{\tl\lg_{r + 1}}B_1 - \cdots -\frac{\tl\lg_r}{\tl\lg_{r + 1}}B_1 \\
+				:&= \lg_1B_1 + \cdots + \lg_rB_r
+			\end{WithArrows} \]
+			
+			קיים זיווג בין $[r]$ לבין $\{i \in [n] \co R_i \in B\}$ כי יש $r$ וקטורים ב־$B$, נסמנו $f(i)$. בעבור $M$ מט', נסמן ב־$M_i$ את הטור ה־$i$ ב־$M$. נבחין שתחת ההגדרה הזו $R_i = A_i$. 
+			נתבונן בקבוצת המטריצות הבאה: 
+			\[ (P_i)_j = \begin{cases}
+				R_{f(i)} & f(i) = j \\
+				\lg_{f(i)}^{j}R_{f(i)} & R_j \in \ol B \\
+				0 & \other
+			\end{cases} \]
+			נוכיח ש־$\sum P_i = A \land \forall i \in [r] \co \rk P = 1$. 
+			\begin{itemize}
+				\item \textbf{דרגה. }נוכיח ש־$\rk P_i = 1$. ידוע ש־$\rk B = \dim \Sp \cols P_i$ (הדרגה היא ממד מרחב העמודות). נבחין ש־$\cols B$ הוא פרישה של וקטורים שהם אחד מההבאים: 
+				\begin{itemize}
+					\item וקטור ה־$0$, שת"ל ב־$R_{f(i)}$. 
+					\item הוקטור $R_{f(i)}$, שתלוי ליניארית בעצמו. 
+					\item וקטור כלשהו $\lg R_{f(i)}$, שבעבור הקבוע $-\frac{1}{\lg}$ סכומו עם $R_{f(i)}$ יהיה $0$ כלומר הוא ת"ל ב־$R_{f(i)}$. 
+				\end{itemize}
+				סה"כ כל הוקטורים שפורשים את המ"ו ת"ל בוקטור שאינו $0$ (ובפרט גודל המרחב אינו $0$), ולכן גודל המרחב לכל היותר $1$, וסה"כ גודל המ"ו $\cols B$ הוא $1$, כלומר $\rk P = 1$ כדרוש. 
+				\item \textbf{סכום. }נוכיח ש־$\Si := \sum P_i = A$. נוכיח שוויון עמודות. נפלג למקרים בעבור העמודה$j$ ב־$A$. 
+				\begin{itemize}
+					\item נניח $j \in \{i \in [n] \co R_i \in B\} = \Img f$. אז עבור כל מטריצה $P_i$, אם $f(i) = j$, אז מהיות $f$ זיווג, $i$ האינדקס של $P$ הוא  גם קיים וגם היחיד שיקיים תכונה זו. כמו כן, $j \notin B$ ולכן בשאר המטריצות עמודה זו תהיה $0$. סה"כ קיבלנו $0 + \cdots + R_{f(i)} + \cdots + 0 = R_j = A_j$, כדרוש. 
+					\item אחרת, $j \notin \Img f$. לכן בהכרח $R_j \in \ol B$ מהגדרת תמונת $f$. אז: 
+					\[ \Si = \sum_{i = 1}^{r}\lg^{j}_{f(i)} R_{f(i)} \overset{(1)}{=} \sum_{i = 1}^{r}\lg^{j}_{f(i)}R_{f(i)} \overset{(2)}{=} A_j \]
+					כדרוש. \textit{הערות: }
+					\begin{enumerate}
+						\item[$(1)$]\textit{נכון מהיות $f$ על + שינוי סדר סכימה. }
+						\item[$(2)$]\textit{נכון מהגדרת $(\lg_i)$, ע"פ זהות זו בדיוק. }
+					\end{enumerate}
+				\end{itemize}
+				סה"כ הוכחנו שאכן לסכום שוויון ל־$A$, וה־$\rk$ של כל מטריצה בסכום הוא $1$. 
+			\end{itemize}
+			משהוכח לעיל ובגלל ש־$|(P_i)_{i = 0}^r| = r$, הוכחנו את הדרוש, ו־$(P_i)$ הסדרה המבוקשת. 			
+		\end{proof}
+		\item צ.ל. אי קיום $B_1 \dots B_{r - 1} \in M_{m \times n}(\F)$ כך ש־$A = \sum B_i \land \forall 1 \le i \le r - 1 \co \rk B_i = 1$. 
+		\begin{proof}
+			תהי $A \in M_n(\F)$, נסמן $\rk A = r$. נניח בשלילה קיום $B_1 \cdots B_{r - 1} \in M_{m \times n}(\F)$, נסמן $B := (B_i)_{i = 0}^{r - 1}$, כך ש־$\sum_{i =1}^{r - 1}B_i = A$. 
+	נסמן ב־$\rows P$ את קבוצת וקטורי השורה של המטריצה $P$. 
+	
+	בגלל ש־$\forall B_i \in B \co \rk B_i = 1 = \dim \Sp \rows B_i$, ומשום שקיימת שורה $R$ ב־$B_i$ כך ש־$R \neq 0$ כי אחרת $\rows B = \rows 0 = 0$ ו־$\rk B_i = 0$ סתירה, אז $R$ ב־$\Sp \rows B_i$ ואינו $0$ כלומר $\Sp\{R\}$ מממד $1$ גם כן, ותמ"ו ב־$\Sp\rows B_i$ כי $R \in B_i$, ממשפט תמ"ו של מ"ו זהה ממד הוא שווה מרחב, כלומר $\Sp \{R\} = \Sp \rows B_i$. משום שהממד הוא $1$ אז $\{R\}$ בסיס ל־$\rows B_i$. נסמן ב־$R^j_i$ את הוקטור ה־$j$ ב־$R_i$. אז משום ש־$R$ פורש את $\rows$ אז קיים $\lg$ כך ש־$\lg R = R^j_i$. נסמן אותו להיות $\lg_i^j$. נסמן את ה־$R$ המתאים לכל מטריצה $B_i$ ב־$R_i$. 
+	
+	נסמן ב־$A_i$ את השורה ה־$i$ ב־$A$. סה"כ: 
+	\[ A_i = \cl{\sum_{j = 1}^{r - 1}B_j}_{\mathclap{i}} \!= \sum_{j = 1}^{r - 1}R^i_j = \sum_{j = 1}^{r - 1} \lg^{i}_jR_j \]
+	לכל $v \in \Sp \rows A$ יתקיים קיום $(\ag_i)_{i = 1}^{n}$ כך ש־$v = \ag_1 A_1 + \cdots + \ag_nA_n$. אז: 
+	\[ v = \sum_{i = 1}^{n}\ag_iA_i = \sum_{i = 1}^{n}\cl{\ag_i\sum_{j = 1}^{r - 1}\lg^{i}_jR_i}
+	=\sum_{j = 1}^{r - 1}\Bigg[\underbrace{\cl{\sum_{i = 1}^{n}\ag_i\lg^i_j}}_{:= \bg_i}R_i \Bigg] = \sum_{i = 1}^{r - 1}\bg_iR_i
+	 \]
+	 סה"כ, $v$ ניתן לביטוי ע"י קומבינציה ליניארית עם מקדמים $(\bg_i)$ של $(R_i)_{i = 1}^{r - 1}$. סה"כ חסם עליון לבסיס בסיס שהוא $r - 1$ כי מצאנו פורש בגודל $r -1$ ל־$\Sp\rows A$, לכן $\dim \Sp\rows A \le r - 1$. בגלל ש־$\rk A = r$ אז $\dim \Sp \rows A =r$ ומטרנזיטיביות $r \le r - 1$. נחסיר $r$ משני האגפים ונכפיל ב־$(-1)$, נקבל $0 \ge 1$, סתירה. 
+	 
+	 הגענו לסתירה, והנחת השלילה הופרכה. הוכחנו כי אכן לא קיימים $(B_i)_{i = 1}^{r - 1}$ המקיימים את התנאים לעיל. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נתבונן בשלושת הוקטורים הבאים: 
+	\[ u = \pms{u_1 \\ u_2 \\ u_3}, \ v = \pms{v_1 \\ v_2 \\ v_3}, \ w = \pms{w_1 \\ w_2 \\ w_3}, \ \det(u, v, w) = \det\pms{u_1 & v_1 & w_1 \\ u_2 & v_2 & w_2 \\ u_3 & v_3 & w_3} \]
+	נביר את $\det(u + v, v, w)$ ואת $\det(u + v, v + w, w + u)$ באמצעות $\det(u, v, w)$. 
+	
+	\textbf{למה 1. }\textit{ליניאריות חיבור עמודות. }
+	\begin{align*}
+		\det(u + x, v, w) &= \det\underbrace{\pms{\vertbar & \vertbar & \vertbar \\ u + x & v & w \\ \vertbar & \vertbar & \vertbar}}_{:=A} = \det A = \det A^T =
+		\dms{\horzbar & w & \horzbar \\ \horzbar & v & \horzbar \\ \horzbar & u + x & \horzbar}
+		\overset{(1)}{=}
+		\dms{\horzbar & w & \horzbar \\ \horzbar & v & \horzbar \\ \horzbar & u & \horzbar}
+		+ \dms{\horzbar & w & \horzbar \\ \horzbar & v & \horzbar \\ \horzbar & x & \horzbar} \\
+		&= \dms{\vertbar & \vertbar & \vertbar \\ w & v & u \\ \vertbar & \vertbar & \vertbar}
+		+ \dms{\vertbar & \vertbar & \vertbar \\ w & v & x \\ \vertbar & \vertbar & \vertbar}
+		 = \det(u, v, w) + \det(x, v, w)
+	\end{align*}
+	ניעזר בלמה זו תחת הסימון $[1]$. \textit{הערות: }
+	\begin{enumerate}
+		\item[$(1)$] מתקיים ממולטיליניאריות. 
+		\item[$(2)$] מתקיים מהפעלת transpose, כי דיטרמיננטה משמרת transpose. 
+	\end{enumerate}
+	\textbf{למה 3. }\textit{חילוף עמודות הופך כיוון דיטרמיננטה. }תהי $A$ מטריצה בה עמודות $u, v$, נסמן ב־$A'$ את המטריצה לאחר החלפת השורות בהן נמצאים וקטורי השורה $u, v$ .
+	\begin{align*}
+		&\det A := \det(\dots, u, \dots v, \dots) = \det A = \det A^T \overset{(1)}{=} -\det A'^T = -\det A' 
+	\end{align*}
+	\textit{הערות: $(1)$ נכון בעבור החלפה של שתי השורות בהן $u^T, v^T$ וקטורי העמודה, וכי החלפת שורות מטריצה הופכת את כיוון הדיטרמיננטה שלה. }
+	
+	ניעזר בלמה זו תחת הסימון $[3]$. 
+	
+	\textbf{למה 2. }	\textit{הדיטרמיננטה של מטריצה עם עמודות זהות היא 0. }בעבור החלפת השורות הזהות: 
+	\[ \det A \overset{[3]}{=} -\det A \implies 2\det A = 0 \implies \det A = 0 \]
+	\textit{הערה: כחלק מהוכחת למה 2 ניעזרנו בלמה 3, אך בלמה 3 לא ניעזרנו בלמה 2, ולכן ההוכחה אינה מעגלית. }
+	
+	ניעזר בלמה זו תחת הסימון $[2]$. 
+	
+	\begin{enumerate}
+		\item 
+		\[ \det(u + v, v, w) \overset{[1]}{=} \det(u, v, w) + \det(v, v, w) \overset{[2]}{=} \bm{\det(u, v, w)} \]
+		\item 
+		\begin{align*}
+			\det(u + v, v + w, w + u)
+			\overset{[1]}{=} &\det(u, v + w, w + u) + \det(v, v + w, w + u) \\
+			\overset{[1]}{=} &\det(u, v, w + u) + \det(u, w, w + u) + \det(v, v, w + u) + \det(v, w, w + u) \\
+			\overset{[1]}{=} &\det(u, v, w) + \det(u, w, w) + \det(v, v, w) + \det(v, w, w) \\
+			+&\det(u, v, u) + \det(u, w, u) + \det(v, v, u) + \det(v, w, u) \\
+			\overset{[2]}{=} &\det(u, v, w) + \cancel{\det(u, w, w)} + \cancel{\det(v, v, w)} + \cancel{\det(v, w, w)} \\
+			+&\cancel{\det(u, v, u)} + \cancel{\det(u, w, u)} + \cancel{\det(v, v, u)} + \det(v, w, u) \\
+			=&\det(u, v, w) + \det(u, w, v) \\
+			\overset{[3]}{=}&\det(u, v, w) - \det(u, v, w) = \bm{0}
+		\end{align*}
+	\end{enumerate}
+	
+	\ndoc
+	
+\end{document}

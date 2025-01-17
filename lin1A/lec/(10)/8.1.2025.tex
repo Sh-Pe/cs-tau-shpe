@@ -1,0 +1,592 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\rk}     {rk}
+\DeclareMathOperator{\Sp}     {span}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#1]{#2}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 10}}
+\begin{document}
+	\maketitle
+	\section{}
+	\textbf{משפט. }קריטריונים שקולים להפכיות מטריצה $A \in M_n(F)$: 
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $A$ הפיכה
+			\item $\forall v \in F^n$ למערכת המשוואות $Ax = b$ קיים פתרון יחיד
+			\item $\forall b \in \F^n$ למערכת המשוואות $Ax = b$ קיים פתרון. 
+			\item קיים $b \in \F^n$ כך שלמערכת $Ax = b$ פתרון יחיד. 
+			\item למערכת $Ax = 0$ פתרון יחיד. 
+			\item $A$ שקולת שורות ל־$I$
+		\end{enumerate}
+	\end{multicols}
+	
+	\textit{הערה שלי: }עוד כמה טענות ראינו בשיעור הקודם. 
+	
+	\textit{הערה 2: }קצת נרדמתי אז מתישהו ההוכחה הבאה תהפוך לקצת מעורפלת
+	
+	
+	\begin{proof}
+		\item[$\co 2 \impliedby 1$] יהי $b \in \F^n$, נראה שלמערכת $Ax = b$ קיים פתרון יחיד, בהינתן $A$ הפיכה. אם $Ax = b$ אז באופן שקול $x = A\op b$ ו־$A\op$ 
+		\item[$\co 3 \impliedby 2$] אם קיים פתרון והוא יחיד, בפרט קיים פתרון. 
+		\item[$\co 4 \impliedby 3$] נסמן $\phi \co \F^n \to \F^n$, $\phi_A(x) = Ax$. אז $\phi_A$ היא על כי לכל $b$ קיים $x$ כך ש־$\phi(x) = b \iff Ax = b$. גם $\phi_A$ חח"ע כלומר $\ker\phi_A = \{0\}$. אז בעבור $b = 0$ קיים ויחיד מקור ל־$\phi_A(x) = 0$, כלומר $Ax = 0$ פתרון קיים ויחידי. נניח ש‏$x, y$ פתרונות ל־$x_1, x_2$. בה"כ $A \neq q0$. נתבונן ב־$\ag$ פתרןו ל־$Ax b$. ז $A(\ag + _1) = b$. לכן $A(\ag + x_1) = b$ ובפרט $\ag \neq \ag + x_1$ וגם פתרון בסתירה.
+		\item [$\co 5 \impliedby 4$]ל־$Ax = 0$ אם יש פתרון הוא יחיד וםא לא הוא תמיד פ]==?? תמש פתרון
+		\item [$\co 6 \impliedby 1$] נסמן ב־MB את המט' המדורת הקאנונית ששקולה ל־$A$ ונראה שהיא $I$. אם לא, אז ל־$B$ יש משתנה חופשי ()... הסבר, אחרת ל־$B$ משתנה חושפי כלומר ל־$B$ משפר פתרונות ולא אחד, ובפרט סתירה. 
+		\item[$\co 1 \impliedby 6$] נסתכל על $A' = B \cdot A$ עבור $B$ הוא מכפלת המטריצות האלמנטריות ו־$A'$ הדירוג הקאוניני. נתון שיש $A$ שקולת שורות ל־$i$. אז $A' = I$. לכן $A$ הפיכה מהטענה על הפירוק בשיערו הקודם. 
+	\end{proof}
+	
+	\textbf{משפט. }הטענות הבאות שקולות: 
+	\begin{enumerate}
+		\item $A$ הפיכה
+		\item עמודות $A$ בת"ל
+		\item שורות $A$ בת"ל
+		\item עמודות $A$ פורשות את $\F^n$
+		\item שורות $A$ פורשות את $\F^n$
+	\end{enumerate}
+	
+	\begin{proof}\,
+		\begin{enumerate}
+			\item[$\co 2 \impliedby 1$] נסמן את עמודות $A$ ב־$A_1 \dots A-n$. נניח שקיימים $\lg \dot s\lg_n$ לא כולם אפס כך ש־$\sum_{i = 1}^{n}\lg_iA_i = 0$. אז: 
+			\[ \begin{pmatrix}
+				\vdots && \vdots \\ A_1 & \cdots & A_n \\ \vdots && \vdots
+			\end{pmatrix}\begin{pmatrix}
+				\lg_1 \\ \vdots \\ \lg_n
+			\end{pmatrix} \iff A\begin{pmatrix}
+				\lg_1 \\ \vdots \\ \lg_n
+			\end{pmatrix} \]
+			מהטענה הקודמת עבור $A$ הפיכה ל־$Ax = 0$ פתרון יחיד ו־$\lg_i = 0$ לכל $1 \le i \le n$ סתירה. 
+			\item[$\co 3 \impliedby 1$] נשים לב שאם $A$ הפיכה אז $A^T$ הפיכה, ולכן מהגרירה הקודמת נובע שעמושות $A^T$ בת"ל. 
+			\item[$\co 1 \impliedby 2$] ראינו עמודות $A$ בת"ל אמ"מ $Ax = 0$ פתרון יחיד אמ"מ $A$ הפיכה. 
+			\item[$\co 3 \impliedby 1$] שורות $A$ בת"ל, אז $A^T$ הפיכה, ולכן $A$ הפיכה. זאת כי שוקות בת"ל גורר עמודות בת"ל כבר הוכח, ומהסעיף הקודם. 
+			\item[$\co 4 \impliedby 1$] נסמן עמודות $A = A_1 \dots A_n$. נראה שלכל $y \in \F^n$ קיימים $\lg_1 \dots \lg_n$ כך ש־$\sum \lg_iA_i = y$. באופן שקול $Ax = y$, קיים פתרון לכל $y$ אמ"מ $A$ הפיכה. 
+			\item[$\co 5 \iff 1$]$A$ הפיכה $\iff$ $A^T$ הפיכה $\iff$ עמודות $A^T$ פורשות $\iff$ שורות $A^T$ פורשות. 
+		\end{enumerate}
+	\end{proof}
+	
+	\section{\en{Rank}}
+	\textbf{הגדרה. }בהינתן $A \in M_{m \times n}(\F)$ נגדיר את \textit{דרגת השורות של $A$} להיות הממד של התמ"ו של $\F^n$
+	 הנפרש ע"י השורות של $A$. 
+	\textbf{הגדרה. }נגדיר את \textit{דרגת העמודות של $A$} כתת המרחב שנפרש עמודות $A$. 
+	
+	\textbf{סימון. }עבור $v_1 \dots v_m$ שורות של $A$ נסמן $\rk(A) := \dim(v_1 \dots v_m)$. 
+	
+	\textit{הערה: }עבור $0 \le \rk(A) \le \min(m, n)$
+	כי: 
+	\begin{itemize}
+		\item $\rk(A) \le m$ כי מרחב שנפרש מ־$m$ וקטורים. 
+		\item $\rk(A) \le n$ כי ת"ו של $\F^n$. 
+	\end{itemize}
+	\textit{משפט. }תהי $A \in M_{m \times n}(\F)$ ו־$B \in M_{n \times s}(\F)$. אז: 
+	\begin{enumerate}
+		\item \hfil $\rk(AB) \le \rk(B)$
+		\item אם $A$ קיבועית והפיכה, אז $\rk(AB) = \rk(B)$. 
+	\end{enumerate}
+	\begin{proof}\, 
+		\begin{enumerate}
+			\item נסמן ב־$a_{ij}$ את האיבר ה־$i, j$ ב־$A$. נסמן ב־$B_1 \dots B_n$ שורות $B$. נתסכל על שורות $AB$. נראה כי שורות $AB$ מוכלות ב־$\Sp(B_1 \dots B_n)$ ואכן השורה ה־$j$ של $AB$ היא: 
+			$\sum_{i = 1}^n B_i a_{ji}$
+			
+			הסבר: השורה הראשונה היא "אוף אני מסתבך בחישוב"
+			\[ ((a_1 \dots a_n) B)_1 = a_{1k}b_{k1} \dots ((a_1 \dots a_n)B)_j = \sum a_{1k}b_{kj} \implies (a1 \dots a_n)B = \sum a_{1k}{k1} + \cdots \]
+			\textit{הערה לעצמי: לעשות קורדינאטות ידנית אם אני מסתבך עם שורות/עמודות}
+			בהתאם הששורה ה־$i$: 
+			\[ \sum_{i = 1}^n a_{ij}B_j \]
+			ובפרט השורה שייכת ל־$\Sp(B_1 \dots B_s)$. לכן $\Sp(col AB) \subseteq \Sp(col B)$ כלומר $\rk(AB) \le \rk(B)$. 
+			\item ידוע ש־$\rk(AB) \le \rk(B)$. נראה ש־$\rk(B) \le \rk(AB)$. נסתכל על: $\rk(A\op (AB)) = \rk(AB) \impliedby A\op (AB)$
+			(משהו לא ברור)
+		\end{enumerate}
+	\end{proof}
+	
+	\textbf{משפט. }עבור מטריצה מדורגת, מספר השורות השונות מ־$0$ הוא $\rk(A)$
+	\begin{proof}
+		כל השורות ששונות מ־$0$ בת"ל כי יש להן איבר פותח שהעמודה שלו אפסים, וכל השוכות ששוות ל־0 תלויות. בגלל שהשורות ששונות מאפס בסיס, אז $\rk(A)$ שיהיה $\dim(\Sp(Col A))$ שהוא מספר השורות השונות. 
+	\end{proof}
+	
+	\textbf{משפט. }יהי $A\in M_{n \times m}(F)$. אז $\rk(A^T) = \rk(A)$. 
+	\begin{proof}
+		נראה שעבור $B$ הפיכה, $\rk(A) = \rk(AB)$. נשים לב שהשורה ה־$i$ של $AB$ היא בדיוק $A_iB$. נרצה להראות ש־$\dim(|Sp(A_i)) = \dim(\Sp(A_iB))$. נסמן ב־$v$ להיות $\Sp(\{A_i\})$ ונגדיר ת $\phi_v \co V \to \F^n$ להיות $\phi_v(x) = xB$. אז 
+		\begin{align*}
+			\dim V &= \dim \ker\phi_V +\dim \Img\phi_V \\
+			&= \dim\Img \phi_v = \dim\Sp(\phi_v(A_i)) \\
+			&= \dim\Sp(\{A_iB\}) \\
+			&= \rk(AB)
+		\end{align*}
+		השוויון העליון מתקיים כי ראינו שהעתה ליניארית מעבירה סדרה פורשת לסדרה שפורשת את ה־$\Img$ ו־$\{A_i\}$ פורשת. 
+		נראה ש־$\phi_v$ חח"ע וכך נקבל ש־$\ker\phi_v = \{0\}$. חח"ע כי $\phi_v(x) = \phi_v(y) \implies  xB = yB \implies x = y $ כי $B$ הפיכה. 
+	\end{proof}
+	
+	נראה שעבורה $A'$ מדורגת קאנונית $\rk(A') = \rk((A')^T)$. נסתכל על $A'$. ממד מרחב השורות = כמות השוכות שאינן 0 = כמות האיברים הפותחים. נראה שהעמודות עם איברים פותחים פורשות את מרחב העמודות, ושהן בתל. כך נקבל שכמות העמודות עם המרחבים הפותחים הוא ממד מרחב העמודות. "נראה לי שאני אשאיר לכם את זה לבית". בסה"כ נקבל ש־$\rk((A')^T) = \rk(A^T)$. 
+	
+	\textbf{מסקנה. }$\rk(AB) \le \min(\rk(A), \rk(B))$
+	\begin{proof}
+		ראינו כבר ש־$\rk(AB) \le \rk(B)$. נראה צד שני: 
+		\[ \rk AB = \rk(B^TA^T) \le \rk A^T = \rk A \]
+	\end{proof}
+	
+	\textbf{סימון. (מה)}$\rk(A)$ בעבור $A$ מטריצה, יהיה דרגת מרחב העמודות או השורות. 
+	
+	\textbf{טענה. }בעבור $A \in M_{n}$. מערכת משוואות $Ax = 0$. אז מימד מרחב הפתרונות הוא $n - \rk A$. אז: 
+	\[ \phi_A \co \F^n \to \F^n, \ \phi_A(x) = Ax, \implies n = \dim \F^n = \underbrace{\dim \ker\phi_A}_{\mathclap{\text{מרחב הפתרונות}}} + \underbrace{\dim\Img\phi_A}_{n} \]
+	נוכיח שזה באמת שווה ל־$n$: 
+	\[ \Img\phi_A = \Sp(\{\phi(e_i)\}) = \Sp(\{Ae_i\}) = \Sp(Ae_i) = \Sp(A_i) = \mathrm{Col\,}A \]
+	הסבר: $\phi_n$ ליניארית ו־$\{e_i\}$ בסיס סטנדרטי ולכן פורש, אז $\Sp(e_i)$ פורשת את $\Img\phi_A$, מטענה על ט"ל שמעבירה בין סדרות פורשות. 
+	
+	\textbf{תרגיל. }לא בהכרח אפשר להשתמש במבחן. 
+	\[ \rk(A + B) \le \rk A +\rk B \]
+	
+	\section{\en{Determinants}}
+	\begin{enumerate}
+		\item רוצים "למדוד" כמה וקטורים תלויים ליניארית. 
+		\item לחשב נפח/שטח (נפח זה שטח ממד שלישי)
+	\end{enumerate}
+	
+	\textbf{הגדרה. }$\det \co M_n(\F) \to \F$ היא \textit{דיטרמיננטה} אם מקיימת: 
+	\begin{enumerate}
+		\item \hfil $\det I = 1$
+		\item אם ל־$A$ שורות שוות, אז $\det(A) = 0$
+		\item $\det$ ליניארית בכל שורה, "מולטי ליניאריות": 
+		\[ \det{\begin{pmatrix}
+				\cdots & A_1 & \cdots \\
+				&\vdots \\
+				\ag A_i  +\bg B_i \\ & \vdots \\
+				\cdots & A_n & \cdots
+		\end{pmatrix}} = \ag\det\begin{pmatrix}
+			\cdots & A_1 & \cdots \\ &\vdots \\\cdots & A_i & \cdots &
+	\end{pmatrix} + \bg\det\begin{pmatrix}
+		\cdots & A_1 & \cdots \\ & \vdots \\ \cdots & A_i & \cdots &
+	\end{pmatrix}  \]
+	\end{enumerate}
+	
+	\textbf{משפט. }לכל $n \ge 1$ יש פונ' דט' והיא יחידה: 
+	\textbf{דוגמה. }
+	\[ \det\begin{pmatrix}a & b \\ c & d\end{pmatrix} = ad - bc \]
+	\[ \begin{cases}
+		ax + by = \ag \\ cx + dy = \bg 
+	\end{cases} \iff A\binom{x}{y} = \binom{\ag}{\bg} \]
+	נראה ש־$\det A \neq 0$ אמ"מ ל־$A\binom{x}{y} = \binom{\ag}{\bg}$ יש פתרון לכל $(\ag, \bg)$. 
+	
+	צד שמאל מתקיים אמ"מ $I \sim A$ (שקולות שורה). 
+	
+	אם $a \ne q0$, אז 
+	\[ \begin{pmatrix}
+		a & b \\ c & d
+	\end{pmatrix} \to \begin{pmatrix}
+		a & b \\ 0 & d - \frac{c}{a}b
+	\end{pmatrix} \implies A \sim I \iff d - \frac{c}{a}b \neq 0 \iff ad - cb \neq 0 \]
+	ואם $a = 0$: 
+	\[ A \sim I \iff b \neq 0 \land c \neq 0 \iff ad - bc = 0 \iff bc \neq 0 \]
+	
+	\textbf{למה. }$\phi$ פעולה אלמנטרית, $\det$ דיטרמיננטה. אז: 
+	\begin{enumerate}
+		\item $\phi$ אם החלפת שורות גורר $\det\phi A = -\det A$
+		\item אם $\phi$ הכפלה בסקלר $\lg$ אז $\det(\phi(A)) = \lg \det(A)$
+		\item אם $\phi$ הוספה לשורה אחרת מוכפלת בסקלר אז $\det\phi A = \det A$
+	\end{enumerate}
+	
+	\begin{proof}\,
+		\begin{enumerate}
+			\item[2.] נובע ישירות ממולעי ליניאריות הדיטרמיננטה. 
+			\item[1.] נסמן $A = [R_1 \dots R_n]$ שורות של $A$. עבור החלפת שורות $R_i, R_j$: 
+			\[ \begin{WithArrows}
+				0 &= \det[R_i, \dots, \underbrace{R_i + R_j}_{i}, \cdots, \underbrace{R_i + R_j}_{j}, \cdots]  \Arrow{פיצול שורה $i$}\\ 
+				&= \det[R_i \dots R_i, \dots R_i + R_j, \dots] + \underbrace{\det[R_i \dots R_j]}_{=0}
+				&= \det[R_i \dots R_i \dots ]
+			\end{WithArrows} \]
+			\item[3.]
+		\end{enumerate}
+	\end{proof}
+	אוקי זה הרבה בלגן ואני לא ממש מבין מה הוא רוצה. ביי. 
+	
+	
+	
+\end{document}
