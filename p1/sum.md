@@ -13,6 +13,7 @@
 - calling by value
 - Stack/Heap
 - שרותי ומשתני מופע ומחלקה
+
 **העשרה:** static blocks
 
 ### הרצאה 3
@@ -27,7 +28,8 @@
   * תנאי קדם (precondition)
   * תנאי בתר (postcondition)
 - משתמר (invariant)
-*העשרה:* packages, שם מלא (fully qualified name) של מחלקה, imports, CLASSPATH, jar, javadoc, & API
+
+**העשרה:** packages, שם מלא (fully qualified name) של מחלקה, imports, CLASSPATH, jar, javadoc, & API
 
 ### הרצאה 4
 - מנשקים: default & private methods in an interface, ייתרון בעבור לקוחות, מנשק כחוזה
@@ -41,7 +43,7 @@
 ### מדריך IO
 IO
 
-###הרצאות 5-6
+### הרצאות 5-6
 - שיבוטים: clonable, shallow copy, deep copy, Object.clone(), מנשקי סימון
 - מנשקים עם חתימה זהה
 - הכלה לעומת האצלה (aggeration vs. delegation)
@@ -101,7 +103,7 @@ IO
 - Black box vs. White box
 - Testing life cycle + testing tools
 
-### הרצאה 13 -- חזרה על חומרים
+### הרצאה 13 – חזרה על חומרים
 - covariance vs. invariance
 - type erasure
 - הורשת חריגים, ניראות והעמסה
