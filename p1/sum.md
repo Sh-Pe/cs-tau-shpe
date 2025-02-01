@@ -7,8 +7,13 @@
 - for, foreach
 - continue, break
 ### הרצאה 2
-שם מלא (qualified name), מופעים, עצמים, שרותים, פונק איתחול (בנאי), סטטי, מקומי/גלובלי, Heap, final, בנאי ברירת מחדל, records, calling by value, Stack/Heap, tException in thread "main" java.lang, שרותי ומשתני מופע ומחלקה,
-*העשרה: *static blocks
+- שם מלא (qualified name)
+- מופעים, עצמים, שרותים, פונק איתחול (בנאי), סטטי, מקומי/גלובלי, final, בנאי ברירת מחדל
+- records
+- calling by value
+- Stack/Heap
+- שרותי ומשתני מופע ומחלקה
+**העשרה:** static blocks
 
 ### הרצאה 3
 - העמסה
@@ -24,7 +29,7 @@
 - משתמר (invariant)
 *העשרה:* packages, שם מלא (fully qualified name) של מחלקה, imports, CLASSPATH, jar, javadoc, & API
 
-*הרצאה 4*
+### הרצאה 4
 - מנשקים: default & private methods in an interface, ייתרון בעבור לקוחות, מנשק כחוזה
 - שאילתות צופות ומפיקות
 - האצלה, פעפוע, הכמסה, הפשטה (וטפ תשתמשו באנגלית)
