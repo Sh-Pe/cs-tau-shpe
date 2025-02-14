@@ -1,0 +1,597 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.2in]{geometry}
+\usepackage{multicol}
+\setlength{\columnseprule}{1pt}
+\usepackage[skip=3pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+\usepackage{titlesec}
+\titlespacing*{\section}
+{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+\titlespacing*{\subsection}
+{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{\en{sheave.lariat-0h@icloud.com}}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\ax[1]     {\color{blue}#1\color{black}}
+\newcommand\tho       {\textit{משפט. }}
+\newcommand\id        {\textit{זהות. }}
+\newcommand\ac        {$\color{red}(AC)\color{black}$}
+\newcommand\nac       {$\color{red}\cancel{(AC)}\color{black}$}
+\newcommand\tiff      {\!\iff\!}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{דף נוסחאות $\sim$ בדידה 1}
+
+\begin{document}
+	\begin{multicols}{2}
+		\section{סימונים}
+		\begin{itemize}
+			\item \textbf{בולד: }הגדרות. 
+			\item \textbf{\ax{כחול: }}אקסיומות. 
+			\item \ac \ משפט תלוי באקסיומת הבחירה. 
+			\item \nac \ משפט לא תקין בלי הוכחה, תלוי באקסיומת הבחירה. 
+			\item אלא אם מצויין אחרת, יהיו $\forall R \subseteq A \times B, f \colon A \to B, \ n \in \N, C, D$. 
+		\end{itemize}
+		\section{הגדרות ואקסיומות}
+		\begin{enumerate}
+			\item \textbf{הכלה:  }\hfill$A \subseteq B \iff \forall a \in A. a \in B$
+			\item \textbf{שוויון: } 
+			
+				\hfill$A = B \iff x \in A \ssiff x \in B \iff A \subseteq B \land B \subseteq A$
+			\item \ax{\textbf{עקרון ההפרדה: }}\hfill$a \in \{x \in a \mid \vphi(x)\} \iff a \in A \land \vphi(a)$
+			\item \ax{\textbf{עקרון ההחלפה: }}\hfill$a \in \{f(x) \mid x \in A\} \iff \exists x \in A. a = f(x)$
+			\item \textbf{קטעים: }
+			
+				\hfill$(a, b) = \{x \in \R \mid a < x < b\}, \ [a, b] = \{x \in \R \mid a \le x \le b\}$ 
+			\item \ax{\textbf{קבוצת חזקה: }} \hfill$\ps(A) = \{x \mid x \subseteq A\}$
+			\item \ax{\textbf{איחוד מוכלל: }} \hfill$\bigcup_{X \in A}X =  \{x \mid \exists y \in A. x \in y\}$
+			\item \textbf{חיתוך מוכלל: } \hfill$\bigcap_{X \in A}X = \{x \mid \forall X \in A. x \in X\}$
+			\item \textbf{איחוד: }\hfill$A \cup B = \{x \mid x \in A \lor x \in B\}$
+			\item \textbf{חיתוך: }\hfill$A \cap B = \{x \mid x \in A \land x \in B\}$
+			\item \textbf{הפרש: }\hfill$A \setminus B = \{x \in A \mid x \notin B\}$
+			\item \textbf{הפרש סימטרי: }\hfill$A \trio B = (A \setminus B) \cup (B \setminus A) = (A \cup B) \setminus (A \cap B)$
+			\item \textbf{משלים: }\hfill$\ol A = A^{C} = \{x \in C \mid x \notin A\}$
+			\item \textbf{קבוצות זרות: }\hfill$A \cap B = \varnothing$
+			\item \id אסוציאטיביות: 
+			\begin{gather*}
+				A \trio (B \trio C) = (A \trio B) \trio C, \ A \cup (B \cup C) = (A \cup B) \cup C, \\ A \cap (B \cap C) = (A \cap B) \cap C
+			\end{gather*}
+			\item \id קומטטיביות: 
+				
+				\hfill $A \trio B = B \trio A, \ A \cup B = B \cup A, \ A \cap B = B \cap A$
+			\item \id דיטרבוטיביות: 
+				
+				\hfill$A \cap (B \cup C) = (A \cap B) \cup (B \cap C), \ A \cup (B \cap C) = (A \cup B) \cap (B \cup C) $
+			\item \id הפרש: 
+			\begin{gather*}
+				A \setminus (B \cap C) = (A \setminus B) \cup (A \setminus C), \ A \setminus B = A \cap \ol B \\
+				A \setminus (B \cup C) = (A \setminus B) \cap (A \setminus C)
+			\end{gather*}
+			\item \tho חוקי דה־מורגן: \hfill$\ol{A \cap B} = \ol A \cup \ol B, \ \ol{A \cup B} = \ol A \cap \ol B$
+			\item \id קבוצה ריקה: 
+				
+				\hfill$ A \setminus \varnothing = A, \ A \cup \varnothing = A, \ A \cap \varnothing = \varnothing, \ A \trio \varnothing = A, \ \varnothing \setminus A = \varnothing $
+			\item \id קבוצה עם עצמה: 
+				
+				\hfill$  A \setminus A = \varnothing, \ A \cup A = A, \ A \cap A = A, \ \ol{\ \ol A \ } = A, \ A \trio A = \varnothing $
+			\item \tho טענות על הכלה: 
+			\begin{gather*}
+				A \subseteq A \cup B, \ A \cap B \subseteq A, \ A \setminus B \subseteq A \\
+				C \subseteq A \cup B \iff C \subseteq A \land C \subseteq B
+			\end{gather*}
+			\item \tho הטענות הבאות שקולות: 
+			
+				\hfill $ A \subseteq B \iff A \cap B = A \iff A \setminus B = \varnothing \iff A \cup B = B $
+			\item \tho הטענה המרכזית של $n$־יה סדורה: 
+				
+				\hfill$ \la a_1, \dots a_n \ra = \la b_1, \dots b_n \ra \iff \forall i \in [n]. a_i = b_i $
+			\item \tho $\forall n, m. R^{(m)} \circ R^{(n)} = R^{(n + m)}$
+		\end{enumerate}
+			\section{יחסים}
+		\begin{enumerate}[resume]
+			\item \textbf{כפל קרטזי: }יהיו $\{A_i\}_{i \in [n]}$: 
+				
+				\hfill $ A_1 \times \dots \times A_n = \{a \text{\n} \mid \forall 1 \le i \le n. a_i \in A_i\} $
+			\item \textbf{יחס: }\hfill $R \subseteq A \times B$
+			\item \textbf{תחום: }\hfill$\dom(R) = \{a \in A \mid \exists b \in B. aRb\} $
+			\item \textbf{תמונה: }\hfill$\Img(R) = \{y \in B \mid \exists a \in A. aRb\}$
+			\item \textbf{יחס הופכי: }\hfill$R\op = \{\la b, a \ra \mid aRb\}$
+			\item \textbf{הרכבת יחסים: }\hfill$R \circ S = \{\la a, c \ra \in A \times C \mid \exists b \in B. aSb \land bRc\}$
+		\end{enumerate}
+			\subsection{פונקציות}
+		\begin{enumerate}[resume]
+			\item \textbf{פונקציה: }\hfill ($f$ מלא וח"ע) $\forall a \in A. \exists! b \in B. \la a, b \ra \in f$
+			\item \textbf{יחס מלא: }\hfill $\forall a \in A. \exists b \in B. aRb$
+			\item \textbf{יחס ח"ע: }\hfill $\forall a \in A. \forall b_1, b_2 \in B. (aRb_1 \land aRb_2) \implies b_1 = b_2$
+			\item \textbf{הרכבה $\bm{R^{(n)}}$: }\hfill $R^{(0)} = id_A \land R^{(n + 1)} = R^{(n)} \circ R$
+			\item \tho \hfill $(R \circ S)\op = S \op \circ R \op$
+			\item \textbf{$\bm{f(a)}$: }\hfill $f(a) = \iota b \in B. \la a, b \ra \in f$
+			\item \tho שוויון פונקציות: 
+				
+				\hfill $ f = g \iff \dom(f) = \dom(g) \land \forall x \in \dom(f). f(x) = g(x) $
+			\item \textbf{יחס הזהות: }\hfill $id_A = \lambda x \in A. x$
+			\item \tho \hfill $R \circ id_A = R = id_A \circ R$
+			\item \textbf{פונ' קבועה: }\hfill $f = \lambda x \in A. t$
+			\item \textbf{סדרה: }\hfill $\dom(f) \subseteq \N$
+			\item \textbf{הפונקציה האופיינית: }
+			\hfill $ \chi_A^{(E)} = \lambda x \in E. \begin{cases}
+				1 & x\in A \\
+				0 & x \notin A
+			\end{cases} $
+			\item \textbf{תמונה: }\hfill$f[X] = f(a) \mid a \in X \quad (X \subseteq A)$
+			\item \textbf{קבוצת המקורות: }\hfill$f\op[Y] = \{a \in A \mid f(a) \in Y\} \quad (Y \subseteq A)$
+			\item \textbf{תחשיב למדא: }
+			\begin{enumerate}
+				\item[$\alpha$.] החלפת משתנה: \hfill $\lambda x \in A. t = \lambda y \in A. t(^y/_x)$
+				\item[$\beta$.] הצבה: \hfill $(\lambda x \in A. t)(S) = t(^S/_x)$
+				\item[$\eta$.] אסטנצינליות: 
+			\end{enumerate}
+				\hfill $ \lambda x. f(x) = \lambda x. g(x) \tiff \forall a \in A. (\lambda x. f(x))(a) = (\lambda x. g(x))(x) $
+			\item \textbf{חח"ע: }\hfill $\forall a_1, a_2 \in A. f(a_1) = f(a_2) \implies a_1 = a_2$
+			\item \textbf{על: }\hfill $\forall b \in B. \exists a \in A. f(a) = b$
+			\item \tho בהינתן $f \colon A \to , \ y \colon B \to C$: 
+			\begin{enumerate}[A)]
+				\item $g \circ f$ חח"ע $\impliedby$ $f$ חח"ע $\iff $ $f$ הפיכה משמאל $\iff$ $f\op$ חח"ע. 
+				\item $g \circ f$ על $\impliedby $ $g$ על $\iff$ $g$ הפיכה מימין $\iff$ $g\op$ מלא. 
+				\item $f, g$ חח"ע $\impliedby$ $f \circ g$ חח"ע. 
+				\item $f, g$ על $\impliedby$ $f \circ g$ על. 
+				\item $f$ זיווג $\iff$ $f\op$ פונקציה $\iff$ $f$ הפיכה. 
+			\end{enumerate}
+			\item \textbf{זיווג} אמ"מ חח"ע ועל. 
+			\item הפיכות: 
+			\begin{enumerate}[A)]
+				\item $f$ \textbf{הפיכה מימין} \hfill $\exists y \in B \to A. g \circ f = id_A$
+				\item $f$ \textbf{הפיכה משמאל} \hfill $\exists y \in B \to A. f \circ g = id_A$
+				\item $f$ \textbf{הפיכה} אמ"מ היא הפיכה מימין ומשמאל. 
+			\end{enumerate}
+			\item \ax{\textbf{אקסיומת הבחירה: }}עבור $X = \{S_\alpha\}_{\alpha \in I}$ אוסף קבוצות לא ריקות, קיימת $f \colon X \to \bigcup_{\alpha \in I} S_{\alpha}$ כך ש־$\forall \alpha \in I. f(S_\alpha) \in S_\alpha$. \hfill \ac
+			\item קיימת $f \colon A \to B$ אמ"מ קיימת $f \colon B \to A$ \hfill \nac
+			\item \textbf{פונקציית Curry: }
+				
+				\hfill $ \mathrm{Cu} = \lambda f \in (A \times B) \to C. \lambda x \in A. \lambda y \in B. f(\la x, y \ra) $
+		\end{enumerate}
+		\subsection{יחסי שקילות}
+		\begin{enumerate}[resume]
+			\item \textbf{רפלקסיביות: }\hfill $\forall a \in A. aRa$
+			\item \textbf{סימטריות: }\hfill $\forall a, b \in A. aRb \sso bRa$
+			\item \textbf{טרנזיטיביות: }\hfill $\forall a, b, c \in A. aRb \land bRc \sso aRc$
+			\item \textbf{יחס שקילות: }רפלקסיבי, סימטרי וטרנזיטיבי. 
+			\item \tho 
+			\begin{enumerate}[A)]
+				\item $R$ רפלקסיבי $\iff$ $id_A \subseteq R$
+				\item $R$ סימטרי $\iff$ $R\op = R$
+				\item $R$ טרנזיטיבי אמ"מ $R \circ R \subseteq R$
+			\end{enumerate}
+			\item \textbf{מחלקת שקילות: }\hfill $[x]_R = \{y \in A \mid xRy\}$
+			\item \textbf{קבוצת מנה: }\hfill $A / R = \{[x]_R \mid x \in A\}$
+			\item \tho יהיו $a, b \in A$: \hfill $ [a]_R = [b]_R \lor [a]_R \cap [b]_R = \emptyset $
+			\item \tho הטענת הבאות שקולות: 
+				
+				\hfill $ b \in [a]_R \tiff bRa \tiff aRb \tiff a \in [b]_R \tiff [a]_R = [b]_R $
+			\item \textbf{מערכת נציגים }$T$ מקיימת את התנאים הבאים: 
+			\begin{enumerate}[A)]
+				\item קיום נציג: \hfill $\forall a \in A. \exists x \in T. \la a, x \ra \in R$
+				\item יחידות: \hfill $\forall a \in A. \forall x, y \in T. (aRx \land aRy) \implies x = y$
+			\end{enumerate}
+			\item \tho $T$ מערכת נציגים אמ"מ: \hfill $\forall X \in A / R. X \cap T = 1$. 
+			\item \textbf{חלוקה} $\Pi$ היא קבוצה המקיימת: 
+			\begin{enumerate}[A)]
+				\item ללא קבוצה ריקה: \hfill $\varnothing \notin \Pi$
+				\item \hfill $\biguplus_{X \in \Pi}X =: \bigcup \Pi = A$
+				\item זרות בזוגות: \hfill $\forall x, y \in \Pi. x \cap y = \varnothing \implies x = y$
+			\end{enumerate}
+			\item \tho קבוצת המנה היא חלוקה של $A$
+			\item \textbf{היחס המשרה:} \hfill $R_\Pi = \bigcup_{X \in \Pi}(X \times X)$
+			\item \tho $R_\Pi$ יחס שקילות. 
+			\item \tho \hfill $R_{A / S} = S, \ A / (R_\Pi) = \Pi$
+			\item \textbf{בלתי תלוייה בנציג:} \hfill $\forall x, y \in A. xRy \implies f(x) = f(y)$
+			\item \tho אם פונקציה בלתי־תלוייה בנציג אז $\lambda [x]_R \in A / R. f(x)$ היא פונקציה מוגדרת־היטב. 
+		\end{enumerate}
+		\subsection{יחסי סדר}
+		\begin{enumerate}[resume]
+			\item \textbf{אנטי־סמטרי חלש: }\hfill $\forall a, b \in A. (aRb \land bRa) \sso a = b$
+			\item \textbf{אנטי־סימטרי חזק: }\hfill $\forall a, b \in A. aRb \sso \lnot bRa$
+			\item \textbf{יחס סדר חלש }הוא טרנזיטיבי, אנטי־סמטרי חלש ורפלקסיבי. 
+			\item \textbf{יחס סדר חזק }הוא טרנזיטיבי ואנטי־סימטרי חזק. 
+			\item \textbf{קבוצה סדורה }הוא $\la A, R \ra$ כאשר $R$ יחס סדר על $A$. 
+			\item \textbf{ברי־השוואה}: \hfill $\forall a, b \in A. a = b \lor aRb \lor bRa$
+			\item \textbf{יחס סדר קווי: }(מלא) כל איבריו ברי השוואה. 
+			\item \textbf{יחס הסדר הלקסיקוגפי: }
+				
+				\hfill $\la a, b \ra \lex \la c, d \ra \iff (a < c) \lor (a = c \land b < d)$
+			\item \tho אם $R$ יחס סדר חזק, אז $R \cup id_A$ יחס סדר חלש. 
+			\item \tho אם $R$ יחס חזק חלש, אז $R \setminus id_A$ יחס סדר חזק. 
+			\item עבור $X \subseteq A, \ x \in X$: 
+			\begin{enumerate}[A)]
+				\item \textbf{איבר מינימלי: }\hfill $\forall y \in X. (y = x)\lor(\lnot yRx)$
+				\item \textbf{איבר מקסימלי: }\hfill $\forall y \in X. (y = x)\lor(\lnot xRy)$
+				\item \textbf{איבר גדול־ביותר: }\hfill $\forall y \in X. y = x \lor yRx$
+				\item \textbf{איבר קטן־ביותר: }\hfill $\forall y \in X. y = x \lor xRy$
+			\end{enumerate}
+			\item \tho $x$ איבר גדול ביותר $\impliedby$ $x$ מקסימלי, אמ"מ ביחס סדר קווי. 
+			\item \tho $x$ איבר קטן ביותר $\impliedby$ $x$ מינימלי, אמ"מ ביחס סדר קווי.  
+			\item בהינתן $\la A, \le_A \ra, \la B, \le_B \ra$ יתקיים $f$ \textbf{שומרת סדר} אם: 
+				
+				\hfill $ \forall a_1, a_2 \in A. a_1 \le_A a_2 \iff h(a_1) \le_B h(a_2) $
+		\end{enumerate}
+		\section{עוצמות}
+		\begin{enumerate}[resume]
+			\item $\bm{A = B}$\textbf{: }קיים זיווג $f \colon A \to B$. 
+			\item $\bm{|A| \le |B|}$\textbf{: }קיים $f \colon A \to B$ חח"ע. 
+			\item $\bm{|A| \neq |B|}$\textbf{: }לא קיים $f \colon A \to B$ זיווג. 
+			\item $\bm{|A| < |B|}$\textbf{: }$|A| \neq |B| \land |A| \le |B|$. 
+			\item לכל $|A| = a, |B| = b, |C| = c$ עוצמות: 
+			\begin{gather*}
+				a = a, \ A \subseteq B \implies a < b, \ a = b \iff b = a, \ \\
+				a = b \land b = c \implies a = c, \ a \le b \land b \le c \implies a \le c, \\
+				a = b \land b < c \implies a < c, \ a < b \land b = c \implies a < c
+			\end{gather*}
+			\item \tho $|A| \le |B|$ אמ"מ קיימת $f \colon B \to A$ על. \hfill \nac
+			\item בהינתן $|A| = |A'|, \ |B| = |B'|$: 
+			\begin{gather*}
+				|A \times B| = |A' \times B'|, \ |A \to B| = |A' \to B'|, \ |\ps(A)| = |\ps(A')| \\
+				|A \times B| = |A' \times B|, \ |A \to B| = |A' \to B|, \ |B \to A| = |B' \to A| \\
+				|A \uplus B| \le |A' \uplus B|
+			\end{gather*}
+			\item \tho משפט קנטור־שרדר־ברנשטיין (קש"ב): 
+				
+				\hfill $ |A| \le |B| \land |B| \le |A| \iff |A| = |B| $
+			\item \textbf{$\bm{\N_n}$: }\hfill $\N_n = \{m \in \N \mid m < n\}$
+			\item \textbf{סופית: }\hfill $\exists n \in \N. |A| = |\N_n|$
+			\item \textbf{אין־סופית: }לא סופית. 
+			\item \tho \hfill $\forall n < m. |\N_n| < |\N_m|$
+			\item \tho $X$ סופית ו־$Y \subseteq X$ אז $Y$ סופית. 
+			\item \tho $X$ סופית ו־$Y \nsubseteq X$ אז $|Y| < |X|$. 
+			\item \tho לכל $A$ סופית: \hfill $\exists! n \in \N. |A| = |\N_n|$
+			\item \textbf{$\bm{|A| \le n}$: }\hfill $|A| \le |\N_n|$
+			\item \textbf{$\bm{|A| < n}$: }\hfill $|A| < |\N_n|$
+			\item \tho לכל $|A|$ סופית: \hfill $|A| < \az$. 
+			\item \tho לכל $A$ אין־סופית: \hfill $\az \le A$. \ac
+			\item \tho לכל $A$ אין־סופית קיימת $B \subseteq A$ כך ש־$|B| = |A|$. \hfill \ac
+			\item \textbf{אלף־אפס: }\hfill $\bm{\az} = |\N|$
+			\item \textbf{עוצמת הרצף: }\hfill $\bm{\al} = \taz$
+			\item \textbf{בת־מנייה: }מעוצמה $\az$. 
+			\item \tho הקבוצות $\Neven, \Nodd, \Z, \Q, \N^{n}$ הן בנות מנייה. 
+			\item \tho איחוד לכל היותר בן מנייה של קבוצות לכל היותר בנות מנייה הוא לכל היותר בן מנייה: 
+				
+				\hfill $ \forall |I| = \az. \forall i \in I. |A_i| \le \az \implies \sof{\bigcup_{i \in I}A_i} \le \az $ \ac
+			\item \tho לכל קבוצה סופית לא ריקה מוכלת בטבעיים קיים מקסימום. 
+			\item \tho משפט קנטור: $|A| < \ps(A)$
+			\item \tho $|R| = \al$ (עוצמת הרצף). 
+			\item \ \!\![לא בחומר] $\aleph_1$ היא העוצמה שבאה לאחר $\az$. 
+			\item \ax{\textbf{השערת הרצף: }}$\nexists X. \az < |X| < \al$ (כלומר $\aleph_1 = \al$). 
+		\end{enumerate}
+		\subsection{חשבון עוצמות}
+		\begin{enumerate}[resume]
+			\item חשבון עוצמות: 
+			\begin{enumerate}[A)]
+				\item \textbf{חיבור עוצמות: }\hfill $|A| + |B| = \sof{(A \times \{0\}) \uplus (B \times \{1\})}$
+				\item \textbf{כפל עוצמות: }\hfill $|A| \cdot |B| = |A \times B|$
+				\item \textbf{חזקת עוצמות: }\hfill $|A|^{|B|} = |B \to A|$
+			\end{enumerate}
+			\item \id יהיו $a, b, c$ עוצמות: 
+			\begin{enumerate}[A)]
+				\item קומטטיביות: \hfill $a + b = b + a, a \cdot b = b \cdot a$
+				\item אסוציטיביות: \hfill $a + (b + c) = (a + b) + c, \ a \cdot (b \cdot c) = (a \cdot b) \cdot c$
+				\item דיסטריבוטיביות: \hfill $a \cdot (b + c) = a \cdot b + a \cdot c$
+			\end{enumerate}
+			\item \id על עוצמה $0, 1$: 
+				
+				\hfill $ a + 0 = a, \ a \cdot 1 = a, \ a \cdot 0 = 0, \ a^{0} = 1, \ 1^{a} = 1, a \neq 0 \!\!\implies\!\! 0^{a} = 0 $
+			\item \id
+			\hfill $ \forall n \in \N_+. \underbrace{a + \dots + a}_{n \text{ times}} = a \cdot n, \ \underbrace{a \cdot \dots a}_{n \text{ times}} = a^{n} $
+			\item \tho מונוטוניות: לכל $a \le b, c \le d$ עוצמות: 
+				
+				\hfill $ a + c \le b + d, \ a \cdot c \le b \cdot d, a^{c} \le a^{d}, \ a^{c} \le b^{c} $
+			\item \id חוקי חזקות: לכל $a, b, c, d$ עוצמות: 
+				
+				\hfill $ (a^{b})^{c} = a^{b + c}, \ (a \cdot b)^{c} = a^{c} \cdot b^{c}, \ a^{b + c} = a^{b} \cdot a^{c} $
+			\item \tho
+			\begin{gather*}
+				\az + \taz = \az \cdot \taz = \taz + \taz = \taz \cdot \taz = \taz \\
+				\az + \az = \az \cdot \az = \az
+			\end{gather*}
+			\item \tho לכל עוצמה אינסופית $a$: \hfill $a + \az = a$
+			\item \tho לכל עוצמה אינסופית $a$: \hfill $a + n = a$
+		\end{enumerate}
+	\end{multicols}
+	{\hfill \Large \textbf{ייתכנו שגיאות} \hfill}
+	
+	\ndoc
+\end{document}

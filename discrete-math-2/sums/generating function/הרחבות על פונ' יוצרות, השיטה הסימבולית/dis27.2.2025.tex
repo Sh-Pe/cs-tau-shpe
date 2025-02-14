@@ -1,0 +1,534 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\tc    {\mathcal{T}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\varepsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{\en{, }}}
+\newcommand\defi  {\text{\en{ definition}}}
+\newcommand\defis {\text{\en{ definitions}}}
+\newcommand\given {\text{\en{given }}}
+\newcommand\case  {\text{\en{if }}}
+\newcommand\syx   {\text{\en{ syntax}}}
+\newcommand\rle   {\text{\en{ rule}}}
+\newcommand\other {\text{\en{else}}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\seq   {SEQ}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+\DeclareMathOperator\col   {Col}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\rk}     {rk}
+\DeclareMathOperator{\sgn}    {sgn} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+\newcommand\wmid      {\;\middle\vert\;}
+
+\renewcommand\phi     {\varphi}
+\newcommand\bcl[1]    {\big(#1\big)}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{סיכום בדידה 2 $\sim$ סיום פונ' יוצרות}}
+\date{27 בינואר 2025}
+\begin{document}
+	\maketitle
+	\section{\en{Recap \& notes}}
+	הרצאה רגילה של הסטונטים, עם גיל כהן. 
+	
+	סיכום מלא באתר של גיל. כאן יובאו הערות שהוצגו בכיתה בלבד. 
+	
+	שימו לב – משפט קיילי, כירכהוף, רמזי, פונ' יוצרות ועוד, לא היו בשנים קודמות. שאלות ברמה של מבחנים יעלו. לפני המבחן בשבוע יחיד תהיה הרצאה בה התרגילים ייפתרו. להבנתי החומר יעלה לאתר של גיל. העוגיות יעמדו מולנו כדי שנרייר עד סוף ההרצאה. 
+	
+	"טור פורמלי" – בלי מחשבה לעומק מבחינה חדו"אית, מה מוגדר או לא מוגדר. 
+	
+	צריך לדעת לטנגרל דברים כמו $\int x^n$ או $\int \frac{1}{1 - x}$. $\dx$ כמובן. לא יינתנו מקרים בהם משפט טיילרו לא תקף. התבוננו על הדוגמה:
+	\[ \sqrt{1 + x} = \sum_{n = 0}^{\inf}\binom{0.5}{n}x^{n}, \ \binom{0.5}{n} = \frac{2}{4^n}(-1)^{n + 1}C_{n + 1} \]
+	בשביל לראות הקשר בין $\binom{0.5}{n}$ לקטלן, חפשו את ההרצאה הקודמת. 
+	
+	\section{\en{The Symbolic Methods}}
+	דרך לעבוד עם פונ' יוצרות בלי לעבור דרך הסדרות. 
+	
+	\textbf{הגדרה. }מחלקה קומבינטורית היא קבוצה $\ac$ יחד עם פונ' גודל $| \ \ | \co \ac \to \N$, כך שלכל $n \in \N$ יש מספר סופי של איברים כי $\ac$ מגודל $n$. כלומר $\forall n \in \N \co \{a \in \ac \co |a| = n\}$. 
+	
+	לדוגמה: פונ' הגודל שבהינתן מחרוזת בינארית מוצאת את כמות האפסים, אינה חוקית, כי יש אינסוף מחרוזות עם 0 אפסים. 
+	
+	\textbf{הגדרה. }הפונ' היוצרת של מחלקה קומבינטורית $\ac$ מוגדרת ע"י: 
+	\[ A(x) = \sum_{a \in \ac} x^{|a|} = \sum_{n= 0}^{\inf}\ac_nx^n \]
+	כאשר $\ac_n := |\{a \in \ac \co |a| = u\}|$ (הפעם גודל ייסמן גודל של קבוצה). 
+	
+	\textbf{דוגמה. }כאשר $\ac $ קבוצת המחרוזות הבינאריות, ו־הגודל הוא אורך המחרוזת: 
+	\[ A(x) = x^{|\epsi|} + x^{|0|} + x^{|1|} + x^{|00|} + x^{|01|} + \cdots = 1 + 2x + 2^2x^2 = \frac{1}{1 - 2x} \]
+	כאשר $\epsi$ הוא המחרוזת הריקה (גודל 0). 
+	
+	\textbf{דוגמה. }נסמן ב־$T$ את קבוצת העצים המושרשים  (בחרנו שורש)המסוגרים (יש חישבות לסדר הבונים) עם פונ' הגודל שהיא מספר הצמתים בעץ. לא נתייחס לשמות של הצמתים. זה לא מוגדר פורמלית ויש עוד נקודות אז תצפו בהערות עצמם. בשקופית, כל העצים שהוצגו נחשבו כשונים. איכפת לנו מהחשיבות של הסדר של הבנים (כי העץ יהיה מסודר). נסמן ב־$T_n$ את מספר הצמתים המושרשים בגודל $n$. נחזור לדוגמה בהמשך. 
+	
+	\textbf{הגדרה. }\textit{המחלקה האטומית} היא $x_a$, לעיתי םמסומן ב־$a$, מחלקה המכילה אך ורק את האביר $a$ וגודלו $|a| = 1$. הפונ' היוצר המתאימה היא $x_a(x) = x$. 
+	
+	\textbf{הגדרה. }\textit{המחלקה $\epsi$}. נסמן ב־$\epsi$ את המחלקה המכילה איבר אחד מגודל $0$. ז $\epsi(x) = 1$. כתוב בשקפים הבאים "המחלקה הריקה", שימו לב שהיא לא ריקה ויש לא איבר אחד. 
+	
+	\subsection{פעולות על פונ' יוצרות}
+	בהינתן שתי קבוצות זרות $A, B$ מחלקות קומבינטוריות, נטען $A(x) + B(x) \iff A + B \iff A \uplus B$. בגלל שהן זרות אפשר להגדי פונ' גודל בהתאם לפונ' הגודל המתאימה מהקבוצה שלא המקור לאינפוט (איחוד הדומיינים – זה כמו האיחוד של הפונ' האבסטרקטיות). 
+	
+	גם כפל קרטזי עובד – $A \times B$ (מכפלה קרטזית). פונ' הגודל החדשה הנגדיר הפעם תהיה בסכום הגדלים. גם כאן נטען לטענה, שהפונ' היוצרת המתאימה היא $A(x)B(x)$. 
+	
+	\begin{proof}
+		הפונ' היוצרת של $A +B$: 
+		\[ \sum_{c \in \ac + \bc} x^{|c|} = \sum_{a \in \ac} x^{|a|} + \sum_{b \in B} x^{|b|} = A(x) + B(x) \]
+		השוויון הראשון נובע מהיות האיחוד זר. הבהרה: $A + B$ מוגדר אממ הם באמת זרים. 
+	\end{proof}
+	\begin{proof}
+		הפעם: 
+		\[ \sum_{c \in \ac \times \bc} x^{|c|} = \sum_{a \in \ac} x^{|a| + |b|} = \sum_{a \in \ac} x^{|a|} \sum_{b \in \bc} = A(x)B(x) \]
+		באינדוקציה, נבחין כי $\ac^k$ נוצרת ע"י הפונ' $A(x)^{k}$. בפרט $\epsi = \ac^{0}$. 
+	\end{proof}
+	
+	\textbf{הגדרה. }]פעולת ה־SEQ. (קיצור של sequance). אם $A$ מחלקה קומבינטורית אז $\seq(A)$ היא המחלקה המוגדרת ע"י איחוד של זר מהמכפלה קרטזית מכך אודך של איברי $\ac$ כלומר 
+	$\seq(\ac) = \ac^{0} + \ac^{1} + \cdots$
+	והפונ' היוצרת שלה $\frac{1}{1 - A(x)}$. 
+	
+	\textbf{דוגמה. }נחזור למחלקת המחרוזות הבינריות עם אותו הגודל כמו מקודם. אז: 
+	\[ \seq(x_0 + x_1) = \seq(\{0, 1\}) = \seq(0 + 1) \]
+	לפי הגדרה, $\seq$ הוא איחוד של כל המחרוזות מכל האורך, הוא $\bigcup_{k = }^{\inf} (\{0, 1\})^{k}$. הערה: $0 = \epsi$, $1 =  x_1$, בהתאם לסימונים לעיל, וזו הסיבה לשוווין $\seq(\{0, 1\})  = \seq(0 + 1)$. על כן, הפונ' היוצרת של המחלקה היא:
+	 \[ \frac{1}{1 - (x + x)} = \frac{1}{1 - 2x} = \sum_{n = 0}^{\inf}2^{n}x^{n} \]
+	 ואכן $2^n$ מספר המחרוזות הבינאריות באורך $n$. 
+	 
+	 מה קרה? היה לנו תיאור מילולי, המחרוזות הבינאריות. כתבתנו אותו באופן סימבולי, פורמלי. הכוונה ל־$\seq(x_0 + x_1)$, נקרא לו היחס הסימבולי. באופן ישיר מהצורה הסימבולית קיבלנו את הפונ' היוצרת. ככל היעבור הזמן נרד בפורמליות וברלוונטיות לקורס. 
+	 
+	 \subsection{עצים, מושרשים מבודרים}
+	 נחזור לדוגמה מקודם. נסמן ב־$\circ$ את המחלקה האטומית שמייצגת צומת. עץ מושרש מסודר, הוא שורש, עם אוסף של עצים שיוצאים ממנו. יש חשיבות לסדר שלהם (הוא עץ מסודר). על כן, מתקיים היחס הסימבולי $\tc = \circ \times \seq(\tc)$. אוסף הצמתים הללו הוא $\seq(T)$. \textbf{הבהרה: }בהגדרה הזו אין גדלים. אין לנו כאן $\tc_{n}$. רק $\tc_n$ המחלקה הקומבינטורית. 
+	 
+	 מפה, מידית אפשר לדבר על הפונ' היוצרת של $\tc$: 
+	 \[ T(x) = x \cdot \frac{1}{1 - T(x)}, \ T(x)^2 - T(x) + x = 0 \implies T(x) = \frac{1\pm\sqrt{1 - 4x}}{2}\]
+	 
+	 עדיף לחשוב על זה בצורה של "$x$ ידוע ואני רוצה להביע באמצעותו דברים (T(x), הפונ' היוצרת)". לא צריך לחשוב על ההצדקות והפורמליות מאחורי כל הסיפור הזה. פעם ראשונה שגיל ראה את זה, הוא עשה איזשהו מחקר ו"עשה כל מני דברים בלי הצדקה מתמטית וזה התאים לו לאובסרווציות". ניזכר כי: 
+	 \[ \sqrt{1 - 4x}=\underbrace{\sum_{n = 0}^{\inf}\binom{0.5}{n}(-4x)^{n}}_{1 - 2x + \cdots} \implies T(x) = \frac{1\pm(1 - 2x + \cdots )}{2} \]
+	 ה־$-$ הוא הפתרון המתאים, כי אם ניקח את ה־$+$ נקבל שהמקדם של $x$ שלילי, וזה לא ממש הגיוני כי המקדם של $x$ אמור לספור כמה עצים מתאימים יש (וגודל הוא לא שלילי). 
+	 
+	 כבר הוכח כי $\forall n \ge 1 \co \binom{0.5}{n} = \frac{2}{4^n}(-1)^{n + 1}C_{n -1}$. נקבל (הצבה שהוא לא טרח לעשות): 
+	 \[ 2\sum_{n = 0}^{\inf}T_nx^n = 2T(x) = 1 - \underbrace{\frac{0.5}{0}(-4x)^{0}}_{=1} + \sum_{n = 1}^{\inf}2C_{n -1}x^{n}  \implies T_n = \C_{n - 1} \]
+	 
+	 
+	 \subsection{עוד קצת עצים}
+	 הפעם – $=\bc$ מחלקת העצים הביאנרים המושרשים המסודרים עם פונ' הגודל = מספר הצמתים. גם כאן לא איכפת לנו משמות הצמתים. ראה את המצקת של גיל בשביל ויזואליזציה. 
+	 
+	 עץ בינארי מושרש מסודר הוא שורש יחד עם או אף עץ שתלוי עליו אחד או שניים. כלומר $\bc = \circ \times (\epsi + \bc \times \bc)$. במילים אחרות, כל עץ בינארי הוא שורש שעליו מלבישים או כלום ($\epsi$) או שני עצים ($\bc \times \bc$). ולכן הפונ' היוצרת של $B(x)$ מקיימת $\bc(x) = x(1 + \bc(x)^2)$. על כן: 
+	 \[ xB(x)^2 - B(x)  +x = 0 \implies B(x) = \frac{1 \pm \sqrt{1 - 4x^2}}{2x} \]
+	 גם כאן ניקח מינוס. ניזכר שפעם קודמת קיבלנו דבר דומה. יתרה מכך – 
+	 \[ xB(x) = T(x^2) \iff \sum_{n = 0}^{\inf} \bc_nx^{n + 1} = \sum_{n = 0}^{\inf}\tc_n x^{2n} = C_{2n} \]
+	 נסיק ש־ :
+	 \[ \bc_n = \begin{cases}
+	 	0 & n \in \Neven \\
+	 	C_{\frac{n - 1}{2}} & n \in \Nodd
+	 \end{cases} \]
+	 
+	 
+	 \subsection{"קצת חורגים ממסגרת הקורס"}
+	 נסמן ב־$=\fc$ מחלקת המחרוזות הבינאריות ללא שני $1$–ים רצופים. פונ' הוגדל שתהיה אורך המחרוזת. מתקיים היחס הסימבולי: 
+	 \[ \fc = \epsi + \texttt{0} \times \fc + \texttt{10} \times \fc \]
+	 כלומר, או שעוצרים, או ש־יש לנו $0$ כלשהו ואז איבר מהמחלקה, או שיש לנו $10$ ואז איבר מהמחלקה. 
+	 קבלנו
+	 \[ \fc(x) = 1 + x\fc(x) + x^{2}\fc(x) \implies \fc(x) = \frac{1}{1 - x - x^{2}} \]
+	 שזה מה שקיבלנו כשעשינו פונ' יוצרות.
+	 
+	 אוקי עושים עוד דוגמאות. 
+	 
+	 מחרוזות בינאריות ללא רצף של $p$ אפסים רצופים: נסמן את המחלקה המתקימה ב־$\ac$ ונבחין כי מתקיים היחס הסימבולי: 
+	 \[ \ac = (\epsi + \texttt{0} + \texttt{00} + \cdots + \texttt{0}^{p}) \times (\epsi + \texttt{1} \times \ac) \]
+	 אכן, מחרוזת ללא $\texttt{0}^{p}$ מתחילה בלכל היותר $p$ אפסים ולאחריה כלום או $1$ ואז משהו מהמחלקה. 
+	 
+	 הפונ' היוצרת היא: 
+	 \[ A(x) = \underbrace{(1 + x + x^{2} + \cdots + x^{p - 1})}_{\frac{1 - x^p}{1 - x}}(1 + xA(x)) \]
+	 ולכן 
+	 \[ A(x) = \frac{1 - x^p}{1 - 2x + x^4} \]
+	 
+	 אם מחליט לפרק לגורמים את השורשים, שניים מהם יהיו מרוכבים ואחד מהם יהיה משהו בסגנון $0.5437$ שזה: 
+	 \[ \frac{1}{3}\cl{-1 - \frac{2}{\sqrt[3]{17 + 3\sqrt{33}}}} + \sqrt{17 + 3\sqrt{33}}  \]
+	 וזה איכשהו מעניין או משהו אבל לא רלוונטי לקורס. 
+	 
+\end{document}
