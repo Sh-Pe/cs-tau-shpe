@@ -733,8 +733,8 @@
 		\theo{יהיו $U, V$ מ"וים, ו־$B, C$ בסיסים ממדים $m, n$, בהתאמה פעמיים. אז $T \co \hom(V, U0 \to M_{m \times n}(\F))$ המוגדרת לפי $T(\phi) = [\phi]_C^B$, היא איזומורפיזם. }
 		\defi{יהיו $A = (a_{ij}) \in M_{m \times s}, \ B = (b_{ij}) \in M_{s \times n}$ מטריצות. נגדיר: 
 		\[ AB := A \cdot B = \sum_{k = 1}^{s}a_{ik}b_{kj} \in M_{m \times n} \]}
-		\theo{יהיו $\phi \co V \to U, \ \psi \co U \to W$ ט"לים. $B_v, B_u, B_w$ בסיסהן בהתאמה. אז: 
-		\[ [\psi \circ \phi]_{B_w}^{B_v} = [\psi]_{B_w}^{B_u} \cdot [\phi]_{B_u}^{B_v} \]}
+		\theo{יהיו $\phi \co V \to U, \ \psi \co U \to W$ ט"לים. $B_v, B_u, B_w$ בסיסיהן בהתאמה. אז: 
+		\[ [\psi \circ \phi]_{B_w}^{B_v} = [\psi]_{B_w}^{B_u} \cdot [\phi]_{B_u}^{B_wv} \]}
 		\theo{יהיו $A, B, C$ מטריצות, אז: 
 		\begin{enumerate}
 			\item \hfil $(AB)C = A(BC)$
@@ -881,7 +881,7 @@
 		
 		\section{אחר}
 		\defi{תהי $A \in M_n(\F)$. נגדיר את ה\textit{מטריצה המוצמדת} (עיתים קרויה גם "\textit{מצורפת}") להיות מוגדרת ע"י: 
-		\[ (\adj A)_{ij} = (-1)^{i + j}|A_{ij}| \]}
+		\[ (\adj A)_{ij} = (-1)^{i + j}|A_{ji}| \]}
 		\theo{תהי מטריצה $A \in M_n(\F)$. אז $A \cdot \adj A = \adj A \cdot A = |A| I$. בפרט, בעבור $A$ הפיכה, $A\op = \frac{1}{|A|} \adj A$. }
 		
 		\defi{תהי $A \in M_n(\F)$. נגדיר את ה\textit{עקבה} של $A$ להיות $\tr A = \sum_{i = 1}^{n} (A)_ii$. }
