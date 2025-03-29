@@ -1,7 +1,7 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2024.6.30)  16 DEC 2024 17:04
+This is LuaHBTeX, Version 1.18.2 (MiKTeX 24.12) (format=lualatex 2025.2.12)  19 MAR 2025 19:31
  restricted system commands enabled.
-**po16.12.2024.tex
-(./po16.12.2024.tex
+**lin2a19.3.2025.tex
+(./lin2a19.3.2025.tex
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
 Lua module: luaotfload 2024-02-14 3.28 Lua based OpenType font support
@@ -1300,7 +1300,7 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enitdp@hebenum=\count402
 \min@xx=\skip138
 
-(./po16.12.2024.aux
+(./lin2a19.3.2025.aux
 
 Package babel Info: The following font families will use the default
 (babel)             settings for all or some languages:
@@ -1482,30 +1482,109 @@ Package fontspec Info:
 (fontspec)             CLM/BI:mode=node;script=hebr;language=IWR;+tlig;family=s
 f;"
 
-)
-\openout1 = po16.12.2024.aux
+luaotfload | aux : font no 33 (nil) defines no feature for script latn with lang
+uage eng
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 395.
-LaTeX Font Info:    ... okay on input line 395.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 395.
-LaTeX Font Info:    ... okay on input line 395.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 395.
-LaTeX Font Info:    ... okay on input line 395.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 395.
-LaTeX Font Info:    ... okay on input line 395.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 395.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 3
-95.
+Package fontspec Info: 
+(fontspec)             Language 'English' not explicitly supported within font
+(fontspec)             'Monaspace Xenon' with script 'Latin'. Check the
+(fontspec)             typeset output, and if it is okay then ignore this
+(fontspec)             warning. Otherwise a different font should be chosen.
+
+luaotfload | aux : font no 33 (nil) defines no feature for script latn with lang
+uage eng
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script dflt
+ with language eng
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 38 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script dflt
+ with language eng
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 39 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script dflt
+ with language eng
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 40 (nil) does not define feature smcp for script dflt
+ with language dflt
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script latn
+ with language eng
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script dflt
+ with language eng
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script latn
+ with language dflt
+luaotfload | aux : font no 41 (nil) does not define feature smcp for script dflt
+ with language dflt
+
+Package fontspec Info: 
+(fontspec)             Font family 'MonaspaceXenon(0)' created for font
+(fontspec)             'Monaspace Xenon' with options
+(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
+Space,Script=Latin,Language=English,RawFeature={family=tt}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:Monaspace
+(fontspec)             Xenon:mode=node;script=latn;language=ENG;family=tt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:Monaspace
+(fontspec)             Xenon/B:mode=node;script=latn;language=ENG;family=tt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:Monaspace
+(fontspec)             Xenon/I:mode=node;script=latn;language=ENG;family=tt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"name:Monaspace
+(fontspec)             Xenon/BI:mode=node;script=latn;language=ENG;family=tt;"
+
+)
+\openout1 = lin2a19.3.2025.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 425.
+LaTeX Font Info:    ... okay on input line 425.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 425.
+LaTeX Font Info:    ... okay on input line 425.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 425.
+LaTeX Font Info:    ... okay on input line 425.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 425.
+LaTeX Font Info:    ... okay on input line 425.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 425.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
+25.
  (/home/shpe/.miktex/texmfs/install/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 395.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 395.
-LaTeX Font Info:    ... okay on input line 395.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 395.
-LaTeX Font Info:    ... okay on input line 395.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 395.
-LaTeX Font Info:    ... okay on input line 395.
+LaTeX Font Info:    ... okay on input line 425.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 425.
+LaTeX Font Info:    ... okay on input line 425.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 425.
+LaTeX Font Info:    ... okay on input line 425.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 425.
+LaTeX Font Info:    ... okay on input line 425.
 
 (/home/shpe/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1581,28 +1660,41 @@ Inserting `Babel.math_box_dir' in `hpack_filter'.
 Inserting `Babel.pre_otfload_h' in `hpack_filter'.
 Inserting `luaotfload.node_processor' in `hpack_filter'.
 Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 396
+LaTeX Font Info:    Trying to load font information for U+msa on input line 426
 .
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 396
+LaTeX Font Info:    Trying to load font information for U+msb on input line 426
 .
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 39
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 42
 6.
 
 (/home/shpe/.miktex/texmfs/install/tex/latex/jknappen/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
+LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/n' in size <10> not available
+
+(Font)              Font shape `TU/DavidCLM(0)/b/n' tried instead on input line
+ 437.
+
 
 [1
 
 {/home/shpe/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}]
-(./po16.12.2024.aux)
+LaTeX Font Info:    Font shape `TU/DavidCLM(0)/bx/n' in size <12> not available
+
+(Font)              Font shape `TU/DavidCLM(0)/b/n' tried instead on input line
+ 512.
+
+
+[2]
+
+[3] (./lin2a19.3.2025.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
@@ -1610,19 +1702,32 @@ L3 programming layer <2024-05-27>
 )
 
 Here is how much of LuaTeX's memory you used:
- 36688 strings out of 475931
+ 36805 strings out of 475931
  125375,1977958 words of node,token memory allocated
- 790 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 18 attribute, 107 glue_spe
-c, 8 attribute_list, 2 write nodes
-   avail lists: 1:8,2:200,3:29,4:14,5:78,6:14,7:1528,8:2,9:70,10:4,11:1
- 58407 multiletter control sequences out of 65536+600000
- 63 fonts using 3568983 bytes
- 98i,6n,107p,1678b,476s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/fonts/OTF/DavidCLM-Medium.otf>
-Output written on po16.12.2024.pdf (1 page, 12098 bytes).
+ 1268 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 192 attribute, 108 glue_sp
+ec, 66 attribute_list, 2 write nodes
+   avail lists: 1:11,2:1630,3:190,4:26,5:495,6:44,7:5747,8:46,9:876,10:11,11:12
+ 58524 multiletter control sequences out of 65536+600000
+ 112 fonts using 24532823 bytes
+ 98i,19n,107p,1680b,529s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</home/shpe/.miktex/texmfs/install/fonts/opentype/public/lm/lmroman12-bold.otf><
+/usr/share/fonts/OTF/DavidCLM-Bold.otf></home/shpe/.miktex/texmfs/install/fonts/
+opentype/public/lm/lmroman17-regular.otf></usr/share/fonts/OTF/DavidCLM-Medium.o
+tf></usr/share/fonts/OTF/DavidCLM-MediumItalic.otf></home/shpe/.miktex/texmfs/in
+stall/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/shpe/.miktex/texmfs/insta
+ll/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/shpe/.miktex/texmfs/install/
+fonts/type1/public/amsfonts/cm/cmmi5.pfb></home/shpe/.miktex/texmfs/install/font
+s/type1/public/amsfonts/cm/cmmi7.pfb></home/shpe/.miktex/texmfs/install/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/
+public/amsfonts/cm/cmr7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/a
+msfonts/cm/cmsy7.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/amsfo
+nts/symbols/msam10.pfb></home/shpe/.miktex/texmfs/install/fonts/type1/public/ams
+fonts/symbols/msbm10.pfb>
+Output written on lin2a19.3.2025.pdf (3 pages, 140354 bytes).
 
-PDF statistics: 16 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 90 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
