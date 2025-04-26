@@ -7,7 +7,8 @@
 % Math packages
 \usepackage[usenames]{color}
 \usepackage{forest}
-\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
 \WithArrowsOptions{displaystyle}
 \renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
 \usepackage{cancel,bm}
@@ -81,7 +82,7 @@
 \usepackage{titlesec}
 \titleformat{\section}[block]
 {\fontsize{15}{15}}
-{\sen \dotfill (\thesection) \she}
+{\sen \dotfill (\thesection)\she}
 {0em}
 {\MakeUppercase}
 \usepackage{graphicx}
@@ -106,7 +107,10 @@
 \newcommand\del   {$ \!\! $}
 
 \newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
-\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
 
 \newcommand{\rn}[1]{
 	\textup{\uppercase\expandafter{\romannumeral#1}}
@@ -126,6 +130,7 @@
 \newcommand\R     {\mathbb{R}}
 \newcommand\Q     {\mathbb{Q}}
 \newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
 
 \newcommand\ml    {\ell}
 \newcommand\mj    {\jmath}
@@ -178,14 +183,13 @@
 \newcommand\open  {\big(}
 \newcommand\qopen {\quad\big(}
 \newcommand\close {\big)}
-\newcommand\also  {\text{\en{, }}}
-\newcommand\defi  {\text{\en{ definition}}}
-\newcommand\defis {\text{\en{ definitions}}}
-\newcommand\given {\text{\en{given }}}
-\newcommand\case  {\text{\en{if }}}
-\newcommand\syx   {\text{\en{ syntax}}}
-\newcommand\rle   {\text{\en{ rule}}}
-\newcommand\other {\text{\en{else}}}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
 \newcommand\set   {\ell et \text{ }}
 \newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
 
@@ -204,7 +208,6 @@
 \DeclareMathOperator\dom   {dom}
 \DeclareMathOperator\Img   {Im}
 \DeclareMathOperator\range {range}
-\DeclareMathOperator\col   {Col}
 
 \newcommand\trio  {\triangle}
 
@@ -232,7 +235,6 @@
 \newcommand\logx  {\log x}
 \newcommand\lnx   {\ln x}
 \newcommand\cosx  {\cos x}
-\newcommand\cost  {\cos \theta}
 \newcommand\sinx  {\sin x}
 \newcommand\sint  {\sin \theta}
 \newcommand\tanx  {\tan x}
@@ -272,8 +274,12 @@
 \DeclareMathOperator{\arccoth}{arccoth}
 \DeclareMathOperator{\atant}  {atan2} 
 \DeclareMathOperator{\Sp}     {span} 
-\DeclareMathOperator{\rk}     {rk}
 \DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
 
 \newcommand\dx    {\,\mathrm{d}x}
 \newcommand\dt    {\,\mathrm{d}t}
@@ -306,7 +312,6 @@
 \newcommand\sumnio    {\sum_{i = 1}^{n}}
 \newcommand\sumai     {\sum_{i = 1}^{n} A_i}
 \newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
-\newcommand\nsuminf   {\sum_{n = 0}^\inf}
 
 \newcommand\bink      {\binom{n}{k}}
 \newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
@@ -324,7 +329,9 @@
 \newcommand\ant       {a_{n - 2}}
 
 % Linear Algebra
-\DeclareMathOperator{\chr}    {char}
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
 
 \newcommand\lra       {\leftrightarrow}
 \newcommand\chrf      {\chr(\F)}
@@ -340,6 +347,7 @@
 \newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
 \newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
 \newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
 \newcommand\tomat     {\, \dequad \longrightarrow}
 \newcommand\pms[1]    {\begin{pmatrix}
 		#1
@@ -409,203 +417,106 @@
 \newcommand\bs        {\blacksquare}
 \newcommand\dequad    {\!\!\!\!\!\!}
 \newcommand\dequadd   {\dequad\duquad}
-\newcommand\wmid      {\;\middle\vert\;}
 
-\renewcommand\phi     {\varphi}
-\newcommand\bcl[1]    {\big(#1\big)}
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{\textit{הרחבות לבדידה 2}}
+\title{\textit{מבני נתונים 3}}
 \begin{document}
 	\maketitle
-	חוזרים להרצאה עם נטלי שלום. 
-	\section{\en{Generating functions}}
-	\subsection{מבוא לפונ' יוצרות}
-	בבערך חמש השנים האחרונות, לא לימדו פונ' יוצרות. אבל אבא של יהלי שאין להגיד את שמו לשווא החליט להכניס את החומר לבחינה. אין צביעת צמתים (אך יש צביעת קשתות). למרצה יש אתר עם רשימות מסודרות של החומר, והקלטות שלו. דלית העבירה לנו את זה. 
+	\section{\en{Linked List \& Amortized Complexity}}
+	דיברנו על רשימות מקושרות בתרגול הקודם. איך נוכל, בלי להוסיף מצביעים, להוריד איברים ב־$O(1)$ בסיבוכיות amortized? 
 	
-	"יש מועד ב', חברה" $\sim$ רתם
+	התשובה: "נסמן" את האיבר שרוצים למחוק (נשלם "token" אחד) ובמעבר על הרשימה, כאשר נבחין לרשאונה שוב באיבר נעביר פוינטר שיעדוף את האיבר הזה (כלומר אם $n$ נמחק, המצביע של $n - 1$ שבעבר הצביע ל־$n$ יעבור להצביע ל$n + 1$). במקרה הזה נטרח לטפל המחיקת האיבר רק כאשר נעשה get, נוסף על זה שזה יקח לנו $O(1)$. הבעיה שזה פותר: הצורך לעבור על הרשימה המקושרת ולהגיע כל הדרך לאיבר שרוצים למחוק. 
 	
-	\textbf{הגדרה. }תהי $a_0, a_1, a_2, \cdots$ סדרת מספרים (ממשית). הפונ' היוצרת המתאימה לה היא: 
-	\[ A(x) = \sum_{n = 0}^{\inf} a_nx^n \]
-	קוראים לזה פונ', וזה נראה כמו פונ', אך לא נכנסים לדברים כמו תחום הגדרה. מסתכלים על זה כמו על ביטוי פורמלי. 
+	בכל מחיקה, השקענו שני "tokens" – אחד בעבור הסימון של האיבר כמחוק, והשני בעבור מתי שלא בעתיד נעביר את הפוינטר. 
 	
-	\textbf{סימון. }המקדם של $x^n$ מסומן ע"י $\underbrace{[x^n]A(x)}_{a_n}$
+	נקרא לזה מחיקה lazy חד כיוונית ברשימה מקושרת חד־כיוונית – תקרא lazy שכן לא נטרח לבצע את הזזת הפוינטר עד שבאמת נצטרך להזיז אותו. נסכם: נוכל רק לסמן איברים במחוקים בלי ממש למחוק, זה יעלה $O(1)$, ובזמן get נמצק איברים שסומנו מחורים מהרשימה. נשלם פעולה נוספת על כל מחיקה בדיוק פעם אחת, זמן get עתידי. בשיטת הבנק כל פעולה תעלה $2$ מטבעות. בשיטת פונ' פוטנציאל $\,=\phi(L)$מס' האיברים שמסומנים כמחוקים. בזמן get יקר, פונ' הפוטנציאל בדיוק בעלות הנוספת ה־get. 
 	
-	\textbf{דוגמה. }עבור הסדרה $1, 1, \cdots$ הפונ' היוצרת היא $\sum_{n = 0}^\inf x^n = \frac{1}{1 - x}$ (סכום סדרה הנדסית אינסופית). תזכורת: 
-	\[ (-1 < q < 1) \quad \nsuminf q^n = \frac{1}{1 - q} \]
+	\section{\en{Binary Search tree}}
+	\subsection{מילונים באופן כללי}
+	\subsubsection{ADT}
+	נבנה ADT. בדוגמה למטה x כולל מאפיינים של x.key ו־x.value.
+	\sen
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item Insert(D, x)
+			\item Delete(D, x)
+			\item Search(D, x)
+		\end{itemize}
+		And assuming order of keys: 
+		\begin{itemize}
+			\item Min(D)
+			\item Max(D)
+			\item Seccessor(D, x)
+			\item Predesecesssor(D, x)
+		\end{itemize}
+	\end{multicols}
+	\she \subsubsection{מבני נתונים למילונים} 
+	להלן הסיבוכיות worst case בעבורי סוגי המילונים, כאשר בהקשר המתאים $d$ עומק העץ:
+	\sen
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline op & dual-linked list & ordered dual-linked list & ordered circular array & binary tree \\
+			\hline Insert & $O(n)$ & $O(n)$ & $O(n)$ & $O(d)$ \\
+			\hline Delete & $O(n)$ & $O(n)$ & $O(n)$ & $O(d)$\\
+			\hline Search & $O(n)$ & $O(n) = O(index)$ & $O(\logn)$ & $O(d)$ \\
+			\hline Min & $O(n)$ & $O(1)$ & $O(1)$ & $O(d) $\\
+			\hline Max & $O(n)$ & $O(1)$ & $O(1)$ & $O(d)$ \\
+			\hline Successor & $O(n)$ & $O(1)$ & $O(1)$ & $O(d)$ \\
+			\hline Predecessor & $O(n)$ & $O(1)$ & $O(1)$ & $O(d)$ \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+	\she
 	
-	\textbf{דוגמה. }עבור הסדרה $1, 0, 1, 0$ מתאימה הפונ': 
-	\[ \nsuminf 1 \cdot x^{2n} = \frac{1}{1 - x^2} \]
-	(נכון מהדוגמה הראשונה). 
+	כאשר על מערך מעגלי ממוין דיברנו בתרגול והשאר ממבוא מורחב. 
 	
-	\subsection{פעולות על פונ' יוצרות}
-
-	\subsubsection{כפל בקבוע}
-	 אם $A(x) = \nsuminf a_nx^n$ אז: 
-		\[ \forall c \in \R \co A(cx) = \nsuminf a_n(cx)^n = \nsuminf a_nx^n \]
-		כלומר $A(cx)$ יוצרת את הסדרה $b_n = c^n a_n$. 
-	\subsubsection{חיבור}
-		 חיבור פונ' יוצרות: אם $A(x), B(x)$ פונ' יוצרות של $a_n, b_n$ בהתאמה, אז $A(x) + B(x)$ יוצרת את $(a_n + b_n)_{n = 0}^{\inf}$. 
-		
-		
-		\textbf{דוגמה. }מה הפונ' היוצרת של הסדרה $a_n = 2^n - 1$? \textbf{פתרון. }
-		\[ \sum(2^n - 1)x^n = \sum \underbrace{2^nx^n}_{(2x)^n} - \sum x^n = \frac{1}{1 - 2x} - \frac{1}{1 - x} = \frac{x}{2x^2 - 3x + 1} \]
-		
-	\subsubsection{גזירה}
-		גזירה של פונ' יוצרת: 
-		\begin{align*}
-			A(x) &= \nsuminf a_nx^n \\
-			A'(x) &= \nsuminf na_nx^{n - 1} \\
-			x(A'x) &= \nsuminf na_nx^n
-		\end{align*}
-		כלומר, הפונ' $xA'(x)$ יוצרת את $(na_n)_{n = 0}^{\inf}$
-		
-		\textbf{דוגמה. }
-		\begin{align*}
-			A(x) = \frac{1}{1 - x} &= (1 - x)\op \\
-			A'(x) &= (1 - x)^{-2} = \frac{1}{(1 -x)^{2}} \\
-			xA'(x) &= \frac{x}{1 - x} = \nsuminf nx^n
-		\end{align*}
-		את הסדרה $1, 2, 3, 4, \cdots$ יוצרת $\frac{x}{(1 - x)^{2}}$. 
-		
-		\textbf{דוגמה. }נגזור שוב, למען הכיף. 
-		\begin{align*}
-			A''(x) &= 2(1 - x)^{-3} = \frac{2}{(1 - x)^{3}} \\
-			A''(x) &\overset{(1)}{=} \nsuminf n(n - 1)x^{n - 2} \\
-			x^2A''(x) &= \nsuminf n(n - 1)x^{n} \\
-			x^2A''(x) &= \frac{2x^2}{(1 - x)^{3}} \\
-			\frac{2x^2}{(1 - x)^{3}} = \nsuminf n(n - 1)x^n \\
-			\frac{x^2}{(1 - x)^3} &= \nsuminf \binom{n}{2} x^n
-		\end{align*}
-		הערה $(1)$: גזרנו את $\sum nx^{n - 1}$ מהדוגמה הקודמת. 
-		סה"כ הפונ' היוצרת של $b_n = \binom{n}{2}$ היא $\frac{x^2}{(1 - x)^{3}}$. 
-		
-		\textit{הערה:} בגזירה הראשונה קיבלנו $\frac{n}{1}$, אפשר להמשיך לגזור, ובאופן כללי: 
-		\textbf{משפט. }
-		\[ \forall m \ge 0 \co \text{\en{generating func of }} b_n = \binom{n}{m} \, \text{\en{ is }} \frac{x^m}{(1 - x)^{m + 1}} \]
-		
-	\subsubsection{אינטגרל}
-	 אם $A(x) = \nsuminf a_nx^n$, אז: 
-		\[ \int_0^x A(t) \dt \int^x_0 \nsuminf a_nt^n \dt = \nsuminf \int_0^x a_nt^n\dt = \nsuminf a_n\cl{\frac{t^{n + 1}}{n + 1}}\Bigg\vert_0^x \!\!= \nsuminf \frac{a_n}{n + 1}x^{n + 1} = \sum_{n = 1}^{\inf} \frac{a_{n - 1}}{n}x^n \]
-		סה"כ $\int^x_0 A(t) \dt$ יוצרת את הסדרה: 
-		\[ b_n = \begin{cases}
-			\frac{a_n - 1}{n}& n \ge 1 \\
-			0 & n = 0
-		\end{cases} \]
-	\subsubsection{סדרת הסכומים החלקיים}
-		(מקרה פרטי של 6) סדרה הסכומים החלקיים: 
-		\begin{align*}
-			\frac{1}{1 - x}A(x) &= \sum x^n \sum a_nx^n \\
-			&= (1 + x + x^2 + \cdots)(a_0 + a_1x + a_2x^2 + \cdots) \\
-			&= a_0 + (a_0 + a_1)x + (a_0 + a_1 + a_2)x^2 + \cdots \\
-			&= \nsuminf \cl{\sum_{k = 0}^{n} a_k}x^{n}
-		\end{align*}
-		כלומר, סדרת הסכומים החלקיים של $a$ היא $b_n = \sum_{k = 0}^{n}a_k$, מתאימה לפונ' $\frac{1}{1 - x}A(x)$. 
-	\subsubsection{כפל}
-		מכפלה של פונ' יוצרות: נניח ש־$A(x), B(x)$ יוצרות את $a_n, b_n$ בהתאמה. 
-		\begin{align*}
-			A(x) \cdot B(x) &= \nsuminf a_nx^n \nsuminf b_nx^n \\
-			&= (a_0 + a_1x + a_2x^2 + \cdots)(b_0 + b_1x + b_2x^2 + \cdots) \\
-			&= a_0b_0 + (a_1b_1 + a_1b_0)x + (a_0 b_2 + a_1b_1 a_2b_0)x^2 \\
-			&= \sum_{n = 0}^{\inf}\underbrace{\cl{\sum_{k = 0}^{n} a_kb_{n - k}}}_{a * b}x^{n}
-		\end{align*}
-		כאשר $a * b$ קונבולוציה. 
-		\textbf{דוגמה. }מצאו את הסדרה שהפונ' $\ln(\frac{1}{1 - x})$ יוצרת. 
-		\textbf{תשובה. }נגזור. יאי. 
-		\begin{align*}
-			\cl{\ln\cl{\frac{1}{1 - x}}} &= \frac{1}{1 - x} \\
-			\cl{\ln \frac{1}{1 - x}} &= \frac{\frac{1}{(1 - x)^{2}}}{\frac{1}{1 - x}} = \frac{1}{1 - x} = (1 - x)\op
-		\end{align*}
-		וסה"כ: 
-		\[ \ln \frac{1}{1 - x} \underbrace{- \ln 1}_{ = 0} = \int_0^x \frac{1}{1 - t}\dt = \int^x_0 \nsuminf t^n\dt = \nsuminf \int^x_0 t^n\dt = \sum \frac{t^{n + 1}}{n + 1}\Bigg\vert^x_0 = \nsuminf \frac{x^{n + 1}}{n + 1} = \nsuminf \frac{x^n}{n} \]
-		סה"כ הפונ' $\ln \frac{1}{1 - x}$ יוצרת את: 
-		\[ b_n = \begin{cases}
-			\frac{1}{n} & n \ge 1 \\
-			0 & n = 0
-		\end{cases} \]
-		
+	\subsection{עצי חיפוש בינאריים}
+	\subsubsection{טרמינולוגיה}
+	\begin{itemize}
+		\item עומק של קודקוד: אורך מסלול ממנו לשורש (במסלול שרק עולה). 
+		\item עומק של העץ: עומק מקסימלי של קודקוד. 
+		\item גובה של קודקוד: אורך מסלול הכי ארוך ממני ומטה (סמלול שרק יורד) \textit{בניסוח חילופי} עומק תת־העץ שמתחיל ממנו. 
+	\end{itemize}
+	ברמה הטכנית של המימוש, בדרך־כלל נוח שבעבור עלים המצביעים שלהם ימינה ושמאלה יצביעו לאותו משום חסר משמעות בזכרון. 
 	
-	סיכום ביניים: 
-	\begin{align*}
-		A(cx) & \siff c^na_n \\
-		A(x) + B(x) & \siff a_n + b_n \\
-		xA'(x) &\siff na_n \\
-		\int^x_0 A(t) \dt& \siff \begin{cases}
-			\frac{a_{n - 1}}{n} & n \ge 1\\
-			0 & n = 0
-		\end{cases} \\
-		\frac{1}{1 - x} & \siff 1 \\
-		\frac{x^m}{(1 - x)^{m + 1}} & \siff \binom{n}{m} \\
-		\ln \frac{1}{1 - x} & \siff \begin{cases}
-			\frac{1}{n} & n \ge 1\\
-			0 & n = 0
-		\end{cases}
-	\end{align*}
+	\subsubsection{פעולות}
+	\begin{itemize}
+		\item חיפוש, החלפה והוספה: בעזרת חיפוש בינארי על העץ. 
+		\item מה חגבי מחיקה? נחלק למקרים. 
+		\begin{itemize}
+			\item עלה, אפשר למחוק כמו שהוא. 
+			\item אם יש לו בן אחד, אז נעביר את תת העץ של הבן להיות במקומו. 
+			\item אחרת, שני פתרונות עלו: 
+			\begin{itemize}
+				\item פתרון שלא שובר את העץ: להחליף את האיבר שמוחקים ב־predecessor שלו. לא תהיה בעיה למחוק את ה־predecessor מהמיקום שלו כי יש לו רק בן אחד. העומק במקרה הגרוע נשאר אותו הדבר. 
+				\item פתרון כאוטי שהורג את האיזון: לקחת את העץ השמאלי ולשים אותו ב־predecessor של השורש של תת העץ הזה, שנמצא איפשהו בתת העץ הימני. עומק במקרה הגרוע הכפיל עצמו. 
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
 	
+	\textbf{המטרה: }לשמור על עומק $O(\logn)$. למה? כי העומק המינימלי של עץ בינארי הוא $\logn$
 	
-	\subsection{איך מחלצים סדרה מתוך פונ' יוצרת נתונה? }
-	\subsubsection{תזכורות מקורס B}
-	ניזכר במשפט טיילור (ספציפית לטור מ'קלורן)
-	\[ f(x) = \nsuminf \frac{f^{(n)}(0)}{n!}x^{n} \]
-	\textbf{דוגמה. }ידוע $e^x = \nsuminf \frac{x^n}{n!}$, לכן $e^x$ יוצרת את הסדרה $a_n = \frac{1}{n!}$. 
-	
-	\textbf{דוגמה. }נתבונן בפונ' $f(x) = (1 + x)^{\al}$ (נניח $\al \in \R$). אז: 
-	\begin{alignat*}{9}
-		f'(x) &= \ag(1 + x0^{\ag - 1}) && \implies f'(0) = \ag \\
-		f''(x) &= \ag(\ag - 1)(1 + x)^{\ag - -2} && \implies f''(0) = \ag(\ag - 1) \\
-		\vdots \\
-		f^{(n)}(x) &= \ag(\ag - 1) \cdots \big(ag - (n - 1)\big)^{\ag - n} &&\implies f^{(n)}(0) = \ag(\ag - 1) \cdots \big(\ag - (n  - 1) \big )
-	\end{alignat*}
-	
-	\subsubsection{הכללת הבינום}
-	\[ \forall x \in \R \, \forall n \in \N \co \binom{x}{n} = \frac{x(x - 1) \cdots (x - (n - 1))}{n!} \]
-	מוטיבציה: 
-	\[ \binom{m}{n} = \binom{m!}{n!(m - n)!} = \frac{m(m - 1) \cdots (m - n + 1)}{n!} \]
-	לכן: 
-	\[ (1 + x)^{\ag} = \nsuminf \binom{\ag}{n}x^n \]
-	
-	זוהי הכללה לנוסחאת הבינום של ניוטון. 
-	
-	לפני הרבה זמן הוכחנו נוסחה מפורשת לקטלן. במצגת של המרצה יש הוכחה לשקילות באמצעות פונ' יוצרות, ולכן מומלץ לקרוא גם אותה. 
-	\subsection{שימוש בפונ' יוצרות ע"מ למצוא נוסחאות נסיגה}
-	אפשר להשתמש בטכניקה הזו לכל סדרה מוגדרת רקורסיבית.
-	\textbf{דוגמה. }פיבונצ'י: 
-	\[ \begin{cases}
-		F_n = F_{n - 1} + F_{n - 2} & n \ge 2\\
-		F_0 = F_1 = 1
-	\end{cases} \]
-	תזכורות: הגדנרו את הפולינום האופייני להיות $p(x) = x^2 - c_1x - c_2$, ונעזרנו בשורשיו בשביל למצוא צורה כללית. 
-	
-	נתבונן בפונ' היוצרת של הסדרה $F_n$, נקראה $F(x)$: 
-	\begin{align*}
-		F(x) &= \nsuminf F_nx^n \\
-		&= F_0 + F_1 x + \nsuminf F_nx^n \\
-		&= 1 + x + \sum_{n = 2}^{\inf}(F_{n - 1} + F_{n - 2})x^n \\
-		&= 1 + x + \sum_{n = 2}^{\inf} F_{n - 1}x^{n} + \sum_{n = 2}^{\inf}F_{n - 2}x^n \\
-		&= 1 + x + x\underbrace{\sum_{n = 1}^{\inf}F_nx^n}_{F(x) - 1} + x^2 \underbrace{\sum_{n = 0}^{\inf}F_nx^n}_{F(x)} \\
-		&= 1 + x + x(F(x) - 1) + x^2F(x) = 1 + x \cdot F(x) + x^2 \cdot F(x)
-	\end{align*}
-	נבודד את $F(x)$ מהמשוואה: 
-	\[ xF(x) + x^2F(x) - F(x) = -1 \implies F(x)\cdot (x^2 + x - 1) = -1 \implies F(x) = - \frac{1}{x^2 + x - 1} \]
-	מצאנו את הפונ' היוצרת של פיבונאצ'י. נרצה מזה למצוא נוסחה לסדרה. עתה צריך לפרק לשברים חלקיים. ייתכן שנמצא משהו עם מרוכבים. יש גם במצגת דוגמה לפונ' יוצרת שהנוסחה הסגורה לה עם מספרים מרוכבים. 
-	\begin{align*}
-		F(x) &= \frac{1}{\sqrt 5}\cl{\frac{1}{\ag - x} + \frac{1}{\varphi - x}} \quad \quad \ag = \frac{-1 + \sqrt 5}{2} \\
-		&= \frac{1}{\sqrt 5}\cl{\frac{1}{\ag}\cdot \frac{1}{1 - \frac{x}{\ag}} - \frac{1}{\phi}\cdot \frac{1}{1 - \frac{x}{\phi}}} 
-	\end{align*}
-	כאשר $\varphi$ הצמוד של $\ag$. 
-	ידוע ש־: 
-	\[ \frac{1}{x - \ag} = \frac{1}{\ag} \cdot \frac{1}{1 - \frac{x}{\ag}} = \frac{1}{\ag}\sum_{n = 0}^{\inf}\cl{\frac{x}{\ag}}^{n} = \sum \frac{1}{\ag^{n + 1}}x^{n} \]
-	
-	באופן דומה בעבור $\frac{1}{\phi - x}$. סה"כ נשתמש בפעולות שלמדנו על חיסור פונ' יוצרות והכפלה בסקלר. נקבל: 
-	\[ F(x) = 5^{-0.5}\sum \cl{\frac{1}{\ag^{n + 1}} - \frac{1}{\phi^{n + 1}}}x^n \implies F_n = \frac{1}{\sqrt5}\cl{\frac{1}{\ag^{n + 1}} - \frac{1}{\phi^{n + 1}}} \]
-	כידוע. במצגת יש דוגמה נוספת עם מרוכבים. 
-	
-	
-	
-	\section{\en{Random thing related to spanning trees}}
-	הרחבה למשפט קיילי נמצאת גם בקורס. משפט קירכהוף (לא למתחים). 
 	
 	
 	
