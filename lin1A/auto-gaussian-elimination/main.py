@@ -9,7 +9,7 @@ import numpy as np
 Matrix = TypeVar("Matrix", bound=np.ndarray)
 MatrixOperation = TypeVar("MatrixOperation", bound=str)
 
-p: int = 5
+p: int = 0
 
 
 def opening():
