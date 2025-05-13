@@ -1,0 +1,678 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+\DeclareMathOperator\col   {Col}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 1א, תרגיל בית 5}}
+\begin{document}
+	\maketitle
+	\section{}
+	בכל אחד מהסיעפים הבאים, נקבע האם קיימת $T$ העתקה ליניארית המקיימת את הנתון, נקבע האם היא יחידה. במידה והיא יחידה נמצא את תמונתה, גרעינה, ונקבע האם היא חח"ע, על או איזומורפיזם. 
+	
+	\textbf{נסמן ב־$\bm{E}$, בכל סעיף בנפרד, להיות הבסיס הטרוויאלי של טווח הפונקציה אותה נרצה למצוא. }
+	\begin{enumerate}[A)]
+		\item מעל $\Z_3$ נמצא העתקה $T \co (\Z_3)^{3} \to M_2(\Z_3)$ המקיימת: 
+		\[ T\cl{\pms{1 \\ 1 \\ 1}} = T\cl{\pms{1 \\ 0 \\ 1}} = \pms{1 & 0 \\ 0 & 1}, \ T\cl{\pms{2 \\ 0 \\ 1}} = \pms{2 & 0 \\ -1 & 1} \]
+		ננסה לבנות מטריצה שתייצג את ההעתקה. לשם כך, תחילה נוכיח שהוקטורים הבאים בת"ל ופורשים. נתבונן במרחב השורות של הוקטורים. 
+		\[ \pms{1 \\ 1 \\ 1}, \pms{1 \\ 0 \\ 1}, \pms{2 \\ 0 \\ 1} \to \pms{1 & 0 & 1 \\ 1 & 1 & 1 \\ 2 & 0 & 1} \rrt{R_2 \to R_2 - R_1}{R_3 \to R_3 - 2R_1} \pms{1 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & -1} \rrt{R_1 \to R_1 + R_3}{R_3 \to -R_3} \pms{1 & 0 & 0  \\ 0 & 1 & 0 \\ 0 & 0 & 1} \]
+		כל משתנה קשור באיבר פותח, ולכן הקבוצה פורשת. מרחב הפתרונות למטריצה ההומגנית טרוויאלי בלבד, ולכן הקבוצה בת"ל. סה"כ הוקטורים הללו בסיס ל־$\R^3$, נסמנו $B$. 
+		
+		נתבונן באיזומורפיזם הבאה: 
+		\[ \phi \to M_2(\Z_3) \to \Z_3^4, \ \phi\cl{\pms{a & b \\ c & d}} = \pms{a \\ b \\ c \\ d} \]
+		זוהי איזומטריה שכן תחת הגדרות הקורס, אבסטרקטית, $\phi$ היא הזהות מעל $\Z_3^4$. אזי לכל $T$ נוכל למצוא $f \co \Z_3^3 \to \Z_3^4$ כך ש־$\phi \circ f = T$ (שוב, אבסטרקטית $f = T$). 
+		
+		עתה נוכל לבנות את $[T]^B_E$. 
+		\[ \col_1 = \csb{\phi\pms{1 \\ 1 \\ 1}}_E = \pms{1 & 0 \\ 0 & 1} = \pms{1 \\ 0 \\ 0 \\ 1} = \csb{\phi\pms{1 \\ 0 \\ 1}} = \col_2, \ \col_3 = \csb{\phi\pms{2 \\ 0 \\ 1}} = \csb{\pms{2 & 0 \\ -1 & 1}}_E = \pms{2 \\ 0 \\ -1 \\ 1} \]
+		וסה"כ: 
+		\[ [T]^B_E = \pms{1 & 1 & 2 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \\ 1 & 1 & 1} \]
+		נמצא את הקרנל: 
+		\[ v \in \ker T \iff T(v) = 0 \iff [T]^B_E[v]_B \]
+		נקבל: 
+		\[ \set [v]_B = \pms{a \\ b \\ c} \implies [T]^B_E[v]_B = 0 \iff \pms{a + b + 2c, 0, -c, a + b + c} = (0, 0, 0, 0) \]
+		בכך למעשה הראינו שהקרנל לפי בסיס $B$ יהיה דירוג המטריצה המייצגת. ב־$R_n \to \top$ נסמן שנוכל להתעלם משורה מכיוון שמהווה טאוטולוגיה. 
+		\[ \pms{1 & 1 & 2 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \\ 1 & 1 & 1} \rrt{R_4 \to R_4 - R_1}{R_2 \to \top} \pms{1 & 1 & 2 \\ 0 & 0 & -1 \\ 0 & 0 & -1} \rrr{R_3 \to R_3 - R_2} \rrt{R_3 \to \top}{R_2 \to -R_2} \pms{1 & 1 & 2 \\ 0 & 0 & 1} \rrr{R_1 \to R_1 - 2R_2} \pms{1 & 1 & 0 \\ 0 & 0 & 1} \]
+		סה"כ נקבל שקבוצת הפתרונות לפי הבסיס $B$ תהיה: 
+		\[ \ccb{\csb{\pms{- s \\ s \\ 0}}_B\!\!\!\!\! \mid s \in \Z_3} \rrr{E} -s\pms{1 \\ 1 \\ 1} + s \pms{1 \\ 0 \\ 1} = \pms{0 \\ -s \\ 0} \]
+		סה"כ קיבלנו $\ker T = \cl{(0, -s, 0) \mid s \in \Z_3}$. עתה נחפש את התמונה. נתבונן בוקטור $[v]_B = (a, b, c)$ בתחום, ונקבל את התמונה להיות: 
+		\[ \Img T = \ccb{\pms{a + b + 2c \\ 0 \\ -c \\ a + b + c}\mid a, b, c \in \Z_3}  \]
+		אין זה משנה שאת $v$ ייצגנו באמצעות $a, b, c$ קומבינציתו ליניאריות מ־$B$, שכן $B$ בסיס ובפרט פורש את $\Z_3^3$. לכן זוהי התמונה. 
+	
+	בגלל שעבור $s = 1$ נקבל $\ker T \ni (0, -1, 0) \neq (0, 0, 0)$, אז $T$ אינה חח"ע. בגלל ש־$(1, 1, 1, 1) \in \Img T$ גורר $1 = 0$ וזו סתירה, מצאנו וקטור מ־$\Z_3^4$ (שקול עד לכדי הרכבה באיזומורפיזם $\phi$ ל־$M_2(\Z_3)$) ולכן גם $T$ איננה על. בפרט אינה איזומורפיזם. 
+	\item העתקה $T \co (\Z_5)^3 \to M_s(\Z_5)$ המקיימת: 
+	\[ T\cl{\pms{1 \\ 1 \\ 1}} = T\cl{\pms{2 \\ 3 \\ 4}} = \pms{1 & 0 \\ 0 & 1} = \pms{1 \\ 0 \\ 0 \\ 1} \]
+	ראשית כל, נבדוק האם הוקטורים בתחום שנתון ערכם הינם בסיס: 
+	\[ \pms{1 & 1 & 1 \\ 2 & 3 & 4} \rrr{R_2 \to R_2 - 2R_1} \pms{1 & 1 & 1 \\ 0 & 1 & 2} \rrr{R_1 \to R_1 - R_2} \pms{1 & 0 & 4 \\ 0 & 1 & 2} \]
+	מצאנו שהם בת"ל, שכן קיים פתרון לא טרוויאלי, אבל הם לא פורשים; נותר משתנה בלתי תלוי. נוכל למלא את החסר ב־$e_3$. סה"כ השלמנו לבסיס: 
+	\[ B = \cl{\pms{1 \\ 1 \\ 1}, \pms{2 \\ 3 \\ 4}, \pms{0 \\ 0 \\ 1}} \]
+	עתה נבנה את $[T]^B_E$. 
+	\[ \col_1 = \csb{T\cl{\pms{1 \\ 1 \\ 1}}}_E = \pms{1 \\ 0 \\ 0 \\ 1} = \csb{T\cl{\pms{2 \\ 3 \\ 4}}} = \col_2, \ \col_3 = \csb{T\cl{\pms{0 \\ 0 \\ 1}}}_E \!\!\!\!:= \pms{a \\ b \\ c \\d} \]
+	כאשר למעשה $a, b, c, d \in \Z_3$ אך לא צוינה כל הגבלה נוספת. סה"כ נקבל את המטריצה המייצגת: 
+	\[ [T]^B_E = \pms{1 & 1 & a \\ 0 & 0 & b \\ 0 & 0 & c \\ 1 & 1 & d} \]
+	נבחין כי היא איננה יחידה – בעבור המטריצה המייצגת נוכל לבחור בכל $a, b, c, d$ ב־$\Z_5$, ומשום שקיים איזומורפיזם בין מרחב המטריצות המייצגות לבין מרחב ההעתקות הליניאריות – כל שינוי ב־$a, b, c, d$ יגרור שהמטריצה תייצג העתקה ליניארית אחרת. בגלל ש־$|\Z_5| > 1$ אז בפרט ייתכן יותר מ־$a$ יחיד וסה"כ קיימת יותר מהעתקה ליניארית יחידה. 
+	\item מעל השדה $\R$, העתקה $T \co \R_2[x] \to \R^3$ המקיימת: 
+	\[ T(1 +  2x + x^2) = \pms{1 \\ 0 \\ 0}, \ T(1 + x + x^2) = \pms{1 \\ 1 \\ 0}, \ T(1 + x^2) = \pms{1 \\ 2 \\ 0} \]
+	בדומה לסעיפים קודמים, נבדוק האם הנתונים בסיס: 
+	\[ (B_1, B_2, B_3) := \cl{\pms{1 \\ 2 \\ 1}, \pms{1 \\ 1 \\ 1}, \pms{1 \\ 2 \\ 0}} \to \pms{1 & 2 & 1 \\ 1 & 1 & 1 \\ 1 & 2 & 0} \rrt{R_2 \to R_2 - R_1}{R_3 \to R_3 - R_1} \pms{1 & 2 & 1 \\ 0 & -1 & 0 \\ 0 & 0 & -1} \rrt{R_1 \to R_1 + R_2 + R_3}{R_2 \to -2R_2, R_3 \to -R_3} = 1 \]
+	אכן כל המשתנים קשורים ולכן פורש, ובת"ל כי דירגנו מטריצה הומוגנית ומצאנו פתרון טרוויאלי בלבד. עתה נבנה את $[T]^B_E$. נקבל: 
+	\[ [T]^B_E = \pms{\vdots & \vdots & \vdots \\
+		[T(B_1)]_C & [T(B_2)]_C & [T(B_3)]_C \\ \vdots & \vdots & \vdots} = \pms{\vdots & \vdots & \vdots \\ T(B_1) & T(B_2) & T(B_3) \\ \vdots & \vdots & \vdots} = \pms{1 & 1 & 1\\ 0 & 1 & 2\\ 0 & 0 & 0} \]
+		בכך מצאנו שההעתקה יחידה. נמצא את תמונתה וגרעינה. 
+		
+		\textbf{גרעין. }יהי $p = (a, b, c)$. אז: 
+		\begin{multline*}
+			\tmat{1 & 1 & 1 \\ 2 & 1 & 2 \\ 1 & 1 & 0}{a \\ b \\ c} \rrt{R_2 \to R_2 - 2R-1}{R_3 \to R_3 - R_1}
+			\tmat{1 & 1 & 1 \\ 0 & -1 & 0 \\ 0 & 0 & -1}{a \\ b - 2a \\ c - a}
+			\rrt{R_2 \to -R_2}{R_3 \to -R_3}
+			\tmat{1 & 1 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 1}{a \\ 2a - b \\ a - c} \\
+			\rrr{R_1 \to R_1 - R_2 - R_3}
+			\tmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}{- 2a + b + c \\ 2a - b \\ a - c} 
+			\implies [p]_B = \pms{- 2a + b + c \\ 2a - b \\ a - c}
+		\end{multline*}
+		נדרוש שוויון לאפס למציאת הקרנל
+		\begin{multline*}
+			[T]^B_E[p]_B = \pms{-2a + b + c + 2a - b + a - c \\ 2a - b + 2a - 2c \\ 0} = \pms{a \\ 4a - b - 2c \\ 0} \seq 0 \iff \pms{1 & 0 & 0 \\ 4 & -1 & -2 \\ 0 & 0 & 0} \rrr{-R_2 \to R_2 - 4R_1} \\
+			\pms{1 & 0 & 0 \\ 0 & 1 & 2 \\ 0 & 0 & 0}
+			\iff a = 0 \land b - 2c = 0 \iff \ker T = \ccb{\pms{0 \\ t \\ 2t} \mid t \in \R}
+		\end{multline*}
+		(תקין משום שהמטריצה המייצגת לבסיס הסטנדרטי)
+		
+		\textbf{תמונה. }כבר מצאנו את כפל הוקטור לפי בסיס $B$, הוא כל וקטור שהפונקציה תוכל להוציא. קיבלנו: 
+		\[ [T]^B_E[p]_B = \pms{a \\ 4a - b - 2c \\ 0} = \ccb{\pms{a \\ 4a + b + c \\ 0} \mid a, b, c \in \R} = \ccb{\pms{s \\ t \\ 0}\mid s, t \in \R} \]
+		
+		
+		
+	
+	\item מעל השדה $\R$, העתקה $T \co \R^3 \to \R^4$ המקיימת: 
+	\[ \Img T = \ker T = \ccb{\pms{1 \\ 2 \\ 3}, \pms{1 \\ 0 \\ 1}} \]
+	לא תיתכן העתקה כזו, שכן אם זהו $\Img T$ אז $0 \notin \Img T$ (כי כפל ב־$0 \in \R$ בכל וקטור יביא אותנו ל־$(0, 0, 0) \notin \Img T$) אך $\Img T$ מ"ו ובפרט קיים בו את איבר ה־0 וזו סתירה. 
+	\item מעל שדה $\R$, העתקה $T \co \R^4 \to \R^4$ המקיימת: 
+	\[ \Img T = \ker T = \ccb{\pms{1 \\ 2 \\ 3 \\ 1}, \pms{1 \\ 0 \\ 1 \\ 1}} \]
+	לא קיימת העתקה כזו באופן זהה לסעיף הקודם. 
+	\end{enumerate}
+	
+	\section{}
+	בסעיפים הבאים, נמצא את $[v]_B$ בהינתן $V$ מ"ו מעל $\F$ ו־$B$ בסיס של $V$. 
+	\begin{enumerate}[A)]
+		\item 
+		\[ \F = \R, \ V = M_2(\R), v = \pms{1 & 2 \\ 1 & 3}, B = \cl{\pms{1 & 0 \\ 0 & 1}, \pms{0 & 1 \\ 0 & 0}, \pms{0 & 0\\ 0 & 1}, \pms{0 & 1 \\ 1 & 0}} := (p_1, p_2, p_3, p_4) \]
+		בדומה לסעיפים קודמים, נרכיב כל מטריצה בזיווג $\phi \co M_2(\F) \to \F^4$ באמצעות: 
+		\[ \phi\cl{\pms{a & b \\ c & d}} = \pms{a \\ b \\c \\ d} \]
+		נחפש $a, b, c, d$ מתאימים כך ש־: 
+		\[ ap_1 + bp_2 + cp_3 + dp_4 = v \iff a\pms{1 \\ 0 \\ 0 \\ 1} + b\pms{0 \\ 1 \\ 0 \\ 0} + c\pms{0 \\ 0 \\ 0 \\1} + d\pms{0 \\ 1 \\ 1 \\ 0} = \pms{1 \\ 2 \\ 1 \\ 3} \]
+		נכניס את מערכת המשוואות לתוך מטירצות: 
+		\[ \tmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 1 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 1 & 0}{1 \\ 2 \\ 1 \\3}
+		\rrr{R_3 \lra R_4}
+		\tmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 1 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1}{1 \\ 2 \\ 3 \\ 1}
+		\rrt{R_2 \to R_2 - R_4}{R_3 \to R_3 - R_1}
+		\tmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1}{1 \\ 1 \\ 2 \\ 1}
+		 \]
+		 סה"כ: 
+		 \[ [v]_B = (a, b, c, d) = (1, 1, 2, 1) \]
+		 \item 
+		 \[ \F = \Z_5, V = (\Z_5)^5, v = \pms{1 \\ 2 \\ 3 \\ 4 \\ 5}, B = \ccb{\pms{1 \\ 4 \\ 0 \\ 4 \\ 4}, \pms{0 \\ 0 \\ 1  \\ 1 \\ 1}, \pms{1 \\ 0 \\ 0 \\ 0 \\0}, \pms{0 \\ 1 \\ 0 \\ 0 \\ 0}, \pms{0 \\ 0 \\ 0 \\ 1 \\ 0}} \]
+		 באופן דומה לסעיף הקודם, נחפש קבועים מתאימים: 
+		 \begin{multline*}
+		 	\tmat{1 & 0 & 1 & 0 & 0 \\ 4 & 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 4 & 1 & 0 & 0 & 1 \\ 4 & 1 & 0 & 0 &0}{1 \\ 2 \\ 3 \\ 4 \\ 5} \rrr{\forall n \in \{2, 4, 5\}\co R_n \to R_n + R_1} 
+		 	\tmat{1 & 0 & 1 & 0 & 0 \\ 0 & 0 & 1  & 1 & 0  \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 \\ 0 & 1 & 1 & 0 & 0}{1 \\ 3 \\ 4 \\ 0 \\ 1} \rrt{R_2 \to R_2 + R_3}{{\forall n \in [4, 5]\co R_n \to R_n - R_3}}
+		 	\tmat{1 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0 & 0}{1 \\ 4 \\ 3 \\ 2 \\ 3}
+		 	\\ \rrt{R_4 \to R_4 - R_3}{R_5 \to R_5 - R_3}
+		 	\tmat{1 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 4 & 1 \\ 0 & 0 & 0 & 4 & 0}{1 \\ 4 \\ 3 \\ 4 \\ 0}
+		 	\rrt{R_4 \to 4R_4}{R_5 \to R_5 - R_4}
+		 	\tmat{1 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 4 \\ 0 & 0 & 0 & 0 & 4}{1 \\ 4 \\ 3 \\ 1 \\ 1}
+		 	\rrt{R_5 \to 4R_5}{R_4 \to R_4 - R_5}
+		 	\tmat{1 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1}{1 \\ 4 \\ 3 \\ 1 \\ 4} \\
+		 	\rrr{R_3 \to R_3 - R_4}\rrr{R_1 \to R_1 - R_3}
+		 	\tmat{1 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1}{4 \\ 4 \\ 2 \\ 1 \\ 4} 
+		 \end{multline*}
+		 סה"כ מדירוג המטריצה, באופן דומה לסעיף הקודם, מצאנו: 
+		 \[ [v]_B = (4, 4, 3, 1, 4) \]
+		 \item 
+		 \[ \F = \R, \ V = \R_4[x], \ v = 2 + 4x - 5x^3 + x^5, \ B = (1, 1 + x, 1 + x + x^2, 1 + x + x^2 + x^3, 1 + x^2 + x^3 + x^4) \]
+		 באופן דומה לסעיף א', נייצג את הפולינומים באמצעות וקטורים מ־$\R_5$ במהלך השאלה. נרצה למצוא $a, b, c, d, e \in \R$ כך ש־: 
+		 \[ a\pms{0 \\ 0 \\ 0 \\ 0 \\ 1} + b\pms{0 \\ 0 \\ 0 \\ 1 \\ 1} + c\pms{0 \\ 0 \\ 1 \\ 1 \\ 1} + d\pms{0 \\ 1 \\ 1 \\ 1 \\ 1} + e\pms{1 \\ 1 \\ 1\\ 1\\ 1} = \pms{1 \\ -5 \\ 0 \\ 4 \\ 2} \]
+		 נעביר את מערכת המשוואות למטריצה: 
+		 \begin{multline*}
+		 	\tmat{0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 1 & 1 \\ 0 & 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 1 & 1}{1 \\ -5 \\ 0 \\ 4 \\ 2}
+		 	\rrt{\forall \N \ni n < 5}{R_n \to R_n - R_1}
+		 	\tmat{0 & 0 & 0 & 0 & 1 \\ 0 & 0& 0 & 1 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 1 & 1 & 1 & 0 \\ 1 & 1 & 1 & 1 & 0}{1 \\ -6 \\ -1 \\ 3 \\ 1}
+		 	\rrt{\forall \N \ni n < 4}{R_n \to R_n - R_2}
+		 	\tmat{0 & 0 & 0 & 0 & 1 \\ 0 & 0& 0 & 1 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0 & 0}{1 \\ -6 \\ 5 \\ 9 \\ 7}
+		 	\rrt{R_4 \to R_4 - R_3}{R_5 \to R_5 - R_3} \\
+		 	\tmat{0 & 0 & 0 & 0 & 1 \\ 0 & 0& 0 & 1 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 & 0}{1 \\ -6 \\ 5 \\ 4 \\ 2}
+		 	\rrr{R_5 \to R_5 - R_4}
+		 	\tmat{0 & 0 & 0 & 0 & 1 \\ 0 & 0& 0 & 1 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 & 0}{1 \\ -6 \\ 5 \\ 4 \\ -2}
+		 \end{multline*}
+		 וסה"כ, בדומה לסעיפים קודמים: 
+		 \[ [v]_B = (a, b, c, d, e) = (-2, 4, 5, -6, 1) \]
+		
+	\end{enumerate}
+	
+	\section{}
+	בסעיפים הבאים נחשב את $[T]^B_C$ בהינתן העתקה ליניארית $T$ ובסיסים $B, C$. 
+	\begin{enumerate}[A)]
+		\item 
+		\[ T \co \R^2 \to \R^2, \ T\cl{\pms{x \\ y}} = \pms{0 \\ x - y}, \ B = \cl{\pms{1 \\ 0}, \pms{0 \\ 1}}, \ C = \cl{\pms{1 \\ 1}, \pms{-1 \\ 2}} \]
+		
+		\[ \col_1 = \csb{T\cl{\pms{1 \\ 0}}}_C = \csb{\pms{0 \\ 1}}_C = \pms{0.\bar3 \\ 0.\bar 3}, \ \col_2 = \csb{T\cl{\pms{0 \\ 1}}}_C = \csb{\pms{0 \\ -1}} = \pms{-0.\bar 3 \\ -0.\bar3} \]
+		וסה"כ: 
+		\[ [T]^B_C = \pms{\frac{1}{3} & - \frac{1}{3} \\ \frac{1}{3} & -\frac{1}{3}} \]
+		\item 
+		\[ T(ax^2 + bx + c) = T\cl{\pms{a \\ b \\ c}} = \pms{a + b & b + c \\ c - a & a - b} = \pms{a + b \\ b + c \\ c - a \\ a - b}, \ B = (1, 1 + x, 1+ x^2), \ C = \cl{\pms{2 \\ 1 \\ 0 \\ 0}, \pms{1 \\ 2 \\ 0 \\ 1}, \pms{1 \\ 0 \\ 1 \\2}, \pms{1 \\ 0 \\ 0 \\ 0}} \]
+		\begin{gather*}
+			\col_1 = \csb{T\cl{\pms{0 \\ 0 \\ 1}}}_C = \csb{\pms{0 \\ 1 \\ 1 \\ 0}}_C = \pms{5 \\ -2 \\ 1 \\ -9}, \ \col_2 = \csb{T\cl{\pms{0 \\ 1 \\ 1}}}_C = \csb{\pms{1 \\ 2 \\ 1 \\ -1}} = \pms{8 \\ -3 \\ 1 \\ -13} \\ \col_3 = \csb{T\cl{\pms{1 \\ 1 \\ 1}}}_C = \csb{\pms{2 \\ 2 \\ 0 \\ 0}} = \pms{2 \\ 0 \\ 0 \\ -2}
+		\end{gather*}
+		וסה"כ: 
+		\[ [T]_C^B = \pms{5 & 8 & 2 \\ -2 & -3 & 0 \\ 1 & 1 & 0 \\ -9 & -13 & -2} \]
+		\item $T \co \R^4 \to \R^3$ הנתונה ע"י: 
+		\[ T\cl{\pms{x_1 \\ x_2 \\ x_3 \\ x_4}} = \pms{x_1 + x_2 + x_3 + x_4 \\ x_1 + 3x_2 + 2x_3 + 4x_4 \\ 2x_1 + x_3 + x_4}, B = E_{\R^4}, C = E_{\R^3} \]
+		כאשר $E_V$ הבסיס הסטנדרטי של $V$. 
+		\[ \col_1 = \csb{T\cl{\pms{0 \\ 0 \\ 0 \\ 1}}}_C = \pms{1 \\ 4 \\ 1}, \ \col_2 = \csb{T\cl{\pms{0 \\ 0 \\ 1 \\ 0}}} = \pms{1 \\ 2 \\ 1}, \ \col_3 = \csb{T\cl{\pms{0 \\ 1 \\ 0 \\ 0}}} = \pms{1 \\ 3 \\ 0}, \col_4 = \csb{T\cl{\pms{1 \\ 0 \\ 0 \\ 0}}} = \pms{1 \\ 1 \\ 2} \]
+		וסה"כ: 
+		\[ [T]_C^B = \pms{1 & 1 & 1 & 1 \\ 4 & 2 & 3 & 1 \\ 1 & 1 & 0 & 2} \]
+	\end{enumerate}
+	
+	\section{}
+	נחשב את המכפלות הבאות: 
+	\begin{enumerate}[A.]
+		\item 
+		\[ \pms{1 & 0 \\ -2 & -1 \\ 2 & 4}\pms{7 \\ -4} = \pms{7 + 0 \\ -2 \cdot 7 + 4 \\ 7 \cdot 2 - 4 \cdot 4} = \pms{7 \\ -10 \\ -2} \]
+		\item 
+		\[ \pms{6 & 7 & 9 & -12 & 3 \\ 4 & 7 & 1 & -3 & 9 \\ 1 & -7 & -3 & 4 & 1}\pms{3 \\ -2 \\ 1 \\ -1 \\ 1} = \pms{3 \cdot 6 -14  +9 + 12 + 3 \\ 12 -14 + 1 + 3 + 9 \\ 3 + 14 -3 -4 + 1} = \pms{28 \\ 11 \\ 11} \]
+	\end{enumerate}
+	
+	\section{}
+	נגדיר: 
+	\[ \F = \Z_5, \ T \co \F_2[t] \to \F^2, \ T(p(t)) = \pms{p(1) \\ p(2)}, \ B = (1, t + 1, t^2 + t + 1), \ C = \cl{\pms{1 \\ 1}, \pms{0 \\ 1}} \]
+	כאשר $B, C$ בסיסים של $\F_2[t], \F^2$ בהתאמה. בתרגול ראינו ש־$[T]_C^B = \pms{1 & 2 & 3 \\ 0 & 1 & 4}$. 
+	\begin{enumerate}[A)]
+		\item צ.ל. $\forall p\in \F_2[t]\co [T(p)]_C = [T]^B_C \cdot [p]_B$ ללא שימוש במשפט הטוען זאת לכל $T$ העתקה ליניארית. 
+		\begin{proof}
+			יהי $p \in \F_2[t]$. אז קיימים $a, b, c$ כך ש־: 
+			\[ p = \!\pms{a \\ b \\ c}\!, \ a, b, c \in \F, \ T(p) = \pms{p(1) \\ p(2)} = \pms{(at^2 + bt + c)(1) \\ (at^2 + bt + c)(2)} = 
+			\pms{a + b + c \\ 4a + 2b + c} \]
+			נמצא את המקדמים לפי בסיס $C$: 
+			\[ \tmat{C_1 & C_2}{T(p)} = \tmat{1 & 0 \\ 1 & 1}{a + b + c \\ 4a + 2b + c}
+			\rrr{R_2 \to R_2 - R_1}
+			\tmat{1 & 0 \\ 0 & 1}{a + b + c \\ 3a + b} \implies [T(p)]_C = \pms{a + b + c \\ 3a + b} \]
+			
+			נחפש את $[p]_B$: 
+			\begin{gather*}
+				\tmat{B_3 & B_2 & B_1}{p} \iff \tmat{1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1}{a \\ b \\ c}
+				\rrt{\forall n \in [2, 3]}{R_n \to R_n - R_3}
+				\tmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 1}{a \\ b - a \\ c - a} \\
+				\rrr{R_3 \to R_3 - R_1}
+				\tmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}{a \\ b - a \\ c - b} \implies [p]_B = \pms{c - b \\ b - a \\ a}
+			\end{gather*}
+			נכפול במטריצה המייצגת: 
+			\[ [T]^B_C[p]_B = \pms{1 & 2 & 3 \\ 0 & 1 & 4}\pms{c - b \\ b - a \\ a} =
+			\pms{c - b + 2b - 2a + 3a \\ b - a - 4a} = \pms{a + b + c \\ 3a  +b} \]
+			מטרנזיטיביות נקבל $[T(p)]_C = [T]^B_C[p]_B$ כדרוש. 
+			\item נדרש למצוא את הגרעין והתמונה של $T$ באמצעות המטריצה המייצגת. 
+			
+			\textbf{גרעין. }נדרוש $T(p) = 0$. בגלל ש־$p = 0 \iff [p]_C = 0$ מהיות $C$ בסיס שפורש מ"ו אם איבר $0$ יחיד, אז $\forall p \in \F_2[x]\co p = 0 \iff [p]_C = 0$. יהי $p = (a, b, c), \ p \in \F_2[t]$. ידוע: 
+			\[ p \in \ker T \iff T(p) = 0 \iff [T(p)]_C = 0 \iff [T]^B_C[p]_B = 0 \]
+			כבר ידועיים $[p]_B, [T]^B_C$ מסעיף הקודם, והכפל ביניהם גם חושב בו. לאחר שחישבנו את הכפל במטריצה המייצגת, קיבלנו: 
+			\[ [T]^B_C[p]B = \pms{a + b + c \\ 3a + b} \seq 0 \]
+			וסה"כ: 
+			\[ \begin{cases}
+				a + b + c = 0 \\
+				3a + b = 0
+			\end{cases} \tomat \pms{1 & 1 & 1 \\ 3 & 1 & 0} \rrr{R_2 \to R_2 - 3R_1} \pms{1 & 1 & 1 \\ 0 & -2 & -3} \rrt{R_2 \to -0.5R_2}{R_1 \to R_1 + \frac{R_2}{2}} \pms{1 & 0 & -\frac{1}{2} \\ 0 & 1 & 1.5} \]
+			כלומר: 
+			\[ \ker T = \ccb{\pms{-0.5s \\ 1.5s \\ s} \mid s \in \F} \]
+			
+			\textbf{תמונה. }ידוע $v \in \Img T \iff \exists p \in \F_2[t] \co T(p) = v$. יהי $p\in \F_2[t]$, נעביר אותו דרך $T$ כדי לקבל כל ערך $v$ אפשרי. 
+			\[ \set p = \!\pms{a \\ b \\ c}\!, \ [T]^B_C[p]_B = [T]^B_C\pms{c - b \\ b - a \\ a} = \pms{a + b + c \\ 3a + b} \]
+			(מרבית השוויון חושבו בסעיף הקודם). סה"כ: 
+			\[ \Img T = \ccb{\pms{s + t + w\\ 4s + t} \mid s, t, w \in \F} \]
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהיו $V, W$ מ"וים נוצרים סופית מעל $\F$. תהי $T \co V \to W$ העתקה יניארית. יהי $C$ בסיס כלשהו של $W$. 
+	\begin{enumerate}[A)]
+		\item צ.ל. קיום בסיס $B$ של $V$ כך ש־$\dim \ker T$ העמודות הראשונות של $[T]^B_C$ הן אפסים. 
+		\begin{proof}
+			נסמן $\dim \ker T = n$. נדע ש־$\dim \ker T \le \dim \Img T$ בגלל ש־$\ker T \subseteq \Img T$. נתבונן במ"ו $\Img T$: 
+			\begin{itemize}
+				\item אם $\dim \Img T = \dim \ker T$ אז בהכרח $\dim T = \ker T$ כי שניהם מ"וים מוכלים אחד בשני, והשלמת בת"ל מ־$\ker T$ והשלמתו לבסיס של $\ker T$ תגרור באינדוקציה את פרישת המרחב $\Img T$. אזי ההעתקה $T(v) = 0$ שכן $(\forall v \in \Img T. v \in \ker T) \implies \forall v \in \Img T. v = 0)$ ולכן $T(v) = 0$. נבחר את מטריצת האפס שכפל בה יתן $0$ כדרוש. 
+				\item אחרת, $\dim \Img T < \dim \ker T$. נתבונן בבסיס $B$ של $\ker T$. אזי $B$ בת"ל ב־$\Img T$. נשלים אותו לבסיס $\tl B$. מהנתון $|\tl B| > |B|$ כלומר $\exists v \neq 0 \co v \in \tl B \setminus B$. נסמן את המרחב $\vc = \Sp\{v \in V \mid T(v) \in \tl B \setminus B\}$. הצמצום $T|_{\vc}$ בעל המטריצה המייצגת $[T]^{\vc}_{\tl B \setminus B}$ הוא איזומורפיזם $T|_{\vc} \co \vc \to \Sp(\tl B \setminus B)$ כי בכלל שהוקטורים בו נוצרים מבסיסים זרים לקרנל, $\ker T|_\vc = \{0\}$, ולכן חח"ע, והוא על לפי הגדרת $\vc$. 
+				
+				נשלים לבסיס פורש את $\tl B \setminus B$ ונסמן את אשר קיבלנו ב־$\bc$ (נגדיר את הסדר הפנימי ב־$\bc$ בצורה קונסטרקטיבית במהלך ההוכחה). נטען: 
+				\[ [T]^{\bc}_{C} = \pms{\cdots & 0 & \cdots & [T]^{\vc}_{\tl B \setminus B} \\ \iddots & \vdots & \iddots & \vdots \\ \cdots & 0 &} := A \]
+				כלומר למעשה לקחנו את המטריצה בגודל $n \times n$ שקיבלנו קודם לכן, והרחבנו אותה למטריצה מגודל $\dim \bc \times \dim C$ כאשר בכל מקום חדש הוספנו אפסים. ידוע שמטריצות שוות אמ"מ ההעתקות אותן מייצגות שוות (מקיום איזומורפיזם ובפרט חח"ע בין מרחב ההעתקות הליניאריות לבין מרחב המטריצות המייצגות) אשר שוות אמ"מ לכל $v \in V$ יחזירו אותן ערכים, שיתקיים אמ"מ כפל של $[v]_\bc$ במטריצות המייצגות יחזיר את אותו הערך. נוכיח שזאת אכן יתקיים. יהי $v \in V$, נסמן $[v]_C = (x_1 \cdots x_m)$ כאשר $m = \dim V = |C|$ (ייצוג קיים ויחיד בגלל ש־$C$ בסיס): 
+				\[ [T]^{\bc}_C [v]_\bc = x_1 \col_1 [T]^\bc_C + \cdots + x_m \col_m [T]^\bc_C \]
+				כאשר $\col_i$ וקטור $[T(b)]_C$ כאשר $b \in \bc$ (מהגדרת \n סדורה נקבל קיום $i$ כך ש־$b = B_i$). בגלל ש־$n$ מהוקטורים ב־$\bc$ שייכים לקרנל, אז י יתקיים בעבורם $T(b) = 0$ ובגלל שפתרון מטריצה הומוגנית אפשרי הוא וקטור ה־0 אז $[T(b)]_C = 0$. סה"כ:
+			\[ \exists N \subseteq [m] \co |N| = n \land \forall i \in \N \co \col_i = [T(B_i)]_C = 0 \]
+			ומכיוון שננתי לעצמי את החופש לקבוע את הסדר ב־$\bc$ (חוקי כי רק צריך להוכיח קיום בסיס כזה, ובפרט אפשר להגדירו), נבחר $N = [n]$. נחזור לשוויון לעיל. מהגדרה, $\tl B \setminus B = \{B_i \mid i \in [n]\}$
+			נקבל: 
+			\[ [T(v)]_C = [T]^{\bc}_C[v]_\bc = \sum_{i \in [m]} x_i \col_i = \underbrace{\sum_{i \in N}x_i\col_i [T]^\bc_{C}}_{=0} + \sum_{\mathclap{i \in [m] \setminus N}} x_i \col_i [T]^\bc_{C} = \underbrace{\sum_{i = 1}^{n}x_i \col_i A}_{=0} + \sum_{\mathclap{i = n + 1}}^{m} x_i \col_i [T]^\bc_{C} \]
+			בגלל ש־$[T(v)]_C$ בכל בסיס שהוא ב־${B_i}_{ \in [n]}$ יהיה $0$ בגלל שאותו הבסיס בקרנל, אז: 
+			\[ \cdots = \sum_{\mathclap{i = n + 1}}^{m} x_i \underbrace{\cl{\sum_{j = 1}^{\dim C}{([T]^\bc_C)}_{ij}}}_{\mathclap{\sum_{j = 1}^n ([T]^\bc_C)_{ij} + \sum_{j = n + 1}^{C} ([T]^\bc_C)_{ij}}} = \sum_{i = n + 1}^{m} x_i A_{ij} = \sum_{i = 1}^{m}x_iA_{ij} = A[v]_C \quad \top \]
+			\end{itemize}
+		\end{proof}
+		\item נניח ש־$T$ איננה העתקת ה־$0$. נוכיח קיום בסיס $B'$ כך שב־$[T]^{B'}_C$ אין עמודות אפסים בכלל. 
+		\begin{proof}
+			ידוע שאיננה העתקת האפס, לכן נוכל להניח $\exists v \in \Img T\co T(v) \neq 0$ ובפרט נוכל להרחיבו לבסיס שכולל וקטור שלא מקיים $T(v) = 0$, תנאי הכרחי לבסיסי $\ker T$ מהיותם ב־$\ker T$, ולכן $\dim \ker T < \dim \Img T$. נסמן את $\vrm$ להיות וקטור כלשהו המקיים $T(\vrm) \neq 0$. נתבונן ב־$\tl B$ להיות הבסיס המורחב מ־$(\vrm)$. נסמן: 
+			\[ B = \cl{\begin{cases}
+					b & T(b) \neq 0\\
+					b + \vrm & T(b) = 0
+			\end{cases} \middle\vert b \in B } \implies \forall b \in B\co \exists \brm \in \tl B \co \begin{cases}
+			 	b = \brm &\implies T(b) \neq 0 \\
+			 	b = \brm + \vrm &\implies T(b) = T(b + \vrm) = \overbrace{T(b)}^{\mathclap{=0}} + \overbrace{\mathclap{T(\vrm)}}^{\neq 0} \neq 0
+			\end{cases} \]
+		נבחין שלא הוספנו את $\vrm$ לעצמו, כלומר, אם היינו מסדרים זאת במטריצות שורות – ביצענו פעולות אלמנטריות בלבד, ולכן לא שיננו את מרחב השורות של $\tl B$ (הוא $V$, כי $B$ פורש) או את מרחב הפתרונות (הוא הפתרון הטרוויאלי בלבד, כי $B$ בת"ל) וסה"כ $B$ בסיס כי הוא בת"ל ופורש. בפרט, המטריצה $[T]^{B}_C$ קיימת ומוגדרת היטב. נוכיח שאין בה שורות שהינן אפסים. תהי שורה ב־$T^B_C$ וקיים $i \in [\dim B]$ כך שמתקיים שוויון ל־ $\col_i$, אז יתקיים $\col_i = [T(B_i)]_C$. נניח בשלילה שוויון לאפס, נקבל $[T(B_i)]_C = 0$ כלומר קיימת קומבינציה ליניארית של הוקטורים ב־$C$ בין קבועים (הם הערכי וקטורים) שאינם טרוויאלים (שכן $T(B_i) \neq 0$) ולכן $C$ אינו בת"ל וזו סתירה. סה"כ $[T]^B_C$ מטריצה מייצגת בלי עמודות אפסים, ולכן מצאנו $B' = B$ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+\end{document}

@@ -1,0 +1,672 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={AI Something},
+	pdfpagemode=FullScreen,
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\she\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak\sen}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+\newtheorem{Collary}{מסקנה}
+
+\newcommand\cola [1] {\begin{Collary}#1\end{Collary}}
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+	\SetKwFunction{RetrieveFirst}{Retrieve-First}
+	\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+	\SetKwFunction{DeleteFirst}{Delete-First}
+	\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+	\SetKwFunction{InsertFirst}{Insert-First}
+	\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+	\SetKwFunction{AddEdge}{Add-Edge}
+	\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codeblue}null}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 2א $\sim$ חוגים ושאר ירקות}}
+\begin{document}
+	\maketitle
+	\section{\en{Rings}}
+	\defi{תחום שלמות הוא חוג קומוטטיבי עם יחידה ללא מחלקי $0$. }
+	\defi{חוק ייקרא \textit{ללא מחלקי 0} אם: \hfill $\forall a, b \in \R \co ab = 0 \implies a = 0 \lor b = 0$}
+	
+	דוגמאות לחוגים עם מחלקי $0$: 
+	\begin{itemize}
+		\item $M_2(\R)$: הוכחה $a = b = \binom{0\, 1}{0\, 0}, \ a \cdot b = 0$
+		\item $\Z/_{6\Z}$ הוכחה $2 \cdot 3 = 0$. 
+	\end{itemize}
+	
+	\theo{בתחום שלמות יש את כלל הצמצום בכפל: אם $ab = ac \land a \neq 0$ אז $b = c$. }\begin{proof}
+		\[ ab  \cdot ac = 0 \implies a(b \cdot c) = 0 \implies a = 0 \lor b - c = 0 \]
+		בגלל ש־$a \neq 0$, אז $b - c = 0$. נוסיף את $c$ הנגדי של $-c$ ונקבל $b = c$. 
+	\end{proof}
+	
+	דוגמאות לתחום שלמות: 
+	\begin{itemize}
+		\item שדות
+		\item השלמים
+		\item חוג הפולינומים
+	\end{itemize}
+	
+	\theo{לכל $f, g \in \F[x]$, אם $g \neq 0$ אז קיימים ויחידים פולינומים $q, r \n \F[x]$ כך ש־$f = qg + r \land \deg r < \deg g$}
+	
+	\defi{נאמר שפולינום $q$ מחלק את $f$ אם $r = 0$ ומסמנים $q \mid f$. }
+	
+	\defi{חוק אוקלידי הוא חוג שמעליו אפשר לבצע פירוק פולינום כזה. }
+	
+	דוגמה לחוג שאינו אוקלידי: $\Z[\sqrt{-5}]$ הוא $\{a + b\sqrt{-5} \mid a, b \in \Z\}$. 
+		
+	\theo{חוג אוקלידי $\impliedby$ פריקות יחידה (דומה למשפט היסודי של האריתמטיקה). }
+		
+		לדוגמה בחוג לעיל $6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})$ על אף ש־$2, 3$ אי־פריקים וכן $(1 + \sqrt{-5}), (1  - \sqrt{-5})$ אי פריקים. 
+		
+	\cola{\,
+	\begin{itemize}
+		\item $f(a) = 0 \iff (x - a) \mid f$ (משפט בזו)
+		\item אם $\deg f = n > -\inf$, ל־$f$ לכל היותר $n$ שורשים כולל ריבוי. 
+		\item נניח ש־$f, g \in \F[x]$ ו־$F \subseteq K$, כאשר $K$ שדה. אם $g \mid f$ מעל $K$ אז $g \mid f$ מעל $\F$. 
+	\end{itemize}
+	}
+	\begin{proof}
+		\begin{enumerate}\,
+			\item \begin{itemize}
+				\item[$\implies$] נניח $x - a \mid f$. אז קיים פולינום $g$ כך ש־$f = (x - a)g$. אז $f(a) = (a - a)g(a) = 0$. 
+				\item[$\impliedby$] נניח $f(a) = 0$. אז קיימים $q, r \in \F[x]$ כך ש־$f = q(x - a)$ ועל כן $0 = f(a) = q(a)(a - a) + r(a) = 0$ ולכן $r(a) = 0$. משום ש־$r$ פולינום קבוע (דרגתו קטנה מ־1, כי חילקנו ב־$(x - a)$ מדרגה 1), אז $r(x) = 0$. 
+			\end{itemize}
+			\item אינדוקציה
+			\item נוכיח ב"contrapositive": אנו יודעים ש־$P \to Q \iff \lnot Q \to \lnot P$. נניח ש־$g \nmid f$ מעל $\F$. קיימים $q, r \in \F[x]$ כך ש־$f =qg + r, \ r \neq 0$. הפירוק הזה הוא גם ב־$K[x]$. מיחידות $r$, נקבל ש־$g \nmid f$ כל מעל $K$. 
+		\end{enumerate}
+	\end{proof}
+	
+	\subsection{עוד על תחומי שלמות}
+	\defi{יהי $R$ תחום שלמות, $a, b \in R$. נאמר ש־$a \mid b$ אם קיים $c \in \R$ כך ש־$ac = b$. }
+	\defi{$u \in R$ נקרא \textit{הפיך} אם קיים $\ag \in R$ כך ש־$\ag u = 1$. }
+	\theo{יהי $R$ תחום שלמות, $u \in R$ הפיך. יהי $a \in \R$. אז $u \mid a$. }\begin{proof}
+		$1 \mid a, \ u \mid 1$. יחס החלוקה טרנזטיבי ולכן $u \mid a$. 
+	\end{proof}
+	\noti{קבוצת ההפיכים מוסמנת ב־$R^x$. }
+	\textbf{דוגמאות. }
+	\begin{enumerate}
+		\item אם $R = \F$, אז $\F^x = \F \setminus \{0\}$
+		\item אם $R = \Z$ אז $\Z^2 = \{\pm 1\}$
+		\item אם $R = \F[x]$ אז $R^x = \F^x$ (ההתייחסות לסקלרים $\F$ היא כאל פונקציות קבועות)
+	\end{enumerate}
+	\defi{$a, b \in R$ נקראים \textit{חברים} אם קיים $u \in R^x$ הפיך כך ש־$a = ub$, ומסמנים $a \sim b$ }
+	"אני אני חבר של עומר, ועומר חבר של מישהו בכיתה שאני לא מכיר, אני לא חבר של מי שאני לא מכיר." המרצה: "למה לא? תהיה חבר שלו". 
+	
+	\theo{יחס החברות הוא יחס שקילות. }\begin{proof}
+		\begin{enumerate}[A.]
+			\item $a \sim a$ כי $1 \in R^x$
+			\item אם $a \sim b$ אז קיים $u \in R^x$ כך ש־$a = ub$. קיים ל־$u$ הופכי $\ag$ אז $\ag a + \ag u b = b$ ולכן $b \sim a$. 
+			\item נניח $a \sim b \land b \sim c$, כי מכפלת ההופכיים הפיכה $a \sim c$ וסיימנו. 
+		\end{enumerate}
+	\end{proof}
+	\theo{הופכי הוא יחיד} (אותה ההוכחה כמו בשדה. לא בהכרח בתחום שלמות, מעל כל חוג)\begin{proof}
+				יהי $a \in R^x$ ו־$u, u'$ הופכיים שלו, אז:
+		\[ u = u \cdot 1 = u \cdot a \cdot u' = 1 \cdot u' = u' \]
+	\end{proof}
+	\theo{אם $a \mid b$ וכם $b \mid a$ אז $a \mid b$ (בתחום שלמות). }\begin{proof}
+		\begin{align*}
+			a \mid b &\implies \exists c \in \R \co ac = b \\
+			b \mid a &\implies \exists d \in \R\co bd = a
+		\end{align*}
+		לכן: 
+		\[ ac = b \implies acd = a \implies a(cd - 1) = 0 \implies a = 0 \lor cd = 1 \]
+	\end{proof}
+	אם $a = 0$ אז $b = 0$ (ממש לפי הגדרה) ו־$\sim$ שקילות (רפליקסיביות). אחרת, $cd = 1$ ולכן $c$ הפיך, סה"כ $a \mid b$. 
+	
+	"אני חושב שבעברית קראו להם ידידים, לא רצו להתחייב לחברות ממש". 
+	
+	
+	\defi{איבר $p \in R$ נקרא \textit{אי־פריק} אם מתקיים $p = ab \implies a \in R^x \lor b \in R^x$. }
+	
+	\defi{איבר $p \in R$ יקרא \textit{ראשוני} אם $p \mid (a \cdot b) \implies p \mid a \lor p \mid b$. }
+	\textit{הערה: }איברים הפיכים לא נחשבים אי־פריקים או ראשוניים. הסיבה להגדרה: בשביל נכונות המשפט היסודי של האריתמטיקה (יחידות הפירוק לראשוניים). 
+	
+	\theo{בתחום שלמות כל ראשוני הוא אי פריק. }
+	\textit{הערה: }שקילות לאו דווקא. 
+	\begin{proof}
+		יהי $p \in R$ ראשוני. יהיו $a, b \in R$ כך ש־$p = ab$. בה"כ $p \mid a$. אז קיים $c$ כך ש־$pc = a$ ולכן $pcb = p$. סה"כ $p \neq 0$ ולכן $cb = 1$ (ראה לעיל) ו־$b$ הפיך. 
+	\end{proof}
+	\theo{נניח שבתחום שלמות $R$, כל אי־פריק הוא גם ראשוני. אז $R$ תחום פריקות יחידה. }
+	\defi{$R$ תחום פירוקת יחידה אם $\prod_{i = 1}^{n}p_i = \prod_{j = 1}^{m}q_i$ עבור $p_i, q_j$ ראשוניים, אז $m = n$, ועד לכדי סידור מחדש, לכל $i \in [n]$ $p_i \sim q_i$}
+	
+	ההוכחה: זהה לחלוטין לזו של המשפט היסודי. \begin{proof}
+		באינדוקציה על $n+m$. בסיס: $n + m = 2$ ולכן $n = m = 1$ (כי מעפלה ריקה לא רלוונטית מאוד) אז $p = q$. נעבור לצעד. נניח שהטענה נכונה לכל $n + m < k$. נניח ש־$n + m = k$. אז $p_1 \mid \prod_{j = 1}^{m}q_j$. בה"כ $p_1 \mid q_1$. $q_1$ אי־פריק ולא הפיך. $p_1$ לא הפיך. לכן $p_1 \sim q_1$. אז עד כדי כפל בהופכי נקבל ש־$\prod_{i = 2}^{n} p_i = \prod_{j = 2}^{n} q_j$. \textit{הערה: }ראשוני כפול הפיך נשאר ראשוני. מכאן הקענו לדרוש וסיימנו (\textit{הערה שלי: }כאילו תכפילו בחברים ותקבלו את מה שצריך). 
+	\end{proof}
+	
+	\defi{יהי $R$ תחום שלמות. תת־קבוצה $0 \neq I \subseteq R$ נקראת \textit{אידיאל} אם: 
+	\begin{itemize}[A.]
+		\item $\forall a, b \in I \co a + b \in I$ – סגירות לחיבור. 
+		\item $\forall a \in I \, \forall b \in R \co ab \in I$ – תכונת הבליעה. [בפרט $0 \in I$]
+	\end{itemize}}
+	\textbf{דוגמאות: }\begin{enumerate}
+		\item $0$ תמיד אידיאל, כך החוג תמדי אידיאל. 
+		\item הזוגיים ב־$\Z$. 
+		\item לכל $n \in \Z$, $n\Z$ אידיאל ($n$ כפול השלמים). הזוגיים מקרה פרטי. 
+		\item $\la f \ra \subseteq \F[x]$ המוגדר לפי $\la f \ra := \{g \in \F[x] \mid f|g\}$
+		\item הכללה של הקודמים: עבור $a \in R$ נסמן $\la a \ra := \{a \cdot b \mid b \in R\}$
+		\item $I = \{f \in \F[x] \mid f(0) = 0\}$ (לעיתים מסומן $\forall a \in R \co aR = \la a \ra$)
+		\item נוכל להכליל את 4 עוד: ("הכללה של הכללה היא הכללה. זה סגור להכללה. זה קורה הרבה במתמטיקה")
+		\[ I = aR + bR = \{ar + bs \mid r, s \in R\} \]
+		וניתן להכליל עוד באינדוקציה. 
+	\end{enumerate}
+	\defi{אידיאל $I$ נקרא \textit{ראשי} אם הוא מהצורה $aR$ עבור $a \in R$ כלשהו. }
+	\defi{תחום שלמות נקרא \textit{ראשי} אם כל אידיאל שלו ראשי. }
+	\theo{נניח ש־$R$ ראשי, אז כל אי־פריק ב־$R$ הוא ראשוני. }
+	(תנאי מספיק אך לא הכרחי)
+	
+	\begin{proof}
+		יהי $p \in R$ אי פריק. נראה שהוא ראשוני. נביט ב־$ab \in R$ כך ש־$p \mid ab$. נביט ב־$I = aR + bR$. מהיותו ראשי קיים איזשהו $c \in R$ כך ש־$I = cR$. אז $c \in I$ (כי $c \cdot 1 \in R$). אז $a, p \in I$. $a$ ברור. קיים $d \in R$ כך ש־$pd = a \cdot b$. למה $p \in I$ – המרצה דפק קליגמן ולא יודע להוכיח. 
+		אחרי משהו כמו 5 דק' של בהיה בלוח הוא בה עם הדבר הבא: 
+		\[ c \in I \implies \exists r, s \in \R\co ar + bs = c \]
+		"אני אחושב על זה ואני אמשיך פעם הבאה". 
+	\end{proof}
+	
+	
+	
+	\ndoc
+\end{document}

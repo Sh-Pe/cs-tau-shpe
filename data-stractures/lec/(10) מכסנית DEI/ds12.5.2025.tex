@@ -1,0 +1,184 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+
+% Deisgn
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+\newcommand\logn  {\log n}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{מבנ''ת 10}}
+\begin{document}
+    \maketitle
+    \textbf{מרצה: }עמית ווינשטיין
+    
+    \section{\en{Priority Queue ADT}}
+    אנחנו מחזיקים איברים עם מפתח (priority) ונרצה לתמוך בפעולות הבאות: 
+    \begin{multicols}{2}
+        \begin{itemize}
+            \item הכנסת איבר $x$ שקיימים לו $x.key, \ x.value$. 
+            \item מינימום – האיבר עם $key$ מינימלי (``ה־priority הכי חשוב''). 
+            \item למחוק את המינימום 
+        \end{itemize}
+        אלו הן הפעולות הבסיסיות. יש מספר פעולות אופציונליות קצת יותר מעניינות: 
+    \end{multicols}
+    
+    \begin{multicols}{1}
+        \begin{itemize}
+            \item הקטנת מפתח $\texttt{Decrease-Key}(x, Q, \Delta)$ כאשר $Q$ מצביע לאיבר, ו־$\Delta$ בכמה מקטינים – זה מאפשר להגדיל חשיבות של איבר, אך דורש גישה פנימית למערך. 
+            \item מחירת איבר $\texttt{Delete}(x, Q)$. 
+            \item מציאת איבר
+        \end{itemize}
+    \end{multicols}
+    ה־key דורש אך ורק קיום סדר מלא. 
+    
+    
+    \sen\subsection{Implementations}\she
+    נוכל לממש באמצעות AVL: 
+    
+    \begin{center}\sen\begin{tabular}{c|c|c|c|c|c}
+%            \hline
+            \textbf{P. Queue} & Insert & Retrieve-Min & Delete-Min & Decrease-Key & Delete \\
+            \hline
+            \textit{AVL tree} & $O(\logn) $ & $O(1)$ & $O(\logn)$ & $O(\logn)$ & $O(\logn)$ \\
+            \textit{Sorted Circular Array} & $O(n)$ & $O(1)$ & $O(1)$ & $O(n)$ & $O(n)$ \\
+            \textit{Circular Array + Min Pointer} & $O(n)$ & $O(1)$ & $O(1)$ & $O(n)$ & $O(n)$ \\ 
+            \textit{Binary Stack} & $O(\logn)$ & $O(1)$ & $O(\logn)$ & $O(\logn)$ & $O(\logn)$
+%            \hline
+    \end{tabular}\she\end{center}
+    רק עץ AVL נראה נורמלי בכלל. אבל זה בא במחיר. כשמכניסים משהו ל־AVL, אין באמת טעם למיין את כל האיברים ברגע שמכניסים אותם – אולי צריך רק את 10 האיברים החשובים ביותר. זה דוקש המון מצביעים, ואפילו ב־B-trees – חבל על ה־I/O. 
+    
+    
+    \sen\subsection{Faster Implementations -- Binary Stack}\she 
+    נרצה להחליש את הדרישה של BST – המינימום יהיה למעלה בשורש, ומשני צדדיו כל האיברים יהיו יותר גדולים יותר (או שווים). כל צומת יהיה המינימום ביחס לשני תתי העצים שיוצאים ממנו. הדרישה הזו מאפשר להקטין את הסיבוכיות. 
+    
+    בניגוד לעץ חיפוש בינארי, בו דרשנו ש\textit{כל} תת־העץ יהיה יותר קטן/גדול (כתלות בצד), ולא רק הקודקוד העליון – זוהי תכונה לוקאלית. הדבר היחיד שנדרש כאן הוא לדעת מי אלו הבנים (מנגד, התכונה של BSTs גלובלית). 
+    
+    נרצה להוסיף קודקודים למטה, דוגמה: 
+    
+    \begin{center}
+        \sen\begin{forest}
+            [$7^{(1)}$
+                [$23^{(2)}$
+                    [$24^{(4)}$
+                            [$65^{(8)}$]
+                            [$33^{(9)}$]
+                        ]
+                        [$29^{(5)}$
+                            [$40^{(10)}$]
+                            [$71^{(11)}$]
+                    ]
+                ]
+                [$17^{(3)}$
+                    [$26^{(6)}$
+                        [$\times^{(12)}$, ]
+                        [\quad, no edge]
+                    ]
+                    [$19^{(7)}$]
+                ]
+            ]
+        \end{forest}\she
+    \end{center}
+    
+    להכניס איבר חדש ל־$\times$. לתהליך של ההכנסה נקראה heapify-up (כאשר heap=ערימה). ננסה להכניס ל־$\times$, אם זה לא גדול יותר, נחליף אותו עם אביו, וכן הלאה. 
+    
+    נגיד ורוצים למחור את השורש – היינו רוצים להעיף משהו באיזור של השורש. באופן דומה לפעם הקודמת, נעיף את ה־$7$ ונחליף אותו במה שנמצא ב־$\times$. במקום מה שעשינו קודם, של פעפוע כלפי מעלה, נשווה של השורש החדש למטה ונפעפע את התשובה מטה. כיצד נבחר האם מעפעפים ימינה או שמאלה? לפי הגדלים, כי חייבים לקבל את התכונה. אז נעלה למעלה את המינימלי בית הילדים עד שמסיימים. זהו heapify-down. 
+    
+    הגדלת מפתח עובדת באופן זהה. אן מקטינים heapify up ואם מגדילים heapify down. 
+    
+    הייתרון – המבנה הזה ממש פשוט ומאוזן בצורה מושלמת. אין בלגנים כמו רוטציות וכאלו. האיזון גם יותר טוב – רק ברמה הנמוכה ביותר, חסרים העלים האחרונים בלבד, כלומר הגובה הוא $\log_2n \pm 1$  (במקום ה־$1.44\logn$ של AVLs). נחזור לטבלה מלמעלה. 
+    
+    אומנם לכאורה הטבלה מלמעלה מראה כאילו הסיבוכיות זהה לזו של AVLs, אבל המימוש הזה עם קבועים קטנים יותר, ואפשר ליצור ערימה כזו ב־$O(n)$. עתה גם נראה שהדבר הזה מיוצג בזכרון בצורה אלגנטית. נוכל למספר בצורה די טבעית את האיברים – ראו סימונים ב־$\,^{(n)}$ בעץ למעלה. 
+    
+    יש לנו תובנה לגבי המספור הזה – מספור הבנים הוא למעשה $2n$ ו־$2n + 1$ כאשר $n$ המספור שלי, וכאשר מתחילים למספר ב־$1$. זה מדהים. זה אומר שאפשר לממש ערימה באמצעות מערך, ואפשר לתחזק אותה בצורה של מערך רציף בזכרון – כדי להגיע לבן הימני, נלך לאינדקס ה־$2n + 1$, וכדי להגיע לאבא, נחלק את האינדקס שלנו ונעגל למטה. ואם נרצה להוסיף איבר חדש? ניגש לאיבר האחרון במערך. המשמעות – $0$ פעולות I/O (עד לכדי מקסימום דפים) כי הכל במערך רציף בזכרון, במקום עם הפניות. המערך מייצג באופן מלא את העץ והמעבר בו ב־$O(1)$. 
+    
+    ניסוח של המרצה: נשים לב שאם ממספרים את הצמתים לפי שכבות ולפי סדר, עבור קודקוד $i$, הבן הסמאלי הוא $2i$, הימני $2i + 1$ והאבא $\floor{\frac{i}{2}}$. השורש הוא הראשון, העלה האחרון הוא האינדקס המקסימלי. בהינתן זה, ניתן לממש בצורה יעילה במערך. 
+    
+    אנחנו נרצה לעשות heapfiy למערך כלשהו – כלומר, להפוך אותו ל־heap (ערימה). כלומר בהינתן מערך, נרצה לגרום לו לקיים את תכונת הערימה הבינארית. 
+    
+    \textit{העצה: }נבצע heapify-down לכל הקודקודים שאינם עלים ,מהנמוך, לפי עומק, עד השורש. בסוף באמת תתקבל ערימה בינארית. 
+    
+    סיבוכיות? $O(h)$ כאשר $h$ הגובה של הקודקוד. לכן לכל הצמתים שצמודים לעלים – זה יהיה $O(1)$, וכן הלאה. סה''כ הסיבוכיות: 
+    
+    ניסוח אחר של המרצה: עבור $\frac{n}{2}$ הקודקודים מגובה 1, ולכל היותר $2 \cdot \frac{n}{4}$ קודקודים מגובה 2, וכו': 
+    \[ \texttt{heapify-down} \le 1 \cdot \frac{n}{2} + 2 \cdot \frac{n}{4} + \cdots + \logn \cdot \frac{n}{n} = \sum_{h = 1}^{\floor{\logn}} h \cdot \frac{n}{2^{h}} \le n \sum_{h = 1}^{\inf}\frac{h}{2^h} = O(n) \]
+    
+    בכל שלב, הנחנו שתת־העץ של הקודקוד שמטפלים בו הוא תקיןף פרט לשורש שלו. 
+    
+    נמנענו מלמיין את הרשימה, ולכן זמן לינארי. נוכל להשתמש ב־heap הזה בשביל למיין, נראה את זה בראשון. נינתן לממש ערימה לא בינארית. 
+   
+    ניתן לממש ערימה לא בינארית, באופן דומה ל־B-trees, והסיבוכיות של רוב הפעולות תהיה $O(k \log_kn)$ וחלק $O(\log_kn)$. 
+    
+    אם נרצה לחבר שני heap־ים, הדבר הדי הכי טוב שאפשר לעשות הוא להקצות מערך חדש ולעשות heapification – כמו שמתואר קודם – בסיבוכיות לינארית. 
+    
+    המבנה הזה מאוד יעיל בפרקטיקה, למרות שפרט ליצירתו, הוא כמו AVL. יש אלגוריתמים שמצפים ש־Decrease-Key יותר מהר. לא יכול להיות שאפשר לשפר לפחות מ־$O(\logn)$ כי זה יאפשר מיון סופר מהיר, אבל לפחות לשפר את Decrease-Key אפשר, וכן איחוד ערימות יכול להיות יותר מהיר מזמן לינארי. כל זאת ועוד בשיעור הבא. נוכל גם לבנות ערימות כך ש־amoritzed דברים הם יותר טובים. בפרקטיקה ערימה בינארית הוא המבנה הכי פשוט ומהיר כדי לעשות את כל זה. 
+    
+    \ndoc
+    
+\end{document}
