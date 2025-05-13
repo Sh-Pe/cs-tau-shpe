@@ -1,0 +1,458 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+\newcommand\lcm                {\ell\mathrm{cm}}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\K         {\mathbb{K}}
+\newcommand\co        {\colon}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+\newtheorem{Hence}{מסקנה}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 2א 10}}
+\date{12 במאי 2025}
+\begin{document}
+    \maketitle
+    \textbf{מרצה: }בן בסקין
+    תזכורת: שיעור שעבר עצרנו בהוכחת המשפט הבא. 
+    
+    \theo{תהי $A$ מטריצת בלוקים ריבועיים על האלכסון $A = \diag(A_1 \dots A_n)$, אז מתקיים $m_A(x) = \lcm(m_{A_1} \dots m_{A_k})$}
+    
+    \theo{$V$ מ''ו מעל $\F$, ו־$T \co V \to V$ ט''ל, יהי $f(x) \in \F[x]$ כך ש־$f(T) = 0$. נניח ש־$f = g \cdot h$, כאשר $\gcd(g, h) = 1$, אז: 
+    \begin{enumerate}
+        \item \hfil $V = \ker g(T) \oplus \ker h(T)$
+        \item אם $f(x) = m_T(x)$ אז בפירוק לעיל $g, h$ הם הפולינום המינימליים של צמצום $T$ לתתי־המרחבים (הקרנלים) בהתאמה. 
+    \end{enumerate}
+    }
+    
+    נחזור על מה שהתחלנו להוכיח ונסיים את אשר נותר: 
+    \begin{proof}
+        ידוע $h= g \cdot h$ ולכן $\exists a(x), b(x) \in \F[x]$ כך ש־$a(x)g(x) + b(x)h(x) = 1$, כך ש־: 
+        \[ \underbrace{(a(T) \circ g(T))(v)}_{\in \ker h(T)} + \underbrace{(b(T) \circ h(T))(v)}_{\in \ker g(T)} = V \]
+        ולכן $V = \ker h(T) + \ker g(T)$. 
+        וכן הראינו שזהו סכום ישר. עתה, נסמן: 
+        \begin{align*}
+            W_2 = \ker h(T) & W_1 = \ker g(T) \\
+            T_2 =  T_{|_{W_2}} & T_1 = T_{|_{W_1}}
+        \end{align*}
+        וכן $B_1$ בסיס ל־$W_1$, $B_2$ ל־$W_2$. לכן $B = B_1 \uplus B_2$ בסיס ל־$V$. משום שהראינו ש־$W_1, W_2$ הם $T$־אינוו' בשיעור קודם: 
+        \[ [T]_B = \pms{[T_1] & 0 \\ 0 & [T_2]} \]
+        מהמשפט שראינו, $m_T = \lcm(m_{T_1}, m_{T_2})$. ברור ש־$m_{T_1} \mid g$ וגם $m_{T_2} \mid h$. אז: 
+        \[ \deg m_{T_1} = \deg g + \deg h \ge \deg m_{T_1} + \deg m_{T_2} = \deg(m_{T_1} \cdot m_{T_2}) \ge \deg(\lcm(m_{T_1}, m_{T_2})) = \deg m_T \]
+        ולכן כל ה''אשים לעיל הדוקים ושוויון בכל מקום. 
+        \[ \deg m_{T_1} \le \deg g \land \deg m_{T_2} \le \deg h \]
+        אם אחד מהשווינות לא הדוקים, אז: 
+        \[ \deg m_{T_1} + \deg m_{T_2} < \deg g + \deg h \]
+        וסתירה למה שהראינו. לכן: 
+        \[ m_{T_1} \mid g \land \deg m_{T_1} = \deg g \implies m_{T_1} \sim g \]
+        אבל שניהם מתוקנים ולכן שווים. כנ''ל עבור $m_{T_2} = h$. 
+    \end{proof}
+    
+    
+    \textbf{דוגמה. }נסמן $f(x) = x^{2}(x - 1)^{3}$, $f(T) = 0$. החלק הראשון של המשפט אומר $V = \ker T^2 \oplus \ker (T - I)^3$. החלק השני אומר שאם $f = m_T$ אז $x^2$ הוא הפולינום המינימלי של $T_{|_{\ker T^2}}$ וכן $(x - 1)^{3}$ המינילי של $T_{|_{T - I}^{3}}$. 
+    
+    \theo{(משפט הפירוק הפרימרי): 
+    יהיו $T \co V \to V$, $m_T$ הפולינום המינימלי של $T$, ונניח ש־: 
+    \[ m_T = g_1 \cdots g_s \quad \forall i \neq j \co \gcd(g_i, g_j) = 1 \]
+    אז: 
+    \[ V = \bigoplus_{i = 1}^{s} \ker g_i(T) \]
+    ובנוסף $g_i$ הוא הפולינום המינימלי של $T_{|_{\ker g_i(T)}}$. זה פשוט אינדוקציה על המשפט הקודם. 
+    } המרצה גם מוכיח את זה על הלוח אבל לא מתחשק לי לכתוב את זה. טוב, אני אכתוב את זה. 
+    ``יש לו שם מפוצץ אז הוא כנראה חשוב''
+    \begin{proof}באינדוקציה על $s$
+        \begin{itemize}
+            \item[בסיס: ]עבור $s = 2$ המשפט שהוכחנו. 
+            \item[צעד: ]נסמן: 
+            \[ h(x) = g_s(x), \ g(x) = \prod_{i = 1}^{s - 1} g_i(x)\]
+            ואז: 
+            \[ \forall i \neq j \co \gcd(g_i, g_j) = 1 \implies \gcd(h, h) = 1 \]
+            מהמשפט שקיבלנו: 
+            \[ V = \ker g(T) \oplus \ker h(T) \,\overset{\mathclap{\text{אינדוקציה}}}{\implies}\,\, \bigoplus_{i = 1}^{s}\ker g_i(T) \]
+            והמשך דומה עבור $m_{T|_{\ker g_i}} = g_i$: 
+%            \[ \tl T \co T_{|_{\ker g_i}} \]
+            \[ \ker h(T) = \bigoplus_{i = 1}^{s} \ker g_i (T_{|_{\ker h(T)}}) = \bigoplus_{i = 1}^{s} \ker g_i(T) \]
+        \end{itemize}
+    \end{proof}
+    
+    \begin{Hence}
+        (מקרה פרטי חשוב): נניח כי $m_T$ מפרק לגורמים לינאריים שונים זה מזה. כלומר: 
+        \[ m_T = \prod_{i = 1}^{s}(x - \lg _i) \]
+        ן־$\lg_i \neq \lg_j$ לכל $i \neq j$, אז $T$ לכסינה. 
+    \end{Hence}
+    \begin{proof}
+        לפי המשפט: 
+        \[ V = \bigoplus_{i = 1}^{s} \ker (T - \lg_i I) \]
+        $V$ סכום ישר של מ''ע $\lg_1 \dots \lg_2$ הם כולם ע''ע שונים, אז יש ל־$V$ בסיס של ו''א ולכן $T$ לכסינה. 
+    \end{proof}
+    
+    \textbf{בעיה. }נתונה $A \in M_5(\Z)$. יש לקבוע אם היא לכסינה מעל $\C$. 
+    \begin{itemize}
+        \item נחשב עת $f_A$
+        \item נמצא שורשים ל־$f_A$, אלו הם הע''ע של $A$. 
+        \item לכל ע''ע $\lg$ נחשב את $V_\lg$ – המרחב העצמי ואת הממד שלו. 
+        \item אם סכום הממדים שווה ל־$5$ אז $A$ לכסינה אחרת לא. 
+    \end{itemize}
+    \textbf{הבעיה: }לא קיימת נוסחאת שורשים לפולינום כללי מעל $5$. 
+    
+    \noti{את $f(x) = \prod_{\lg_i}(x - \lg_i)^{r_i}$  בהנחה ש־$\lg_i \neq \lg_j$ אז $f^{\mathrm{red}} (x) = \prod_{i} (x - \lg_i)$}
+    \theo{\hfil $f^{{\mathrm{red}}} = \frac{f}{\gcd(f, f')}$}
+    (כאשר $f'$ הנגזרת של $f$)
+    \theo{$A$ לכסינה אמ''מ $f_A^{\mathrm{red}}(A) = 0$}
+    
+    \ndoc
+\end{document}

@@ -1,0 +1,716 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 1א $\sim$ תרגיל בית 2}}
+\begin{document}
+	\maketitle
+	
+	\textbf{הערה: }אלא אם מצוין אחרת, בתרגיל בית זה $\equiv_p$ מייצג את יחס השיקלות מעל השלמים בעבורו $a \equiv_p b$ אמ"מ קיימים $a \bmod p = b \bmod p$. לעיתים יופיע היחס מעל הטבעיים. 
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item יהיו $a, b \in \F$. נוכיח $a^2 = b^2 \implies a = -b \lor a = b$. \begin{proof}\textit{(הערה: אשתמש בסעיף הבא כמו והוכחתי אותו לפני הסעיף הזה)}
+			נתון השוויון $a^2 = b^2$. נפצל למקרים: 
+			\begin{itemize}
+				\item אם $a \neq 0$אז ידוע קיו םאיבר $a\op$ הופכי ל־$a$. אז נכפול את המשוואה הנתונה ב־$(a\op)^2 = a^{-2}$, נקבל $aaa\op a\op = b^2a^{-2}$. אז מקומטטיביות והגדרת הופכי $1 = (ba\op)^{2}$. 
+				אחרת, קיים $ba\op =: c \neq 1, -1$ כך ש־$c^2 = 1$. אזי $c$ הופכי של $c$, כלומר $c^2 - 1 = 0$. אזי: 
+				\[ 0 = c^2 - 1 = c^2 - c + c - 1 = (c - 1)(c + 1) \implies c = 1 \lor c = -1 \]
+				קיבלנו $ba\op = 1 \lor ba\op = -1$. נכפול את המשוואות חזרה ב־$a$, נקבל $b = a \lor b = -a$ כדרוש. 	
+				\item אחרת, $a = 0$ ואז: 
+				\[ b^2 = a^2 = 0^2 = 0 \implies b = 0, \ (0 = 0 \land 0 = -0) \implies (a = -b \land a = b) \]
+			\end{itemize}
+		\end{proof}
+		\item צ.ל. $(-a)(-b) = a \cdot b$ \begin{proof}
+			יהיו $a, b \in \F$. אז: \\
+			\[ (-a)(-b) = (-1)a \cdot (-1)b = (-1)^2ab = 1 \cdot ab = ab \]
+			נותר להוכיח את השוויון $(-1)^2 = 1$. זאת כי: 
+			\[ 0 = (-2) \cdot 0 = (-1 -1)(-1 + 1) = (-1)^2 - 1^2 = (-1)^2 - 1 \]
+			נחבר $1$ לשני האגפים, נקבל $(-1)^2 = 1$ כדרוש. 
+		\end{proof}
+		\item יהיו $a, b, c, d \in \F$, נניח $b, d \neq 0$. צ.ל. $ab\op + cd\op = (ad + bc) \cdot (bd)\op$
+		\begin{proof}מדיסטרבוטיביות: 
+			\[ (ad + bc)(bd)\op = (ad + bc)(b\op d\op) = adb\op d\op + bcb\op d\op = ab\op\underbrace{(dd\op)}_{=1} + cd\op\underbrace{(bb\op)}_{=1} = ab\op + cd\op \quad \top \]
+			נבחין כי הביטוי עצמו מוגדר היטב אמ"מ $b, d \neq 0$ ולכן ניגרשה הנחה זו (שכן, אחרת $bd = 0$ כי כפל ב־$0$ יוביל ל־$0$, ועל כן $(bd)\op$ יהיה לא מוגדר). 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	
+	\begin{enumerate}[(A)]
+		\item  \begin{proof}למה. בשדה $\F_p$ הפונ' $f(a) \to a\op$ חח"ע. נוכיח את הלמה.
+			יהיו $a, b \in \F_p$ ונניח $f(a) = f(b)$. נראה $a = b$. מההנחה $a\op = b\op$. נכפול ב־$a\op b$ ונקבל $a\op a b = b\op b a$ מקומטטיביות. מאיבר הופכי נקבל $1b = 1a$ כלומר $a = b$ כדרוש. 
+			
+			משום ש־$f \co \F_p \to \F_p$ שדה סופי אז $f$ על. סה"כ $f$ זיווג. משום ש־$f(f(a)) = f(a\op) = (a\op)\op = a$, אז לכל $a$ קיים ויחיד $b = a\op$. אם $b = a$ אז $a = a\op$ ואז $aa\op = 1$ ומטענה שראינו בסעיף 1א נקבל $a = 1, -1$. משום ש־$-1  \equiv_p p -1$ בשדה, אז $a = 1, p - 1$. עבור כל $a$ אחר קיים ויחיד ב־$\F_p$ איזשהו $b = a\op \neq a$ אחר ובאופן דומה $a = b\op$, כלומר נוכל לסדר את השוויון להלן באופן הבא: 
+			\[ (p-1)! = 1 \cdot 2 \cdots (p - 1) = (p - 1) \cdot 1 \cdot \underbrace{(2 \cdot 2\op)}_{=1}\underbrace{(3 \cdot 3\op)}_{=1} \cdots = 1(p - 1)\prod_{j = 2}^{p}1 = (p - 1) = -1 \]
+			(בה"כ $2 \neq 3\op$, אחרת סימונים אחרים). השוויונות לעיל בתוך השדה $\F_p$ (כלומר, אלו שוויונות של מחלקות שקילות ולא של מספרים). 
+			
+			הפירוק לזוגות כאלו חוקי משום שהראינו ש־$f$, הפונקציה שהופכת את איברי השדה, חח"ע, על, וגם $(f \circ f) = id$. 
+		\end{proof}
+		\item \begin{proof}
+			יהי $p$ ראשוני. אזי מהסעיף הקודם $(p - 1)! \equiv_p -1 \equiv_p p - 1$. נוסיף $1$ לשני האגפים ונסיק $(p - 1)! + 1 \equiv_p p - 1 + 1 = p$. סה"כ נקבל לפי הגדרת $\equiv_p$ ש־$\exists a \in \Z \co ap = (p - 1)!$, ובמילים אחרות, $1 + (p - 1)!$ כפולה שלמה של $p$, כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	שאלת בונוס: נראה כי $\Z_n$ שדה אמ"מ $n$ ראשוני. 
+	\begin{proof}
+		יהי $n \in \N$. אז: 
+		\begin{itemize}
+			\item[$\implies$] נניח $\Z_n$ שדה, נראה $n$ ראשוני. נניח בשלילה $n$ אינו ראשוני, ומההגדרה $\exists \N \ni b, c \notin \{1, n\} \co bc = n$. אזי $0_\F = (bc)_\F = (b)_\F (c)_\F$ וסה"כ ממשפט $b \equiv 0 \lor c \equiv 0$, בה"כ $b = 0$ ואז $n = bc = 0c = 0$ וסה"כ קיבלנו שדה מגודל $n = 0$ ולכן לא קיים שום איבר ובפרט לא קיים איבר יחידה, וסתירה להנחת השלילה כדרוש. 
+			\item[$\impliedby$]יהי $n$ ראשוני, נראה $\Z_n$ שדה. ראינו כי $\Z_n$ מקיים את כל תכונות השדה פרט לקיום מספר הופכי ללא תלות בהיות $n$ ראשוני. נותר להראות קיום איבר הופכי. יהי $a \in \Z_n$, נראה קיום $a\op$ כך ש־$a\op a \equiv_n 1$. ממשפט שמצ"ב בש.ב. קיימים $\lg_1, \lg_2$ כך ש־$\lg_1 a + \lg_2 p = \gcd(a, p)$. בגלל ש־$p$ ראשוני, אז $\gcd(a, p) = 1$ בעבור כל $a \in \N$ ובפרט $a \in \Z_n$. לכן $\lg_1 a + \lg_2 p = 1$, נעביר אגפים ונקבל $\lg_1 a = 1 - \lg_2p \equiv_p 1$ כדרוש. 
+		\end{itemize}
+		סה"כ הראינו גרירה משני הכיוונים ובכך הטענה הוכחה. 
+	\end{proof}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item 
+		\begin{align*}
+			\begin{cases}
+				3x_2 + 2x_2 - 3x_ + x_4\! &\!= 7 \\
+				2x_1 + x_2 - 3x_3 - x_4\! &\!= 11
+			\end{cases} \tomat&\pms{3 & 2 & -1 & 1 & 7 \\ 
+				2 & 1 & -3 & -1 & 11 \\ 
+			} \rrr{R_1 \to \frac{1}{3}R_1}\pms{1 & \frac{2}{3} & -\frac{1}{3} & \frac{1}{3} & \frac{7}{3} \\ 
+				2 & 1 & -3 & -1 & 11 \\ 
+			} \\\rrr{R_2 \to R_2 - 2 R_1}&\pms{1 & \frac{2}{3} & -\frac{1}{3} & \frac{1}{3} & \frac{7}{3} \\ 
+				0 & -\frac{1}{3} & -\frac{7}{3} & -\frac{5}{3} & \frac{19}{3} \\ 
+			} \rrr{R_2 \to -3R_2}\pms{1 & \frac{2}{3} & -\frac{1}{3} & \frac{1}{3} & \frac{7}{3} \\ 
+				0 & 1 & 7 & 5 & -19 \\ 
+			} \\\rrr{R_1 \to R_1 - \frac{2}{3} R_2}&\pms{1 & 0 & -5 & -3 & 15 \\ 
+				0 & 1 & 7 & 5 & -19 \\ 
+			}
+		\end{align*}
+		נסיק: 
+		\[ \mathrm{sols} = \ccb{\pms{15 + 5x_3 + 3x_4 \\ -19 - 7x_3 - 5x_4 \\ x_3 \\ x_4} \mid x_3, x_4 \in \R} \]
+		ובפרט $x_3, x_4$ חופשיים. 
+		\npage
+		\item 
+		\begin{gather*}\tomat \pms{3 & 2 & 2 & 2 & 2 \\ 
+				2 & 3 & 2 & 5 & 3 \\ 
+				9 & 1 & 4 & -5 & 1 \\ 
+				2 & 2 & 3 & 4 & 5 \\ 
+				7 & 1 & 6 & -4 & 7 \\ 
+			} \rrr{R_1 \to R_1 \cdot \frac{1}{3}} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				2 & 3 & 2 & 5 & 3 \\ 
+				9 & 1 & 4 & -5 & 1 \\ 
+				2 & 2 & 3 & 4 & 5 \\ 
+				7 & 1 & 6 & -4 & 7 \\ 
+			} \rrt{R_2 \to R_2 - 2 \cdot R_1}{R_3 \to R_3 - 9 \cdot R_1}\rrt{R_4 \to R_4 - 2 \cdot R_1}{R_5 \to R_5 - 7 \cdot R_1} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				0 & \frac{5}{3} & \frac{2}{3} & \frac{11}{3} & \frac{5}{3} \\ 
+				0 & -5 & -2 & -11 & -5 \\ 
+				0 & \frac{2}{3} & \frac{5}{3} & \frac{8}{3} & \frac{11}{3} \\ 
+				0 & -\frac{11}{3} & \frac{4}{3} & -\frac{26}{3} & \frac{7}{3} \\ 
+			} \\\rrr{R_2 \to R_2 \cdot \frac{3}{5}} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				0 & 1 & \frac{2}{5} & \frac{11}{5} & 1 \\ 
+				0 & -5 & -2 & -11 & -5 \\ 
+				0 & \frac{2}{3} & \frac{5}{3} & \frac{8}{3} & \frac{11}{3} \\ 
+				0 & -\frac{11}{3} & \frac{4}{3} & -\frac{26}{3} & \frac{7}{3} \\ 
+			} \rrt{R_4 \to R_4 - \frac{2}{3} \cdot R_2}{\overset{R_5 \to R_5 + \frac{11}{3} \cdot R_2}{R_3 \to R_3 - (-5) \cdot R_2}} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				0 & 1 & \frac{2}{5} & \frac{11}{5} & 1 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+				0 & 0 & \frac{7}{5} & \frac{6}{5} & 3 \\ 
+				0 & 0 & \frac{14}{5} & -\frac{3}{5} & 6 \\ 
+			} \rrr{R_3 \siff R_5} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				0 & 1 & \frac{2}{5} & \frac{11}{5} & 1 \\ 
+				0 & 0 & \frac{14}{5} & -\frac{3}{5} & 6 \\ 
+				0 & 0 & \frac{7}{5} & \frac{6}{5} & 3 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+			} \\\rrr{R_3 \to R_3 \cdot \frac{5}{14}} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				0 & 1 & \frac{2}{5} & \frac{11}{5} & 1 \\ 
+				0 & 0 & 1 & -\frac{3}{14} & \frac{15}{7} \\ 
+				0 & 0 & \frac{7}{5} & \frac{6}{5} & 3 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+			} \rrr{R_4 \to R_4 - \frac{7}{5} \cdot R_3} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				0 & 1 & \frac{2}{5} & \frac{11}{5} & 1 \\ 
+				0 & 0 & 1 & -\frac{3}{14} & \frac{15}{7} \\ 
+				0 & 0 & 0 & \frac{3}{2} & 0 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+			} \rrr{R_4 \to R_4 \cdot \frac{2}{3}} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				0 & 1 & \frac{2}{5} & \frac{11}{5} & 1 \\ 
+				0 & 0 & 1 & -\frac{3}{14} & \frac{15}{7} \\ 
+				0 & 0 & 0 & 1 & 0 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+			} \\\rrr{R_5 \siff R_5} \pms{1 & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} & \frac{2}{3} \\ 
+				0 & 1 & \frac{2}{5} & \frac{11}{5} & 1 \\ 
+				0 & 0 & 1 & \frac{3}{-14} & \frac{15}{7} \\ 
+				0 & 0 & 0 & 1 & 0 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+			} \rrt{R_2 \to R_2 - \frac{11}{5} R_4}{\overset{R_1 \to R_1 - \frac{2}{3} R_4}{R_3 \to R_3 + \frac{3}{14} R_4}} \pms{1 & \frac{2}{3} & \frac{2}{3} & 0 & \frac{2}{3} \\ 
+				0 & 1 & \frac{2}{5} & 0 & 1 \\ 
+				0 & 0 & 1 & 0 & \frac{15}{7} \\ 
+				0 & 0 & 0 & 1 & 0 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+			} \rrt{R_2 \to R_2 - \frac{2}{5} R_3}{R_1 \to R_1 - \frac{2}{3} R_3} \pms{1 & \frac{2}{3} & 0 & 0 & -\frac{16}{21} \\ 
+				0 & 1 & 0 & 0 & \frac{1}{7} \\ 
+				0 & 0 & 1 & 0 & \frac{15}{7} \\ 
+				0 & 0 & 0 & 1 & 0 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+			} \\\rrr{R_1 \to R_1 - \frac{2}{3} R_2} \pms{1 & 0 & 0 & 0 & -\frac{6}{7} \\ 
+				0 & 1 & 0 & 0 & \frac{1}{7} \\ 
+				0 & 0 & 1 & 0 & \frac{15}{7} \\ 
+				0 & 0 & 0 & 1 & 0 \\ 
+				0 & 0 & 0 & 0 & 0 \\ 
+			} \end{gather*}
+		לכן אין משתנים חופשיים, והפתרון היחיד הוא: 
+		\[ \pms{x_1 \\ x_2 \\ x_3 \\ x_4} = \pms{-\frac{6}{7} \\ \frac{1}{7} \\ \frac{15}{7} \\ 0} \]
+		\item 
+		\begin{gather*}\begin{cases}
+				2x_1 + 3x_2 + 4x_3 &\!\!= 3 \\
+				3x_1 - 2x-2 + 5x_3 &\!\!= 10 \\
+				7x_1 + 9x_2 + 3x_3 &\!\!= 1
+			\end{cases}\tomat\pms{2 & 3 & 4 & 3 \\ 
+				3 & -2 & 5 & 10 \\ 
+				7 & 9 & 3 & 1 \\ 
+			} \rrr{R_1 \to 0.5R_1}\pms{1 & \frac{3}{2} & 2 & \frac{3}{2} \\ 
+				3 & -2 & 5 & 10 \\ 
+				7 & 9 & 3 & 1 \\ 
+			} \\\rrt{R_2 \to R_2 - 3 R_1}{R_3 \to R_3 - 7 R_1}\pms{1 & \frac{3}{2} & 2 & \frac{3}{2} \\ 
+				0 & -\frac{13}{2} & -1 & \frac{11}{2} \\ 
+				0 & -\frac{3}{2} & -11 & -\frac{19}{2} \\ 
+			} \rrr{R_2 \to \frac{2}{13}R_2}\pms{1 & \frac{3}{2} & 2 & \frac{3}{2} \\ 
+				0 & 1 & \frac{2}{13} & -\frac{11}{13} \\ 
+				0 & -\frac{3}{2} & -11 & -\frac{19}{2} \\ 
+			} \rrr{R_3 \to R_3 + \frac{3}{2}R_2}\pms{1 & \frac{3}{2} & 2 & \frac{3}{2} \\ 
+				0 & 1 & \frac{2}{13} & -\frac{11}{13} \\ 
+				0 & 0 & -\frac{140}{13} & -\frac{140}{13} \\ 
+			} \\\rrr{R_3 \to -\frac{13}{140}R_3}\pms{1 & \frac{3}{2} & 2 & \frac{3}{2} \\ 
+				0 & 1 & \frac{2}{13} & -\frac{11}{13} \\ 
+				0 & 0 & 1 & 1 \\ 
+			} \rrt{R_2 \to R_2 - \frac{2}{13} R_3}{R_1 \to R_1 - 2 \cdot R_3}\pms{1 & \frac{3}{2} & 0 & \frac{1}{-2} \\ 
+				0 & 1 & 0 & -1 \\ 
+				0 & 0 & 1 & 1 \\ 
+			} \rrr{R_1 \to R_1 - \frac{3}{2} R_2}\pms{1 & 0 & 0 & 1 \\ 
+				0 & 1 & 0 & -1 \\ 
+				0 & 0 & 1 & 1 \\ 
+			} \end{gather*}
+		נסיק ש־$(x_1, x_2, x_3) = (1, -1, 1)$, וגם במקרה הזה אין משתנים חופשיים. 
+	\end{enumerate}
+	\section{}
+	נמצא את המשתנים החופשיים במערכות המשוואות להלן. 
+	\begin{enumerate}[(A)]
+		\item מעל $\F_5$
+		\begin{gather*}\begin{cases}
+				3x_1 + 2x_2 + 4x_3 + 1x_4\!\! &= 2 \\
+				2x_1 + x_2 + 2x_3 + 4x_4\!\! &= 1
+			\end{cases} \tomat \pms{3 & 2 & 4 & 1 & 2 \\ 
+				2 & 1 & 2 & 4 & 1 \\ 
+			} \rrr{R_1 \to 2R_1} \pms{1 & 4 & 3 & 2 & 4 \\ 
+				2 & 1 & 2 & 4 & 1 \\ 
+			} \rrr{R_2 \to R_2 - 2R_1} \pms{1 & 4 & 3 & 2 & 4 \\ 
+				0 & 3 & 1 & 0 & 3 \\ 
+			} \\\rrr{R_2 \to 2R_2} \pms{1 & 4 & 3 & 2 & 4 \\ 
+				0 & 1 & 2 & 0 & 1 \\ 
+			} \rrr{R_1 \to R_1 - 4 R_2} \pms{1 & 0 & 0 & 2 & 0 \\ 
+				0 & 1 & 2 & 0 & 1 \\ 
+			} \end{gather*}
+		קבוצת הפתרונות: 
+		\[ \ccb{\pms{- 2x_4 \\ 1 - 2x_3 \\ x_3 \\ x_4}, \ x_3, x_4 \in \F_5} \]
+		סה"כ $x_3, x_4$ משתנים חופשיים. 
+		\item מעל $\F_7$
+		\begin{gather*}\begin{cases}
+				3x_1 + 2x_2 + 4x_3 + x_4\!\! &= 2 \\
+				2x_1 + x-2 + 2x_3 + 4x_4\!\! &= 1
+			\end{cases}\tomat \pms{3 & 2 & 4 & 1 & 2 \\ 
+				2 & 1 & 2 & 4 & 1 \\ 
+			} \rrr{R_1 \to 5R_1} \pms{1 & 3 & 6 & 5 & 3 \\ 
+				2 & 1 & 2 & 4 & 1 \\ 
+			} \rrr{R_2 \to R_2 - 2 R_1} \pms{1 & 3 & 6 & 5 & 3 \\ 
+				0 & 2 & 4 & 1 & 2 \\ 
+			} \\\rrr{R_2 \to 4R_2} \pms{1 & 3 & 6 & 5 & 3 \\ 
+				0 & 1 & 2 & 4 & 1 \\ 
+			} \rrr{R_1 \to R_1 - 3 R_2} \pms{1 & 0 & 0 & 0 & 0 \\ 
+				0 & 1 & 2 & 4 & 1 \\ 
+			} \end{gather*}
+		קבוצת הפתרונות: 
+		\[ \mathrm{sols} = \ccb{\pms{0 \\ 1 - 2x_3 - 4x_4\\ x_3 \\ x_4} \mid x_3, x_4 \in \F_7} \]
+		אזי $x_3, x_4$ משתנים חופשיים. 
+		\item מעל $\C$
+		\begin{gather*}
+			\begin{cases}
+				x_1 + 2x_2 + 3x_3 + 4x_4\!\! &= 0 \\
+				x_1 + ix_2 - x_3 - ix_4\!\! &= 1
+			\end{cases}\tomat \pms{1 & 2 & 3 & 4 & 0 \\ 1 & i & -1 & -i & 1} \rrr{R_2 \to R_2 - R_1} \pms{1 & 2 & 3 & 4 & 0 \\ 0 & i - 2 & -4 & -i -4 & 1} \\
+			\rrr{R_2 \to (-\frac{2}{5} - \frac{1}{5}i)R_2} \pms{1 & 2 & 3 & 4 & 0 \\ 0 & 1 & \frac{8}{5} + \frac{4}{5}i & \frac{7}{5} + \frac{6}{5}i & -\frac{2}{5} - \frac{1}{5}i} \rrr{R_1 \to R_1 - 2R_2} \pms{1 & 0 & -\frac{1}{5} - \frac{8}{5}i & \frac{6}{5} - \frac{12}{5}i & \frac{4}{5} + \frac{2}{5}i \\ 0 & 1 & \frac{8}{5} + \frac{4}{5}i & \frac{7}{5} + \frac{6}{5}i & -\frac{2}{5} - \frac{1}{5}i}
+		\end{gather*}
+		קבוצת הפתרונות:
+		\[ \mathrm{sols} = \ccb{\pms{\frac{4}{5} + \frac{2}{5}i + (\frac{1}{5} + \frac{1}{8})x_3 + (-\frac{6}{5} + \frac{12}{5}i)x_4 \\ -\frac{2}{5} - \frac{1}{5}i - (\frac{8}{5} + \frac{4}{5}i)x_3 - (\frac{7}{5} + \frac{6}{5}i)x_4 \\ x_3 \\ x_4} \mid x_3, x_4 \in \C} \]
+		סה"כ $x_3, x_4$ משתנים חופשיים. 
+		\item מעל $\F_2 = \{0, 1\}$
+		\begin{gather*}\begin{cases}
+				x_1 + x_2 + x_4 + x_5\!\!\! &= 1 \\
+				x_1 + x_3 + x_4 &= 0 \\
+				x_2 + x_4 + x_5 &= 1
+			\end{cases}\tomat \pms{1 & 1 & 0 & 1 & 1 & 1 \\ 
+				1 & 0 & 1 & 1 & 0 & 1 \\ 
+				0 & 1 & 0 & 1 & 1 & 1 \\ 
+			} \rrr{R_2 \to R_2 - R_1} \pms{1 & 1 & 0 & 1 & 1 & 1 \\ 
+				0 & 1 & 1 & 0 & 1 & 0 \\ 
+				0 & 1 & 0 & 1 & 1 & 1 \\ 
+			} \\\rrr{R_3 \to R_3 - R_2} \pms{1 & 1 & 0 & 1 & 1 & 1 \\ 
+				0 & 1 & 1 & 0 & 1 & 0 \\ 
+				0 & 0 & 1 & 1 & 0 & 1 \\ 
+			} \rrr{R_2 \to R_2 - R_3} \pms{1 & 1 & 0 & 1 & 1 & 1 \\ 
+				0 & 1 & 0 & 1 & 1 & 1 \\ 
+				0 & 0 & 1 & 1 & 0 & 1 \\ 
+			} \rrr{R_1 \to R_1 - R_2} \pms{1 & 0 & 0 & 0 & 0 & 0 \\ 
+				0 & 1 & 0 & 1 & 1 & 1 \\ 
+				0 & 0 & 1 & 1 & 0 & 1 \\ 
+			} \end{gather*}
+		קבוצת הפתרונות: 
+		\[ \mathrm{sols} = \ccb{\pms{0 \\ 1 - x_4 - x_5 \\ 1 - x_4 \\ x_4 \\ x_5} \mid x_4, x_5 \in \{0, 1\}} \]
+		נבחין כי $x_4, x_5$ משתנים חופשיים. 
+	\end{enumerate}
+	\section{}
+	\begin{enumerate}[(A)]
+		\item להלן כל המטריצות $2 \times 2$ המדורגות קאנונית מעל $\F$ כלשהו: 
+		\[ \ccb{\pms{1 & 0 \\ 0 & 1}, \pms{0 & 1 \\ 0 & 0}, \pms{0 & 0\\ 0& 0}} \uplus \ccb{\pms{1 & c \\ 0 & 0} \mid c \in \F} \]
+		\item להלן כל המטריצות $3 \times 3$ המדורגות קאנונית מעל $\F$ כלשהו: 
+		\begin{multline*}
+			\ccb{I_{3}, 0_{3}, \pms{0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0}, \pms{0 & 0 & 1 \\ 0 & 0 & 0 \\ 0& 0& 0}} \uplus \ccb{\pms{1 & 0 & a \\ 0 & 1 & b \\ 0 & 0 & 0}\middle\vert\, a, b \in \F} \uplus \ccb{\pms{1 & a & b \\ 0 & 0 & 0 \\ 0 & 0 & 0} \middle\vert\, a, b \in \F} \\ \uplus \ccb{\pms{1 & a & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0} \middle\vert\,  a \in \F} \uplus \ccb{\pms{0 & 1 & a  \\ 0 & 0 & 0 \\ 0& 0 & 0} \middle\vert\,  a \in \F}
+		\end{multline*}
+	\end{enumerate}
+	
+	\ndoc
+\end{document}

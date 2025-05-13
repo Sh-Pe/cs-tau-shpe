@@ -1,0 +1,814 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={DataStructuresHW1}
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\she\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak\sen}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+		\SetKwFunction{RetrieveFirst}{Retrieve-First}
+		\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+		\SetKwFunction{DeleteFirst}{Delete-First}
+		\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+		\SetKwFunction{InsertFirst}{Insert-First}
+		\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+		\SetKwFunction{AddEdge}{Add-Edge}
+		\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+	\DontPrintSemicolon
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codeblue}null}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+%! ~~~ Document ~~~
+
+\author{Shahar Perets}
+\title{Data Structures $\sim$ Homework 1 $\sim$ \textit{2025B}}
+\begin{document}
+	\sen\maketitle\she
+	
+	\subsection*{הערות לבודק: }
+	תרגיל בית זה לא נעשה על גבי ה־PDF שניתן בקובץ התרגיל בהתאם \href{https://moodle.tau.ac.il/mod/forum/discuss.php?d=62315}{לאישור מהפורום במודל}. 
+	
+	כל שאלה מופיעה בעמוד נפרד. 
+	\subsection*{פרטים אישיים}
+	\textbf{שם: }שחר פרץ
+	
+	\textbf{תעודת זהות: }334558962
+	
+	\sen
+	\npage
+	
+	\section{}
+	\she
+	{בשאלה זו נבנה פעולה}\ttt{Shift(L, i)}{ בתנאים שונים. }
+	\begin{enumerate}[(A)]
+		\item באמצעות ה־ADT של List: \sen
+		\begin{algorithm}
+			\importDs
+			\sData{i}\sData{val}\sData{L}\sData{j}\SetKwData{N}{n}\sData{P}
+			\io{List \L, Integer \i}{nothing (in-place)}
+			\P = \List{}\;
+			\N = \Length{\L}\;
+			\For{$\j = 0$ \KwTo \N}{
+				\Insert{\P, \Length{$\P - 1$}, \Retrieve{\L, $(\i + \j) \bmod \N$}}\;
+			}
+			\For{$\j = 0$ \KwTo \N} {
+				\Insert{\L, \j, \Retrieve{\P, \j}} \tcp{replace L[j] with P[j]}
+				\Delete{\L, $\j + 1$}\;
+			}
+		\end{algorithm}
+		\she
+
+		לא ניתן לנתח את סיבוכיות זמן הריצה שכן לא ידועה סיבוכיות זמן הריצה של פעולות תלויות ADT בהן האלגו' משתמש, כמו \ttt{Retrieve}. 
+		\item במערך מעגלי \texttt{L}: \sen\begin{algorithm}
+			\importDs
+			\sData{i}\sData{val}\sData{L}\sData{j}\SetKwData{N}{n}\sData{M}\sData{start}
+			\j $\gets 0$\;
+			$\N \gets \L.length$\;
+			$\M \gets \L.maxlength$\;
+			$\start \gets \L.start$\;
+			\Do{\j $\neq \i \bmod \M$}{
+				\val $\gets$ \L.array[$(\start + \N - 1 - \j) \bmod \M$]\;
+				\L.array[$(\start - 1 - \j)\bmod n$]\;
+				$\j \gets (\j + 1)\bmod \M$
+			}
+			\L.start $\gets$ $\start - \i$
+		\end{algorithm}\she
+		
+		הפעולות המבועות (לבדן) הן כתיבה ל־array ולקיחת מידע ממנו יארכו $O(1)$, בעוד הלולאה תיגמר רק כאשר נעביר $i$ מספרים מסוף ה־arrya לתחילתו (המונה $j$ גדל ב־1 בכל ריצה), עד לכדי מודולו בגודל של המערך הפנימי $M$. סה"כ $\Theta(i \bmod M) = O(i)$. 
+		
+		\item ברשימה מקושרת חד־כיוונית: 
+		\en{\begin{algorithm}
+			\importDs\sData{L}\sData{i}\sData{j}\sData{cutNode}\SetKwData{N}{n}
+			\io{Linked List \L, Integer \i}{nothing (in-place)}
+			$\N \gets \Length{\L}$\;
+			\cutNode $\gets$ \Retrieve{\L, $\N - \i$}\;
+			\If{\cutNode.next $\neq \Null$}{
+				\L.last $\gets$ \cutNode\;
+				\cutNode.next $\gets$ \L.first\;
+				\L.first $\gets$ \cutNode.next\;
+			}
+		\end{algorithm}}
+	
+	אין לולאות וכל הפעולות פרט ל־Retrieve אורכות $O(1)$, בעוד Retrieve אורך $O(n - i)$, וסה"כ $\Theta(N - i + k)$ כאשר $k$ קבוע כלומר $\Theta(n - i)$ או $O(n)$. 
+	\end{enumerate}
+	\sen
+	
+	\npage
+	
+	\section{}
+	\she
+	\begin{enumerate}[A.]
+		\item נתאר מימוש ל"מחסנית המינימום" כאשר סיבוכיות הזמן הנדרשת לכל פעולה היא $O(1)$. 
+		
+		לשם בניית מבנה נתונים כזה, ניעזר בשתי רשימות מקושרות דו־כיווניות. לאחת נקרא\ttt{Content} ולשנייה\ttt{Minimums}. הסרת איבר (ב־ADT קרוי\ttt{RemoveLast}) תתבצע באמצעות הסרת ה־node/איבר האחרון בשתי הרשימות (הסרת איבר מרשימה מקושרת אורך $O(1)$, ופעמיים $2O(1) = O(2) = O(1)$). איתחול הרשימה (\!\!\ttt{Init}) ידרוש אתחול את שתי הרשימות מקושרות, שזוהי גם פעולה שאורכת $O(1)$ פעמיים. לקיחת המינימום (\!\!\ttt{Min}) תתבצע ע"י פעולת\ttt{RetrieveLast} של הרשימה המקושרת, כלומר באמצעות גישה לאיבר האחרון בה. זוהי גם פעולה האורכת $O(1)$. הוספת איבר תתבצע בצורה הבאה: 
+		\sen\begin{algorithm}
+			\importDs\sData{Content}\sData{Minimums}\sData{val}\sData{min}
+			\io{A compareable number \val}{nothing (in-place)}
+			\min $\gets$ \RetrieveLast{\Minimums}.item\;
+			\eIf{$\min < \val$}{
+				\InsertLast{\Minimums, \val}
+			}{
+				\InsertLast{\Minimums, \min}
+			}
+			\InsertLast{\Content, \val}
+		\end{algorithm}\she
+		
+		משום שפעולות \ttt{Insert-Last} ו־\ttt{Retrieve-Last} ברשימה מקושרת דו־כיוונית אורכות $O(1)$, ובגלל שכן גם בעבור השוואות בין מספרים גם אורכות $O(1)$, סה"כ כל הפעולות יקחו $O(1)$ גם כאן. 
+		
+		\item נרצה להוסיף פעולה\ttt{Add'($d$)} המוסיפה קבוע $d$ לכל המספרים הנוכחיים. נסמן את הפעולות במבנה החדש שביקשנו לבנות ב־\!\!\ttt{'} בסוף שם הפעולה. בעת אתחול המבנה, נאתחל משתנה בשם\ttt{Addition} שבתאחול יהיה שווה ל־$0$. נסמן ב־: הגדרת פונקציה שלא מחזירה כלום, וב־$=$ פונקציית למבדא קצרה. כך, נגדיר מחדש את ה־ADT באופן הבא: (פעולות שלא צוינו יותרו ללא שינוי)
+		
+		\sen
+		\texttt{Add($d$)}$: $\, \texttt{Addition} $\gets$ \texttt{Addition}$\, + \, d$ \\
+		\texttt{Min'(L)}$=$\texttt{Min(L)}$\,+\,$\texttt{Addition} \\
+		\ttt{Insert'(L, $n$)}\!\!\!\!$=$\texttt{Insert(O, $n \,- \,$\texttt{Addition})} \\
+		\texttt{Retreive'(L, $i$)}\!=\texttt{Retrieve(L, $i$) + Addition}
+		\she
+		
+		כל השינויים הם ברמת פעולות אריתמטיות בלבד שאורכות $O(1)$, ועל כן לא יגדילו את הסיבוכיות האסימפטוטית. 
+		
+		\item נוסיף את הפעולה\ttt{DeleteMin} שתמחק את המספר הקטן ביותר מהמבנה. 
+		\sen\begin{algorithm}
+			\DontPrintSemicolon
+			\sData{currentMin}\sData{currentVal}\sData{Minimums}\sData{Content}
+			\currentMin $\gets$ \RetrieveLast{\Minimums}\;
+			\currentVal $\gets$ \RetrieveLast{\Content}\;
+			\While{\currentVal.item $\neq$ \currentMin.item}{
+				\currentVal $\gets$ \currentVal.prev\;
+				\currentMin $\gets$ \currentMin.prev\;
+			}
+			\currentVal.prev.next $\gets$ \currentVal.next \tcp*[r]{change the .next pointer of the previous node}
+			\currentMin.prev.next $\gets$ \currentMin.next \tcp*[r]{same here}
+		\end{algorithm}\she
+		
+		
+		נטען שהסיבוכיות היא $O(t)$ כאשר $t$ מספר האיברים שהוכנסו אחרי המינימום. הפעולה הכבדה היחידה, הלולאה, מתחילה מסוף מבנה הנתונים ובפנים חוזרת איבר אחורה, ומסתיימת כאשר האיבר האחרון ברישמת המינימומים הוא האיבר ברשימה הכוללת את איברי המבנה עצמו. זה יקרה כאשר המינימום האחרון (והיחיד, משונות איברי הרשימה). נוכיח את הטענה: נסמן ב־$m$ את המיקום האחרון, נפצל למקרים, אם אנחנו ב־$i > m$, אז מיחידותו אנחנו באיבר אחר ובפרט גדול ממנו (כי אינו המינימום האחרון בעצמו) ולכן\ttt{Content[i]} לא הנוכחי\ttt{Minimums[i]}, אם $i = m$ אז המינימום האחרון הוא\ttt{Content[i] = Minimums[i]}, אחרת $i> m$ אך לא נגיע לנקודה זו באלגוריתם כי הלולאה הייתה נעצרת במקרה הקודם יותר בו $i =m$. סה"כ הלולאה נעצרת כאשר היא מגיעה למינימום האחרון שהוכנס, ולוקח זמן ליניארי להגיע לשם (בכל איטרציה חוזרת אחד אחורה) ולכן $O(t)$ סיבוכיות (כל שאר הפעולות מתבצעות ב־$O(1)$). 
+	\end{enumerate}
+	
+	\sen
+	
+	\npage
+	
+	\section{}
+	\she\begin{enumerate}[A.]
+		\item נראה כי בעבור הפונקציות הבאות, $\bm{f(n) = o(g(n))}$
+		\[ f(n) = n^{15}\log^{12}n,\, g(n) = \frac{n^{17}}{\log^{12}n} \]
+		\begin{gather*}
+			\limsup_{n \to \inf} \frac{f(n)}{g(n)} = \limsup_{n \to \inf} \frac{n^{15} \log^{12}n}{\frac{n^{17}}{\log^{12}n}} = \limsi \frac{n^{15}\log^{24}n}{n^{17}} = \limsi \frac{\log^{24}n}{n^2} \seq 0
+		\end{gather*}
+		נבחין כי הטענה שנדרשה מאיתנו בסוף נגררת מכך ש־$\log^an = o(n^2)$, שנובע מהיררכיית חסמים. 
+		\item 
+		\[ f(n) = \sum_{i = 1}^{n}\log i^{3},\, g(n) = \sum_{i = 1}^{n}\log i^{2} \]
+		נראה $\bm{f(n) = \Theta(g(n))}$: 
+		\[ f(n) = \sum_{i = 1}^{n}\log (i^3) = 3\sum_{i = 1}^{n}\log i = \Theta\cl{\sum_{i = 1}^{n}\log i} = \Theta\cl{2\sum_{i = 1}^{n}\log i} = \Theta\cl{\sum_{i = 1}^{\log n}\log (i^2)} = \Theta(g(n)) \quad \top \]
+		
+		\item נוכיח כי $\bm{f(n) = \omega(g(n))}$ באמצעות כך שנראה ש־$g(n) = o(f(n))$. 
+		\[ f(n) = (\logn)^{n},\, g(n) = (\sqrt n)^{\logn} \]
+		\begin{gather*}
+			\limsi \frac{g(n)}{f(n)} = \limsi \frac{(\sqrt n)^{\log n}}{(\logn)^{n}} = \limsi \cl{\frac{(\sqrt n)^{\log(\sqrt[n]{n})}}{\log n}}^n \!\!\!\!\overset{(1)}{=} \limsi \cl{\frac{(\sqrt n)^0}{\log n}}^n \!\!\!\!= \cl{\limsi \frac{1}{\log n}}^n \!\!\!\!= 0^n = 0
+		\end{gather*}
+		השוויון המוסמן ב־$(1)$ נכון כי $\limi \sqrt[x]{x} = 1$, וכן $\log 1 = 0$. 
+		\item 
+		\[ f(n) = n^{n},\, g(n) = n! \]
+		נוכיח באמצעות גבולות ש־$\bm{f(n) = \omega(g(n))}$
+		\[ \limfi \frac{f(n)}{g(n)} = \limfi \frac{n^{n}}{n!} = \limfi \frac{\prod_{i = 1}^{n}n}{\prod_{i = 1}^{n}i} = \limfi \prod_{i = 1}^{n}\frac{n}{i} = \limfi \frac{n}{1} \cdot \prod_{i = 2}^{n}\frac{n}{i} = \inf \cdot \Bigg(\limfi \underbrace{\prod_{i = 2}^{n}\frac{n}{i}}_{_{\ge 1}}\Bigg) = \inf \]
+		(הערה: החלק המסומן כ־$\ge 1$ גדול ממש מאחד כי הוא מכפלה של מספרים גדולים מאחד, שכן $\frac{n}{i} \ge 1$ לכל $i \le n$ ובפרט $i \in [n]\setminus \{2\}$). 
+		\item 
+		\[ f(n) = 1.6^{\log\log\log n},\, g(n) = \log\logn \]
+		נראה ש־$\bm{f(n) = \omega(g(n))}$. נעשה זאת באמצעות תחשיב גבולות: 
+		\begin{multline*}
+			\limi \frac{f(n)}{g(n)} = \limi \frac{1.6^{\log \log \logn}}{\log \log n} = \limi \cl{\frac{1.6}{(\log \log n)^{\frac{1}{\log \log \log n}}}}^{\log \log \log n} \dequad \dequad \dequad\!\! = \limi \cl{\frac{1.6}{(\log \log n)^0}}^{\log \log \log n} \dequad\dequad\dequad\!\! = \limi\cl{\frac{1.6}{1}}^{\log \log \log n} \dequad\dequad\dequad\dequad\! = 1.6^{\inf} = \inf
+		\end{multline*}
+		כדרוש. 
+	\end{enumerate}\sen
+	
+	\npage
+	
+	\section{}
+	\she
+	יהיו $f, g \co \N^{\N}$. נוכיח/נפריך את הטענות הבאות. 
+	\begin{enumerate}[A.]
+		\item \textbf{נפריך} את הטענה $f \neq \Omega (g) \implies f = o(g)$. נתבונן בשתי הפונקציות הבאות: 
+		\[ D_1 = \begin{cases}
+			0 & n \in \Neven \\
+			1 & n \in \Nodd
+		\end{cases},\, D_2 = \begin{cases}
+			0 & n \in \Nodd \\
+			1 & n \in \Neven
+		\end{cases} \]
+		ידוע $\limsi \frac{D_1}{D_2} < \inf$ אמ"מ $D_1 = \Omega (D_2)$. לכן $D_1 \neq \Omega(D_2)$ אמ"מ השוויון של הגבול לא מתקיים. מכיוון שהגבול לא מוגדר הוא בפרט אינו קטן מאינסוף ולכן $D_1 \neq \Omega (D_2)$. אך גם הגבול $L := \limsi \frac{D_2}{D_1}$ אינו מוגדר, ובגלל ש־$D_1 = o(D_2) \iff L = 0$ אז $D_1 \neq o(D_2)$ כי $L$ אינו מוגדר ובפרט לא שווה ל־$0$. סה"כ מצאנו שתי פונקציות כך ש־$D_1 \neq \Omega(D_2) \land D_1 = o(D_2)$ וזו דוגמה נגדית לטענה. 
+		\item \textbf{נוכיח. }נניח שגבול במנה $\frac{f}{g}$ קיים, ונראה שאם $f \neq \Omega(g)$ אז $f = o(g)$. \begin{proof}
+			מההנחה $f \neq \Omega(g)$ ידוע ש־$\lnot \limfi \frac{f(x)}{g(x)} > 0$. משום ששתי הפונקציות חיוביות אז $\limfi \frac{f(x)}{g(x)}  \ge 0$, וסה"כ $\limfi \frac{f(x)}{g(x)}  = 0$ ובפרט $\limi \frac{f(x)}{g(x)}  = 0$. באופן שקול $f = o(g)$ כדרוש. 
+		\end{proof}
+		\item \textbf{נפריך} כי $\forall f, g \in \N^\N \co f = O(g) \lor g = O(f)$. \begin{proof}[הפרכה. ]נראה דוגמה נגדית. נבחר $f := D_1, g:= D_2$ מסעיף א'. 
+			נניח בשלילה את הטענה. נפריד למקרים: 
+			\begin{itemize}
+				\item אם $f = O(g)$, אז קיימים $n_0 \in \N,\ 0 < c \in \R$ כך ש־$\forall n \ge n_0 \co f(n) \le cg(n)$. נבחין כי או $n_0$ או $n_0 + 1$ אי־זוגיים, ונסמן ב־$n_0'$ את אי־הזוגי מביניהם. נבחין כי $0 = f(n_0') \le cg(n_0') = 1 \cdot c = c$ וסה"כ $0 = c > 0$ ובפרט $0 \neq 0$ וזו סתירה. 
+				\item אם $g = O(f)$ אז קיימים $n_0 \in \N,\ 0 < c \in \R$ כך ש־$\forall n \ge n_0 \co g(n) \le cf(n)$. גם במקרה הזה או $n_0$ או $n_0 + 1$ זוגיים ואת הזוגי מביניהם נסמן $n_0'$. אז $0 = g(n_0') \le cf(n_0') = c > 0$ וכאן $0 \neq 0$ וסתירה גם כאן. 
+			\end{itemize}
+			סה"כ סתירה בכל המקרים. 
+		\end{proof}
+		\item \textbf{נפריך. }נתבונן בטענה אם $f, g$ מונוטוניות עולות אז $g = O(f) \lor f = O(g)$. \begin{proof}[הפרכה. ]
+			נבנה שתי פונקציות הסותרות את הטענה. 
+			\[ f(n) = \begin{cases}
+				n^{n - 1} & n \in \Neven \\
+				n^{n} & n \in \Nodd 
+			\end{cases}, \ g(n) = \begin{cases}
+				n^n & n \in \Neven \\
+				n^{n - 1} & n \in \Nodd
+			\end{cases} \]
+			\begin{itemize}
+				\item אם $f(n) = O(g(n))$ אז קיים $c$ כך ש־$f(n) \le cg(n)$ לכל $n \ge n_0$. בפרט בעבור איזשהו $n  \ge n_0 + 1$ אי־זוגי, יתקיים $n^n \le cn^{n - 1}$. נחלק ונקבל $n \le c$. נסמן ב־$c'$ את $c + 1$ אם $c + 1$ אי־זוגי אחרת $c' := c+ 2$, בפרט $n \le c \le c'$ ולכן $f(c') \le cg(c')$ כלומר $c'^{c'} \le cc'^{c' - 1}$, גם כאן נחלק ונקבל $c' \le c$, אך $c + 1 \le c' \le c$ כלומר $1 \le 0$ וסתירה. 
+				\item אם $g(n) = O(f(n))$ אז קיים $c$ כך ש־$g(n) \le cf(n)$ לכל $n \ge n_0$. בפרט בעבור איזשהו $n  \ge n_0 + 1$ זוגי, יתקיים $n^n \le cn^{n - 1}$. נחלק ונקבל $n \le c$. נסמן ב־$c'$ את $c + 1$ אם $c + 1$ זוגי אחרת $c' := c+ 2$, בפרט $n \le c \le c'$ ולכן $g(c') \le cf(c')$ כלומר $c'^{c'} \le cc'^{c' - 1}$, גם כאן נחלק ונקבל $c' \le c$, אך $c + 1 \le c' \le c$ כלומר $1 \le 0$ וסתירה. 
+			\end{itemize}
+			עתה נראה שהפונקציות מונוטוניות עולות: 
+			\[ \begin{cases}
+				\mathrm{if}\,  n \in \Neven \co \quad f(n) = n^{n - 1} \le n^{n + 1} \le (n + 1)^{(n + 1)} = f(n + 1) & g(n) = n^n \le (n + 1)^n = g(n + 1) \\ \\
+				\mathrm{if}\, n \in \Nodd \co \quad \,f(n) = n^{n} \le (n + 1)^n = f(n + 1) & g(n) = n^{n - 1} \le n^{n + 1} \le (n + 1)^{n + 1} = g(n + 1)
+			\end{cases} \]
+			סה"כ בכל המקרים אכן $\forall n \in \N \co f(n) \le f(n + 1) \land g(n) \le g(n + 1)$, כלומר $f, g$ מונוטוניות עולות כדרוש. זו אכן סתירה למשפט, וסיימנו. 
+		\end{proof}
+	\end{enumerate}
+	\sen
+	
+	\npage
+	
+	\section{}
+	\she
+	\subsection{סעיף א'}
+	
+	נוכיח באינדוקציה ש־$T(n) = T(\floor{\ag n}) + T(\floor{(1 - \ag)n}) + 1 = O(n)$ עבור $\ag < 1$. נניח $T(c) =1$ עבור ערכי $c$ קטנים. 
+	\begin{proof}
+		\textit{בסיס. }נקבל $1 = T(n) = T(\floor{\ag n}) + T(\floor{1 - \ag}n) + 1 = 0 + 0 + 1 = cn$ עבור $n = 1$. 
+		
+		\textit{צעד. }נניח באינדוקציה מלאה את הטענה בעבור $k < n$, ונוכיח בעבור $n$. מה.א.: 
+		\[ \begin{WithArrows}
+			T(n) &= T(\floor{\ag n}) + T(\floor{1 - \ag}n) + 1 \\
+			&= c \floor{\ag n} + c\floor{(1 - \ag)n} + 1 \Arrow[down]{ה.א.} \\
+			&\le c(\ag n + n - \ag n) + 1 \\
+			&\le cn + 1 \le cn
+		\end{WithArrows} \]
+		נבחר $c = 1$ ו־$n_0 = 2$ ואכן כל השוויונות לעיל יתקיים כך שקיבלנו $\forall n \ge n_0 \co T(n) \le cn$ כדרוש. 
+		
+		\textit{הערה: }השתמשנו בנתון $\ag < 1$ כאשר הפעלנו את הנחת האינדוקציה, עבורה צריך להתקיים $(1 - \ag)n \le n \land \ag n \le n$.
+	\end{proof}
+	\subsection{סעיף ב'}
+	\begin{enumerate}[A.]
+		\item $T(n) = 8T\cl{\frac{n}{2}} + n^3 + n^2 \cdot \log^3n$. נוכיח $T(n) = \Theta\cl{n^3\log n}$ באינדוקציה מלאה על $n$. ה.א. $c^-n^3\logn \le T(n)$ לכל $n \ge n_0^-$ כלשהו.
+		נבחר $c^- = 1$. 
+		\textit{צעד: }
+		\[ c^-n^3\logn \overset{(1)}{\le} c^-n^3(\logn - \underbrace{\log 2}_{=1}) + n^3 \le \underbrace{8c^-\cl{\frac{n}{2}}^3}_{c^-n^3} \cdot \log\cl{\frac{n}{2}} + n^3 + n^2\log^3n \le \underbrace{8T\cl{\frac{n}{2}} + n^3 + n^2\log^3n}_{T(n)} \]
+		הערה: $(1)$ יתקיים לכל $c^- \ge 1$, ובפרט $c^- = 1$. 
+		
+		קיבלנו $c^-n^3\log n \le T(n)$ כלומר $T(n) = \Omega\cl{n^3 \log n}$. 
+		
+		נוכיח את הכיוון השני. ה.א. $T(n) \le c^+n^3\logn$ לכל $n \ge n_0^+$. 
+		\textit{צעד: }
+		\[ T(n) = 8T\cl{\frac{n}{2}} + n^3 + n^2 + \log^3n \overset{(1)}{\le} 8c^+\cl{\cl{\frac{n}{2}}^3\log\cl{\frac{n}{2}}} + 2n^3 \overset{(2)}{\le} c^+n^3\log^3n - c^+n^3 + 2n^3 \overset{(3)}{\le} c^+n^3\log^3n \]
+		$(3)$ מתקיים לכל $c^+ \ge 2$, ונבחר $c^+ = 2$. מהררכיית חסמים, $(2)$ ו־$(1)$ מתקיים החל מ־$n_1, n_2$ כלשהו, ונבחר להוכיח את הטענה בעבור $n_0^+ = \max\{n_1, n_2\}$. 
+		
+		קיבלנו $T(n) = O(n^3 \log n)$ ומהאינדוקציה הקודמת סה"כ $\bm{T(n) = \Theta\cl{n^3 \log n}}$. 
+		
+		לא ניתן לספק בסיסים לאינדוקציות כי לא ניתן בסיס לנוסחת הנסיגה. עם זאת, הבסיס יכול להתחיל מכל נקודה $n_0$, אז אין זה משנה כל עוד קיים בסיס קבוע. 
+		
+		
+		\item $T(n) = 2T\cl{\frac{n}{2}} + \sqrt n$. נפעל בשיטת העץ: 
+		\begin{center}\sen\begin{forest}
+				[$n$
+					[$\frac{n}{2}$
+						[$\frac{n}{4}$ [$\vdots$]]
+						[$\frac{n}{4}$ [$\vdots$]]
+					]
+					[$\frac{n}{2}$
+						[$\frac{n}{4}$ [$\vdots$]]
+						[$\frac{n}{4}$ [$\vdots$]]
+					]
+				]
+			\end{forest}\she\end{center}
+			בשכבה ה־$i$ בעץ תהיה סיבוכיות $2^i \cdot \sqrt{\frac{n}{2^i}}$, ויהיו $\logn$ שכבות (מתי שהביטוי $2^i < 1$ מקרה בסיס בו סיבוכיות $T(<1) = 1$), ונקבל: 
+			\[ \sum_{i = 0}^{\mathclap{\logn - 1}}2^i \cdot \sqrt{\frac{n}{2^i}} = \sqrt n \sum_{i = 0}^{\mathclap{\logn - 1}}\sqrt{\frac{4^i}{2^i}} = \sqrt n\sum_{i = 0}^{\mathclap{\logn - 1}}\sqrt{2}^i = \sqrt n(\sqrt2)^{\logn} = \sqrt n \sqrt{2^{\logn}} = (\sqrt n)^2 = \bm{\Theta(n)} \]
+		
+		\item נתבונן בנוסחה $T(n) = 2T\cl{\frac{n}{2}} + \frac{n}{\log n}$. העץ זהה לעץ של הסעיף הקודם, וגם כאן בכל שכבה יהיו $2^i$ צמתים, אך הפעם בכל צומת סיבוכיות של $\frac{\frac{n}{2^i}}{\log\cl{\frac{n}{2^i}}}$. סה"כ נסכום את השכבות: 
+		\[ T(n) = \sum_{i = 0}^{\mathclap{\logn - 1}}2^i \frac{\frac{n}{2^i}}{\log\cl{\frac{n}{2^i}}} = n \sum_{i = 0}^{\mathclap{\logn - 1}} \frac{1}{\logn - i} \overset{(1)}{=} n \sum_{i = 1}^{\mathclap{\logn}}\frac{1}{i} = n \log(\log (n - 1)) = \bm{\Theta(n \log\logn)} \]
+		השוויון ה־$(1)$ נכון מהפיכת סדר הסכימה. 
+		
+	\end{enumerate}\sen	
+	\npage
+	
+	\section{}
+	\she
+	נפתור את נוסחאות הנסיגה הבאות באמצעות נוסחאת המאסטר: 
+	\begin{enumerate}
+		\item נתבונן בנוסחא $T(n) = 3T\cl{\frac{n}{3}} + n\log^3 n$. הקבועים הם $a = b = 3$, ונבחין ש־$f(n) := n\log^3 n = \omega (n^{\log_{3}3}) = \omega(n)$, ולכן אין זה בהכרח אחד משני המקרים הראשונים של מספר המאסר. אך לכל $\vepsi > 0$ כבר מתקיים $f(n) = o(n^{1 + \epsi})$, ולכן אין זה גם המקרה השלישי של המשפט. סה"כ לא \textbf{ניתן להראות חסם} לנוסחאת נסיגה זו באמצעות משפט המאסטר בגלל שאין הפונקציה נופלת לאף אחד משלושת המקרים של המשפט. 
+		\item נתבונן בנוסחאת הנסיגה $T(n) = T\cl{\frac{4n}{5}} + 8$. כאן הקבועים $a = 1, b = \frac{5}{4}, f(n) =8$. מתקיים $f(n) = 8 = \Theta(n^0) = \Theta(n^{\log_{5/4}1})$. זהו המקרה השני של משפט המאסטר ובו $T(n) = \Theta(n^0 \cdot \logn) = \bm{\Theta (\logn)}$. 
+		\item נתבונן בנוסחאת הנסיגה $T(n) = 4T\cl{\frac{n}{2}} + 2n$. כאן הקבועים $b = 2, a = 4, f(n) = 2n$ ומתקיים $2n = \Theta(n) = O(n^{1.5}) = O\cl{n^{\log_24 - \vepsi}}$ בעבור $\vepsi = 0.5 > 0$. זהו המקרה הראשון של משפט המאסטר ובו $\bm{T(n) = \Theta(n^{2})}$. 
+		\item נתבונן בפונקציה $T(n) = 3T\cl{\frac{n}{4}} + n\log^3 n$. מתקיים $n \log ^3n = \Omega\cl{n^{\log_4 3 + \vepsi} = \Omega\cl{n^{0.8}}}$ עבור $\vepsi = 0.8 - \log_43 \approx 0.0075 > 0$. זהו המקרה השלישי של משפט המאסטר. למקרה זה יש עוד תנאי, והוא להראות קיום $c < 1, n_0 \ge 0$ כך שלכל $n \ge n_0$ מתקיים $3\frac{n}{4}\log^3\cl{\frac{n}{4}} \le c \cdot n \log^3 n$. מחוקי לוגוריתמים: 
+		\[ \frac{3}{4}n\log^3\cl{\frac{n}{4}} = \frac{3}{4}n \cl{(\log n - \log 4)^3} \le  \frac{3}{4}n \cl{\log^3 n} \]
+		וסה"כ קיבלנו פסוק אמת בעבור $n - 3$. לכן נוכל להשתמש במקרה השלישי של המשפט ולקבל $\bm{T(n) = \Theta\cl{n\log^3 n}}$. 
+	\end{enumerate}
+	
+	
+	\ndoc
+\end{document}
