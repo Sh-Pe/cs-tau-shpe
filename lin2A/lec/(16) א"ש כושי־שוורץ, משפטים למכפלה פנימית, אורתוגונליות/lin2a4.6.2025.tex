@@ -1,0 +1,726 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Design
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+    \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+    \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+    \sFunc{List}
+    \sFunc{Retrieve}
+    \SetKwFunction{RetrieveFirst}{Retrieve-First}
+    \SetKwFunction{RetrieveLast}{Retrieve-Last}
+    \sFunc{Delete}
+    \SetKwFunction{DeleteFirst}{Delete-First}
+    \SetKwFunction{DeleteLast}{Delete-Last}
+    \sFunc{Insert}
+    \SetKwFunction{InsertFirst}{Insert-First}
+    \SetKwFunction{InsertLast}{Insert-Last}
+    \sFunc{Shift}
+    \sFunc{Length}
+    \sFunc{Concat}
+    \sFunc{Plant}
+    \sFunc{Split}
+}
+\newcommand\dsQueue{
+    \sFunc{Queue}
+    \sFunc{Enqueue}
+    \sFunc{Head}
+    \sFunc{Dequeue}
+}
+\newcommand\dsStack{
+    \sFunc{Stack}
+    \sFunc{Push}
+    \sFunc{Top}
+    \sFunc{Pop}
+}
+\newcommand\dsVector{
+    \sFunc{Vector}
+    \sFunc{Get}
+    \sFunc{Set}
+}
+\newcommand\dsGraph{
+    \sFunc{Graph}
+    \sFunc{Edge}
+    \SetKwFunction{AddEdge}{Add-Edge}
+    \SetKwFunction{RemoveEdge}{Remove-Edge}
+    \sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+    \dsList
+    \dsQueue
+    \dsStack
+    \dsVector
+    \dsGraph
+    \SetKwData{error}{\color{codered}error}
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \SetKwRepeat{Do}{do}{while}
+    \SetKwData{Null}{\color{codeblue}null}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+
+\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
+\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
+\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
+\newcommand\zc        {\mathcal{Z}}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 2א 16}}
+\begin{document}
+    \maketitle
+    לגבי תרגלי הבית: 
+    \begin{itemize}
+        \item מי שלא יעשה תרגיל בית לא יוכל להכנס להרצאות. 
+        \item מי שלא עושה שיעורי בית לא יוכל לגשת למבחן. 
+    \end{itemize}
+    
+    תזכורת: הגדרת מכפלה פנימית. 
+    וכן: 
+    \[ \snorm \co V \to \R_{\ge 0} \land \norm{v} = \sqrt{\mut{v}{v}} \]
+    ראינו: 
+    \[ \forall t \in \F \co \norm{t \cdot v} = |t| \cdot \norm{v} \]
+    \defi{(\textit{נרמול של וקטור}): וקטור בממ''ס $V$ יקרא וקטור יחידה אם $\norm{v} = 1$.  $0 \neq v \in V$. }
+    \theo{\[ v'' := \frac{v}{\norm{v}} \] הוא וקטור יחידה}
+    \begin{proof}
+        \[ |v''| = \norm{\frac{v}{\norm{v}}} = \frac{1}{|\norm{v}|} \cdot \norm{v} \]
+        וכן: 
+        \[ \norm{v} > 0 \implies |\norm{v}| = \norm{v} \implies \norm{v''} = \frac{\norm{v}}{\norm{v}} = 1 \]
+    \end{proof}
+    \defi{יהי $V$ מ''ו מעל $\F$, ו־$\snorm \co V \to \R_{\ge 0}$, אז $(V, \snorm)$ יקרא \textit{מרחב נורמי}. }
+    \theo{(\textit{''נוסחאת הפולריזציה'')}בהינתן $(V, \snorm)$ מרחב נורמי;
+    \textbf{גרסה מעל $\R$: }
+    \[ \forall v, u \in V \co \mut{v}{u} = \frac{1}{4}(\norm{u + v}^2 + \norm{u - v}^2) \]
+    \textbf{גרסה מעל $\C$: }
+    \[ \mut{u}{v} = \frac{1}{4}\Big(\norm{u + v}^2 - \norm{u - v}^2 + i\norm{u + iv} - i\norm{u + iv}\Big) \]
+    }
+   \begin{proof}[הוכחה (ל־$\C$)]
+        \begin{align*}
+            \mut{u + v}{u + v} =\,& \norm{u}^2 + \mut{u}{v} + \mut{v}{u} + \norm{v}^2 \\
+            =\,& \norm{u}^2 + \norm{v}^2 + 2\Re(\mut{v}{u}) \\
+            \mut{v - u}{v - u} = \, & \norm{u}^2 + \norm{v}^2 - 2\Re(\mut{v}{u}) \\
+            \mut{u + iv}{u + iv} =\,& \norm{u}^2 + \norm{v}^2 + \mut{u}{iv} + \mut{iv}{u}  \\
+            =\,& \norm{u}^2 + \norm{v}^2 - i\mut{u}{v} + i\ol{\mut{u}{v}} \\
+            =\,& \norm{u}^2 + \norm{v}^2 - i(2 \Im\mut{u}{v}) \\
+            \norm{u - iv} =\,& \norm{u} + \norm{v} - \mut{u}{iv} - \mut{iv}{u} \\
+            =\,& \norm{u} + \norm{v} - 2\Im(\mut{v}{u})
+        \end{align*}
+        וסה''כ אם נציב בנוסחה, אחרי שחישבנו את כל אבירה, הכל יצטמצם וש־$\mut{u}{v}$ אכן שווה לדרוש. 
+    \end{proof}
+    
+    מנוסחאת הפולריזציה, נוכל לשחזר באמצעות נורמה את המכפלה הפנימית. 
+    
+    \defi{בהינתן $(v, \smut)$ ממ''פ, לכל $v \in V$ נאמר ש־$u$ \textit{מאונך ל־$v$} ונסמן $u\perp v$ אם $\mut{u}{v} = 0$. }
+    
+    \textit{הערה. }אם $u \perp v$ אז $v \perp u$. (כי צמוד של $0$ הוא $0$). 
+    
+    \theo{(משפט פיתגורס) (מאוד מועיל) יהי $V$ ממ''פ כך ש-$v \in V$ אז $\norm{v + u}^2 = \norm{v}^2 + \norm{u}^2$}\begin{proof} משום שהם מאונכים מתקיים $\mut{v}{u} = 0$. נפתח אלגברה: 
+        \[ \norm{v + u}^2 = \mut{v + u}{v + u} = \norm{v}^2 + \cancel{\mut{v}{u}} + \cancel{\mut{u}{v}} + \norm{u^2} = \norm{v}^2 + \norm{u}^2 \quad \top \]
+    \end{proof}
+    
+    \textit{הערה: }בעבור $v = \R^n$ מ''פ סטנדרטית אז $\norm{v}$ מזדהה עם מושג הגודל של וקטור בגיואמטריה רגילה. 
+    
+    \textit{הערה מועילה. }בתוך $\R^n$ הוקטורים הסטנדרטיים מאונכים אחד לשני (במכפלה הפנימית הסטנדרטית) ולכן $\mut{e_i}{e_j} = \delta_{ij}$ כאשר $\delta_{ij}$ הדלתא של כרוניקר. באינדוקציה על משפט פיתגורס נקבל ש־: 
+    \[ v = \sum_{i = 1}^{n}\ag_i e^i \implies \norm{v} = \sum_{i = 1}^{n}\ag_i^2 \]
+    שזה בדיוק מושג הגודל בגיאומטריה אוקלידית. 
+    
+   \textit{הערה. }מעל $\R$ מקבלים אמ''מ למשפט פיתגורש, מעל $\C$ לאו דווקא. מאונכים – בעברית. בלעז, \textit{אורתוגונלים}. ואכן וקטורים יקראו אורתוגונליים אם הם מאונכים אחד לשני. 
+   
+   זה מטוס? זה ציפור? לא, זה מתמטיקה B!
+   \theo{(אי שוויון קושי־שוורץ)
+   \[ \forall v, u \in V \co |\mut{u}{v}| \le \norm{u}\cdot\norm{v} \]
+   ושוויון אמ''מ $u, v$ ת''ל. }
+   \textit{הערה. }זה בפרט נכון בכיאומטריה סטנדרטית ממשפט הקוסינוסים. 
+   
+   \begin{proof}
+       אם $v$ או $u$ הם $0$, אז מתקקבל שוויון. 
+       \textit{טענת עזר: }קיים איזשהו $\ag \in \F$ כך ש־$u - \ag v \perp v$. נסמן $v_u = \ag v$ כאשר נמצא אותו. 
+       \textit{הוכחת טענת העזר. }נחפש כזה: 
+       \[ \mut{u - \ag v}{v} = 0 \impliedby \mut{v}{u} - \ag \norm{v}^2 = 0 \impliedby \ag = \frac{\mut{v}{u}}{\norm{v}^2} \]
+       כדרוש. (מותר לחלק בנורמה כי הם לא $0$). ניעזר בפיתגורס: 
+       \begin{align*}
+           &\begin{cases}
+               u - \ag v \perp v \\ u - \ag v \perp v
+           \end{cases}\dequad \implies \norm{u}^2 = \norm{(u - \ag v + \ag v)}^2 = \underbrace{\norm{u - \ag v}^2}_{\ge 0} + |\ag|^2\norm{v}^2 \ge |\ag|\cdot\norm{v}^2 = \frac{|\mut{v}{u}|^2}{(\norm{v}^2)^2} = \norm{v}^2 = \frac{|\mut{u}{v}|^2}{\norm{v}^2} \\ &\implies |\mut{v}{u}|^2 \le \norm{v} \cdot \norm{u}
+       \end{align*}
+       בפרט $\norm{u - \ag v}^2 = 0$ אמ''מ הם תלויים לינארית ומכאן הכיוון השני של המשפט. 
+   \end{proof}
+   
+   \textbf{דוגמאות. }ממכפלה פנימית סטנדרטית: 
+   \begin{enumerate}
+       \item \[ \sof{\sum_{i = 1}^{n}\ag_i b_i}^2 \le \cl{\sum_{i = 1}^{n}a_i^2} \cl{\sum_{i = 1}^{n}b_i} \]
+       \item  נניח $f, g [0, 1] \to \R$ רציפות אז: 
+       \[ \sof{\int^1_0 f(t)g(t) \dt}^2 \le \int_{0}^{1}f^2(t) \dt \cdot\int^1_0 g^2(t) \dt \]
+       כאשר $f^2 = f \cdot f$ (לא הרכבה). 
+       \item אי־שוויון המשולש: 
+       \[ \forall u, v \in V \co \norm{u + v} \le \norm{u} + \norm{v} \]
+       ושוויון אמ''מ אחד מהם הוא $0$ או אם הם כפולה חיובית אחד של השני (לא שקול לתלויים לינארית – יכולה להיות כפולה שלילית). 
+   \end{enumerate}
+   \begin{proof}
+       (לאי שוויון המשולש). 
+       \textit{תזכורת עבור $\zc \in \C$ מתקיים $\sof{\zc}^2 = (\Re \zc)^2 + (\Im \zc)^2$}
+       \[ \norm{u + v}^2 = \norm{u}^2 + \norm{v}^2 + 2\Re(\mut{u}{v}) \le \norm{u}^2 + \norm{v}^2 + 2\sof{\mut{u}{v}}  \]
+       ושוויון אמ''מ $u$ הוא אפס או כפולה חיובית של $v$. מקושי־שוורץ: 
+       \[ \le \norm{u}^2 + 2\norm{u}\norm{v} + \norm{v}^2 = \cl{\norm{u} + \norm{v}}^2 \]
+   \end{proof}
+   
+   \section{\en{Orthogonality}}
+   \defi{יהי $(V, \smut)$ ממ''פ. יהיו $S, T \subseteq V$. נכתוב: 
+   \begin{enumerate}[A.]
+       \item \hfil $u \in V \co u \perp S \iff (\forall v \in S\co u \perp v)$
+       \item \hfil $S \perp T \iff \forall v \in \S\, \forall u \in T \co v \perp u$ 
+       \item \hfil $S^{\perp} := \{v \in V \mid v \perp S\}$
+   \end{enumerate}}
+    \lem{תהי $S \subseteq V$. אז: 
+    \begin{enumerate}[A.]
+        \item $v \perp S$ אמ''מ $v \perp \Sp(S)$
+        \item $S^{\perp} \subseteq V$ תמ''ו
+        \item אם $\subseteq T$ אז $T^\perp \subseteq S^\perp$
+    \end{enumerate}}
+    \begin{proof}[הוכחה (לג'). ]
+        \[ \forall v \perp T \co c \perp S \implies v \in S^{\perp} \]
+    \end{proof}
+    הערה: שוויון בג' מתקיים אמ''מ $\Sp S = \Sp T$. 
+    
+    \defi{משפחה של וקטורים $A \subseteq V$ נקראת \textit{אורתוגונלית} אם $\forall u \neq v \in V\co u \perp v$}
+    \textit{הערה. }אם $A$ משפחה אורתוגונלית וגם $0 \notin A$ אז ניתן לייצור ממנה משפחה של וקטורים אורתוגונלים שהם גם וקטורי יחידה, ע''י נרמול. \\
+    
+    \defi{משפחה של וקטורים $A \subseteq V$, אם היא אורתוגונלית ובנוסף כל הוקטורים הם וקטורי יחידה. }
+    
+    \defi{יהי $U \subseteq V$ תמ''ו. יהא $v \in V$. אז \textit{ההטלה האורתוגונלית} של $V$ על $U$ היא $p_U(v)$ הוא וקטור המקיים: 
+    \begin{itemize}
+        \item \hfil $p_U(v) \in U$ 
+        \item \hfil $v - p_U(v) \in U^\perp$
+    \end{itemize}}
+    \theo{בסימונים לעיל, $\forall u \in U \co \norm{v - u} \ge \norm{v - p_U(v)}$ ושוויון אמ''מ $u = p_U(v)$. }
+    
+    \begin{proof}
+        יהי $u \in U$. ידוע $p_U(v) \in U$. אזי $u - P_u(v) \in U$. כמו כן ידוע $p_U(v) - v \perp u$. אזי בפרט $\mut{u - p_U(v)}{p_U(v) - v}$. נתבונן ב־: 
+        \[ \norm{u - v}^2 = \norm{(u - p_U(v)) + (p_U(v) - v)}^2 \overset{\text{פית'}}{=} \norm{u - p_U(v)}^2 + \norm{v - p_U(v)}^2 \]
+        וסה''כ $\norm{v - u}^2 \ge \norm{v - p_U(v)}^2$. ושוויון אמ''מ $\norm{u- p_U(v)} = 0$ אמ''מ $u  = p_U(v)$. 
+    \end{proof}
+    \theo{ההטלה הניצבת (אם קיימת), היא יחידה. }\begin{proof}
+        יהיו $p_U(v)$ וכן $p'_U(v)$ הטלות של $v$ על $U$. מהטענה: 
+        \[ \norm{v - p_U(v)} \le \norm{v - p'_U(v)} \]
+        אבל בהחלפת תפקידים מקבלים את אי־השוויון ההפוך. לכן יש שוויון נורמות. מהמשפט לעיל $p_U(v) = p'_U(v)$. 
+    \end{proof}
+    
+    \theo{תהי $A \subseteq V$ משפחה אורתוגונלית ללא $0$. אז היא בת''ל. }\begin{proof}
+        יהיו $v_1 \dots v_n \in A$ וכן $\ag_1 \dots \ag_n \in \F$, כך ש־$\sumni \ag_i v_i = 0$. יהי $i \in [n]$. אז: 
+        \[ 0 = \mut{0}{v_j} = \mut{\sumni \ag_i v_i}{v_j} = \sumni \ag_i \mut{v_i}{v_j} = \ag _j \underbrace{\norm{v_j}^2}_{\neq 0} \implies \ag_j = 0 \]
+        כאשר השוויון האחרון מהיות הקבוצה אורוגונלית. 
+    \end{proof}
+    \theo{נניח ש־$u \subseteq V$ תמ''ו. נניח $U$ נ''ס וכן $B = (e_1 \dots e_n)$ בסיס אורתונורמלי של $U$ (כלשהם, לא בהכרח סטנדרטיים כי גם לא בהכרח $\F^n$). אז 
+    \[ \forall v \in V \co p_U(v) = \sum_{i = 1}^{m}\mut{v}{e_i}e_i \]}
+    \begin{proof}
+        צ.ל. $p_U(v) \in U$ וגם $\forall u \in U \co \mut{v - p_U(v)}{u} = 0$ אך לגבי התנאי האחרון די להוכיח $\forall j \in [n] \co \mut{v_i p_U(v)}{e_j}  = 0$. החלק הראשון ברור, נותר להוכיח: 
+        \[ \mut{v - p_U(v)}{e_j} = \mut{v}{e_j} - \mut{p_u(v)}{e_j} =: * \]
+        ידוע: 
+        \[ \mut{p_U(v)}{e_j} = \mut{\sum_{i = 1}^{m}\mut{v_i}{e_i} e_i}{e_j} = \sum_{i = 1}^{m}\mut{v_i}{e_i} \cdot \mut{e_i}{e_j} = \sum_{i = 1}^{m}\mut{v}{e_i}\delta_{ij} = \mut{v}{e_j} \]
+        נחזור לשוויון לעיל: 
+        \[ *= \mut{v}{e_j} - \mut{v}{e_j} = 0 \]
+        כדרוש. 
+    \end{proof}
+    (בכך הוכחנו את קיום $p_U(v)$ לכל מ''ו נ''ס, אם נשלב את זה עם המשפט הבא)
+    
+    \theo{(אלגרויתם גרהם־שמידט) תהי $(b_1 \dots b_k)$ קבוצה סדורה בת''ל של וקטורים בממ''ס $V$. אז בכל משפחה א''נ $(u_1 \dots u_k)$ כך ש־$\Sp(b_1 \dots b_k) = \Sp(u_1 \dots u_k)$. }
+    \textbf{מסקנות מהמשפט. }לכל ממ''ס נ''ס קיים בסיס א''נ (=אורתונורמלי). יתרה מזאת, בהינתן בסיס $B = (b_1 \dots b_n)$ ניתן להופכו לבסיס א''נ $(u_1 \dots u_n)$ המקיים $\forall k \in [n] \co \Sp (b_1 \dots b_k) = \Sp(u_1 \dots u_k)$. 
+    
+    \begin{proof}
+        בנייה באינדוקציה. נגדיר עבור $k = 1$ את $u_1 = b_1''$. מתקיים $\Sp u_1 = \Sp b_1$ וכן $\{u_1\}$ קבוצה א''נ. נניח שבנינו את $k$ האיברים הראשונים, נבנה את האיבר ה־$k + 1$ (כלומר את $u_{k + 1}$). במילים אחרות, הנחנו $u_1 \dots u_k$ אורתונורמלית וגם $\Sp (u_1 \dots u_k) = \Sp(b_1 \dots b_k) = U$. 
+        
+        מהסעיף הקודם $p_U(b_{k + 1})$ קיים, וגם $b_{k + 1} - p_U(b_{k + 1}) \neq 0$ מהבנייה. נגדיר $u_{k + 1} = (b_{k + 1} - p_U(b_{k + 1}))$. בצורה מפורשת: 
+        \[ u_{k + 1} = \frac{b_{k + 1} - \sum_{i = 1}^{k}\mut{b_{k + 1}}{u_i}u_i}{\norm{b_{k + 1} - \sum_{i = 1}^{k}\mut{b_{k + 1}}{u_i}u_i}} \]
+        מהגדרת $p_U(b_{k + 1})$, מתקיים $b_{k + 1} - p_U(b_{k + 1}) \in U^{\perp}$ ולכן גם $u_{k + 1} \in U^{\perp}$ ולכן $(u_1 \dots u_{k + 1}$ משפחה א''נ. 
+        \[ b_1 \dots b_k = \overbrace{\Sp(u_1 \dots u_{k + 1})}^{\text{בת''ל}} \]
+        נשאר להוכיח ש־$b_{k + 1} \in \Sp(u_1 \dots u_{k + 1})$. זה מספיק משום שאז נקבל $\Sp(b_1 \dots b_{k + 1}) \subseteq \Sp(u_1 \dots u_{k + 1})$. אבל הם שווי ממד ולכן שווים. סה''כ: 
+        \[ b_{k + 1} = \norm{b_{k + 1} - p_U(b_{b + 1})} \cdot u_{k + 1} + \sum_{i = 1}^{k}\mut{b_{k + 1}}{u_i}u_i \implies b_{k + 1} \in \Sp(u_1 \dots u_{k + 1}) \]
+        מש''ל. 
+    \end{proof}
+    
+    \theo{יהי $V$ מ''ו $U \subseteq V$. נניח שלכל $v \in V$ מוגדר $p_U(v)$ (בפרט כל מ''ו נ''ס). אז $p_U \co V \to V$ המוגדרת לפי $v \mapsto p_U(v)$ העתקה לינארית. }\begin{proof}
+        יהיו $v, v' \in V, \ag \in \F$. ידוע $v - p_U(v), v' - p_U(v') \in U^{\perp}$ ועל כן: 
+        \[ (v - p_U(v)) + \ag(v' - p_u(v')) \in U^T \implies (v + \ag v') - (p_U(v) + \ag p_U(v')) \in U^T \implies (v + \ag v') - p_U(v + \ag v') \in U^{T} \]
+        מה מקיים היטל וקטור? ראשית ההיטל ב־$U$, ושנית $v$ פחות ההיטל מאונך. הוכחנו שבהינתן היטל, הוא יחיד. והראינו ש־$(v + \ag v') - p_U(v + \ag v')$ מקיים את זה, ולכן אם יש וקטור אחד אז הוא יחיד, וסה''כ שווים וליניארית. 
+    \end{proof}
+    
+    
+    
+    
+    \ndoc
+\end{document}

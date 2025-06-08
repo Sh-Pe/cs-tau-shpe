@@ -1,0 +1,843 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets}
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+\newcommand\zc    {\mathcal{Z}}
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\K         {\mathbb{K}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+    \sFunc{List}
+    \sFunc{Retrieve}
+    \SetKwFunction{RetrieveFirst}{Retrieve-First}
+    \SetKwFunction{RetrieveLast}{Retrieve-Last}
+    \sFunc{Delete}
+    \SetKwFunction{DeleteFirst}{Delete-First}
+    \SetKwFunction{DeleteLast}{Delete-Last}
+    \sFunc{Insert}
+    \SetKwFunction{InsertFirst}{Insert-First}
+    \SetKwFunction{InsertLast}{Insert-Last}
+    \sFunc{Shift}
+    \sFunc{Length}
+    \sFunc{Concat}
+    \sFunc{Plant}
+    \sFunc{Split}
+}
+\newcommand\dsQueue{
+    \sFunc{Queue}
+    \sFunc{Enqueue}
+    \sFunc{Head}
+    \sFunc{Dequeue}
+}
+\newcommand\dsStack{
+    \sFunc{Stack}
+    \sFunc{Push}
+    \sFunc{Top}
+    \sFunc{Pop}
+}
+\newcommand\dsVector{
+    \sFunc{Vector}
+    \sFunc{Get}
+    \sFunc{Set}
+}
+\newcommand\dsGraph{
+    \sFunc{Graph}
+    \sFunc{Edge}
+    \SetKwFunction{AddEdge}{Add-Edge}
+    \SetKwFunction{RemoveEdge}{Remove-Edge}
+    \sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+    \dsList
+    \dsQueue
+    \dsStack
+    \dsVector
+    \dsGraph
+    \SetKwData{error}{\color{codered}error}
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \SetKwRepeat{Do}{do}{while}
+    \SetKwData{Null}{\color{codeblue}null}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+\newcommand\ASym      {\Asym}
+
+%! ~~~ Document ~~~
+
+
+\author{שחר פרץ}
+\title{\textit{לינארית 1א $\sim$ תרגיל בית 6}}
+\begin{document}
+    \maketitle
+    
+    \section{}
+    נוכיח ש־$\dim \Asym_n(\R) = \frac{n^2 - n}{2}$ ו־$\dim \Sym_n(\R) = \frac{n^2 + n}{2}$. \begin{proof}
+        הוכחנו בתרגיל בית קודם ש־$\Sym_n(\R) \oplus \Asym_n(\R) = V$, ובפרט הם תמ''וים [ההוכחה מתרגיל הבית הקודם מצורפת \textit{בסוף} שיעורי בית אלו ע''מ שלא להכביד על ההוכחה כאן]. נוכיח שהקבוצה להלן בסיס ל־$\Asym_n(\R)$: 
+        \[ B := \cl{A_{ij} = \begin{cases}
+                1 & i = \tl i, \ j = \tl j \\
+                -1 & i = - \tl i,  \ j = -\tl j \\
+                0 & \other
+        \end{cases} \,\Bigg\vert\, i, j \in \N \land  n > j > i} \]
+    נבחין שכמות המספרים $i, j \in [n]$ כך ש־$i < j$ היא $\frac{n^2 - n}{2}$. על כן $|B| = \frac{n^2 - n}{2}$ (כי כל זוג מטריצות בבסיס שונה). עתה נוכיח ש־$B$ אכן בסיס: 
+        נתבונן ברצף $\ag_i \dots \ag_k \in \R$סקלרים, וקודם לכן הראינו $\exists n \co \frac{n^2 - n}{2} = k$. אזי, קל לראות ש־:
+        \[ \sum_{i = 1}^{k}\ag_i B_i = \ag_1B_1 + \dots + \ag_kB_k = \pms{
+               0 & \ag_1 & \ag_2 & \cdots & \ag_{n - 1} \\
+               -\ag_1 & 0 &  \ag_n & \cdots & \ag_{2n - 3} \\ 
+               -\ag_2 & -\ag_n & 0 & \ddots & \vdots \\ 
+               \vdots & \vdots & \ddots & \ddots & -\ag_k \\ 
+               -\ag_{n - 1} & -\ag_{2n - 3} & \cdots & -\ag_k & 0 
+            } \]
+    מטריצה להלן המוגדרת ביחידות ע''י כל אחד מהסקלרים $\ag_1 \dots \ag_k$ ולכן $B$ בסיס למרחב המטריצות מהצורה לעיל (זהו מרחב משום שזהו $\Sp B$ תמ''ו של $M_n(\R)$). עתה נראה ש־$\Sp B = \Asym_n(\R)$. קל לראות $\Sp_B \subseteq \Asym_n(\R)$. נראה הכלה מהכיוון השני. יהי $M \in \Asym_n(\R)$, נוכיח $M \in \Sp B$. נניח בשלילה $M \notin \Sp B$, אז: 
+    \begin{itemize}
+        \item (בדיקה עבור האלכסון האמצעי): אם $\exists i \co M_{ii} \neq 0$, אז בפרט משום ש־$M \in \Asym_n(\R)$ נקבל $M_{ii} = -M_{ii}$, האי־השוויון ל־$0$ מותר לחלק את אגפי המשוואה ($\R$ תחום שלמות ללא מחלקי אפס) ולקבל $-1 = 1$ ובאופן שקול $0 = 2$, בסתירה לכך שאיננו עובדים ב־$\Z_2$. 
+        \item (עבור המשולש התחתון): אם $\exists i, j \co M_{ij} \neq -M_{ji}$ בסתירה להיות $M \in \Asym_n(\R)$. 
+        \item (עבור המשולש העליון): אין ב־$\Asym_n(\R)$ שום הגבלה בעבור סקלר במשולש העליון בהינתן שהתחתון הוגבל. 
+    \end{itemize}
+    סה''כ הראינו שבהכרח $M \in \Sp B$, ו־$B$ בסיס ל־$\Sp B$, וסה''כ $B$ בסיס ל־$\Asym_n(\R)$ והראינו $\dim \Asym_n(\R) = \frac{n^2 - n}{2}$. מהיות $\Asym_n(\R) \oplus \Sym_n(\R) =n$, יתקיים: 
+        \[ \dim \Asym_n(\R) + \dim\Sym_n(\R) = n \implies \frac{n^2 - n}{2} + \dim \Sym_n(\R) = n \implies \dim \Sym_n(\R) = \frac{n^2 + n}{2} \]
+        סה''כ: 
+        \[ \bm{\dim \Asym_n(\R) = \frac{n^2 - n}{2}, \ \dim \Sym_n(\R) = \frac{n^2 + n}{2}} \]
+    \end{proof}
+    
+    \section{}
+    יהיו $v_1 \dots v_k \in \F^n$ וקטורים בת''ל ותהי $A$ המטריצה ששורותיה $v_1 \dots v_k$. נוכיח $\dim\{x \in \F^n \co Ax = 0\} = n - k$. \begin{proof}
+        ל־$\F^n$ קיים בסיס סטנדרטי $E$ כלשהו ובאופן דומה $\tl E$ בסיס סטנדרטי ל־$\F^k$. נראה כי $\col A = \F^{k}$. הכלה $\F^k \subseteq \col A$ מתקיימת כי $A \in M_{k \times n}(\F)$. נראה ש־$\rk A \ge k$, זאת בגלל שמתקיים בעבור בסיס סטנדרטי $E$ ש־: 
+        \[ \col A^T \, \reflectbox{$\subseteq$}\, \{A^Te \mid e \in E\} \overset{(1)}{=} \Sp \{v_1 \dots v_k\} =: B \implies \dim \col \le \dim B \overset{(2)}{=} k \]
+        $(2)$ מתקיים מבת''ליות $B$ ו־$(2)$ מתקיים מהגדרת כפל מטריצה בוקטור. מתקיים $\col A^T = \row A = \rk A$ ולכן $\rk A \ge k$. 
+        נבחין כי $\rk A \le k$ כי $\rk A = \dim \row A \le k$ בגלל שיש רק $k$ וקטורים בשורות $A$ (לא יכול להיות שהקבוצה $\row A$ מממד יותר גדול מהקבוצה הפורשת שלה שורות $A$). סה''כ $\rk A = k$. ממשפט הדרגה והאפסות: 
+        \[ \rk A + \dim \nc(A) = \dim \F^{n} \implies k + \nc(A) = n \implies \{x \in \F^n \mid Ax = 0\} = \nc(A) = n - k \]
+        כדרוש. 
+    \end{proof}
+    
+    \section{}
+    תהי $A \in M_n(R)$ מטריצה נילפטוטנטית כך ש־$A^k = 0$. צ.ל. $\{(A + I)^0 \dots (A + I)^{k}\}$ ת''ל. 
+    \begin{proof}
+        נוכיח בעזרת הבינום של ניוטון: 
+        \[ (A + I)^k = \sum_{i = 1}^{k}\binom{k}{n}A^iI^{n - i} = \cancel{A^k} + \sum_{i = 1}^{k-1}\binom{k}{n}A^i \in \Sp(A^{0} \dots A^{k - 1}) \]
+        לכן, $ (A + i)^k \in \Sp(A^{k - 1} \dots A, I)$ (כי צירוף ליניארי של הבינומים). בפרט, לכל $j < k$: 
+        \[ (A + I)^n = \sum_{i = 1}^{j}\binom{i}{n}A^jI^i = \sum_{i = 1}^{j}\binom{i}{n}A^i \in \Sp (A^j, \cdots, A^1, I) \overset{\mathclap{j < k}}{\subseteq} \Sp (A^{k - 1}, \cdots, A^1, I) \]
+        במילים אחרות: 
+        \[ \dim \Sp\{(A + I)^0 \cdots (A + I)^{k}\} \le \dim \Sp\{A^0 \dots A^{k - 1}\} \le k \]
+        אך בסדרה $(A + I)^{0}, \cdots, (A + I)^{{k}}$ ישנם $k + 1$ וקטורים, במ''ו מממד $k$, ולכן ממשפט היא תלויה לינארית כדרוש. 
+    \end{proof}
+    
+    \section{}
+    נגדיר: 
+    \[ A = \pms{2 & -1 & 0 \\ 1 & -1 & 3}, \ B = \pms{-1 & 1 & 1 \\ -1 & -2 & -3}, \ C = \pms{2 & 0 & 1 & 1 \\ 5 & -1 & 2 & 3 \\ 0 & 0 & 1 & 2}, \ D = \pms{2 \\ -1 \\ 1} \]
+    אז: 
+    \sen\begin{gather}
+        3A - 4B = \pms{6 & -3 & 0 \\ 3 & -3 & 9}
+        - \pms{-4 & 4 & 4 \\ -4 & -8 & -12}
+        = \pms{10 & -7 & -4 \\  7 & 5 & 21} \\
+        CD \in \varnothing, \  \mathrm{undefined} \\
+        B^T A = \pms{
+            2 & -1 & 0 \\ 
+            1 & -1 & 3
+        } \pms{
+            -1 & -1 \\ 
+            1 & -2 \\ 
+            1 & -3
+        } = \pms{
+            -3 & 2 & -3 \\ 
+            0 & 1 & -6 \\ 
+            -1 & 2 & -9
+        } \\
+        D D^T = \pms{2 \\ -1 \\ 1}\pms{2 & -1 & 1}
+        = \pms{
+            4 & -2 & 2 \\ 
+            -2 & 1 & -1 \\ 
+            2 & -1 & 1
+        } \\ 
+        AC = \pms{
+            -1 & 1 & 0 & -1 \\ 
+            -3 & 1 & 2 & 4
+        } \\
+        BD = \pms{-2 \\ -3}
+    \end{gather}\she
+    
+    נבחין כי $CD$ אינו מוגדר, כי $D \in M_{3 \times 1}(\R)$ ו־$C \in M_{3 \times 4}$, אך $4 \neq 3$. 
+    
+    \npage
+    
+    \section{}
+    תהי $A \in M_n(\F)$ ונגדיר $\tr(A)$ להיות סכום איברי האלכסון הראשי. נוכיח את הטענות הבאות: 
+    \begin{enumerate}[(A)]
+        \item נוכיח $\forall A< B \in M_n(\F) \co \tr(A + B) = \tr A + \tr B$ \begin{proof}
+            יהיו $A, B \in M_n(\F)$ מטריצות. אז: 
+            \[ \tr(A + B) = \sum_{i = 1}^{n}(A + B)_{ii} = \sum_{i = 1}^{n}(A)_{ii} + (B)_{ii} = \sum_{i = 1}^{n}(A)_ii + \sum_{i = 1}^{n}(B)_{ii} = \tr A + \tr B \quad \top \]
+        \end{proof}
+        \item נוכיח שלכל $C \in M_{m \times n}(\F), \ D \in M_{n \times m}(\F)$ מתקיים $\tr(CD) = \tr(DC)$. \begin{proof}
+            יהיו $C \in M_{m \times n}(\F),\ D \in M_{n \times m}(\F)$ מטריצות. אז: 
+            \[ \sum_{i = 1}^{n}(CD)_{ii} = \sum_{i = 1}^{n}\sum_{j = 1}^{m}(C)_{ji}(D)_{ij} \overset{(1)}{=} \sum_{j = 1}^{m}\sum_{i = 1}^{n}(D)_{ij}(C)_{ji} = \sum_{i = 1}^{m}(DC)_{ii} = \tr(DC) \]
+            כאשר $(1)$ נובע מהחלפת סדר סכימה (חוקי מקומטטיביות סכום) ומקומטטיביות כפל. 
+        \end{proof}
+    \end{enumerate}
+    
+    \section{}
+    יהיו $A, B \in M_n(\F)$ הפיכות, ותהי $C \in M_n(\F)$. נוכיח או נפריך את הטענות הבאות. 
+    \begin{enumerate}[(A)]
+        \item נפריך $A + B$ הפיכה. \begin{proof}[הפרכה.]
+            נראה דוגמה נגדית. נבחר $A = I, \ B = -I$ הפיכות. אז $A + B = 0$ שאיננה הפיכה, בסתירה לטענה. 
+        \end{proof}
+        \item נפריך $AC$ הפיכה. \begin{proof}[הפרכה.]
+            נראה דוגמה נגדית. עבור $A = I$ הפיכה, ו־$C = 0$ מטריצה $C \in M_n(\F)$, מתקיים $AC = I \cdot 0 = 0$ שאיננה הפיכה. 
+        \end{proof}
+        \item נוכיח $ABA$ הפיכה. \begin{proof}
+            \textit{למה. }לכל זוג מטריצות $\bar A, \bar B \in M_n(\F)$ הפיכות, $AB$ הפיכה. נוכיח את הלמה: מהיות $\bar A, \bar B$ הפיכות, הן מייצגות בבסיס סטנדרטי $E$ פונקציה איזו', ונסמן $T_A(x) := \bar Ax, \ T_B := \bar Bx$ ובפרט $[T_A]_E = A, \ [T_B]_E = B$. נסיק $AB = [T_A]_E \cdot [T_B]_E = [T_A \circ T_B]_E$. הרכבת איזו' היא איזו' ולכן $T_A \circ T_B$ איזו', כלומר $[T_A \circ T_B]_E$ הפיכה כדרוש. 
+            
+            הלמה הוכחה. ממנה, $AB$ הפיכה כי $A, B$ הפיכות. לכן גם $ABA$ הפיכה כי $AB$ הפיכה ו־$A$ הפיכה, כדרוש. 
+        \end{proof}
+        \item נוכיח שאם $\F \subseteq \K$ שדה המרחיב את $\F$, אז $A$ הפיכה ב־$M_n(\K)$. \begin{proof}
+            ידוע $M_n(\F) \subseteq M_n(\K)$, ותהי $M \in M_n(\F)$ הפיכה ב־$M_n(\F)$. נסיק $M \in M_n(\K)$, ונראה שגם בחוג הזה היא הפיכה. מהיות $M$ הפיכה מעל $M_n(\F)$, ידוע קיום מטריצות אלמנטריות $E_1 \dots E_k$ כך ש־$M \cdot \prod_{i = 1}^{n} E_i = I$ (כי היא ניתנת לדירוג לכדי $I$ מהגדרה). אזי $E_i \in M_n(\K)$ מהכלה. בפרט לכל זוג מטריצות מעל $A, B \in M_n(\F)$, נבחין כי $AB$ נשאר זהה מעל $M_n(\K)$ כי כפל מטריצות מוגדר באמצעות פעולות חיבור וחיסור על השדה, שנותרו זהות במקרה הזה (אחרת צמצום הפעולות מ־$\K$ ל־$\F$ שונה מהפעולות על $\F$, וזו סתירה לנתון ש־$\K$ מרחיב את $\F$). לכן גם נשאר השוויון $M \cdot \prod_{i = 1}^{n} E_i = I$ מעל $M_n(\K)$. באופן שקול $M$ הפיכה מעל $M_n(\K)$ כדרוש. 
+        \end{proof}
+        \item נפריך את הטענה $AC = BC \implies A = B$ בקשירה לעיל. \begin{proof}[הפרכה.]
+            נבחר $C = 0, \ A = I, \ B = -I$, ונבחין כי $A, B$ הפיכות. נבחין כי $AC = A \cdot 0 = 0 = B \cdot 0 = BC$ וכן $A = I \neq -I = B$, כלומר $AC = BC \land A \neq B$ בסתירה לטענה. 
+        \end{proof}
+    \end{enumerate}
+    
+    \section{}
+    \begin{enumerate}[(A)]
+        \item מעל $\R$:
+        \[ A: =\pms{1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9} \]
+        נוכיח שהמטריצה לא הפיכה באמצעות כך שנראה ש־$\rk A < 3$ באמצעות הוכחת ת''ליות עמודותיה. 
+        \[ 1 \cdot \pms{1 \\ 2 \\ 3} -2\pms{4 \\ 5 \\ 6} + 1 \cdot \pms{7 \\ 8 \\ 9} = \pms{1 -8 + 7 \\ 2 - 10 + 8 \\ 3 - 12 + 9} = \pms{0 \\ 0 \\ 0} \]
+        \item מעל $\R$:
+        \[ \pms{0 & 1 & 2 \\ 2 & 5 & 1 \\ 1 & -4 & 3} \]
+        נוכיח שהיא הפיכה ונמצא את ההפיכה שלה: 
+        \begin{gather*}
+            \tmat{0 & 1 & 2 \\ 2 & 5 & 1 \\ 1 & -4 & 3}{I} \rrr{R_1 \lra R_3} \tmat{1 & -4 & 3 \\ 2 & 5 & 1 \\ 0 & 1 & 2}{0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0} \rrr{R_2 \to R_2 - 2R_1}
+            \tmat{1 & -4 & 3 \\ 0 & 13 & -5 \\ 0 & 1 & 2}{0 & 0 & 1 \\ 0 & 1 & -2 \\ 1 & 0 & 0} \\
+            \rrr{R_2 \to R_2 \lra R_3}
+            \tmat{1 & -4 & 3 \\ 0 & 1 & 2 \\ 0 & 13 & -5}{0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 &2} 
+            \rrr{R_3 \to R_3 - 13R_2} 
+            \tmat{1 & -4 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & -31}{0 & 0 & 1 \\ 1 & 0 & 0 \\ -13 & 1 & 2}
+            \rrr{R_1 \to \frac{1}{-31}R_1}
+            \tmat{1 & -4 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 1}{0 & 0 & 1 \\ 1 & 0 & 0 \\ -\frac{13}{31} & \frac{1}{31} & \frac{2}{31}} \\
+            \rrt{R_2 \to 2R_3}{R_1 \to R_1 - R_3} 
+            \tmat{1 & -4 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}{0 & 0 & \frac{29}{31} \\ \frac{18}{31} & 0 & 0 \\ -\frac{13}{31} & \frac{1}{31} & \frac{2}{31}}
+            \rrr{R_1 \to R_1 + 4R_2}
+            \tmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}{\frac{71}{31} & 0 & \frac{29}{31} \\ \frac{18}{31} & 0 & 0 \\ -\frac{13}{31} & \frac{1}{31} & \frac{2}{31}} \implies A \op = \pms{\frac{71}{31} & 0 & \frac{29}{31} \\ \frac{18}{31} & 0 & 0 \\ -\frac{13}{31} & \frac{1}{31} & \frac{2}{31}} \\
+        \end{gather*}
+        \item מעל $\Z_7$
+        \begin{gather*}
+            \tmat{0 & 1 & 2 \\ 2 & 5 & 1 \\ 1 & -4 & 3}{I}
+            \rrr{R_1 \lra R_3} \tmat{1 & 3 & 3 \\ 2 & 5 & 1 \\ 0 & 1 & 2}{0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0}
+            \rrr{R_2 \to R_2 + 5R_1} \tmat{1 & 3 & 3 \\ 0 & 6 & 2 \\ 0 & 1 & 2}{0 & 0 & 1 \\ 0 & 1 & 5 \\ 1 & 0 & 0}
+            \rrr{R_2 \to R_2 + R_3} \tmat{1 & 3 & 3 \\ 0 & 0 & 4 \\ 0 & 1 & 2}{0 & 0 & 1 \\ 1 & 1 & 5 \\ 1 & 0 & 0} \\
+            \rrt{R_3 \to 2R_3}{R_2 \lra R_3} \tmat{1 & 3 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 1}{0 & 0 & 1 \\ 1 & 0 & 0 \\ 2 & 2 & 3} 
+            \rrt{R_2 \to R_2 + 5R_3}{R_1 \to R_1 + 4R_1} \tmat{1 & 3 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}{2 & 1 & 5 \\ 4 & 3 & 1 \\ 2 & 2 & 3}
+            \rrr{R_1 \to R_1 + 4R_2} \tmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}{4 & 6 & 2 \\ 4 & 3 & 1 \\ 2 & 2 & 3} \implies A \op = \pms{4 & 6 & 2 \\ 4 & 3 & 1 \\ 2 & 2 & 3}
+        \end{gather*}
+        \item מעל $\R$:
+        \begin{gather*}\tomat \tmat{1 & -1 & 1 & 1 \\ 
+                1 & 1 & 2 & -1 \\ 
+                2 & 1 & 2 & 1 \\ 
+                -1 & 1 & 1 & 1 \\ 
+            }{I} \rrt{\overset{R_2 \to R_2 - R_1}{R_3 \to R_3 - 2 R_1}}{R_4 \to R_4 + R_1} \tmat{1 & -1 & 1 & 1 \\ 
+                0 & 2 & 1 & -2 \\ 
+                0 & 3 & 0 & -1 \\ 
+                0 & 0 & 2 & 2 \\ 
+            }{1 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 \\ 0 & -2 & 1 & 0 \\ 0 & 0 & 1 & 1} \rrr{R_2 \to 0.5R_2} \tmat{1 & -1 & 1 & 1 \\ 
+                0 & 1 & \frac{1}{2} & -1 \\ 
+                0 & 3 & 0 & -1 \\ 
+                0 & 0 & 2 & 2 \\ 
+            }{1 & 0 & 0 & 0 \\ -0.5 & 0.5 & 0 & 0 \\ 0 & -2 & 1 & 0 \\ 0 & 0 & 1 & 1} \\\rrr{R_3 \to R_3 - 3 R_2} \tmat{1 & -1 & 1 & 1 \\ 
+                0 & 1 & \frac{1}{2} & -1 \\ 
+                0 & 0 & \frac{3}{-2} & 2 \\ 
+                0 & 0 & 2 & 2 \\ 
+            }{1 & 0 & 0 & 0 \\ -0.5 & 0.5 & 0 & 0 \\ 1.5 & -3.5 & 1 & 0 \\ 0 & 0 & 1 & 1} 
+            \rrr{R_3 \to R_3 \cdot \frac{-2}{3}} \tmat{1 & -1 & 1 & 1 \\ 
+                0 & 1 & \frac{1}{2} & -1 \\ 
+                0 & 0 & 1 & \frac{4}{-3} \\ 
+                0 & 0 & 2 & 2 \\ 
+            }{1 & 0 & 0 & 0 \\ -0.5 & 0.5 & 0 & 0 \\ -1 & -\frac{7}{3} & -\frac{2}{3} & 0 \\ 0 & 0 & 1 & 1}
+            \\\rrr{R_4 \to R_4 - 2 R_3} \tmat{1 & -1 & 1 & 1 \\ 
+                0 & 1 & \frac{1}{2} & -1 \\ 
+                0 & 0 & 1 & \frac{4}{-3} \\ 
+                0 & 0 & 0 & \frac{14}{3} \\ 
+            }{1 & 0 & 0 & 0 \\ -0.5 & 0.5 & 0 & 0 \\ -1 & -\frac{7}{3} & -\frac{2}{3} & 0 \\ 2 & \frac{14}{3} & \frac{7}{3} & 1}
+            \rrr{R_4 \to \frac{3}{14}R_4 } \tmat{1 & -1 & 1 & 1 \\ 
+                0 & 1 & \frac{1}{2} & -1 \\ 
+                0 & 0 & 1 & \frac{4}{-3} \\ 
+                0 & 0 & 0 & 1 \\ 
+            }{1 & 0 & 0 & 0 \\ -0.5 & 0.5 & 0 & 0 \\ -1 & -\frac{7}{3} & -\frac{2}{3} & 0 \\ \frac{3}{7} & 1  & \frac{3}{8}  & \frac{3}{14}}
+            \\\rrt{\overset{R_3 \to R_3 + \frac{4}{3} R_4}{R_2 \to R_2 + R_4}}{R_1 \to R_1 - 1 R_4} \tmat{1 & -1 & 1 & 0 \\ 
+                0 & 1 & \frac{1}{2} & 0 \\ 
+                0 & 0 & 1 & 0 \\ 
+                0 & 0 & 0 & 1 \\ 
+            }{\frac{4}{7} & -1 & -\frac{3}{8} & -\frac{3}{14} \\
+            -\frac{1}{14} & 1 & \frac{3}{8} & \frac{3}{14} \\
+            -\frac{3}{7} & -1 & -\frac{1}{6} & \frac{2}{7} \\
+            \frac{3}{7} & 1  & \frac{3}{8}  & \frac{3}{14}}
+            \rrt{R_2 \to R_2 - \frac{1}{2} R_3}{R_1 \to R_1 - 1 R_3} \tmat{1 & -1 & 0 & 0 \\ 
+                0 & 1 & 0 & 0 \\ 
+                0 & 0 & 1 & 0 \\ 
+                0 & 0 & 0 & 1 \\ 
+            }{1 & 0 & -\frac{5}{24} & -\frac{1}{2} \\
+            \frac{1}{7} & \frac{3}{2} & \frac{11}{24} & \frac{3}{98} \\
+            -\frac{3}{7} & -1 & -\frac{1}{6} & \frac{2}{7} \\
+            \frac{3}{7} & 1  & \frac{3}{8}  & \frac{3}{14}} \\\rrr{R_1 \to R_1 + R_2} \tmat{1 & 0 & 0 & 0 \\ 
+                0 & 1 & 0 & 0 \\ 
+                0 & 0 & 1 & 0 \\ 
+                0 & 0 & 0 & 1 \\ 
+            }{\frac{8}{7} & \frac{3}{2} & \frac{1}{4} & -\frac{23}{49} \\
+            \frac{1}{7} & \frac{3}{2} & \frac{11}{24} & \frac{3}{98} \\
+            -\frac{3}{7} & -1 & -\frac{1}{6} & \frac{2}{7} \\
+            \frac{3}{7} & 1  & \frac{3}{8}  & \frac{3}{14}} \implies A \op = \pms{\frac{8}{7} & \frac{3}{2} & \frac{1}{4} & -\frac{23}{49} \\
+            \frac{1}{7} & \frac{3}{2} & \frac{11}{24} & \frac{3}{98} \\
+            -\frac{3}{7} & -1 & -\frac{1}{6} & \frac{2}{7} \\
+            \frac{3}{7} & 1  & \frac{3}{8}  & \frac{3}{14}}
+        \end{gather*}
+        
+        \item מעל $\R$, נמצא את ההופכית למטריצה הבאה (אם יש כזו, כתלות בערכי $\lg \in \R$): 
+        \begin{multline*}
+            A:= \tmat{1 & 0 & 1 \\ 0 & 1 & \lg \\ 0 & \lg & 1}{ I } \rrt{R_3 \to R_3 - \lg R_2}{(1)}
+            \tmat{1 & 0 & 1 \\ 0 & 1 & \lg \\ 0 & 0 & 1 - \lg^2}{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -\lg & 1} \rrt{R_3 \to \frac{1}{1 - \lg^2}R_3}{(2)}
+            \tmat{1 & 0 & 1 \\ 0 & 1 & \lg \\ 0 & 0 & 1}{1 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & \frac{-\lg}{1 - \lg^2} & \frac{1}{1 - \lg^2}} \\ \rrt{R_2 \to R_2 - \lg R_1}{R_1 \to R_1 - R_3}
+            \tmat{I}{1 & 0 & 1 - \frac{1}{1 - \lg^2} \\ 0 & 1 & -\frac{\lg}{1 - \lg^2} \\ 0 & \frac{-\lg}{1 - \lg^2} & \frac{1}{1 - \lg^2}}
+            \implies A\op = \pms{1 & 0 & -\frac{\lg^2}{1 - \lg^2} \\ 0 & 1 & 0 \\ 0 & -\frac{\lg}{1 - \lg^2} & \frac{1}{1 - \lg^2}}
+        \end{multline*}
+        \begin{itemize}
+            \item במקרה והנחה $(1)$ לא נכונה ו־$\lg = 0$: 
+            \[ \tmat{1 & 0 & 1 \\ 0 & 1 & 0 \\ 0& 0 & 1}{I} \rrr{R_1 \to R_1 - R_3} \tmat{I}{1 & 0 & -1 \\ 0 & 1 & 0 \\ 0 & 0 & 1} \]
+            \item במידה והנחה $(2)$ לא נכונה ו־$1 - \lg^2 = 0$: 
+            \[ \pms{1 & 0 & 1 \\ 0 & 1 & \lg \\ 0 & 0 & 0} \]
+            מטריצה לא הפיכה כי יש שורת אפסים ולכן שורותיה ת''ל. 
+        \end{itemize}
+        נסכם: 
+        \[ A\op = \begin{cases}
+            \pms{1 & 0 & -1 \\ 0 & 1 & 0 \\ 0 & 0 & 1} & \lg = 0 \\
+            \text{\en{\quad ininevitable}} & \lg = \pm1 \\
+            \pms{1 & 0 & -\frac{\lg^2}{1 - \lg^2} \\ 0 & 1 & 0 \\ 0 & -\frac{\lg}{1 - \lg^2} & \frac{1}{1 - \lg^2}} & \other
+        \end{cases} \]
+    \end{enumerate}
+    
+    \section{}
+    תהיינה $A, B$ ריבועיות המקיימות $A^2 = A \land B^k = 0$. נוכיח $I - B, I + A$ הפיכות. \begin{proof}\, 
+        \begin{itemize}
+            \item נוכיח ש־$I + A$ הפיכה: 
+            \[ I = A + I - A = A + I - \underbrace{\frac{1}{2}A}_{=\frac{1}{2}A^2} + \frac{1}{2} A = -\frac{1}{2}A^2 + A - \frac{1}{2}A + I = (A + I)\cl{A - \frac{1}{2}} \implies A\op = A - \frac{1}{2}I \]
+            \item נוכיח ש־$I - B$ הפיכה. לכפול בצורה כזו שכל איבר ``יבטל'' את קודמו. כלומר: 
+            \[ (B - I)(B^{k - 1} + \cdots + I) = B^{k} + B^{k - 1} - B^{k - 1} + \cdots + I = I \]
+            פורמלית: 
+            \[ (B - I)\cl{\sum_{i = 1}^{k - 1}B^i} = \sum_{i = 2}^{k}B^i + \sum_{i = 1}^{k - 1}B^i = I + B^k + \sum_{i = 2}^{k - 1} \cancel{(B^i - B^i)} = I + B^k = I \]
+            כי $B^k = 0$, כדרוש. 
+        \end{itemize}
+    \end{proof}
+    
+    
+    \dotfill
+    
+    \textbf{העתק הדבק מהתרגיל בית 4, שאלה שעוזרת לתרגיל 1: }
+    
+    יהיו: 
+    \[ \Sym_n(\F) = \{A \in M_n(\F) \mid \forall i, j \co A_{ij} = A_{ji}\}, \ \ASym_n(\F) = \{A \in M_n(\F) \mid \forall i, j \co A_{ij} = -A_{ji}\} \]
+    נראה ש־$\ASym_n(\F) + \Sym(\F) = M_n(\F)$ (סכום ישר) נסמן $\Sym := \Sym_n(\F)$ ו־$\ASym := \ASym_n(\F)$. 
+    \begin{proof}\,
+    \begin{itemize}
+        \item נבחין ש־$\Sym_n(\F), \ASym_n(\F) \subseteq M_n(\F)$ מעקרון ההפרדה. עתה נראה בשניהם סגירות לחיבור ולכפל: 
+        \begin{itemize}
+            \item \textbf{סגירות לכפל: }
+            \begin{itemize}
+                \item עבור $\Sym$, יהיו $\lg \in \F, \ M \in \Sym$, ונבחין שלכל $i, j \in [n]$ עדיין $\lg M$ מקיים $(\lg M)_{ij} = \lg (M)_{\ij} = \lg (M)_{ji} = (\lg M)_{ji}$. 
+                \item עבור $\ASym$, לכל $\lg \in \F , \ M \in \ASym$ עדיין מתקיים $\forall i, j \in [n]\co (\lg M)_{ij} = \lg (M)_{ij} = -\lg (M)_{ji} = -(\lg M)_{ji}$. 
+            \end{itemize}
+            \item \textbf{סגירות לחיבור: }
+            \begin{itemize}
+                \item עבור $\Sym$, יהיו $M, P \in \Sym$ ואכן $(M + P)_{ij} = (M)_{ij} + (P)_{ij} = (M)_{ji} + (P)_{ji} = (M + P)_{ji}$. 
+                \item עבור $\ASym$, יהיו $M, P \in \ASym$ ואכן $(M + P)_{ij} = (M)_{ij} + (P)_{ij} = -(M)_{ji} - (P)_{ji} = -(M + P)_{ji}$. 
+            \end{itemize}
+            \item \textbf{קיום אפס: }
+            \begin{itemize}
+                \item עבור $\Sym$ נבחין ש־
+                $(0_M)_{ij} = 0_\F = (0_M)_{ji}$
+                \item עבור $\ASym$ נבחין ש־: 
+                $(0_M)_{ij} = 0_\F = -0_\F = -(0_M)_{ji}$
+            \end{itemize}
+        \end{itemize}
+        סה"כ הראינו ש־$\Sym, \ \ASym$ תמ"וים. נראה ש־$\Sym \cap \ASym = \{0_M\}$. יהי $A \in \Sym \cap \ASym$. אזי: 
+        \[ -(A)_{ij} \!\overset{\Sym}{=}\! -(A)_{ji} \!\overset{\ASym}{=}\! (A)_{ij} \]
+        אם $(A)_{ij} \neq 0$, אז נוכל לחלק בו ולקבל $-1 = 1$ וזו סתירה. סה"כ $\forall i, j \in [n] \co (A)_{ij} = 0$, ולכן $A = 0_M$, כלומר אכן $\Sym \cap \ASym = \{0_M\}$ כדרוש. 
+        \item עתה נראה שלכל $A \in M_n(\F)$ קיימות שתי מטריצות $A_s, \ A_{as} \in \ASym$ כך ש־$A = A_s + A_{as}$. 
+            תהי $A \in M_n(\F)$, נסמן $A_s = \frac{A + A^T}{2}$ ו־$A_{as} = \frac{A - A^T}{2}$. אזי: 
+            \begin{itemize}
+                \item $\bm{A_s \in \Sym}$\textbf{: }יהיו $i, j \in [n]$, אז: 
+                \[ (A_s)_{ij} = \cl{\frac{A + A^T}{2}}_{ij} = \frac{\overbrace{(A)_{ij}}^{(A^T)_{ji}} + \overbrace{(A^T)_{ij}}^{(A)_{ji}}}{2} = \frac{(A)_{ji} + (A^T)_{ji}}{2} = (A_s)_{ji} \quad \top \]
+                \item $\bm{A_{as} \in \Sym}$\textbf{: }יהיו $i, j \in [n]$, אז: 
+                \[ (A_{as})_{ij} = \cl{\frac{A - A^T}{2}}_{ij} = \frac{\overbrace{(A)_{ij}}^{(A^T)_{ji}} - \overbrace{(A^T)_{ij}}^{(A)_{ji}}}{2} = \frac{(A^T)_{ji} - (A)_{ji}}{2} = -\frac{(A)_{ji} + (A^T)_{ji}}{2} = -(A_s)_{ji} \quad \top \]
+                \item $\bm{A_s + A_{as} = A}$\textbf{: }
+                \[ A_s + A_{as} = \frac{A + A^T}{2} + \frac{A - A^T}{2} = \frac{A + A + \cancel{A^T - A^T}}{2} = \frac{2A}{2} = A \quad \top \]
+            \end{itemize}
+        
+    \end{itemize}
+    סה"כ הראינו ש־$\ASym_n(\F) \oplus \Sym_n(\F) = M_n(\F)$ סכום ישר, כדרוש. 
+    \end{proof}
+    
+    
+    \ndoc
+\end{document}
