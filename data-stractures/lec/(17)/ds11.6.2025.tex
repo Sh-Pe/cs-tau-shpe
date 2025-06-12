@@ -23,6 +23,7 @@
 
 
 % code 
+\usepackage{algorithm2e}
 \usepackage{listings}
 \usepackage{xcolor}
 
@@ -34,31 +35,31 @@
 \definecolor{codegray}{rgb}{0.96,0.96,0.96}
 
 \lstdefinestyle{pythonstylesheet}{
-	language=Java,
-	emphstyle=\color{deepred},
-	backgroundcolor=\color{codegray},
-	keywordstyle=\color{deepblue}\bfseries\itshape,
-	numberstyle=\scriptsize\color{codenumber},
-	basicstyle=\ttfamily\footnotesize,
-	commentstyle=\color{codegreen}\itshape,
-	breakatwhitespace=false, 
-	breaklines=true, 
-	captionpos=b, 
-	keepspaces=true, 
-	numbers=left, 
-	numbersep=5pt, 
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false, 
-	tabsize=4, 
-	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
-	keywordstyle=\color{codeblue},
-	emph={var, List, Iterable, Iterator},          % Custom highlighting
-	emphstyle=\color{codered},
-	stringstyle=\color{codegreen},
-	showstringspaces=false,
-	abovecaptionskip=0pt,belowcaptionskip =0pt,
-	framextopmargin=-\topsep, 
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
 }
 \newcommand\pythonstyle{\lstset{pythonstylesheet}}
 \newcommand\pyl[1]     {{\lstinline!#1!}}
@@ -68,10 +69,10 @@
 \definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
 \mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
 \BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
-	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
 
 
-% Deisgn
+% Design
 \usepackage[labelfont=bf]{caption}
 \usepackage[margin=0.6in]{geometry}
 \usepackage{multicol}
@@ -88,6 +89,25 @@
 \usepackage{graphicx}
 \graphicspath{ {./} }
 
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+    \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+    \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
 
 % Hebrew initialzing
 \usepackage[bidi=basic]{babel}
@@ -96,29 +116,30 @@
 \babelprovide[import]{english}
 \babelfont[hebrew]{rm}{David CLM}
 \babelfont[hebrew]{sf}{David CLM}
-\babelfont[english]{tt}{Monaspace Xenon}
+%\babelfont[english]{tt}{Monaspace Xenon}
 \usepackage[shortlabels]{enumitem}
 \newlist{hebenum}{enumerate}{1}
 
 % Language Shortcuts
 \newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
 \newcommand\sen   {\begin{otherlanguage}{english}}
-	\newcommand\she   {\end{otherlanguage}}
+    \newcommand\she   {\end{otherlanguage}}
 \newcommand\del   {$ \!\! $}
 
 \newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
 \newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
-			{\textbf{\textit{שחר פרץ, 2025}} \\
-				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
-	\end{center}} \vfil	}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
 
 \newcommand{\rn}[1]{
-	\textup{\uppercase\expandafter{\romannumeral#1}}
+    \textup{\uppercase\expandafter{\romannumeral#1}}
 }
 
 \makeatletter
 \newcommand{\skipitems}[1]{
-	\addtocounter{\@enumctr}{#1}
+    \addtocounter{\@enumctr}{#1}
 }
 \makeatother
 
@@ -183,13 +204,13 @@
 \newcommand\open  {\big(}
 \newcommand\qopen {\quad\big(}
 \newcommand\close {\big)}
-\newcommand\also  {\text{, }}
-\newcommand\defis {\text{ definitions}}
-\newcommand\given {\text{given }}
-\newcommand\case  {\text{if }}
-\newcommand\syx   {\text{ syntax}}
-\newcommand\rle   {\text{ rule}}
-\newcommand\other {\text{else}}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
 \newcommand\set   {\ell et \text{ }}
 \newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
 
@@ -215,6 +236,8 @@
 \newcommand\lc    {\left\lceil}
 \newcommand\rf    {\right\rfloor}
 \newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
 
 \newcommand\lex   {<_{lex}}
 
@@ -332,15 +355,17 @@
 \DeclareMathOperator{\chr}     {char}
 \DeclareMathOperator{\diag}    {diag}
 \DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
 
 \newcommand\lra       {\leftrightarrow}
 \newcommand\chrf      {\chr(\F)}
 \newcommand\F         {\mathbb{F}}
 \newcommand\co        {\colon}
 \newcommand\tmat[2]   {\cl{\begin{matrix}
-			#1
-		\end{matrix}\, \middle\vert\, \begin{matrix}
-			#2
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
 \end{matrix}}}
 
 \makeatletter
@@ -350,23 +375,23 @@
 \newcommand\gmat      {\mat{m}{n}(\F)}
 \newcommand\tomat     {\, \dequad \longrightarrow}
 \newcommand\pms[1]    {\begin{pmatrix}
-		#1
+        #1
 \end{pmatrix}}
 
 % someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
 \makeatletter
 \newlength\min@xx
 \newcommand*\xxrightarrow[1]{\begingroup
-	\settowidth\min@xx{$\m@th\scriptstyle#1$}
-	\@xxrightarrow}
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
 \newcommand*\@xxrightarrow[2][]{
-	\sbox8{$\m@th\scriptstyle#1$}  % subscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\sbox8{$\m@th\scriptstyle#2$} % superscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
-	{\mathmakebox[\min@xx]{\scriptstyle#2}}
-	\endgroup}
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
 \makeatother
 
 
@@ -427,6 +452,7 @@
 \newtheorem{Remark}{הערה}
 \newtheorem{Notion}{סימון}
 
+
 \newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
 \newcommand\defi  [1] {\begin{definition}#1\end{definition}}
 \newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
@@ -434,89 +460,131 @@
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
 
 % DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
 \DeclareMathOperator\amort   {amort}
 \DeclareMathOperator\worst   {worst}
 \DeclareMathOperator\type    {type}
 \DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+    \sFunc{List}
+    \sFunc{Retrieve}
+    \SetKwFunction{RetrieveFirst}{Retrieve-First}
+    \SetKwFunction{RetrieveLast}{Retrieve-Last}
+    \sFunc{Delete}
+    \SetKwFunction{DeleteFirst}{Delete-First}
+    \SetKwFunction{DeleteLast}{Delete-Last}
+    \sFunc{Insert}
+    \SetKwFunction{InsertFirst}{Insert-First}
+    \SetKwFunction{InsertLast}{Insert-Last}
+    \sFunc{Shift}
+    \sFunc{Length}
+    \sFunc{Concat}
+    \sFunc{Plant}
+    \sFunc{Split}
+}
+\newcommand\dsQueue{
+    \sFunc{Queue}
+    \sFunc{Enqueue}
+    \sFunc{Head}
+    \sFunc{Dequeue}
+}
+\newcommand\dsStack{
+    \sFunc{Stack}
+    \sFunc{Push}
+    \sFunc{Top}
+    \sFunc{Pop}
+}
+\newcommand\dsVector{
+    \sFunc{Vector}
+    \sFunc{Get}
+    \sFunc{Set}
+}
+\newcommand\dsGraph{
+    \sFunc{Graph}
+    \sFunc{Edge}
+    \SetKwFunction{AddEdge}{Add-Edge}
+    \SetKwFunction{RemoveEdge}{Remove-Edge}
+    \sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+    \dsList
+    \dsQueue
+    \dsStack
+    \dsVector
+    \dsGraph
+    \SetKwProg{Fn}{function}{ is}{end}
+    \SetKwData{error}{\color{codered}error}
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \SetKwRepeat{Do}{do}{while}
+    \SetKwData{Null}{\color{codegreen}null}
+    \SetKwData{True}{\color{codeblue}true}
+    \SetKwData{False}{\color{codeblue}false}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+\newcommand\E          {\mathbb{E}}
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{\textit{מבני נתונים 4}}
+\title{\textit{מבני נתונים 17 $\sim$ בעיית הבחירה}}
 \begin{document}
-	\maketitle
-	\textbf{מרצה: }טל קליגמן. 
-	
-	\section{\en{Vector Hugo}}
-	\subsection{ADT}
-	\en{
-
-זא\\		\begin{itemize}
-			\item Vector(m) \\
-			\item Get(V, i) \\
-			\item Set(V, i, b)
-		\end{itemize}
-	}
-	
-	בתרגול שלא היה בזום שאלנו עצלמו איך אפשר לעשות זאת כאשר הכל ב־$O(1)$, כולל Vector(m). כי לכאורה, איפוס אפסים ל־n איברים בזכרון ייקח $O(n)$ (כי מה ששמור בזכרון שניתן ע"י מערכת ההפעלה עלול להכליל זבל שאיננו אפסים).
-	
-	איך נעשה זאת? 
-	
-	נאתחל מערך $V$ מגודל $m$, מערך pos בגודל $m$, ומבנה נוסף שנקראו legals. 
-	\sen\begin{lstlisting}
-Get(V, i): 
-	if is_garbage() { return 0 }
-	else return A[i]\end{lstlisting}\she
-	
-	
-	טוב אני נרדם מצטער למי שרצה סיכום. לא מסוגל יותר. אני על 3:50 שעות שינה. 
-	\section{Lists something}
-	חזרתי משנצ. תרגיל: נתונה רשימה של מספרים לשלמים. הציעו אלגו' יעיל ככל האפשר שמוחק מהרשימה מספרים זוגיים. 
-	\begin{itemize}
-		\item כאלגוריתם שמשתמש ברשימה כ־ADT
-		\item כפעולה חדשה על רשימה במימוש רשימה מקושרת. 
-	\end{itemize}
-	
-	נתחיל מהפתרון הראשון – בפתרון ADT. נוכל לעשות שני דברים, או במילים או בפסאדו קוד. טל טוען שרוב בפסאוגו יהיו פחות טעויות. אם כי לפעמים דיוק לא חשוב במיוחד – לעיתים עדיף לכתוב L[i] מקריאות ולא Retrive. 
-	
-	נגדיר פונ' בפסאדו קוד: (הרצאות הבאות אלמד את החבילה לפסאדו קוד וזה יותר ברור)
-	
-	\sen
-	\texttt{\small
-Remove\_Zeros(L): \\
-$\to$\, for i$\leftarrow$(Length(L, i) - 1) to 0: \\
-$\to$\, $\to$\, if isEven(Retrive(L, i)) then Delete(L, i)
-	}
-	\she
-	
-	דגשים: במקרה כזה, רצו להבין שאנו יודעים להשתמש ב־ADT. לכן שימוש ב־L[i] במקום Retrieve הוא בעייתי. זמן הריצה תלוי מימוש. 
-	
-	ניגש לפתרון של הסעיף השני. מומלץ להסתכל על הפתרון המדויק מהתרגול כי יש מקום לטעויות. באופן כללי נעבור אחד אחד, וכשנגיע לאי זוגי המחיקה תהיה $O(1)$ כי כבר יש לנו מצביע לאובייקט שרוצים להסיר. 
-	
-	
-	\section{\en{Calc}}
-	מתחילים מהסבר על חסמים אסימפטוטים אבל לא בא לי tikz ובכל מקרה למדנו את זה. 
-	\begin{gather*}
-		f = O(g) \iff \exists c > 0 n_0 \in \N \, \forall n \ge n_0 \c f(n) \le cg(n) \\
-		f = o(g) \iff \forall c > 0 \exists n_0 \in \N  \, \forall n \ge n_0 \c f(n) \le cg(n)
-	\end{gather*}
-	באופן דומה עבור חסם תחתון, הדוק וכו'. ראינו את זה מספר פעמים בעבר ודי נמאס לי. 
-	בהגדרה של גבול, ראינו: 
-	\begin{gather*}
-		\limsup \frac{f(n)}{g(n)} < \inf \iff f(n) = O(g(n)) \\
-		\limsup \frac{f(n)}{g(n)} = 0 \iff f(n) = o(g)
-	\end{gather*}
-	המשמעות של $\limsup$ שזה חוסם אך לא בהכרח יש גבול. 
-	
-	\textbf{תרגיל. }$\log(n!) = \Theta(n\logn)$
-	
-	ידוע: 
-	\[ \log(n!) \le \log(n^n) = n\logn \implies \log(n!) = O(n\logn) \]
-	האתגר, הוא להוכיח את הכיוון השני. 
-	\begin{multline*}
-		\log(n!) = \log(1 \cdot 2 \dots n) \ge \log\cl{\frac{n}{2} \cdot \cl{\frac{n}{2} + 1} \cdots n} \ge \log\cl{\cl{\frac{n}{2}}^{n / 2}} = \frac{n}{2}\log\cl{\frac{n}{2}} = \frac{n}{2}(\logn - \log 2) = \frac{n}{2}\log n - \frac{n}{2} \\
-		= \frac{n}{4}\logn + \frac{n}{4}\logn - \frac{n}{2} = \frac{n}{4}\logn + \underbrace{\frac{n}{4}(\log n - 2)}_{\mathclap{\text{חיובי לכל $n \ge 4$}}} \ge \frac{n}{4}\logn \implies O(\log(n!)) = n\logn
-	\end{multline*}
-	עבור $n_0 = 4, \ c = \frac{n}{4}$. 
-	
+    \maketitle
+    הבעיית הבחירה: בהינתן $n$ איברים, עם סדר מלא עליהם, כיצד נוכל למצוא את המינימום ה־$k$. עבור עץ ממויין, כבר ראינו איך פותרים אותה. 
+    
+    עד לפני 50 שנה עוד התעסקו עם הבעיה הזו. נקרא ל''Dyanmic setting'' מצב בו כל פעם שמקבלים את הבעיה צריך לבנות משהו ואז יש עלות תחזוק. בניגוד, פתרון סטטי יהיה למדיין רשימה פעם יחידה בלי בעיה, ומשם ואילך פתרון ב־$O(1)$. 
+    
+    נוכל לנסות לפתור באמצעות heaps, בתרכיל הבית לדוגמה נוכיח שאפשר לפתור את זה כך ב־ב־$O(n + k\log k)$. 
+    
+    \section{\en{QuickSelect}}
+    \en{\subsection{Randomized QuickSort}}
+    נציג אלגוריתם quicksort של $O(n)$ בתוחלת ואף $O(n)$ W.C. שימו לב להבדל בקורס הזה בין אלגוריתם בתוחלת ואלגוריתם בממוצע. 
+    
+    אלג' quickselect יבחר $k$ אקראי ויסדר לפי מי שגדול ומי שקטן ממנו, ואז יפעיל את האלגו' על ה־partition הרלוונטי (כתלות בכמה איברים היו לפניו). W.C. $O(n^2)$, B.C> $O(n)$. 
+    
+    בהקשר הבא, $n_i$ גודל המערך בחלוקה ה־$i$, הוא המ''מ שלנו: 
+    \[ \E[x] = \E\csb{\sumnio n_i} = \sumnio \E[n_i] \sle \sum_{i = 1}^{\inf}  n c^{i} = O(n) \quad (c < 1) \]
+    לעמשה, מה שצריך להראות הוא ש־$\E[n_{i + 1}] \le c \cdot \E[n_i]$, כלומר התוחלת של $i + 1$ קטנה מזו של $i$ בקבוע. 
+    
+    ננסה לנתח כמה מקרים פשוטים כדי לחסום את $\E[n+i]$. 
+    \begin{itemize}
+        \item עבור $k = 1$, נבחין ש־
+        \[ \E[n_1] = \sum n_1(\text{מאורע}) \cdot \underbrace{P(\text{מאורע})}_{\frac{1}{n}} = \frac{\sumni i}{n} = \frac{n(n + 1)}{2n} = \frac{n + 1}{2} = O(n) \]
+        \item עבור המקרה הכללי: נפלג למקרים: 
+        \begin{itemize}
+            \item במקרה ש־$P \le z_k$, כאשר $z_k$ המיקום של $k$ במערך. אזי $p$ יכול להיות כל אחד מ־$z_1 \dots z_k$ כאשר הסבירות לכולם שווה: 
+            \[ \E = \sum n_1(\text{מאורע})P(\text{מאורע}) \ge \frac{k}{2} \]
+            כי בממוצע מס' האלמנטים שיוסרו בין $1$ ל־$k$ הוא $\frac{k}{2}$. 
+            \item במקרה ש־$p > z_k$, נקבל בממוצע $\frac{(n - k) + 1}{2} \ge \frac{n - k}{2}$. 
+        \end{itemize}
+        ניעזר בנוסחת ההסתברות המותנה בעבור תוחלות: 
+        \[ P(A) = \sumnio P(A \mid F_i) \cdot P(F_i) \ \quad \ \E[x] = \sumnio \E[X \mid F_i] \cdot P(F_i) \]
+        נוכל להשתמש בחסימה הבאה: 
+        \[ n_{i + 1} \le n_i - \#\text{\en{removed}} \sle n_i \]
+        \begin{align*}
+            \E[\#\text{\en{removed}}] &= E[\# \text{\en{removed}} \mid p \le z_k] P(p \le z_k) + \E[\#\text{\en{removed}} \mid p > z_k]  \cdot P(p > z_k) \\ 
+            &= \frac{k}{2} \cdot \frac{k}{n} + \frac{n - k}{2} \cdot \frac{n-k}{n} = \frac{1}{2n}(k^2 + (n - k)^2) \overset{\forall k}{\ge} \frac{n}{4}
+        \end{align*}
+        הא''ש ניתן להוכיח באמצעות גזירה לפי $k$, כמו שעשינו בקורס B. סה''כ הראינו ש־$n_{i + 1} \le n_i - \frac{1}{n}n_i = \frac{3}{4}n_i$ כדרוש. סה''כ: 
+        \[ \E[x] = \E\csb{\sumni n_i} = \sumni e_i \le n \cl{\sum^{\inf}_{i = 1} \cl{\frac{3}{4}}^{i}} = 4n = O(n) \]
+    \end{itemize}
+    
+    \en{\subsection{Deterministic QuickSelect (MedoMed)}}
+    ראינו בעבר ש־$T(\ag n) + T(\bg n) + O(n) = T(n) = O(n)$ עבור $\ag + \bg < 1$. אז נצטרך לבחור משהו שהוא ``באיזור של'' החציון. נעשה את זה ע''י חלוקת המערך לחמישיות ב־$O(n)$, ואז עבור האיבר ה־$i$ ברשימות האלו נמצא את ``החציון של החציונים'' ב־$T(\frac{n}{5})$. ואז יש עוד דברים שלא הבנתי ואמור לצאת $T(n) = c_1 n + T(n/5) + c_2(n) + T(0.7n)$. 
+    
+    המשמעות של זה היא שאפשר לעשות quicksort ב־W.C. של $n\logn$ באמצעות מציאת median. 
+    
+    
+    \ndoc
 \end{document}

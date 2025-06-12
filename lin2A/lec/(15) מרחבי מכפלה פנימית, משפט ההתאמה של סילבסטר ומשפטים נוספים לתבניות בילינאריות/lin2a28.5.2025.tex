@@ -1,0 +1,571 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Design
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+    \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+    \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+
+\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
+\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 2א 15}}
+\begin{document}
+    \maketitle
+    \textbf{מרצה: }בן בסקין
+    
+    \theo{לכל $f$ תבנית סימ' קיימת מטריצה מייצגת מהצורה $\binom{I_r \, 0}{0 \,\,\, 0}$ כאשר $\F = \C$ (או סגור אלגברית כלשהו)}. 
+    \begin{proof}
+            
+        נסמן את $\dim f = r$. עד כדי שינוי סדר איברי הבסיס, המטריצה המייצגת אלכסונית היא:
+        \[ [f]_B = \pms{\diag(c_1 \dots c_r) & 0 \\ 0 & 0} \]
+        כאשר $c_1 \dots c_r \neq 0$, ביחס לבסיס $B = (v_1 \dots v_r, \dots v_n)$. באופן כללי לכל $i \in \R$ נוכל להגדיר את $v_i' = \frac{v_i}{\sqrt{c_i}}$ כך ש־$f(v'_i, v'_i) = 1$ כי $f(v_i, v_i) = c_i$ ומליניאריות בכל אחת מהקורדינאטות. ולכן $B' = (v_1' \dots v'_r, v_{r + 1} \dots v_n)$ בסיס המקיים את הדרוש. 
+        
+        באותו האופן, אם $\F = \R$ (ולא $\C$) אז קיים בסיס שהמטריצה המייצגת לפיו היא: 
+        \[ \pms{I_p & 0 & 0 \\ 0& -I_q & 0 \\0 & 0 & 0} \]
+        בלוקים, כך ש־$p + q = r$. כאן נגדיר: 
+        \[ f(v, v) = c < 0, \ v' = \frac{v}{\sqrt{|c|}}, \ f(v', v') = \frac{c}{|c|} = -1 \]
+    \end{proof}
+    
+    בשיעורי הבית נראה ש־: נניח ש־$f$ אנטי־סימטרית לא מנוונת (לא תבנית ה־$0$), אז תמיד ישנה מטריצה מייצגת מהצורה (תחפשו ``מטריצה סימפלקטית'' בגוגל, זה קצת סיוט לעשות את זה בלאטך). הרעיון הוא אם: 
+    \[ \hat I_n = \pms{ && 1 \\ & \reflectbox{$\ddots$} & \\ 1}, \ J = \pms{0 & & -\hat I_n \\ & \ddots & \\ \hat I_n && 0} \]
+    אז $J$ סימפלקטית. 
+    
+    \defi{יהי $V$ מ''ו מעל $\R$ ו־$f$ תבנית בילינ' מעל $V$. נאמר ש־$f$ חיובית/אי־שלילית/שלילית/אי־חיובית אם $\forall 0 \neq v \in V $ מתקיים ש־$f(v, v) > 0$/$f(v, v) \ge 0$/$f(v, v) < 0$/$f(v, v)\le 0$}
+    
+    \theo{תהא $A$ מטריצה מייגצת של תבנית בי־ליניארית סימ', עם ערכים $0, -1, 1$ בלבד על האלכסון, מקיימת: 
+    \begin{itemize}
+        \item $f$ חיובית אמ''מ ישנם רק $1$־ים. 
+        \item $f$ אי־שלילית אמ''מ ישנם רק $1$־ים ואפסים. 
+        \item $f$ שלילית אמ''מ ישנם רק $-1$־ים
+        \item $f$ חיובית אמ''מ ישנם רק $-1$־ים ואפסים. 
+    \end{itemize}}
+    \begin{proof}\,
+        \begin{itemize}
+            \item[$\impliedby$] ברור
+            \item לכל $0 \neq v \in V$ קיימים ויחידים $\ag_1 \dots \ag_n \in \R$ כך ש־$v = \sum^n_{i = 1} \ag_i v_i$ ומתקיים $f(v, v) = \ag_i^2 f(v_{i, i})$ ולפי המקרה זה יסתדר יפה. 
+        \end{itemize}
+    \end{proof}
+    
+    \theo{\textbf{משפט ההתאמה של סילבסטר. }$p, q$ הנ''ל נקבעים ביחידות. }(תחזרו כמה משפטים למעלה למקרה בו $\F = \R$)
+    \begin{proof}[ההוכחה של קרני. ]
+        נכתבה ונמחקה מהלוח. שימו לב שה־$\tr$ לא נשמר בשינוי בסיס של תבניות בילינאריות, זה לא העתקות. ההוכחה שגויה. 
+    \end{proof}
+    \begin{proof}
+        נסמן $B = (v_1 \dots v_p, u \dots u_q, w_1 \dots w_k)$ וכן $B' = (v_1' \dots v'_t, u'_1 \dots u'_s, w_1 \dots w_k)$ כי $t + s = p + q$. בה''כ $t \le p$, נניח בשלילה ש־$t < p$. נסמן $U = \Sp(v_1 \dots v_p)$. ידוע $f$ חיובית על $U$, וכן $\dim U = p$. נתבונן ב־$W = \Sp(u_1' \dots u_s', w_1 \dots w_k)$. אזי גם $f$ חיובית על $W$, ו־$\dim W = s + k$. בגלל ש־$U \cap W = \{0\}$ (כי אם לא, אז עבור $0 \neq v \in U \cap W$ נקבל $f(v, v) > 0$ כי $v \in U$ וכן $f(v, v) \le 0$ כי $v \in W$ וסתירה). ידוע ש־$U \oplus W \subseteq V$ תמ''ו וכן $\dim U + \dim W \le \dim V$. נציב ונקבל $p + s + k > t + s + k = \dim V$, סתירה. לכן $p, q$ נקבעים ביחידות. 
+    \end{proof}
+    
+    \noti{ה־$(p, q)$ לעיל נקראים \textit{הסיגנטורה של $f$}. }
+    
+    \section{\en{Inner Product Vector Spaces}}
+    \subsection{מעל $\R$}
+    \textbf{מעתה ועד סוף הקורס, }מתקיים $\F = \R, \C$. 
+    
+    כל עוד נאמר ``$\F$'', זה נכון בעבור שני המקרים. אחרת, נפצל. 
+    
+    \defi{יהי $V$ מ''ו, \textit{מכפלה פנימית} מעל $\R$ היא תבנית בילינ' סימטרית חיובית מעל $V$, ומסומנת $f(v, u) = \la v, u \ra$ (ויש ספרים שמסמנים $\la v \mid u \ra$, בדומה לסימון של קוונטים), ונסמן $\la \cdot, \cdot \ra\co V \times V \to \R$. }
+    
+    בגלל שהיא לינארית סימטרית, נקבל $\forall v \in V \co \la v, v \ra \ge 0$ ו־$\la v, v \ra$ אמ''מ $v = 0$. 
+    
+    \textbf{דוגמה. }(המכפלה הפנימית הסטנדרטית על $\R^n$, AKA כפל סקלרי): 
+    \[ \mut{\pms{x_1 \\ \vdots\\ x_n}}{\pms{y_1 \\ \vdots \\ y_n}} = \sum_{i = 1}^{n}x_iy_i \]
+    
+    \defi{אם $V$ מ''ו וקיימת $\smut \co V \times V \to \F$ מכפלה פנימית אז $(V, \smut)$ נקרא \textit{מרחב מכפלה פנימית}, ממ''פ. }
+    
+    \theo{$V = M_n(\R)$, אז $\mut{A}{B} = \tr(A \cdot B^T)$ אז $(V, \smut)$ ממ''פ. }
+    
+    \textbf{דוגמה מגניבה. }בהינתן $V = c[0, 1]$, מ''ו הפונקציות הממשיות הרציפות על $[0, 1]$, ו־$\mut{f}{g} = \int_0^1 f(x) \cdot g(x) \dx$ 
+    \theo{(שהפליצו מחדו''א) אם $f \ge 0$ אינטרבילית (זה נשמע כמו מפלצת) על קטע $[a, b]$ וגם ישנה נקודה חיובית $c \in [a, b]$ שעבורה $f(x) \ge 0$ וגם $f$ רציפה ב־$c$, אז $\int^b_a f(x) \dx > 0$. }
+    
+    \subsection{מעל $\C$}
+    ישנה בעיה עם חיובית: אם $v \in V$ כך ש־$\mut{v}{v} \ge 0$ אך $\mut{iv}{iv} = -1\mut{v}{v} < 0$ סתירה. לכן, במקום זאת, נשתמש בהגדרה הבאה: 
+    \defi{יהי $V$ מ''ו מעל $\C$. מכפלה פנימית $\smut \co V \times V \to \C$ מקיימת: 
+    \begin{itemize}
+        \item ליניאירות ברכיב הראשון: אם נקבע $v$, אז $u \mapsto \mut{v}{u}$ לינארית. 
+        \item ססקווי־ליניאריות ברכיב השני: \hfill $\mut{u_1 + u_2}{v} = \mut{u_1}{v} + \mut{u_2}{v} \land \mut{u}{\ag v} = \bar \ag \mut{u}{v}$ 
+        
+        כאשר $\bar \ag$ הצמוד המרוכב של $\ag$. 
+        \item הרמטיות: \hfill $\mut{v}{u} = \ol{\mut{u}{v}}$
+        \item \hfil $\forall 0 \neq v \in V \co \mut{v}{v} > 0 \land \mut{0}{0} = 0$
+    \end{itemize}}
+    למעשה – נבחין שאין צורך בממש ססקווי־ליניאיריות ברכיב השני וכן לא בתנאי $\mut{0}{0} = 0$, וההגדרה שקולה בעבור חיבוריות ברכיב השני בלבד,. זאת כי: 
+    \[ \mut{u}{\ag v} = \ol{\mut{\ag v}{u}} = \ol{\ag \mut{v}{u}} = \bar \ag \cdot \ol{\mut{v}{u}} = \bar \ag \mut{v}{u} \]
+    ומכאן נגרר ססקווי־ליניאריות, וכן $\mut{0}{0} = 0$ נובע ישירות מליניאריות ברכיב השני. 
+    
+    (אופס! בן הגדיר את זה לליניאירות ברכיב השני, כלומר הפוך, כי ככה עושים את זה בפתוחה. תיקנתי בסיכום אבל יכול להיות שיש משהו הפוך כי פספסתי. זה אמור להיות ליניארי ברכיב השני).
+    
+    \defi{\hfil $\bar B^T = B^*$}
+    
+    \defi{יהי ממ''פ $V$ מ''ו מעל $\F$. לכל $v \in V$ מגדירים את ה\textit{נורמה} של $v$ להיות $ \norm{v} = \sqrt{\mut{v}{v}} $}
+    
+    מאקסיומת החיוביות: 
+    \[ \norm{v} \ge 0 \land (\norm{v} = 0 \iff v = 0) \]
+    וכן: 
+    \[ \norm{t \cdot v^2} = \mut{tv}{tu} = t \bar t\mut{v}{v} = \sof{t}\norm{v} \implies \norm{t \cdot v} = \sof{t} \cdot \norm{v} \]
+    
+    
+    
+    
+    
+    
+    
+    \ndoc
+\end{document}

@@ -1,0 +1,674 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+    \sFunc{List}
+    \sFunc{Retrieve}
+    \SetKwFunction{RetrieveFirst}{Retrieve-First}
+    \SetKwFunction{RetrieveLast}{Retrieve-Last}
+    \sFunc{Delete}
+    \SetKwFunction{DeleteFirst}{Delete-First}
+    \SetKwFunction{DeleteLast}{Delete-Last}
+    \sFunc{Insert}
+    \SetKwFunction{InsertFirst}{Insert-First}
+    \SetKwFunction{InsertLast}{Insert-Last}
+    \sFunc{Shift}
+    \sFunc{Length}
+    \sFunc{Concat}
+    \sFunc{Plant}
+    \sFunc{Split}
+}
+\newcommand\dsQueue{
+    \sFunc{Queue}
+    \sFunc{Enqueue}
+    \sFunc{Head}
+    \sFunc{Dequeue}
+}
+\newcommand\dsStack{
+    \sFunc{Stack}
+    \sFunc{Push}
+    \sFunc{Top}
+    \sFunc{Pop}
+}
+\newcommand\dsVector{
+    \sFunc{Vector}
+    \sFunc{Get}
+    \sFunc{Set}
+}
+\newcommand\dsGraph{
+    \sFunc{Graph}
+    \sFunc{Edge}
+    \SetKwFunction{AddEdge}{Add-Edge}\
+    \SetKwFunction{RemoveEdge}{Remove-Edge}
+    \sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+    \dsList
+    \dsQueue
+    \dsStack
+    \dsVector
+    \dsGraph
+    \SetKwData{error}{\color{codered}error}
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \SetKwRepeat{Do}{do}{while}
+    \SetKwData{Null}{\color{codeblue}null}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{מבני נתונים 10}}
+\begin{document}
+    \maketitle
+    
+    \textbf{מרצה: }עמית וינשטיין
+    
+    לפי המרצה זה שיש הרצאה משולבת עם תרגול זה לא אידיאלי אבל לא ברור לי אם הוא בתחום שלמות או לא. 
+    
+    ביום שני דיברנו על ערימות. עם שנה ב' דיברנו על ערימה בינארית. בנושא הזה יש גם ערימה בינומית וערימת פיבונ'צי. סיכום של ערימות (שעתה אנו חוזרים עליו) מצוי בסיכום הקודם ועל כן לא אחזור עליו. 
+    
+    הטבלה הבאה מתייחסת למבני הנתונים והפעולות הנוספות שראינו בהרצאה הזו: 
+    \begin{center}\sen\begin{tabular}{c|c|c|c|c|c|c|c}
+            %            \hline
+            \textbf{\textit{P. Queue}} & \textbf{Insert} & \textbf{Minimum} & \textbf{Delete-Min} & \textbf{Dec.-Key} & \textbf{Delete} & \textbf{Meld} & \textbf{Init} \\
+            \hline
+            \textit{AVL tree} & $O(\logn) $ & $O(1)$ & $O(\logn)$ & $O(\logn)$ & $O(\logn)$ & & $O(n \logn)$ \\
+            \textit{Binary Stack} & $O(\logn)$ & $O(1)$ & $O(\logn)$ & $O(\logn)$ & $O(\logn)$ & $O(n)$ & $O(n)$ \\
+            \textit{W.C Binomial Stack} & $O(\logn)$ & $O(1)$ & $O(\logn)$ & $O(\logn)$ & $O(\logn)$ & $O(\logn)$& \\
+            \textit{Amort Binomial Stack$^{*}$} & $O(1)$ & $O(1)_{W.C.}$ & $O(1)$ & $O(1)$ & $O(1)$ & $O(\logn)$& \\
+            $\overset{\text{\normalsize \textit{Lazy Amortized}}}{\text{\normalsize \textit{Binomial Stack}}}$
+            & $O(1)_{W.C.}$ & $ O(1)_{W.C.} $ & $O(\logn)$ & $O(\logn)$ & $O(\logn)$ &&
+            %            \hline
+        \end{tabular}\she\end{center}
+    $*$ – סיבוכיות amoritzed פר פעולה, כלומר \textbf{לא} בעבור רצף פעולות של כל הפעולות במבנה. 
+    
+    אם מצוין $\amort$ השאר $W.C.$ ולהפך. 
+    
+    \section{\en{Heap Sort}}
+    ב־1964 המדמ''חיסטים Williams \& Floyd המציאו ``מיון ערימה'' – Heap Sort. הרעיון? נכניס ל־heap ונעשה delete min עד שהכל יהיה מסודר. באופן ברור זה יוצא $O(n\logn)$. הייתרון, הוא שבניגוד למיון עם AVL/B-tree אין I/O ובניגוד ל־merge sort לא צריך לחבר מערכים ולהקצות חלק ניכר מהזכרון למיון. זה הייתרון המשמעותי. 
+    
+    אלג': מכניסים את האיברים לערימה בינארית, ומוצאיים $n$ פעמים לפי הסדר. ניתן למימוש ללא הקצאת זכרון נוסף בצורה יעילה (עם מקדמים קטנים בסיבוכיות). סיבוכיות $O(n\logn)$ במקרה הגרוע ביותר. 
+    
+    \textit{הערה: }אפשר לממש delete-key ו־decrease-key אחת עם השניה ולכן הן די שקולות. אך יש פעולה שלא דיברנו עליה, היא \ttt{Meld($Q_1, Q_2$)}, שילוב של שתי ערימות. בשיטה הנוכחית שראינו, שלא ליצור ערימה חדשה ולעשות הכל, לוקח $O(n)$ – כי צריך לכתוב הכל לערימה חהדשה. 
+    
+    \section{\en{Binomial Stack}}
+    \subsection{עצים בינארים}
+    \sen\begin{multicols}{4}
+        \begin{center}
+            $B_0$ 
+            
+            \begin{forest}
+                [$\cdot$]
+            \end{forest}
+        \end{center}
+        
+        \columnbreak
+        
+        \begin{center}
+            $B_1$
+            
+            \begin{forest}
+                [$\cdot$[$\cdot$]]
+            \end{forest}
+        \end{center}
+        
+        \columnbreak
+        
+        \begin{center}
+            $B_2$
+            
+            \begin{forest}
+                [$\cdot$ [$\cdot$ [$\cdot$ ]][$\cdot$]]
+            \end{forest}
+        \end{center}
+        
+        \columnbreak
+        
+        \begin{center}
+            $B_3$ 
+            
+            \begin{forest}
+                [$\cdot$ [$\cdot$ [$\cdot$ [$\cdot$ ]][$\cdot$]][$\cdot$ [$\cdot$ ]][$\cdot$]]
+            \end{forest}
+        \end{center}
+        
+        
+    \end{multicols}\she
+    
+    
+    באופן כללי, $B_k$ יהיה: 
+    \begin{center}
+        \sen
+        \begin{forest}
+            [$B_{k - 1}$[$B_{k - 1}$]]
+        \end{forest}
+        \he{\quad ששקול ל־ \quad}
+        \begin{forest}
+            [$\cdot$[$B_0$][$B_1$][$\cdots$, no edge][$B_{k -1}$]]
+        \end{forest}
+        \she
+    \end{center}
+    
+    \textbf{תכונותיו: }
+    \begin{multicols}{2}
+        \begin{itemize}
+            \item לעץ $B_k$ יש $2^{k}$ צמתים
+            \item עומק $k$
+            \item עומק לוגוריתמי ביחס לכמות הקודקודים
+            \item יש $\binom{k}{i}$ קודקודים בשכבה ה־$i$
+            \item לשורש יש $k$ בנים
+        \end{itemize}
+    \end{multicols}
+    
+    הוא לא מאוזן בצורה טובה כמו AVL. אך, עדיין העומק הוא $\logn$ כמו ב־AVL. 
+    
+    אזי
+    
+    \subsection{ערימה בינומית}
+    רעיון של Vuillemin, 1978.
+    
+    הצעה – נחזיק עץ בינומי בסידור ערימה (מפחות של בנים גדולים ממפתח של אבא). הבעיה, היא שעץ בינומי הוא מגודל $2^{k}$ ולכן לכל $k \ge 2$ לא נוכל להוסיף איבר אחד ולשמור על בינומיות. 
+    
+    אז מה עושים? הנ''ל, נחזיק לכל היותר עץ אחד מכל גודל (הרעיון – כל גודל של עץ, מספר טבעי, נוכל לייצג כערימה של $\log k$ עצים בינומים). משום שרוצים להחזיר מינימום ב־$O(1)$, נחזיק מצביע למינימום. נשים לב שיש לכל היותר $\ceil{\log_2n}$ ערימות במבנה, בדיוק לפי הייצגו בינארי של $n$. העומק המקסימלי הוא גם $\log_2n$, כי זה הגודל של הערימה המקסימלית בגודלה. 
+    
+    \textbf{דוגמה. }
+    \begin{center}
+        \sen\begin{forest}
+            [[$3$, no edge] [$1$, no edge [$5$][$4$[$8$]]]]
+        \end{forest}\she
+        
+        עץ עם $B_0$ ו־$B_2$. 
+    \end{center}
+    
+    מציאת המינימום – נלך למצביע שמצביע על שורש העץ שנמצא בו המינימום וניקח את ערך השורש. נרצה עתה למחוק איבר מהעץ. הבעיה היא איך נשמור על יחידות גודל עץ בינומי. 
+    חיבור של שני עצים בינומים לא יהיה בעייתי, כי זהו כמו חיבור בינארי. לקחנו שני עצים של $B_k$, ויצרנו עץ חדש של $B_{k + 1}$ – ואם יש שארית, נמשיך עם השארית הזו. בזכות כך, בעת מחיקה נוכל להוציא את השורש, ובצע איחוד כמו לעיל ולקבל מחיקה ב־$O(\logn)$. הכנסת איבר חדש תתבצע באופן דומה – ניצור את $B_0$, ונבצע את אותו החיבור בדיוק (כלומר, אם כבר יש $B_0$ ניצור $B_1$, ונעביר כל הדרך עד למעלה את ה־carry). 
+    
+    מה שעמית כתב כדי שיהיה מסודר: 
+    \begin{itemize}
+        \item פעולת Meld ניתן למימוש בזמן של $O(\logn)$, ע''י חיקוי של עצים בינארים, ע''י חיקוי חיבור בינארי ואיחוד עצים מגודל זהה לפי הבנייה של עצים בינומיים. העץ עם השורש הגדול יותר יהיה בן חד של שורש עם המפתח הקטן (כלומר חיבור כזה של שני עצים יהיה $O(1)$, וסה''כ worst case של $O(\logn)$ חיבורי עצים). בגלל שחיבורים הם amortized ברצצף חיבורים ב־$O(1)$, גם כאן עלות החיבורים תהיה $O(1)$. 
+        \item עבור Decrease-Key נעשה headpify-up באותו העץ. 
+        \item insert/delete באופן דומה. 
+    \end{itemize}
+    
+    
+    \subsection{Lazy Binomial Stack}
+    בגלל איך שמונים עובדים, באמורטייז רצף חיבורים או רצף חיסורים/הסרות יהיו ב־$O(1)$. אך נוכל לדאוג גם לרצף של הוספה \textbf{ו}־Delete-Min באמורטייז של $O(1)$. הפתרון הוא ערימה בינומית עצלה. במצב ה''יציב'', יהיה רק עץ בינומי אחד מכל גודל. אך נוכל גם פשוט להוסיף את $B_0$ ולטפל בזה אחכ – איך? אחרי Delete-Min, כשנגיע ל־Minimum, יתכן שיש $n$ ערכים של $B_0$ וצריך להתחיל לחבר אותם. אז פתאום דברים יכולים להיות יקרים. אבל, amoritzed עדיין הכל $O(1)$ ובמקרה שב־$2^k$ נעשה רצף הוספות והחסרות (כמו שראינו בתרגיל בית 2) אז המבנה שלנו לא ישתגע והכל יהיה $\amort(O(1))$. 
+   
+    אופן התיקון של ערימה בינומית עצלה, הוא שיוצרים מערך באורך $\logn$ ואם יש שני עצים שצריך לדחוף לאותו התא, נעביר אותו לתא אחר. נראה $O(1)$ אמורטייז באמצעות חישוב הפוטנציאל הבא: 
+    \[ \cost = O(T_0  +T_1 + L) \]
+    כאשר $T_0$ עצים בהתחלה, $T_1$ עצים בסוף ו־$L$ תיקוני העצים. כל איחוד מקטין ב־$1$ את מספר העצים, כלומר כל איחוד הקטנו את כמות הפוטנציאל ב־$1$ והעלות שנשארת לנו היא כמות העצים שנשארים בסוף – היא $O(n)$, נחלק ב־$n$ ונקבל אמורטייז $O(1)$. [הערה: במקרה הזה מספר העצים משמש כפונקציית הפוטנציאל]. האיפוס של המערך עצמו יהיה $O(\logn)$ ולכן סה''כ אמורטייז נמחק ב־$O(\logn)$ עבור רצף שכולל חיסורים (טיב הרצף הוא מדוע האמורטייז של הערימה העצלה חזק יותר). 
+    
+    
+    
+    \ndoc
+\end{document}

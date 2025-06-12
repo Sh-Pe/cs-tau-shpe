@@ -23,6 +23,7 @@
 
 
 % code 
+\usepackage{algorithm2e}
 \usepackage{listings}
 \usepackage{xcolor}
 
@@ -34,31 +35,31 @@
 \definecolor{codegray}{rgb}{0.96,0.96,0.96}
 
 \lstdefinestyle{pythonstylesheet}{
-	language=Java,
-	emphstyle=\color{deepred},
-	backgroundcolor=\color{codegray},
-	keywordstyle=\color{deepblue}\bfseries\itshape,
-	numberstyle=\scriptsize\color{codenumber},
-	basicstyle=\ttfamily\footnotesize,
-	commentstyle=\color{codegreen}\itshape,
-	breakatwhitespace=false, 
-	breaklines=true, 
-	captionpos=b, 
-	keepspaces=true, 
-	numbers=left, 
-	numbersep=5pt, 
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false, 
-	tabsize=4, 
-	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
-	keywordstyle=\color{codeblue},
-	emph={var, List, Iterable, Iterator},          % Custom highlighting
-	emphstyle=\color{codered},
-	stringstyle=\color{codegreen},
-	showstringspaces=false,
-	abovecaptionskip=0pt,belowcaptionskip =0pt,
-	framextopmargin=-\topsep, 
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
 }
 \newcommand\pythonstyle{\lstset{pythonstylesheet}}
 \newcommand\pyl[1]     {{\lstinline!#1!}}
@@ -68,7 +69,7 @@
 \definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
 \mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
 \BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
-	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
 
 
 % Deisgn
@@ -88,6 +89,19 @@
 \usepackage{graphicx}
 \graphicspath{ {./} }
 
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+
 
 % Hebrew initialzing
 \usepackage[bidi=basic]{babel}
@@ -96,29 +110,30 @@
 \babelprovide[import]{english}
 \babelfont[hebrew]{rm}{David CLM}
 \babelfont[hebrew]{sf}{David CLM}
-\babelfont[english]{tt}{Monaspace Xenon}
+%\babelfont[english]{tt}{Monaspace Xenon}
 \usepackage[shortlabels]{enumitem}
 \newlist{hebenum}{enumerate}{1}
 
 % Language Shortcuts
 \newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
 \newcommand\sen   {\begin{otherlanguage}{english}}
-	\newcommand\she   {\end{otherlanguage}}
+    \newcommand\she   {\end{otherlanguage}}
 \newcommand\del   {$ \!\! $}
 
 \newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
 \newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
-			{\textbf{\textit{שחר פרץ, 2025}} \\
-				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
-	\end{center}} \vfil	}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
 
 \newcommand{\rn}[1]{
-	\textup{\uppercase\expandafter{\romannumeral#1}}
+    \textup{\uppercase\expandafter{\romannumeral#1}}
 }
 
 \makeatletter
 \newcommand{\skipitems}[1]{
-	\addtocounter{\@enumctr}{#1}
+    \addtocounter{\@enumctr}{#1}
 }
 \makeatother
 
@@ -183,13 +198,13 @@
 \newcommand\open  {\big(}
 \newcommand\qopen {\quad\big(}
 \newcommand\close {\big)}
-\newcommand\also  {\text{, }}
-\newcommand\defis {\text{ definitions}}
-\newcommand\given {\text{given }}
-\newcommand\case  {\text{if }}
-\newcommand\syx   {\text{ syntax}}
-\newcommand\rle   {\text{ rule}}
-\newcommand\other {\text{else}}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
 \newcommand\set   {\ell et \text{ }}
 \newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
 
@@ -215,6 +230,8 @@
 \newcommand\lc    {\left\lceil}
 \newcommand\rf    {\right\rfloor}
 \newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
 
 \newcommand\lex   {<_{lex}}
 
@@ -332,15 +349,17 @@
 \DeclareMathOperator{\chr}     {char}
 \DeclareMathOperator{\diag}    {diag}
 \DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
 
 \newcommand\lra       {\leftrightarrow}
 \newcommand\chrf      {\chr(\F)}
 \newcommand\F         {\mathbb{F}}
 \newcommand\co        {\colon}
 \newcommand\tmat[2]   {\cl{\begin{matrix}
-			#1
-		\end{matrix}\, \middle\vert\, \begin{matrix}
-			#2
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
 \end{matrix}}}
 
 \makeatletter
@@ -350,23 +369,23 @@
 \newcommand\gmat      {\mat{m}{n}(\F)}
 \newcommand\tomat     {\, \dequad \longrightarrow}
 \newcommand\pms[1]    {\begin{pmatrix}
-		#1
+        #1
 \end{pmatrix}}
 
 % someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
 \makeatletter
 \newlength\min@xx
 \newcommand*\xxrightarrow[1]{\begingroup
-	\settowidth\min@xx{$\m@th\scriptstyle#1$}
-	\@xxrightarrow}
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
 \newcommand*\@xxrightarrow[2][]{
-	\sbox8{$\m@th\scriptstyle#1$}  % subscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\sbox8{$\m@th\scriptstyle#2$} % superscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
-	{\mathmakebox[\min@xx]{\scriptstyle#2}}
-	\endgroup}
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
 \makeatother
 
 
@@ -426,88 +445,162 @@
 \newtheorem{Lemma}{למה}
 \newtheorem{Remark}{הערה}
 \newtheorem{Notion}{סימון}
+\newtheorem{Hence}{מסקנה}
 
 \newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
 \newcommand\defi  [1] {\begin{definition}#1\end{definition}}
 \newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
 \newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+\newcommand\hen  [1] {\begin{Hence}#1\end{Hence}}
 
 % DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
 \DeclareMathOperator\amort   {amort}
 \DeclareMathOperator\worst   {worst}
 \DeclareMathOperator\type    {type}
 \DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+    \sFunc{List}
+    \sFunc{Retrieve}
+    \SetKwFunction{RetrieveFirst}{Retrieve-First}
+    \SetKwFunction{RetrieveLast}{Retrieve-Last}
+    \sFunc{Delete}
+    \SetKwFunction{DeleteFirst}{Delete-First}
+    \SetKwFunction{DeleteLast}{Delete-Last}
+    \sFunc{Insert}
+    \SetKwFunction{InsertFirst}{Insert-First}
+    \SetKwFunction{InsertLast}{Insert-Last}
+    \sFunc{Shift}
+    \sFunc{Length}
+    \sFunc{Concat}
+    \sFunc{Plant}
+    \sFunc{Split}
+}
+\newcommand\dsQueue{
+    \sFunc{Queue}
+    \sFunc{Enqueue}
+    \sFunc{Head}
+    \sFunc{Dequeue}
+}
+\newcommand\dsStack{
+    \sFunc{Stack}
+    \sFunc{Push}
+    \sFunc{Top}
+    \sFunc{Pop}
+}
+\newcommand\dsVector{
+    \sFunc{Vector}
+    \sFunc{Get}
+    \sFunc{Set}
+}
+\newcommand\dsGraph{
+    \sFunc{Graph}
+    \sFunc{Edge}
+    \SetKwFunction{AddEdge}{Add-Edge}
+    \SetKwFunction{RemoveEdge}{Remove-Edge}
+    \sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+    \dsList
+    \dsQueue
+    \dsStack
+    \dsVector
+    \dsGraph
+    \SetKwData{error}{\color{codered}error}
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \SetKwRepeat{Do}{do}{while}
+    \SetKwData{Null}{\color{codeblue}null}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{\textit{ליניארית 2א 3}}
+\title{\textit{לינארית 2א}}
 \begin{document}
-	\maketitle
-	\textbf{מרצה: }בן בסקין
-	
-	\defi{בעבור $A \in M_n(\F)$ הפולינום האופייני של $A$ הוא $f_A(x) = \det(Ix - A)$. }
-	
-	ראינו ש־$v$ ו"ע של $A$ עם ערך עצמי $\lg$ אמ"מ $v \in \ker(\lg I - A)$, וכן $\lg$ ע"ע אמ"מ $\dim \ker \lg - A > 0$. 
-	
-	\theo{$f_A(x)$ פולינםו מתוקן (מקדם מוביל 1) מדרגה $n$, המקדם של $x^{n - 1}$ הוא $-\tr A$, המקדם החופשי הוא $(-1)^{n}\det A$}. 
-	
-	\begin{proof}
-		\begin{itemize}
-			\item\textbf{ תקינות הפולינום. }מבין $n!$ המחוברים, ישנו אחד יחיד שדרגתו היא $n$. הסיבה היא שמדטרמיננטה לפי תמורות, התמורה היחידה שתתאים היא הזהות שתעבור על האלכסון. באינדוקציה על $n$, ונקבל: 
-			\[ f_A(x) = (x - a_{11}) \cdots (x - a_{nn}) = x^{n} + \cdots \]
-			באופן דומה אפשר להוכיח באינדוקציה באמצעות פיתוח לפי שורות: 
-			\[ f_A(x) = (x - a_{11})|A_11| + \underbrace{a_{21}|A_21| - a_{31}|A_31| + \cdots + (-1)^{n + 1}a_{n1}|A_{n1}|}_{\text{מה.א. דרגה קטנה מ־$n$}} \]
-			סה"כ גם כאן הראינו שהדרגה מתקבלת מהפולינום $\prod^{n}_{i = 1}(x - a_{ii})$
-			
-			\item\textbf{המקדם של $-\tr A$. }ההוכחה המסודרת מופיע העמוד 8 של הסיכום. מקדמי $x^{n - 1}$ מגיעים גם הם רק מ־* (הפולינום למעלה) שהם $-\tr A = \sum_{i = 1}^{n}-a_{ii}$ המקדם החופשי. 
-			\item\textbf{המקדם החופשי. }$f_A(0) = \det(I \cdot 0 - A) = \det(-A) = (-1)^{n}\det A$. 
-		\end{itemize}
-	\end{proof}
-	
-	\subsection{הפסקה לרגע מליניארית 2א כדי לראות פתרון נורמלי רעיונית אך קצר לשאלה 3 ממועד ב' לליניארית 1א}
-	יהי $V$ מ"ו $n$ ממדי, ו־$0 \neq v \in V$, וסקלרים $(\ag_i)_{i = 1}^{n}$. הוכיחו שקיים בסיס $(w_1 \dots w_n)$ כך ש־$v = \sum_{i = 1}^{n}\ag_iw_i$. 
-	\begin{proof}הפתרון של גינסבורג: 
-		אם בה"כ $\ag_1 \neq 0$ אז $w_1 := \ag_1\op\cl{v - \sum_{i = 2}^{n}\ag_iw_i}$ וכזה $(v, w_2 \dots w_n)$ בסיס וכאילו די גמרנו. 
-	\end{proof}
-	\begin{proof}פתרון נורמלי של המרצה: 
-		נרצה למצוא $B_V = (v, v_w \dots v_n)$ כך שבהינתן $B_W = (w_1 \dots w_n)$ כך ש־: 
-		\[ [v]_{B_V} = (1, 0, \dots 0), \ [v]_{B_{W}} = (\ag_1 \dots \ag_n) \]
-		במילים אחרות, נגדיר איזו' מתאימה לשינוי בסיס. כלומר איזו $\phi \co V \to \F^n$ כך ש־$\phi(v) = (\ag_1, \dots, \ag_n)$ וכן $\phi(v_2) = e_2 \dots \phi(v_n) = e_n$ כך שסה"כ תיארנו העתקה שמזיזה בסיס אחד לאחר וסה"כ סיימנו. 
-	\end{proof}
-	
-	\subsection{חזרה לקורס}
-	\textbf{דוגמאות. }\begin{enumerate}[A)]
-		\item אם $A = \binom{a \, b}{c \, d}$ אז $f_A(x) = x^{2} - (a + d)x + ad - bc$ (נטו מהמשפט הקודם). 
-		\item אם $A = \diag(\lg_1 \dots \lg_n)$ אז $f_A(x) = \prod_{i = 1}^{n}(x - \lg_i)$. 
-		\item אם $A = \pms{\lg_1 & & * \\ & \ddots & \\  0 && \lg_n}$ אז גם כאן $f_A(x) = \prod_{i = 1}^{n}(x - \lg_i)$ אך כדאי לשים לב שמשולשית עליונה לא בהכרח דומה לאלכסונית עם אותם הקבועים. 
-		\item אם $A = \pms{B & * \\ 0 & C}$ כאשר $B, C$ בלוקים ריבועיים אז $f_A(x) = f_B(x) \cdot f_C(x)$. 
-	\end{enumerate}
-	
-	\defi{בהינתן $T \co V \to V$} ט"ל נגדיר את הפולינום האופייני שלה (פ"א) באופן הבא: נבחר בסיס $B$ למ"ו $V$, ונתבונן ב־$A = [T]_B$ ונגדיר את $f_T(x) := f_A(x)$. 
-	
-	"אתה פותר עכשיו שאלה משיעורי הבית" "אל תדאג הבודק כבר שלח פתרון" "מה?!"
-	
-	\textbf{טענה. }הפ"א של ט"ל מוגדר היטב. למטריצות דומות אותו פ"א. \textit{הוכחה. }בשיעורי הבית. ויש סיכוי שגם בדף הסיכום. 
-	
-	\textit{מטלה. }לקרוא בעמוד 10 על שוויון פונ' בין שדות שונים, רלוונטי כדי להראות שלא משנה על איזה שדה אנו מדברים הפולינום האופייני נשאר זהה. 
-	
-	\textbf{דוגמה. }נתבונן בהעתקה $\R_n[x] \to \R_n[x], \ T(f) = f'$. נבחר בסיס $B = (1, x, \dots, x^{n})$. אז: 
-	\[ [T]_B = \pms{0 & 1  & 0 & 0 & \dots & 0 \\ 0 & 0 & 2 & 0 & \dots & 0 \\ 0 & 0 & 0 & 3 & \ddots & \vdots \\ \vdots & \vdots & \vdots & \ddots & \ddots \\ 0 & 0 & 0 & 0 } \]
-	אז: 
-	\[ f_T(x) = \det\pms{x & -1 & 0 &\dots \\ & x & -2 & 0 &\dots \\ && \ddots &\ddots } = x^{n + 1} \]
-	\theo{$T \co V \to V$ ט"ל, אז $\lg$ ע"ע של $T$ אמ"מ $f_T(\lg) = 0$. }
-	\begin{proof}
-		יהא $B \subseteq V$ בסיס של $V$. אז $A = [T]_B$ ואז $f_T(\lg) = 0$ אמ"מ $f_A(\lg) = 0$ אמ"מ $\lg$ ע"ע של $A$. 
-	\end{proof}
-	
-	\textbf{הגדרה. }יהי $\lg \in \F$ ע"ע של $T$ (או $A$). \textit{האיברוי האלגברי} של $\lg$ הוא החזקה המקסימלית $d$ כך ש־$(x - \lg)^{d} \mid f_T(x)$ (חלוקת פולינומים). 
-	
-	\textbf{דוגמה. }בעבור $T$ היא הגזירה, ממקודם: $f_T(x) = x^{n + 1}$ ע"ע יחיד הוא $0$. הריבוי האלגברי של $0$ הוא $n + 1$. הריבוי הגיאומטרי של $0$ הוא $1$. 
-	
-	\noti{נניח ש־$\lg$ ע"ע של $T$ (או $A$) אז $d_\lg$ הריבוי האלגברי של $\lg$ ו־$r_\lg$ הריבוי הגיאומטרי של $\lg$. }
-	\theo{$r_\lg \le d_\lg$ ושוויון אמ"מ $T$ (או $A$) לכסינה. }
-	
-	\ndoc
+    \maketitle
+    \textbf{תזכורת: }המשלים הישר לתמ''ו ציקלי מקסימלי 
+    
+    {ציקלי מקסימלי: תהי $T \co V \to V$} ניל', ו־$U \subseteq V$ ציקלי מקסימלי אז קיים $W$ תמ''ו של $V$ תמ''ו $T$־אינ' כך ש־$T = U \oplus W$. 
+    
+    \hen{$T \co V \to V$ ט''ל ניל' אז $V$ אי־פריק ל־$T$ אמ''מ $V$ ציקלי. }
+    \begin{proof}
+        \begin{itemize}
+            \item[$\implies$]הוכחנו בשיעור הקודם
+            \item[$\impliedby$]נניח $V$ אי־פריק. אז קיים $U \subseteq V$ תמ''ו ציקלי מקסימלי. לפי המשפט קיים $W \subseteq V$ תמ''ו $T$־אינ' כך ש־$T = U \oplus W$. ידוע $U, W$ תמ''וים אינ'. אם $U = \{0\}$ אז $V = 0$ ובפרט ציקלי. אחרת, מאי־פריקות $V$ ל־$T$, נסיק ש־$W = \{0\}$ ולכן $V = U$ ציקלי. 
+        \end{itemize}
+    \end{proof}
+    
+    \theo{(משפט ג'ורדן למקרה של $T$ ניל') תהי $T \co V \to V$ ניל' אז קיים פירוק של $V$ לסכום ישר של $V = \bigoplus U_i$ כאשר $U_i$ הם $T$־ציקליים. }
+    \begin{proof}
+        נמצא ב־$V$ ציקלי מקסימילי. אז קיים $W \subseteq V$ תמ''ו $T$־שמור כך ש־$V = U_1 \oplus W$. ידוע $T_{|_W} \co W \to W$ ניל', וכעת באינדוקציה שלמה על $\dim V$. 
+    \end{proof}
+    
+    גרסה שקולה למשפט ג'ורדן: \theo{עבוד $T \co V \to V$ ניל', קיים בסיס $B$ של $V$ שהוא איחור של שרשראות. }
+    
+    בסיס כזה נקרא בסיס מג'רדן ופירושו של דבר היא ש־: 
+    \[ [T]_B = \pms{\square & 0 & \dots &0 \\ 0 & \square & \ddots & \vdots \\ \vdots & \ddots & \ddots & 0 \\ 0 & \cdots & 0 & \square} \]
+    כאשר הבלוקים הם בלוקי ג'ורדן אלמנטרי. בלוק ג'ורדן מהצורה הבאה יקרא אלמנטרי ויסומן: 
+    \[ J_n(0) = \pms{0 & 0 & \cdots & 0 \\ 1 & \ddots & \ddots & \vdots \\ \vdots & \ddots & 0 & 0 \\ 0 & 0 & 1 & 0} \]
+    (יש ספרים בהם זה ה־transpose של זה). 
+    
+    \theo{עבור $T \co V \to V$ ניל', אז בכל הפירוקים של $V = \bigoplus U_i$ עבור $U_i$ ציקליים (אי־פריקים) אז מספר תתי־המרחב מממיד נתון הוא זהה עבור כל פירוק. }
+    
+    במילים אחרות: כל מטריצה מייצגת של ט''ל ניל' דומה למטריצת ג'ורדן יחידה, עד כדי שינוי סדר הבלוקים. 
+    
+    השקילות בין המשפט לבין ה''במילים אחרות'' נובע מזה שגודל בלוק פחות $1$ הוא הממד של התמ''ו שנפרש ע''י הוקטורים בעמודו תהללו. 
+    
+    \lem{נניח $V = \bigoplus_{i = 1}^{k} U_i$ כאשר $U_i$ הוא $T$־אינ' (לא נניח אפילו ניל'), אז: 
+    \begin{enumerate}[A.]
+        \item \hfil $\displaystyle T(V) = \bigoplus_{i = 1}^{k}T(U_i)$
+        \item \hfil $\displaystyle \ker T = \bigoplus_{i = 1}^k \ker T(U_i)$
+    \end{enumerate}}
+    הוכחה: בש.ב. 
+    
+    במקרה הכללי, \defi{בלוק ג'ורדן אלנטרי עם ערך $\lg$ הוא בלוק מהצורה: 
+        \[ J_n(\lg) = J_n(0) + \lg I_n = J_n(0) = \pms{\lg & 0 & \cdots & 0 \\ 1 & \ddots & \ddots & \vdots \\ \vdots & \ddots & \lg & 0 \\ 0 & 0 & 1 & \lg} \]
+    }
+    למה זה הגיוני? כי הסיבה שעשינו מתכתחילה רדוקציה ל־$T$ ניל' היא כי $T - \lg I$ היא $T$־אינוו' וניל', ועתה רק נותר להוסיף את ה־$\lg I$ חזרה לקבלת המקרה הכללי. 
+    
+    \begin{proof}
+        באינדוקציה על $n  = n(T)$. 
+        \begin{itemize}
+            \item עבור $n = 1$, העתקת ה‏$0$. $V$ מתפרק לסכום ישר של מרחבים מממד $1$. 
+            \item צעד, נניח נכונות עבור $n \in \N$. נניח ש־$n(T) = n + 1$. נסמן פירוק: 
+            \[ V = \bigoplus_{i = 1}^{k} U_i = \bigoplus_{i = 1}^{\ml} W_i \]
+            נסדר את $(u_i)_{i =1}^{k}$ לפי גודל מימד, ונניח שרשימת הגדלים היא: 
+            \[ (\underbrace{1, 1, \dots 1 }_{\times s}< a_1 \le \dots \le a_{p}) \implies s + p = k \]
+           רשימת הממדים מגודל $1$ ועוד כל השאר. נעשה כנ''ל עבור $(w_i)_{i = 1}^{\ml}$ ונקבל: 
+            \[ (\underbrace{1, 1, \dots 1}_{\times t} < b_1 \le \dots \le b_r) \implies t + r = \ml \]
+            ידוע:
+            \[ T(v) = \bigoplus_{i = 1}^{k} T(U_i) = \bigoplus_{i = 1}^{k} T(W_i), \quad n\cl{T_{|_{T(v)}}} = n, \quad p = r, \quad \forall i \co a_i - 1 = b_i - 1 \implies a_i = b_i \]
+            (הפירוק ל־$s$ ו־$t$ דרוש כדי שהפירוק לעיל לא יכלול אפסים כאשר מחילים את $T$)
+            (ידוע $a_i - 1 = b_i - 1$ כי אינדקס הנילפוטנטיות קטן ב־1 בהחלת $T$)
+            
+            משפט הממדים השני אומר ש־: 
+            \[ a_i = \dim U_i = \dim \ker T_{|_{U_i}} + \underbrace{\dim \Img T_{|_{U_i}}}_{a_i - 1} \implies \dim \ker T_{|_{U_i}} = 1 \]
+            מהטענה השנייה בלמה: 
+            \[ \begin{aligned}
+                \ker T = \bigoplus_{i = 1}^{k} \ker T_{|_{U_i}} \implies \dim \ker T &= \sum_{i = 1}^k \dim \ker T_{|_{U_i}} = k \\
+                &= \sum_{i = 1}^{k} \dim \ker T_{W_i} = \ml
+            \end{aligned}\implies k = \ml \implies s = t \]
+        \end{itemize}
+    \end{proof}
+    
+    ``נראה לי שמי שסיכם את ההרצאה קצת חירטט את הסטודנטים ומי שסיכם את ההרצאה לא הבין את החרטוט'' – בן על הסיכום של הסטודנטים. 
+    
+    \ndoc
 \end{document}
