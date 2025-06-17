@@ -1,0 +1,820 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Design
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+    \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+    \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+    \sFunc{List}
+    \sFunc{Retrieve}
+    \SetKwFunction{RetrieveFirst}{Retrieve-First}
+    \SetKwFunction{RetrieveLast}{Retrieve-Last}
+    \sFunc{Delete}
+    \SetKwFunction{DeleteFirst}{Delete-First}
+    \SetKwFunction{DeleteLast}{Delete-Last}
+    \sFunc{Insert}
+    \SetKwFunction{InsertFirst}{Insert-First}
+    \SetKwFunction{InsertLast}{Insert-Last}
+    \sFunc{Shift}
+    \sFunc{Length}
+    \sFunc{Concat}
+    \sFunc{Plant}
+    \sFunc{Split}
+}
+\newcommand\dsQueue{
+    \sFunc{Queue}
+    \sFunc{Enqueue}
+    \sFunc{Head}
+    \sFunc{Dequeue}
+}
+\newcommand\dsStack{
+    \sFunc{Stack}
+    \sFunc{Push}
+    \sFunc{Top}
+    \sFunc{Pop}
+}
+\newcommand\dsVector{
+    \sFunc{Vector}
+    \sFunc{Get}
+    \sFunc{Set}
+}
+\newcommand\dsGraph{
+    \sFunc{Graph}
+    \sFunc{Edge}
+    \SetKwFunction{AddEdge}{Add-Edge}
+    \SetKwFunction{RemoveEdge}{Remove-Edge}
+    \sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+    \DontPrintSemicolon
+    \dsList
+    \dsQueue
+    \dsStack
+    \dsVector
+    \dsGraph
+    \SetKwProg{Fn}{function}{ is}{end}
+    \SetKwData{error}{\color{codered}error}
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \SetKwRepeat{Do}{do}{while}
+    \SetKwData{Null}{\color{codegreen}null}
+    \SetKwData{True}{\color{codeblue}true}
+    \SetKwData{False}{\color{codeblue}false}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+\usepackage{vwcol}  
+
+%! ~~~ Document ~~~
+
+\author{\en{Shahar Perets}}
+\title{\en{Data Structures $\sim$ Home Work \textit{\#4} $\sim$ Semester B \textit{2025}}}
+\begin{document}
+    \maketitle
+    
+    \subsection*{מידע כללי}
+    שחר פרץ $\sim$ ת.ז. 334558962 $\sim$ במודל shaharperets
+    
+    \section{}
+    יהי מבנה B-tree עם פרמטר $d$ המתאר את גודל הצמתים בעץ. 
+    \begin{enumerate}[A.]
+        \item בהינתן $7 \cdot 10^{7}$ איברים, נרצה להכניס אותם למבנה B-tree כך שגובה העץ לא יהיה יותר מ־$7$ (האיברים ידועים מראש). נחשב את ה־$d$ המינימלי. 
+        
+        משום שהאיברים ידועים מראש, נוכל לבנות את סדר ההכנסה כך שכל צומת ב־B-tree יהיו $2d - 1$ צמתים (כאשר החסם התחתון של העץ הוא $d - 1$) עד לכדי הצומת האחרון. נתבונן ב־B-tree כלשהו מגודל מגודל $(d, 2d)$ כדי לנסות להבין כמה צמתים יהיו בו: 
+        \sen\begin{center}\begin{forest}
+                [$2d - 1$
+                    [$2d - 1$
+                        [$2d - 1$, edge=dashed]
+                        [$\cdots$, no edge]
+                        [$2d - 1$, edge=dashed]
+                    ]
+                    [$\cdots$, no edge]
+                    [$\cdots$, no edge]
+                    [$\cdots$, no edge]
+                    [$2d - 1$
+                        [$2d - 1$, edge=dashed]
+                        [$\cdots$, no edge]
+                        [$2d - 1$, edge=dashed]
+                    ]
+                ]
+        \end{forest}\end{center}\she
+    כאשר לכל צומת שאינו עלה $2d$ בנים. 
+    חסם עליון לכמות הצמתים הנכנסים בעץ $(d, 2d)$. נמצא את כמות הצמתים בו: 
+        \[ \text{\en{count}} = 1 + 2d + (2d)^{2} + \cdots + (2d)^{h} = \sum_{i = 1}^{h}(2d)^{i} = \frac{(2d)^{h + 1} - 1}{2d - 1} \]
+        נצטרך לכפול כמות זו ב־$(2d - 1)$, כמות האיברים בכל צומת, כדי לקבל את כמות האיברים שאפשר להכניס ל־B-tree מקסימלי: 
+        \[ \max\#\text{\en{nodes}} = \text{\en{count}} \cdot (2d - 1) = \frac{(2d)^{h + 1} - 1}{\cancel{2d - 1}} \cdot \cancel{2d - 1} = (2d)^{h + 1} - 1 \]
+        עתה, נציב את נתוני השאלה. אנחנו רוצים לאכסן $7 \cdot 10^{7}$ איברים, בעץ מגובה $h = 7$, נמצא את $d$: 
+        \begin{alignat*}{9}
+            &&7 \cdot 10^{7} &\le \max\#\text{\en{nodes}} (2d)^{7 + 1} - 1 \\
+            \iff\, &&7 \cdot 10^{7} + 1 &\le (2d)^{8} \\
+            \iff\, &&\log_8(7 \cdot 10^{7} - 1) &\le 2d \\
+            \iff\, && \N \ni d &\ge \frac{\log_8(7 \cdot 10^{7} - 1)}{2}
+        \end{alignat*}
+    ולכן ה־$d$ המינימלי הוא: 
+        \[ d = \ceil{\frac{\log_8(7 \cdot 10^{7} - 1)}{2}} = \ceil{4.641531315} = \bm{5} \]
+        
+        \item נענה על אותה השאלה, אך עתה לא ידועים לנו האיברים מראש, כלומר, לא ידוע סדר הכנסת האיברים. אז במקרה הזה, נוכל להבטיח רק קיום של $d  - 1$ איברים בצומת במקרה הגרוע, ולכן העץ יראה כך: 
+        \sen\begin{center}\begin{forest}
+                [$d - 1$
+                [$d - 1$
+                [$d - 1$, edge=dashed]
+                [$\cdots$, no edge]
+                [$d - 1$, edge=dashed]
+                ]
+                [$\cdots$, no edge]
+                [$\cdots$, no edge]
+                [$d - 1$
+                [$d - 1$, edge=dashed]
+                [$\cdots$, no edge]
+                [$d - 1$, edge=dashed]
+                ]
+                ]
+        \end{forest}\end{center}\she
+        ולכן כמות הצמתים: 
+        \[ \text{\en{count}} = 1 + d + d^2 + \cdots + d^h = \sum_{i = 1}^{h}d^{i} = \frac{d^{h + 1} - 1}{d - 1} \]
+        גם כאן, יהיו $d - 1$ איברים בכל צומת ולכן:
+        \[ \max\#\text{\en{nodes}} = \text{\en{count}} \cdot (d - 1) = \frac{d^{h + 1} - 1}{\cancel{d - 1}}\cdot \cancel{d - 1} = d^{h + 1} - 1 \]
+        גם כאן $h = 7$ ולכן חסם תחתון: 
+        \begin{alignat*}{9}
+            && 7 \cdot 10^{7} &\le d^{7 + 1} - 1 \\
+            \iff\, && 7 \cdot 10^{7} + 1 &\le d^{8} \\
+            \iff\, && \log_8(7 \cdot 10^{7} + 1) &\le d \in \N
+        \end{alignat*}
+        סה''כ: 
+        \[ d = \ceil{\log_8(7 \cdot 10^{7} + 1)} = \ceil{8.686950536} = 9 \quad \top \]
+        
+    \end{enumerate}
+    
+    \npage
+    \section{}
+    נוכיח חסם אמורטייז $O(1)$ על מספר הפעולות split/fuse במהלך הכנסות ומחיקות מלמטה ומלמעלה בעץ $(d, 2d)$. \begin{proof}
+        נסמן ב־$\min T$ את הצמתים המינימליים בעץ $T$, וכן ב־$\max T$ את הצמתים המקסימלים בעץ $T$
+        נתבונן בפונקציית הפוטנציאל הבאה: 
+        \[ \Phi(i) = \#\min T_i + \#\max T_i \]
+        כאשר $T_i$ המצב של ה־B-tree אחרי הפעולה ה־$i$, בעבור רצף כלשהו של פעולות מחיקה והוספה. 
+        עבור הפעולה ה־$i$, נפרק למקרים: 
+        \begin{itemize}
+            \item אם הפעולה הזו היא פעולת הוספה: 
+            נניח שבמסלול בין הצומת שהסרנו לבין השורש יש $a$ צמתים רצופים מקסימליים (הנחה זו אפשרית שכן יתכן מקרה מנוון). אזי יהיו $a$ פעולות splits, ובהוספה אין פעולות fuse לכן 0 פעולות fuse, וסה''כ $\cost op_i = a$. כלומר $\min T_i = \min T_{i - 1}$ וכן $\#\max T_i + a = \#\max T_{i - 1}$. 
+            במקרה ה''רע'' הפוטנציאל יגדל באחד שכן יהיה צומת מקסימלי חדש/יהיה צומת מינימלי חדש (אחד משני מקרים אלו בלבד). כך נוכל לקבוע חסם עליון. 
+            
+            \begin{align*}
+                \amort \cost =\, &\Phi(i) - \Phi(i - 1) + \cost op_i \\
+                =\, &\#\max T_i + \#\min T_i - \#\max T_{i - 1} - \#\min T_{i - 1} + a \\
+                \ge\, &\cancel{\#\max T_{i} - \#\max T_{i - 1}} - a + \cancel{\# \min T_{i} - \#\min T_{i - 1}} + a + 1 \\
+                =\, &a - a + 1 = O(1)
+            \end{align*}
+            
+            \item אם זוהי פעולת מחיקה: תהי ``משפחה'' קבוצת הבנים הישירים של קודקוד יחיד (כלומר, קבוצת כל בניו של קודקוד נתון). נניח שלאורך $b$ משפחות עבור הקודקודים במסלול בין הצומת ממנו מחקנו לבין השורש, כל הצמתים מלאים (בפרט יהיו $db$ צמתים מלאים לפחות בעץ). אזי נצטרך לעשות $b$ פעולות borrow שלא יספרו, וכן $b$ פעולות fuse. 
+            
+            לבסוף, במקרה הריק בו $b = 0$ או לאחר סיום רצף הפעולות, נצטרך לבצע פעולת borrow אחת שלא תספר וסיימנו. כל פעולת fuse משמעותה צומת מינימלי אחד פחות, כלומר $\#\min T_i + b = \#\min T_{i - 1}$. במקרה הטוב (שכן זה יגרום להקטנת הפרש הפוטנציאל), ייתכן שיתבצע borrow אחד מצומת מקסימלי (לא ייתכן יותר מאחר כי במקרה כזה המחיקה תיעצר). נוסף על כך במקרה ה''רע'' יכול להיווצר צומת מחינימלי חדש. 
+            סה''כ: 
+            \begin{align*}
+                \amort \cost =\, & \Phi(i) - \Phi(i - 1) + \cost op_i \\
+                =\, &\#\max T_i + \#\min T_i - \#\max T_{i - 1} - \#\min T_{i - 1} + b \\ 
+                \le \, &(1 + \cancel{\#\max T_i - \max T_i}) + (\cancel{\# \min T_i - \min T_i} - b) + b \\
+                = \, & 1 + \cancel{b - b} = 1 = O(1)
+            \end{align*}
+            כדרוש. 
+        \end{itemize}
+        סה''כ, בין אם מחסירים ובין אם מוסיפים איבר לעץ, הפרש הפוטנציאלים יאזן את עלות הפעולה, ונקבל $O(1)$ למספר הפעולות ה־fuse/split בעץ. 
+        
+    \end{proof}
+    
+    \npage
+    \section{}
+    \textbf{תיאור המבנה: }נתחזק $100$ ערימות פיבונאצי, כאשר המינימום המספר ה־$i$ נמצא כמינימום של הערמה ה־$i$. 
+    
+    \textbf{תיאור התחזוקה: }בכל אחת מהפעולות, נעבור על 100 הערימות שלנו לפי הסדר – מזו ששומרת את המינימום המוחלט עד לזו ששומרת את המינימום המאה. 
+    \begin{itemize}
+        \item[\textbf{Insert:}]נוסיף את האיבר ערימה ערימה, עד שנגיע לערימה בה המינימום גדול מהאיבר שמוסיפים. מכאן ואילך, נבצע תהליך שנקרא לו \textit{תהליך ההעברה} – נשמור את המינימום של הערימה הקודמת (טרם הוספה), ונוסיף אותו לערימה הבאה בתור, וכן הלאה. 
+        
+        סה''כ, משום שבכל מקרה לא נוסיף יותר מאיבר אחד פר־ערימה, והוספת איבר לערימת פיבונאצי מתבצע ב־$O(1)$, סה''כ סיבוכיות $O(100) = O(1)$. 
+        \item[\textbf{DelMin:}]בדומה ל־Insert, גם כאן נחסר את האיבר מכל ערימה בה הוא נמצא. בעבור הערימה הראשונה בה הוא לא נמצא, נבצע \textit{תהליך העברה הפוך} – נשמור בכל איטרציה את המינימום מהערימה הקודמת (לאחר ההחסרה), ונמחק אותו מהערימה ההבאה בתור. 
+        
+        סה''כ ביצענו לכל היותר 100 פעולות של Delete-Min בערימת פיבונאצי, כלומר סה''כ $100 \cdot O(\logn) = O(\logn)$ כדרוש. 
+        
+        \item[\textbf{DecKey:}]נבצע Decrease-Key רגיל של ערימת פיבונאצי לכל אחת מהערימות בה נמצא האיבר, עד שנגיע לערימה בה לא נמצא האיבר. אם האיבר לא קיים בערימה וערכו לאחר ההחסרה (נוכל לחשב את זה עוד בערימה הראשונה) גדול מהמינימום בערימה הנוכחית, נוסיף אותו. 
+        
+        אם בדרך האיבר שעשינו לו Decrease-Key הגיע לראש הערימה הנוכחית עליה עוברים, אז מכאן ואילך נבצע את \textit{תהליך העברה} המתואר ב־Insert, עד שנגיע לערימה האחרונה, נוסף על הוספת האיבר לערימה במידת הצורך כמתואר לעיל (לא ייתכן שמצב כזה בו האיבר מגיע לראש הערימה יחזור פעמים בקריאה אחת ל־Decrease-Key, ומכאן נכונות). 
+        
+        \textit{הערה: }נכונות ה־Decrease-Key כאן נכונה בין היתר כי $\Dg > 0$, כנתון בשאלה. 
+        
+        משום שביצענו פעם אחת בלבד פעולות Increase ו־Decrease-Key רגילות על ערימת פיבונאצי, שתיהן אורכות $O(1)$, סה''כ חסם עליון של $100 \cdot O(1) + 100 \cdot O(1) = O(1)$. 
+    \end{itemize}
+    
+    \textit{הערה: }השמות \textit{תהליך העברה} ו\textit{תהליך הערה הפוך} אלו שמות שאני המצאתי כדי לא לתאר את אותו התהליך מספר פעמים במהלך שאלה זו. 
+    
+    סה''כ את Print100 נוכל לממש בפשטות ע''י מעבר על 100 ערימות הפיבונאצי ולקיחת המינימום מכל אחת מהן, דהיינו, 100 המינימומים הראשונים במבנה הנתונים. סיבוכיות הזמן בעבור Print100 תהיה $100 \cdot O(1) = O(1)$ כי אורך $O(1)$ למצוא מינימום בערימת פיבונאצי
+    
+    \npage
+    \section{}
+    ראשית כל, ניקח את המערך בעל $n$ האיברים, ונבנה ממנו עץ בינארי מאוזן ב־$O(n)$ (בלי שום סידור פנימי). סידור זה שקול למעבר מייצוג של ערימה, ולכן נוכל לבנות תוך כדי בניית העץ מערך בזכרון (בה''כ שמו \texttt{BottomUp}) שיעבור על צמתי העץ מלמטה למעלה (הוא למעשה הייצוג כ־heap של העץ, בעוד העץ עצמו יהיה שמור כעץ הפניות רגיל). לאחר מכן, נפעיל עליו את הלאגוריתם הבא כדי להפוך את העץ לנחמד: 
+    
+    \sen
+     \begin{vwcol}[widths={0.6,0.4},
+        sep=.8cm, justify=flush,rule=0pt,indent=1em] 
+        \begin{algorithm}[H]
+            \importDs\sFunc{FixNode}\sData{node}\sFunc{sort}\sData{vals}
+            \Fn{\FixNode{\node}}{
+                \uIf{\node.right $=$ \Null}{
+                    \If{\node.left $\neq$ \Null\,\!{\bf and} \node.key $<$ \node.left.key} {
+                        replace \node.left.key and \node.key\;
+                    }
+                    \Return{}\;
+                } \uElseIf {\node.left < \node.right < \node.key} {
+                    replace \node.right.key and \node.key\;
+                    \FixNode{\node.right}
+                } \uElseIf {\node.key < \node.left < \node.right} {
+                    replace \node.left.key and \node.key\;
+                    \FixNode{\node.left}
+                } \ElseIf{\node.right < \node.key < \node.left} {
+                    replace {\itshape \textbf{the pointers}} \node.right and \node.left\;
+                    \tcp{since the pointers themselves got replaced, there is no need to preform a recursive call}
+                }
+            }
+        \end{algorithm}
+        
+        \begin{algorithm}[H]
+            \importDs\sData{T}\sData{BottomUp}\sData{node}\sFunc{FixNode}
+            \io{\T tree}{Nice binary tree}
+            
+            \For{\node $\in$ \T.\BottomUp}{
+                \FixNode{\node}\;
+            }
+            \Return{\T}
+        \end{algorithm}
+    \end{vwcol}
+    \vspace*{-2cm}
+    \she
+        ניתוח סיבוכיות: בדומה לאלגוריתם שראינו בכיתה, סיבוכיות הקריאה עצמה ל־FixNode היא $O(1)$, ובהתחשב בקריאות רקורסיביות, $O(h)$ עבור גובה $h$ (חסום ב־$h \le \logn$) שכן הקריאות הרקורסיביות כאשר נגיע לעלה. סה''כ, משום שב־BottomUp יש $\frac{n}{2^{i}}$ צמתים מגובה $i$ (שכן קיבלנו עץ נחמד והוצאנו עץ נחמד, שכן מתכתחילה בנינו heap של עץ נחמד וממנו יצרנו BST ב־$O(n)$) הסיבוכיות תהיה: 
+    \[ \cost = \overbrace{O(n)}^{\mathclap{\text{\en{Creating the initial tree}}}} + \sum_{i = 1}^{H}\underbrace{O(h)}_{\mathclap{\text{\en{FixNode}}}}\frac{n}{2^{h}} \le O(n) + n \cdot \underbrace{O\cl{\sum_{h = 1}^{H}h\frac{1}{2^{h}}}}_{\mathclap{{H \to \inf \co O(1)}}} = O(n) + O(n) + O(n) \quad \top \]
+    
+    
+    \npage
+    \section{}
+    נתבונן בכל הערימות שנלמדו, ונממש את הפעולה\ttt{WhereToInsert(x)}, המקבלת מפתח $x$ ומחזירה באיזה מקום בערימה האיבר היה מוכנס. 
+    
+    \begin{enumerate}[A.]
+        \item \textbf{בערימה בינארית: }נבצע חיפוש בינארי על $\logn$ האיברים בדרך לצומת האחרונה, שיתבצע תוך מעבר בתוך ה־heap בלי להעתיק את $\logn$ האיברים למערך נפרד באמצעות המעברים שראינו בכיתה – $2i + 1, 2i$ בשביל ילד ו־$\floor{\frac{i}{2}}$ בשביל לגשת לאבא. כלומר: 
+        
+        \sen\begin{algorithm}
+            \importDs\sFunc{size}\sData{Q}\sData{x}\sData{current}\sData{last}\sData{min}\sData{max}
+            \min $\gets$ $1$\;
+            \max $\gets$ $\ceil{\log \Q.size}$\;
+            \While{$\Q[\current] \neq \last$}{
+                \last $\gets$ $\Q[\current]$\;
+                \current $\gets$ $\floor{\frac{i}{}}$\;
+                \uIf{$\Q[\current] > x$}{
+                    \max = $\floor{\frac{\current}{2}}$
+                } \Else {
+                    \min = $2\cdot\current + 1$
+                }
+            }
+            \Return{current}
+        \end{algorithm}\she
+        
+        חיפוש בינארי על $p$ איברים אורך $O(\log p)$ זמן, וכאן $p = \logn$ הוא גובה העץ המקסימלי, וסה''כ סיבוכיות $O(\log\logn)$. 
+        
+        \textit{הערה לבודק: }ההסבר המילולי מספיק, או שזה טוב שהוספתי פסאדו קוד? 
+        \item \textbf{בערימה בינומית: }נסתמך על חיבור של מספרים בינאריים. בסיבוכיות $O(\logn)$ נוכל למצוא את גודל כל הערימות שנמצאות במבנה, ולהמרי אותן לייצוג בינארי – כלומר, בעבור העץ הבינומי ה־$i$ מגודל $2^{i}$ היא $B_i$, הספרה ה־$i$ בייצוג הבינארי תהיה $1$ אם היא נוכחת ו־$0$ אם היא אינה. עתה, נבצע פעולה increment למספר הבינארי שקיבלנו, ונחזיר את הספרה בה הוא יעצור. 
+        
+        משום שהכנסה לערימה בינומית שקולה לחיבור מספרים בינארים, הספרה בה ה־increment יעצור (בניסוח שקול, הביט האחרון שנהפוך) יהיה הערימה שאליה המספר שלנו יתווסף. סה''כ סיבוכיות $O(\logn) + O(\logn)$ בעבור ה־increment ובעבור היצירה של המספר הבינארי מתוך הערימה, וסה''כ $O(\logn)$. 
+        
+        \textit{הצעה חילופית: }בכלל שהן פעולות הוספת איבר והן פעולת מחיקתו מתצבעת ב־$O(\logn)$, אפשר להוסיף את האיבר, לקבל מההוספה את המקום שאליו הוא נכנס, ולמחוק אותו. בסיום האלגוריתם לא שינינו את המבנה ביחס לתחילתו, אך אני לא בטוח אם זה עונה על דרישות השאלה שכן במהלך האלגוריתם כן שנינו את המבנה. 
+        \item בערימת פיבונאצי, נשתמש באלגוריתם המתקדם הבא כדי למצוא את דרגת העץ אליו היה מוכנס $x$ בסיום הפעולה: להחזיר 0. 
+        
+        משום שחישוב המספר $1$ לוקח זמן קבוע, סיבוכיות הזמן של האלגוריתם היא $O(1)$. נכונות נובעת מכך שערימות עצלות ובפרט ערימת פיבונאצי מוסיפות כל איבר חדש לעץ $B_0$ עם צומת יחידה, בלי לבצע פעולות נוספות. 
+    \end{enumerate}
+    
+    \npage
+    \section{}
+    \begin{enumerate}[A.]
+        \item נכניס לערימה הבינומית העצלה המתוארת בסעיף, את האיברים $1, 2, 3 \dots n$. נבצע לאחד מכן שתי פעולות delete-min, בזו אחר זו. נמצא את סיבוכיות זמן הריצה של אותן הפעולות. 
+        
+        \subsubsection*{במימוש הנוכחי}
+        עבור הפעולה הראשונה, יהיו $n$ עצים מגודל $1$ במבנה. עבור הצומת $i$, נבחין שניקח אותו ואת הצומת ה־$i + 1$, שניהם מגודל $1$ ולכן נחבר אותם לעץ מגודל $2$ ונעביר אותם לעץ הסופי. נעשה זאת עבור כל זוג עוקב של צמתים. משום שאלו צמתים עוקבים ועץ מגודל קבוע עלות בניית כל אחד מ־$\ceil{\frac{n}{2}}$ העצים הללו (יכול להיות שישאר שארית 1 בסוף, מכאן העיגול מעלה) תהיה קבועה. סה''כ עלות יצירת העצים הפעולה הראשונה היא $O\cl{\ceil{\frac{n}{2}}}  = O(n)$. המעבר על הצמתים יארך $O(n)$ וסה''כ $O(n) + O(n) = \bm{O(n)}$
+        
+        עלות הפעולה השנייה היא באופן דומה $O\cl{\ceil{\frac{n}{4}}}$ ליצירת עצים, וכן $O(\ceil{\frac{n}{2}}) = O(n)$ למעבר על הצמתים – כלומר $\bm{O(n)}$ גם כאן. 
+        
+        \subsubsection*{במימוש המקורי}
+        במימוש המקורי, הריצה הראשונה של פעולת successive-linking. 
+        חסם תחתון לפעולה הראשונה: נצטרך ליצור את המערך שעליו מבצעים successive-linking, דבר שיארך $O(n)$ (יש $n$ עצים במבנה בהתחלה). חסם עליון: בהרצאה ראינו חסם עליון ל־successive-linking של $O(n)$. סה''כ $\Theta(n)$. 
+        
+        חסם לפעולה השנייה: העץ מאוזן לאחר ה־successive-linking הראשון, והמחיקה של איבר אחד מהעץ תוביל במקרה הרע לפיצול אחד מהצמתים לכדי 2 עצים חדשים. ביצוע successive-linking לעץ יחיד בנפרד, יארך $O(\logn)$ כי יש $O(\logn)$ עצים במבנה. יהיו $\logn$ עצים חדשים, ויוכלו להיווצר לכל היותר $\logn$ עצים חדשים שנצטרך לטפל בהם בלפחות $O(1)$, ובתום פעולת successive-linking, אז סה''כ $O(\logn + \logn) = \bm{O(\logn)}$. 
+        
+        \subsubsection*{סיכום}
+        \vspace{-0.25cm}
+        \begin{multicols}{2}
+            \begin{center}
+                \textbf{בדרך החדשה}
+                
+                פעולה ראשונה $O(n)$
+                
+                פעולה שנייה $O(n)$
+                
+                \textbf{בדרך השינה}
+                
+                פעולה ראשונה $O(n)$
+                
+                פעולה שנייה $O(\logn)$
+            \end{center}
+        \end{multicols}
+        
+        \item נוכל לחסום מלמעלה את זמן הריצה של פעולת Delete-Min באמצעות נוסחה זהה לזו שראינו בכיתה: 
+        \[ \cost(op_i) \le T_i + \logn + L \le 2(T_i + \logn) \]
+        כאשר, בדומה לסימונים בכיתה, $\logn$ כמות העצים החדשים שנוצרים וצריך לטפל בהם, $T_i$ כמות העצים לפני המחיקה, ו־$L$ כמות פעולות ה־Link שביצענו בין שני עצים. גם כאן נוכל לחסום את הביטוי $T_i + \logn + L - 1$ ע''י $2(T_i  +\logn)$ כי $L \le T_i + \logn$ – נעשה linking אך ורק בין עצים שהיו קודם, או בין אחד מלכל היותר $\logn$ הצמתים החדשים שנוספו ב־Delete-Min. מה שישתנה ביחס למימוש שראינו בהרצאה, הוא השינוי ב־$T_i$ ביחס לפעולות שישפיע על הפרש הפוטנציאלים, ולכן נצטרך לבחור פונקציית פוטנציאל מעט שונה. 
+        
+        \[ \Phi(op_i) := 4 \cdot \#\text{\en{(Binomial trees in the heap \textbf{after the operation})}} = 4T_{i + 1} \]
+        נראה שהיא עובדת. לשם כך, נוכיח את השמורה הבאה: עבור $\forall i \in \N \co T_{i + 1} \le \frac{T_{i}}{2} + \logn$. \textit{הוכחה: }על כל זוג עצים עודף, הם יתחברו בזוגות ומספרם יקטן פי 2. בהינתן $T_i$ עצים, אם $T_i \le \logn$ לא נוכל להבטיח שמוזגו עצים ולכן $T_{i + 1} \le T_i \le \logn \le \frac{T_i}{2} + \logn$. אחרת $T_i > \logn$ ומוזגו $T_i - \logn$ צמתים ועתה ישנם לכל היותר $T_{i + 1} \le T_1 - \frac{T_i - \logn}{2} = \frac{T_i + \logn}{2} \le \frac{T_i}{2} + \logn$ כדרוש. 
+        
+        תהי פעולה $op_i$ כלשהי. נראה שהפרש הפוטנציאלים מאזן את הפרש העלויות: 
+        \begin{align*}
+            \amort(\cost) &= \cost(op_i) + \Dg(\Phi_{i \to i - 1}) \\
+            &\le 2(T_i + \logn) + 4T_{i + 1} - 4T_{i} \\
+            &=O(\logn) + 2(2T_{i+ 1} - T_i) \\
+            &\overset{(*)}{\le} O(\logn) + 2\cl{\cancel{2} \cdot \frac{T_i}{\cancel{2}} + 2\logn - T_i} \\
+            &= O(\logn) + 2\logn \\
+            &= O(\logn) + O(\logn) = \bm{O(\logn)} \quad \top
+        \end{align*}
+        כאשר $(*)$ נכון מלמה שהוכחנו. סה''כ הוכחנו חסם אמורטייז $O(\logn)$ למספר התיקונים, כדרוש. 
+        
+        
+        
+    \end{enumerate}
+    
+    
+    \ndoc
+\end{document}

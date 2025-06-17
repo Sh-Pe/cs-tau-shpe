@@ -1,0 +1,606 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Design
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+    \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+    \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+\newcommand\detms[1]    {\sof{\begin{matrix}
+            #1
+\end{matrix}}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+\DeclareMathOperator{\perm}{perm}
+
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 1א $\sim$ תרגיל בית 10}}
+\begin{document}
+    \maketitle
+    
+    \section{}
+    \subsection*{א'}
+    נניח שלפולינומים הבאים: 
+    \[ a(x) = a_2x^2 + a_1x + a_0 \quad b(x) = b_2x^2 + b_1x + b_0 \]
+    שורשים $a(x) = a_2(x - \ag_1)(x - \ag_2)$ וכן $b(x) = b_2(x - \bg_1)(x - \bg_2)$ (בהינתן שורשים נוכל לפרק פולינום לגורמםי לינאריים עד לכדי כפל בקבוע). 
+    
+    בין היתר בגלל הפיתוח הבא: 
+    \begin{align*}
+        \begin{cases}
+            b_0 = b(0) = b_2(0-\bg_1)(0-\bg_2) \\
+            b_2 + b_1 + b_0 =  b(1) = b_2(1 - \bg_1)(1 - \bg_2)
+        \end{cases}\dequad\implies \begin{cases}
+            b_0 = b_2\bg_1\bg_2 \\
+            b_1 + b_2\bg_1\bg_2 = b_2(1 - \bg_1)(1 - \bg_2)
+        \end{cases}
+    \end{align*}
+    נצמצם מעט יותר את $b_1$: 
+    \[ b_1 = b_2((1 - \bg_1)(1 - \bg_2) - \bg_1\bg_2) = b_2(\cancel{\bg_1\bg_2} - \cancel{\bg_1\bg_2} - \bg_1 - \bg_2 + 1) = b_2(1 - \bg_1 - \bg_2) \]
+    ובאופן דומה: 
+    \[ a_0 = a_2\ag_1\ag_2 \ \land \ a_1 = a_2(1 - \ag_1 - \ag_2) \implies a_1^2 = a_2^2(1 - \ag_1 - \ag_2 + \ag_1^2 + \ag_2^2 + 2\ag_1\ag_2) \]
+    
+    עתה נמצא את הדטרמיננטה הבאה באמצעות פיתוח לפי העמודה הראשונה: 
+    \begin{align*}
+        \detms{A_{a(x)b(x)}} = \detms{a_2 & a_1 & a_0 & 0 \\ 0 & a_2 & a_1 & a_0 \\ b_2 & b_1 & b_0 & 0 \\ 0 & b_2 & b_1 & b_0} &= a_2(-1)^{1 + 1}\detms{a_2 & a_1 & a_0 \\ b_1 & b_0 & 0 \\ b_2 & b_1 & b_0} + b_2(-1)^{1 + 3}\detms{a_1 & a_0 & 0 \\ a_2 & a_1 & a_0 \\ b_2 & b_1 & b_0} \\
+        &= a_2\cl{a_0\detms{b_1 & b_0 \\ b_2 & b_1} + b_0\detms{a_2 & a_1 \\ b_1 & b_0}} + b_2\cl{a_0\detms{a_1 & a_0 \\ b_2 & b_1} + b_0\detms{a_1 & a_0 \\ a_2 & a_1}} \\
+        &= a_2\cl{a_0(b_1^2 - b_0b_2) + b_0(a_2b_0 - a_1b_1)} + b_2(a_0(a_1b_1 - a_0b_2) + b_0(a_1^2 + a_0a_2))  \\
+        &= {a_2(b_1^2a_0 - a_0b_0b_2 + b_0^2a_2 -a_1b_1b_0)} + {b_2(a_1^2b_0 + b_0a_0a_2 + a_0^2a_1- a_0b_1b_2)} \\
+        &= a_1^2 b_0 b_2 + a_1 (a_0^2 b_2 - a_2 b_0 b_1) + a_2^2 b_0^2 + a_0 (a_2 b_1^2 - b_1 b_2^2) \\
+    \end{align*}
+    מכאן נותרה אלגברה בלבד לצמצם ולקבל את הדרוש: 
+    \[ = a_2^2b_2^2(\ag_1 - \bg_1)(\ag_1 - \bg_2)(\ag_2 - \bg_1)(\ag_2 - \bg_2) \]
+    
+    \subsection*{ב'}
+    נוכיח ש־$a(x) = b(x) = 0$ בעל פתרון אמ''מ $\det A_{a(x)b(x)} = 0$. \begin{proof}
+        \begin{itemize}
+            \item[$\impliedby$] אם קיים פתרון $s$ כלשהו אז $a(x) = a_2(x - s)(?)$ כאשר $(?)$ חייב להיות גורם לינארי אחרת לא פריק, נסמן $a(x) = a_2(x - s)(x - \tl a)$. באופן דומה $b(x) = b_2(x - s)(x - \tl b)$. נקבל מהסעיף הקודם ש־: 
+            \[ \det A_{a(x)b(x)} = a_2^2b_2^2\underbrace{(s - s)}_{=0}(s - \tl b)(s - \tl a)(\tl a - \tl b) = 0 \]
+            כדרוש. 
+            \item[$\implies$] אם הדטרמיננטה אפס, אז בה''כ הפולינומים פריקים מנתוני השאלה, עם פירוק $a(x) = a_2(x - \ag_1)(x - \ag_2), \ b(x) = b_2(x - \bg_1)(x - \bg_2)$. אז נקבל: 
+            \[ \det A_{a(x)b(x)} = a_2^2b_2^2(\ag_1 - \bg_1)(\ag_1 - \bg_2)(\ag_2 - \bg_1)(\ag_2 - \bg_2) = 0 \]
+            ידוע $a_2 = 0 \lor b_2 = 0$ כי נתונים שני שורשים, ולכן $\ag_j = \bg_i =: s$ אזי $a(s) = 0 = b(s)$ כדרוש. 
+                
+        \end{itemize}
+    \end{proof}
+    
+    \subsection*{ג'}
+    נראה שלמערכת המשוואות הבאה קיים פתרון: 
+    \[ \begin{cases}
+        2x^2 + 3.66x + 1.66 = 0\\
+        3x^2 + 8.49x + 5.49 = 0
+    \end{cases} \]
+    נתבונן במטריצה: 
+    \[ \detms{2 & 3.66 & 1.66 & 0 \\ 0 & 2 & 3.66 & 1.66 \\ 3 & 8.49 & 5.49 & 0 \\ 0 & 3 & 8.49 & 5.49} \]
+    כדרוש. 
+    
+    \section{}
+    
+    \subsection*{א'}
+    \begin{multline*}
+        \detms{1 & a & a^2 & a^3 \\ 1 & b & b^2 & b^3 \\ 1 & c & c^2 & c^3 \\ 1 & d & d^2 & d^3} \rrt{\forall i\in [3]}{R_{i + 1} \to R_{i + 1} - R_i}
+        \detms{1 & a & a^2 & a^3 \\ 0 & b - a& b^2 - a^2 & b^3 - a^3 \\ 0 & c - b & c^2 - b^2 & c^3 - b^3 \\ 0 & d - c & d^2 - c^2 & d^3 - c^3} = \detms{b - a & b^2 - a^2 & b^3 - a^3 \\ c - b & c^2 - b^2 & c^3 - b^3 \\ d - c & d^2 - c^2 & d^3 - c^3} \\
+        = \detms{a - b & (c - a)(b + a) & (b - a)(b^2 + ab + a^2) \\ c - b & (c - b)(c + b) & (c - b)(c^2 + bc + b^2) \\ d - c & (d - c)(d + c) & (d - c)(d^2 + dc + c^2)} = \underbrace{(b - a)(c - b)(d - c)}_{A}\detms{1 & b + a & b^2 + ab + a^2 \\ 1 & c + b & c^2 + bc + b^2 \\ 1 & d + c & d^2 + dc + c^2} \rrt{R_3 \to R_3 - R_2}{R_2 \to R_2 - R_1} \\
+        A\detms{1 & b + a & b^2 + ab + a^2 \\ 0 & c - a & c^2 - a^2 + b(c - a) \\ 0 & d - b & d^2 - b^2 + c(d - b)} = A\detms{c - a & (c - a)(b + c + a) \\ d - b & (d - b)(c + d + b)} = A\underbrace{(c - a)(d - b)}_{B}\overbrace{\underbrace{\detms{1 & b + c + a \\ 1 & c + d + b}}_{\mathclap{c + d + b - b - c - a = d - a}}}^{C} \\ 
+        = \underbrace{(b - a)(c - b)(d - c)}_{A}\underbrace{(c - a)(d - b)}_B\underbrace{(d - a)}_C = (d - c)(d - b)(d - a)(c - b)(c - a)(b - a) \quad \top                                       
+    \end{multline*}                                                                                                                                                  
+                                                                                                                                                                     
+    \subsection*{ב'}                                                                                                                                                  
+    בהקשר הזה, נבחין ש־$a = 1, \ b = -1, \ c = 3, \ d = 4$. זאת כי: 
+    
+    \[ \detms{1 &1 & 1 & 1 \\ 1 & -1 & 1 & -1 \\ 1 & 3 & 9 & 27 \\ 1 & 7 & 49 & 343} = \detms{1 & 1^2 & 1^3 & 1^4 \\ (-1)^{0} & (-1)^{1} & (-1)^{2} & (-1)^{3} \\ 3^{0} & 3^{1} & 3^{2} & 3^{3} \\ 7^{0} & 7^{1} & 7^{2} & 7^{3}} = (4 - 3)(4 + 1)(4 - 1)(3 + 1)(3 - 1)(-1 + 1) = 0 \]
+    
+    
+    \npage
+    \section{}
+    יהי $A \in M_n(\R)$ ומתקיים ש־$\rk A = n - 1$. נוכיח $\rk \adj A =1$. \begin{proof}
+        תהי $A  \in M_n(\R)$, ונניח $\rk A = n - 1$. באופן כללי, ידוע $\forall x \in \col \adj A$ קיים $\tl x$ כך ש־$(\adj A)\tl x = x$ מהגדרת מטריצה בוקטור. אזי $Ax = A \adj A \tl x = \det A \tl x = 0$ שכן $\det A = 0$. לכן $x \in \ker A$, כלומר $\col \adj A \subseteq \nc(A)$. לכן ממשפט הממדים ומא''ש הכלה־ממדים: 
+        \[ \rk \adj A \le \dim \col \adj A \le \nc(A) = n - \rk A = 1 \]
+        עתה נותר להראות $\rk \adj A \neq 0$. משום ש־$\rk A = n - 1$, אזי קיימת קבוצה של $v_i \dots v_j$ הן $n - 1$ שורות ב־$A$ כך ש־$v_i \dots v_j$ בת''לית (אחרת כל $n - 1$ שורות הן ת''ל, נתבונן ב־$n - 1$ השורות הראשונות שהן ת''ל ונוסיף להן את השורה האחרונה שבהכרח ת''ל ב־$2 \dots n - 2$ השורות הראשונות מההנחה, ואז סה''כ יש לנו שני וקטורים שאפשר להסיר (הראשון והאחרון) ולקבל $n - 2$ וקטורים שפורסים את מרחב השורות, וסתירה). משום ש־$v_i \dots v_j$ בתל''ים ויש כאן $n - 1$ שורות מתוך $n$, אפשר לבטא את זה כ־$(v_i)_{i = 1}^{n} \setminus v_k$ כלשהו, ואז $\det A_{kk} \neq 0$ כי $A_{kk}$ שורותיה בת''ל ולכן הפיכה. סה''כ $A_{kk}$ הוא אחד מהקורדינאטות ב־$\adj A$ (עד לכדי כפל ב־$-1$) כלומר $\adj A \neq 0$ ואז $\rk \adj A \neq 0$. נסכם: $0 \neq \rk \adj A \le 1$ טבעי, לכן $\rk \adj A = 1$ כדרוש. 
+    \end{proof}
+    
+    \section{}
+    תהי $A \in M_n(\R)$ משולשית עליונה הפיכה, ונוכיח שההופכית שלה גם משולשית עליונה. \begin{proof}
+        \[ A \adj A = I \det A \implies A \cdot \frac{\adj A}{\det A} = I \implies A\op = \frac{\adj A}{\det A} \]
+        נוכיח $\adj A$ משולשית עליונה. לכל $i > j$: 
+        \[ (\adj)_{ij} = (-1)^{i + j}\underbrace{\det A_{ji}}_{=0} = 0 \]
+        השוויון של $\det A_{ji} = 0$ נכון כי מהיותה משולשית עליונה, השורות $(a_1 \dots a_j, 0 \dots), \ (a_1 \dots a_j, a_{j + 1}, 0, \dots 0)$ במינור ה־$ji$ ולכן כאשר נעיף את העמודה ה־$j$ נקבל שתי שורות ת''ל. בגלל ש־$i \neq j$  אף אחת מהשורות האלו לא תוסר, ולכן המינור ת''ל ואפשר לדרג אותו למטריצה עם שורת אפסים כלומר $\det A_{ji} = 0$ כדרוש. 
+        
+        סה''כ $\forall i  >j \co (A\op)_{ij} = |A|\op(\adj A)_{ij} = 0 \cdot |A|\op = 0$ כלומר הראינו שכל המשולש העליון של הדטרמיננטה אפסים, כדרוש. 
+    \end{proof}
+    
+    \section{}
+    תהי $A \in M_{n + 1}(\R)$ המקיימת $A_{ij} = \pm 1$. נוכיח שהדטרמיננטה שלה מתחלק ב־$2^{n}$. \begin{proof}
+        תהי $A \in M_{n + 1}(\R)$ כך ש־$A_{ij} = \pm 1$ לכל $i, j \in [n]$. 
+        נכפיל את שורות המטריצה ב־$\pm 1$ כך שכל העמודה הראשונה של $A$ יהיו $1$. נקבל מטריצה $A'$ כך ש־$\det A' = (-1)^{s}\det A$ עבור $s$ כלשהו. עתה, נוכל לבצע את הדירוג הבא: $A' \rrt{\forall i \in [n] \setminus \{1\}}{R_i \to R_i - R_1} A''$. משום שפעולות מסוג זה אינן משנות דטרמיננטה, נקבל $\det A'' = \det A'$, ובגלל שכל העמודה הראשונה של $A'$ הייתה 1־ים, נקבל: 
+        \[ A'' = \pms{1 & *_{1 \times n} \\ 0_{n \times 1} & B} \]
+        כאשר $B \in M_n(\R)$ מטריצה המקיימת $\forall i, j \in [n] \co B_{ij} \in \{0, \pm2\}$ שכן $B_{ij} = A'_{ij} - A'_{1j}$ וידוע $A_{kl} = \pm1$, וחיבור של כל קומבינציה מ־$\pm1$ יותיר משהו מ־$\{0, \pm2\}$. מפיתוח דטרמיננטה לפי השורה הימנית, נקבל $\det A'' = \det B$ (שכן המינורים שהם לא $A''_{11}$ כוללים שורת אפסים ולכן הדטרמיננטה שלהם 0). נבחין ש־: 
+        \[ \det B = \sum_{\sg \in S_n}\sgn \sg \cdot \overbrace{\prod_{i = 1}^{n}B_{i, \sg(i)}}^{B_\sg} \]
+        נבחין שבהינתן $\sg \in S_n$ כלשהי, אם $\forall i \co B_{i, \sg(i)} \in \pm 2$ אז $B_{\sg} = \pm 2^{n}$. אחרת, קיים $i$ כך ש־$B_{i, \sg(i)} = 0$ ואז $B_\sg = 0$ כי כפל ב־$0$ יביא מכפלה $0$. סה''כ $\det B$ הוא סכום של $n!$ פעמים איברים מסוג $\pm 2^{n}$, כלומר הוא מתחלק ב־$2^{n}$. מטרנזטיביות, נקבל $\det A' = \det B$ ולכן מתחלק גם הוא ב־$2^{n}$, ובגלל שחלוקה לא תלויה בשינוי הסימן $\det A= (-1)^{s}\det A'$ אז $\det A$ גם הוא מתחלק ב־$2^{n}$ כדרוש. 
+    \end{proof}
+    
+    \section{}
+    \[ \adj \pms{1 & 0  & 3 \\ 4 & 3 & 1 \\ 2 & 1 & 1} = \pms{\detms{2 & 1 \\ 1 & 1} & -\detms{4 & 1 \\ 2 & 1} & \detms{4 & 2 \\ 2 & 1} \\ -\detms{0 & 3 \\ 1 & 1} & \detms{1 & 3 \\ 2 & 1} & -\detms{1 & 0 \\ 2 & 1} \\ \detms{0 & 3 \\ 1 & 1} & -\detms{1 & 3 \\ 2 &1} & \detms{1 & 0 \\ 2 & 1}}^T = \pms{1 & -2 & 0 \\ 2 & -5 & 1 \\ -2 & 5 & 1}^T = \pms{1 & 2 & -2 \\ -2 & -5 & 5 \\ 0 & 1 & 1} \]
+    \section{}
+    נגדיר: 
+    \[ \perm A = \sum_{\sg \in S_n}\prod_{i = 1}^{n}A_{i, \sg(i)} \]
+    
+    \begin{enumerate}
+        \item נראה ש־$\perm A = \perm A^T$. \begin{proof}
+            ידוע שלכל $\sg \in S_n$ מתקיים: 
+            \[ (\cdot)\op \co [n]^{[n]}\to [n]^{[n]} \quad \sg(i) \mapsto \iota j \in [n].\, \sg(j) = i \]
+            זיווג, וכמו כן: 
+            \[ (A)_{i, \sg\op(i)} = (A^T)_{i, \sg(i)} \]
+            כלומר, הקבוצה $S\op_n = \{\sg\op \mid \sg \in S_n\}$ מקיימת $S_n = S\op_n$. מכאן נקבל (עד לכדי שינוי סדר סכימה): 
+            \[ \perm A = \sum_{\sg \in S_n}\prod_{i = 1}^{n}A_{i, \sg(i)} = \sum_{\sg \in S\op_n}\prod_{i = 1}^{n}A_{i, \sg(i)} = \sum_{\sg \in S_n}\prod_{i = 1}^{n}A_{i, \sg\op(i)} = \sum_{\sg \in S_n}\prod_{i = 1}^{n}A^T_{i, \sg(i)} = \perm A^T \]
+            כדרוש. 
+        \end{proof}
+        \item נראה שאם $E$ אלמנטרית מייצגת של $R_i \to \lg R_i$ אז $\perm(EA) = \lg \perm A$ \begin{proof}
+            
+            \[ \perm EA = \sum_{\sg \in S_n} \prod_{j = 1}^{n}(EA)_{j, \sg(j)} = \sum_{\sg \in S_n}\!\lg A_{i, \sg(i)}\prod_{\mathclap{j \in [n] \setminus \{i\}}}A_{i, \sg(i)} = \lg \sum_{\sg \in S_n}A_{i, \sg(i)}\prod_{\mathclap{j \in [n] \setminus \{i\}}} a_{j, \sg (j)} = \lg \sum_{\sg \in S_n}\prod_{j = 1}^{n}(A)_{j, \sg(j)} = \lg\perm A \]
+            כדרוש. 
+        \end{proof}
+        \item נראה שאם $A$ משולשית תחתונה אז $\perm A = \prod_{i = 1}^{n}a_{ii}$. \begin{proof}
+            לכל $\sg \in S_n$ כך ש־$\sg \neq Id_{[n]}$, משובך יונים קיים בהכרח $i \in [n] \co \sg(i) > i$ כלומר $A_{i, \sg(i)} = 0$. נסמנו $\sg^{0}$. סה''כ: 
+            \[ \perm A = \sum_{\sg \in S_n} \prod_{i = 1}^{n}A_{i, \sg(i)} = \prod_{i =1}^{n} A_{i, Id_{[n]}(i)} + \sum_{\mathclap{Id_{[n]} \neq \sg \in S_n}}\overbrace{A_{\sg^{(0)}, \sg(\sg^{(0)})}}^{0} + \prod_{\mathclap{\sg^{(0)} \neq i \in [n]}}A_{i, \sg(i)} = \prod_{i = 1}^{n}A_{i, i} \]
+            כדרוש, כאשר השוויון המסומן ל־$0$ מתקיים כי $A$ משולשית עליונה. 
+        \end{proof}
+    \end{enumerate}
+    
+    
+    
+    \ndoc
+\end{document}
