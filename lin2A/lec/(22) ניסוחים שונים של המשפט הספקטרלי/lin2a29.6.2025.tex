@@ -1,0 +1,767 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Design
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={Document by Shahar Perets},
+	%	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+\newcommand\zc    {\mathcal{Z}}
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
+\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
+\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+	\SetKwFunction{RetrieveFirst}{Retrieve-First}
+	\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+	\SetKwFunction{DeleteFirst}{Delete-First}
+	\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+	\SetKwFunction{InsertFirst}{Insert-First}
+	\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+	\SetKwFunction{AddEdge}{Add-Edge}
+	\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+	\SetKwProg{Fn}{function}{ is}{end}
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codegreen}null}
+	\SetKwData{True}{\color{codeblue}true}
+	\SetKwData{False}{\color{codeblue}false}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 2א 22}}
+\begin{document}
+	\maketitle
+	\textbf{תזכורת: }יהי $(V, \smut)$ ממ''פ מעל $\F \in \{\R, \C\}$. אז: 
+	\defi{עבור $T \co V \to V$ ט''ל צמודה לעצמה (סימטרית מעל $\R$, הרמטית מעל $\C$) מוגדר
+	\[ \forall v, u \in V \co \mut{Tv}{u} = \mut{u}{Tv} \]}
+	וזה שקול לכך ש־$T^* = T$. 
+	\defi{$T$ נקראת נורמלית אמ''מ $T^*T = TT^*$}
+	
+	מטריצה צמודה לעצמה בהכרח נורמלית אך לא להפך. 
+	
+	יש לנו שני ניסוחים למשפט הספקטרלי: 
+	
+	\theo{(המשפט הספקטרלי מעל $\R$) $T$ סימטרית אמ''מ קיים בסיס א''נ של ו''ע. }
+	\theo{(המשפט הספקטרלי מעל $\C$) $T$ נורמלית אמ''מ קיים בסיס א''נ של ו''ע. }
+	
+	\dotfill
+	
+	עוד טענו מהמשפט הספקטרלי: 
+	
+	\theo{אם $T^* = T$ אז כל הע''ע של $T$ ממשיים. }
+	וכן שבעבור ייצוג של נורמלית מעל $\R$, קיים סיס א''נ $B$ כך ש־$[T]_B$ מטריצה מהצורה: 
+	\[ [T]_B = \pms{\square_1 \\ & \ddots \\ &&\square_m \\ &&& \diag(\lg_1 \dots \lg_k)} \]
+	כאשר הבלוקים מהצורה: 
+	\[ \square_i = \pms{a_i & b_i \\ -b_i & a_i} \]
+	
+	\dotfill
+	
+	התחלנו לדבר על העתקות אוניטריות (מעל $\C$) או אורתוגונליות (מעל $\R$). תקרא כך כאשר $TT^* = I$. הבחנו ש־$A \in M_n(\F)$ נקראת כנ''ל אמ''מ $A\op = A^* = \ol{A^T}$ מעל $\C$, ו־$A\op = A^T$ מעל $\R$. באופן כללי זה שקול לאיזומטריה ליניארית (כלומר שם כללי לאורתוגונליות/אוניטריות יהיה איזומטריות). 
+	
+	\textit{הערה: }איזומטריה, גם מחוץ ללינארית, היא פונקציה שמשרת גודל. 
+	
+	נמשיך עם התזכורות. $T$ איזומטריה אמ''מ מתקיים אחד מבין הבאים: 
+	\begin{enumerate}
+		\item (ההגדרה) \hfil $T^* = T\op$
+		\item \hfil $TT^* = T^*T = I$
+		\item \hfil $\forall u, v \in V \co \mut{Tu}{Tv} = \mut{u}{v}$
+		\item $T$ מעבירה כל בסיס א''נ לבסיס א''נ
+		\item $T$ מעבירה בסיס א''נ \textit{כלשהו} לבסיס א''נ [מקרה פרטי של 4 בצורה טרוויאלית, אך גם שקול!]
+		\item \hfil $\forall v \in V \co \norm{Tv} = \norm{v}$
+	\end{enumerate}
+	אפשר להסתכל על מתכונה 4 על איזומטריות כעל הומומורפיזם של ממ''פים. 
+	
+	``היה לי מרצה בפתוחה שכתב דבר לא מדויק בסיכום, ואז הוריד נקודות לסטודנטים שהסתמכו על זה. הוא אמר שזה מתמטיקה, אתם אחראים להבין מה נכון או לא – גם אם כתבתי שטויות''. 
+	
+	\dotfill
+	
+	גמרנו עם תזכורות
+	
+	\noti{א''נ = אוניטרית בהקשר של מטריצות (בהקשר של מרחבים – אורתונורמלי)}
+	\theo{התאים הבאים שקולים על $A \in M_n(\F)$. 
+	\begin{enumerate}
+		\item $A$ א''נ
+		\item שורות $A$ מהוות בסיס א''נ של $\F^n$ (ביחס למכפלה הפנימית הסטנדרטית)
+		\item עמודות $A$ מהוות בסיס א''נ של $\F^n$. 
+		\item (ביחס למכפלה הפנימית הסטנדרטית) \hfil $\forall u, v \in \F^n \co \mut{Au}{Av} = \mut{u}{v}$
+		\item (ביחס למכפלה הפנימית הסטנדרטית) \hfil $\forall v \in \F^n \co \norm{Av} = \norm{n}$
+	\end{enumerate}}
+	\textit{הערה שלא קשורה למשפט: }נאמר ש־$[T^*]_B = [T]_B^*$ אמ''מ $B$ בסיס \textbf{א''נ}. 
+	
+	\textit{הערה נוספת: }זה בערך אמ''מ כי יש כמה מקרי קצה כמו מטריצת האפס. 
+	
+	\begin{proof}\,
+		\begin{itemize}
+			\item[$1 \lra 2$] נוכיח את הגרירה הראושנה
+			\[ \pms{- & v_1 & - \\ & \vdots \\ - & v_n & -}\pms{\vert & & \vert\\ \bar v_1^T & \cdots & \bar v_n^T \\ \vert & & \vert} = AA^* = I \iff \text{א''נ}\, A \implies v_i \bar v_j^T = \dg_{ij} \] 
+			הטענה האחרונה שקולה לכך ש־$v_1 \dots v_n$ בסיס א''נ (ביחס למ''פ הסטנדטית של $\F^n$)
+			\item[$1 \lra 3$]מספיק להוכיח $A$ א''נ אמ''מ $A^T$ א''נ. מסימטריה ($(A^T)^T = A$) למעשה מספיק להוכיח $A$ א''נ גורר $A^T$ א''נ. נוכיח: 
+			\[ A^*A = I \implies A^T\bar A = I \implies (A^T)^* = \bar A \implies A^T(A^T)^* = I \]
+			\item[$4 \lra 1$]נתבונן ב־$T_A \co \F^n \to \F^n$ כאשר $\ec$ הבסיס הסטנדרטי. אז $[T_A]_{\ec} = A$. אז $T_A$ א''נ אמ''מ $[T_A]_{\ec} =: A$. אז: 
+			\[ \mut{Au}{Av} = \mut{T_Au}{T_Av} = \mut{u}{v} \]
+			\item[$5 \lra 1$] אותה הדרך כמו קודם. 
+		\end{itemize}
+	\end{proof}
+	
+	\textbf{שאלה. }מהן המטריצות $A \in M_2(\R)$ האורתוגונליות? \begin{proof}[התשובה]
+		בהינתן $A = \binom{a\, b}{c\, d}$ מהיות העמודות והשורות מהוות בסיס א''נ:
+		\[ \begin{cases}
+			a^2 + b^2 = 1 \\
+			c^2 + d^2 = 1 \\
+			a^c + c^2 = 1 \\
+		\end{cases} \implies a = \cos\ta, \ b = \sin\ta \]
+		עוד נבחין ש־$ac + bd = 0$ כי: 
+		\[ AA^T = I \implies \pms{a & b \\ c & d}\pms{a & c \\ b & d} = \pms{a^2 + b^2 & ac + bd \\ ac + bd & c^2 + d^2} = I \]
+		סה''כ מכך ש־$a^c + c^2 = 1$ ו־$b^2 + d^2 = 1$ נקבל שתי צורות אפשריות: 
+		\[ A_1:= A = \pms{\cos\ta & \sin\ta \\ \sin\ta & -\cos\ta} \lor A_2:= A = \pms{\cos\ta&\sin\ta \\ -\sin\ta & \cos\ta} \]
+		נבחין ש־$A_2$ הוא סיבוב ב־$\ta$, ו־$A_1$ שיקוף ניצב ביחס ל־$\frac{\ta}{2}$. זה לא מפתיע שכן $\det A_1 = -1, \ \det A_2 = 1$. 	
+	\end{proof}
+	``דרך נוספת לראות את זה'': 
+	\[ a = \cos\ta \implies b = \sin\ta, \ c = \sin\vphi \implies d = \cos\vphi \]
+	אז (עד לכדי סיבוב)
+	\[ \cos\ta \sin\vphi + \sin\ta \cos\vphi \implies \sin(\ta + \phi) = 0 \implies \ta + \phi = 0 \lor \ta + \phi = \pi \]
+	במקרה הראשון ש־$\phi = \ta$ קיבלנו סיבוב, ובמקרה השני נקבל ש־$\vphi = \pi - \ta$ ואז $\sin(\pi - \ta) = \sin \ta$ כדרוש. 
+	
+	ננסה להבין יותר טוב למה הן מסובבות בצורה הזו. $A_2$ מטריצה מוכרת אך $A_1$ פחות. נתבונן בפולינום האופייני שלה: 
+	\[ f_{A_1}(x) = \sof{\begin{matrix}
+			x - \cos\ta & -\sin\ta \\ -\sin\ta & x + \cos\ta
+	\end{matrix}} = x^2 - \cos^2 \ta - \sin^2\ta = (x + 1)(x - 1) \]
+אזי הע''ע $-1, +1$ (שימו לב ש־$A_2$ לא לכסינה מעל $\R$). 
+	\begin{multline*}
+		A\pms{\cos\frac{\ta}{2}\\\sin\frac{\ta}{2}} = \pms{\cos\ta & \sin\ta \\ \sin\ta & -\cos\ta} \pms{\cos\frac{\ta}{2} \\ \sin\frac{\ta}{2}} = \pms{\cos \ta \cos \frac{\ta}{2} + \sin\ta \sin\frac{\ta}{2} \\ \sin\ta\cos\frac{\ta}{2} - \cos\ta\sin\frac{\ta}{2}} = \pms{\cos\cl{\ta - \frac{\ta}{2}} \\ \sin\cl{\ta - \frac{\ta}{2}}} = \pms{\cos\ta/2 \\ \sin\ta/2} \quad \cl{\frac{\ta}{2} \mapsto \frac{\ta}{2} + \pi} \\
+		 = \pms{\cos\cl{\frac{\ta}{2} - \frac{\pi}{2}} \\ \sin\cl{\frac{\ta}{2} - \frac{\pi}{2}}} = \pms{-\cos\cl{\frac{\ta}{2} + \frac{\pi}{2}} \\ -\sin\cl{\frac{\ta}{2} + \frac{\pi}{2}}} 
+	\end{multline*}
+	[אני ממש חלש בטריגו ואני מקווה שאני לא מסכם דברים לא נכונים. תבדקו אותי פעמיים כאן בחלק הזה. גם המרצה עשה את ההחלפה המוזרה של $\ta/2 \to \ta/2 + \pi/2$]. 
+	
+	``אם הייתם רוצים תקופות מבחנים נורמליות הייתם צריכים להיווולד בזמן אחר''. 
+	
+	``ומה, אתם חושבים שאחרי שהפקולטה דחתה בשבוע היא תיאמה את זה עם הפקולטות האחרות? הם דיברו איתם כמה ימים אח''כ''
+	
+	\textbf{מסקנה. }(הצורה הנורמלית של ט''ל אורתוגונלית) תהי $T \co V \to V$ אורתוגונלית. אז קיים בסיס א''נ של $V$, שביחס אליו המטריצה המייצגת את $T$ היא מהצורה: 
+	\[ \pms{A_{\ta_1} \\ &\ddots \\ &&A_{\ta_n} \\ &&& 1 \\ &&&&\ddots \\ &&&&&1 \\ &&&&&&-1 \\ &&&&&&& \ddots \\ &&&&&&&&-1} \]
+	כאשר: 
+	\[ A_{\ta_i} = \pms{\cos \ta_i & \sin \ta_i \\ -\sin \ta_i & \cos \ta_i} \]
+	(אוניטרית לא מעיינת כי היא לכסינה)
+	
+	\textbf{הגיון: }
+	
+		אורתוגונלית, לכן נורמלית, לכן נראית בצורה של בלוקים $2 \times 2$ של ע''ע. הע''ע מגודל $1$ כי היא אורתוגונלית, והם חייבים להיות ממשיים על מעגל היחידה הממשי. המטריצה $A_{\ta}$ חייבת להיות אורתוגונלית מגודל $2 \times 2$ כי כל תמ''ו שם הוא $T$־אינוו', כלומר אפשר לחלק את $T$ לבלוקים מתאימים ובפרט $T$ המצומצמת גם אורתוגונלית, ולכן $A_{\ta}$ סה''כ אורתוגונלית. כאשר $A_{\ta_i} = \pms{a & b \\ -b & a}$ ו־$b \neq 0$ נשארנו עם המטריצות הללו. 
+	
+	
+	\begin{proof}
+		ידוע עבור נורמלית: 
+		\[ A = \pms{\square_1 \\ & \ddots \\ &&\square_m \\ &&& \lg_1 \\ &&&&\ddots \\ &&&&&\lg_k} \]
+		כאשר
+		\[ \square_i = \pms{a_i & b_i \\ -b_i & a_i} \]
+		ובמקרה הזה משום שהיא אורתוגונלית על $\R$ אז $\lg_i = \pm1$ כי $|\lg_i| = 1$. נתבונן במטריצה $\square_i$ כלשהי, אז $\square_i$ הנפרש ע''י $u_k, u_{k + 1} =: U$ מקיים: 
+		\[ [T_{|U}]_{B_U} = \square_i = \pms{a_i & b_i \\ -b_i & a_i}\quad [Tu_k]_{U_B} = \pms{a \\ -b}, \quad [Tu_{k + 1}] = \pms{b \\ a} \]
+		ומשום שהצמצום של אורתוגונלית על מ''ו $T$־אינו' היא עדיין אורתוגונלית, והיא בהכרח מהצורה של מטריצת הסיבוב לעיל. המטריצה של שיקוף וסיבוב ב־$\frac{\ta}{2}$ לכסינה ולכן להפוך לע''ע $\lg_1 \dots \lg_n$ (עד לכדי סדר איברי בסיס) שהם בהכרח מגודל $\pm 1$ בכל מקרה, ויבלעו בשאר הע''ע, ובכך סיימנו. 
+	\end{proof}
+	
+	אבל האם הייצוג יחיד? ננסה להבין את יחידות הייצוג עבור נורמלית כללית, ומשם לגזור על אורתוגונלית. 
+	
+	\theo{כל שתי מטריצות בצורה לעיל שמייצגות את אותה $T \co V \to V$ נורמלית, שוות עד כדי סדר הבלוקים על האלכסון. }
+	
+	(יש כאן מה להוכיח רק בעבור $\R$, שכן מעל $\C$ לכסין). 
+	\begin{proof}
+		ידוע שבעבור $\lg_1 \dots \lg_k$ ע''עים: 
+		\[ f_T(x) = \cl{\prod (x - \lg_i)} \cl{\prod (x^2 - 2a_ix + a_i^2 + b_i^2)} \]
+		כאשר המכפלה הראשונה באה מהע''עים והשניה מהריבועים $\square_i$. נבחין שלכל תמ''ו $a_i$ נקבבע ביחידות, ולכן $b_i$ נקבל ביחידות עד כדי סימן (נסיק זאת מהפולינום האופייני). ברור שהע''עים נקבעים ביחידות עוד מההרצאות הראשונות. 
+	\end{proof}
+	אז מאיפה בה שינוי הכיוון של $b$, בעבור מטריצות אורתוגונליות? כלומר, מדוע $A_{\ta_i}$ שקולה ל־$A_{-\ta_i}$ (תפתחו את האלגברה/טריגו, זה מה שזה אומר)? זאת כי הן דומות באמצעות ההעתקה שהופכת את הצירים, מה ששקול ללהחליף את עמודות $A_{\ta_i}$. 
+	
+	\theo{(המשפט הספקטרלי ``בשפה קצת מטרציונית'') תהי $A \in M_n(\F)$ מטריצה סימטרית (מעל $\R$)/נורמלית (מעל $\C$). אז קיימת  מטריצה $P$ אורתוגונלית/אוניטרית (בהתאם לשדה ממנו יצאנו), ומטריצה אלכסונית $D$ כך ש־
+	$ A = P\op D P $}
+	כלומר – מטריצת מעבר הבסיס של המשפט הספקטרלי, שמעביר אותנו לפירוק הספקטרלי, היא איזומטריה. למעשה חיזקנו את המשפט הספקטרלי – המעבר לבסיס המלכסן, מסתבר להיות מיוצג ע''י מטריצות איזומטריות. 
+	
+	המרצה מדגיש שלא השתמשנו במשפט הזה בכלל על בסיסים ועל וקטורים – אפשר לתאר עולם הדיון של המטריצות, משום שהוא עולם דיון הומורפי להעתקות ולמרחבים וקטורים, בלי לדבר בכלל על העתקות ומרחבים וקטורים. המשפט מתאר באופן טהור מטריצות בלבד. 
+	
+	\lem{תהי $A \in M_n(\F)$ מטריצה ריבועית, וכן $\{e_1 \dots e_n\}$ בסיס א''נ של $V$. נניח ש־$A$ היא מטריצת המעבר מבסיס $\{e_1 \dots e_n\} \to \{v_1 \dots v_n\}$. אז $A$ איזומטריה אמ''מ $\{v_1 \dots v_n\}$ בסיס אורתונורמלי. }
+	\begin{proof}[הוכחת המשפט. ]
+		תהי $T_A \co \F^n \to \F^n$ באופן הרגיל. אז $A= [T_A]_\ec$ כאשר $\ec = \{e_1 \dots e_n\}$ הבסיס הסטנדרטי. ידוע של־$T_A$ יש בסיס אורתונורמלי מלכסן, כלומר קיים בסיס א''נ $B$ כך ש־$[T_A]_B = D$ כאשר $D$ אלכסונית כלשהית. נבחין ש־$[T_A]_B = [Id]^\ec_B [T_A]_\ec [Id]_\ec^B$, נסמן $P = [Id]^\ec_B$ ונבחין ש־$[T_A]_B = PAP\op$ ומהלמה $P$ מטריצת מעבר מבסיס א''נ לבסיס א''נ ולכן איזומטריה. נכפיל בהופכיות ונקבל $A = P\op DP$. 
+	\end{proof}
+	
+	
+	באמצעות כלים של אנליזה פונקציונלית אפשר להגדיר נורמה גם על פונקציות, ואיכשהו להגדיר את העובדה שההעתקה שמעבירה בסיס (בעולם הדיון של ההעתקות) היא אוניטרית/אורתוגונלית. 
+	
+	``אני יודע איך מגדירים נורמה של טרנספומציה. יופי של שאלות – לא לעכשיו''
+	
+	``יאללה הפסקה? לא!''
+	
+	\subsection{פלייסהולדר אני אשים כותרת בסיכום הסופי}
+	\textit{הערה: }במקרה של $\F= \R$ נקבל ש־
+	\[ A = P\op DP \implies PP^T = I \implies P\op = P^T \implies A = P^TDP \]
+	מה שמחזיר אותנו לתבניות בילינאריות. נוכל לקשר את זה לסינגטורה. זאת כי $A$ לא רק דומה, אלא גם חופפת ל־$D$. גם מעל $\C$ נקבל דברים דומים, אך לא במדויק, שכן מכפלה פנימית מעל $\C$ היא ססקווי־בילינארית ולא בילינארית רגילה. 
+	
+	\theo{עבור $A \in M_n(\C)$ נורמלית, אז
+	\begin{itemize}
+		\item $A^* = A$ (צמודה לעצמה) אמ''מ כל הע''עים שלה ממשיים. 
+		\item $A^* = A\op$ אמ''מ כל הע''ע שלה מנורמה $1$. 
+	\end{itemize}}
+	את הכיוון $\impliedby$ כבר הוכחנו. נותר להוכיח את הכיוון השני. 
+	\begin{itemize}
+		\item נניח שכל הערכים העצמיים ממשיים, ו־$A$ נורמלית. נוכל להשתמש במשפט הספקטרלי עליה: לכן קיימת מטריצה אוניטרית $P$ ואלכסונית $\Lg$ כך ש־$A = P\op \Lg P$. ידוע $\Lg \in M_n(\R)$ כי אלו הע''ע מההנחה. נבחין ש־: 
+		\[ A^* = P^* \Lg^* (P\op)^* = P\op \Lg P = A \]
+		כי $PP^* =I$ ו־$\Lg$ אוניטרית (אז ה־transpose לא עושה שום דבר) מעל $\R$ (אז ההצמדה לא עושה שום דבר). 
+		\item נניח $A$ נורמלית וכל הע''ע מנורמה $1$. נוכיח $A$ אוניטרית. בעבור הפירוק הספקטרלי לעיל $A = P\op \Lg P$ נקבל כאן ש־$\Lg$ אוניטרית, ומהמשפט הספקטרלי $P$ אונטרית גם כן. $A$ מכפלה של 3 אוניטריות ולכן אוניטרית. 
+		
+		(הסיבה שמכפלה של אוניטריות היא אונטרית: בעבור $A, B$ א''נ מתקיים
+		\[ \forall v \in V \co \mut{ABv}{ABv} = \mut{Bv}{Bv} = \mut{v}{v} \]
+		משמרת מכפלה פנימית, וזה שקול להיותה אוניטרית ממשפט לעיל)
+	\end{itemize}
+	
+	\textbf{תזכורת: }אם $V$ ממ''פ מעל $\F$, אז $T \co V \to V$ תקרא \textit{חיובית} או \textit{אי־שלילית} (וכו') אם $T = T^*$ וגם $\forall v \neq 0 \co \mut{Tv}{Tv} \ge\!/\!> 0$. 
+	
+	\theo{נניח ש־$A = A^* \in M_n(\F)$, אז התנאים הבאים שקולים (קיצור מוכר: TFAE, the following are equaivlent): 
+	\begin{enumerate}
+		\item $T_A$ חיובית/אי שלילית על $\F^n$. 
+		\item לכל $T \co V \to V$ ובסיס א''נ $B$ כך ש־$A = [T]_B$, $T$ חיובית/אי שלילית. 
+		\item קיימים $T \co V \to V$ חיובית/אי שלילית ו־$B$ בסיס, כך ש־$A = [T]_B$. 
+		\item הע''ע של $A$ (יודעים ממשיים כי צמודה לעצמה) חיובים/אי שליליים. 
+	\end{enumerate}}
+	\begin{proof}
+		מספיק לטעון זאת כדי להוכיח את השקילויות של 1, 2, 3: 
+		\[ \mut{Tv}{v}_V = \mut{[Tv]_B}{[v]_B}_{\F^n} = \mut{A[v]_B}{[v]_B}_{\F^n} \]
+		בשביל $1 \to 2$, ידוע שהאגף הימני גדול מ־$0$ מההנחה שהיא חיובית/אי שלילית על $\F^n$, ומכאן הראנו שהמיוצגת בכל בסיס חיובית כדרוש. בשביל $3 \to 1$, נפעיל טיעונים דומים מהאגף השמאלי במקום. הגרירה $2 \to 3$ ברורה. סה''כ הראינו את $1\lra2\lra 3$. 
+		
+		עתה נוכיח שקילות בין $1$ ל־$4$. 
+		\begin{itemize}
+			\item[$1 \to 4$] יהי $\lg \in \R$ ע''ע של $A$ (נוכל להניח ממשי כי $A$ צמודה לעצמה)
+			\[ \mut{Av}{v} = \lg\norm{v}^2 > 0 \implies \lg > 0 \]
+			\item[$4 \to 1$] יהי $B = (v_1 \dots v_n)$ בסיס א''נ של ו''ע, ויהי $V \ni v = \sum \ag_i v_i$. נקבל: 
+			\[ \mut{T_Av}{v} = \mut{Av}{v} = \mut{A\sumnio \ag_i v_i}{\sumnio \ag_i v_i} = \sum \lg_i |\ag_i|^2 > 0 \]
+		\end{itemize}
+	\end{proof}
+	
+	\textbf{תזכורת: }מעל $\R$, הוכחנו שלכל תבנית סימטרית, יש ייצוג יחיד באמצעות מטריצה אלכסונית עם $-1, 1, 0$ על האלכסון. 
+	\noti{הסיגנטורה של $f$ תסומן ע''י $\sg_-(f), \sg_0(f), \sg_+(f)$ כמספר האפסים, האחדים וה־$-1$ ב־$f$}
+	
+	\textbf{המשך תזכורת: }כל מטריצה סימטרית חופפת למטריצה יחידה מהצורה לעיל. 
+	
+	\theo{נניח ש־$A$ מייצגת את התבנית הסימטרית $f$ (עולם הדיון מעל $\R$). אז, אם הסיגנטורה $\sg_+ = \#(\lg \mid \lg > 0)$ עבור $\lg$ ע''ע עם חזרות. באופן דומה $\sg_- = \#(\lg \mid \lg > 0)$ וכו'. }
+	
+	\begin{proof}
+		משום ש־$A$ מייצגת סימטרית אז $A$ סימטרית. לפי המשפט הספקטרלי קיימת $P$ אורתוגונלית ו־$\Lg$ אלכסונית כך ש־$A = P\op\Lg P = P^T\Lg P$. $A$ דומה לאלכסונית וחופפת אליה. בעזרת נרמול היא חופפת למטריצה מהצורה $\diag(1 \dots 1, -1 \ldots -1, 0 \ldots 0)$ כאשר הסימן נקבע לפני הנרמול. 
+	\end{proof}
+	
+	מחר – שני הפירוקים האחרונים שלנו. אם יהיה זמן נרחיב על מרחבים דואלים. 
+	
+	
+	
+	\ndoc
+\end{document}

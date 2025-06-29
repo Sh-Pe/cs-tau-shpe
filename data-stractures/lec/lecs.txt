@@ -1,0 +1,12 @@
+1. Lists
+2. Amortized analysis
+3. BSTs
+4. AVL trees 1
+5. AVL trees 2
+6A. B trees
+6B. Intro to the sorting problem
+7. binomial stacks and heapsort
+7-8. binomial stacks and fibonacci heaps
+9. lower barrier for linear searches
+10. Intro to probability, quicksort and the selection problem
+11-12. hash tables
