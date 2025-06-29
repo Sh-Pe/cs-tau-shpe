@@ -35,31 +35,31 @@
 \definecolor{codegray}{rgb}{0.96,0.96,0.96}
 
 \lstdefinestyle{pythonstylesheet}{
-    language=Java,
-    emphstyle=\color{deepred},
-    backgroundcolor=\color{codegray},
-    keywordstyle=\color{deepblue}\bfseries\itshape,
-    numberstyle=\scriptsize\color{codenumber},
-    basicstyle=\ttfamily\footnotesize,
-    commentstyle=\color{codegreen}\itshape,
-    breakatwhitespace=false, 
-    breaklines=true, 
-    captionpos=b, 
-    keepspaces=true, 
-    numbers=left, 
-    numbersep=5pt, 
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false, 
-    tabsize=4, 
-    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
-    keywordstyle=\color{codeblue},
-    emph={var, List, Iterable, Iterator},          % Custom highlighting
-    emphstyle=\color{codered},
-    stringstyle=\color{codegreen},
-    showstringspaces=false,
-    abovecaptionskip=0pt,belowcaptionskip =0pt,
-    framextopmargin=-\topsep, 
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
 }
 \newcommand\pythonstyle{\lstset{pythonstylesheet}}
 \newcommand\pyl[1]     {{\lstinline!#1!}}
@@ -69,7 +69,7 @@
 \definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
 \mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
 \BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
-    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
 
 
 % Design
@@ -83,7 +83,7 @@
 \usepackage{titlesec}
 \titleformat{\section}[block]
 {\fontsize{15}{15}}
-{\sen \dotfill (\thesection)\dotfill\she}
+{\sen \dotfill (\thesection)\she}
 {0em}
 {\MakeUppercase}
 \usepackage{graphicx}
@@ -94,20 +94,6 @@
 \definecolor{mblue}{RGB}{30, 60, 200}
 \usepackage{hyperref}
 \hypersetup{
-<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
-    colorlinks=true,
-    citecolor=mgreen,
-    linkcolor=black,
-    urlcolor=mblue,
-    pdftitle={Document by Shahar Perets},
-    %	pdfpagemode=FullScreen,
-}
-\usepackage{yfonts}
-\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
-    \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
-\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
-    \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
-========
 	colorlinks=true,
 	citecolor=mgreen,
 	linkcolor=black,
@@ -120,7 +106,6 @@
 	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
 \def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
 	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
->>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 
 
 
@@ -139,22 +124,22 @@
 \newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
 \newcommand\he[1] {\she#1\sen}
 \newcommand\sen   {\begin{otherlanguage}{english}}
-    \newcommand\she   {\end{otherlanguage}}
+	\newcommand\she   {\end{otherlanguage}}
 \newcommand\del   {$ \!\! $}
 
 \newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
 \newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
-            {\textbf{\textit{שחר פרץ, 2025}} \\
-                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
-    \end{center}} \vfil	}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
 
 \newcommand{\rn}[1]{
-    \textup{\uppercase\expandafter{\romannumeral#1}}
+	\textup{\uppercase\expandafter{\romannumeral#1}}
 }
 
 \makeatletter
 \newcommand{\skipitems}[1]{
-    \addtocounter{\@enumctr}{#1}
+	\addtocounter{\@enumctr}{#1}
 }
 \makeatother
 
@@ -379,9 +364,9 @@
 \newcommand\F         {\mathbb{F}}
 \newcommand\co        {\colon}
 \newcommand\tmat[2]   {\cl{\begin{matrix}
-            #1
-        \end{matrix}\, \middle\vert\, \begin{matrix}
-            #2
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
 \end{matrix}}}
 
 \makeatletter
@@ -391,7 +376,7 @@
 \newcommand\gmat      {\mat{m}{n}(\F)}
 \newcommand\tomat     {\, \dequad \longrightarrow}
 \newcommand\pms[1]    {\begin{pmatrix}
-        #1
+		#1
 \end{pmatrix}}
 
 \newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
@@ -403,16 +388,16 @@
 \makeatletter
 \newlength\min@xx
 \newcommand*\xxrightarrow[1]{\begingroup
-    \settowidth\min@xx{$\m@th\scriptstyle#1$}
-    \@xxrightarrow}
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
 \newcommand*\@xxrightarrow[2][]{
-    \sbox8{$\m@th\scriptstyle#1$}  % subscript
-    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-    \sbox8{$\m@th\scriptstyle#2$} % superscript
-    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
-    {\mathmakebox[\min@xx]{\scriptstyle#2}}
-    \endgroup}
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
 \makeatother
 
 
@@ -480,8 +465,6 @@
 \newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
 
-<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
-========
 % DS
 \newcommand\limsi     {\limsup_{n \to \inf}}
 \newcommand\limfi     {\liminf_{n \to \inf}}
@@ -556,136 +539,123 @@
 \newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
 \newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
 \newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
->>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 
 %! ~~~ Document ~~~
 
-\author{שחר פרץ}
-<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
-\title{\textit{אלגברה לינארית 1א $\sim$ מרחבים דואליים}}
-\begin{document}
-    \maketitle
-    
-    
-    \section{\en{Dual spaces}}
-    \defi{יהי $V$ מ''ו מעל $\F$. אז: 
-    \[ V^{*} := \{f \co V \to \F \co \mid f \, \text{\en{Linear}}\} \]
-    הוא המ''ו הדואלי, ו־$f \in V^{*}$ פונקציונלי לינארי. }
-    
-    \textbf{דוגמאות. }
-    \begin{itemize}
-        \item בעבור $V = \R$ נראה שזה הישרים מהצורה $y = ax$. נסמן $y(1) = m$ ואז $y(x) = xy(1) = xm$ וסה''כ $y(x) = mx$ כדרוש. 
-        \item בעבור $V = \R^{2}$: גם במקרה הזה נקבע את $f(e_1) = a, f(e_2) = b$ ואז $f(x, y) = f(e_1x + e_2y) = ax + by$
-        \item במקרה הכללי יותר $V = \R^{n}$ ונסמן $f(e_i) = a_i$. סה''כ: 
-        \[ f(x_1 \dots x_n) = f\cl{\sum_{i = 1}^{n}x_ie_i} = \sum_{i = 1}^{n}x_ia_i \]
-    \end{itemize}
-    
-    \theo{המרחב הדואלי $(\R^{n})^{*}\cong \R^{n}$} \begin{proof}
-        נגדיר: 
-        \[ T \co \R^{n} \to (\R^{n})^{8}, \ T(a_1 \dots a_n) = f_{a_1 \dots a_n}, \ f_{a_1 \dots a_n}(x_1 \dots x_n) = \sum_{i = 1}^{n}a_xe_i \]
-        נוכיח שהיא לינארית, חח''ע ועל. 
-        \begin{itemize}
-            \item $T$ לינארית: 
-            \[ T(a + b) = f_{a + b} = \sum_{i = 1}^{n}(a_i + b_i)x_i = \sumni a_ix_i + \sumni b_ix_i = f_a + f_b = T(a) + T(b) \]
-            עתה נבדוק כפל בסקלר: 
-            \[ T_{\lg a} = f_{\lg a} = \sumni \lg a_i x_i = \lg \sumni a_ix_i = \lg f_{a}x \]
-            \item $T$ חח''ע: נניח ש־$T(a_1 \dots a_n) = 0$. ידוע $f_a = \sumni x_ia_i$ ולכל $i$ מתקיים $f(e_i) = a_i = 0$ וסה''כ $a = 0$ כדרוש. 
-        \end{itemize}
-    \end{proof}
-    
-    באופן כללי, $\dim V = n \implies \dim V^* = n$. 
-    
-    בהינתן בסיס ל־$V$, ישנו בסיס דואלי $\{f_1 \dots f_n\}$ המוגדרות ע''י $\forall i, j \co f_j(b_i) = \dg_{ij}$. 
-    
-    \theo{זהו בסיס ל־$V^*$. }\begin{proof}\,
-        \begin{itemize}
-            \item \textbf{על: }
-            \[ f(v) = f\cl{\sumni \ag_i b_i} = \sumni \ag_i f(b_i) \]
-            \item \textbf{חח''ע: }
-            \[ f = \sumni \ag_i f_i = 0 \implies f(b_i) = \ag_i = 0 \implies (\ag_i)_{i = 1}^{n} = 0 \quad \top \]
-        \end{itemize}
-    \end{proof}
-    נבחין שב־$\R^{n}$: 
-    \[ \ker f_a = \ccb{x \in \R^n \co \sumni a_ix_i = 0} \]
-    זהו תמ''ו מממד $n - 1$ (זהו אילוץ אחד שמאבד דרגת חופש אחת). 
-    
-    \textbf{דוגמאות לפונקציונלים מעל מ''וים לא נוצרים סופית: }$V = \{f \co [0, 1] \to \R\}$, מתקיים ש־$\phi(f) = f(0)$ פוקציונל, וגרעינו $\ker \phi =\{f \co [0, 1] \to \R\co f(0) = 0\}$. אפשר להראות ש־$f = f - \underbrace{f(0)}_{\ker \phi} + \underbrace{f(0)}_{A}$ כאשר $A$ מ''ו הפונקציות הקבועות. למעשה, פירקנו לסכום ישר של הגרעין + משהו חד ממדי. בכך ניסחנו לכאורה את המספר של $n - 1$ גם כאשר אין באמת אפשרות לחסר ממדי. נקרא לזה קו־ממד אחד. 
-    
-    באופן כללי, אם $0 \neq f \in V^*$ יש $v \in V$ fl a-$f(v) \neq 0$. נניח $f(v) = 1$. אז $\forall x \in V \co x = f - f(x)v + f(x) v$ ולכן נוכל לפרק $V = \ker f \oplus \Sp v$. 
-    
-    \subsection*{המרחב $V^{**}$}
-    ברור כי $V^{**}\cong V$. לכל $v \in V$ נוכל להתאים $\phi_V(f) = f(v)$. זה מגדיר העתקה לינארית מ־$V$ ל־$V^{**}$. נוכיח שהיא איזומורפיזם. חח''ע: הרעיון: להוכיח (לנוצרים סופית) $\forall f \in V^*, \phi_V(f) =  0 = f(v)$. נניח בשלילה ש־$v \neq 0$. אז נוכל להשלים אותו לבסיס $v, v_2 \dots v_n$, אפשר להגדיר $f$ כך ש־$f(v) = 1, \ f(v_i) = 0 \forall i \ge 2$. אבל אז $\phi_V(f) = f(v) = 2$ וסתירה. אזי זה חח''ע. 
-    
-    
-    זהו איזומורפיזם קאנוני: הוא לא תלוי בבסיס או משהו של המרחב עצמו. האיזומורפיזם לא דורש שום בחירה לא טרוויאלית בתוך המרחב. נאמר שהם איזומורמים קאנונית. 
-    
-    \subsection*{המרחב המאפס}
-    \defi{תהי $S \subseteq V$, אז המאפס שלה: 
-    \[ S^{0} = \{f \in V^* \co f|_S = 0\}\subseteq V^* \]}
-    \theo{\,
-    \begin{itemize}
-        \item \hfil $S^0 = (\Sp S)^0$
-        \item $S^0$ מ''ו
-        \item \hfil $S \subseteq T \implies S^0 \reflectbox{$\subseteq$} T^0$
-    \end{itemize}}
-
-    \theo{יהי $V$ מ''ו, $\dim V = n$, $U \subseteq V$ תמ''ו, נניח ש־$\dim U = r$ אז $\dim U^0 = n - r$}\begin{proof}
-        ניקח בסיס ל־$U$, $e_1 \dots e_r$. ניקח $f_1 \dots f_r$ כך ש־$f_i(e_j) = \dg_{ij}(j)$. נשלים לבסיס של $V$: 
-        \[ e_1 \dots e_r, \ e_{r + 1} \dots e_n \]
-        ובאופן דומה ב־$V^{n}$: 
-        \[ f_1 \dots f_r, f_{r + 1} \dots f_n \]
-        זהו בסיס ל־$U^0$ (לכל)
-        $j \ge r + 1$. מתקיים $f_i(e_j) = 0 \implies f_j|_U = 0$ לכל $i \ge r$. עתה נראה פרישה: 
-        \[ \forall f \in U^0 \co f(v) = f\cl{\sumni \ag_i e_i} = f\cl{\sum_{i = 1}^{r}\ag_ie_i} + f\cl{\sum_{i = r + 1}^{n}\ag_i e_i} = f\cl{\sum_{i = r+ 1}^{n}\ag_i e_i} = \sum_{i = r + 1}^{n}\ag_i f(e_i) = \sum_{i= r + 1}^{n}f_i(\underbrace{\sum \ag_i e_i}_{v})f(e_i) \]
-        בת''ל: 
-        הם איברים בבסיס $V^*$ ובפרט בת''ל. 
-    \end{proof}
-    
-    \ndoc
-    
-========
-\title{\textit{לינארית 2א 20}}
+\author{\en{Shahar Perets}}
+\title{\textit{לינארית 2א 21}}
 \begin{document}
 	\maketitle
-	תזכורת: $A \in M_n(\C)$ נקראית סימטרית אממ $A = A^T$ והרמיטית אם $A = A^*$, ונורמלית אממ $AA^* = A^*A$. 
+	\theo{אם $A \in M_n(\F)$ נורמלית, אזי קיים פולינום $f(x) \in \R[x]$ כך ש־$A^* = f(A)$}
 	
-	\theo{תהי $T \co V \to V$ ט''ל, ו־$V$ ממ''פ מעל $\F \in \{\R, \C\}$, ויהי $B$ בסיס א''נ של $V$. אזי אם $A = [T]_B$: 
-	\[ [T^*]_B = A = ([T]_B)^* \]}  
+	דיברנו על המשפט הזה בשבוע שעבר, אבל ההוכחה הייתה קצת עקומה אז נחזור עליה. 
 	\begin{proof}
-		נזכר ש־: 
-		\[ [T]_B = \pms{\vert &  & \vert \\ [Te_1]_B & \cdots & [Te_n]_B \\ \vert &  & \vert} \]
-		נסמן $B = \{e_i\}_{i = 1}^{n}$ בסיס. נבחין ש־: 
-		\[ Te_j = \sumni a_{ij}e_i, \ a_{ij} = \mut{Te_j}{e_i} \]
-		נסמן ב־$C$ את המטריצה המייצגת $[T^*]_B$: 
-		\[ c_{ij} = \mut{T^*e_j}{e_i} \]
-		ונחשב: 
-		\[ c_ij = \mut{T^*e_j}{e_i} = \mut{e_j}{Te_i} = \ol{\mut{Te_i}{e_j}} = a_{ij} \]
-		
+		עבור $A$ נורמלית מהמשפט הספקטרלי קיים בסיס אורתונורמלי מלכסן ולכן קיימת $P$ הפיכה כך ש־$P\op APש = \diag(\lg_1 \dots \lg_n)$. לכן $P\op A^* P = \diag(\bar \lg_1 \dots \bar \lg_n)$. נשתמש במשפט לפיו יש פולינום $f \in \R[x]$ כך ש־$f(x_i) = \bar x_i$ ובפרט בעבור $x_i = \lg_i$ קיים פולינום עבורו $f(\lg_i) = \bar \lg_i$. אזי 
+		\[ f(\diag(\lg_1 \dots \lg_n)) = \diag(f(\lg_1) \dots f(\lg_n)) = \diag(\bar \lg_1 \dots \bar \lg_n) \]
+		\[ f(P\op A P) = P\op f(A) P = P \op A^* P \implies f(A) = A^* \]
+		עוד נבחין ש־$\deg f = n - 1$. 
 	\end{proof}
 	
-	\textbf{מסקנה: }אם $A$ נורמלית אז $T_A$ נורמלית מעל $\F^n$ אם הסטנדרטית. בפרט מתקיים עליה המשפט הספקטרלי. גם אם $A$ ממשית, הע''ע עלולים להמצא מעל $\C$ (אלא אם היא צמודה לעצמה, ואז הם מעל $\R$). 
+	ננסה להבין מי הן $A \in M_2(\R)$ שהן נורמליות. מעל $\C$ הן פשוט לכסינות. נבחין ש־: 
+	\begin{align*}
+		A = \pms{a & b \\ c & d}, \ A^* = f(A) \in \R_{\le1}[x] = \ag A + BI, \ A = \ag A^T + \bg I = \ag(\ag A + \bg I) + \bg I \\ \implies \pms{a & b \\ c & d} = \pms{\ag^2 a + \bg(\ag + 1) & \ag^2 b \\ \ag^2 c & \ag^2 d + \bg (\ag + 1)} \\
+		\begin{cases}
+			(b \land c \neq 0 ) \quad \ag = 1 \implies  A = A + 2 \bg I \implies \bg = 0, \ A = A^T \cancel{+ \bg I} \\
+			(b \land c \neq 0) \quad \ag = -1 \implies A^T = - A  +\bg I  \implies A + A^T = \pms{\bg & 0 \\ 0 & \bg} \implies b = -c, \ A = \pms{a & b \\ -b & a} \\
+			(b \lor c = 0) \implies A = \pms{a & 0 \\ 0 & d}
+		\end{cases}
+	\end{align*}
+	המקרה השני – זה פשוט סיבובים, אבל בניפוח (כי הדטרמיננטה היא $a^2 - b^2$). 
 	
-	משהו על אינטרפולציות: 
-	\theo{יהיו $x_1 \dots x_n, y_1 \dots y_n \in \R$. נניח $\forall i, j \in [n] \co i \neq j \implies x_i \neq x_j$. אז $\exists! p \in \R_{\le n - 1}[x] \co \forall i \in [n] \co p(x_i) = y_i$ עד לכדי חברות (באופן שקול: נניח $p$ מתוקן) }
-	(הערה מהידע הכללי שלי: זהו פולינום לגראנג' והוא בונה אינטרפולציה די נחמדה). \begin{proof}
-		ידוע שהפולינום מהצורה $p(x)  = \sum_{k = 0}^{n - 1} a_k x^k  = (1, x, x^2, \dots x^{n - 1}) (a_0 \dots a_{n - 1})^T$. למעשה, נקבל את מטריצת ונדרמונד: 
-		\[ \pms{1 & x_1 & x_1^2 & \cdots & x_1^n \\ 1 & x_2 & x_2^2 & \cdots & x_2^{n - 1} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_n & x_n^2 & \cdots & x_n^{n - 1}}\pms{a_0 \\ a_1 \\ \vdots \\ a_{n - 1}} = \pms{y_1 \\ y_2 \\ \vdots \\ y_n} \]
-		וידוע שהדטרמיננטה של ונדרמונד היא $\prod_{i < j} (x_i - x_j)$ וזה איכשהו אמור לגמור את ההוכחה. 
-		
-		אם $x_i = y_i$ בפולינום לעיל, אז $\forall a \in \C \co f(\bar a) = \ol{f(a)} \implies f \in \R[x]$. הוכחה: נניח בשלילה, אז $\exists \ag \in \C\setminus \R \co f(\ag) = 0$ כך ש־$f(\bar \ag) = 0$. אזי $0 \neq f(\bar \ag) = \ol{f(\ag)}  = 0$ וזו סתירה. 
-	\end{proof}
-	
-	\theo{תהי $A \in M_n(\F)$ נורמלית, אז קיים פולינום $f(x) \in \R[x]$ כך ש־$A^* = f(A)$. }
-	\textit{הערה: }באופן כללי \textbf{לא} נכון שאם $A, B$ מתחלפות אז $\exists f(x) \in \F[x] \co f(A) = B$. 
+	בכל מקרה, מסקנה מהמשפט הקודם. 
+	\theo{אם $T \co V \to V$ נורמלית, אז $\exists f \in \R[x] \co f(T) = T^*$. }
 	\begin{proof}
-		נוכיח מעל $\C$ ובפרט נכונות ל־$\R$. מהמשפט הספקטרלי קיימת $P$ הפיכה (מעבר לבסיס אורתונורמלי) כך ש־$P\op A P = \diag(\lg_1 \dots \lg_n)$ הוא הבסיס המלכסן. מהיות המלכסן א''נ נקבל: 
-		\[ P\op A^* P = \diag(\lg_1 \dots \lg_n)^* = \diag(\bar\lg_1 \dots \bar \lg_n) \]
-		ולכן מפולינום האינטרפולציה עבור הקבוצות $\{\lg_1 \dots \lg_n\}$ ו־$\{\bar \lg_1 \dots \bar \lg_n\}$ קיים ויחיד עד לכדי חברות $f(x) \in \R[x]$ כך ש־$f(\lg_i) = \bar \lg_i$. נותר להראות ש־$A^* = f(A)$, זאת כי: 
-		\[ P\op A^* P = f(\diag(\lg_1 \dots \lg_n)) = \diag(\bar \lg_1 \dots \bar \lg_n) \implies f(P\op A P) = P\op f(A) P \]
-		נכפול ב־$P$ מצד אחד וב־$P\op$ מהצד השני ונקבל את הדרוש
+		נבחר בסיס א''נ $A^* = [T^*]_B, \impliedby A = [T]_B$. כבר הוכחנו שאם $T$ נורמלית אז $A$ נורמלית ולכן מהמשפט הקודם קיים $f$ מתאים כך ש־$[T^*]_B = A^* = f(A) = f([T]_B) = [f(T)]_B$. סה''כ $[T^*]_B = [f(T)]_B$ ומחח''ע העברת בסיס $T^* = f(T)$ כדרוש. 
 	\end{proof}
 	
+	אם $T \co V \to V$ ט''ל, $U, W \subseteq V$ תמ''וים $T$־איוונריאנטי כך ש־$U \oplus W = B$. אם $\bc$ בסיס של $V$, כאשר קישא של הבסיס הוא הבסיס של $U$ אז: 
+	\[ [T]_\bc = \pms{[T|_U]_\bc &  \\  & [T|_W]_\bc} \]
+	בפרט בעבור ניצבים $U \subseteq V \implies V = U \oplus U^{\perp}$. ניעזר בכך כדי להוכיח את המשפט הבא: 
+	\theo{אם $U \subseteq V$ תמ''ו אינוו' ביחס ל־$T$ אז $U^{\perp}$ הוא $T^*$־אינוו'. }\begin{proof}
+		יהי $w \in U^{\perp}$. רוצים להראות $T^*w \in U^{\perp}$. יהי $u \in U$ אז: 
+		\[ \mut{T^* w}{u} = \mut{w}{Tu} = \mut{w}{u'}, \ u' \in U \implies \mut{w}{u'} = 0 \quad \top \]
+	\end{proof}
+	\theo{בעבור $T \co V \to V$ נורמלית, אם היא $U$־אינו' אז גם $T^*$ הוא $U$־אינו'}
+	\begin{proof}
+		נבחין ש־$T^* = f(T)$ כלשהו, וכן $U$ הוא $T$־איוו' ולכן $U$ הוא $f(T)$־איוו' וכאן די גמרנו את ההוכחה. 
+	\end{proof}
+	מסימטריות $U^{\perp}$ הוא $T^*$, מהמשפט גם $(T^*)^*$ איונ' ולכן $T$־אינו'. 
 	
+	\theo{יהי $V$ מעל $\R$ מ''ו וכן $T \co V \to V$ ט''ל. אז קיים $U \subseteq V$ שהוא $T$־איונ' וממדו לכל היותר $T$. }
+	\textit{הערה: }מעל $\C$ ``זה מטופש'' כי הפולינום מתפרק (ואז המרחב העצמי יקיים את זה). 
+	\begin{proof}
+		נפרק ל־$m_T(x)$ מינימלי ו־$g(x)$ גורם אי־פריק כך ש־$m_T(x) = g(x)h(x)$. לכל $g$ אי פריק ב־$\R$ הוא לינארי  הוא ממעלה $2$, מהמשפט היסודי של האגלברה ומהעובדה ש־$m_T(x) = 0 \implies m_T(\bar x) = 0$. 
+		\begin{itemize}
+			\item אם $g$ לינארי אז יש ע''ע ממשי של $T$ מה שנותא $U$ (שנפרש ע''י הו''ע) ממד $1$. 
+			\item אם $\deg g = 2$ כמובן שניתן להניח $g$ מתוקן. ז''א $g(x) = x^2 + ax + b$ אז $g(T)$ אינו הפיך (מלמת החלוקה לפולינום מינימלי) כלומר $\exists 0 \neq v \in \ker g(T)$. 
+			לכן: 
+			\[ (T^2 + aT + bI)v = 0 \implies T^2v = -a T v - bv \]
+			ולכן $U = \Sp(v, Tv)$ תמ''ו עם ממד לכל היותר 2 וגם נשמר תחת $T$. 
+		\end{itemize}
+	\end{proof}
+	
+	\textit{הערה: }בעבור נורמלית הטענה נכונה ללא תלות במשפט היסודי של האלגברה. 
+	
+	לכן, בעבור נורמליות, מהמשפט הספקטרלי ומטענות קודמות, עבור $T \co V \to V$ ממשית קיים בסיס א''נ $\bc$ של $V$ שבעבורו המטריצה המייצגת של $T$ היא מטריצת בלוקים $2 \times 2$ מצורה של $\pms{a & b \\ -b & a}$: 
+	\[ [T]_\bc = \diag\cl{\pms{a_1 & b_1 \\ -b_1 & a_1} \cdots \pms{a_k & b_k \\ -a_k & b_k}, \ \lg_1 \cdots \lg_m} \]
+	כאשר כמובן $2k + m = n$. 
+	
+	\section{\en{Unitary matrixes}}
+	\defi{יהי $V$ ממ''פ. אז $T \co V \to V$ תקרא \textit{אוניטרית} (אם $\F = \C$) או \textit{אורתוגונלית} (אם $\F = \R$) אם $T^*T = I$ או במילים אחרות $T^* = T\op$. }
+	ברור שט''ל כזו היא נורמלית. 
+	\textbf{דוגמה. }עבור $T_\tg$ הסיבוב ב־$\tg$ מעלות, במישור $\R^2$, אז $(T_\tg)^* = T_{-\tg} = T\op_{\tg}$.  
+	\textbf{דוגמה. }עבור $T$ שיקוף מתקים $T^2 = I$ וכן $T^* = T$ וסה''כ $T^* = T = T\op$. 
+	
+	\theo{התנאים הבאים על $T \co V \to V$ שקולים: 
+	\begin{itemize}
+		\item \hfil $T^* = T\op$
+		\item \hfil $\forall v, u \co \mut{Tv}{Tu} = \mut{v}{u}$
+		\item $T$ מעבירה כל בסיס א''נ של $V$ לבסיס א''נ של $V$
+		\item $T$ מעבירה בסיס א''נ אחד של $V$ לבסיס א''נ של $V$ (כלומר, מספיק להראות שקיים בסיס יחידה שעובר לבסיס אחר). 
+		\item \hfil $\forall v \in V \co \norm{Tv} = \norm{v}$
+	\end{itemize}}
+	כלומר: היא משמרת זווית (העתקה פנימית) וגודל. במילים אחרות, היא משמרת העתקה פנימית. 
+	\begin{proof}נפרק לרצף גרירות
+		\begin{enumerate}
+			\item[$1 \to 2$] \hfil $T^* = T\op \implies \mut{Tv}{Tu} = \mut{v}{T^*Tu} = \mut{v}{u}$
+			\item[$2 \to 3$] נאמר ש־$(v_1 \dots v_n)$ א''נ. צ.ל. $(Tv_i)_{i = 1}^{n}$ א''נ. לשם כך נצטרך להוכיח את שני התנאים – החלק של האורתו והחלק של הנורמלי. בשביל שניהם מספיק להוכיח ש־: 
+				$\mut{Tv_i}{Tv_j} = \mut{v_i}{v_j}  = \dg_{ij}$
+			\item[$3 \to 4$]טרוויאלי
+			\item[$4 \to 5$]יהי $(v_1 \dots v_n)$ בסיס א''נ כך ש־$(Tv_1 \dots Tv_n)$ א''נ. אז: 
+			\begin{align*}
+				v = \sumni \ag_i v_i \implies &\norm{v}^2 = \mut{\sumni \ag_i v_i}{\sumni \ag_i v_i} = \sumni |\ag_i|^2 \\
+				&\norm{Tv}^2 = \mut{T\cl{\sumni \ag_i v_i}}{T\cl{\sumni \ag_i v_i}} = \mut{\sumni \ag_i T(v_i)}{\sumni \ag_i T(v_i)} = \sum |\ag_i|^2
+			\end{align*}
+			\item[$5 \to 1$]מניחים $\forall v \in V \co \norm{Tv} = \norm{v}$. ידועות השקילויות הבאות: 
+			\[ T^* = T\op \iff T^*T = I \iff T^*T - I = 0 \]
+			בעבר ראינו את הטענה הבאה: נניח ש־$S$ צמודה לעצמה וכן ש־$\forall v \co \mut{Sv}{v} = 0$, אז $S = 0$. במקרה הזה: 
+			\[ S := T^*T - I \implies S^* = (T^*T - I)^* = (T^*T)^* - I^* = T^*(T^*)^* - I =S \implies S^* = S \]
+			והיא אכן צמודה לעצמה. עוד נבחין ש־: 
+			\[ \mut{Sv}{v} = \mut{(T^* T - I)v}{v} =\mut{T^*Tv}{v} - \mut{v}{v} = \mut{Tv}{Tv} - \mut{v}{v} = \norm{Tv}^2 - \norm{v}^2 = 0 \]
+			השוויון האחרון נכון מההנחה היחידה שלנו ש־$\norm{Tv} = \norm{v}$. סה''כ $TT^* - I = 0$. סה''כ הוכחנו $TT^* - I = 0$ שזה שקול ל־$T^* = T\op$ מהשקילויות לעיל כדרוש. 
+		\end{enumerate}
+	\end{proof}
+	
+	\theo{תהי $T \co V \to V$ אוני'אורתו', ו־$\lg$ ע''ע של $T$. אז $|\lg| = 1$} \begin{proof}
+		יהי $v$ ו''ע של הע''ע $\lg$. אז: 
+		\[ |\lg|^2 \mut{v}{v} = \lg\bar\lg \mut{v}{v} = \mut{Tv}{Tv} = \mut{v}{v} \]
+	\end{proof}
+	\defi{תהי $A \in M_n(\F)$. אז $A$ תיקרא \textit{אוניטרית}/\textit{אורתוגונלית} אם $A^* = A\op$. }
+	\theo{אוניטרית: $A\ol{A^T} = I$}
+	\theo{אורתוגונלית: $AA^T = I$}
+	\textit{הערה: }אוניטרית בה מלשון unit – היא שומרת על הגודל, על וקטורי היחידה (ה־unit vectors). 
+	\theo{יהי $\bc$ בסיס א''נ של $V$ ו־$T \co V \to V$ אז $T$ אוניטרית/אורתוגונלית אמ''מ $A = [T]_B$ אוניטרית/אורתוגונלית. }
+	\begin{proof}
+		\[ AA^* = [T]_\bc[T^*]_\bc = [TT^*]_\bc, I = AA^* \iff [TT^*]_\bc = I \iff TT^* = I \]
+	\end{proof}
+	
+	הנושאים האחרונים למבחן – צורה קאנונית של העתקה נורמלית מעל הממשיים, וכן העתקות אורתוגונליות ואוניטריות. ללא צורה קאנונית של העתקה אורתוגונלית. לכן ההרצאות בשיעורים הבאים לא נכנסות לחומר. תודה איראן. 
+	
+	\textit{הערה. }\textit{איזומטריה} היא העתקה שמשמרת גדלים, ואיזומטריה אורתוגונלית היא פשוט אוניטרית. משום מה זה שם שמדברים עליו בע''פ אבל לא הגדירו מסודר. 
 	\ndoc
->>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 \end{document}

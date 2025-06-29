@@ -23,6 +23,7 @@
 
 
 % code 
+\usepackage{algorithm2e}
 \usepackage{listings}
 \usepackage{xcolor}
 
@@ -71,7 +72,7 @@
 	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
 
 
-% Deisgn
+% Design
 \usepackage[labelfont=bf]{caption}
 \usepackage[margin=0.6in]{geometry}
 \usepackage{multicol}
@@ -88,6 +89,25 @@
 \usepackage{graphicx}
 \graphicspath{ {./} }
 
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={Document by Shahar Perets},
+	%	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
 
 % Hebrew initialzing
 \usepackage[bidi=basic]{babel}
@@ -96,12 +116,13 @@
 \babelprovide[import]{english}
 \babelfont[hebrew]{rm}{David CLM}
 \babelfont[hebrew]{sf}{David CLM}
-\babelfont[english]{tt}{Monaspace Xenon}
+%\babelfont[english]{tt}{Monaspace Xenon}
 \usepackage[shortlabels]{enumitem}
 \newlist{hebenum}{enumerate}{1}
 
 % Language Shortcuts
 \newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
 \newcommand\sen   {\begin{otherlanguage}{english}}
 	\newcommand\she   {\end{otherlanguage}}
 \newcommand\del   {$ \!\! $}
@@ -149,6 +170,7 @@
 \newcommand\vc    {\mathcal{V}} % Vance
 \newcommand\sca   {\mathcal{S}} % \sc is already definded
 \newcommand\rca   {\mathcal{R}} % \rc is already definded
+\newcommand\zc    {\mathcal{Z}}
 
 \newcommand\prm   {\mathrm{p}}
 \newcommand\arm   {\mathrm{a}} % x86
@@ -183,13 +205,13 @@
 \newcommand\open  {\big(}
 \newcommand\qopen {\quad\big(}
 \newcommand\close {\big)}
-\newcommand\also  {\text{, }}
-\newcommand\defis {\text{ definitions}}
-\newcommand\given {\text{given }}
-\newcommand\case  {\text{if }}
-\newcommand\syx   {\text{ syntax}}
-\newcommand\rle   {\text{ rule}}
-\newcommand\other {\text{else}}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
 \newcommand\set   {\ell et \text{ }}
 \newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
 
@@ -215,6 +237,8 @@
 \newcommand\lc    {\left\lceil}
 \newcommand\rf    {\right\rfloor}
 \newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
 
 \newcommand\lex   {<_{lex}}
 
@@ -332,6 +356,8 @@
 \DeclareMathOperator{\chr}     {char}
 \DeclareMathOperator{\diag}    {diag}
 \DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
 
 \newcommand\lra       {\leftrightarrow}
 \newcommand\chrf      {\chr(\F)}
@@ -352,6 +378,11 @@
 \newcommand\pms[1]    {\begin{pmatrix}
 		#1
 \end{pmatrix}}
+
+\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
+\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
+\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
 
 % someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
 \makeatletter
@@ -427,6 +458,7 @@
 \newtheorem{Remark}{הערה}
 \newtheorem{Notion}{סימון}
 
+
 \newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
 \newcommand\defi  [1] {\begin{definition}#1\end{definition}}
 \newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
@@ -434,80 +466,173 @@
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
 
 % DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
 \DeclareMathOperator\amort   {amort}
 \DeclareMathOperator\worst   {worst}
 \DeclareMathOperator\type    {type}
 \DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+	\SetKwFunction{RetrieveFirst}{Retrieve-First}
+	\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+	\SetKwFunction{DeleteFirst}{Delete-First}
+	\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+	\SetKwFunction{InsertFirst}{Insert-First}
+	\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+	\SetKwFunction{AddEdge}{Add-Edge}
+	\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+	\SetKwProg{Fn}{function}{ is}{end}
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codegreen}null}
+	\SetKwData{True}{\color{codeblue}true}
+	\SetKwData{False}{\color{codeblue}false}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{\textit{ליניארית 2א 3}}
+\title{\textit{לינארית 2א $\sim$ משפט הפירוק הספקטרלי להעתקות כלליות}}
 \begin{document}
 	\maketitle
-	\textbf{מרצה: }בן בסקין
+	\textbf{מבוסס על הקלטה 18 של הקורס ב־2024-2025}
 	
-	\defi{בעבור $A \in M_n(\F)$ הפולינום האופייני של $A$ הוא $f_A(x) = \det(Ix - A)$. }
+	\textbf{מרצה: ענת אמיר}
 	
-	ראינו ש־$v$ ו"ע של $A$ עם ערך עצמי $\lg$ אמ"מ $v \in \ker(\lg I - A)$, וכן $\lg$ ע"ע אמ"מ $\dim \ker \lg - A > 0$. 
+	המטרה: להבין לאילו העתקות בדיוק מתקיים המשפט הספקטרלי. מעל הממשיים, הבנו שאילו העתקות צמודות לעצמן. אז מה קורה מעל המרוכבים? 
 	
-	\theo{$f_A(x)$ פולינםו מתוקן (מקדם מוביל 1) מדרגה $n$, המקדם של $x^{n - 1}$ הוא $-\tr A$, המקדם החופשי הוא $(-1)^{n}\det A$}. 
+	\theo{(משפט z). יהי $V$ ממ''פ סופי ויהי $\vphi \in V^*$. אז קיים ויחיד וקטור $u \in V$ שמקיים $\forall v \in V \co \vphi(v) = \mut{v}{u}$. }\begin{proof}
+		\textbf{קיום. }יהי $B = (b_i)_{i = 1}^{n}$ בסיס אורתונורמלי של $V$ (הוכחנו קיום בהרצאות קודמות). נסמן $u = \sum_{i =1}^{n}\ol{\phi(b_i)} b_i$. בכדי להראות $\forall v \in V \co \phi(v) = \mut{v}{u}$ מספיק להראות תכונה זו לאברי הבסיס $B$, כלומר נראה ש־$\forall 1 \le j \le n \co \phi(b_j) = \mut{b_j}{u}$. ואכן: 
+		\[ \mut{b_j}{u} = \mut{b_j}{\sumni \ol{\phi(b_i)}b_i} = \sum_{i = 1}^{n}\underbrace{\ol{\ol{\phi(b_i)}}}_{b_i}\underbrace{\mut{b_j}{b_i}}_{\dj_{ij}} = b_j \quad \top \]
+		\textbf{יחידות: }אם קיים וקטור נוסף שעבורו $\forall v \in V \co \phi(v) = \mut{v}{w}$ אז בפרט עבור $v = u - w$ נקבל: 
+		\[ \phi(v) = \mut{v}{w} = \mut{v}{u} \implies \mut{v}{u - w} = 0 \implies 0 = \mut{u - w}{u - w} = \norm{v - w}^{2} = 0 \implies v - w = 0 \implies v = w \]
+		סה''כ הוכחנו קיום ויחידות. 
+	\end{proof}
 	
+	\theo{יהי $V$ ממ''פ מנ''ס ותהי $T \co V \to V$ לינארית. אז קיימת ויחידה $T^* \co V \to V$ ומקיימת $\forall u ,v \in V \co \mut{Tu}{v} = \mut{u}{T^*v}$. }
+	\defi{ההעתקה $T^*$ לעיל נקראת \textit{ההעתקה הצמודה ל־$T$}. }
 	\begin{proof}
+		לכל $v \in V$, נתבונן בפונקציונל הלינארי $\phi_V \in V^*$ המוגדר ע''י $\forall u \in V \co \phi_V(u) = \mut{Tu}{v}$. ממשפט ריס קיים ויחיד $T^*v \in V$ שעבורו $\forall u \in V \co \mut{Tu}{v} = \phi_V(u) = \mut{u}{T^*v}$. כלומר, ההעתקה $T^* \co V \to V$, קיימת ויחידה, ונותר להראות שהיא לינארית. עבור $v, w \in V$ ועבור $\ag, \bg \in \F$ מתקיים: 
+		\[ \forall u \in V \co \mut{u}{T^* (\ag v + \bg w)} = \mut{Tu}{\ag v + \bg w} = \bar \ag \mut{Tu}{v} + \bar \bg \mut{Tu}{v} = \bar \ag \mut{u}{T^* v} + \bar \bg \mut{u}{T^*w} = \mut{u}{\ag T^*u + \bg T^*w} \]
+		מסך נסיק ש־$T^*(\ag v + \bg w) = \ag T^* u + \bg T^* w$ מנימוקים דומים. 
+	\end{proof}
+	
+	\textbf{דוגמאות. }
+		מעל $\C^n$, עם המ''פ הסטנדרטי, נגדיר ט''ל $T_A \co \C^n \to \C^n$ עבור $A \in M_n(\C)$ מוגדרת ע''י $T_A(x) = Ax$. אז: 
+		\[ \forall x, y \in \C^n \co \mut{T_A(x)}{y} = \mut{Ax}{y} = \ol{(Ax)^T} \cdot y = \ol{x^T}\cdot\ol{A^T}y\cdot = \ol{x^T}T_{\ol{A^T}}(y) = \mut{x}{T_{\ol{A^T}}y} \]
+		כלומר, $(T_A)^* = T_{A^*}$ כאשר $A^* = \ol{A^T}$, וקראנו לה המטריצה הצמודה. 
+	
+	\textit{הערה: ההוכחה הזו הפוכה כי צריך לינאריות ברכיב הראשון ולא בשני והמרצה התבלבלה אבל אין לי כוח לתקן. עדיין $(T_A)^* = T_{A^*}$. }
+	
+	נבחין שהעתקה נקראת צמודה לעצמה אממ $T^* = T$. 
+	
+	עוד נבחין שעבור העתקה הסיבוב $T \co \R^2 \to \R^2$ בזווית $\tg$, מתקיים ש־$T^*$ היא הסיבוב ב־$-\tg$, וכן היא גם ההופכית לה. כלומר $(T_{\tg})^* = T_{-\tg} = (T_\tg)\op$. זו תכונה מאוד מועילה וגם נמציא לה שם במועד מאוחר יותר. 
+	
+	\theo{(תכונות ההעתקה הצמודה) יהי $V$ ממ''פ ותהיינה $T, S \co V \to V$ זוג העתקות לינאריות. נבחין ש־: 
+	\begin{enumerate}[(A)]
+		\item \hfil $(T^*)^* = T$
+		\item \hfil $(T \circ S)^* = S^* \circ T^*$
+		\item \hfil $(T + S)^* = T^* + S^*$
+		\item \hfil $\forall \lg \in \F \co (\lg T)^* = \bar \lg (T^*)$
+	\end{enumerate}}
+	``זה אחד וחצי לינאריות''
+	
+	\begin{proof}\,
+		\begin{enumerate}[A)]
+			\item \hfil $\forall u, v \in V \co \mut{T^* u}{v} = \ol{\mut{v}{T^* u}}  = \ol{\mut{Tv}{u}}  = \mut{u}{Tv} \implies (T^*)^* = T$
+			\item \hfil $\mut{(T \circ S) u}{v} = \mut{Su}{T^*v} = \mut{u}{S^* T^*} \implies (TS)^* = T^*S^*$
+			\item \hfil $\mut{(T + S)u}{v} = \mut{Tu}{v} + \mut{Su}{v} = \mut{u}{T^*v} + \mut{u}{S^*v}  = \mut{u}{T^*v + S^*v}$
+			\item כנ''ל
+		\end{enumerate}
+	\end{proof}
+	
+	\theo{יהי $V$ ממ''פ נ''ס ותהי $T \co V \to V$ לינאריות. אם $B = (b_i)_{i = 1}^{n}$ בסיס אורתוגונלי לו''ע של $T$, אז $\forall 1 \le i \le n$ ו''ע של ההעתקה הצמודה. }
+	כלומר: אם מתקיים המשפט הספקטרלי, אז הבסיס שמלכסן אורתוגונלית את $T$ מלכסן אורתוגונלית את הצמודה. 
+	\begin{proof}
+		יהי $i \in [n]$ ונסמן בעבורו את $\lg_i$ הע''ע המתאים לו''ע $b_i$. עבור $i \neq j \in [n]$ נחשב את $\mut{b_i}{T^*b_j}$: 
+		\[ \mut{b_i}{T^*b_j} = \ol{\mut{Tb_i}{b_j}} = \ol{\mut{\lg _i b_i}{b_j}} = \lg_i \mut{b_i}{b_j} = 0 \]
+		לכן $T^*b_j \in (\Sp\{b_i\}_{i = 1}^{n})^{\perp} \seq \Sp\{b_j\}$. משיקולי ממדים, הפריסה מממד $n - 1$ ולכן המשלים האורתוגונלי שלו מממד $1$ ולכן השוויון. סה''כ $T^* b_j \in \Sp\{b_j\}$ ולכן $b_j$ ו''ע של $T^*$ כדרוש. 
+	\end{proof}
+	
+	\textbf{מסקנה. }אאם $V$ ממ''פ נ''ס ו־$T \co V \to V$ ט''ל עם בסיס מלכסן אורתוגונלי, אז $T, T^*$ מתחלפות כלומר $TT^* = T^*T$. \begin{proof}
+		לפי הטענה הקודמת כל $b_i$ הוא ו''ע משותף ל־$T$ ול־$T^*$, ולכן: 
+		\[ TT^*(b_i) = T(T^*(b_i)) = \bg_i T^*(b_i) = \bg_i \dg_i b_i = \ag_i \bg_i b_i = \ag_i T^(b_i) = T^*T(b_i) \]
+		העתקה מוגדרת לפי מה שהיא עושה לבסיס ולכן $TT^* = T^*T$. 
+	\end{proof}
+	\defi{העתקה כזו המקיימת $AA^* = A^*A$ נקראת \textit{נורמלית}). }
+	
+	עתה, ננסה להראות שכל העתקה נורמלית מקיימת את המפשט הספקטרלי. 
+	
+	\theo{(המשפט הספקטרלי) יהי $V$ ממ''פ נוצר סופית מעל $\C$, ותהי $T \co V \to V$ לינארית. אז קיים בסיס אורתוגונלי של ו''ע של $T$ אמ''מ $T$ נורמלית. }
+	\lem{יהי $V$ ממ''פ ותהיינה $S_1, S_2 \co V \to V$  זוג ט''ל צמודות ולעמן ומתחלפות (כלומר $S_1S_2 = S_2 S_1$). אז קיים בסיס אורתוגונלי של $V$ שמורכב מו''עים משופים ל־$S_1$ ול־$S_2$. }\begin{proof}
+		ידוע ש־$S_1$ צמודה לעצמה, לכן לפי המשפט הספקטרלי להעתקות צמודות לעצמן (לא מעגלי כי הוכח בנפרד בהרצאה הקודמת), קיים לה לכסון אורותגונלי ובפרט $S_1$ לכסינה. נציג את $V$ כ־$V = \bigoplus_{i = 1}^{m} \ker(S_1 - \lg_iI)$, כאשר $\lg _1 \dots \lg_m$ הע''עים השונים של $S_1$. לכל $1 \le i \le m$  מתקיים ש־$V_{\lg_i}$ (המרחב העצמי) הוא $S_1$־אינווריאנטי שהרי אם $v \in V_{\lg_i}$ ונחשב: 
+		\[ S_1(S_2 v) = S_2(S_1 v) = S_2(\lg_i v) = \lg _i S_2v \implies S_2 v \in V_{\lg_i} \]
+		כאשר $S_2|_{V_{\lg _i}} \co V_{\lg_i} \to V_{\lg_i}$ צמודה לעצמה, ולכן המפשט הספקטרלי לצמודות לעצמן אומר שבתוך $V_{\lg_i}$ ישנו בסיס אורתוגונלי של ו''עים מ־$S_2$. האיחוד של כל הבסיסים הללו מכל מ''ע של $S_1$ יהיה בסיס אורתוגונלי של ו''עים משותפים ל־$S_1$ ול־$S_2$. 
+	\end{proof}
+	\begin{proof}[הוכחת המשפט הספקטרלי. ]\,
 		\begin{itemize}
-			\item\textbf{ תקינות הפולינום. }מבין $n!$ המחוברים, ישנו אחד יחיד שדרגתו היא $n$. הסיבה היא שמדטרמיננטה לפי תמורות, התמורה היחידה שתתאים היא הזהות שתעבור על האלכסון. באינדוקציה על $n$, ונקבל: 
-			\[ f_A(x) = (x - a_{11}) \cdots (x - a_{nn}) = x^{n} + \cdots \]
-			באופן דומה אפשר להוכיח באינדוקציה באמצעות פיתוח לפי שורות: 
-			\[ f_A(x) = (x - a_{11})|A_11| + \underbrace{a_{21}|A_21| - a_{31}|A_31| + \cdots + (-1)^{n + 1}a_{n1}|A_{n1}|}_{\text{מה.א. דרגה קטנה מ־$n$}} \]
-			סה"כ גם כאן הראינו שהדרגה מתקבלת מהפולינום $\prod^{n}_{i = 1}(x - a_{ii})$
-			
-			\item\textbf{המקדם של $-\tr A$. }ההוכחה המסודרת מופיע העמוד 8 של הסיכום. מקדמי $x^{n - 1}$ מגיעים גם הם רק מ־* (הפולינום למעלה) שהם $-\tr A = \sum_{i = 1}^{n}-a_{ii}$ המקדם החופשי. 
-			\item\textbf{המקדם החופשי. }$f_A(0) = \det(I \cdot 0 - A) = \det(-A) = (-1)^{n}\det A$. 
+			\item[$\implies$] לפי המסקנה הקודמת, אם ישנו לכסון אורתוגונלי $T$ בהכרח נורמלית. 
+			\item[$\impliedby$] נגדיר $S_1 = \frac{T + T^*}{2}, \ S_2 = \frac{T - T^*}{2i}$. הן וודאי צמודות לעצמן מהלינאריות וכל השטויות ממקודם, והן גם מתחלפות אם תטרחו להכפיל אותן. מהטענה קיים ל־$V$ בסיס אורתוגונלי של ו''עים משותפים ל־$S_1, S_2$ ונסמנו $\{b_i\}^{n}_{i = 1}$ וגם $S_1b_i = \ag_i b_i, \ S_2b_i= \bg_i b_i$. אפשר גם לטעון ש־$\ag_i, \bg_i \in \R$ אבל זה לא מועיל לנו. נשים לב ש־$T = S_1 + iS_2$, כלומר $\forall i \in [n] \co T(b_i) = S_1(b_i) + iS_2(b_i) = \ag_i b_i + i\bg_i b_i = (\ag + i\bg_i)b_i$ וזהו בסיס אורתוגונלי של ו''עים של $T$. 
 		\end{itemize}
 	\end{proof}
 	
-	\subsection{הפסקה לרגע מליניארית 2א כדי לראות פתרון נורמלי רעיונית אך קצר לשאלה 3 ממועד ב' לליניארית 1א}
-	יהי $V$ מ"ו $n$ ממדי, ו־$0 \neq v \in V$, וסקלרים $(\ag_i)_{i = 1}^{n}$. הוכיחו שקיים בסיס $(w_1 \dots w_n)$ כך ש־$v = \sum_{i = 1}^{n}\ag_iw_i$. 
-	\begin{proof}הפתרון של גינסבורג: 
-		אם בה"כ $\ag_1 \neq 0$ אז $w_1 := \ag_1\op\cl{v - \sum_{i = 2}^{n}\ag_iw_i}$ וכזה $(v, w_2 \dots w_n)$ בסיס וכאילו די גמרנו. 
-	\end{proof}
-	\begin{proof}פתרון נורמלי של המרצה: 
-		נרצה למצוא $B_V = (v, v_w \dots v_n)$ כך שבהינתן $B_W = (w_1 \dots w_n)$ כך ש־: 
-		\[ [v]_{B_V} = (1, 0, \dots 0), \ [v]_{B_{W}} = (\ag_1 \dots \ag_n) \]
-		במילים אחרות, נגדיר איזו' מתאימה לשינוי בסיס. כלומר איזו $\phi \co V \to \F^n$ כך ש־$\phi(v) = (\ag_1, \dots, \ag_n)$ וכן $\phi(v_2) = e_2 \dots \phi(v_n) = e_n$ כך שסה"כ תיארנו העתקה שמזיזה בסיס אחד לאחר וסה"כ סיימנו. 
-	\end{proof}
+	למעשה, הבנו מהפירוק של $S_1, S_2$ ש־$S_1$ נותנת את החלק הממשי של הע''ע ו־$S_2$ את החלק המדומה. 
 	
-	\subsection{חזרה לקורס}
-	\textbf{דוגמאות. }\begin{enumerate}[A)]
-		\item אם $A = \binom{a \, b}{c \, d}$ אז $f_A(x) = x^{2} - (a + d)x + ad - bc$ (נטו מהמשפט הקודם). 
-		\item אם $A = \diag(\lg_1 \dots \lg_n)$ אז $f_A(x) = \prod_{i = 1}^{n}(x - \lg_i)$. 
-		\item אם $A = \pms{\lg_1 & & * \\ & \ddots & \\  0 && \lg_n}$ אז גם כאן $f_A(x) = \prod_{i = 1}^{n}(x - \lg_i)$ אך כדאי לשים לב שמשולשית עליונה לא בהכרח דומה לאלכסונית עם אותם הקבועים. 
-		\item אם $A = \pms{B & * \\ 0 & C}$ כאשר $B, C$ בלוקים ריבועיים אז $f_A(x) = f_B(x) \cdot f_C(x)$. 
-	\end{enumerate}
+	``אגב – לא השתמשתי במשפט היסודי של האלגברה''
 	
-	\defi{בהינתן $T \co V \to V$} ט"ל נגדיר את הפולינום האופייני שלה (פ"א) באופן הבא: נבחר בסיס $B$ למ"ו $V$, ונתבונן ב־$A = [T]_B$ ונגדיר את $f_T(x) := f_A(x)$. 
 	
-	"אתה פותר עכשיו שאלה משיעורי הבית" "אל תדאג הבודק כבר שלח פתרון" "מה?!"
 	
-	\textbf{טענה. }הפ"א של ט"ל מוגדר היטב. למטריצות דומות אותו פ"א. \textit{הוכחה. }בשיעורי הבית. ויש סיכוי שגם בדף הסיכום. 
-	
-	\textit{מטלה. }לקרוא בעמוד 10 על שוויון פונ' בין שדות שונים, רלוונטי כדי להראות שלא משנה על איזה שדה אנו מדברים הפולינום האופייני נשאר זהה. 
-	
-	\textbf{דוגמה. }נתבונן בהעתקה $\R_n[x] \to \R_n[x], \ T(f) = f'$. נבחר בסיס $B = (1, x, \dots, x^{n})$. אז: 
-	\[ [T]_B = \pms{0 & 1  & 0 & 0 & \dots & 0 \\ 0 & 0 & 2 & 0 & \dots & 0 \\ 0 & 0 & 0 & 3 & \ddots & \vdots \\ \vdots & \vdots & \vdots & \ddots & \ddots \\ 0 & 0 & 0 & 0 } \]
-	אז: 
-	\[ f_T(x) = \det\pms{x & -1 & 0 &\dots \\ & x & -2 & 0 &\dots \\ && \ddots &\ddots } = x^{n + 1} \]
-	\theo{$T \co V \to V$ ט"ל, אז $\lg$ ע"ע של $T$ אמ"מ $f_T(\lg) = 0$. }
-	\begin{proof}
-		יהא $B \subseteq V$ בסיס של $V$. אז $A = [T]_B$ ואז $f_T(\lg) = 0$ אמ"מ $f_A(\lg) = 0$ אמ"מ $\lg$ ע"ע של $A$. 
-	\end{proof}
-	
-	\textbf{הגדרה. }יהי $\lg \in \F$ ע"ע של $T$ (או $A$). \textit{האיברוי האלגברי} של $\lg$ הוא החזקה המקסימלית $d$ כך ש־$(x - \lg)^{d} \mid f_T(x)$ (חלוקת פולינומים). 
-	
-	\textbf{דוגמה. }בעבור $T$ היא הגזירה, ממקודם: $f_T(x) = x^{n + 1}$ ע"ע יחיד הוא $0$. הריבוי האלגברי של $0$ הוא $n + 1$. הריבוי הגיאומטרי של $0$ הוא $1$. 
-	
-	\noti{נניח ש־$\lg$ ע"ע של $T$ (או $A$) אז $d_\lg$ הריבוי האלגברי של $\lg$ ו־$r_\lg$ הריבוי הגיאומטרי של $\lg$. }
-	\theo{$r_\lg \le d_\lg$ ושוויון אמ"מ $T$ (או $A$) לכסינה. }
 	
 	\ndoc
 \end{document}

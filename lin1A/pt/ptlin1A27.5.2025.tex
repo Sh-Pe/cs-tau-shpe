@@ -94,7 +94,6 @@
 \definecolor{mblue}{RGB}{30, 60, 200}
 \usepackage{hyperref}
 \hypersetup{
-<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
     colorlinks=true,
     citecolor=mgreen,
     linkcolor=black,
@@ -107,20 +106,6 @@
     \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
 \def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
     \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
-========
-	colorlinks=true,
-	citecolor=mgreen,
-	linkcolor=black,
-	urlcolor=mblue,
-	pdftitle={Document by Shahar Perets},
-	%	pdfpagemode=FullScreen,
-}
-\usepackage{yfonts}
-\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
-	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
-\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
-	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
->>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 
 
 
@@ -185,7 +170,6 @@
 \newcommand\vc    {\mathcal{V}} % Vance
 \newcommand\sca   {\mathcal{S}} % \sc is already definded
 \newcommand\rca   {\mathcal{R}} % \rc is already definded
-\newcommand\zc    {\mathcal{Z}}
 
 \newcommand\prm   {\mathrm{p}}
 \newcommand\arm   {\mathrm{a}} % x86
@@ -394,11 +378,6 @@
         #1
 \end{pmatrix}}
 
-\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
-\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
-\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
-\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
-
 % someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
 \makeatletter
 \newlength\min@xx
@@ -480,8 +459,6 @@
 \newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
 
-<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
-========
 % DS
 \newcommand\limsi     {\limsup_{n \to \inf}}
 \newcommand\limfi     {\liminf_{n \to \inf}}
@@ -493,60 +470,57 @@
 \DeclareMathOperator\tim     {time}
 
 \newcommand\dsList{
-	\sFunc{List}
-	\sFunc{Retrieve}
-	\SetKwFunction{RetrieveFirst}{Retrieve-First}
-	\SetKwFunction{RetrieveLast}{Retrieve-Last}
-	\sFunc{Delete}
-	\SetKwFunction{DeleteFirst}{Delete-First}
-	\SetKwFunction{DeleteLast}{Delete-Last}
-	\sFunc{Insert}
-	\SetKwFunction{InsertFirst}{Insert-First}
-	\SetKwFunction{InsertLast}{Insert-Last}
-	\sFunc{Shift}
-	\sFunc{Length}
-	\sFunc{Concat}
-	\sFunc{Plant}
-	\sFunc{Split}
+    \sFunc{List}
+    \sFunc{Retrieve}
+    \SetKwFunction{RetrieveFirst}{Retrieve-First}
+    \SetKwFunction{RetrieveLast}{Retrieve-Last}
+    \sFunc{Delete}
+    \SetKwFunction{DeleteFirst}{Delete-First}
+    \SetKwFunction{DeleteLast}{Delete-Last}
+    \sFunc{Insert}
+    \SetKwFunction{InsertFirst}{Insert-First}
+    \SetKwFunction{InsertLast}{Insert-Last}
+    \sFunc{Shift}
+    \sFunc{Length}
+    \sFunc{Concat}
+    \sFunc{Plant}
+    \sFunc{Split}
 }
 \newcommand\dsQueue{
-	\sFunc{Queue}
-	\sFunc{Enqueue}
-	\sFunc{Head}
-	\sFunc{Dequeue}
+    \sFunc{Queue}
+    \sFunc{Enqueue}
+    \sFunc{Head}
+    \sFunc{Dequeue}
 }
 \newcommand\dsStack{
-	\sFunc{Stack}
-	\sFunc{Push}
-	\sFunc{Top}
-	\sFunc{Pop}
+    \sFunc{Stack}
+    \sFunc{Push}
+    \sFunc{Top}
+    \sFunc{Pop}
 }
 \newcommand\dsVector{
-	\sFunc{Vector}
-	\sFunc{Get}
-	\sFunc{Set}
+    \sFunc{Vector}
+    \sFunc{Get}
+    \sFunc{Set}
 }
 \newcommand\dsGraph{
-	\sFunc{Graph}
-	\sFunc{Edge}
-	\SetKwFunction{AddEdge}{Add-Edge}
-	\SetKwFunction{RemoveEdge}{Remove-Edge}
-	\sFunc{InDeg} \sFunc{OutDeg}
+    \sFunc{Graph}
+    \sFunc{Edge}
+    \SetKwFunction{AddEdge}{Add-Edge}
+    \SetKwFunction{RemoveEdge}{Remove-Edge}
+    \sFunc{InDeg} \sFunc{OutDeg}
 }
 \newcommand\importDs{
-	\dsList
-	\dsQueue
-	\dsStack
-	\dsVector
-	\dsGraph
-	\SetKwProg{Fn}{function}{ is}{end}
-	\SetKwData{error}{\color{codered}error}
-	\SetKwInOut{Input}{input}
-	\SetKwInOut{Output}{output}
-	\SetKwRepeat{Do}{do}{while}
-	\SetKwData{Null}{\color{codegreen}null}
-	\SetKwData{True}{\color{codeblue}true}
-	\SetKwData{False}{\color{codeblue}false}
+    \dsList
+    \dsQueue
+    \dsStack
+    \dsVector
+    \dsGraph
+    \SetKwData{error}{\color{codered}error}
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \SetKwRepeat{Do}{do}{while}
+    \SetKwData{Null}{\color{codeblue}null}
 }
 
 
@@ -556,136 +530,123 @@
 \newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
 \newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
 \newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
->>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
-\title{\textit{אלגברה לינארית 1א $\sim$ מרחבים דואליים}}
+\title{\textit{לינארית 1א $\sim$ תרגול}}
 \begin{document}
     \maketitle
+    \textbf{מתרגלת: }לילי קורצמשהו 
     
-    
-    \section{\en{Dual spaces}}
-    \defi{יהי $V$ מ''ו מעל $\F$. אז: 
-    \[ V^{*} := \{f \co V \to \F \co \mid f \, \text{\en{Linear}}\} \]
-    הוא המ''ו הדואלי, ו־$f \in V^{*}$ פונקציונלי לינארי. }
-    
-    \textbf{דוגמאות. }
+    \section{}
+    \subsection{תמורות}
+    תזכורת: תמורה היא פונקציה חח''ע ועל $f \co [n] \to [n]$. 
     \begin{itemize}
-        \item בעבור $V = \R$ נראה שזה הישרים מהצורה $y = ax$. נסמן $y(1) = m$ ואז $y(x) = xy(1) = xm$ וסה''כ $y(x) = mx$ כדרוש. 
-        \item בעבור $V = \R^{2}$: גם במקרה הזה נקבע את $f(e_1) = a, f(e_2) = b$ ואז $f(x, y) = f(e_1x + e_2y) = ax + by$
-        \item במקרה הכללי יותר $V = \R^{n}$ ונסמן $f(e_i) = a_i$. סה''כ: 
-        \[ f(x_1 \dots x_n) = f\cl{\sum_{i = 1}^{n}x_ie_i} = \sum_{i = 1}^{n}x_ia_i \]
+        \item יש $n!$ תמורות על $n$ איברים (לילי כתבה את זה כבלבול במקום עצרת). 
+        \item הרכבת תמורות היא תמורה
+        \item נשתמש בטבלאות כדי לסמן תמורות, לדוגמה: 
+        \[ \sigma = \pms{1 & 2 & 3 &4 \\ 2 &1 & 4 & 3} \implies \sigma(1) = 2, \ \sigma(2) = 1 \text{\en{etc}} \]
+        \item נראה בהרצאה שאפשר לפרק כל תמורה למעגלים $(i_1 \dots i_k)$ כך ש־$i_1 \to i_2 \to _3 \to \cdots \to i_k \to i_1$, וזהות על שאר האיברים,
+         כאשר הפירוק הוא הרכבה: לדוגמה, על התמורה לעיל: 
+        \[ \sigma = (12)\circ(34) = (34) (12) \]
+        (נשתמש בנוטציה כפלית במקום הרכבה תמיד). כאשר, לצורך הדוגמה: 
+        \[ (34)(x) = \begin{cases}
+            4 & x = 3 \\
+            3 & x = 4\\
+            x & \other
+        \end{cases} \]
+        מעגלים זרים מתחלפים – לדוגמה, $(34)(12)$ ההרכבה (כפל בחבורה הזו) בינהם קומטטיבית. 
+        
     \end{itemize}
     
-    \theo{המרחב הדואלי $(\R^{n})^{*}\cong \R^{n}$} \begin{proof}
-        נגדיר: 
-        \[ T \co \R^{n} \to (\R^{n})^{8}, \ T(a_1 \dots a_n) = f_{a_1 \dots a_n}, \ f_{a_1 \dots a_n}(x_1 \dots x_n) = \sum_{i = 1}^{n}a_xe_i \]
-        נוכיח שהיא לינארית, חח''ע ועל. 
-        \begin{itemize}
-            \item $T$ לינארית: 
-            \[ T(a + b) = f_{a + b} = \sum_{i = 1}^{n}(a_i + b_i)x_i = \sumni a_ix_i + \sumni b_ix_i = f_a + f_b = T(a) + T(b) \]
-            עתה נבדוק כפל בסקלר: 
-            \[ T_{\lg a} = f_{\lg a} = \sumni \lg a_i x_i = \lg \sumni a_ix_i = \lg f_{a}x \]
-            \item $T$ חח''ע: נניח ש־$T(a_1 \dots a_n) = 0$. ידוע $f_a = \sumni x_ia_i$ ולכל $i$ מתקיים $f(e_i) = a_i = 0$ וסה''כ $a = 0$ כדרוש. 
-        \end{itemize}
-    \end{proof}
+    \subsection{דט' לפי תמוורות}
+    תהי $\sg$ תמורה על $[n]$, נגדיר את $P(\sg)$ בתור המטריצה שעמודותיה: 
+    \[ \pms{\vert & \vert & \cdots & \vert \\ e_{\sg(1)} & e_{\sg(2)} & \cdots & e_{\sg(n)} \\ \vert & \vert & \cdots & \vert} \]
+    זאת כי: 
+    \[ P(\sg)e_i = e_{\sg(i)} \]
+    מכפל מטריצות. 
     
-    באופן כללי, $\dim V = n \implies \dim V^* = n$. 
+    נגדיר את ה\textit{סימן} של התמורה להיות: $\sgn\sg = \det P(\sg)$. נראה בהרצאה ש־: 
+    \[ \sgn \sg = (-1)^{N(\sg)} \quad N(\sg) = \#{\{(i, j) \mid i< j, \ \sg(i) > \sg(j)\}} \]
+    לעיתים, קוראים ל־$N(\sg)$ ה''\textit{אי־סדר}'' של $\sg$. ה־$N(\sg)$ של ממעגל $(1\,2 \dots k)$. נבחין ש־$\sgn(\sg) = (-1)^{k - 1}$ עבורו, ו־$N(\sg) = k - 1$ (זוג $(i, k)$ כך ש־$i < k$ היחידים שסדרם יתחלף). 
     
-    בהינתן בסיס ל־$V$, ישנו בסיס דואלי $\{f_1 \dots f_n\}$ המוגדרות ע''י $\forall i, j \co f_j(b_i) = \dg_{ij}$. 
+    הסימן היא פונקציה כפלית – $\sgn(\sg\tg) = \sgn \sg \cdot \sgn \tg$. קל להוכיח את זה מכפליות הדמטרמיננטה וההגדרה האקראית לעיל. 
     
-    \theo{זהו בסיס ל־$V^*$. }\begin{proof}\,
-        \begin{itemize}
-            \item \textbf{על: }
-            \[ f(v) = f\cl{\sumni \ag_i b_i} = \sumni \ag_i f(b_i) \]
-            \item \textbf{חח''ע: }
-            \[ f = \sumni \ag_i f_i = 0 \implies f(b_i) = \ag_i = 0 \implies (\ag_i)_{i = 1}^{n} = 0 \quad \top \]
-        \end{itemize}
-    \end{proof}
-    נבחין שב־$\R^{n}$: 
-    \[ \ker f_a = \ccb{x \in \R^n \co \sumni a_ix_i = 0} \]
-    זהו תמ''ו מממד $n - 1$ (זהו אילוץ אחד שמאבד דרגת חופש אחת). 
+    \subsection{דטרמיננטה לפי תמורות}
+    מתקיים ש־: 
+    \[ \det A = \sum_{\mathclap{\sg \in [n] \to [n]}} \sgn (\sg )\cl{\prod_{i = 1}^{n}a_{ij}} \]
+    זאת כי ראינו בתרגולים קודמים: 
+    \[ \det A = \sum \prod a_{ij}\det(e_2, e_1, \cdots) \]
     
-    \textbf{דוגמאות לפונקציונלים מעל מ''וים לא נוצרים סופית: }$V = \{f \co [0, 1] \to \R\}$, מתקיים ש־$\phi(f) = f(0)$ פוקציונל, וגרעינו $\ker \phi =\{f \co [0, 1] \to \R\co f(0) = 0\}$. אפשר להראות ש־$f = f - \underbrace{f(0)}_{\ker \phi} + \underbrace{f(0)}_{A}$ כאשר $A$ מ''ו הפונקציות הקבועות. למעשה, פירקנו לסכום ישר של הגרעין + משהו חד ממדי. בכך ניסחנו לכאורה את המספר של $n - 1$ גם כאשר אין באמת אפשרות לחסר ממדי. נקרא לזה קו־ממד אחד. 
+    \textbf{דוגמה. }נחשב את הדטרמיננטה של המטריצה הבאה: 
+    \[ A = \pms{a_1 & b_2 & b_3 & \cdots & b_n\\ c_2 & a_2 & 0 &\cdots & \vdots  \\ c_3 & 0 & a_3 \\ \vdots & \vdots && \ddots \\ c_n & \cdots & && a_n } \]
+    למשלע עבור $\sg = Id_n$ נבחין ש־$\prod_{i = 1}^n a_{i\sg(1)} = a_1 \dots a_n$, וכן $\sgn(\sg) = 1$. נחפש את התמורות עבורן $\prod_{i = 1}^{n} a_{i \, \sg(i)} \neq 0$. נבחין ש־$\forall i \in [n] \co \sg(i) = i \lor \sg(i) = 1$, אחרת $a_{i\, \sg(i)}$ מאפס את המכפלה. אם $\sg(1) = 1$ מחח''ע נקבל $\sg = I$. אם $\sg(1) = j$, אז $\exists k \co \sg(k) = 1 \land \forall i \in [n]\setminus{k, 1} \co \sg(i) = i$ ונבחין ש־$i = j$. אזי זהו מעגל $\sg = (i, j)$. נקבל: 
+    \[ \det A = a_1 \cdots a_n (-1)^{0} + \sum_{j} {\prod_{i = 1}^{n}a_{i, \sg_{1j}(i)}} = \prod_{i = 1}^{n}a_{i} - \sum_{j = 2}^{n}\underbrace{a_{1j}}_{b_j}\underbrace{a_{j1}}_{c_j}\prod_{i\neq 1, j}^{n}a_{i} \]
+    כאשר $\sg_{1j} = (1, j)$. 
+    סה''כ: 
+    \[ \det A = a_1 \cdots a_n - \sum_{i = 2}^{n} b_j c_j \prod_{i \neq 1, j} a_i \]
+    שווה לזכור את זה, אך תמיד אפשר לפתח ידנית. 
+    \section{}
+    ניזכר בהגדרה של המטריצה המצורפת: 
+    \[ (\adj A)_{ij} =  (-1)^{i + j}|M_{ji}| \]
+    הוכחנו בהרצאה: 
+    \begin{enumerate}
+        \item \hfil $\adj B \adj A = \adj (AB)$
+        \item \hfil $\det(\adj A) = \det (A)^{n - 1}$
+        \item \hfil $A \adj A = \det A I_n$
+        \item \hfil $\adj (cA) = c^{n - 1}\adj A$
+    \end{enumerate}
+    מ־3, בפרט אם $\det A \neq 0$ נקבל: 
+    \[ A\op = \frac{\adj A}{|A|} \]
+    \textbf{דוגמה חישובית. }
+    \[ A = \pms{0 & 2 & 3 \\ 2 & 2 &1 \\ 2 & 2 & 3}, \ (\adj A)^T = \pms{\det\pms{2 & 1 \\ 2 & 3} & -\det\pms{2 & 1 \\ 2 & 3} & \det{\pms{2 & 2 \\ 2 & 2 }}\\ 
+    -\det\pms{2 & 3 \\ 2 & 3} & \det\pms{0 & 3 \\ 2 & 3} & \det\pms{0 & 2 \\ 2 & 2} \\
+    \cdots & \cdots & \cdots} = \pms{4 & -4 & 0 \\ 0 & 6 & 4 \\ -4 & 6 & -4} \]
+    והדטרמיננטה: 
+    \[ \det A = -2 \cdot \det\pms{2 & 1 \\ 2 & 3} + 3\det\pms{2 & 2 \\ 2 & 2} = -8 \]
+    מסקנה: 
+    \[ A\op = -\frac{1}{8}\pms{4 & 0 & -4 \\ 4 & 6 & 6 \\ 0 & 4 & -4} \]
+    נניח $ab - bc \neq 0$, מצאו את ההופכי של $\pms{a & b \\ c & d}$. נבחין ש־: 
+    \[ \det A = ab - bc, \ \adj A = \pms{d & -b \\ -c & a} \implies A\op = \frac{1}{ab - cd}\pms{d & -b \\ -c & a} \]
     
-    באופן כללי, אם $0 \neq f \in V^*$ יש $v \in V$ fl a-$f(v) \neq 0$. נניח $f(v) = 1$. אז $\forall x \in V \co x = f - f(x)v + f(x) v$ ולכן נוכל לפרק $V = \ker f \oplus \Sp v$. 
+    \subsubsection{}
+    תהי $A$ הפיכה, נמצא נוסחה ל־$\adj\adj A$. 
+    \[ \adj A = A\op (\det A)I_n \implies \adj \adj A = \adj (A\op (\det)) = (\det)^{n -1}\adj (A\op), \ A\op = \frac{\adj}{|A|} \implies \adj (A\op) = (\det A)\op A \]
+    סה''כ: 
+    \[ \adj \adj A = (\det A)^{n -2}A \]
     
-    \subsection*{המרחב $V^{**}$}
-    ברור כי $V^{**}\cong V$. לכל $v \in V$ נוכל להתאים $\phi_V(f) = f(v)$. זה מגדיר העתקה לינארית מ־$V$ ל־$V^{**}$. נוכיח שהיא איזומורפיזם. חח''ע: הרעיון: להוכיח (לנוצרים סופית) $\forall f \in V^*, \phi_V(f) =  0 = f(v)$. נניח בשלילה ש־$v \neq 0$. אז נוכל להשלים אותו לבסיס $v, v_2 \dots v_n$, אפשר להגדיר $f$ כך ש־$f(v) = 1, \ f(v_i) = 0 \forall i \ge 2$. אבל אז $\phi_V(f) = f(v) = 2$ וסתירה. אזי זה חח''ע. 
+    
+    \subsubsection{}
+    נמצא את $\adj A^{T}$: 
+    \[ (\adj(A^T))_{ij} = (-1)^{j + 1}\det(M_{ij}^T) = (-1)^{i + j}\det(M_{ij}) = ((\adj A)^T)_{ij} \]
     
     
-    זהו איזומורפיזם קאנוני: הוא לא תלוי בבסיס או משהו של המרחב עצמו. האיזומורפיזם לא דורש שום בחירה לא טרוויאלית בתוך המרחב. נאמר שהם איזומורמים קאנונית. 
+    \subsubsection{}
+    אם $\rk A \le n-2$ אז $\adj A = 0$. [הוכחתי את זה באמצע המבחן הקודם אז אני לא אצרף הוכחה כאן שוב]
     
-    \subsection*{המרחב המאפס}
-    \defi{תהי $S \subseteq V$, אז המאפס שלה: 
-    \[ S^{0} = \{f \in V^* \co f|_S = 0\}\subseteq V^* \]}
-    \theo{\,
-    \begin{itemize}
-        \item \hfil $S^0 = (\Sp S)^0$
-        \item $S^0$ מ''ו
-        \item \hfil $S \subseteq T \implies S^0 \reflectbox{$\subseteq$} T^0$
-    \end{itemize}}
-
-    \theo{יהי $V$ מ''ו, $\dim V = n$, $U \subseteq V$ תמ''ו, נניח ש־$\dim U = r$ אז $\dim U^0 = n - r$}\begin{proof}
-        ניקח בסיס ל־$U$, $e_1 \dots e_r$. ניקח $f_1 \dots f_r$ כך ש־$f_i(e_j) = \dg_{ij}(j)$. נשלים לבסיס של $V$: 
-        \[ e_1 \dots e_r, \ e_{r + 1} \dots e_n \]
-        ובאופן דומה ב־$V^{n}$: 
-        \[ f_1 \dots f_r, f_{r + 1} \dots f_n \]
-        זהו בסיס ל־$U^0$ (לכל)
-        $j \ge r + 1$. מתקיים $f_i(e_j) = 0 \implies f_j|_U = 0$ לכל $i \ge r$. עתה נראה פרישה: 
-        \[ \forall f \in U^0 \co f(v) = f\cl{\sumni \ag_i e_i} = f\cl{\sum_{i = 1}^{r}\ag_ie_i} + f\cl{\sum_{i = r + 1}^{n}\ag_i e_i} = f\cl{\sum_{i = r+ 1}^{n}\ag_i e_i} = \sum_{i = r + 1}^{n}\ag_i f(e_i) = \sum_{i= r + 1}^{n}f_i(\underbrace{\sum \ag_i e_i}_{v})f(e_i) \]
-        בת''ל: 
-        הם איברים בבסיס $V^*$ ובפרט בת''ל. 
-    \end{proof}
+    \section{}
+    \subsubsection{}
+    נוכיח ששלוש נקודות במישור, $(x_1, y_1), (x_2, y_2), (x_3, y_3)$ נמצאות על אותו הישר אמ''מ: 
+    \[ \det\pms{x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_x & 1} = 0 \]
+    נתבונן בהגדרה של להיות כל קו ישר. נבחין ש–$y = mx + n$ לא מכליל ישרים מהצורה $x = c$, ולכן נכתוב דברים מהצורה $Ax + By + C = 0$. נבחין שהם על אותו הישר אמ''מ קיימים $A, B, C$ כך ש־$Ax_i + Bx_i + C = 0$. בנוסח אחר: 
+    \[ \exists A, B \neq 0\, \exists C \co A\pms{x_1 \\ x_2 \\ x_3} + B\pms{y_1 \\ y_2 \\ y_3} + C \pms{1 \\ 1 \\ 1} = 0 \]
+    ובאפן שקול, נדרוש ש־$(x_1, x_2, x_3)$ ושאר הוקטורים, תלויים לינארית. זה שקול להיות הדטרמיננטה לעיל $0$. 
+    
+    (צריך קצת לטפל ב־$C \neq 0$). 
+    
+    \subsubsection{}
+    יהיו $x_1 \dots x_n \in \R$. חשבו: 
+    \[ \det A = \det\pms{x_1 + 1 & x_1 & x_1 & \cdots & x_1 \\ x_2 & x_2 + 1 & x_2 & \cdots & x_2 \\ x_3 & x_3 & x_3 + 1 \\ \vdots & & & \ddots & \vdots \\x_n & x_n & \cdots  & x_n& x_{n + 1}} \rrr{R_i \to R_i - R_1} \pms{x_1 + 1 & -1 & -1 & \cdots & -1 \\ x_2 & 1 & 0 & \cdots &0 \\ x_3 & 0 & 1 & 0 & \cdots \\ \vdots & \vdots & \ddots & \ddots & \vdots \\ x_n & 0 & \cdots & 0 & 1} \]
+    מכאן אפשר או להשתמש בנוסחה מתחילת התרגול, או לחבר לשורה הראשונה את כל שאר השורות. 
+    
+    \subsubsection{}
+    דיי נמצא לי להעתיק מטריצות
+    \[ \pms{1 & 2 & 3 & 4 & \cdots & n \\ -1 & 0 & 3 & 4&\cdots \\ -1 & -2 & 0 & \\ } \]
+    
+    
+    \textbf{הסיכום של דן הרן, בלי האלגו' של גוגל}
+    
     
     \ndoc
-    
-========
-\title{\textit{לינארית 2א 20}}
-\begin{document}
-	\maketitle
-	תזכורת: $A \in M_n(\C)$ נקראית סימטרית אממ $A = A^T$ והרמיטית אם $A = A^*$, ונורמלית אממ $AA^* = A^*A$. 
-	
-	\theo{תהי $T \co V \to V$ ט''ל, ו־$V$ ממ''פ מעל $\F \in \{\R, \C\}$, ויהי $B$ בסיס א''נ של $V$. אזי אם $A = [T]_B$: 
-	\[ [T^*]_B = A = ([T]_B)^* \]}  
-	\begin{proof}
-		נזכר ש־: 
-		\[ [T]_B = \pms{\vert &  & \vert \\ [Te_1]_B & \cdots & [Te_n]_B \\ \vert &  & \vert} \]
-		נסמן $B = \{e_i\}_{i = 1}^{n}$ בסיס. נבחין ש־: 
-		\[ Te_j = \sumni a_{ij}e_i, \ a_{ij} = \mut{Te_j}{e_i} \]
-		נסמן ב־$C$ את המטריצה המייצגת $[T^*]_B$: 
-		\[ c_{ij} = \mut{T^*e_j}{e_i} \]
-		ונחשב: 
-		\[ c_ij = \mut{T^*e_j}{e_i} = \mut{e_j}{Te_i} = \ol{\mut{Te_i}{e_j}} = a_{ij} \]
-		
-	\end{proof}
-	
-	\textbf{מסקנה: }אם $A$ נורמלית אז $T_A$ נורמלית מעל $\F^n$ אם הסטנדרטית. בפרט מתקיים עליה המשפט הספקטרלי. גם אם $A$ ממשית, הע''ע עלולים להמצא מעל $\C$ (אלא אם היא צמודה לעצמה, ואז הם מעל $\R$). 
-	
-	משהו על אינטרפולציות: 
-	\theo{יהיו $x_1 \dots x_n, y_1 \dots y_n \in \R$. נניח $\forall i, j \in [n] \co i \neq j \implies x_i \neq x_j$. אז $\exists! p \in \R_{\le n - 1}[x] \co \forall i \in [n] \co p(x_i) = y_i$ עד לכדי חברות (באופן שקול: נניח $p$ מתוקן) }
-	(הערה מהידע הכללי שלי: זהו פולינום לגראנג' והוא בונה אינטרפולציה די נחמדה). \begin{proof}
-		ידוע שהפולינום מהצורה $p(x)  = \sum_{k = 0}^{n - 1} a_k x^k  = (1, x, x^2, \dots x^{n - 1}) (a_0 \dots a_{n - 1})^T$. למעשה, נקבל את מטריצת ונדרמונד: 
-		\[ \pms{1 & x_1 & x_1^2 & \cdots & x_1^n \\ 1 & x_2 & x_2^2 & \cdots & x_2^{n - 1} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_n & x_n^2 & \cdots & x_n^{n - 1}}\pms{a_0 \\ a_1 \\ \vdots \\ a_{n - 1}} = \pms{y_1 \\ y_2 \\ \vdots \\ y_n} \]
-		וידוע שהדטרמיננטה של ונדרמונד היא $\prod_{i < j} (x_i - x_j)$ וזה איכשהו אמור לגמור את ההוכחה. 
-		
-		אם $x_i = y_i$ בפולינום לעיל, אז $\forall a \in \C \co f(\bar a) = \ol{f(a)} \implies f \in \R[x]$. הוכחה: נניח בשלילה, אז $\exists \ag \in \C\setminus \R \co f(\ag) = 0$ כך ש־$f(\bar \ag) = 0$. אזי $0 \neq f(\bar \ag) = \ol{f(\ag)}  = 0$ וזו סתירה. 
-	\end{proof}
-	
-	\theo{תהי $A \in M_n(\F)$ נורמלית, אז קיים פולינום $f(x) \in \R[x]$ כך ש־$A^* = f(A)$. }
-	\textit{הערה: }באופן כללי \textbf{לא} נכון שאם $A, B$ מתחלפות אז $\exists f(x) \in \F[x] \co f(A) = B$. 
-	\begin{proof}
-		נוכיח מעל $\C$ ובפרט נכונות ל־$\R$. מהמשפט הספקטרלי קיימת $P$ הפיכה (מעבר לבסיס אורתונורמלי) כך ש־$P\op A P = \diag(\lg_1 \dots \lg_n)$ הוא הבסיס המלכסן. מהיות המלכסן א''נ נקבל: 
-		\[ P\op A^* P = \diag(\lg_1 \dots \lg_n)^* = \diag(\bar\lg_1 \dots \bar \lg_n) \]
-		ולכן מפולינום האינטרפולציה עבור הקבוצות $\{\lg_1 \dots \lg_n\}$ ו־$\{\bar \lg_1 \dots \bar \lg_n\}$ קיים ויחיד עד לכדי חברות $f(x) \in \R[x]$ כך ש־$f(\lg_i) = \bar \lg_i$. נותר להראות ש־$A^* = f(A)$, זאת כי: 
-		\[ P\op A^* P = f(\diag(\lg_1 \dots \lg_n)) = \diag(\bar \lg_1 \dots \bar \lg_n) \implies f(P\op A P) = P\op f(A) P \]
-		נכפול ב־$P$ מצד אחד וב־$P\op$ מהצד השני ונקבל את הדרוש
-	\end{proof}
-	
-	
-	\ndoc
->>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 \end{document}
