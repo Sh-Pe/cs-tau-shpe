@@ -1,0 +1,760 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Design
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={Document by Shahar Perets},
+	%	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+\newcommand\zc    {\mathcal{Z}}
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
+\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
+\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+	\SetKwFunction{RetrieveFirst}{Retrieve-First}
+	\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+	\SetKwFunction{DeleteFirst}{Delete-First}
+	\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+	\SetKwFunction{InsertFirst}{Insert-First}
+	\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+	\SetKwFunction{AddEdge}{Add-Edge}
+	\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+	\SetKwProg{Fn}{function}{ is}{end}
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codegreen}null}
+	\SetKwData{True}{\color{codeblue}true}
+	\SetKwData{False}{\color{codeblue}false}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 2א 23}}
+\begin{document}
+	\maketitle
+	\textbf{תרגיל. }חשבו: (כולל פתרון)
+	\[ \pms{-1 & 0 \\ 0 & -1}\pms{a & b \\ -b & a}\pms{1 & 0 \\ 0 & -1} = \pms{a & -b \\ b & a} \]
+	מכאן נסיק שאכן המטריצות להלן דומות עד לכדי שינוי בסיס, וזו הסיבה שלא איכפת לנו מהסימן של $b$ כמו שראינו בהרצאה 22. 
+	
+	\theo{תהי $T \co V \to V$ צמודה לעצמה ואי שלילית $\mut{Tv}{v} \ge 0$, אז קיימת ויחידה $R \co V \to V$ אי־שלילית צמודה לעצמה כך ש־$R^2 = T$. }
+	
+	\begin{proof}
+		\textbf{קיום. }
+		מהמשפט הספקטרלי קיים בסיס א''נ של ו''ע להעתקה אי־שלילית כל הע''ע הם אי־שליליים. 
+		\[ [T]^{B}_B = \diag(\lg_1 \dots \lg_n) \quad [R]_B^B = \diag(\sqrt \lg_1 \dots \sqrt \lg_n) \]
+		(ראינו זאת בתרגול). עוד נבחין ש־$R$ צמודה לעצמה כי ע''ע ממשיים. 
+		
+		\textbf{יחידות. }נבחין שכל ו''ע של $T$ הוא ו''ע של $R$: יהי $i \in [n]$, ו־$B = (e_1 \dots e_n)$ בסיס מלכסן, ואז עבור $R$ צמודה לעצמה כלשהי מתקיים: אז ו''ע של $R$ עם ע''ע $\sqrt \lg$ הוא ו''ע של $T$ עם ע''ע $\lg$ כי: 
+		\[ \lg v = R^2v = Tv \implies Rv = \sqrt \lg \]
+		הגרירה נכונה מאי־שליליות $R$ שהמשפט מניח עליה יחידות. כלומר הערכים העצמיים של $R$ כלשהי (לא בהכרח זו שברחנו בהוכחת הקיום) נקבעים ביחידות מע''ע של $T$. בסיס של ו''ע של $T$ הוא בסיס ו''ע של $R$, סה''כ ראינו איך $R$ פועלת על בסיס ו''ע כלשהו של $T$ מה שקובע ביחידות את $R$. 
+	\end{proof}
+	
+	\noti{את ה־$R$ לעיל נסמן $\sqrt{T} := R$. }
+	
+	\section{\en{Polar decomposition}}
+	\theo{(פירוק הפולארי) תהי $T \co V \to V$ הפיכה, אז קיימות $R \to V \to V$ חיובית וצמודה לעצמה ו־$U \co V \to V$ אוניטרית כך ש־$T = RU$. }
+	\textit{הערה: }לא הנחנו $T$ צמודה לעצמה. הפירוק נכון להעתקה הפיכה כללית. 
+	\begin{proof}
+		נגדיר $S = TT^*$. נבחין ש־$S$ צמודה לעצמה וחיובית: 
+		\[ \forall V \ni v \neq 0 \co \mut{Sv}{v} = \mut{TT^* v}{v} = \mut{T^* v}{T^*v} = \norm{T^*v} > 0 \]
+		האי־שוויון האחרון נכון כי $\ker T = \{0\}$, ממשפט קודם $\ker T^* = \ker T = \{0\}$, ו־$v \neq 0$. יצא שזה חיובי ולכן בפרט ממשי, כלומר היא צמודה לעצמה וחיובית. 
+		
+		קיימת ויחידה $R \co V \to V$ צמודה וחיובית כך ש־$S = R^2$. כל ערכיה העצמיים של $R = \sqrt S$ אינם $0$, ולכן היא הפיכה (ראינו בהוכחה של קיומה שהיא לכסינה יחדיו עם $S$). 
+		
+		נגדיר $U = R\op T$. נותר להראות ש־$U$ אוניטרית. 
+		\[ U^*U = (R\op T)^*(R\op T) = T^*\underbrace{(R\op)^*}_{R\op}R\op T = T^*(R\op)^2 T = T^*S\op T = T^*(TT^*)\op T = I \]
+		כדרוש. הטענה $(R\op)^* = R\op$ נכונה משום ש־$R$ צמודה לעצמה. 
+	\end{proof}
+	
+	\textit{הערה לגבי יחידות. }אם $T$ אינה הפיכה, מקבלי םש־$R$ יחידה אבל $U$ אינה. בשביל לא הפיכות נצטרך להצטמצם לבסיס של התמונה ועליו לפרק כמתואר לעיל. במקרה של הפיכות אז $T = RU = R \tl U$ ואז נקבל $R$ הפיכה כלומר $U = \tl U$ וגם $U$ הפיכה. 
+	
+	עתה נראה ש־$R$ נקבעת ביחידות (בניגוד ליחידות $U$ – יחידות $R$ נכונה גם בעבור פירוק פולארי של העתקה שאיננה הפיכה): 
+	\begin{proof}
+		\[ TT^* = RU(RU)^* = RUU^*R^* = R^2 \]
+		כלומר $R$ היא בכל פירוק שורש, והראינו קודם את יחידות השורש. 
+	\end{proof}
+	\textit{הערה. }קיים גם פירוק כנ''ל מהצורה $T = UR$. 
+	\begin{proof}
+		באותו האופן שפירקנו את $T$, נוכל לפרק את $T^* = \tl R \tl U$ פירוק פולארי. נפעיל $^*$ על שני האגפים ונקבל: 
+		\[ T^* =\tl R \tl U \implies T = (T^*)^* = \tl U^*\tl R^* = \tl U\op \tl R \]
+		נסמן $\tl R =: R, \ \tl U\op =: U$ וסה''כ $T = UR$ כדרוש. 
+	\end{proof}
+	\lem{עבור $T \co V \to V$ אז ל־$TT^*, T^*T$
+		נגדיר $S = TT^*$. נבחין ש־$S$ צמודה לעצמה וחיובית: 
+		\[ \forall V \ni v \neq 0 \co \mut{Sv}{v} = \mut{TT^* v}{v} = \mut{T^* v}{T^*v} = \norm{T^*v} > 0 \] יש אותם הערכים העצמיים. }
+	\begin{proof}ניעזר בפירוק הפולארי: 
+		\begin{align*}
+			TT^* &= RUU^*R^* \\
+			&= R^2 \\
+			TT^* &= U\op R^2U
+		\end{align*}
+		סה''כ $TT^*, T^*T$ הן העתקות דומות ולכן יש להן את אותם הערכים העצמיים. 
+	\end{proof}
+	
+	\textit{הערה. }אז איך זה קשור לפולארי? $R$ האי־שלילית היא ``הגודל'', בעוד $U$ האוניטרית לא משנה גודל – היא ה''זווית''. 
+	
+	
+	\subsection{פירוק פולארי בעבור מטריצות}
+	\theo{(פירוק פולארי עבור מטריצות) תהי $A \in M_n(\F)$ הפיכה, אז קיימות $U, R \in M_n(\F)$ כאשר $U$ א''נ ו־$R$ חיובית צמודה לעצמה כך ש־$A = UR$. }\begin{proof}
+		נסתכל על $A^*A$. היא חיובית וצמודה לעצמה (בדומה לעיל). אז $A^*A = P\op D P$, כאשר $D$ אלגסונית חיובית. כאשר $R = P\op \sqrt D P, \ R^2 = AA^*$. היא קיימת ויחידה מאותה הוכחה בדיוק להעתקות. 
+	\end{proof}
+	
+	\section{\en{Singular Value Decomposition (SVD)}}
+	\theo{(פירוק לערכים סינגולריים למטריצה – SVD) לכל מטריצה $A \in M_n(\F)$ קיימות מטריצות אוניטריות $U, V$ ומטריצה אלכסונית עם ערכים אי־שלילייים כך ש־$A = UDV$. }
+	\begin{proof}
+		ידוע שניתן לכתוב $A = \tl UR$ פירוק פולארי. משום ש־$R$ צמודה לעצמה, ניתן לפרקה ספקטרלית ל־$V$ אוניטרית ו־$D$ אלכסונית אי־שלילית (כי $R$ אי־שלילית) כך ש־$R = V\op DV$. סה''כ: 
+		\[ A = \underbrace{\tl UV\op}_{=: U} DV = UDV \quad \top \]
+		כי $\tl UV\op$ מכפלה של אוניטריות ולכן $U$ אוניטרית כנדרש. 
+	\end{proof}
+	
+	\textit{הערה. }
+	\begin{align*}
+		AA^* &= (UDV) V^*D^*U^* = UD^2U\op \\
+		A^*A &= V\op D^2 V
+	\end{align*}
+	
+	\defi{הערכים העצמיים האי־שליליים של $A^*A$ נקראים \textit{הערכים הסינגולריים} והם נקבעים ביחידות ע''י $A$. }
+	הערכים הסינגולרים הם גם הע''ע של $R^2$ הפירוק בפולארי וכן הע''ע של $D^2$ בפירוק SVD. 
+	
+	\textit{הערה. }פירוק SVD יחיד למטריצה הפיכה. 
+	
+	{\dotfill \\ \vfil {\begin{center}
+				{\Large \textbf{\textit{שחר פרץ $\sim$ סוף הקורס $\sim$ 2025}} \\
+					\normalsize הקובץ לא נגמר – יש הרחבה על דואלים בעמוד הבא
+					\\
+					\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+		\end{center}} \vfil	}
+	\pagebreak
+	\defi{בהינתן $V$ מ''ו מעל $\F$, נגדיר $V^* = \hom(V, F)$. }
+	\textbf{הבנה. }אם $\dim V = n$ אז $\dim V^* = n$. לכן $V \cong V^*$. לא נכון במקרה הסוף ממדי. 
+	
+	\lem{יהי $B = (v_i)_{i = 1}^{n}$ בסיס ל־$V$. אז \hfill $\forall i \in [n] \co \exists \psi_i \in V^* \co \forall j \in [n] \co \psi_i(v_j) = \dg_{ij}$}
+	
+	\theo{יהי $V$ נ''ס ו־$B = (v_i)_{i = 1}^{n}$ אז קיים ויחיד בסיס $B^* = (\psi_i)_{i = 1}^{n}$ המקיים $\forall i, j \in [n] \co \psi_i(v_j) = \dg_{ij}$. }\begin{proof}
+		נבחין שהבדרנו העתקה לינארית $\phi \co B \to V^*$ והיא מגדירה ביחידות $\psi$ לינארית   $\psi \co V \to V^*$ המקיימת את הנרש. ברור שהבנייה של $\phi_i$ קיימת ויחידה כי היא מוגדר לפי מה קורה לבסיס. נותר להוכיח שזה אכן בסיס. יהיו $\ag_1 \dots \ag_n \in \F$ כך ש־$\sum\ag_i \psi_i = 0$. (האפס הזה הוא פונקציונל האפס). יהי $j \in [n]$. אז $0(v_j) = 0 = \cl{\sumni \ag_i \psi_i}v_j = \sumni \ag_i \psi_i(v_j) = \sum\ag_i \dg_{ij} = \ag_j$ וסה''כ $\ag_j = 0$. 
+	\end{proof}
+	
+	נבחין שאפשר להגדיר: 
+	\defi{$V^{**} = \hom(V^*, \F)$}
+	ואכן $\dim V < \inf$ אז: 
+	\[ V \cong V^* \cong V^{**} \]
+	במקרה הזה, בניגוד לאיזו' הקודם, יש איזו' ``טבעי'' (קאנוני), כלומר לא תלוי באף בסיס. 
+	
+	\theo{קיים איזומורפיזם קאנוני בין $V$ ל־$V^{**}$. }
+	\begin{proof}נגדיר את האיזו' הבא: 
+		\[ \psi \co V \to V^{**} \quad \psi(v) =: \bar v \quad \forall \psi \in V^* \co \bar v(\psi) = \psi(v) \]
+		נוכיח שהוא איזו': 
+		\begin{itemize}
+			\item \textbf{ט''ל: }יהיו $\ag, \bg \in \F, \ v, u \in V$. אז: 
+			\[ \psi(\ag v + \bg u) = \overline{\ag v + \bg u} \seq \ag \bar v + \bg \bar u \]
+			נוכיח זאת: 
+			\[ \overline{\ag v + \bg u}(\phi) = \phi(\ag v + \bg u) = \ag \phi(v) + \bg \phi(u) = \ag v(\phi) + \bg \bar u(\phi) = (\ag \bar v + \bg \bar u)(\phi) = (\ag \psi(v) + \bg \psi(u))(\phi) \]
+			\item \textbf{חח''ע: }יהי $v \in \ker \psi$. רוצים להראות $v = 0$. 
+			\[ \forall \phi \in V^* \co \bar (\phi) = 0 \implies \forall \phi \in V^* \co \phi(v) = 0 \]
+			אם $v$ אינו וקטור האפס, נשלימו לבסיס $V = (v_i)_{i = 1}^{n}$ ואם $\phi_1 \dots \phi_n$ בסיס הדואלי אז $\phi_1(v) = 1$ אבל אז $0 = \bar v(\phi_1) = 1$ וסתירה. 
+			\item \textbf{על: }משוויון ממדים $\dim V^{**} = \dim V$. 
+		\end{itemize}
+	\end{proof}
+	כלומר, הפונקציונלים בדואלי השני הם למעשה פונקציונלים שלוקחים איזשהו פונקציונל בדואלי הראשון ומציבים בו וקטור קבוע. 
+	
+	
+	\noti{לכל $v \in V$ ו־$\phi \in V^*$ נסמן $\phi(v) = (\phi, v)$}
+	\theo{ייהו $V, W$ מ''וים נוצרים סופית מעל $\F$, $T \co V \to W$. אז קיימת ויחידה $T^* \co W^* \to V^*$ כך ש־$(\psi, T(v)) = (T^*(\psi), v)$. }
+	אם לצייר דיאגרמה: 
+	\[ V \overset{T}{\to} W \cong W^* \overset{T^*}{\to} V^* \cong V \]
+	(תנסו לצייר את זה בריבוע, ש־$V, W$ למעלה ו־$V^*, W^*$ למטה, כדי להבין ויזולאית למה זה הופך את החצים)
+	
+	ברמה המטא־מתמטית, בתורת הקטגוריות, יש דבר שנקרא פנקטור – דרך לזהות בין אובייקטים שונים במתמטיקה. מה שהוא עושה, לדוגמה, זה להעביר את $\hom(V, W)$ – מרחבים וקטרים סוף ממדיים – למרחב המטריצות. הדבר הזה נקרא פנקטור קו־וראיינטי. במקרה לעיל, זהו פנקטור קונטרא־ווריאנטי – שימוש ב־$T^*$ הופך את החצים. (הרחבה של המרצה)
+	
+	אז אפשר להגדיר פנקטור אבל במקום זה נעשה את זה בשפה שאנחנו מכירים – לינארית 1א. בהינתן $\psi \in W^*$, נרצה למצוא $T^*(\psi) \in V^*$. נגדיר: 
+	\[ T^*(\psi) = \psi \circ T \]
+	ברור מדוע $T^* \co W^* \to V^*$. בעצם, זהו איזומורפיזם (``בשפת הפנקטורים'') קאנוני. עוד קודם לכן ידענו (בגלל ממדים) שהם איזומורפים, אך לא מצאנו את האיזומורפיזם ולא ראינו שהוא קאנוני. 
+	\[ \tau \co \hom(V, W) \to \hom(W^*, V^*) \quad \tau(T) = T^*  \]
+	היא איזומורפיזם. 
+	
+	(הערה: תודה למרצה שנענה לבקשתי ולא השתמש ב\slash phi אחרי שעשיתי \slash renewcommand \slash phi \{\slash varphi\})
+	\begin{proof}[הוכחת לינאריות]
+		יהיו $T, S \in \hom(V, W)$, $\ag \in \F$. אז: 
+		\[ \tau(\ag T + S) = (T + \ag S)^* \]
+		יהי $\psi \in W^*$, אז: 
+		\[ (T + \ag S)^*(\psi) = \psi \circ (T + \ag S) \]
+		יש למעלה פונקציונל ב־$V^*$. ננסה להבין מה הוא עושה על $V$. יהי $v \in V$: 
+		\[ [\psi (T + \ag S)](v) = \psi((T + \ag S)v) = \psi(T)v + \ag \psi(S)(v) = (\psi\circ T + \ag \psi\circ S)(v) = ((T^* + \ag S^*)\circ (\psi))v = (\tau(T) + \ag \tau(S))(\psi)(v) \]
+		סה''כ קיבלנו לינאריות: 
+		\[ \tau(T + \ag S) = \tau(T) + \ag \tau(S) \]
+	\end{proof}
+	נוכל להוכיח זאת יותר בפשטות עם הנוטציה של ``המכפלה הפנימית'' שהגדרנו לעיל, $(\phi, v)$. 
+	עתה נוכיח ש־$\tau$ לא רק לינארית, אלא מוגדרת היטב. 
+	\begin{proof}\,
+		\begin{itemize}
+			\item \textbf{חח''ע: }תהי $T \in \ker \tau$, אז $\tau(T) = T^* = 0_{\hom(W^*, V^*)}$. נרצה להראות ש־$T$ העתקה האפס. נניח בשלילה ש־$T \neq 0$. אז קיים $v' \in V$ כך ש־$T(v') \neq 0$. נשלימו לבסיס – $(T(v) = w_1, w_2 \dots w_n)$ בסיס ל־$W$. יהי $(\psi_1 \dots \psi_n)$ הבסיס הדואלי. אז:
+			\[ \tau(T)(\psi_1) = T^*(\psi_1) = \psi_1  \]
+			אז: 
+			\[ 0 = \tau(T)(\psi_1)(v') = T^*(\psi_1)(v') = \psi_1 \circ T(v') = \psi_1(w_1) = 1 \]
+			סתירה. לכן $\ker \tau = \{0\}$ ולכן $\tau$ חח''ע. 
+			\item \textbf{על: }גם כאן משוויון ממדים
+		\end{itemize}
+	\end{proof}
+	
+	\textbf{שאלה ממבחן שבן עשה. }(``את השאלה הזו לא פתרתי בזמן המבחן, ואני די מתבייש כי אפשר לפתור אותה באמצעות כלים הרבה יותר פשוטים'' ``חה חה'' ``לא חח''ע זה חד־חד ערכי'') יהיו $V, W$ מ''ו מעל $\F$ ו־$(w_1 \dots w_n)$ בסיס של $W$. תהי $T \co V \to V$. הוכיחו שקיימים $\phi_1 \dots \phi_n \in V^*$ כך שלכל $v \in V$ מתקיים: 
+	\[ T(v) = \sumni \phi_i(v) w_i \]
+	\textbf{שימו לב: }בניגוד למה שבן עשה במבחן, $V$ לא בהכרח נוצר סופית. 
+	\begin{proof}[הוכחת ראש בקיר.]
+		לכל $v \in V$ קיימים ויחידים $\ag_1 \dots \ag_n$ כך ש־$T(v) = \sumni \ag_i w_i$. נגדיר $\forall i \in [n] \co \phi_i(v) = \ag_i$. זה לינארי. 
+	\end{proof}
+	
+	\begin{proof}[הוכחה ``מתוחכמת''.]
+		``אני אהבתי את ההוכחה שלי'': נתבונן בבסיס הדואלי $B^* = (\psi_1 \dots \psi_n)$ שמקיים את הדלתא של קרונקר והכל. 
+		נגדיר $T^*(\psi_i) =: \phi_i$. יהי $v \in V$. קיימים ויחידים $\ag_1 \dots \ag_n$ כך ש־$T(v) = \sumni \ag_i w_i$. אז: 
+		\[ \sumni \phi_i(v)w_i = \sum T^*(\psi_i)(v) w_i \]
+		צ.ל. $\ag_i = T^*(\psi_i)(v)$. אך נבחין שהגדרנו: 
+		\[ T^*(\psi_i)(v) = \psi_i(T(v)) = \psi_i\cl{\sumni \ag_j w_j} = \ag_j \]
+		
+	\end{proof}
+	
+	``הפכת למרצה במתמטיקה כדי להתנקם באחותך?'' ``כן.''
+	
+	\subsection{המאפס הדואלי ומרחב אורתוגונלי}
+	\defi{יהי $V$ מ''ו נוצר סופית. יהי $S \subseteq V$ קבוצה. נגדיר $\{\phi \in V^* \mid \forall v \in S \co \phi(v) = 0\} =: S^0 \subseteq V^*$. }
+	
+	\textbf{דוגמאות. } \hfil $\{0\}^0 = V^*, \ V^0 = \{0\}$
+	
+	\theo{\,
+	\begin{enumerate}
+			\item $S^0$ תמ''ו של $V^*$. 
+			\item \hfil $(\Sp S)^0 = S^0$
+			\item \hfil $S \subseteq S' \implies S'^0 \subseteq S^0$
+	\end{enumerate}}
+
+	\theo{יהי $V$ נ''ס, $U \subseteq V$ תמ''ו. אז $\dim U + \dim U^0 = n$}
+	באופן דומה אפשר להמשיך ולעשות: 
+	\[ \dim U^0 + \dim U^{**} = n \]
+	וכן: 
+	\[ U \cong U^{**} \]
+	איזומורפיזם קאנוני. זאת כי:
+	\[ \forall \phi \in U^0 \, \forall u \in U \co \phi(u) = 0 \]
+	ומי אלו הוקטורים שיאפסו את $\phi$ שמאפס את $u$? הוקטורים ב־$U$ עד לכדי האיזומורפיזם הקאנוני מ־$U$ ל־$U^{**}$. 
+	
+	נבחין ש־: 
+	\[ [T^*]^{\bc^*}_{\ac^*} = ([T]^{\ac}_{\bc})^T \]
+	כאשר $\ac$ בסיס ל־$V$, $\ac^*$ ל־$V^*$, $\bc$ ל־$W$, $\bc^*$ ל־$W^*$. 
+	
+	``כוס אמא של קושי'' – בן על זה שקושי גילה את המשפט לפניו. 
+	
+	
+	\ndoc
+\end{document}
