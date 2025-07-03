@@ -1,0 +1,613 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage[paper=portrait,pagesize]{typearea}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+
+% Design
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.1in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=3pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+%\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+	{\fontsize{12}{12}}
+	{\dotfill \ (\thesection) \dotfill}
+	{0em}
+	{\vspace{2pt} \newline \hfil \normalsize \filleft \filright
+		{\vspace{-4pt}\regFont}
+	}
+%\titleformat*{\subsection}{\fontsize{11}{11}\bfseries}
+\titleformat{\subsection}[block]
+	{\fontsize{11}{11}}
+	{\regFont \hfil (\thesubsection)\, }
+	{0em}
+	{\regFont\bfseries\vspace{-5pt}}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={Document by Shahar Perets},
+	%	pdfpagemode=FullScreen,
+}
+
+\BeforeBeginEnvironment{alignat*}{\vspace{-17pt}}
+\AfterEndEnvironment{alignat*}{\vspace{-27pt}}
+\BeforeBeginEnvironment{alignat}{\vspace{-17pt}}
+\AfterEndEnvironment{alignat}{\vspace{-27pt}}
+\BeforeBeginEnvironment{forest}{\vspace{-12pt}}
+\AfterEndEnvironment{forest}{\vspace{-7pt}}
+
+% Hebrew initialzing
+%\usepackage[bidi=basic]{babel}
+%\PassOptionsToPackage{no-math}{fontspec}
+%\babelprovide[main, import, Alph=letters]{hebrew}
+%\babelprovide[import]{english}
+%\babelfont[hebrew]{rm}{David CLM}
+%\babelfont[hebrew]{sf}{David CLM}
+%%\babelfont[english]{tt}{Monaspace Xenon}
+%\usepackage[shortlabels]{enumitem}
+%\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+%\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+%\newcommand\he[1] {\she#1\sen}
+%\newcommand\sen   {\begin{otherlanguage}{english}}
+%	\newcommand\she   {\end{otherlanguage}}
+%\newcommand\del   {$ \!\! $}
+
+%\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+%\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+%			{\textbf{\textit{שחר פרץ, 2025}} \\
+%				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+%	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\E     {\mathbb{E}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\oc    {\mathcal{O}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+\newcommand\zc    {\mathcal{Z}}
+
+\newcommand\Si    {\Sigma}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\ol    {\overline}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\co        {\colon}
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+\newcommand\logn      {\log n}
+
+% Other shortcuts
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{theorm}
+\theoremstyle{definition}
+\newtheorem{Definition}{definition}
+\newtheorem{Lemma}{lemma}
+\newtheorem{Remark}{remark}
+
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{Definition}#1\end{Definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+	\SetKwFunction{RetrieveFirst}{Retrieve-First}
+	\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+	\SetKwFunction{DeleteFirst}{Delete-First}
+	\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+	\SetKwFunction{InsertFirst}{Insert-First}
+	\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+	\SetKwFunction{AddEdge}{Add-Edge}
+	\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+	\SetKwProg{Fn}{function}{ is}{end}
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codegreen}null}
+	\SetKwData{True}{\color{codeblue}true}
+	\SetKwData{False}{\color{codeblue}false}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+%! ~~~ Document ~~~
+
+\newcommand\regFont   {\fontsize{8}{10}\rmfamily}
+\newcommand\tableFont {\fontsize{6}{7}\rmfamily}
+\DeclareMathOperator{\midText}{mid}
+
+\author{Shahar Perets}
+\title{Shit Cheat Sheet $\sim$ Data Structures $\sim$ \textit{2025B}}
+\begin{document}
+%	\setlength{\columnseprule}{0.2pt}
+	\KOMAoptions{paper=landscape,pagesize}
+	\recalctypearea
+%	\areaset{3.8\textwidth}{3.6\textheight}
+	\areaset{2.35\textwidth}{2.2\textheight}
+	\regFont
+%	\sen
+	
+	\begin{multicols}{4}
+		\section{ADTs}
+		\textbf{List. }\texttt{List()}, \texttt{Retrieve($L, i$)}, \texttt{Insert($L, b, i$)}, \texttt{Delete($L, i$)}, \texttt{Length($L$)} \textit{optional:} \texttt{Search($L, b$)}, \texttt{Concat($L_1, L_2$)}, \texttt{Plant($L_1, i, L_2$)}, \texttt{Split($L, i$)} \textit{special cases:} \texttt{Retrieve/Insert/Delete-First/Last}. 
+		
+		\textbf{Dictionary. }\texttt{Dictionary()}, \texttt{Insert($D, X$)}, \texttt{Delete($D, x$)}, \texttt{Search($D, k$)}, \texttt{Min($D$))}, \texttt{Max($D$)}, \texttt{Successor($D, x$)}, \texttt{Predecessor($D, x$)} \textit{(for rank trees: )}\texttt{Select($D, k$)} [the k$^{\text{th}}$ smallest element], \texttt{Rank($D, x$)} [the position in sorted order]. 
+		
+		\textbf{Stack. }(LIFO) \texttt{Push($L, b$)} [=ins.-last], \texttt{Top($L$)} [=ret.-last], \texttt{Pop($L$)} [=del.-last]. (all $\oc(1)$ using arrays)
+		
+		\textbf{Queue. }(FIFO) \texttt{Enqueue($L, b$)} [=ins-last], \texttt{Head($L$)} [=ret.-first], \texttt{Dequeue($L$)} [=del-first]. (all $\oc(1)$ using circular arrays)
+		
+		\textbf{Deque. }Queue + Stack
+		
+		\textbf{Vector. }\texttt{Vector($m$)}, \texttt{Get($V, i$)}, \texttt{Set($V, i, \mathrm{val}$)}. (All $\oc(1)$ using \textit{legals} and \textit{positions} arrays that reference each other)
+		d
+		\begin{algorithm}[H]\importDs\sData{positions}\sData{legals}\sFunc{isGarbage}
+			\Fn{\isGarbage{$i$}}{
+				\If{$0 \le \positions[i] < \legals.size$ {\bf and} $\legals[\positions[i]] = i$}{
+					\Return{\False}
+				} \Return{\True}
+			}
+		\end{algorithm}
+		
+		\textbf{Graph. }\texttt{Edge($i, j$)}, \texttt{Add-Edge($i, j$)}, \texttt{Remove-Edge($i, j$)}, \texttt{InDeg($i$)}, \texttt{OutDeg($i$)} etc.
+		
+		
+		\section{Graphs}
+		\begin{Definition}[Topological sorting algo.]
+			Input: directed graph / Output: numbering $(n_i)_{i = 1}^{N}$ of the graph nodes where $\forall (i, j) \in E \co n_i < n_j$. 
+		\end{Definition}
+		\theo{Topological Sorting exists iff the graph doesn't contain cycles}
+		\begin{algorithm}[H]
+			\importDs\sData{k}\sData{v}
+			\k $\gets$ $0$\;
+			\While{there are sources}{
+				find source \v\;
+				$n_i \gets k$\; $k \gets k + 1$\;
+				remove $v$ from the graph
+			}
+			if $\k = n$ numbering completed, otherwise isn't possible. 
+		\end{algorithm}
+		building ``source queue'' takes $\oc(n)$, dequeuing source $\oc(1)$, and enqueuing new sources to sources-queue $\oc(d_{\mathrm{out}}(i))$. Total $\oc(n + m)$ for topological ordering. 
+		\defi{A \textit{source} is a node that has no incoming edges. }
+		\begin{Remark}
+			any DAG has at least one source
+		\end{Remark}
+		
+		\section{Complexity}
+		\begin{Definition}
+			Suppose there's a data structure with $k$ types of operations $(T_i)_{i = 1}^{k}$, then for sequence of operations $(op)_{i = 1}^{n}$, then:
+			
+			\hfil $\mathrm{time}(op_1 \dots op_n) \le \sumni \mathrm{bound}(\type(op_i))$
+			
+			Where (W.C. bound) $\worst(T_i)$ is the maximal time for a single operation typed $T_i$, and (amortized bound) $\amort(T_i)$ is the bound for the cost of every valid sequence $(op_i)_{i = 1}^{n}$. 
+			
+			\textbf{Amortization methods. }aggregation (regular average), accounting (bank method), and potential function (defined to be the balance of the bank) that satisfies $\amort(op_i) = \mathrm{time}(op_i) + \Phi_i - \Phi_{i - 1}$. 
+			
+			\textbf{Potential for doubling by $1 + \ag$. }$\Phi := \begin{cases}
+				\frac{1 + \ag}{\ag} n - \frac{M}{\ag} & n > \frac{M}{\ag + 1} \\
+				0 & \other
+			\end{cases}$
+			yields to un amortized bound of $\oc\cl{\frac{1 + \ag}{\ag} + 1}$
+		\end{Definition}
+		\begin{alignat*}{9}
+			&\textstyle\sum_{i = 0}^{n} x^i &&= \tfrac{x^{n + 1} - 1}{x - 1} = \Theta(x^n)  &(x \neq 1) \\
+			&\textstyle\sum_{i = 1}^{n} \tfrac{1}{i} &&= H_n = \Theta(\logn)
+		\end{alignat*}
+		
+		\subsection{Master Theorem}
+		let $ f \colon \R \to \R $ be an function, and let $ a \le 1, b >1 $ be constants, assuming $ T \colon \R_{\ge 0} \to \R, \ T(n) = a \cdot T\left (\tfrac{n}{b} \right ) + f(n)$, then: 
+		\begin{enumerate}
+			\item $ \exists \vepsi > 0. f(n) = O(n^{\log_b a - \vepsi}) $ \\ $\implies T(n) = \Theta(n^{log_b a}) $
+			\item $ f(n) = \Theta(n^{\log_b a}) $ \\ $\implies T(n) = \Theta(n^{log_b a} \cdot \logn) $
+			\item $ \exists \vepsi > 0. f(n) = \Omega(n^{\log_b a + \vepsi}) \land $ \\
+			$\ \exists c>1, n_0 \ge 0. \forall n \ge n_0. a \cdot f(\tfrac{n}{b}) \le c \cdot f(n) $ \\
+			$\implies T(n) = \Theta(f(n)) $
+		\end{enumerate}
+		\textit{Note that $ \mathit{\tfrac{n}{b}} $ could be $ \mathit{\lf \tfrac{n}{b} \rf} $ nor $ \mathit{\lc \tfrac{n}{b} \rc} $}
+		
+		\section{Dictionaries}
+		
+		\subsection{General Trees}
+		\defi{a in \textit{full} tree all internal nodes have exactly $i$ children. }
+		\defi{a \textit{BST} satisfies: $\forall x \forall y$ if $y$ is in the left subtree of $x$, then $y.key < x.key$, and vise-versa. }
+		\defi{\textit{height} of a node = maximal length of downward path between that node and a leaf. }
+		\defi{\textit{depth} of a node is the length of the path up the tree to the root. }
+		\theo{minimal height of a tree is $\floor{\log n}$}
+		\defi{a BST is balanced if $h = \oc(\logn)$}
+		\theo{for a given set of $n$ distinct keys, there are $\frac{1}{n + 1}\binom{2n}{n}$ (catalan number) BSTs. }
+		\theo{the expected search complexity in a random BST is $\le (1 + 4 \logn)$. }
+		\lem{the heights of a binary tree containing $\ell$ leaves $\ge \log \ell$. }
+		
+		\textbf{Tree walks. }pre: SLR, in: LSR, post: LRS
+		
+		\textbf{Postfix syntax algo. }(...) %TODO: finish
+		
+		\subsection{AVL trees}
+		\defi{an AVL tree is a BST where $\forall v \in V \co \sof{\mathrm{BF}(v)} \le 1$}
+		\theo{and AVL tree is balanced. Further more: $n \le \log_{\Phi}n \approx 1.44\logn$. }
+		\defi{Fibonacci tree $F_i$ is: \\ \begin{center}
+				\begin{forest}
+					[$F_i$ [$F_{i -1}$] [$F_{i - 2}$]]
+				\end{forest}
+		\end{center}}
+		\theo{an AVL tree with minimum edges is a fibonacci tree, sized $f_n = \frac{\Phi^n - \bar \Phi^n}{\sqrt 5}$, \ $\Phi = \frac{1 + \sqrt 5}{2}$. }
+		
+%		TODO: finish 4. AVL trees
+		
+		\defi{a \textit{rank tree}, is a tree that maintains the size of each subtree, hence supports the rank \& select operations in $\oc(\logn)$. }
+		
+		\theo{if the information that a given attribute $f$ defined for each node, can be computed merely from its direct children (\textit{local attribute}), then we can maintain $f$ in an AVL tree. }
+		\begin{Remark}
+			The theorem above is sufficient condition but not necessary. 
+		\end{Remark}
+		
+		\defi{a \textit{Finger Tree} is a tree that has a pointer to a specific node. }
+		\theo{in a finger tree \texttt{Select($T, k$)} can be implemented in $\oc(\log k)$. }
+		
+%		TODO: spliting and joining trees
+
+		\subsection{B-trees}		
+		\defi{a \textit{B-tree $(d, 2d)$} satisfies: 
+		\begin{enumerate}
+			\item each non-leaf expect for the root has $d \le r \le 2d$ children (hence $d - 1$ to $2d - 1$ keys);
+			\item all leaves are at the same depth;
+			\item the root has between $2$ and $2d$ children (hence $1$ to $2d - 1$ keys). 
+		\end{enumerate}}
+		\defi{a B$^{\text{+}}$-tree is a B-tree with keys only on leafs. }
+		\defi{a B$^{\text{*}}$-tree is a B-tree with nodes $\frac{2}{3}$ full (instead of $\frac{d}{2d} = \frac{1}{2}$ full). }
+		\defi{a red-black tree is a $(1, 2)$ B-tree (BST). }
+		\theo{at depth $h$ there are at least $2d^{h - 1}$ nodes. }
+		\theo{a B-tree $(d, 2d)$ with $n$ edges and $h$ height fulfills $n \ge d^{h}$, $h \le \log_{d} n$}
+		\theo{search in a b-tree requires $\oc(\log_dn)$ I/Os, and $\oc(\log_2 d \cdot \log_d n) = \oc(\logn)$ operations in total. }
+		
+		\theo{Ins./Del. rebalancing cost is W.C. $\oc(\logn)$, and using button-up amort. (ins.+del.) $\oc(1)$, using top-down $\Omega(\log_dn)$}
+		
+		\quad\textbf{\textit{Insertions}}
+		
+		\textbf{Button-Up. }Find and insert in the appropriate leaf. If the current node is overflowing: split. If the parent is overflowing: split (etc., recursively). Requires a total of $\oc(d \log_dn)$ operations. \\
+		\textbf{Top-Down. }if a node is full, we will split it on the way down while searching. \\
+		\textbf{Button-Up non-leaf deletion. }replace the item by its predecessor and delete the predecessor (must be a leaf). 
+		
+		\quad\textbf{\textit{Deletions}}
+		
+		\textbf{Button-Up leaf deletion. }if the current node is underflowing, borrow and terminate and if not possible fuse and recursively check the if parent if underflowing. \\
+		\textbf{Top-Down leaf deletion. }while searching, checking if the items along the way contains $d$ keys, otherwise borrow or fuse. \\
+		\textbf{Top-Down non-leaf deletion. }replace the node with its predecessor, while making sure that nodes along the way contains at least $d$ keys. 
+		
+		\section{Priority Queue}
+%		TODO: all of this section
+		
+		\section{Sorting}
+		\subsection{Comparison-based sorting}
+		\theo{insertion sort with $I > n$ inversions ($I \le \binom{2n}{n}$) takes $\oc\cl{n \log \frac{I}{n}}$. }
+		\defi{\textit{stable sort} is a sorting algo. the preserves order of items with the same key. }
+		\defi{a comparison-based algo. uses only two-key comparisons to decide on key position. }
+		\textbf{assumption. }two keys can be compared in $\oc(1)$, and an item can be moved in $\oc(1)$. 
+		\theo{the W.C. and average case of any comparison-base sorting algo. runs in $\Omega(n \logn)$}
+		\lem{comparison trees are a full binary tree, and has $\ge n!$ leafs. }
+		\theo{the worst/best/average case in the comparison-based model is the max/min/average depths of the leafs. }
+		
+		\subsection{Other sorting algos. }
+		\textbf{Count sort. }For dataset $A$, assumes $\exists R \forall a \in A \le R$ constant. Counts each element $a \in A$, takes a cumulative sum $(a_i)$, then for all $a \in A$ puts $a$ in $a_i$ and decreases $a_i \gets a_i - 1$. Takes $\oc(n + R)$. Stable sort. 
+		
+		\textbf{Count sort. }similar to count sort, takes $R$ bins and throws $A$ into them, then collects them. 
+		
+		\textbf{Radix sort. }For a dataset $A$ sized $n$, assumes $a \in A$ contains exactly $d$ digit and each digit is bounded by $b$. Preforms count sort on the LSD $\to$ MSD. [note: relies on count sort being stable]. Takes $\oc(d(n + b))$. 
+		
+		\theo{Radix sort is enough to make IBM. }
+		
+		\subsection{QuickSort}
+		\textbf{Lomuto's Partition. }%TODO
+		
+		\textbf{Hoare's Partition. }%TODO
+		
+		\theo{W.C. of quicksort if $\binom{n}{2} = \oc(n^2)$. }
+		\theo{Average case of quicksort is $2(n + 1)H_n - 4n \approx 1.39n\logn$. }
+		
+		\section{Probability}
+		\defi{an \textit{Experiment} is a case where we the result is uncertain. }
+		\defi{the \textit{Sample Space} is the set of all the expected outcomes of a given experiment. }
+		\defi{an \textit{Event} is a subset of the sample space. A singleton subset called a \textit{simple event}. }
+		\defi{\textit{Disjoint Events} are events $A, B$ that fulfills $A \cap B = \varnothing$. }
+		\defi{a \textit{Probability Function} is a function $P \co S \to [0, 1]$ for $S$ sample space, so that $\forall E, F \ \text{disjoint} \co P(E \cup F) = P(E) + P(F)$ and $P(S) = 1$. }
+		\defi{the conditional probability of event $E$ given the event $F$ is $P(E \mid F) := \frac{P(E \cap F)}{P(F)}$. }
+		\theo{for disjoint events $(F_i)_{i = 1}^{n}$, if $\bigcup F_i = E $ then $\forall E \co P(E) = \sumni P(E \mid F_i) \cdot P(F_i)$. }
+		\defi{events $E, F$ are independent if $P(E \cap F) = P(E) \cdot P(F)$ (iff $P(E \mid F) = P(E)$). }
+		\defi{a \textit{Random Variable} if a function $X \co S \to \R$. }
+		\defi{$X = x$ is the event on which $X(E) = x$, and its probability noted as $P(X = x)$. }
+		\defi{the \textit{Expectation} of a random variable $X$ is $\E[x] = \sum_{x} x \cdot P(X = x)$. }
+		\theo{the expectation is linear for all constants, and additive for all random variables. }
+		\defi{a random variable $I$ is called an \textit{Indicator of an event $A$} if $I = \begin{cases}
+				1 & \text{if $A$ occurs} \\
+				0 & \text{if $A^c$ occurs}
+			\end{cases}$}
+		\lem{$\E[I] = P(A)$. }
+		\defi{\textit{Uniform Distribution} of a random variable $X$ occurs when $\exists c \co \forall x \in \R \co P(X = x) = c$. }
+		\defi{\textit{Geometric Distribution} satisfies $P(x = k) = (1 - p)^{k - 1}p$, hence $\E[X] = \sum_{k = 1}^{\inf} k(1 - p)^{k - 1}p = \frac{1}{p}$. }
+		\textbf{note: }geometric dist. is equal to having the probability of succession $p$ and for failure $p - 1$, and $P$ is a rand. var. that is equal to the number of required experiments to get to an solution. 
+		
+		\section{Selection}
+		%TODO
+		
+		\section{Hashing}
+		%TODO
+		
+		\section{Other}
+		\textbf{Reduction. }reduction (in our case) is the process of showing the a problem is at least as hard as another problem. 
+		
+		
+	\end{multicols}
+	
+	\section{Complexity Tables}
+	\vspace{-25pt}
+	\begin{multicols}{2}
+		{\regFont\hfil \textbf{Lists}\vspace{-3pt}}\tableFont
+		
+		{\hfil $\set \midText := \min\{i, n - i\} + 1$}
+		\begin{center}
+			\begin{tabular}{c|cccc} % TODO: transpose if possible
+				 & \textbf{Arrays} & \textbf{Circular Arr.} & \textbf{D-Linked} & \textbf{AVL List} \\
+				\hline \texttt{Ins/Del-Last} & $\oc(1)$ & $\oc(1)$ & $\oc(1)$ & $\oc(\logn)$ \\
+				\hline \texttt{Ins/Del-First} & $\oc(n + i)$ & $\oc(1)$ & $\oc(1)$ & $\oc(\logn)$ \\
+				\hline \texttt{Ins($i$)} & $\oc(n - i + 1)$ & $\oc(\midText)$ & $\oc(\midText)$ &$\oc(\logn)$ \\
+				\hline \texttt{Retrieve($i$)} & $\oc(1)$ & $\oc(1)$ & $\oc(\midText)$ & $\oc(\log(i) + 1)$ \\
+				\hline \texttt{Concat($\sof{n_1}, \sof{n_2}$)} & $\oc(n_2 + 1)$ & $\oc(\min\{n_1, n_2\} + 1) $ & $\oc(1)$ & $\oc(\log (n_1 + n_2))$ \\ 
+				\hline \texttt{Split($i$)} & $\oc(n - i + 1)$ & $\oc(\midText)$ & $\oc(\midText)$ & $\oc(\logn)$
+			\end{tabular}
+		\end{center}
+		(in a lazy doubly-linked list, amortized del./ins. $\oc(1)$ and ret. $\oc(i + 1)$)
+		
+		\columnbreak
+		
+		{\regFont\hfil \textbf{Priority Queues}\vspace{-3pt}}\tableFont 
+		\begin{center}\begin{tabular}{c|c|c|c|c|c|c|c}
+				& \textbf{\texttt{Insert}} & \textbf{\texttt{Minimum}} & \textbf{\texttt{Delete-Min}} & \textbf{\texttt{Dec.-Key}} & \textbf{\texttt{Delete}} & \textbf{\texttt{Meld}} & \textbf{\texttt{Init}} \\
+				\hline
+				\textbf{AVL tree} & $\oc(\logn) $ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & & $\oc(n \logn)$ \\
+				\textbf{Binary Stack} & $\oc(\logn)$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(n)$ & $\oc(n)$ \\
+				\textbf{W.C Binomial Stack} & $\oc(\logn)$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$& \\
+				\textbf{Amort. Binomial Stack$^{*}$} & $\oc(1)$ & $\oc(1)_{W.C.}$ & $\oc(1)$ & $\oc(1)$ & $\oc(1)$ & $\oc(\logn)$& \\ % TODO: recheck this: it does not make sense. 
+				$\overset{\text{\tableFont \textbf{Lazy Amort.}}}{\text{\tableFont \textbf{Binomial Stack}}}$
+				& $\oc(1)_{W.C.}$ & $ \oc(1)_{W.C.} $ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(1)$ & \\ %TODO: use tabularx instead of this junky \overset
+				\textbf{Amort. Fib. Stack: }& $\oc(1)_{W.C.}$ & $ \oc(1)_{W.C.} $ & $\oc(\logn)$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(1)$ & \\
+			\end{tabular}\end{center}
+			$^{*}$amortized for a sequence of operations from the same type. 
+	\end{multicols}
+	
+%	\she
+	
+\end{document}

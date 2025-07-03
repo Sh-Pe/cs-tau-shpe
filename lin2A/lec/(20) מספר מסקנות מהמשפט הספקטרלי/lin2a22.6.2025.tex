@@ -35,31 +35,31 @@
 \definecolor{codegray}{rgb}{0.96,0.96,0.96}
 
 \lstdefinestyle{pythonstylesheet}{
-	language=Java,
-	emphstyle=\color{deepred},
-	backgroundcolor=\color{codegray},
-	keywordstyle=\color{deepblue}\bfseries\itshape,
-	numberstyle=\scriptsize\color{codenumber},
-	basicstyle=\ttfamily\footnotesize,
-	commentstyle=\color{codegreen}\itshape,
-	breakatwhitespace=false, 
-	breaklines=true, 
-	captionpos=b, 
-	keepspaces=true, 
-	numbers=left, 
-	numbersep=5pt, 
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false, 
-	tabsize=4, 
-	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
-	keywordstyle=\color{codeblue},
-	emph={var, List, Iterable, Iterator},          % Custom highlighting
-	emphstyle=\color{codered},
-	stringstyle=\color{codegreen},
-	showstringspaces=false,
-	abovecaptionskip=0pt,belowcaptionskip =0pt,
-	framextopmargin=-\topsep, 
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
 }
 \newcommand\pythonstyle{\lstset{pythonstylesheet}}
 \newcommand\pyl[1]     {{\lstinline!#1!}}
@@ -69,7 +69,7 @@
 \definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
 \mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
 \BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
-	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
 
 
 % Design
@@ -94,6 +94,20 @@
 \definecolor{mblue}{RGB}{30, 60, 200}
 \usepackage{hyperref}
 \hypersetup{
+<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+    \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+    \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+========
 	colorlinks=true,
 	citecolor=mgreen,
 	linkcolor=black,
@@ -106,6 +120,7 @@
 	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
 \def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
 	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+>>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 
 
 
@@ -124,22 +139,22 @@
 \newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
 \newcommand\he[1] {\she#1\sen}
 \newcommand\sen   {\begin{otherlanguage}{english}}
-	\newcommand\she   {\end{otherlanguage}}
+    \newcommand\she   {\end{otherlanguage}}
 \newcommand\del   {$ \!\! $}
 
 \newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
 \newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
-			{\textbf{\textit{שחר פרץ, 2025}} \\
-				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
-	\end{center}} \vfil	}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
 
 \newcommand{\rn}[1]{
-	\textup{\uppercase\expandafter{\romannumeral#1}}
+    \textup{\uppercase\expandafter{\romannumeral#1}}
 }
 
 \makeatletter
 \newcommand{\skipitems}[1]{
-	\addtocounter{\@enumctr}{#1}
+    \addtocounter{\@enumctr}{#1}
 }
 \makeatother
 
@@ -364,9 +379,9 @@
 \newcommand\F         {\mathbb{F}}
 \newcommand\co        {\colon}
 \newcommand\tmat[2]   {\cl{\begin{matrix}
-			#1
-		\end{matrix}\, \middle\vert\, \begin{matrix}
-			#2
+            #1
+        \end{matrix}\, \middle\vert\, \begin{matrix}
+            #2
 \end{matrix}}}
 
 \makeatletter
@@ -376,7 +391,7 @@
 \newcommand\gmat      {\mat{m}{n}(\F)}
 \newcommand\tomat     {\, \dequad \longrightarrow}
 \newcommand\pms[1]    {\begin{pmatrix}
-		#1
+        #1
 \end{pmatrix}}
 
 \newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
@@ -388,16 +403,16 @@
 \makeatletter
 \newlength\min@xx
 \newcommand*\xxrightarrow[1]{\begingroup
-	\settowidth\min@xx{$\m@th\scriptstyle#1$}
-	\@xxrightarrow}
+    \settowidth\min@xx{$\m@th\scriptstyle#1$}
+    \@xxrightarrow}
 \newcommand*\@xxrightarrow[2][]{
-	\sbox8{$\m@th\scriptstyle#1$}  % subscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\sbox8{$\m@th\scriptstyle#2$} % superscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
-	{\mathmakebox[\min@xx]{\scriptstyle#2}}
-	\endgroup}
+    \sbox8{$\m@th\scriptstyle#1$}  % subscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \sbox8{$\m@th\scriptstyle#2$} % superscript
+    \ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+    \xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+    {\mathmakebox[\min@xx]{\scriptstyle#2}}
+    \endgroup}
 \makeatother
 
 
@@ -465,6 +480,8 @@
 \newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
 
+<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
+========
 % DS
 \newcommand\limsi     {\limsup_{n \to \inf}}
 \newcommand\limfi     {\liminf_{n \to \inf}}
@@ -539,10 +556,94 @@
 \newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
 \newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
 \newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+>>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
+<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
+\title{\textit{אלגברה לינארית 1א $\sim$ מרחבים דואליים}}
+\begin{document}
+    \maketitle
+    
+    
+    \section{\en{Dual spaces}}
+    \defi{יהי $V$ מ''ו מעל $\F$. אז: 
+    \[ V^{*} := \{f \co V \to \F \co \mid f \, \text{\en{Linear}}\} \]
+    הוא המ''ו הדואלי, ו־$f \in V^{*}$ פונקציונלי לינארי. }
+    
+    \textbf{דוגמאות. }
+    \begin{itemize}
+        \item בעבור $V = \R$ נראה שזה הישרים מהצורה $y = ax$. נסמן $y(1) = m$ ואז $y(x) = xy(1) = xm$ וסה''כ $y(x) = mx$ כדרוש. 
+        \item בעבור $V = \R^{2}$: גם במקרה הזה נקבע את $f(e_1) = a, f(e_2) = b$ ואז $f(x, y) = f(e_1x + e_2y) = ax + by$
+        \item במקרה הכללי יותר $V = \R^{n}$ ונסמן $f(e_i) = a_i$. סה''כ: 
+        \[ f(x_1 \dots x_n) = f\cl{\sum_{i = 1}^{n}x_ie_i} = \sum_{i = 1}^{n}x_ia_i \]
+    \end{itemize}
+    
+    \theo{המרחב הדואלי $(\R^{n})^{*}\cong \R^{n}$} \begin{proof}
+        נגדיר: 
+        \[ T \co \R^{n} \to (\R^{n})^{8}, \ T(a_1 \dots a_n) = f_{a_1 \dots a_n}, \ f_{a_1 \dots a_n}(x_1 \dots x_n) = \sum_{i = 1}^{n}a_xe_i \]
+        נוכיח שהיא לינארית, חח''ע ועל. 
+        \begin{itemize}
+            \item $T$ לינארית: 
+            \[ T(a + b) = f_{a + b} = \sum_{i = 1}^{n}(a_i + b_i)x_i = \sumni a_ix_i + \sumni b_ix_i = f_a + f_b = T(a) + T(b) \]
+            עתה נבדוק כפל בסקלר: 
+            \[ T_{\lg a} = f_{\lg a} = \sumni \lg a_i x_i = \lg \sumni a_ix_i = \lg f_{a}x \]
+            \item $T$ חח''ע: נניח ש־$T(a_1 \dots a_n) = 0$. ידוע $f_a = \sumni x_ia_i$ ולכל $i$ מתקיים $f(e_i) = a_i = 0$ וסה''כ $a = 0$ כדרוש. 
+        \end{itemize}
+    \end{proof}
+    
+    באופן כללי, $\dim V = n \implies \dim V^* = n$. 
+    
+    בהינתן בסיס ל־$V$, ישנו בסיס דואלי $\{f_1 \dots f_n\}$ המוגדרות ע''י $\forall i, j \co f_j(b_i) = \dg_{ij}$. 
+    
+    \theo{זהו בסיס ל־$V^*$. }\begin{proof}\,
+        \begin{itemize}
+            \item \textbf{על: }
+            \[ f(v) = f\cl{\sumni \ag_i b_i} = \sumni \ag_i f(b_i) \]
+            \item \textbf{חח''ע: }
+            \[ f = \sumni \ag_i f_i = 0 \implies f(b_i) = \ag_i = 0 \implies (\ag_i)_{i = 1}^{n} = 0 \quad \top \]
+        \end{itemize}
+    \end{proof}
+    נבחין שב־$\R^{n}$: 
+    \[ \ker f_a = \ccb{x \in \R^n \co \sumni a_ix_i = 0} \]
+    זהו תמ''ו מממד $n - 1$ (זהו אילוץ אחד שמאבד דרגת חופש אחת). 
+    
+    \textbf{דוגמאות לפונקציונלים מעל מ''וים לא נוצרים סופית: }$V = \{f \co [0, 1] \to \R\}$, מתקיים ש־$\phi(f) = f(0)$ פוקציונל, וגרעינו $\ker \phi =\{f \co [0, 1] \to \R\co f(0) = 0\}$. אפשר להראות ש־$f = f - \underbrace{f(0)}_{\ker \phi} + \underbrace{f(0)}_{A}$ כאשר $A$ מ''ו הפונקציות הקבועות. למעשה, פירקנו לסכום ישר של הגרעין + משהו חד ממדי. בכך ניסחנו לכאורה את המספר של $n - 1$ גם כאשר אין באמת אפשרות לחסר ממדי. נקרא לזה קו־ממד אחד. 
+    
+    באופן כללי, אם $0 \neq f \in V^*$ יש $v \in V$ fl a-$f(v) \neq 0$. נניח $f(v) = 1$. אז $\forall x \in V \co x = f - f(x)v + f(x) v$ ולכן נוכל לפרק $V = \ker f \oplus \Sp v$. 
+    
+    \subsection*{המרחב $V^{**}$}
+    ברור כי $V^{**}\cong V$. לכל $v \in V$ נוכל להתאים $\phi_V(f) = f(v)$. זה מגדיר העתקה לינארית מ־$V$ ל־$V^{**}$. נוכיח שהיא איזומורפיזם. חח''ע: הרעיון: להוכיח (לנוצרים סופית) $\forall f \in V^*, \phi_V(f) =  0 = f(v)$. נניח בשלילה ש־$v \neq 0$. אז נוכל להשלים אותו לבסיס $v, v_2 \dots v_n$, אפשר להגדיר $f$ כך ש־$f(v) = 1, \ f(v_i) = 0 \forall i \ge 2$. אבל אז $\phi_V(f) = f(v) = 2$ וסתירה. אזי זה חח''ע. 
+    
+    
+    זהו איזומורפיזם קאנוני: הוא לא תלוי בבסיס או משהו של המרחב עצמו. האיזומורפיזם לא דורש שום בחירה לא טרוויאלית בתוך המרחב. נאמר שהם איזומורמים קאנונית. 
+    
+    \subsection*{המרחב המאפס}
+    \defi{תהי $S \subseteq V$, אז המאפס שלה: 
+    \[ S^{0} = \{f \in V^* \co f|_S = 0\}\subseteq V^* \]}
+    \theo{\,
+    \begin{itemize}
+        \item \hfil $S^0 = (\Sp S)^0$
+        \item $S^0$ מ''ו
+        \item \hfil $S \subseteq T \implies S^0 \reflectbox{$\subseteq$} T^0$
+    \end{itemize}}
+
+    \theo{יהי $V$ מ''ו, $\dim V = n$, $U \subseteq V$ תמ''ו, נניח ש־$\dim U = r$ אז $\dim U^0 = n - r$}\begin{proof}
+        ניקח בסיס ל־$U$, $e_1 \dots e_r$. ניקח $f_1 \dots f_r$ כך ש־$f_i(e_j) = \dg_{ij}(j)$. נשלים לבסיס של $V$: 
+        \[ e_1 \dots e_r, \ e_{r + 1} \dots e_n \]
+        ובאופן דומה ב־$V^{n}$: 
+        \[ f_1 \dots f_r, f_{r + 1} \dots f_n \]
+        זהו בסיס ל־$U^0$ (לכל)
+        $j \ge r + 1$. מתקיים $f_i(e_j) = 0 \implies f_j|_U = 0$ לכל $i \ge r$. עתה נראה פרישה: 
+        \[ \forall f \in U^0 \co f(v) = f\cl{\sumni \ag_i e_i} = f\cl{\sum_{i = 1}^{r}\ag_ie_i} + f\cl{\sum_{i = r + 1}^{n}\ag_i e_i} = f\cl{\sum_{i = r+ 1}^{n}\ag_i e_i} = \sum_{i = r + 1}^{n}\ag_i f(e_i) = \sum_{i= r + 1}^{n}f_i(\underbrace{\sum \ag_i e_i}_{v})f(e_i) \]
+        בת''ל: 
+        הם איברים בבסיס $V^*$ ובפרט בת''ל. 
+    \end{proof}
+    
+    \ndoc
+    
+========
 \title{\textit{לינארית 2א 20}}
 \begin{document}
 	\maketitle
@@ -586,4 +687,5 @@
 	
 	
 	\ndoc
+>>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 \end{document}

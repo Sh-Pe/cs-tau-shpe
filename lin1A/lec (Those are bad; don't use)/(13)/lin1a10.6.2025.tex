@@ -94,6 +94,7 @@
 \definecolor{mblue}{RGB}{30, 60, 200}
 \usepackage{hyperref}
 \hypersetup{
+<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
     colorlinks=true,
     citecolor=mgreen,
     linkcolor=black,
@@ -106,6 +107,20 @@
     \parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
 \def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
     \parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+========
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={Document by Shahar Perets},
+	%	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+>>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 
 
 
@@ -170,6 +185,7 @@
 \newcommand\vc    {\mathcal{V}} % Vance
 \newcommand\sca   {\mathcal{S}} % \sc is already definded
 \newcommand\rca   {\mathcal{R}} % \rc is already definded
+\newcommand\zc    {\mathcal{Z}}
 
 \newcommand\prm   {\mathrm{p}}
 \newcommand\arm   {\mathrm{a}} % x86
@@ -378,6 +394,11 @@
         #1
 \end{pmatrix}}
 
+\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
+\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
+\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
+
 % someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
 \makeatletter
 \newlength\min@xx
@@ -459,10 +480,88 @@
 \newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
 
+<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
+========
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+	\SetKwFunction{RetrieveFirst}{Retrieve-First}
+	\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+	\SetKwFunction{DeleteFirst}{Delete-First}
+	\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+	\SetKwFunction{InsertFirst}{Insert-First}
+	\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+	\SetKwFunction{AddEdge}{Add-Edge}
+	\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+	\SetKwProg{Fn}{function}{ is}{end}
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codegreen}null}
+	\SetKwData{True}{\color{codeblue}true}
+	\SetKwData{False}{\color{codeblue}false}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+>>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
+<<<<<<<< HEAD:lin1A/lec/(13)/lin1a10.6.2025.tex
 \title{\textit{אלגברה לינארית 1א $\sim$ מרחבים דואליים}}
 \begin{document}
     \maketitle
@@ -544,4 +643,49 @@
     
     \ndoc
     
+========
+\title{\textit{לינארית 2א 20}}
+\begin{document}
+	\maketitle
+	תזכורת: $A \in M_n(\C)$ נקראית סימטרית אממ $A = A^T$ והרמיטית אם $A = A^*$, ונורמלית אממ $AA^* = A^*A$. 
+	
+	\theo{תהי $T \co V \to V$ ט''ל, ו־$V$ ממ''פ מעל $\F \in \{\R, \C\}$, ויהי $B$ בסיס א''נ של $V$. אזי אם $A = [T]_B$: 
+	\[ [T^*]_B = A = ([T]_B)^* \]}  
+	\begin{proof}
+		נזכר ש־: 
+		\[ [T]_B = \pms{\vert &  & \vert \\ [Te_1]_B & \cdots & [Te_n]_B \\ \vert &  & \vert} \]
+		נסמן $B = \{e_i\}_{i = 1}^{n}$ בסיס. נבחין ש־: 
+		\[ Te_j = \sumni a_{ij}e_i, \ a_{ij} = \mut{Te_j}{e_i} \]
+		נסמן ב־$C$ את המטריצה המייצגת $[T^*]_B$: 
+		\[ c_{ij} = \mut{T^*e_j}{e_i} \]
+		ונחשב: 
+		\[ c_ij = \mut{T^*e_j}{e_i} = \mut{e_j}{Te_i} = \ol{\mut{Te_i}{e_j}} = a_{ij} \]
+		
+	\end{proof}
+	
+	\textbf{מסקנה: }אם $A$ נורמלית אז $T_A$ נורמלית מעל $\F^n$ אם הסטנדרטית. בפרט מתקיים עליה המשפט הספקטרלי. גם אם $A$ ממשית, הע''ע עלולים להמצא מעל $\C$ (אלא אם היא צמודה לעצמה, ואז הם מעל $\R$). 
+	
+	משהו על אינטרפולציות: 
+	\theo{יהיו $x_1 \dots x_n, y_1 \dots y_n \in \R$. נניח $\forall i, j \in [n] \co i \neq j \implies x_i \neq x_j$. אז $\exists! p \in \R_{\le n - 1}[x] \co \forall i \in [n] \co p(x_i) = y_i$ עד לכדי חברות (באופן שקול: נניח $p$ מתוקן) }
+	(הערה מהידע הכללי שלי: זהו פולינום לגראנג' והוא בונה אינטרפולציה די נחמדה). \begin{proof}
+		ידוע שהפולינום מהצורה $p(x)  = \sum_{k = 0}^{n - 1} a_k x^k  = (1, x, x^2, \dots x^{n - 1}) (a_0 \dots a_{n - 1})^T$. למעשה, נקבל את מטריצת ונדרמונד: 
+		\[ \pms{1 & x_1 & x_1^2 & \cdots & x_1^n \\ 1 & x_2 & x_2^2 & \cdots & x_2^{n - 1} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_n & x_n^2 & \cdots & x_n^{n - 1}}\pms{a_0 \\ a_1 \\ \vdots \\ a_{n - 1}} = \pms{y_1 \\ y_2 \\ \vdots \\ y_n} \]
+		וידוע שהדטרמיננטה של ונדרמונד היא $\prod_{i < j} (x_i - x_j)$ וזה איכשהו אמור לגמור את ההוכחה. 
+		
+		אם $x_i = y_i$ בפולינום לעיל, אז $\forall a \in \C \co f(\bar a) = \ol{f(a)} \implies f \in \R[x]$. הוכחה: נניח בשלילה, אז $\exists \ag \in \C\setminus \R \co f(\ag) = 0$ כך ש־$f(\bar \ag) = 0$. אזי $0 \neq f(\bar \ag) = \ol{f(\ag)}  = 0$ וזו סתירה. 
+	\end{proof}
+	
+	\theo{תהי $A \in M_n(\F)$ נורמלית, אז קיים פולינום $f(x) \in \R[x]$ כך ש־$A^* = f(A)$. }
+	\textit{הערה: }באופן כללי \textbf{לא} נכון שאם $A, B$ מתחלפות אז $\exists f(x) \in \F[x] \co f(A) = B$. 
+	\begin{proof}
+		נוכיח מעל $\C$ ובפרט נכונות ל־$\R$. מהמשפט הספקטרלי קיימת $P$ הפיכה (מעבר לבסיס אורתונורמלי) כך ש־$P\op A P = \diag(\lg_1 \dots \lg_n)$ הוא הבסיס המלכסן. מהיות המלכסן א''נ נקבל: 
+		\[ P\op A^* P = \diag(\lg_1 \dots \lg_n)^* = \diag(\bar\lg_1 \dots \bar \lg_n) \]
+		ולכן מפולינום האינטרפולציה עבור הקבוצות $\{\lg_1 \dots \lg_n\}$ ו־$\{\bar \lg_1 \dots \bar \lg_n\}$ קיים ויחיד עד לכדי חברות $f(x) \in \R[x]$ כך ש־$f(\lg_i) = \bar \lg_i$. נותר להראות ש־$A^* = f(A)$, זאת כי: 
+		\[ P\op A^* P = f(\diag(\lg_1 \dots \lg_n)) = \diag(\bar \lg_1 \dots \bar \lg_n) \implies f(P\op A P) = P\op f(A) P \]
+		נכפול ב־$P$ מצד אחד וב־$P\op$ מהצד השני ונקבל את הדרוש
+	\end{proof}
+	
+	
+	\ndoc
+>>>>>>>> master:lin2A/lec/(20)/lin2a22.6.2025.tex
 \end{document}
