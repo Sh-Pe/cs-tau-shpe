@@ -38,25 +38,31 @@
 \usepackage[labelfont=bf]{caption}
 \usepackage[margin=0.1in]{geometry}
 \usepackage{multicol}
-\usepackage[skip=3pt, indent=0pt]{parskip}
+\usepackage[skip=2pt, indent=0pt]{parskip}
 \usepackage[normalem]{ulem}
 \forestset{default}
 %\renewcommand\labelitemi{$\bullet$}
 \usepackage{titlesec}
 \usepackage{titlesec}
+%\titleformat{\section}[block]
+%	{\fontsize{12}{12}}
+%	{\dotfill \ (\thesection) \dotfill}
+%	{0em}
+%	{
+%		\vspace{2pt} \newline \hfil \normalsize \filleft \filright
+%		{\vspace{-4pt}\regFont}
+%	}
 \titleformat{\section}[block]
-	{\fontsize{12}{12}}
-	{\dotfill \ (\thesection) \dotfill}
+	{\fontsize{11}{11}}
+	{\regFont (\thesubsection) \!\!\dotfill}
 	{0em}
-	{\vspace{2pt} \newline \hfil \normalsize \filleft \filright
-		{\vspace{-4pt}\regFont}
-	}
+	{\fontsize{10}{9}\rmfamily\bfseries}
 %\titleformat*{\subsection}{\fontsize{11}{11}\bfseries}
 \titleformat{\subsection}[block]
 	{\fontsize{11}{11}}
-	{\regFont \hfil (\thesubsection)\, }
-	{0em}
-	{\regFont\bfseries\vspace{-5pt}}
+	{\regFont(\thesubsection) \hfill}
+	{0.5em}
+	{\regFont\bfseries}
 \usepackage{graphicx}
 \graphicspath{ {./} }
 
@@ -74,11 +80,16 @@
 }
 
 \BeforeBeginEnvironment{alignat*}{\vspace{-17pt}}
-\AfterEndEnvironment{alignat*}{\vspace{-27pt}}
+\AfterEndEnvironment{alignat*}{\vspace{-19pt}}
 \BeforeBeginEnvironment{alignat}{\vspace{-17pt}}
 \AfterEndEnvironment{alignat}{\vspace{-27pt}}
 \BeforeBeginEnvironment{forest}{\vspace{-12pt}}
 \AfterEndEnvironment{forest}{\vspace{-7pt}}
+\BeforeBeginEnvironment{algorithm}{\vspace{-11pt}}
+\AfterEndEnvironment{algorithm}{\vspace{4pt}}
+\newcommand\compactsubsection[1]        {\vspace{-10pt}\subsection{#1}\vspace{-5pt}}
+\newcommand\compactsection   [1]        {\vspace{-10pt}\section{#1}\vspace{-5pt}}
+\newcommand\subsectionrightaftersection {\vspace{10pt}}
 
 % Hebrew initialzing
 %\usepackage[bidi=basic]{babel}
@@ -257,18 +268,17 @@
 
 \renewcommand\phi     {\varphi}
 
-\newtheorem{Theorem}{theorm}
+\newtheorem{Theorem}{Theorm}
 \theoremstyle{definition}
-\newtheorem{Definition}{definition}
-\newtheorem{Lemma}{lemma}
-\newtheorem{Remark}{remark}
+\newtheorem{Definition}{Definition}
+\newtheorem{Lemma}{Lemma}
+\newtheorem{Remark}{Remark}
 
 
 \newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
 \newcommand\defi  [1] {\begin{Definition}#1\end{Definition}}
 \newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
 \newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
-\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
 
 % DS
 \newcommand\limsi     {\limsup_{n \to \inf}}
@@ -338,7 +348,7 @@
 }
 
 
-% Algorithems
+% Algorithms
 \newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
 \newcommand\sData [1] {\SetKwData{#1}{#1}}
 \newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
@@ -346,8 +356,8 @@
 
 %! ~~~ Document ~~~
 
-\newcommand\regFont   {\fontsize{8}{10}\rmfamily}
-\newcommand\tableFont {\fontsize{6}{7}\rmfamily}
+\newcommand\regFont   {\fontsize{6}{7}\rmfamily}
+\newcommand\tableFont {\fontsize{5}{4}\rmfamily}
 \DeclareMathOperator{\midText}{mid}
 
 \author{Shahar Perets}
@@ -357,255 +367,398 @@
 	\KOMAoptions{paper=landscape,pagesize}
 	\recalctypearea
 %	\areaset{3.8\textwidth}{3.6\textheight}
-	\areaset{2.35\textwidth}{2.2\textheight}
+	\areaset{2.39\textwidth}{2.21\textheight}
 	\regFont
 %	\sen
 	
 	\begin{multicols}{4}
-		\section{ADTs}
-		\textbf{List. }\texttt{List()}, \texttt{Retrieve($L, i$)}, \texttt{Insert($L, b, i$)}, \texttt{Delete($L, i$)}, \texttt{Length($L$)} \textit{optional:} \texttt{Search($L, b$)}, \texttt{Concat($L_1, L_2$)}, \texttt{Plant($L_1, i, L_2$)}, \texttt{Split($L, i$)} \textit{special cases:} \texttt{Retrieve/Insert/Delete-First/Last}. 
-		
-		\textbf{Dictionary. }\texttt{Dictionary()}, \texttt{Insert($D, X$)}, \texttt{Delete($D, x$)}, \texttt{Search($D, k$)}, \texttt{Min($D$))}, \texttt{Max($D$)}, \texttt{Successor($D, x$)}, \texttt{Predecessor($D, x$)} \textit{(for rank trees: )}\texttt{Select($D, k$)} [the k$^{\text{th}}$ smallest element], \texttt{Rank($D, x$)} [the position in sorted order]. 
-		
-		\textbf{Stack. }(LIFO) \texttt{Push($L, b$)} [=ins.-last], \texttt{Top($L$)} [=ret.-last], \texttt{Pop($L$)} [=del.-last]. (all $\oc(1)$ using arrays)
-		
-		\textbf{Queue. }(FIFO) \texttt{Enqueue($L, b$)} [=ins-last], \texttt{Head($L$)} [=ret.-first], \texttt{Dequeue($L$)} [=del-first]. (all $\oc(1)$ using circular arrays)
-		
-		\textbf{Deque. }Queue + Stack
-		
-		\textbf{Vector. }\texttt{Vector($m$)}, \texttt{Get($V, i$)}, \texttt{Set($V, i, \mathrm{val}$)}. (All $\oc(1)$ using \textit{legals} and \textit{positions} arrays that reference each other)
-		d
-		\begin{algorithm}[H]\importDs\sData{positions}\sData{legals}\sFunc{isGarbage}
-			\Fn{\isGarbage{$i$}}{
-				\If{$0 \le \positions[i] < \legals.size$ {\bf and} $\legals[\positions[i]] = i$}{
-					\Return{\False}
-				} \Return{\True}
-			}
-		\end{algorithm}
-		
-		\textbf{Graph. }\texttt{Edge($i, j$)}, \texttt{Add-Edge($i, j$)}, \texttt{Remove-Edge($i, j$)}, \texttt{InDeg($i$)}, \texttt{OutDeg($i$)} etc.
-		
-		
-		\section{Graphs}
-		\begin{Definition}[Topological sorting algo.]
-			Input: directed graph / Output: numbering $(n_i)_{i = 1}^{N}$ of the graph nodes where $\forall (i, j) \in E \co n_i < n_j$. 
-		\end{Definition}
-		\theo{Topological Sorting exists iff the graph doesn't contain cycles}
-		\begin{algorithm}[H]
-			\importDs\sData{k}\sData{v}
-			\k $\gets$ $0$\;
-			\While{there are sources}{
-				find source \v\;
-				$n_i \gets k$\; $k \gets k + 1$\;
-				remove $v$ from the graph
-			}
-			if $\k = n$ numbering completed, otherwise isn't possible. 
-		\end{algorithm}
-		building ``source queue'' takes $\oc(n)$, dequeuing source $\oc(1)$, and enqueuing new sources to sources-queue $\oc(d_{\mathrm{out}}(i))$. Total $\oc(n + m)$ for topological ordering. 
-		\defi{A \textit{source} is a node that has no incoming edges. }
-		\begin{Remark}
-			any DAG has at least one source
-		\end{Remark}
-		
-		\section{Complexity}
-		\begin{Definition}
-			Suppose there's a data structure with $k$ types of operations $(T_i)_{i = 1}^{k}$, then for sequence of operations $(op)_{i = 1}^{n}$, then:
+		{\hfil \fontsize{12}{11}\rmfamily Shahar Perets $\sim$ DS Shit Cheat Sheet}
+		\regFont
+		\vspace{-11pt}
+		\compactsection{ADTs}
+			\textbf{List. }\texttt{List()}, \texttt{Retrieve($L, i$)}, \texttt{Insert($L, b, i$)}, \texttt{Delete($L, i$)}, \texttt{Length($L$)} \textit{optional:} \texttt{Search($L, b$)}, \texttt{Concat($L_1, L_2$)}, \texttt{Plant($L_1, i, L_2$)}, \texttt{Split($L, i$)} \textit{special cases:} \texttt{Retrieve/Insert/Delete-First/Last}. 
 			
-			\hfil $\mathrm{time}(op_1 \dots op_n) \le \sumni \mathrm{bound}(\type(op_i))$
+			\textbf{Dictionary. }\texttt{Dictionary()}, \texttt{Insert($D, X$)}, \texttt{Delete($D, x$)}, \texttt{Search($D, k$)}, \texttt{Min($D$))}, \texttt{Max($D$)}, \texttt{Successor($D, x$)}, \texttt{Predecessor($D, x$)} \textit{(for rank trees): }\texttt{Select($D, k$)} [the k$^{\text{th}}$ smallest element], \texttt{Rank($D, x$)} [the position in sorted order]. 
 			
-			Where (W.C. bound) $\worst(T_i)$ is the maximal time for a single operation typed $T_i$, and (amortized bound) $\amort(T_i)$ is the bound for the cost of every valid sequence $(op_i)_{i = 1}^{n}$. 
+			\textbf{Stack. }(LIFO) \texttt{Push($L, b$)} [=ins.-last], \texttt{Top($L$)} [=ret.-last], \texttt{Pop($L$)} [=del.-last]. (all $\oc(1)$ using arrays)
 			
-			\textbf{Amortization methods. }aggregation (regular average), accounting (bank method), and potential function (defined to be the balance of the bank) that satisfies $\amort(op_i) = \mathrm{time}(op_i) + \Phi_i - \Phi_{i - 1}$. 
+			\textbf{Queue. }(FIFO) \texttt{Enqueue($L, b$)} [=ins-last], \texttt{Head($L$)} [=ret.-first], \texttt{Dequeue($L$)} [=del-first]. (all $\oc(1)$ using circular arrays)
 			
-			\textbf{Potential for doubling by $1 + \ag$. }$\Phi := \begin{cases}
-				\frac{1 + \ag}{\ag} n - \frac{M}{\ag} & n > \frac{M}{\ag + 1} \\
-				0 & \other
-			\end{cases}$
-			yields to un amortized bound of $\oc\cl{\frac{1 + \ag}{\ag} + 1}$
-		\end{Definition}
-		\begin{alignat*}{9}
-			&\textstyle\sum_{i = 0}^{n} x^i &&= \tfrac{x^{n + 1} - 1}{x - 1} = \Theta(x^n)  &(x \neq 1) \\
-			&\textstyle\sum_{i = 1}^{n} \tfrac{1}{i} &&= H_n = \Theta(\logn)
-		\end{alignat*}
+			\textbf{Deque. }Queue + Stack
+			
+			\textbf{Priority Queue. }\texttt{Insert($x, Q$)}, \texttt{Min($Q$)}, \texttt{Delete-Min($Q$)}, (optional:) \texttt{Decrease-Key($x, Q, \Delta$)}, \texttt{Delete($x, Q$)}
+			
+			\textbf{Vector. }\texttt{Vector($m$)}, \texttt{Get($V, i$)}, \texttt{Set($V, i, \mathrm{val}$)}. (All $\oc(1)$ using \textit{legals} and \textit{positions} arrays that reference each other)
+			d
+				\begin{algorithm}[H]\importDs\sData{positions}\sData{legals}\sFunc{isGarbage}
+					\Fn{\isGarbage{$i$}}{
+						\If{$0 \le \positions[i] < \legals.size$ {\bf and} $\legals[\positions[i]] = i$}{
+							\Return{\False}
+						} \Return{\True}
+					}
+				\end{algorithm}
+			
+			\textbf{Graph. }\texttt{Edge($i, j$)}, \texttt{Add-Edge($i, j$)}, \texttt{Remove-Edge($i, j$)}, \texttt{InDeg($i$)}, \texttt{OutDeg($i$)} etc.
+			
+			
+		\compactsection{Graphs}
+			\begin{Definition}[Topological sorting algo.]
+				Input: directed graph / Output: numbering $(n_i)_{i = 1}^{N}$ of the graph nodes where $\forall (i, j) \in E \co n_i < n_j$. 
+			\end{Definition}
+			\theo{Topological Sorting exists iff the graph doesn't contain cycles}
+			\begin{algorithm}[H]
+				\importDs\sData{k}\sData{v}
+				\k $\gets$ $0$\;
+				\While{there are sources}{
+					find source \v\;
+					$n_i \gets k$\; $k \gets k + 1$\;
+					remove $v$ from the graph
+				}
+				if $\k = n$ numbering completed, otherwise isn't possible. 
+			\end{algorithm}
+			building ``source queue'' takes $\oc(n)$, dequeuing source $\oc(1)$, and enqueuing new sources to sources-queue $\oc(d_{\mathrm{out}}(i))$. Total $\oc(n + m)$ for topological ordering. 
+			\defi{A \textit{source} is a node that has no incoming edges. }
+			\begin{Remark}
+				any DAG has at least one source
+			\end{Remark}
+			
+		\compactsection{Complexity}
+			\begin{Definition}
+				Suppose there's a data structure with $k$ types of operations $(T_i)_{i = 1}^{k}$, then for sequence of operations $(op)_{i = 1}^{n}$, then:
+				
+				\hfil $\mathrm{time}(op_1 \dots op_n) \le \sumni \mathrm{bound}(\type(op_i))$
+				
+				Where (W.C. bound) $\worst(T_i)$ is the maximal time for a single operation typed $T_i$, and (amortized bound) $\amort(T_i)$ is a series of bounds for cost of every valid sequence $(op_i)_{i = 1}^{n}$. 
+				
+				\textbf{Amortization methods. }aggregation (regular average), accounting (bank method), and potential function (defined to be the balance of the bank) that satisfies $\amort(op_i) = \mathrm{time}(op_i) + \Phi_i - \Phi_{i - 1}$. 
+				
+				\textbf{Potential for doubling by $1 + \ag$. }$\Phi := \begin{cases}
+					\frac{1 + \ag}{\ag} n - \frac{M}{\ag} & n > \frac{M}{\ag + 1} \\
+					0 & \other
+				\end{cases}$
+				yields to un amortized bound of $\oc\cl{\frac{1 + \ag}{\ag} + 1}$
+			\end{Definition}
+			\begin{alignat*}{9}
+				&\textstyle\sum_{i = 0}^{n} x^i &&= \tfrac{x^{n + 1} - 1}{x - 1} = \Theta(x^n)  &(x \neq 1) \\
+				&\textstyle\sum_{i = 1}^{n} \tfrac{1}{i} &&= H_n = \Theta(\logn)
+				&\textstyle\log n! &&= \Theta(n\logn)
+			\end{alignat*}
+			\theo{$\ag + \bg = 1 \land T(n) \le cn + T(\ag) + T(\bg n) \implies T(n) = \oc(n)$. }
+			
+			\compactsubsection{Asymptotic Notations}
+				\vspace{6pt}
+				\begin{alignat*}{9}
+					f &= O(g) &&\iff \exists n_0, c > 0\, \forall n \ge n_0\co f(n) \le c g(n) \\
+					f &= \Omega(g) &&\iff \exists n_0, c > 0\, \forall n \ge n_0\co f(n) \ge c g(n) \\
+					f &= \Theta(g) &&\iff f = \Omega(g) \land f = O(g) \\
+					f &= o(g) &&\iff \forall c\, \exists n_0\, \forall n \ge n_0\co f(n) \le cg(n) \\
+					f &= \omega(g) &&\iff \forall c\, \exists n_0\, \forall n \ge n_0\co f(n) \ge cg(n)
+				\end{alignat*}
+				\vspace{-5pt}
+				\begin{gather*}
+					f = \Omega(g) \iff g = O(f) \\
+					\dequad f_1 = O(g_1) \land f_2 = O(g_2)\quad\quad\quad\quad  \\ \quad\quad\quad\quad  \implies f_1(n) + f_2(n) = O(\max(g_1(n), g_2(n)))
+				\end{gather*}
+				\vspace{-5pt}
+				\begin{alignat*}{9}
+					f &= O(g)      &&\iff \limsup_{n \to \inf} \textstyle \frac{f(n)}{g(n)} &&< \inf \\
+					f &= \Omega(g) &&\iff \limsup_{n \to \inf} \textstyle \frac{f(n)}{g(n)} &&> 0 \\
+					f &= o(g)      &&\iff \lim_{n \to \inf}    \textstyle \frac{f(n)}{g(n)} &&= 0 \\
+					f &= \omega(g) &&\iff \lim_{n \to \inf}    \textstyle \frac{f(n)}{g(n)} &&= \inf
+				\end{alignat*}
+			
+			\compactsubsection{Master Theorem}
+				let $ f \colon \R \to \R $ be an function, and let $ a \le 1, b >1 $ be constants, assuming $ T \colon \R_{\ge 0} \to \R, \ T(n) = a \cdot T\left (\tfrac{n}{b} \right ) + f(n)$, then: 
+				\begin{enumerate}
+					\item $ \exists \vepsi > 0. f(n) = O(n^{\log_b a - \vepsi}) $ \\ $\implies T(n) = \Theta(n^{log_b a}) $
+					\item $ f(n) = \Theta(n^{\log_b a}) $ \\ $\implies T(n) = \Theta(n^{log_b a} \cdot \logn) $
+					\item $ \exists \vepsi > 0. f(n) = \Omega(n^{\log_b a + \vepsi}) \land $ \\
+					$\ \exists c>1, n_0 \ge 0. \forall n \ge n_0. a \cdot f(\tfrac{n}{b}) \le c \cdot f(n) $ \\
+					$\implies T(n) = \Theta(f(n)) $
+				\end{enumerate}
+				\textit{Note that $ \mathit{\tfrac{n}{b}} $ could be $ \mathit{\lf \tfrac{n}{b} \rf} $ nor $ \mathit{\lc \tfrac{n}{b} \rc} $}
+				
+		\compactsection{Dictionaries}\subsectionrightaftersection
+			\compactsubsection{General Trees}
+				\defi{a in \textit{full} tree all internal nodes have exactly $i$ children. }
+				\defi{a \textit{BST} satisfies: $\forall x \forall y$ if $y$ is in the left subtree of $x$, then $y.key < x.key$, and vise-versa. }
+				\defi{\textit{height} of a node = maximal length of downward path between that node and a leaf. }
+				\defi{\textit{depth} of a node is the length of the path up the tree to the root. }
+				\theo{minimal height of a tree is $\floor{\log n}$}
+				\defi{a BST is balanced if $h = \oc(\logn)$}
+				\theo{for a given set of $n$ distinct keys, there are $\frac{1}{n + 1}\binom{2n}{n}$ (catalan number) BSTs. }
+				\theo{the expected search complexity in a random BST is $\le (1 + 4 \logn)$. }
+				\lem{the heights of a binary tree containing $\ell$ leaves $\ge \log \ell$. }
+				
+				\textbf{Tree walks. }pre: head $\to$ SLR, in: LSR, post: LRS
+				
+				\textbf{Postfix syntax algo. }(...) %TODO: finish
+				
+			\compactsubsection{AVL trees}
+				\defi{an AVL tree is a BST where $\forall v \in V \co \sof{\mathrm{BF}(v)} \le 1$}
+				\theo{and AVL tree is balanced. Further more: $n \le \log_{\Phi}n \approx 1.44\logn$. }
+				\defi{Fibonacci tree $F_i$ is: \\ \begin{center}
+						\begin{forest}
+							[$F_i$ [$F_{i -1}$] [$F_{i - 2}$]]
+						\end{forest}
+				\end{center}}
+				\theo{an AVL tree with minimum edges is a fibonacci tree, sized $f_n = \frac{\Phi^n - \bar \Phi^n}{\sqrt 5}$, \ $\Phi = \frac{1 + \sqrt 5}{2}$. }
+				
+		%		TODO: finish 4. AVL trees
+				
+				\defi{a \textit{rank tree}, is a tree that maintains the size of each subtree, hence supports the rank \& select operations in $\oc(\logn)$. }
+				
+				\theo{if the information that a given attribute $f$ defined for each node, can be computed merely from its direct children (\textit{local attribute}), then we can maintain $f$ in an AVL tree. }
+				\lem{the sum of the keys lesser than $v$, and the sum of the keys in the subtrees, can be implemented both without harming time complexity. }
+				\lem{\texttt{Between}($s, t$) $=$ \texttt{Tree-Rank}($t$) $-$ \texttt{Tree-Rank}($s$) $+$ $1$}
+				
+				\begin{Remark}
+					The theorem above is sufficient condition but not necessary. 
+				\end{Remark}
+				
+				\defi{a \textit{Finger Tree} is a tree that has a pointer to a specific node. }
+				\theo{in a finger tree \texttt{Select($T, k$)} can be implemented in $\oc(\log k)$. }
+				\theo{Given a sorted array, we can create an AVL tree in $\oc(n)$ on which $h = \floor{\logn}$}
+				\textbf{\texttt{Join($T_1, T_2$): } where $T_1 < x < T_2$ is done $\oc(h_{T_1} + h_{T_2} + 1)$ (see image). }
+				\textbf{\texttt{Split($T, x$)}: }splits $T$ into $T_1 < x < T_2$ in $\oc(\logn)$ using joins. 
+			
+			\compactsubsection{B-trees}		
+				\defi{a \textit{B-tree $(d, 2d)$} satisfies: 
+				\begin{enumerate}
+					\item each non-leaf expect for the root has $d \le r \le 2d$ children (hence $d - 1$ to $2d - 1$ keys);
+					\item all leaves are at the same depth;
+					\item the root has between $2$ and $2d$ children (hence $1$ to $2d - 1$ keys). 
+				\end{enumerate}}
+				\defi{a B$^{\text{+}}$-tree is a B-tree with keys only on leafs. }
+				\defi{a B$^{\text{*}}$-tree is a B-tree with nodes $\frac{2}{3}$ full (instead of $\frac{d}{2d} = \frac{1}{2}$ full). }
+				\theo{at depth $h$ there are at least $2d^{h - 1}$ nodes. }
+				\theo{a B-tree $(d, 2d)$ with $n$ edges and $h$ height fulfills $n \ge d^{h}$, $h \le \log_{d} n$}
+				\theo{search in a b-tree requires $\oc(\log_dn)$ I/Os, and $\oc(\log_2 d \cdot \log_d n) = \oc(\logn)$ operations in total. }
+				\lem{In a B-tree $\# \text{leaves} = \# \text{internal nodes} + 1$}
+				
+				\theo{Ins./Del. rebalancing cost is W.C. $\oc(\logn)$, and using button-up amort. (ins.+del.) $\oc(1)$, using top-down $\Omega(\log_dn)$}
+				
+				\quad\textbf{\textit{Insertions}}
+				
+					\textbf{Button-Up. }Find and insert in the appropriate leaf. If the current node is overflowing: split. If the parent is overflowing: split (etc., recursively). Requires a total of $\oc(d \log_dn)$ operations. \\
+					\textbf{Top-Down. }if a node is full, we will split it on the way down while searching. \\
+					\textbf{Button-Up non-leaf deletion. }replace the item by its predecessor and delete the predecessor (must be a leaf). 
+				
+				\quad\textbf{\textit{Deletions}}
+				
+					\textbf{Button-Up leaf deletion. }if the current node is underflowing, borrow and terminate and if not possible fuse and recursively check the if parent if underflowing. \\
+					\textbf{Top-Down leaf deletion. }while searching, checking if the items along the way contains $d$ keys, otherwise borrow or fuse. \\
+					\textbf{Top-Down non-leaf deletion. }replace the node with its predecessor, while making sure that nodes along the way contains at least $d$ keys. 
 		
-		\subsection{Master Theorem}
-		let $ f \colon \R \to \R $ be an function, and let $ a \le 1, b >1 $ be constants, assuming $ T \colon \R_{\ge 0} \to \R, \ T(n) = a \cdot T\left (\tfrac{n}{b} \right ) + f(n)$, then: 
-		\begin{enumerate}
-			\item $ \exists \vepsi > 0. f(n) = O(n^{\log_b a - \vepsi}) $ \\ $\implies T(n) = \Theta(n^{log_b a}) $
-			\item $ f(n) = \Theta(n^{\log_b a}) $ \\ $\implies T(n) = \Theta(n^{log_b a} \cdot \logn) $
-			\item $ \exists \vepsi > 0. f(n) = \Omega(n^{\log_b a + \vepsi}) \land $ \\
-			$\ \exists c>1, n_0 \ge 0. \forall n \ge n_0. a \cdot f(\tfrac{n}{b}) \le c \cdot f(n) $ \\
-			$\implies T(n) = \Theta(f(n)) $
-		\end{enumerate}
-		\textit{Note that $ \mathit{\tfrac{n}{b}} $ could be $ \mathit{\lf \tfrac{n}{b} \rf} $ nor $ \mathit{\lc \tfrac{n}{b} \rc} $}
+		\compactsection{Priority Queue}\subsectionrightaftersection
+			\compactsubsection{Binary Heap}
+				\defi{a \textit{binary minimum binary heap} is an almost perfect BST (only possibly misses nodes at the last level), and satisfies the heap order: the keys at the children of $v$ are greater than they key in $v$. }
+				\lem{the height of binary heap is $\floor{\logn}$}
+				\theo{in a $d$-ary heap representation as an array (in brackets for binary): 
+				\vspace{-10pt}\begin{gather*}
+					\textstyle \text{\rm Left}(i) = dk - (d-2) \quad (2i) \quad \text{\rm Right}(i) = dk + 1 \quad (2i + 1) \\ 
+					\text{\rm Parent}(i) = \floor{\frac{k + (d - 2)}{d}} \quad\cl{\floor{\frac{i}{2}}}
+				\end{gather*}\vspace{-14pt}
+				} %TODO: add an image
+				\textbf{\texttt{Heapify-Down($i$): }}if $\texttt{Parent(i)}$ is bigger, then replace $i$ with $\texttt{Parent}(i)$, and recursively continue on $\texttt{Parent(i)}$. \\
+				\textbf{\texttt{Heapify-Up($i$): }} exchange with the smallest child until fixed. \\
+				\textbf{\texttt{Insert}: }insert on the last place in the array, then heapify up. \\ 
+				\textbf{\texttt{Delete}: }delete the required place in the array (the root) the replace it with the last one, then heapify down until fixed (in $d$-ary $\oc(d\log_dn)$). \\
+				\textbf{\texttt{Dec-Key}: }decrease the key (assumes $\Delta \ge 0$) then heapify up. \\
+				\textbf{\texttt{Init}: }iterate over internal nodes bottom-up, and heapify-down each one. \\
+				\textbf{HeapSort: }create a min-heap from input, the do delete-min and put the deleted element at the last position of the array. Repeat $n$ times. At the we get a reversely-sorted array (using min-heaps). 
+			
+			\compactsubsection{Binomial Trees}
+				\defi{$B_k$ is a binomial tree of degree $k$ if
+				
+				\hfil \begin{forest}
+						[$\cdot$
+							[$B_0$]
+							[$B_1$]
+							[$\cdots$]
+							[$B_{k - 1}$]
+						]
+				\end{forest} ($\equiv$) \begin{forest}
+					[$B_{k - 1}$
+						[,no edge]
+						[$B_{k - 1}$]
+					]
+				\end{forest}}
+				\vspace{36pt}
+				\theo{(1) The root of $B_k$ has $k$ children (2) $B_k$ contain $2^{k}$ nodes (3) its depth is $k$ (4) $\binom{k}{i}$ of the nodes of $B_k$ are at level $i$. }
+				\defi{A \textit{binomial min-heap} is a list of heap-ordered binomial trees, at most one of each degree, and a pointer to the root with the minimal key. }
+				\textit{note: }usually the trees are saved using a linked list. 
+				\lem{There are at most $\floor{\logn} + 1$ trees. }
+				\textbf{\texttt{Link}: }if two binomial trees $x, y$ has the same degree, linking could be preformed in $\oc(1)$ by attaching $y$ as a child of $x$ and replacing the roots if needed. \\
+				\textbf{\texttt{Insert}: }insertion could be done the same way as binary incrementing, where linking$\equiv$carrying. \\
+				\textbf{\texttt{Dec-Key}: }just heapify up as before. \\
+				\textbf{\texttt{Meld}: }link trees with the same degree, like binary addition. \\
+				\textbf{\texttt{Del-Min}: }the children of the deleted root are a binomial heap, \texttt{Meld} them into the main tree. \\
+				\textbf{Lazy Binomial Trees} adds just $B_0$-s (allows melding in $\oc(1)$), and consolidates when runs delete-min. \\
+				\textbf{Consolidating} (on del-min) is the process of taking the nodes and adding them into respected bins (numbered $0 \dots \floor{\logn}$), and when two trees are in the same bin -- linking them together and moving them into the next bin. 
+				\defi{$T_0$ is $\#$trees before Del-Min, $T_1$ after Del-Min, and $L$ is the total $\#$Links through consolidating. }
+				\lem{$L \le T_0 + \logn$ (we have at most $\floor{\logn}$ trees exposed on Del-Min)}
+				\theo{The cost of consolidating is $T_0 - 1 + \logn + L = \Theta(T_0 + \logn)$. }
+				\theo{Using $\Phi = \# trees$ we get $\Dg \Phi = T_1 - T_0$ hence amort. cost of consolidating is $\oc(\logn)$. }
+				\lem{incrementing a binary number has an amortized bound of $O(1)$. }
+			
+			\compactsubsection{Fibonazi Heaps}
+			todo
+			
 		
-		\section{Dictionaries}
 		
-		\subsection{General Trees}
-		\defi{a in \textit{full} tree all internal nodes have exactly $i$ children. }
-		\defi{a \textit{BST} satisfies: $\forall x \forall y$ if $y$ is in the left subtree of $x$, then $y.key < x.key$, and vise-versa. }
-		\defi{\textit{height} of a node = maximal length of downward path between that node and a leaf. }
-		\defi{\textit{depth} of a node is the length of the path up the tree to the root. }
-		\theo{minimal height of a tree is $\floor{\log n}$}
-		\defi{a BST is balanced if $h = \oc(\logn)$}
-		\theo{for a given set of $n$ distinct keys, there are $\frac{1}{n + 1}\binom{2n}{n}$ (catalan number) BSTs. }
-		\theo{the expected search complexity in a random BST is $\le (1 + 4 \logn)$. }
-		\lem{the heights of a binary tree containing $\ell$ leaves $\ge \log \ell$. }
+		\compactsection{Sorting}\subsectionrightaftersection
+			\compactsubsection{Comparison-based sorting}
+				\theo{insertion sort with $I > n$ inversions ($I \le \binom{2n}{n}$) takes $\oc\cl{n \log \frac{I}{n}}$. }
+				\defi{\textit{stable sort} is a sorting algo. the preserves order of items with the same key. }
+				\defi{a comparison-based algo. uses only two-key comparisons to decide on key position. }
+				\textbf{assumption. }two keys can be compared in $\oc(1)$, and an item can be moved in $\oc(1)$. 
+				\theo{the W.C. and average case of any comparison-base sorting algo. runs in $\Omega(n \logn)$}
+				\lem{comparison trees are a full binary tree, and has $\ge n!$ leafs. }
+				\theo{the worst/best/average case in the comparison-based model is the max/min/average depths of the leafs. }
+			\compactsubsection{Other sorting algos. }
+				\textbf{HeapSort: }see 5.1. 
+				\textbf{Count sort. }For dataset $A$, assumes $\exists R \forall a \in A \le R$ constant. Counts each element $a \in A$, takes a cumulative sum $(a_i)$, then for all $a \in A$ puts $a$ in $a_i$ and decreases $a_i \gets a_i - 1$. Takes $\oc(n + R)$. Stable sort. 
+				
+				\textbf{Count sort. }similar to count sort, takes $R$ bins and throws $A$ into them, then collects them. 
+				
+				\textbf{Radix sort. }For a dataset $A$ sized $n$, assumes $a \in A$ contains exactly $d$ digit and each digit is bounded by $b$. Preforms count sort on the LSD $\to$ MSD. [note: relies on count sort being stable]. Takes $\oc(d(n + b))$. 
+				
+				\theo{Radix sort is enough to make IBM. }
+							\compactsubsection{QuickSort}
+				\textbf{Lomuto's Partition. }%TODO
+				
+				\textbf{Hoare's Partition. }%TODO
+				
+				\theo{W.C. of quicksort if $\binom{n}{2} = \oc(n^2)$. }
+				\theo{Average case of quicksort is $2(n + 1)H_n - 4n \approx 1.39n\logn$. }
 		
-		\textbf{Tree walks. }pre: SLR, in: LSR, post: LRS
+		\compactsection{Probability}
+			\defi{an \textit{Experiment} is a case where we the result is uncertain. }
+			\defi{the \textit{Sample Space} is the set of all the expected outcomes of a given experiment. }
+			\defi{an \textit{Event} is a subset of the sample space. A singleton subset called a \textit{simple event}. }
+			\defi{\textit{Disjoint Events} are events $A, B$ that fulfills $A \cap B = \varnothing$. }
+			\defi{a \textit{Probability Function} is a function $P \co S \to [0, 1]$ for $S$ sample space, so that $\forall E, F \ \text{disjoint} \co P(E \cup F) = P(E) + P(F)$ and $P(S) = 1$. }
+%			\defi{the conditional probability of event $E$ given the event $F$ is $P(E \mid F) := \frac{P(E \cap F)}{P(F)}$. }
+			\theo{for disjoint events $(F_i)_{i = 1}^{n}$, if $\bigcup F_i = E $ then $\forall E \co P(E) = \sumni P(E \mid F_i) \cdot P(F_i)$. }
+			\defi{events $E, F$ are independent if $P(E \cap F) = P(E) \cdot P(F)$ (iff $P(E \mid F) = P(E)$). }
+			\defi{a \textit{Random Variable} if a function $X \co S \to \R$. }
+			\defi{$X = x$ is the event on which $X(E) = x$, and its probability noted as $P(X = x)$. }
+			\defi{the \textit{Expectation} of a random variable $X$ is $\E[x] = \sum_{x} x \cdot P(X = x)$. }
+			\theo{the expectation is linear for all constants, and additive for all random variables. }
+			\defi{a random variable $I$ is called an \textit{Indicator of an event $A$} if $I = \begin{cases}
+					1 & \text{if $A$ occurs} \\
+					0 & \text{if $A^c$ occurs}
+				\end{cases}$}
+			\lem{$\E[I] = P(A)$. }
+			\defi{\textit{Uniform Distribution} of a random variable $X$ occurs when $\exists c \co \forall x \in \R \co P(X = x) = c$. }
+			\defi{\textit{Geometric Distribution} satisfies $P(x = k) = (1 - p)^{k - 1}p$, hence $\E[X] = \sum_{k = 1}^{\inf} k(1 - p)^{k - 1}p = \frac{1}{p}$. }
+			\textbf{note: }geometric dist. is equal to having the probability of succession $p$ and for failure $p - 1$, and $P$ is a rand. var. that is equal to the number of required experiments to get to an solution. 
+			\begin{Theorem}[The Tail Formula]
+				\hfil $\sum_{i = 0}^{m}i \cdot P[X = i] = \sum_{i = 1}^{m} P(x \ge i)$
+			\end{Theorem}
 		
-		\textbf{Postfix syntax algo. }(...) %TODO: finish
+		\compactsection{Selection}
+			\defi{given $n$ numbers, \texttt{Select($n$)} is defined to return the k$^{\text{th}}$ smallest key. }
+			This equals for the item in position $k$, assuming the array was sorted. 
+			\defi{Dynamic settings assumes one-time building cost (e.g. \texttt{Tree-Select}). }
+			\defi{Static settings is not a dynamic setting} %TODO: clearify
+			\theo{Using min-heap + supporting heap the selection problem is solvable is $\oc(n + k \log k)$. }
+			\theo{The expected number of items removed during each quickselect run is $\E[\#\text{\rm removed}] = \frac{k}{2}\cdot\frac{k}{n} + \frac{n - k}{2}\cdot\frac{n - k}{n} \underset{\forall k}{\ge} \frac{n}{4}$. }
+			\theo{The expected runtime of quickselect is $\oc(n)$. }
+			\theo{MedofMed cost is W.C. $\oc(n)$. }
 		
-		\subsection{AVL trees}
-		\defi{an AVL tree is a BST where $\forall v \in V \co \sof{\mathrm{BF}(v)} \le 1$}
-		\theo{and AVL tree is balanced. Further more: $n \le \log_{\Phi}n \approx 1.44\logn$. }
-		\defi{Fibonacci tree $F_i$ is: \\ \begin{center}
-				\begin{forest}
-					[$F_i$ [$F_{i -1}$] [$F_{i - 2}$]]
-				\end{forest}
-		\end{center}}
-		\theo{an AVL tree with minimum edges is a fibonacci tree, sized $f_n = \frac{\Phi^n - \bar \Phi^n}{\sqrt 5}$, \ $\Phi = \frac{1 + \sqrt 5}{2}$. }
-		
-%		TODO: finish 4. AVL trees
-		
-		\defi{a \textit{rank tree}, is a tree that maintains the size of each subtree, hence supports the rank \& select operations in $\oc(\logn)$. }
-		
-		\theo{if the information that a given attribute $f$ defined for each node, can be computed merely from its direct children (\textit{local attribute}), then we can maintain $f$ in an AVL tree. }
-		\begin{Remark}
-			The theorem above is sufficient condition but not necessary. 
-		\end{Remark}
-		
-		\defi{a \textit{Finger Tree} is a tree that has a pointer to a specific node. }
-		\theo{in a finger tree \texttt{Select($T, k$)} can be implemented in $\oc(\log k)$. }
-		
-%		TODO: spliting and joining trees
-
-		\subsection{B-trees}		
-		\defi{a \textit{B-tree $(d, 2d)$} satisfies: 
-		\begin{enumerate}
-			\item each non-leaf expect for the root has $d \le r \le 2d$ children (hence $d - 1$ to $2d - 1$ keys);
-			\item all leaves are at the same depth;
-			\item the root has between $2$ and $2d$ children (hence $1$ to $2d - 1$ keys). 
-		\end{enumerate}}
-		\defi{a B$^{\text{+}}$-tree is a B-tree with keys only on leafs. }
-		\defi{a B$^{\text{*}}$-tree is a B-tree with nodes $\frac{2}{3}$ full (instead of $\frac{d}{2d} = \frac{1}{2}$ full). }
-		\defi{a red-black tree is a $(1, 2)$ B-tree (BST). }
-		\theo{at depth $h$ there are at least $2d^{h - 1}$ nodes. }
-		\theo{a B-tree $(d, 2d)$ with $n$ edges and $h$ height fulfills $n \ge d^{h}$, $h \le \log_{d} n$}
-		\theo{search in a b-tree requires $\oc(\log_dn)$ I/Os, and $\oc(\log_2 d \cdot \log_d n) = \oc(\logn)$ operations in total. }
-		
-		\theo{Ins./Del. rebalancing cost is W.C. $\oc(\logn)$, and using button-up amort. (ins.+del.) $\oc(1)$, using top-down $\Omega(\log_dn)$}
-		
-		\quad\textbf{\textit{Insertions}}
-		
-		\textbf{Button-Up. }Find and insert in the appropriate leaf. If the current node is overflowing: split. If the parent is overflowing: split (etc., recursively). Requires a total of $\oc(d \log_dn)$ operations. \\
-		\textbf{Top-Down. }if a node is full, we will split it on the way down while searching. \\
-		\textbf{Button-Up non-leaf deletion. }replace the item by its predecessor and delete the predecessor (must be a leaf). 
-		
-		\quad\textbf{\textit{Deletions}}
-		
-		\textbf{Button-Up leaf deletion. }if the current node is underflowing, borrow and terminate and if not possible fuse and recursively check the if parent if underflowing. \\
-		\textbf{Top-Down leaf deletion. }while searching, checking if the items along the way contains $d$ keys, otherwise borrow or fuse. \\
-		\textbf{Top-Down non-leaf deletion. }replace the node with its predecessor, while making sure that nodes along the way contains at least $d$ keys. 
-		
-		\section{Priority Queue}
-%		TODO: all of this section
-		
-		\section{Sorting}
-		\subsection{Comparison-based sorting}
-		\theo{insertion sort with $I > n$ inversions ($I \le \binom{2n}{n}$) takes $\oc\cl{n \log \frac{I}{n}}$. }
-		\defi{\textit{stable sort} is a sorting algo. the preserves order of items with the same key. }
-		\defi{a comparison-based algo. uses only two-key comparisons to decide on key position. }
-		\textbf{assumption. }two keys can be compared in $\oc(1)$, and an item can be moved in $\oc(1)$. 
-		\theo{the W.C. and average case of any comparison-base sorting algo. runs in $\Omega(n \logn)$}
-		\lem{comparison trees are a full binary tree, and has $\ge n!$ leafs. }
-		\theo{the worst/best/average case in the comparison-based model is the max/min/average depths of the leafs. }
-		
-		\subsection{Other sorting algos. }
-		\textbf{Count sort. }For dataset $A$, assumes $\exists R \forall a \in A \le R$ constant. Counts each element $a \in A$, takes a cumulative sum $(a_i)$, then for all $a \in A$ puts $a$ in $a_i$ and decreases $a_i \gets a_i - 1$. Takes $\oc(n + R)$. Stable sort. 
-		
-		\textbf{Count sort. }similar to count sort, takes $R$ bins and throws $A$ into them, then collects them. 
-		
-		\textbf{Radix sort. }For a dataset $A$ sized $n$, assumes $a \in A$ contains exactly $d$ digit and each digit is bounded by $b$. Preforms count sort on the LSD $\to$ MSD. [note: relies on count sort being stable]. Takes $\oc(d(n + b))$. 
-		
-		\theo{Radix sort is enough to make IBM. }
-		
-		\subsection{QuickSort}
-		\textbf{Lomuto's Partition. }%TODO
-		
-		\textbf{Hoare's Partition. }%TODO
-		
-		\theo{W.C. of quicksort if $\binom{n}{2} = \oc(n^2)$. }
-		\theo{Average case of quicksort is $2(n + 1)H_n - 4n \approx 1.39n\logn$. }
-		
-		\section{Probability}
-		\defi{an \textit{Experiment} is a case where we the result is uncertain. }
-		\defi{the \textit{Sample Space} is the set of all the expected outcomes of a given experiment. }
-		\defi{an \textit{Event} is a subset of the sample space. A singleton subset called a \textit{simple event}. }
-		\defi{\textit{Disjoint Events} are events $A, B$ that fulfills $A \cap B = \varnothing$. }
-		\defi{a \textit{Probability Function} is a function $P \co S \to [0, 1]$ for $S$ sample space, so that $\forall E, F \ \text{disjoint} \co P(E \cup F) = P(E) + P(F)$ and $P(S) = 1$. }
-		\defi{the conditional probability of event $E$ given the event $F$ is $P(E \mid F) := \frac{P(E \cap F)}{P(F)}$. }
-		\theo{for disjoint events $(F_i)_{i = 1}^{n}$, if $\bigcup F_i = E $ then $\forall E \co P(E) = \sumni P(E \mid F_i) \cdot P(F_i)$. }
-		\defi{events $E, F$ are independent if $P(E \cap F) = P(E) \cdot P(F)$ (iff $P(E \mid F) = P(E)$). }
-		\defi{a \textit{Random Variable} if a function $X \co S \to \R$. }
-		\defi{$X = x$ is the event on which $X(E) = x$, and its probability noted as $P(X = x)$. }
-		\defi{the \textit{Expectation} of a random variable $X$ is $\E[x] = \sum_{x} x \cdot P(X = x)$. }
-		\theo{the expectation is linear for all constants, and additive for all random variables. }
-		\defi{a random variable $I$ is called an \textit{Indicator of an event $A$} if $I = \begin{cases}
-				1 & \text{if $A$ occurs} \\
-				0 & \text{if $A^c$ occurs}
-			\end{cases}$}
-		\lem{$\E[I] = P(A)$. }
-		\defi{\textit{Uniform Distribution} of a random variable $X$ occurs when $\exists c \co \forall x \in \R \co P(X = x) = c$. }
-		\defi{\textit{Geometric Distribution} satisfies $P(x = k) = (1 - p)^{k - 1}p$, hence $\E[X] = \sum_{k = 1}^{\inf} k(1 - p)^{k - 1}p = \frac{1}{p}$. }
-		\textbf{note: }geometric dist. is equal to having the probability of succession $p$ and for failure $p - 1$, and $P$ is a rand. var. that is equal to the number of required experiments to get to an solution. 
-		
-		\section{Selection}
 		%TODO
 		
-		\section{Hashing}
-		%TODO
+		\compactsection{Hashing}\subsectionrightaftersection
+			\textbf{Direct Addressing. }Create a bit vector with the universe size. e.g. \texttt{Insert($D, x$)} iff \texttt{D[$x$.$key$] $\gets$ $x$} etc. 
+			\compactsubsection{Chaining}
+				\lem{There are $|m|^{|U|}$ hashes in $h \in U \to [m]$, hence takes $|U|\log m$ to store. }
+				\textbf{Chaining. }each cell points to a linked list of items. 
+				\defi{$\ag := \frac{n}{m}$ where $n$ is the universe, and $m$ is the table size, and called the \textit{load factor}. }
+				\lem{the probability of a random two specific insertions colliding is geometric. }
+				\theo{the expected number of values in each cell is $\ag$. }
+				\theo{when $n = \Theta(m)$, with probability $\ge 1 - \frac{1}{n}$, each cell contains at most $\oc\cl{\frac{\logn}{\logn\logn}}$ elements. }
+				\theo{Assuming the keys are distributed ideally (uniformly and independently), and assuming $n$ keys were previously inserted, the expected complexity during search is $\ag + 1$ for unsuccessful and $\frac{\ag}{2} + 1$ for a successful search. }
+			
+			\compactsubsection{Open Addressing}
+				\textbf{Open Addressing. }\set $h \co U \times [m] \to [m]$ be a hash function, we'll insert the key $k$ in the first free position in the probing sequence. 
+				
+				\textit{Note: }make sure to use special marking (not null) for deleted items.  
+				
+				\theo{Under ideal conditions ($\forall k \in [n] \co P\cl{(h(k, i)_{i = 0}^{m - 1}) = \frac{1}{m}}$), the expected time for unsuccessful search is $\frac{1}{1 - \ag}$ and fo successful search $\frac{1}{\ag} \ln \frac{1}{1 - \ag}$. } 
+				
+				\theo{under linear probing, unsuccessful search takes $\frac{1}{2}\cl{1 + \cl{\frac{1}{1 - \ag}}^2}$ and successful search $\frac{1}{2}\cl{1 + \frac{1}{1 - \ag}}$. }
+				\textit{Note: }under linear probing, we can delete by recursively checking if item $j$ can me moved to deleted cell $i$ for all $h'(T[j]) \in [j + 1, i]$. 
+				
+				\defi{\textit{Linear Probing} is a hash func $h(k, i) := (h'(k) + i) \bmod m$ (less cache misses + easy to calculate). }
+				\defi{\textit{Quadratic Probing} is a hash func $h(k, i) := (h'(k) + ic_1 + c_2i^2) \bmod m$. }
+				\defi{\textit{Double Probing} is a hash func $h(k, i) := (h'(k) + ih''(k)) \bmod m$. }
+			
+			\compactsubsection{Hash Families}
+				\defi{hash family is \textit{Universal} if $\forall k_1 \neq k_2 \in U \co P_{h \in H}(h(k_1) = h(k_2)) \le \frac{1}{m}$. }
+				\theo{For all $p$ prime, $h_{a, b} \co [p] \to [m]$ defined as $h_{a, b}(x) = ((ax + b) \bmod p)\bmod m$, and $H_{p, m} := \{h_{a, b} \mid a \in [1, p), b \in [0, p)\}$ is a universal hash family. }
+				\theo{for each $p$ prime, \set $x_1 \neq x_2 \in [p]$. Then $\forall y_1 \neq y_2 \in [p]\,\, \exists ! a, b \in [p], a \neq 0 \co y_1 \equiv_p ax_1 + b \land y_2 \equiv_p ax_2 + b$. }
+				\theo{for a table $m = 2^{k}$ so $h_a \co U = [2^{w}] \to [2^{k}]$ where $w$ is computer word size, $h_a$ defined as $\floor{\frac{ax \mod 2^{w}}{2^{w - k}}}$, and $H$ is almost universal. }
+				\defi{if $\forall k_1 \neq k_2 \in U \co P_{h \in H}(h(k_1) = h(k_2)) \le \frac{2}{m}$ then $U$ is called \textit{almost universal}. }
+				\theo{using universal hash family, $\E[\text{collisions}] \le \frac{\binom{n}{2}}{m}$. }
+	%			\theo{using a universal hash family, if $m = n$ then $\E[\text{collisions}] < \frac{n}{2}$, and if $m = n^2$ then $\E[\text{collisions}] < \frac{1}{2}$. }
 		
-		\section{Other}
-		\textbf{Reduction. }reduction (in our case) is the process of showing the a problem is at least as hard as another problem. 
 		
+			\compactsubsection{Perfect Hashing}
+			Content...
+%			TODO
+		
+		
+		\compactsection{Other}
+		\textbf{Reduction. }reduction (in our case) is the process of showing the a problem is at least as hard as another problem. \\
+		\textbf{Information Bound. }a bound derive by an argument that the algo. has to read a specified amount of the input, in order to get a decision. Notice that in comparison, reading isn't counted. 
+		\begin{align*}
+			\sum_{i = 1}^{k}\binom{k}{i} &= 2^{k} \\
+			\binom{k}{i} &= \binom{k - 1}{i} + \binom{k - 1}{i - 1}
+		\end{align*}
+		\theo{merging $k$ sorted arrays with the total of $n$ items can be done in $\oc(n \floor{k})$}
 		
 	\end{multicols}
 	
-	\section{Complexity Tables}
-	\vspace{-25pt}
+	\vspace{-13pt}
+	\compactsection{Complexity Tables}
+	\vspace{-15pt}
 	\begin{multicols}{2}
-		{\regFont\hfil \textbf{Lists}\vspace{-3pt}}\tableFont
+		{\regFont\hfil \textbf{Lists}}\tableFont
 		
 		{\hfil $\set \midText := \min\{i, n - i\} + 1$}
 		\begin{center}
-			\begin{tabular}{c|cccc} % TODO: transpose if possible
-				 & \textbf{Arrays} & \textbf{Circular Arr.} & \textbf{D-Linked} & \textbf{AVL List} \\
-				\hline \texttt{Ins/Del-Last} & $\oc(1)$ & $\oc(1)$ & $\oc(1)$ & $\oc(\logn)$ \\
-				\hline \texttt{Ins/Del-First} & $\oc(n + i)$ & $\oc(1)$ & $\oc(1)$ & $\oc(\logn)$ \\
-				\hline \texttt{Ins($i$)} & $\oc(n - i + 1)$ & $\oc(\midText)$ & $\oc(\midText)$ &$\oc(\logn)$ \\
-				\hline \texttt{Retrieve($i$)} & $\oc(1)$ & $\oc(1)$ & $\oc(\midText)$ & $\oc(\log(i) + 1)$ \\
-				\hline \texttt{Concat($\sof{n_1}, \sof{n_2}$)} & $\oc(n_2 + 1)$ & $\oc(\min\{n_1, n_2\} + 1) $ & $\oc(1)$ & $\oc(\log (n_1 + n_2))$ \\ 
-				\hline \texttt{Split($i$)} & $\oc(n - i + 1)$ & $\oc(\midText)$ & $\oc(\midText)$ & $\oc(\logn)$
+			\begin{tabular}{c|c|c|c|c|c|c} % TODO: transpose if possible
+				& \texttt{Ins/Del-Last} & \texttt{Ins/Del-First} & \texttt{Ins($i$)} & \texttt{Retrieve($i$)} &
+				\texttt{Concat($n_1, n_2$)} & \texttt{Split($i$)} \\
+				\hline
+				\textbf{Arrays} & $\oc(1)$ & $\oc(n + i)$ & $\oc(n - i + 1)$ & $\oc(1)$  & $\oc(n_2 + 1)$ & $\oc(n - i + 1)$ \\
+				\textbf{Circular Arr.} & $\oc(1)$ & $\oc(1)$ & $\oc(\midText)$ & $\oc(1)$ & $\oc(\min\{n_1, n_2\})$ & $\oc(\midText)$ \\ 
+				\textbf{D-Linked} & $\oc(1)$ & $\oc(1)$ & $\oc(\midText)$ & $\oc(\midText)$ & $\oc(1)$ & $\oc(\midText)$ \\ 
+				\textbf{AVL List} & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ &$\oc(\log i + 1)$ & $\oc(\log(n_1 + n_2))$ & $\oc(\logn)$
 			\end{tabular}
 		\end{center}
 		(in a lazy doubly-linked list, amortized del./ins. $\oc(1)$ and ret. $\oc(i + 1)$)
 		
+		% todo: add something about deamortization
+		% todo: delete/insert array doubling constants 
+		
+		
 		\columnbreak
 		
-		{\regFont\hfil \textbf{Priority Queues}\vspace{-3pt}}\tableFont 
+		{\regFont\hfil \textbf{Priority Queues}}\tableFont 
 		\begin{center}\begin{tabular}{c|c|c|c|c|c|c|c}
 				& \textbf{\texttt{Insert}} & \textbf{\texttt{Minimum}} & \textbf{\texttt{Delete-Min}} & \textbf{\texttt{Dec.-Key}} & \textbf{\texttt{Delete}} & \textbf{\texttt{Meld}} & \textbf{\texttt{Init}} \\
 				\hline
-				\textbf{AVL tree} & $\oc(\logn) $ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & & $\oc(n \logn)$ \\
-				\textbf{Binary Stack} & $\oc(\logn)$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(n)$ & $\oc(n)$ \\
-				\textbf{W.C Binomial Stack} & $\oc(\logn)$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$& \\
-				\textbf{Amort. Binomial Stack$^{*}$} & $\oc(1)$ & $\oc(1)_{W.C.}$ & $\oc(1)$ & $\oc(1)$ & $\oc(1)$ & $\oc(\logn)$& \\ % TODO: recheck this: it does not make sense. 
+				\textbf{AVL tree} & $\oc(\logn) $ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(n)$ & $\oc(n \logn)$ \\
+				\textbf{Binary Heap} & $\oc(\logn)$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(n)$ & $\oc(n)$ \\
+				\textbf{W.C Binomial Heap} & $\oc(\logn)^{(*)}$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(n)$ \\
 				$\overset{\text{\tableFont \textbf{Lazy Amort.}}}{\text{\tableFont \textbf{Binomial Stack}}}$
-				& $\oc(1)_{W.C.}$ & $ \oc(1)_{W.C.} $ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(1)$ & \\ %TODO: use tabularx instead of this junky \overset
-				\textbf{Amort. Fib. Stack: }& $\oc(1)_{W.C.}$ & $ \oc(1)_{W.C.} $ & $\oc(\logn)$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(1)$ & \\
+				& $\oc(1)_{W.C.}$ & $ \oc(1)_{W.C.} $ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(\logn)$ & $\oc(1)$ & $\oc(n)$ \\
+				\textbf{Amort. Fib. Heap: }& $\oc(1)_{W.C.}$ & $ \oc(1)_{W.C.} $ & $\oc(\logn)$ & $\oc(1)$ & $\oc(\logn)$ & $\oc(1)$ & \\
 			\end{tabular}\end{center}
-			$^{*}$amortized for a sequence of operations from the same type. 
+			$^{*}$amortized $\oc(1)$ for a sequence of operations from the same type. 
 	\end{multicols}
 	
 %	\she
