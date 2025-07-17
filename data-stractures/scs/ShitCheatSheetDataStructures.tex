@@ -286,7 +286,7 @@
 				any DAG has at least one source
 			\end{Remark}
 			
-		\vspace{-3pt}
+		\vspace{-4pt}
 		\compactsection{Complexity}
 			\vspace{-1pt}
 			\begin{Definition}
@@ -298,7 +298,7 @@
 				
 				\textbf{Amortization methods. }aggregation (regular average), accounting (bank method), and potential function (defined to be the balance of the bank) that satisfies $\amort(op_i) = \mathrm{time}(op_i) + \Phi_i - \Phi_{i - 1}$. 
 			\end{Definition}
-			\vspace{-16pt}\begin{alignat*}{9}
+			\vspace{-14pt}\begin{alignat*}{9}
 				&\textstyle\sum_{i = 0}^{n} x^i          &&= \tfrac{x^{n + 1} - 1}{x - 1} = \Theta(x^n)  \quad\quad(x \neq 1) \\
 				&\textstyle\sum_{i = 1}^{n} \tfrac{1}{i} &&= H_n = \Theta(\logn) \\
 				&\textstyle\log n!                       &&= \Theta(n\logn) \\
@@ -306,7 +306,7 @@
 				&\textstyle \forall \ag < 1 \co          &&T(n) = T(\floor{\ag n}) + T(\floor{(1 - \ag)n}) + 1 = \oc(n)
 			\end{alignat*}\vspace{-10pt}
 			
-			\vspace{-3pt}
+			\vspace{-4pt}
 			\compactsubsection{Asymptotic Notations}
 			\vspace{-5pt}
 			\begin{alignat*}{9}
@@ -371,7 +371,7 @@
 				\begin{Definition}[AVL Tree]
 					a BST where $\forall v \in V \co \sof{\mathrm{BF}(v)} \le 1$
 				\end{Definition}
-				\theo{an AVL tree is balanced. Further more: $n \le \log_{\Phi}n \approx 1.44\logn$. }
+				\theo{an AVL tree is balanced. Further more: $h \le \log_{\Phi}n \approx 1.44\logn$. }
 				
 				\begin{wrapfigure}{r}{0.6\linewidth}
 					\includegraphics[width=\linewidth]{images/rotations}
@@ -427,7 +427,8 @@
 				\textbf{Insertion Fix: }if $\sof{\mathrm{BF}} = 2$ rotate and terminate, if $|\mathrm{BF}| < 2$ and height hasn't change, terminate, otherwise recursively preform this fix for the parent. (the zero case in blue at the above image doesn't matter for insertions) \\
 				\textbf{Deletion Fix: }same as insertions, but with the case for son's $\mathrm{BF}=0$, and without terminating after rotation (since rotation may not restore the height of the subtree prior the insertion). \\
 				\textbf{Amort. Bounds: }in any sequence of insertions only/deletions only, the amoritzed cost of rebalncing if $\oc(1)$ for $\Phi = \# \text{balanced nodes}$ or 1\$ on each balanced node. \\
-				\textbf{Insertion Sort with Max. pointer: }has a complexity of $\oc\cl{n \log\cl{\frac{I}{n} + 2}}$ (see more info under 6.1)
+				\textbf{Insertion Sort to AVL with Max. pointer: }has a complexity of $\oc\cl{n \log\cl{\frac{I}{n} + 2}}$ (see more info under 6.1)
+%				\textbf{Regular Insertion Sort: }$\oc(n + I)$. 
 				\begin{center}
 					\includegraphics[width=0.75\linewidth]{images/rotationTableDeletion}
 				\end{center}
@@ -590,8 +591,8 @@
 					\includegraphics[width=0.45\linewidth]{images/horse}
 				\end{center}
 
-				\textbf{Lomuto's Partition. } see right image \\
-				\textbf{Hoare's Partition. } see left image
+				\textbf{Lomuto's Partition. } see left image \\
+				\textbf{Hoare's Partition. } see right image
 				
 				\begin{Remark}
 					both in place $\oc(n)$, lomuto's pivot in the right place while in hoare the pivot is on the extreme right. 
@@ -691,6 +692,8 @@
 				\begin{Remark}
 					under linear probing, we can delete by recursively checking if item $j$ can me moved to deleted cell $i$ for all $h'(T[j]) \in [j + 1, i]$. 
 				\end{Remark}
+				
+				\textbf{Probing Sequence: }$h(k, 0) \dots h(k, m - 1)$
 				
 				\begin{Definition}[Linear Probing]
 				 	a hash func $h(k, i) := (h'(k) + i) \bmod m$ (less cache misses + easy to calculate). 
@@ -799,10 +802,11 @@
 			\end{tabular}\end{center}
 			$^{(*)}$amortized $\oc(1)$ for a sequence of operations from the same type. 
 	\end{multicols}
-	\vspace{4.5em}
+	% Additional notes may go here
+	\vfil
 	\textbf{I may have mistakes and correctness is not guaranteed $\sim$ Shahar Perets $\sim$ Data Structures 2025B $\sim$ Shit Cheat Sheet}
 	
-	\vspace{-4.5em}\vspace{-8em}
-	% Additional notes may go here
+%	\vspace{-4.5em}\vspace{-8em}
+	
 	
 \end{document}
