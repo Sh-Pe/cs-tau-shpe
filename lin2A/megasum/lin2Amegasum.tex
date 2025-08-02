@@ -1164,16 +1164,14 @@
 		ואם $f = M_T$, אז $g, h$ הם הפולינומים המינימליים לצמצום $T$ על תת־המרחבים לעיל בהתאמה. 
 	}
 	הבהרת הכוונה ב''פולינום המינימלי לצמצום $T$ על תתי המרחבים'': בהינתן $T = U \oplus W$, $T_u = T_{\mid_U} \co U \to U$ ובאופן דומה $T_w$, אז $m_T = m_{T_U} \cdot m_{T_W}$. 
-	
-	נחזור על מה שהתחלנו להוכיח ונסיים את אשר נותר: 
 	\begin{proof}
 		ידוע $h= g \cdot h$ ולכן $\exists a(x), b(x) \in \F[x]$ כך ש־$a(x)g(x) + b(x)h(x) = 1$, כך ש־: 
 		\[ \underbrace{(a(T) \circ g(T))(v)}_{\in \ker h(T)} + \underbrace{(b(T) \circ h(T))(v)}_{\in \ker g(T)} = V \]
 		ולכן $V = \ker h(T) + \ker g(T)$. 
 		וכן הראינו שזהו סכום ישר. עתה, נסמן: 
 		\begin{align*}
-			W_2 = \ker h(T) & W_1 = \ker g(T) \\
-			T_2 =  T_{|_{W_2}} & T_1 = T_{|_{W_1}}
+			W_2 &= \ker h(T) \dequad&\dequad W_1 &= \ker g(T) \\
+			T_2 &=  T_{|_{W_2}} \dequad&\dequad T_1 &= T_{|_{W_1}}
 		\end{align*}
 		וכן $B_1$ בסיס ל־$W_1$, $B_2$ ל־$W_2$. לכן $B = B_1 \uplus B_2$ בסיס ל־$V$. משום שהראינו ש־$W_1, W_2$ הם $T$־אינוו' בשיעור קודם: 
 		\[ [T]_B = \pms{[T_1] & 0 \\ 0 & [T_2]} \]
@@ -1252,7 +1250,7 @@
 		ההוכחה מתקדמת ועוסקת בתורת גלואה. 
 	\end{proof}
 	
-	\defi{בהינתן $f(x) = \prod_{k}(x - \lg_k)^{r_k} \quad \forall i \neq j \co \lg_i \neq \lg_j$. אז $f^{\mathrm{red}} = \prod_{k}(x - \lg_k)$}
+	\defi{בהינתן $f(x) = \prod_{k}(x - \lg_k)^{r_k} \quad \forall i \neq j \co \lg_i \neq \lg_j$. אז $f^{\mathrm{red}} := \prod_{k}(x - \lg_k)$}
 	
 	טענה: 
 	\[ f^{\mathrm{red}} = \frac{f}{\gcd(f, f')} \]
@@ -1261,22 +1259,21 @@
 	\end{proof}
 	
 	\subsection{צורת ג'ורדן לאופרטור לינארי נילפוטנטי}
-	\subsubsection{מבוא}
+	\subsubsection{$f^{\text{\en{red}}}$ ונילפוטנטיות}
 	
 	\theo{$A$ לכסינה אמ''מ $f_A^{\mathrm{red}}(A) = 0$}
 	
 	\lem{$f_A^{\mathrm{red}} \mid m_A$ ושוויון אמ''מ $A$ לכסינה. }
 	
-	\begin{proof}
+	\begin{proof}[הוכחת הלמה. ]
 		יהיו $\lg_1 \dots \lg_r$ הע''ע של $A$ (אפשר בה''כ להרחיב שדה כדי שהם יהיו קיימים). אז אם $f_A(x) = \prod_{i = 1}^{r}(x - \lg_i)^{s_i}$ ומתקיים $m_A(x) = \prod_{i = 1}^{r}(x - \lg_i)^{r_i}$ וידוע $1 \le r_i \le s_i$ ולכן $f_A^{\mathrm{red}} \mid m_A$. 
 		
-		עתה נוכיח את החלק השני של המשפט. אם $A$ לכסינה, אז יש בסיס של ו''עים ועם $\lg$ הוא ע''ע של ו''ע בבסיס $V$ אז $Av_\lg - \lg v_\lg = 0$, ולכן $f_A^{\mathrm{red}}(A) = 0$ וסה''כ $m_A \mid f_A$. 
+		עתה נוכיח את החלק השני של הלמה (השוויון). אם $A$ לכסינה, אז יש בסיס של ו''עים ועם $\lg$ הוא ע''ע של ו''ע בבסיס $B$ אז $Av_\lg - \lg v_\lg = 0$, ולכן $f_A^{\mathrm{red}}(A) = 0$ וסה''כ $m_A \mid f_A$. 
 		
 		אם $f_A^{\mathrm{red}} = m_A$ אז $m_A$ מכפלה של גורמים לינארית זרים, וראינו גרירה ללכסינות. 
 	\end{proof}
 	
-	עתה נוכיח את מהשפט 1: 
-	\begin{proof}
+	\begin{proof}[הוכחת המשפט מהלמה. ]
 		$A$ לכסינה אמ''מ $m_A = f_A^{\mathrm{red}}$, ואנחנו יודעים כי $m_A(A) = 0$ ולכן $A$ לכסינה אמ''מ $f_A^{\mathrm{red}}(A) = 0$. 
 	\end{proof}
 	
@@ -1310,6 +1307,7 @@
 	\end{proof}
 	\textit{המשך ההערה. }כדי להבין איך נראים תת־מרחבים אי־פריקים, עשינו רדוקציה לט''ל ניל' [רדוקציה=מספיק לי להבין את המקרה הזה בשביל להבין את המקרה הכללי]. 
 	
+	\subsubsection{ציקליות}
 	\theo{$T \co V \to V$ ניל' אז לכל $0 \neq v \in V$ הקבוצה $v, Tv, \dots, T^{k}v \neq 0$ היא בת''ל. }
 	\begin{proof}
 		יהיו $\ag_0 \dots \ag_k \in \F$ כך ש־$\sum_{i = 0}^{k}\ag_i T^{(i)}(v) = 0$. נניח בשלילה שהצירוף אינו טרוויאלי. אז קיים $j$ מינימלי שעבורו $\ag_j \neq 0$. נניח $n$ המקסימלי שלא מאפס. אז: 
@@ -1319,7 +1317,6 @@
 	
 	\defi{קבוצה מהצורה $\{v, Tv \cdots T^kv\}$ כאשר $T^{k + 1}v = 0$ והוא המינימלי, נקרתא \textit{שרשרת}. }
 	
-	\subsubsection{ציקליות}
 	\defi{תמ''ו שקיים לו בסיס שהוא שרשרת, נקרא ציקלי. }(ראה לינארית 2א סיכום 8) %TODO
 	
 	\textbf{אנטי־דוגמה: }ישנם מ''וים שאינם $T$־ציקליים. למשל: 
@@ -1574,7 +1571,7 @@
 	
 	\defi{בהינתן תבנית בי־לינ' $f \co V \times W \to \F$ ונניח ש־$\ac$ בסיס ל־$V$, $\bc$ בסיס ל־$W$. נגדיר את המטריצה המייצגת את $f$ ביחס לבסיסים $\ac, \bc$ ע''י $A \in M_{n \times m}(\F)$ כאשר $(A)_{ij} = f(v_i, w_j)$ (נסמן $\ac = (v_i)_{i =1}^n \ \bc = (w_i)_{i = 1}^{m}$)}
 	
-	\theo{$f(v, w) = [v]_{\ac}^T A [w]_B$}
+	\theo{$f(v, w) = [v]_{\ac}^T A [w]_\bc$}
 	\begin{proof}
 		
 		קיימים ויחידים $\ag_1 \dots \ag_n, \ \bg_1 \dots \bg_m \in \F$ כך ש־$v = \sum \ag_i v_i, \ w = \sum b_iw_i$. 
@@ -1583,10 +1580,10 @@
 		ומכאן פשוט נזרוק אלגברה: 
 		\begin{align*}
 			f(v, w) = &f\cl{\sum_{i = 1}^{n}\ag_i v_i, \ w} = \sum_{i = 1}^{n}\ag_i f(v_i, \ w) \\
-			= &\sum_{i = 1}^{n}\ag_i f\cl{v, \ \sum_{j = 1}^{n}\bg_j w_j} = \sum_{i = 1}^{n}\ag_i \sum_{j = 1}^{m}\bg_j f(v_i, w_j) \\
+			= &\sum_{i = 1}^{n}\ag_i f\cl{v, \ \sum_{j = 1}^{n}\bg_j w_j} = \sum_{i = 1}^{n}\ag_i \cl{\sum_{j = 1}^{m}\bg_j f(v_i, w_j)} \\
 			= &\sum_{\mathclap{i, j \in [n] \times [m]}} \ag_i f(v_i, w_j)\bg_j \\
-			= &\cl{\sum_{i = 1}^{n}\ag_i a_{i1}, \sum_{i = 1}^{n}\ag_i a_{i2}, \vdots, \sum_{i = 1}^{n}\ag_i a_{im}}\pms{\bg_1 \\ \vdots \\ \bg_m} \\
-			= &\,(\ag_1 \dots \ag_n)\pms{a_{11} &\cdots &a_{1m} \\ \vdots && \vdots \\ a_{n1} & \cdots & a_{nm}}\pms{b_1 \\ \vdots \\ b_{m}} 
+			= &\cl{\sum_{i = 1}^{n}\ag_i a_{i1}, \ \sum_{i = 1}^{n}\ag_i a_{i2}, \ \cdots, \ \sum_{i = 1}^{n}\ag_i a_{im}}\pms{\bg_1 \\ \vdots \\ \bg_m} \\
+			= &\,(\ag_1 \dots \ag_n)\pms{a_{11} &\cdots &a_{1m} \\ \vdots && \vdots \\ a_{n1} & \cdots & a_{nm}}\pms{\bg_1 \\ \vdots \\ \bg_{m}} 
 		\end{align*}
 	\end{proof}
 	
@@ -1601,7 +1598,7 @@
 			\[ (\ps(f + g))_{ij} = (f + g)(v_i, w_j) = f(v_i, w_j) + g(v_i, w_j) = (A)_{ij} + (B)_{ij} = (\psi(f))_{ij} + (\psi(g))_{ij} \implies \psi(f + g) = \psi(f) + \psi(g) \]
 			באופן דומה בעבור כפל בסקלר: 
 			\[ (\psi(\ag f))_{ij} = \ag f(v_i, w_j) = \ag (\psi(f))_{ij} \implies \psi(\ag f) = \ag \psi(f) \]
-			\item \textbf{חח''ע. }תהי $f \in \ker \psi$, אז: $\psi(f) = 0 \in M_{n \times m} \implies \forall i,j \in [n] \times [m]\co f(v_i, w_j) = 0$ ולכן $\forall v \in V, w \in W \co f(v, w) = \sum_{\mathclap{i, j \in [n] \times [m]}}\ag_i f(v_i, w_j)\bg_j = 0$
+			\item \textbf{חח''ע. }תהי $f \in \ker \psi$, אז: $\psi(f) = 0 \in M_{n \times m} \implies \forall i,j \in [n] \times [m]\co f(v_i, w_j) = 0$ ולכן $\forall v \in V, w \in W \co f(v, w) = \sum_{{i, j \in [n] \times [m]}}\ag_i f(v_i, w_j)\bg_j = 0$
 			(עם אותם הסימונים כמו קודם)
 			\item \textbf{על. }תהי $A \n M_{n \times m}(\F)$. נגדיר $f(v, w) = [v]_\ac^T A[w]_\bc$ ואכן $f(v_i, w_j) = e_i^T A e_j = (A)_{ij}$. 
 		\end{itemize}
@@ -1621,7 +1618,7 @@
 	\defi{עבור $f \in B(V, W)$ נגדיר את $\rk f = \rk A$ כאשר $A$ מייצגת אותהת ביחס לבסיסים כלשהם. }
 	\theo{$\rk f$ מוגדר היטב}
 	\begin{proof}
-		כפל בהפיכה לא משנה את דרגת המטריצה
+		כפל בהפיכה לא משנה את דרגת המטריצה (ו־transpose של מטריצה הוא הפיך), דהיינו מטריצות שינוי הבסיס לא משנות את דרגת המטריצה. 
 	\end{proof}
 	
 	\cola{תהא $f \in B(V, W)$ ונניח $\rk f = r$. אז קיימים בסיסים $\ac, \bc$ של $W, V$ בהתאמה כך ש־$[f]_{\ac, \bc} = \binom{I_R \, 0}{0\,\,\,\, 0}$}
