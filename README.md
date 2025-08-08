@@ -1,5 +1,5 @@
 # Computer Science notes & etc. at Tel-Aviv University by Shahar Perets
-My documents for computer science degree in Tel-Aviv University, togather with Odyssey program.
+My documents for computer science degree in Tel-Aviv University, together with Odyssey program.
 
 Courses has been done in Hebrew unless noted otherwise.  
 
@@ -8,9 +8,10 @@ Folders stracture:
 - scs: Shit Cheat Sheets
 - lec: lecture notes
 - other: may be added if needed
+- pt: usually practices
 
-Each folder contains sub folders, where in each subfolder exists a .tex file and a complied .pdf file. 
-My current compiler is LuaLaTeX. Required packges & premable are attached to each .tex document (so automatic compiling with MikTeX should just work). 
+Each folder contains subfolders, and in each subfolder exists a .tex file and a corresponding complied .pdf file. 
+My current compiler is LuaLaTeX. Required packges & premable are attached to each .tex document (so automatic compiling with MikTeX should just work). Older files may use XeLaTeX. 
 
 -----
 
