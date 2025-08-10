@@ -13,63 +13,6 @@
 \usepackage{cancel,bm}
 \usepackage[thinc]{esdiff}
 
-
-% tikz
-\usepackage{tikz}
-\usetikzlibrary{graphs}
-\newcommand\sqw{1}
-\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
-
-
-% code 
-\usepackage{listings}
-\usepackage{xcolor}
-
-\definecolor{codegreen}{rgb}{0,0.35,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
-\definecolor{codeblue}{rgb}{0,0,0.5}
-\definecolor{codered}{rgb}{0.5,0.03,0.02}
-\definecolor{codegray}{rgb}{0.96,0.96,0.96}
-
-\lstdefinestyle{pythonstylesheet}{
-	language=Java,
-	emphstyle=\color{deepred},
-	backgroundcolor=\color{codegray},
-	keywordstyle=\color{deepblue}\bfseries\itshape,
-	numberstyle=\scriptsize\color{codenumber},
-	basicstyle=\ttfamily\footnotesize,
-	commentstyle=\color{codegreen}\itshape,
-	breakatwhitespace=false, 
-	breaklines=true, 
-	captionpos=b, 
-	keepspaces=true, 
-	numbers=left, 
-	numbersep=5pt, 
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false, 
-	tabsize=4, 
-	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
-	keywordstyle=\color{codeblue},
-	emph={var, List, Iterable, Iterator},          % Custom highlighting
-	emphstyle=\color{codered},
-	stringstyle=\color{codegreen},
-	showstringspaces=false,
-	abovecaptionskip=0pt,belowcaptionskip =0pt,
-	framextopmargin=-\topsep, 
-}
-\newcommand\pythonstyle{\lstset{pythonstylesheet}}
-\newcommand\pyl[1]     {{\lstinline!#1!}}
-\lstset{style=pythonstylesheet}
-
-\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
-\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
-\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
-\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
-	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
-
-
 % Deisgn
 \usepackage[labelfont=bf]{caption}
 \usepackage[margin=0.3in]{geometry}
@@ -79,11 +22,18 @@
 \forestset{default}
 \renewcommand\labelitemi{$\bullet$}
 \usepackage{titlesec}
-	\titleformat{\section}[block]
+\titleformat{\section}[block]
 	{\fontsize{20}{20}}
 	{\Large \dotfill \ (\thesection) \dotfill}
 	{0em}
 	{\vspace{2pt} \newline \hfil \Large \filleft \filright \MakeUppercase}
+\titleformat{\subsection}[block]
+	{\bfseries \large}
+	{\hfil (\thesubsection) }
+	{}
+	{}
+	{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
 \usepackage{graphicx}
 \graphicspath{ {./} }
 
@@ -430,8 +380,8 @@
 %! ~~~ Document ~~~
 
 \author{\en{Shahar Perets}}
-\title{\en{Shit Cheat Sheet $\sim$ Linear Algebra 1A $\sim$ TAU}}
-\date{\en{14.2.2025}}
+\title{\en{Shit Cheat Sheet {\normalsize(\textbf{v}\textit{2})} $\sim$ Linear Algebra 1A $\sim$ TAU}}
+\date{\en{\textit{14.2.2025} $\to$ \textit{8.8.2025}}}
 \begin{document}
 	\setlength{\abovedisplayskip}{3pt}
 	\setlength{\belowdisplayskip}{3pt}
@@ -476,6 +426,7 @@
 				\item \hfil $\forall a, b \in \F \setminus \{0\} \co (ab)\op = a\op b\op$
 			\end{enumerate}
 		}
+		\theo{$\F'$ הוא תת־שדה של $\F$ אמ''מ $\forall 0 \neq a, b \in \F' \co a + b, ab, -a, a\op \in \F'$. }
 		\defi{לכל $\N \ni n \ge 1$ טבעי, נגדיר יחס לכל $x, y \in \Z$ זוגות שלמים: 
 			\[ x \equiv y \mod n \iff \exists k \in \N \co x - y = nk \]
 		}
@@ -487,7 +438,7 @@
 		\theo{כל שתי מחלקות שקילות שוות או זרות. }
 		\theo{בעבור $[x]_n$, יש בדיוק אחד מבין $\{0, \dots, n - 1\}$. }
 		\theo{$\Z_p$ שדה אמ"מ $p$ ראשוני}
-		\theo{בהינתן שדה מגודל סופי $N$, קיים $p$ ראשוני כך ש־$\exists k \in \N\co p^k = N$.}
+		\theo{בהינתן שדה סופי $\F$, קיים $p$ ראשוני כך ש־$\exists k \in \N\co p^k = |\F|$.}
 		\defi{$\Z/_{nz} = \{[x]_n \mid x \in \Z\}$, כאשר הפעולות על השדה מוגדרות: 
 		\[ [x]_n + [y]_n = [x + y]_n, \ [x]_n \cdot [y]_n = [x \cdot y]_n \]
 		והם מוגדרים היטב, לא תלויים בנציגים. איבר האפס הוא $[0]$ ואיבר היחידה $[1]$.}
@@ -502,8 +453,9 @@
 			\item המקדם של שדה סופי הוא חיובי. 
 		\end{enumerate}
 		}
-		\section{מערכת משוואות ליניארית}
-		\defi{\textit{משוואה ליניארית} מעל שדה $\F$ ב־$n$ נעלמים $x_1 \dots x_n$ עם מקדמים $a_1 \dots a_n$ היא משוואה מהצורה: 
+		\theo{השדה $\Z_p$ הוא תת־שדה של שדה $\F$ המקיים $\chr \F = p$. }
+		\section{מערכת משוואות לינארית}
+		\defi{\textit{משוואה לינארית} מעל שדה $\F$ ב־$n$ נעלמים $x_1 \dots x_n$ עם מקדמים $a_1 \dots a_n$ היא משוואה מהצורה: 
 		\[ ax_1 + \cdots + a_nx_n = b \]
 		כאשר זהו ה\textit{ייצוג הסטנדרטי} של המשוואה. 
 		}
@@ -609,6 +561,7 @@
 		\defi{אם $U \cap W  = \{0\}$ תחת הקשירה לעיל, אז נסמן $U + W = U \oplus W$ ונקרא סכום זה \textit{סכום ישר}. }
 		\theo{יהי $V$ מעל שדה $\F$, ו־$U, W \subseteq V$ תמ"וים. אז $U + W$ תמ"ו של $V$. }
 		\theo{יהי $V$ מעל שדה $\F$, אז $U + W$ סכום ישר אמ"מ כל וקטור בסכום נין להגדיר בצורה חידה ע"י וקטור מ־$U$ או וקטור מ־$W$. }
+		\theo{\textbf{\textit{(משפט ההחלפה)}} בהינתן $v_1 \dots v_n \in V$ פורשת ו־$w_1 \dots w_m \in V$ בת''ל כך ש־$m \le n$, אז ניתן להחליף $m$ איברים מתוך $(v_i)_{i = 1}^{n}$ באיברים מ־$(w_i)_{i = 1}^{n}$ כך שמתקבלת סדרה פורשת. }
 		
 		\section{ממדים}
 		\defi{יהי $0 \le s \in \Z$, וקטורים $v_1 \dots v_s \in V$ וסקלרים $\lg_1 \dots \lg_s \in \F$. ה\textit{צירוף הליניארי} שלהם הוא: 
@@ -619,12 +572,12 @@
 		\defi{$e_i \in \F^n$ מוגדר להיות $e:= (0 \dots 1 \dots 0)$ כאשר $1$ בקודאינאטה ה־$i$. }
 		\defi{$\{e_i\}_n$ הוא \textit{הבסיס הסטנדרטי}. }
 		\defi{בעבור $V$ מ"ו עם בסיס $B$, $\dim V := |B|$ (מוגדר היטב ממשפט יחידות גודל הבסיס). }
-		\defi{יהיו $v_1 \dots v_s \in V$ וקטורים, הם יקראו \textit{סדרה תלויה ליניארית} אם קיימים $\lg_1 \dots \lg_s$ כך אחד מהם שונה מ־$0$ וגם $\sum_{i = 1}^s\lg_is_i = 0$. }
-		\defi{\textit{סדרה בלתי תלויה ליניארית (בת"ל)} היא סדרה לא תלוי ליניארית. }
+		\defi{יהיו $v_1 \dots v_s \in V$ וקטורים, הם יקראו \textit{סדרה תלויה לינארית} אם קיימים $\lg_1 \dots \lg_s$ כך אחד מהם שונה מ־$0$ וגם $\sum_{i = 1}^s\lg_is_i = 0$. }
+		\defi{\textit{סדרה בלתי תלויה לינארית (בת"ל)} היא סדרה לא תלוי לינארית. }
 		\theo{הוקטורים $v_1 \dots v_s \in V^s$ בת"ל אמ"מ $\forall (\lg_i)_{i = 1}^s\co \sum\lg_iv_i = 0$. }
 		\theo{בהינתן $v_1 \dots v_n \in \F^n$ ו־$A$ מטריצת העמודות שלה, הסדדרה בת"ל אמ"מ בצורה הקאנונית ששקולה ל־$A$ יש בכל שורה איבר פותח.}
 		\theo{הבסיס הסטנדטי הוא בסיס. }
-		\theo{בהינתן $U \subseteq V$ תמ"ו, ובהינתן $\{u_i\}_{i = 1} \subseteq U$, אז כל צירוף ליניארית שלהם ב־$U$.}
+		\theo{בהינתן $U \subseteq V$ תמ"ו, ובהינתן $\{u_i\}_{i = 1} \subseteq U$, אז כל צירוף לינארית שלהם ב־$U$.}
 		\defi{בהינתן $x = v_1 \dots v_s$ קבוצת וקטורים, אז \[\Sp(X) := \{\sum_{i = 1}^{s}\lg_iv_i \mid \{\lg_i\}^s_{i = 1} \in \F\}\]}
 		\theo{יהיו $V$ מ"ו, $X = (v_1 \dots v_s) \subseteq V$. אז $\Sp(X)$ הוא התמ"ו המינימלי (ביחס ההכלה) שמכיל את $X$. }
 		\defi{בהינתן $V$ מ"ו, $X \subseteq V$, נאמר ש־$X$ \textit{פורש} את $V$ אמ"מ $V = \Sp(X)$. לעיתים יקרא $X$ \textit{"קבוצת היוצרים"} של $V$. } 
@@ -656,19 +609,21 @@
 		\[ \dim (U + W)  = \dim U + \dim W - \dim(U \cap W) \]}
 		
 		\section{טרנספורמציות ליניאריות}
-		\defi{בהינתן $V_1, V_s$ מ"ו מעל שדה $\F$, נניח קיום $\phi \co V_1 \to V_2$. נקרא את $\phi$ \textit{"העתקה ליניארית"} (לעיתים יקרא \textit{"טרנספורמציה ליניארית"} או בקיצור \textit{'ט"ל'}) אם: 
+		\defi{בהינתן $V_1, V_s$ מ"ו מעל שדה $\F$, נניח קיום $\phi \co V_1 \to V_2$. נקרא את $\phi$ \textit{"העתקה לינארית"} (לעיתים יקרא \textit{"טרנספורמציה לינארית"} או בקיצור \textit{'ט"ל'}) אם: 
 		\begin{enumerate}
 			\item \hfil $\forall u, v \in v_1 \co \phi(u + v) = \phi(u) + \phi(v)$
 			\item \hfil $\forall \lg \in \F \co \phi(\lg v) = \lg\phi(v)$
 		\end{enumerate}}
-		\theo{$\phi$ העתקה ליניארית אמ"מ $\forall \lg_1, \lg_s \in \F, v_1, v_2 \in V \co \phi(\lg_1v_1 + \lg_2v_2) = \lg_1(\phi (v_1)) + \lg_2(\phi(v_2))$. }
+		\theo{$\phi$ העתקה לינארית אמ"מ $\forall \lg_1, \lg_s \in \F, v_1, v_2 \in V \co \phi(\lg_1v_1 + \lg_2v_2) = \lg_1(\phi (v_1)) + \lg_2(\phi(v_2))$. }
+		\defi{המרחב $L(V, W)$ יסומן כמרחב ההעתקות הלינאריות $T \co V \to W$. }
+		\theo{הקבוצה $L(V, W)$ היא מ''ו מממד $\dim V \cdot \dim W$. }
 		\defi{פונקציה תיקרא \textit{שיכון} אמ"מ היא חח"ע. }
-		\noti{בהינתן $\phi \co V_1 \to V_2$ העתקה ליניארית, \textit{תמונה (Image)} תהיה: 
+		\noti{בהינתן $\phi \co V_1 \to V_2$ העתקה לינארית, \textit{תמונה (Image)} תהיה: 
 			\[\Img(\phi) := \Img(\phi) := \{\phi(v) \mid v \in V_1\} \subseteq V_2\]}
-		\noti{בהינתן $v \co V_1 \to V_2$ העתקה ליניארית, \textit{גרעין (קרנל)} יהיה: 
+		\noti{בהינתן $v \co V_1 \to V_2$ העתקה לינארית, \textit{גרעין (קרנל)} יהיה: 
 		\[ \ker\phi := \ker(\phi) = \{v \in V_1 \mid \phi(v) = 0\} \]}
 		\noti{\textit{הומומורפיזם} יהיה: 
-		\[ \hom_\F(V_1, V_2) = \{\phi \co V_1 \to V_2 \mid \text{העתקה ליניארית}\ \phi \} \]}
+		\[ \hom_\F(V_1, V_2) = \{\phi \co V_1 \to V_2 \mid \text{העתקה לינארית}\ \phi \} \]}
 		\noti{\hfil $\hom(V) := \hom(V, V)$}
 		\theo{\hfil $\dim \hom_{\F}(V, W) = \dim V \cdot \dim W$}
 		\theo{יהי $\phi \co V \to U$, $\F$ שדה: 
@@ -691,11 +646,11 @@
 		\noti{נאמר שקבוצה היא \textit{איזומורפית} לקבוצה אחרת, אם קיים איזומורפיזם בינהם}
 		\theo{נתבונן ב־$\hom(V_1, V_2)$ מ"ו מעל $\F$ בעבור הפעולות: 
 		\[ (\phi + \psi)(v) := \phi(v) + \psi(v), \ (\lg\phi) := \lg\phi(v) \]}
-		\theo{בעבור $\phi \co V_1 \to V_2, \ \psi \co V_2 \to V_3$ העתקות ליניאריות, יתקיים $\psi \circ \phi$ העתקה ליניארית. }
+		\theo{בעבור $\phi \co V_1 \to V_2, \ \psi \co V_2 \to V_3$ העתקות ליניאריות, יתקיים $\psi \circ \phi$ העתקה לינארית. }
 		\theo{הרכבת ט"לים, ביחס עם חיבור פונקציות, על $\hom(V_1, V_2)$ מקיים אסוציאטיביות בהרכבה, דיסטרביוטיביות משמאל ומימין, ותאימות עם כפל בסקלר. }
 		\theo{יהיו $\phi \co V \to U, \ V_1 \dots V_2 \in V$ ו־$\lg_1 \dots \lg_s \in \F$. אז 
 		\[ \phi\cl{\sum\lg_iv_i} = \sum\lg_i\phi(v_i) \]}
-		\theo{יהי $V$ מ"ו עם בסיס $(v_1 \dots v_n)$, אז לכל $(u_1 \dots u_n) \subseteq U$ קיימת ויחידה העתקה ליניארית $\phi \co V \to U$ כך ש־$\forall i \in [n] \co \phi(v_i) = u_i$. }
+		\theo{יהי $V$ מ"ו עם בסיס $(v_1 \dots v_n)$, אז לכל $(u_1 \dots u_n) \subseteq U$ קיימת ויחידה העתקה לינארית $\phi \co V \to U$ כך ש־$\forall i \in [n] \co \phi(v_i) = u_i$. }
 		\noti{יהיו $\phi V \to U$ ט"ל ו־$B = (v_1 \dots v_s)$ וקטורים ב־$V$. נסמן $\phi(B) := (\phi(v_1) \dots \phi(v_s))$ להיות \textit{סדרת התמונות}. }
 		\theo{בקשירה לעיל, 
 		\begin{enumerate}
@@ -724,8 +679,12 @@
 		\defi{יהי $\phi \co V \to U$, $B = (v_i)^n_{i = 1}$ בסיס של $V$ ו־$C$ בסיס של $U$ מגודל $m$. נסמן: 
 		\[ [\phi]^B_C = \pms{\vdots & & \vdots \\ [\phi(v_1)]_C & \cdots & [\phi(v_n)]_C \\ \vdots & & \vdots} \in M_{m \times n} \]}
 		ונקראה \textit{המטריצה המייצגת של $\phi$ לבסי בסיס $B$ ו־$C$}. 
-		\theo{יהיו $U, V$ מ"וים מעל שדה $\F$ ממדים $n = \dim V, \ m = \dim U$. יהיו $C = (u_i) \subseteq U, \ B = (v_i) \subseteq V$ בסיסים. אז: 
-		\[ \sum_{\mathclap{i, j \in [m] \times [n]}}x_ja_{ij}u_j = \sum_{i = 1}^{m}u_i \cl{\sum_{j = 1}^{n}x_ja_{ij}} = \sum_{i = 1}^{n}u_ix_i\col_i \]}
+%		\theo{יהיו $U, V$ מ"וים מעל שדה $\F$ ממדים $n = \dim V, \ m = \dim U$. יהיו $C = (u_i) \subseteq U, \ B = (v_i) \subseteq V$ בסיסים. אז: 
+%		\[ \sum_{\mathclap{i, j \in [m] \times [n]}}x_ja_{ij}u_j = \sum_{i = 1}^{m}u_i \cl{\sum_{j = 1}^{n}x_ja_{ij}} = \sum_{i = 1}^{n}u_ix_i\col_i \]}
+		\defi{מטריצת הסיבוב ב־$\ta$ מעלות היא $R_{\ta} \co \R^2 \to \R^2$ תהיה $R_{\tg} := \binom{\cos \tg \, -\sin \tg}{\sin \tg \,\,\, \cos \tg\,}$. }
+		\theo{ייצוג העתקה באמצעות מטריצה היא העתקה לינארית $\psi \co L(V, W) \to M_{m \times n}$ והיא איזומורפיזם (כאשר $\dim V = n, \dim W = m$). }
+		\theo{$[Tv]_\ac = [T]^\bc_\ac[v]_\bc$ כאשר $v \in V, T \co V \to W$ ו־$\bc, \ac$ בסיסים של $V, W$ בהתאמה. }
+		
 		
 		\section{כפל מטריצות}
 		\theo{יהיו $\phi, \psi$ העתקות ליניאריות, מבסיסים $B$ ל־$C$. אז: 
@@ -733,8 +692,8 @@
 		\theo{יהיו $U, V$ מ"וים, ו־$B, C$ בסיסים ממדים $m, n$, בהתאמה פעמיים. אז $T \co \hom(V, U0 \to M_{m \times n}(\F))$ המוגדרת לפי $T(\phi) = [\phi]_C^B$, היא איזומורפיזם. }
 		\defi{יהיו $A = (a_{ij}) \in M_{m \times s}, \ B = (b_{ij}) \in M_{s \times n}$ מטריצות. נגדיר: 
 		\[ AB := A \cdot B = \sum_{k = 1}^{s}a_{ik}b_{kj} \in M_{m \times n} \]}
-		\theo{יהיו $\phi \co V \to U, \ \psi \co U \to W$ ט"לים. $B_v, B_u, B_w$ בסיסיהן בהתאמה. אז: 
-		\[ [\psi \circ \phi]_{B_w}^{B_v} = [\psi]_{B_w}^{B_u} \cdot [\phi]_{B_u}^{B_wv} \]}
+		\theo{יהיו $V \overset{\phi}{\longrightarrow} U \overset{\psi}{\longrightarrow} W$ ט"לים. $B_v, B_u, B_w$ בסיסיהן בהתאמה. אז: 
+		\[ [\psi \circ \phi]_{B_w}^{B_v} = [\psi]_{B_w}^{B_u}[\phi]_{B_u}^{B_v} \]}
 		\theo{יהיו $A, B, C$ מטריצות, אז: 
 		\begin{enumerate}
 			\item \hfil $(AB)C = A(BC)$
@@ -770,7 +729,7 @@
 		\theo{תהי $Ax = b$ מערכת משוואות עם $n$ נעלמים, $A \in M_{n}(\F), \ x = (x_i)^n_{i = 1}$, ווקטור משתנים $b = (b_i)_{i = 1}^n$. אז $A$ הפיכה גורר $A\op b = x$ פתרון יחיד. }
 		\theo{יהיו $A, B \in M_{n}(\F)$ הפיכות, אז: 
 		\begin{enumerate}
-			\item $A\op$ הפיכה. 
+			\item $A\op$ הפיכה (ידוע גם כ''רגולרית'' ו''לא סינגולרית''). 
 			\item $(A\op)\op =A$. 
 			\item $A^T$ הפיכה. 
 			\item $(A^T)\op = (A\op)^T$. 
@@ -835,14 +794,22 @@
 		\theo{\hfil $\rk A = \dim \row A = \dim \col A$}
 		\theo{בעבור $A \in M_n(\F)$ מרחב הפתרונות של מערכת המשוואות $Ax = 0$ הוא $n - \rk A$. }
 		\theo{\hfil $\rk (A + B) \le \rk A + \rk B$}
+		\theo{\textbf{\textit{(משפט האפסיות של סילבסטר)}} כאשר $A, B \in M_n(\F)$ ו־$T, S \co V \to V$:
+			 \begin{enumerate}
+			 	\item \hfil $\rk(AB) \ge \rk A + \rk B - n$ 
+			 	\item \hfil $\dim \ker(TS) \le \dim \ker T + \dim \ker S$
+			 \end{enumerate}
+		}
+		\theo{\!\!\hfil$\rk A \!=\! \min\{k \in \N \mid \exists B \!\in\! M_{n \times k}, C \in M_{k \times n} \co A = BC\}$}
 		
 		\section{דטרמיננטות}
 		\defi{פונ' $\det \co M_n(\F) \to \F$ תקרא \textit{דטרמיננטה} אמ"מ: 
 		\begin{itemize}
-			\item $\det$ מולטיליניארית (לינארית בשורה). 
+			\item $\det$ מולטילינארית (לינארית בשורה). 
 			\item בעבור $M \in M_n(\F)$ ו־$M'$ מטריצה שהוחלפו בה שתי שורות כלשהן, $\det M = -\det M'$. 
 			\item $\det I_n = 1$. 
 		\end{itemize}}
+		\theo{הדרמיננטה היא פונקציית נפח. }
 		\theo{תהי $A \in M_{2 \times 2}(\F)$ ו־$A = \binom{a\, b}{c\, d}$. אז $\det A = ad - bc$. }
 		\theo{בהינתן $\phi$ פעולה אלמנטרית ו־$\det$ דטרמיננטה, אז: 
 		\begin{itemize}
@@ -851,7 +818,7 @@
 			\item אם $\phi$ הוספת שורה מוכפלת בסקלר לאחרת, אז $\det \phi (A) = \det A$. 
 		\end{itemize}}
 		\theo{ההדטרמיננטה קיימת ויחידה. }
-		\rmark{אם אתם שונאים את עצמכם, תוכיחו את \textit{משפט 89}. }
+		\rmark{אם אתם שונאים את עצמכם, תוכיחו את יחידות הדטרמיננטה. }
 		\theo{$\det A = \det A^T$}
 		\lem{תהי $A \in M_n(\F)$ עם שורת אפסים. אז $\det A = 0$. }
 		\noti{\hfil $|A| := \det A$}
@@ -872,32 +839,49 @@
 		\defi{\textit{תמורה} היא פרמוטציה}
 		\noti{נסמן ב־$S_n$ את קבוצת כל התמורות על $[n]$. }
 		\defi{תהי $\sg \in S_n$, נגדיר את $\sgn \sg$ להיות מספר ההחלפות ש־$\sg$ מבצעת ב־$\la n \ra$. }
+		\defi{\hfil $\forall \sg \in S_n \co \sg := \pms{1 & \cdots & n \\ \sg(1) & \cdots & \sg(n)}$}
+		\defi{\hfil $\forall sg \in \S_n \co P_\sg := (e_{\sg(1)} \cdots e_{\sg(n)})$}
+		\theo{\hfil $\sgn(\sg) = \det(P_\sg)$}
+		\lem{$\sgn(\sg)\sgn(\tau) = \sgn(\sg \tau)$}
 		
 		\begin{Theorem}\textit{\textbf{(פיתוח לפי תמורות)}}
 			תהי $A \in M_n(\F)$. אז: 
 			\[ \det A = \sum_{\sg \in S_n} \cl{\sgn(\sg) \prod_{i = 1}^{n} a_{i,\,\sg(i)}} \]
 		\end{Theorem}
+%		\columnbreak
 		
 		
 		\section{אחר}
+		
+		\subsection{מטריצת בלוקים}
+		\defi{\textit{מטריצת בלוקים} תהיה כזה בלוקים שיש במטריצה (אין לי כוח להגדיר פורמלית). }
+		\theo{כפל מטריצות בלוקים שקול לכפל מטריצות אלכסוניות מעל חוג המטריצות. }
+		\theo{תהינה $A \in M_n(\F), B \in \gmat, D \in M_m(\F)$ מטריצות. אז $\det \binom{A \, B}{0\, D} = \det A \det D$ והופכית $\binom{A\op \,\,\, -A\op BD\op}{0\quad\quad\quad\, D\op\,\,\,\,\,}$. }
+		\theo{המטריצות $\binom{A\,\, 0}{0\, D} \sim \binom{D\,\, 0}{0\,A}$ דומות. }
+		
+		\subsection{מטריצה מצורפת}
 		\defi{תהי $A \in M_n(\F)$. נגדיר את ה\textit{מטריצה המוצמדת} (עיתים קרויה גם "\textit{מצורפת}") להיות מוגדרת ע"י: 
-		\[ (\adj A)_{ij} = (-1)^{i + j}|A_{ji}| \]}
-		\theo{תהי מטריצה $A \in M_n(\F)$. אז $A \cdot \adj A = \adj A \cdot A = |A| I$. בפרט, בעבור $A$ הפיכה, $A\op = \frac{1}{|A|} \adj A$. }
+			\[ (\adj A)_{ij} = (-1)^{i + j}|A_{ji}| \]}
+		\theo{תהי מטריצה $A \in M_n(\F)$. אז $A \cdot \adj A = \adj A \cdot A = |A| I$. בפרט, בעבור $A$ הפיכה, $A\op = \frac{1}{|A|} \adj A$}
+		\theo{\,
+			\begin{enumerate}
+				\item \hfil $\adj(AB) = \adj A \adj B$
+				\item \hfil $\det(\adj A) = (\det A)^{n - 1}$
+				\item \hfil $\adj(A^T) = (\adj A)^T$
+				\item \hfil $\adj(cA) = c^{n -1}\adj A$
+				\item \hfil $\rk A = n - 1 \implies \rk \adj A = 1$
+				\item \hfil $\rk A \le n - 2 \implies \rk \adj A = 0$
+		\end{enumerate}}
 		
+		\subsection{עקבה}
 		\defi{תהי $A \in M_n(\F)$. נגדיר את ה\textit{עקבה} של $A$ להיות $\tr A = \sum_{i = 1}^{n} (A)_ii$. }
-		\theo{\hfil $\forall A, B \in M_n(\F) \co \tr(AB) = \tr(BA)$}
+		\theo{\textbf{\textit{(ציקליות העקבה)}}\hfil $\forall A, B \in M_n(\F) \co \tr(AB) = \tr(BA)$}
 		\theo{$\tr \co M_n(\F) \to \F$ היא ט"ל. }
+		\theo{העקבה לא תלויה בנציגי יחס הדמיון. }
 		
-		\defi{\textit{מטריצת בלוקים} תהיה כזה בלוקים ששים במטריצה (אין לי כוח להגדיר פורמלית). }
-		\theo{בהינתן $a_{ij}, b_{ij}$ מטריצות, מטריצות הבלוקים $A = (a_{ij}), \ B = (b_{ij})$ יקיימו: 
-		\[ (AB)_{ij} = \sum_{i = 1}^{n} b_{ij}a_{ji} \]
-		כאשר $(AB)_{ij}$ יסומן כבלוק ה־$ij$ ב־$AB$. 
-		}
-		(כלומר: אפשר לכפול בלוקים כמו והיו איברי מטריצה רגילים)
-		\theo{תהינה $A \in M_n(\F), B \in \gmat, D \in M_m(\F)$ מטריצות. אז $\det \binom{A \, B}{0\, D} = \det A \det D$. }
-		
+		\subsection{ונדרמונדה וקרמר}
 		\begin{Theorem}\textit{\textbf{(כלל קרמר)}}
-			תהי $Ax = b$ מערכת משוואות ליניארית כאשר $A \in M_n(\F)$\ ו־$b \in \F^n$. אז אם $\det A \neq 0$, הפתרון היחיד של המערכת $Ax = b$ נתון ע"י: 
+			תהי $Ax = b$ מערכת משוואות לינארית כאשר $A \in M_n(\F)$\ ו־$b \in \F^n$. אז אם $\det A \neq 0$, הפתרון היחיד של המערכת $Ax = b$ נתון ע"י: 
 			\[ x = \cl{\frac{\det A_i}{\det A}}_{i = 1}^{n} \]
 			כאשר $A_i$ המטריצה המתקבלת ע"י החלפת עמודה ה־$i$ של $A$ ב־$b$. 
 		\end{Theorem}
@@ -906,12 +890,11 @@
 		}
 		\theo{מטריצת ונדרמונדה ריבועית והדטרמיננטה שלה:
 			\[\det V = \, \prod_{\mathclap{1 \le i < j \le n}}\:(\ag_i - \ag_j)\]\
-		}
-		
-		
+		}	
+		\defi{העתקה \textit{אפינית} היא העתקה לינארית עד לכדי חיבור סקלר. }
 		
 	\end{multicols}
-	{\let\newpage\relax\maketitle}
+	{\vspace{-30pt}\let\newpage\relax\maketitle\vspace{-100pt}}
 	\maketitle
 	
 \end{document}
