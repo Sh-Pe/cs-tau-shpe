@@ -23,6 +23,7 @@
 
 
 % code 
+\usepackage{algorithm2e}
 \usepackage{listings}
 \usepackage{xcolor}
 
@@ -71,7 +72,7 @@
 	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
 
 
-% Deisgn
+% Design
 \usepackage[labelfont=bf]{caption}
 \usepackage[margin=0.6in]{geometry}
 \usepackage{multicol}
@@ -88,6 +89,25 @@
 \usepackage{graphicx}
 \graphicspath{ {./} }
 
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={Document by Shahar Perets},
+	%	pdfpagemode=FullScreen,
+}
+\usepackage{yfonts}
+\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
+	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
+\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
+	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
 
 % Hebrew initialzing
 \usepackage[bidi=basic]{babel}
@@ -96,12 +116,13 @@
 \babelprovide[import]{english}
 \babelfont[hebrew]{rm}{David CLM}
 \babelfont[hebrew]{sf}{David CLM}
-\babelfont[english]{tt}{Monaspace Xenon}
+%\babelfont[english]{tt}{Monaspace Xenon}
 \usepackage[shortlabels]{enumitem}
 \newlist{hebenum}{enumerate}{1}
 
 % Language Shortcuts
 \newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
 \newcommand\sen   {\begin{otherlanguage}{english}}
 	\newcommand\she   {\end{otherlanguage}}
 \newcommand\del   {$ \!\! $}
@@ -149,6 +170,7 @@
 \newcommand\vc    {\mathcal{V}} % Vance
 \newcommand\sca   {\mathcal{S}} % \sc is already definded
 \newcommand\rca   {\mathcal{R}} % \rc is already definded
+\newcommand\zc    {\mathcal{Z}}
 
 \newcommand\prm   {\mathrm{p}}
 \newcommand\arm   {\mathrm{a}} % x86
@@ -183,13 +205,13 @@
 \newcommand\open  {\big(}
 \newcommand\qopen {\quad\big(}
 \newcommand\close {\big)}
-\newcommand\also  {\text{, }}
-\newcommand\defis {\text{ definitions}}
-\newcommand\given {\text{given }}
-\newcommand\case  {\text{if }}
-\newcommand\syx   {\text{ syntax}}
-\newcommand\rle   {\text{ rule}}
-\newcommand\other {\text{else}}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
 \newcommand\set   {\ell et \text{ }}
 \newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
 
@@ -215,6 +237,8 @@
 \newcommand\lc    {\left\lceil}
 \newcommand\rf    {\right\rfloor}
 \newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
 
 \newcommand\lex   {<_{lex}}
 
@@ -332,6 +356,8 @@
 \DeclareMathOperator{\chr}     {char}
 \DeclareMathOperator{\diag}    {diag}
 \DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
 
 \newcommand\lra       {\leftrightarrow}
 \newcommand\chrf      {\chr(\F)}
@@ -352,12 +378,11 @@
 \newcommand\pms[1]    {\begin{pmatrix}
 		#1
 \end{pmatrix}}
-\newcommand\bms[1]    {\begin{bmatrix}
-		#1
-\end{bmatrix}}
-\newcommand\detms[1]  {\left\vert\begin{matrix}
-		#1
-\end{matrix}\right\vert}
+
+\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
+\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
+\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
 
 % someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
 \makeatletter
@@ -433,6 +458,7 @@
 \newtheorem{Remark}{הערה}
 \newtheorem{Notion}{סימון}
 
+
 \newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
 \newcommand\defi  [1] {\begin{definition}#1\end{definition}}
 \newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
@@ -440,163 +466,77 @@
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
 
 % DS
-\DeclareMathOperator\amort   {amort}
-\DeclareMathOperator\worst   {worst}
-\DeclareMathOperator\type    {type}
-\DeclareMathOperator\cost    {cost}
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{\textit{תרגיל בית 2 $\sim$ אלגברה ליניארית 2א}}
+\title{לינארית 1א}
 \begin{document}
 	\maketitle
 	\section{}
-	נלכסן את המטריצות הבאות: 
-	\begin{enumerate}[A)]
-		\item נלכסן את המטריצה $\pms{0 & 1 \\ 2 & -1}$. ראשית כל, נמצא את שורשי הפולינום האופייני כדי למצוא ע"עים. 
-		\[ p_A(x) = \detms{-x & 1 \\ 2 & -1 - x} = -x(-1 - x) - 1 \cdot 2 = x^2 + x - 2 \]
-		שורשי הפולינום האופייני הם $1, -2$. 
-		
-		נמצא ו"ע לע"ע $-2$: 
-		\[ \nc (A + 2I) = \nc\pms{2 & 1 \\ 2 & 1} = \nc \pms{2 & 1 \\ 0 & 0} = \Sp\ccb{\pms{2 \\ -1}} \]
-		וסה"כ $(2, -1)$ ו"ע לע"ע $-2$. נמצא ו"ע לע"ע $1$: 
-		\[ \nc(A - I) = \pms{-1 & 1 \\ 2 & -2} = \nc\pms{-1 & 1 \\ 1 & -1} = \nc\pms{-1 & 1 \\ -1 & 1} = \nc\pms{1 & -1 \\ 0 & 0} = \Sp\ccb{\pms{1 \\ 1}} \]
-		סה"כ $P = \pms{1 & 2 \\ 1 & -1}$ ו־$D = \pms{1 & 0 \\ 0 & 2}$ יקיימו $A = PDP\op$ כדרוש. 
-		
-		\item נלכסן את המטריצה: 
-		\[ \pms{1 & -2 & 0 \\ 1 & 4 & 0 \\ 0 & 0 & -5} \]
-		נמצא פולינום אופייני: 
-		\[ p_A(x) = \det(A - xI) = \detms{1 - x & -2 & 0 \\ 1 & 4 - x & 0 \\ 0 & 0 & 5 - x} = (-5 - x)((1 - x)(4 - x) + 2) \]
-		נמצא שורשים: 
-		\[ \begin{cases}
-			-5 - x = 0 \implies x = -5 \\
-			x^2 - 5x + 6 = 0 \implies \xot = 3, 2
-		\end{cases} \]
-		סה"כ $-5, 3, 2$ ע"ע. נמצא ו"ע ל־$2$ הע"ע: 
-		\[ \nc(A - 2I) = \nc\pms{-1 & -2 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & -7} = \nc\pms{0 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & -7} = \nc \pms{1 & 2 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 1} = \ccb{\pms{a \\ -2a \\ 0} \mid a, b \in \R} = \Sp\ccb{\pms{1 \\ -2 \\ 0}} \]
-		ו"ע של $3$: 
-		\[ \nc(A - 3I) = \nc\pms{-2 & -2 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & -8} = \nc\pms{0 & 0 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 1} = \Sp\ccb{\pms{1 \\ - 1 \\ 0}} \]
-		ו"ע $-5$ ע"ע: 
-		\[ \nc(A + 5I) = \nc\pms{6 & -2 & 0 \\ 1& 9 & 0 \\ 0 & 0 & 0} = \nc\pms{0 & -56 \\ 1 & 9} = \nc\pms{0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0} = \Sp\pms{0 \\ 0 \\ 1} \]
-		סה"כ: 
-		\[ P = \pms{0 & 1 & 1\\ 0 & -1 & -2 \\ 1 & 0 & 0}, \ \Lg = \pms{-5 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 2}, \ A = P\Lg P\op \]
-		
-		
-		\item נלכסן את המטריצה מעל $\Z_3$: 
-		\[ A := \pms{1 & 1 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 1}, \ p_A(x) = \det(xI - A) = \detms{1 - x & 1 & 0 \\ 1 & 1 - x & 0 \\ 0 & 0 & 1 - x} = (1 - x)\detms{1 - x & 1 \\ 1 & 1 - x} = (1 - x)((1 - x)^{2} - 1) \]
-		מצאנו את הפולינום. שורשיו: 
-		\[ \begin{cases}
-			1 - x = 0 \implies x = 1 \\
-			(1 - x)^2 -1 = 0 \implies (1 - x)^2 = 1 \implies \begin{cases}
-				1 - x = 1 \implies x = 0 \\
-				1 - x = 2 \implies x = 2
-			\end{cases}
-		\end{cases} \]
-		
-		סה"כ ע"ע $x = 0, 1, 2$ כל השדה $\Z_3$ ע"ע. 
-		
-		נמצא ו"ע ל־$0$: 
-		\[ \nc(A - 0I) = \nc\pms{1 & 1 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 1} = \nc\pms{1 & 1 & 0 \\ 0 & 0 & 0 \\ 0& 0 & 1} = \Sp\ccb{\pms{1 \\ -1 \\ 0}} \]
-		
-		נמצא ו"ע ל־$1$: 
-		\[ \nc(A - 1I) = \nc\pms{0 & 1 & 0 \\ 1 & 0 & 0 \\ 0& 0 & 0} = \Sp\ccb{\pms{0 \\ 0 \\ 1}} \]
-		נמצא ו"ע ל־$2$: 
-		\[ \nc(A - 2I) = \nc\pms{2 & 1 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & 2} = \nc\pms{0 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & 1} = \Sp\ccb{\pms{1 \\ -2 \\ 0}} \]
-		וסה"כ: 
-		\[ \Lg := \pms{0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 2}, \ P := \pms{1 & 0 & 1 \\ -1 & 0 & -2 \\ 0 & 1 & 0}, \ A = P\Lg P\op \]
-	\end{enumerate}
+	יהי $T \co V \to V$. נניח $\exists v\in V \co Tv \neq 0 \land TTv = 0$. נוכיח $V \neq \ker T + \Img T$. 
+	
+	\begin{proof}
+		נסמן $w = Tv \neq 0$. אז $w \in \Img T$, ו־$w \in \ker T$ מהנתונים. נניח בשלילה שיש שוויון מרחבים, אז ממשפט הממדים הרגיל ביחד עם משפט הממדים להעתקות: 
+		\[ n = \dim V = \underbrace{\dim \ker T + \dim \Img T}_{n} - \dim (\ker T \cap \Img T) \implies \dim (\ker T \cap \Img T) = 0 \]
+		אך $0 \neq w \in \dim \ker T \cap \Img T$, וזו סתירה. 
+	\end{proof}
 	
 	\section{}
-	יהיו $A, B \in M_n(\F)$, נראה כי ל־$AB$ ו־$BA$ אותו הפולינום האופייני. 
-	\begin{enumerate}[A)]
-		\item ראשית כל נוכיח את הטענה במקרה ש־$A$ הפיכה. \begin{proof}
-			משום ש־$A$ הפיכה אז קיימת $A\op$ הופכית לה. אזי: 
-			\[ A \cdot BA \cdot A\op = AB \cdot \underbrace{AA\op}_{=I} = AB \]
-			כלומר, מהגדרה, $BA$ דומה ל־$AB$. נוכיח שכל שתי מטריצות דומות $C = PDP\op$ בעלות אותו הפולינום האופייני: 
-			\[ p_C(x) = \det(C - xI) = \det(PDP\op - xPP\op) = \det(P(D - xI)P\op) = \det (P P\op) \cdot \det (D - xI) = \det(D - xI) = p_D(x) \]
-			סה"כ משום ש־$BA$ ו־$AB$ דומות, אז הפולינום האופייני שלהן זהה. 
-		\end{proof}
-		\item עתה, נראה את הטענה במקרה ו־$A = \pms{I_r & 0 \\ 0 & 0}$ מטריצת בלוקים. \begin{proof}
-			נסמן $B = \pms{B_r & B_2 \\ B_3 & B_4}$ הבלוקים מהם $B$ מורכבת, כאשר $B_r$ בלוק $r \times r$. אז: 
-			\[ AB = \pms{B_r & B_2 \\ B_3 & B_4}\pms{I_r & 0 \\ 0 & 0} = \pms{B_r & 0 \\ B_3 & 0}, \ BA = \pms{I_r & 0 \\ 0 & 0} \pms{B_r & B_2 \\ B_3 & B_4} = \pms{B_r & B_2 \\ 0 & 0} \]
-			ולכן: 
-			\begin{alignat*}{9}
-				p_{AB}(x) &= \det\cl{\pms{B_r & 0 \\ B_3 & 0} - xI_n} &= \det\cl{\pms{B_r - xI_r & 0 \\ B_3 & -xI_{n - r}}} &= \det(B_r - I_rx)(-x)^{n - r} \\
-				p_{BA}(x) &= \det\cl{\pms{B_r & B_2 \\ 0 & 0} - xI_n} &= \det\cl{\pms{B_r - xI_r & B_2 \\ 0 & -xI_{n - r}}} &= \det(B_r - I_rx)(-x)^{n - r}\\
-				&\implies p_{AB}(x) = p_{BA}(x)
-			\end{alignat*}
-			כדרוש. 
-		\end{proof}
-		\item כעת, נוכיח את הטענה עבור המקרה הכללי. \begin{proof}
-			יהיו $A, B$ מטריצות כלשהן מגודל $n$ מעל שדה $\F$ כלשהו. נסמן $r = \rk A$. נסמן $I_R = \pms{I_r & 0 \\ 0 & 0}$
-			ידוע קיום $P, Q \in M_n(\F)$ הפיכות כך ש־$A = PI_RQ\op$, משום ש־$\rk I_R = \rk A$. אזי $AB = PI_RQ\op B$. גם ידוע ש־$Q\op$ הפיכה שכן $Q$ הפיכה וההפיכה להפיכה הפיכה. מסעיפים א' וב'־: 
-			\[ p_{AB}(x) = p_{(PI_RQ\op B)}(x) \overset{\text{א'}}{=} p_{(I_RQ\op B P)}(x) \overset{\text{ב'}}{=} p_{(Q\op B P I_R)}(x) \overset{\text{א'}}{=} p_{(B P I_R Q\op)}(x) = p_{BA}(x) \]
-			וסה"כ $p_{AB}(x) = p_{BA}(x)$ כדרוש. 
-		\end{proof}
-	\end{enumerate}
+	נמצא תנאי הכרחי ומספיק לכך ש־$U^0 + W^0 = (U \cap W)^0$. 
+	
+	יהי $\phi \in (W \cap U)^0$. נניח ש־$\phi \neq 0$, אז עד לכדי חברות קיים בדיוק $a$ יחיד כך ש־$\phi a \neq 0$. 
+	
+	\begin{itemize}
+		\item אם $a \in W$: אם $a \in U$ אז $\phi(a) = 0$ כדרוש. נניח $v \in W \setminus U$. נגדיר $\phi_2(a) = \phi(a)$ ו־$\phi_1 = 0$. נבחין ש־$\phi_2(U) = 0$ מהגדרתו. עתה נראה $\phi_1 \in W^0 \land \phi_2 \in U^0$. יהיו $w \in W, u \in U$ אז $\phi_1(W) = 0 \land \phi_2(U) = 0$ וסה''כ מצאנו פירוק מתאים. 
+		\item אם $a \notin U$ מקרה סימטרי. 
+		\item אם $a \notin W \cup U$, אז $\phi(W) \notin \Sp a \implies \phi(w) \neq 0$ וכנל מהצד השני וסיימנו. 
+	\end{itemize}
+	סה''כ תמיד יש שוויון. 
+	
+	(אחרי ההפסקה נכתוב את זה מסודר יותר)
+	
+	יהי $\phi \in (U \cap W)^0$ אז $\dim \ker \phi = n - 1$. לכן $\Img \phi$ מממד $1$, יהי $v$ בסיס. יהי $\phi(x) = v$, נפרק למקרים. 
+	\begin{itemize}
+		\item אם $x \in W$, אז $x \notin U$ אחרת $\phi(x) = 0$. יהי $u \in U$ ואז $u \notin \Sp x$ ולכן $\phi(u) = 0$ ולכן $\phi \in U^0$ ובפרט $\phi \in U^0 + V^0$. 
+		\item אם $x \in U$ שקול. 
+		\item אם $x \notin U \cup W$ אז בפרט $x \notin U$ ולכן יהי $u \in U$, ו־$u \notin \Sp x \implies \phi(u) = 0$. הטענה $\phi(V) = 0$ סימטרית. 
+	\end{itemize}
 	
 	\section{}
-	יהי $p(x) = x^{n} + a_{n - 1}x^{n - 1} + \cdots + a_1x + a_0$ פולינום מתוקן. נגדיר את \textit{המטריצה המלוואה של $p$} להיות: 
-	\[ A_p = \pms{-a_{n - 1} & -a_{n - 2} & \cdots & -a_1 & -a_0 \\
-		1 & 0 & \cdots & 0 & 0 \\
-		0 & 1 & \ddots  & 0 & 0 \\
-		\vdots & \ddots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & 1 & 0} \]
-	\begin{enumerate}[A)]
-		\item נראה כי $p_{A_p}(x) = p(x)$. \begin{proof}
-			נמצא את הפולינום האופייני של $A_p$: 
-			\begin{align*}
-				\det (A_p - xI) &= \detms{-a_{n - 1} -x & -a_{n - 2} & \cdots & -a_1 & -a_0 \\
-					1 & -x & \cdots & 0 & 0 \\
-					0 & 1 & \ddots  & 0 & 0 \\
-					\vdots & \ddots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & 1 & -x} \\
-					&= (-a_{n - 1} - x)\underbrace{\detms{
-						-x & 0 & \dots & 0 \\ 1 & -x & \ddots & \vdots & \\ 0 & \ddots & \ddots & 0 \\ \vdots & \ddots & 1 & -x
-						}}_{D_{n - 1}} + \sum_{i = 0}^{n - 2}-a_{i}D_i
-			\end{align*}
-			כאשר $D_i = \det((A_p - xI)_{1i})$. קל להראות באמצעות החלפות ומעברי שורה ש־$D_i = -x^i$. אז קיבלנו: 
-			\[ = (-a_{n - 1} - x)x^{n - 1} + \sum_{i = 0}^{n - 2}(-a_i \cdot -x^{n}) = x^{n} + a_{n - 1}x^{n - 1} + \sum_{i = 0}^{n - 2}a_i x^{n} = p(x) \]
-			כדרוש. 
-		\end{proof}
-		
-		\hfil \Large \textbf{מעתה ואילך הכל טיוטה, ולא מומלץ לבדוק את זה} \normalsize
-		
-		
-		\item נניח שלפולינום $p(x)$ יש $n$ שורשים שונים. נלכסן את $A_p$. 
-		
-		משום של־$p(x)$ יש $n$ שורשים וגם $p(x) = p_{A_p}(x)$ מסעיף קודם, אז שורשי $p(x)$ הם כל הע"ע של $A_p$. נסמנם $\bg_1 \dots \bg_n$. נמצא ו"ע ל־$\bg_i$: 
-		ידוע: 
-		\[ p(\bg_i) = \bg_i^n + a_{n - 1}\bg_i^{n - 1} + \cdots + a_0\bg_i^0 = 0 \]
-		לכן: 
-		\[ \nc(A_p - \bg_iI) = \nc\pms{
-				-a_{n - 1} - \bg_i & -a_{n - 2} & \cdots & -a_1 & -a_0 \\
-				1 & -\bg_i & \cdots & 0 & 0 \\
-				0 & 1 & \ddots  & 0 & 0 \\
-				\vdots & \ddots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & 1 & -\bg_n
-			} \]
-			אם נכפול את השורה ה־$i$ ב־$\bg^{i - 1}$: 
-		\begin{align*}
-			=&\nc\pms{
-				-a_{n - 1} - \bg_i & -a_{n - 2} & \cdots & -a_1 & -a_0 \\
-				1 & -\bg_i^{n - 1} & \cdots & 0 & 0 \\
-				0 & 1 & \ddots  & 0 & 0 \\
-				\vdots & \ddots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & 1 & -\bg_n
-			} \rrt{\forall 1 < i \le n}{R_i \to R_i + R_{i - 1}} \\
-			&\nc\pms{
-				-p(0) & -a_{n - 2}\bg^{n - 2} & \cdots & -a_1\bg^1 & -a_0\bg^0 \\
-				0 & -\bg_i^{n - 1} & \cdots & 0 & 0 \\
-				0 & -\bg^{n - 2} & \ddots  & 0 & 0 \\
-				\vdots & \ddots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & -\bg_n^1 & -\bg_n^1
-			}
-		\end{align*}
-		
-		\item נתבונן בנוסחאת הנסיגה הבאה: 
-		\[ f_{n} = 4f_{n-1} + 7_{n-2} - 10f_{n - 3} \]
-		ננסח מחדש: 
-		\[ f_{n} =  \]
+	השאלה: של לילי, עם ציטוטים של גינגולד
+	
+	יהיו $T_1 \co V_1 \to U \land T_2 \co V \to U$ ט''ל. נאמר ש־$(P, p_1, p_2)$ \textit{שלשה} עבורה $P$ מ''ו, $p \co P \to V_i$ ט''ל. נאמר ששלשה היא \textit{טובה} אם $T_1 \circ p_1 = T_2 \circ p_2$. שלשה טובה נקראת \textit{פצצתית} אם לכל שלשה טובה $(Q, q_1, q_2)$ ישנה $u \co Q \to P$ (``כוסאמא שלה'') כך ש־$q_i = p_i \circ u$ ($i \in \{1, 2\}$). 
+	\begin{enumerate}[A.]
+		\item הוכיחו קיום שלשה פצצתית, והראו שלכל זוג שלשות פצצתיות $P_1 \cong P_2$. 
+		\item האם $P$ נוצרת סופית? אם כן, בטאו את הממד. 
 	\end{enumerate}
+	``זו שאלה זוועה, היא לא קשורה למבחן בשום צורה, בחיים לא ישימו שאלה כזו במבחן''. 
+	נבחר: 
+	\[ P = \{\la x, y \ra \mid T_1 x = T_2 y\} \]
+	נוכיח שהיא פצצתית. נבחר $p_1 = \pi_1, p_2 = \pi_2$ היטלים. ידוע $q_1 = p_1 u \land q_2 = p_2 u$. לכן נגדיר $u = \la q_1(Q), q_2(Q) \ra$. נניח בשלילה שקיימת $u$ אחרת, נאמר $u(Q) = \la x, y \ra$. מהמשוואה $q_1(Q) = (p_1 \circ u)(Q)$ נקבל $q_1(Q) = p_1(u(Q)) = x$ וכנ''ל מהצד השני וסה''כ היא חייבת להיות מה שבחרנו. בכך הראנו קיום $(P, p_1, p_2)$ פצצתית. 
 	
-	\newpage
+	ניקח שתי שלשות פצצתיות $(P, p_1, p_2)$ ו־$(Q, q_1, q_2)$. בפרט שתיהן טובות ולכן ישנם $u_1, u_2$ המקיימים את התנאי $q_1 = p_1 \circ u_1, q_2 = p_2 \circ u_1, p_1 = q_1 \circ u_2, p_2 = q_2 \circ u_2$. נציג מהמשוואות ונקבל $p_1 = p1 \circ u_1 \circ u_2$ וכן $p_2 = p_2 \circ u_1 \circ u_2$. בעבור ה־$(P, p_1, p_2)$ שבחרנו, נקבל ש־$u_1 \circ u_2$ הזהות כי אם נציב את $Q$ (זכרו שקיבענו את $p_1$ לעיל) נקבל $p_1(Q) = p_1(u_1 \circ u_2)(Q)$ וביחד עם המשוואה השנייה נקבל שבהכרח $u_1 \circ u_2$ הזהות (כי $p_1, p_2$ היטלים, תסתכלו זה די טרוויאלי שזה עובד). אבל! צריך להראות ש־$u_2 \circ u_1$ הזהות כדי לקבל את הנדרש, שכן $u_1$ לא בהכרח עוברת בין מרחבים זהי ממד (זה מה שצריך להוכיח). 
+	ידוע $(Q, q_1, q_2)$ פצצתית: 
+	\[ T_1 \circ (p_1 \circ u) = T_2 \circ (p_2 \circ u) \]
+	מכאן זה אומר שאפשר [כאן ממש מבקשים מהמתרגל להפסיק אז ההוכחה הזו לא תגמר לעולם] להגיד משהו בסגנון ש־$q_1, q_2$ לא העתקת האפס וסיימנו. 
+	
+	\section{}
+	תהי $T \co V \to W$, נניח $v_1 \dots v_k$ בת''ל. נניח $\Sp(v_1 \dots v_k) \cap \ker T = \{0\}$. נוכיח $Tv_1 \dots Tv_{k}$ בת''ל. 
+	\begin{proof}[הוכחה מסובכת.]
+		נסתכל על $U = \Sp (v_1 \dots v_k)$ מיני מ''ו של $V$. נגדיר $S(v_i) = T_i$ (בניסוח אחר, $S = T_{|U}$). אז $\ker S = \{0\}$ מהנתון די בקלות. לכן $S$ היא איזו' $S \co U \to \Img S$. וסה''כ $Sv_1 \dots Sv_n$ בסיס וסה''כ $Tv_1 \dots Tv_n$ בת''ל. 
+	\end{proof}
+	
+	\begin{proof}[הוכחה פשוטה. ]
+		יהיו $\lg_1 \dots \lg_k$ קומבינציה לינארית שווה ל־$0$ של $Tv_1 \dots Tv_i$. אז: 
+		\[ T\cl{\sum \lg_i Tv_i} = 0 \implies \sum \lg_i Tv_i \in \ker T \implies \sum \lg_i v_i = 0 \implies \lg_i = 0 \]
+		כי $v_1 \dots v_n$ בת''ל. 
+	\end{proof}
 	
 	
+	
+	\ndoc
 \end{document}
