@@ -44,6 +44,8 @@
 	{\normalfont\large\bfseries\en{{\thesubsubsection}}}
 	{1em}
 	{}
+\renewcommand\le{\leqslant}
+\renewcommand\ge{\geqslant}
 	
 %\titleformat{command}[shape]{format}{label}{sep}{before-code}[after-code]
 \usepackage{graphicx}
@@ -96,7 +98,8 @@
 }
 
 \newcommand\middleText[1] {\vfil {\hfil {#1}} \hfil \vfil \newpage}
-\newcommand\envendproof{\vspace{-16pt}}
+\newcommand\envendproof{\vspace{-17pt}}
+\newcommand\mathenvendproof{\par\vspace{-24pt}}
 
 \makeatletter
 \newcommand{\skipitems}[1]{
@@ -279,6 +282,7 @@
 \DeclareMathOperator{\lcm}     {lcm}
 \DeclareMathOperator{\sym}     {Sym}
 \DeclareMathOperator{\asym}    {ASym}
+\DeclareMathOperator{\rad}     {rad}
 
 \newcommand\lra       {\leftrightarrow}
 \newcommand\chrf      {\chr(\F)}
@@ -305,13 +309,14 @@
 \newcommand\detms[1]  {\sof{\begin{matrix}
 			#1
 \end{matrix}}}
+\newcommand\ort       {^{\perp}}
 
 \newcommand\genein[1] {\tl \vc_{#1}}
 \newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
 \newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
 \newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
 \newcommand\mut [2]   {\left \la #1 \,\middle|\, #2 \right \ra}
-\newcommand{\fRed}     {f^{\mathrm{red}}}
+\newcommand{\fRed}    {f^{\mathrm{red}}}
 
 % someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
 \makeatletter
@@ -394,6 +399,7 @@
 \newtheorem{Remark}{\color{mycyan}הערה}
 \newtheorem{Notion}{\color{myred}סימון}
 \newtheorem{Collary}{\color{mymagenta}מסקנה}
+\newtheorem{Exercise}{תרגיל}
 
 \newcommand\cola [1] {\begin{Collary}#1\end{Collary}}
 \newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
@@ -401,6 +407,9 @@
 \newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
 \newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
 \newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+\newcommand\exe   [1] {\begin{Exercise}#1\end{Exercise}}
+\newcommand\exec  [1] {\begin{Exercise}[נפוץ]#1\end{Exercise}}
+\newcommand\exeh  [1] {\begin{Exercise}[קשה]#1\end{Exercise}}
 
 %! ~~~ Document ~~~
 
@@ -447,8 +456,6 @@
 		\item \textbf{מרחבי מכפלה פנימית}, מרחבים בהם מוגדרת מעין תבנית ססקווי בי־לינארית שמאפשרת תיאור ``גודל'', ובהם יש ערך לפירוק מטריצות לכפל של מספר מטריצות שונות. 
 	\end{enumerate}
 	
-	נוסף על שלושת הנושאים ה''רגילים'' של הקורס, מופיעה בסוף הרחבה של בן בסקין לגבי מרחבים דואלים. אני ממליץ בחום גם למי שלמד את הנושא בלינארית 1א לקרוא את הפרק עם מרחבים דואלים, משום שהוא קצר, ומראה קשרים חזקים (ומרתקים!) בין החומר הנלמד באלגברה לינארית 2א (כמו מרחבי מכפלה פנימית והעתקות צמודות) למרחבים דואלים. הוספתי בעצמי הרחבה לפירוק SVD. 
-	
 	הגרסה האחרונה של הסיכום תהיה זמינה \href{https://github.com/Sh-Pe/cs-tau-shpe/tree/master/lin2A/megasum}{בקישור הבא} כל עוד מיקרוסופט לא פשטו את הרגל. אם מצאתם בסיכום טעויות (החל בתקלדות, כלה בשגיהוט חטיב, וכמובן טעויות מתמטיות) אשמח אם תפנו אלי בטלפון או במייל (perets.shahar@gmail.com), בטלפון (אם יש לכם אותו), או באמצעות GitHub Issues (קישור בתחילת המשפט). 
 	
 	מקווה שתהנו מהסיכום ותמצאו אותו מועיל; 
@@ -471,6 +478,16 @@
 		\item נסמן שחלוף (transpose) ב־$A^{T}$ ולא $A^{t}$. 
 		\item הטבעיים כוללים את $0$, ו־$\N_+$ (''הטבעיים החיוביים``) אינם. 
 		\item ט''ל הוא קיצור לטרנספורמציה לינארית. 
+	\end{itemize}
+	
+	\subsection{רשימת נושאים שנוספו לסיכום בהתווסף על החומר של הקורס}
+	\begin{itemize}
+		\item מציאת צורת ג'ורדן באמצעות מרחבים עצמיים מורחבים (עוזר מאוד להבין מה צורת ג'ורדן עושה). 
+		\item תוצאות מצורת ג'ורדן (מופיע בסמסטרים קודמים). 
+		\item הרחבה על הראדיקלים של תבניות בי־לינאריות (סתם כי זה מגניב). 
+		\item הרחבת פירוק SVD להעתקות שאינן אופרטורים (מועיל למדמ''חיסטים). 
+		\item מסקנות מ־SVD ושימוש הקונספט של ערכים סינגולריים. 
+		\item מרחבים דואלים (המרצה עשה על זה הרחבה קצרה בסיום ההרצאה האחרונה)
 	\end{itemize}
 	
 	\newpage
@@ -702,7 +719,7 @@
 	
 	\theo{תהי $T \co V \to V$ ט"ל עם פ"א $f_T(x)$. אז $T$ לכסינה אמ"מ שתי הטענות הבאות מתקיימות:
 		\begin{enumerate}
-			\item בעבור $k$ הע"ע שונים, $f_T(x) = \prod_{i = 1}^{k}(x - \lg_i)^{n_i}$
+			\item בעבור $k$ הע"ע שונים, $f_T(x) = \prod_{i = 1}^{k}(x - \lg_i)^{d_\lg}$
 			\item לכל $\lg$ ע"ע של $T$ מתקיים $r_\lg = d_\lg$
 		\end{enumerate}
 	}
@@ -972,8 +989,7 @@
 	\defi{יהי $g \in R$ כך ש־:
 		\begin{enumerate}
 			\item $g \mid a \land g \mid b$
-			\item $\forall \ml \in R \co \ml \mid a \land \ml \mid b$
-			\item $\ml \mid g$
+			\item $\forall \ml \in R \co \ml \mid a \land \ml \mid b \implies \ml \mid g$
 		\end{enumerate}
 		אז $g$ כנ"ל הוא הגורם המשותף המקסימלי של $a, b$, הוא $\gcd(a, b)$. }
 	
@@ -1204,6 +1220,7 @@
 	כאשר השורה האחרונה כי: 
 	\[ T(T^{n - 1}v)  = -\sum_{k = 0}^{n - 1}a_kT^kv \]
 	\defi{$A_f = [T]_B$ היא \textit{המטריצה המצורפת} לפולינום $f(x) = x^{n} + a_{n - 1}x^{n - 1} + \cdots + a_0$. }
+	\rmark{באנגלית: ''Companion Matrix``, ולעיתים קרויה בעברית ''מטריצה מלווה``. }
 	
 	\subsection{הפולינום המינימלי}
 	
@@ -1839,6 +1856,7 @@
 	\rmark{בעתיד נראה שכל תבנית בי־לינארית נראית כמו מקרה 5. }
 	
 	\theo{נסמן את מרחב התבניות הבי־לינאריות על $V \times W$ בתור $B(V, W)$. זהו מ''ו מעל $\F$. }
+	
 	אני ממש לא עומד להגדיר את החיבור והכפל בסקלר של המשפט הקודם כי זה טרוויאלי והמרצה כותב את זה בעיקר בשביל להטריל אותנו. 
 	
 	\textbf{דוגמה חשובה אחרת. }\theo{נסמן ש־$\dim V = n, \ \dim W = m$ ותהי $A \in M_{n \times m}(\F)$. יהי $\ac$ בסיס ל־$B$, $\bc$ בסיס ל־$W$. אז: \[ f(u, w) = [v]_\ac^T \cdot A \cdot [w]_{\bc} \] העתקה בי־לינארית. }
@@ -1852,7 +1870,7 @@
 	\end{proof}
 	(''זה $\ac$ mathcal, אתם תסתדרו`` – המרצה ברגע שיש לו שני $A$־ים על הלוח)
 	
-	\defi{בהינתן תבנית בי־לינארית $f \co V \times W \to \F$ ונניח ש־$\ac$ בסיס ל־$V$, $\bc$ בסיס ל־$W$. נגדיר את המטריצה המייצגת את $f$ ביחס לבסיסים $\ac, \bc$ ע''י $A \in M_{n \times m}(\F)$ כאשר $(A)_{ij} = f(v_i, w_j)$ (נסמן $\ac = (v_i)_{i =1}^n \ \bc = (w_i)_{i = 1}^{m}$)}
+	\defi{בהינתן תבנית בי־לינארית $f \co V \times W \to \F$ ונניח ש־$\ac$ בסיס ל־$V$, $\bc$ בסיס ל־$W$. נגדיר את המטריצה המייצגת את $f$ ביחס לבסיסים $\ac, \bc$ ע''י $A \in M_{n \times m}(\F)$ כאשר $(A)_{ij} = f(v_i, w_j)$ (תחת הסימונים $\ac = (v_i)_{i =1}^n \ \bc = (w_i)_{i = 1}^{m}$)}
 	
 	\theo{$f(v, w) = [v]_{\ac}^T A [w]_\bc$}
 	\begin{proof}
@@ -1892,7 +1910,7 @@
 			\item \textbf{חח''ע. }תהי $f \in \ker \psi$, אז: $\psi(f) = 0 \in M_{n \times m} \implies \forall i,j \in [n] \times [m]\co f(v_i, w_j) = 0$ ולכן $\forall v \in V, w \in W \co f(v, w) = \sum_{{i, j \in [n] \times [m]}}\ag_i f(v_i, w_j)\bg_j = 0$
 			(עם אותם הסימונים כמו קודם)
 			\item \textbf{על. }תהי $A \n M_{n \times m}(\F)$. נגדיר $f(v, w) = [v]_\ac^T A[w]_\bc$ ואכן $f(v_i, w_j) = e_i^T A e_j = (A)_{ij}$. 
-		\end{itemize}
+		\end{itemize}\envendproof
 	\end{proof}
 	
 	
@@ -1956,11 +1974,38 @@
 			\item[$\impliedby$] אם $A$ סימטרית אז: 
 			\[ f(v, w) = [u]_B^TA[w]_B \overset{(1)}{=} ([u]_B^TA[w]_B)^T = [w]_B^TA^T([u]_B^T)^T = [w]^T_BA[u]_B = f(w, v) \]
 			כאשר $(1)$ מתקיים כי transpose למטריצה מגודל $1 \times 1$ מחזיר אותו הדבר. וכן במקרה האנטי־סימטרי: 
-			\[ f(u, w) = [w]^T_B(-A)[u]_B = -[w]_B^TA[u]_B = -(w, u) \]
+			\[ f(u, w) = [w]^T_B(-A)[u]_B = -[w]_B^TA[u]_B = -(w, u) \]\mathenvendproof
 		\end{itemize}
 	\end{proof}
+	\defi{בעבור תבנית בי־לינארית, ה\textit{ראדיקאל הימני} שלה מוגדר להיות $\rad_r(f) = \{x \in V \mid \forall w \in W \co f(x, w) = 0\}$. }
+	\defi{בעבור תבנית בי־לינארית, ה\textit{ראדיקאל השמאלי} שלה מוגדר להיות $\rad_\ml(f) = \{x \in W \mid \forall v \in V \co f(v, x) = 0\}$. }
+	\theo{הראדיקלים מרחבים וקטוריים. }
+	\begin{proof}
+		יהי $x, y \in \rad_r(f)$ וכן $\lg \in \F$. נראה ש־$\lg x + y \in \rad_r(f)$. אכן, מלינאריות, מתקיים: 
+		\[ \forall v \in V \co f(\lg x + y, v) = f(\lg x, v) + f(y, v) = \lg \underbrace{f(x, v)}_{0} + \underbrace{f(y, x)}_{0} = \lg 0 + 0 = 0 \]
+		כדרוש. ההוכחה זהה לראדיקל השמאלי. 
+	\end{proof}
 	
-	\subsection{תבנית ריבועית}
+	\theo{בהינתן תבנית סימטרית, $\rad_r(f) = \rad_\ml(f)$. }
+	\begin{proof}
+		יהי $x$. לכל $v \in V$, מסימטריות מתקיים $f(v, x) = 0 \iff f(x, v) = 0$. סה''כ $x \in \rad_r(f) \iff x \in \rad_\ml(f)$ דהיינו $\rad_r(f) = \rad_\ml(f)$ כדרוש. 
+	\end{proof}
+	
+	\theo{לכל תבנית $f \co V \times W$, מתקיים $\dim \rad_r(f) = \dim \rad_\ml(f)$. }\begin{proof}
+		בהינתן בסיסים $\bc, \cc$ נגדיר $A = [f]_\bc^{\cc}$. נבחין ש־: 
+		\begin{alignat*}{9}
+			\rad_r(f) \,&&\cong \{x \in \F^{n} \mid \forall v \in \F^{m} \co v^TAx = 0 \} &= \{x \in \F^{n} \mid \forall i \in [n] \co \overbrace{e_i^TAx}^{\mathclap{(Ax)_i}} = 0 \} &&= \{x \in \F^n \mid Ax = 0\} &&= \nc(A) \\
+			\rad_\ml(f) \,&&\cong \{x \in \F^{m} \mid \forall v \in \F^{n} \co x^TAv = 0 \} &= \{x \in \F^{n} \mid \forall i \in [m] \co \underbrace{x^TAe_i}_{\mathclap{x^T\row_i(A)}} = 0 \} &&= \{x \in \F^n \mid A^Tx = 0\} &&= \nc(A^T)
+		\end{alignat*}
+		ידוע ממשפט הדרגה ש־$\rk A = \rk A^T$ וממשפט הממדים $\dim \nc(A) = \dim\nc(A^T)$. סה''כ $\dim \rad_r(f) = \dim \rad_\ml(f)$ כדרוש. 
+	\end{proof}
+	\rmark{ניתן להוכיח את הטענה באופן כללי למרחבים לא נוצרים סופית באמצעות שימוש במרחבים דואליים ומרחבי מנה. }
+	
+	\defi{תבנית בי־לינארית $f$ נקראת \textit{לא־מנוונת} או \textit{רגולרית} או \textit{לא־סינגולרית} אם $\rad(f) = \{0\}$. }
+	\defi{תבנית בי־לינארית $f$ נקראת \textit{מנוונת} או \textit{סיגולרית} או \textit{לא־רגולרית} אם היא לא לא־מנוונת. }
+	\rmark{אין צורך לציין איזה ראדיקל שווה לאפס, שכן הם שווי ממד. }
+	
+	\subsection{תבניות ריבועיות}
 	\defi{תהא $f$ תבנית על $V$. התבנית הריבועית: 
 		\[ Q_p \co V \to \F, \ Q_f(v) = f(v, v) \]}
 	היא \textit{לא} העתקה לינארית. היא תבנית ריבועית. \textbf{דוגמאות: }
@@ -2010,11 +2055,31 @@
 	\begin{proof}
 		באינדוקציה על $n$. בסיס $n = 1$ ברור. אם $f$ תבנית ה־$0$, אז כל בסיס שנבחר מתאים. אחרת, קיים $0 \neq v \in V$ כך ש־$Q_f(v) \neq 0$. נגדיר $U = \{u \in V \mid f(u, v) = 0\}$. תמ''ו כי גרעין של ה''ל (כי קיבענו את $v$). מה התמונה של ההעתקה? $f(v, v) = Q_f(v) \neq 0$. לכן תמונת ההעתקה היא כל $\F$, וממדה $1$. ידוע $U$ תמ''ו מממד $n - 1$. אז $f_{|U} \co U\times U \to \F$ לכסינה ולכן קיים בסיס $B_U$ כך ש־$[f_{|U}]$ אלכסונית. נגדיר את $B = \{v\} \cup B_U$ נבחין שהיא מהצורה: 
 		\[ \pms{* & 0& \cdots \\ 0 & [f_{|U}]_B& - \\ \vdots & \vert} \]
+		סה''כ מהנחת האינדוקציה צעד האינדוקציה הושלם כדרוש. 
 	\end{proof}
+	
+	\rmark{מטריצה הפיכה לעיתים קרויה ''לא־סינגולרית``}
+	\cola{תבנית בי־לינארית היא לא־סינגולרית אמ''מ המטריצה המייצגת שלה (בבסיס כלשהו) היא לא־סינגולרית. }
+	% TODO: proof
+%	\begin{proof}
+%		תהי $f$ תבנית בי־לינארית. נפרק למקרים. 
+%		\begin{itemize}
+%			\item אם $f$ סימטרית: 
+%			\begin{itemize}
+%				\item אם $\chr \F = 2$, אז לפי ויקיפדיה זה עובד אבל אני לא מצליח להוכיח את זה. 
+%				\item אם $\chr \F = 2$, 	אז מהמשפט לעיל קיים בסיס $\bc$ כך ש־$[f]_\bc = \diag(c_1 \dots c_n)$ כאשר $c_1 \dots c_n \in \F$ סקלרים כלשהם. נוכיח את שתי הגרירות. 
+%				\begin{itemize}
+%					\item[$\implies$] אם $[f]_{\cc}$ בבסיס $\cc$ כלשהו לא־סינגולרית, אז $\rk f = n$ ואז $[f]_\bc$ הפיכה גם היא. דהיינו $c_1 \dots c_n \neq 0$. יהי $x \in \rad_\ml(f)$, ואז $\forall x \in V \co f(x, v) = 0$. לכן נסיק $\forall v \in \F^{n} \co [x]_\bc A v^T$. בפרט עבור $e_1 \dots e_n \in \F^{n}$ מתקיים $([v^T]_\bc)_i \cdot c_i = v^TAe_i = 0$. משום ש־$c_i \neq 0$ נוכל לחלק ב־$c_i$ ולקבל $\forall i \in [n] \co [v^T]_i = 0$. דהיינו $[v^T]_\bc = 0$ כלומר $v = 0$. לכן $\rad_\ml(f) \subseteq \{0\}$ כלומר $\dim\rad_r(f) = \dim \rad_\ml(f) = 0$ והראדיקל ריק כדרוש. 
+%					\item[$\impliedby$]נוכיח את הקונטראפוסיטיב לטענה. נניח המטריצה המייצגת בבסיס $\cc$ סינגולרית, נוכיח $f$ מנוונת. אם $\rk [f]_\cc < n$ אז $\rk[f]_\bc < n$ (כי $\rk$ נשמר תחת התאמה). משום ש־$[f]_\bc = \diag(c_1 \dots c_n)$ אלכסונית, בהכרח קיים $c_i$ כך ש־$c_i = 0$. נתבונן ב־$x = e_i$. אז $\forall v \in \F^n \co v^TAx = v^T \cdot 0 = 0$ ולכן מתקיים $x_V = [x]_\bc\op$ (כאשר $[\cdot]_\bc\op$ ההופכית להעתקת הייצוג ב־$\bc$) מקיים $0 \neq x_V \in \rad_r(f)$. מהיות האדיקאלים שווי ממד אף אחד מהם לא $\{0\}$ ולכן $f$ סינגולרית כדרוש. 
+%				\end{itemize}
+%			\end{itemize}
+%			\item אם $f$ לא סימטרית, אז $\rad_\ml(f) \neq \rad_r(f)$. נניח בשלילה שהיא לא־מנוונת ואז $\rad(f) = \{0\}$ מממד $0$ ושני הראדיקלים שווי ממד כלומר $\rad_\ml(f) = \{0\} = \rad_r(f)$ וזו סתירה. 
+%		\end{itemize}\envendproof
+%	\end{proof}
 	
 	\theo{לכל $f$ תבנית סימטרית קיימת מטריצה מייצגת מהצורה $\binom{I_r \, 0}{0 \,\,\, 0}$ כאשר $\F = \C$ (או סגור אלגברית כלשהו). }
 	\textit{אינטואציה להוכחה. }ננרמל את המטריצה, נבחין שחלוקה ב־$c$ של השורה ה־$i$ ניאלץ להפעיל גם עם העמודה ה־$i$, כלומר את $a_{i, i}$ נחלק ב־$c^{2}$ בצורה הזו (זאת כי כאשר $P^TAP$ הגדרת חפיפה, ו־$P$ מדרגת שורות, $P^{T}$ מדרגת עמודות). 
-	\begin{proof}		
+	\begin{proof}
 		נסמן את $\dim f = r$. עד כדי שינוי סדר איברי הבסיס, המטריצה המייצגת אלכסונית היא:
 		\[ [f]_B = \pms{\diag(c_1 \dots c_r) & 0 \\ 0 & 0} \]
 		כאשר $c_1 \dots c_r \neq 0$, ביחס לבסיס $B = (v_1 \dots v_r, \dots v_n)$. באופן כללי לכל $i \in \R$ נוכל להגדיר את $v_i' = \frac{v_i}{\sqrt{c_i}}$ כך ש־$f(v'_i, v'_i) = 1$ כי $f(v_i, v_i) = c_i$ ומליניאריות בכל אחת מהקורדינאטות. בשל כך $B' = (v_1' \dots v'_r, v_{r + 1} \dots v_n)$ בסיס המקיים את הדרוש. 
@@ -2022,27 +2087,29 @@
 		באותו האופן, אם $\F = \R$ (ולא $\C$) אז קיים בסיס שהמטריצה המייצגת לפיו היא: 
 		\[ \pms{I_p & 0 & 0 \\ 0& -I_q & 0 \\0 & 0 & 0} \]
 		בלוקים, כך ש־$p + q = r$. כאן נגדיר: 
-		\[ f(v, v) = c < 0, \ v' = \frac{v}{\sqrt{|c|}}, \ f(v', v') = \frac{c}{|c|} = -1 \]
+		\[ f(v, v) = c < 0, \ v' = \frac{v}{\sqrt{|c|}}, \ f(v', v') = \frac{c}{|c|} = -1 \]\mathenvendproof
 	\end{proof}
 	
-	\defi{יהי $V$ מ''ו מעל $\R$ ו־$f$ תבנית בי־לינארית מעל $V$. נאמר ש־$f$ חיובית/אי־שלילית/שלילית/אי־חיובית אם $\forall 0 \neq v \in V $ מתקיים ש־$f(v, v) > 0$/$f(v, v) \ge 0$/$f(v, v) < 0$/$f(v, v)\le 0$}
+	\defi{יהי $V$ מ''ו מעל $\R$ ו־$f$ תבנית בי־לינארית מעל $V$. נאמר ש־$f$ מוגדרת חיובית/אי־שלילית/שלילית/אי־חיובית אם $\forall 0 \neq v \in V $ מתקיים ש־$f(v, v) > 0$/$f(v, v) \ge 0$/$f(v, v) < 0$/$f(v, v)\le 0$}
+	
+	\rmark{באנגלית: ''Definite matrix``}
 	
 	\theo{תהא $A$ מטריצה מייגצת של תבנית בי־ליניארית סימטרית, עם ערכים $0, -1, 1$ בלבד על האלכסון, מקיימת: 
 		\begin{itemize}
-			\item $f$ חיובית אמ''מ ישנם רק $1$־ים. 
-			\item $f$ אי־שלילית אמ''מ ישנם רק $1$־ים ואפסים. 
-			\item $f$ שלילית אמ''מ ישנם רק $-1$־ים
-			\item $f$ חיובית אמ''מ ישנם רק $-1$־ים ואפסים. 
+			\item $f$ מוגדרת חיובית אמ''מ ישנם רק $1$־ים. 
+			\item $f$ מוגדרת אי־שלילית אמ''מ ישנם רק $1$־ים ואפסים. 
+			\item $f$ מוגדרת שלילית אמ''מ ישנם רק $-1$־ים
+			\item $f$ מוגדרת חיובית אמ''מ ישנם רק $-1$־ים ואפסים. 
 	\end{itemize}}
 	\begin{proof}\,
 		\begin{itemize}
 			\item[$\impliedby$] טרוויאלי
 			\item[$\implies$] לכל $0 \neq v \in V$ קיימים ויחידים $\ag_1 \dots \ag_n \in \R$ כך ש־$v = \sum^n_{i = 1} \ag_i v_i$ ומתקיים $f(v, v) = \ag_i^2 f(v_{i, i})$ ולפי המקרה זה יסתדר יפה. 
-		\end{itemize}
+		\end{itemize}\envendproof
 	\end{proof}
 	
 	\begin{Theorem}[משפט ההתאמה של סילבסטר]
-		$p, q$ הנ''ל נקבעים ביחידות. 
+		$p, q$ עבורם המטריצה חופפת ל־$\diag(I_p, I_{-q}, 0)$ נקבעים ביחידות. 
 	\end{Theorem}
 	(תחזרו כמה משפטים למעלה למקרה בו $\F = \R$)
 	\begin{proof}[גישה שגויה להוכחה. ]
@@ -2063,6 +2130,7 @@
 	כל עוד נאמר ``$\F$'', זה נכון בעבור שני המקרים. אחרת, נפצל. 
 	
 	\defi{יהי $V$ מ''ו, \textit{מכפלה פנימית} מעל $\R$ היא תבנית בי־לינארית סימטרית חיובית מעל $V$, ומסומנת $f(v, u) = \la v, u \ra$ (ויש ספרים שמסמנים $\la v \mid u \ra$, $\smut\co V \times V \to \R$. }
+	\cola{התבנית $f$ היא מ''פ אמ''מ המייצגת שלה $A$ בבסיס כלשהו, היא סימטרית חיובית. }
 	\noti{בקורס מסמנים $\la \cdot, \cdot \ra$ אבל אני מגניב אז אני משתמש ב־$\smut$. }
 	
 	\lem{$\forall v \in V \co \mut{v}{v} \ge 0$ ו־$\la v, v \ra$ אמ''מ $v = 0$. }הוכחה מסימטריה. 
@@ -2093,6 +2161,10 @@
 	ומכאן נגרר ססקווי־ליניאריות, וכן $\mut{0}{0} = 0$ נובע ישירות מליניאריות ברכיב השני. 
 	
 	\rmark{באוניברסיטאות אחרות מקובל להגדיר לינאריות ברכיב השני ולא בראשון. זה לא באמת משנה. }
+	\cola{נוכל להגדיר מטריצה $A$ מייצגת של תבנית $f$ ססקווי־בילניארית, באופן דומה להגדרה והרגילה, ואז להבחין שגם כאן $A$ סימטרית חיובית אמ''מ $f$ מ''פ. עוד נבחין ש־: 
+	\[ \mut{v}{u} = f(v, u) = vAu^{*} = vA\bar u^{T} \]}
+	
+	\defi{למטריצה המייצגת של המכפלה הפנימית קוראים \textit{מטריצת גראם} או \textit{גראמיאן}. }
 	
 	
 	\defi{\hfil $\ol{B^T} = B^*$}
@@ -2131,9 +2203,9 @@
 		וסה''כ אם נציב בנוסחה, אחרי שחישבנו את כל אבירה, הכל יצטמצם וש־$\mut{u}{v}$ אכן שווה לדרוש. 
 	\end{proof}
 	
-	במילים אחרות, באותה המידה שתבניות שמתבניות בי־לינאריות ותבניות ריבועיות אפשר להסיק אחת מהשניה, אפשר גם ממכפלה פנימית להסיק נורמה ולהפך. אזי, ממ''פ ומרחב נומרי הם די שקולים. 
+	במילים אחרות, באותה המידה שתבניות שמתבניות בי־לינאריות ותבניות ריבועיות אפשר להסיק אחת מהשניה, אפשר גם ממכפלה פנימית להסיק נורמה ולהפך. אזי, ממ''פ ומרחב נומרי הם די שקולים. זה לא מפתיע, בהתחשב בזה שכל תבנית סימטרית לא־מנוונת משרה באופן יחיד תבנית ריבועית, ולהפך (במאפיין שונה מ־2). 
 	
-	\subsection{אורתוגונליות}
+	\subsection{אורתוגונליות, זהויות ואי־שוויונות של המכפלה הפנימית}
 	
 	\defi{בהינתן $(v, \smut)$ ממ''פ, לכל $v \in V$ נאמר ש־$u$ \textit{מאונך ל־$v$} (או \textit{אורתוגונלי ל־} אם אנחנו מרגישים מפונפנים) ונסמן $u\perp v$ אם $\mut{u}{v} = 0$. }
 	
@@ -2144,7 +2216,7 @@
 	\begin{Theorem}[משפט פיתגורס]
 		(מאוד מועיל) יהי $V$ ממ''פ כך ש-$v, u \in V$ אורתוגונלים, אז $\norm{v + u}^2 = \norm{v}^2 + \norm{u}^2$
 	\end{Theorem}\begin{proof} משום שהם מאונכים מתקיים $\mut{v}{u} = 0$. נפתח אלגברה: 
-		\[ \norm{v + u}^2 = \mut{v + u}{v + u} = \norm{v}^2 + \cancel{\mut{v}{u}} + \cancel{\mut{u}{v}} + \norm{u^2} = \norm{v}^2 + \norm{u}^2 \quad \top \]
+		\[ \norm{v + u}^2 = \mut{v + u}{v + u} = \norm{v}^2 + \cancel{\mut{v}{u}} + \cancel{\mut{u}{v}} + \norm{u^2} = \norm{v}^2 + \norm{u}^2 \quad \top \]\mathenvendproof
 	\end{proof}
 	
 	\rmark{בתוך $\R^n$ הוקטורים הסטנדרטיים מאונכים אחד לשני (במכפלה הפנימית הסטנדרטית) ולכן $\mut{e_i}{e_j} = \delta_{ij}$ כאשר $\delta_{ij}$ הדלתא של כרוניקר. באינדוקציה על משפט פיתגורס נקבל ש־: }
@@ -2176,7 +2248,7 @@
 	\end{proof}
 	
 	\rmark{זה לא מדויק להגיד שזה נגרר ממשפט הקוסינוסים מעל $\R^{n}$, משום שהגדרת הזווית בין $u, v$ בגיאומטריה האוקלידית מבוצעת כדלקמן: 
-	\[ \ta_{u, v} := \arccos \frac{\mut{u}{v}}{\norm{u}\norm{v}} \]}
+	\[ (\cos \widehat{u, v}) := \frac{\mut{u}{v}}{\norm{u}\norm{v}} \quad\quad \widehat{u, v} = \arccos(\cos(\widehat{u, v})) \]}
 	
 	\textbf{דוגמאות. }
 	\begin{enumerate}
@@ -2193,8 +2265,24 @@
 		\textit{תזכורת: עבור $\zc \in \C$ מתקיים $\sof{\zc}^2 = (\Re \zc)^2 + (\Im \zc)^2$}
 		\[ \norm{u + v}^2 = \norm{u}^2 + \norm{v}^2 + 2\Re(\mut{u}{v}) \le \norm{u}^2 + \norm{v}^2 + 2\sof{\mut{u}{v}}  \]
 		ושוויון אמ''מ $u$ הוא אפס או כפולה חיובית של $v$. מקושי־שוורץ: 
-		\[ \le \norm{u}^2 + 2\norm{u}\norm{v} + \norm{v}^2 = \cl{\norm{u} + \norm{v}}^2 \]
+		\[ \le \norm{u}^2 + 2\norm{u}\norm{v} + \norm{v}^2 = \cl{\norm{u} + \norm{v}}^2 \]\mathenvendproof
 	\end{proof}
+	
+	\begin{Theorem}[משפט הקוסינוסים]
+		בהינתן $\smut \co V\times V \to \R$ מ''פ, מתקיים: 
+		\[ \norm{u + v}^{2} = \norm{u}^2 + \norm{v}^2 + 2\norm{u}\norm{v}\cos(\widehat{u, v}) \]
+	\end{Theorem}
+	\begin{proof}
+		פשוט נפתח אלגברה: 
+		\begin{align*}
+			\norm{u}^2 + \norm{v}^2 + 2\norm{u}\norm{v}\cos(\widehat{u, v}) &= \mut{u}{u}^2 + \mut{v}{v}^2 + 2\cancel{\norm{u}\norm{v}}\frac{\mut{u}{v}}{\cancel{\norm{u}\norm{v}}} \\
+			&= \mut{u}{u} + 2\mut{u}{v} + \mut{v}{v} \\
+			&= \mut{u}{u} + \mut{u}{v} + \mut{v}{u} + \mut{v}{v} \\
+			&= \mut{u}{u + v} + \mut{v}{u + v} \\
+			&= \mut{u + v}{u + v}  = \norm{u + v}^2
+		\end{align*}\mathenvendproof
+	\end{proof}
+	\rmark{מעל המרוכבים אין לנו את הסימטריות הדרושה. במקום זאת, מתקיים $\norm{u + v} = \norm{u}^2 + \norm{v}^2 + 2\Re(u + iv)$. }
 	
 	\subsection{מרחבים ניצבים והיטלים}
 	\noti{יהי $(V, \smut)$ ממ''פ. יהיו $S, T \subseteq V$. נסמן: 
@@ -2215,7 +2303,7 @@
 			\item \hfil $(U \cap W)^{\perp} = U^{\perp} + W^{\perp}$
 	\end{enumerate}}
 	\begin{proof}[הוכחה (לג'). ]
-		\[ \forall v \perp T \co c \perp S \implies v \in S^{\perp} \]
+		\[ \forall v \perp T \co c \perp S \implies v \in S^{\perp} \]\mathenvendproof
 	\end{proof}
 	\rmark{שוויון בג' מתקיים אמ''מ $\Sp S = \Sp T$. }
 	
@@ -2293,7 +2381,7 @@
 	
 	
 	\subsection{צמידות ודואליות}
-	\subsubsection{העתקה צמודה לעצמה}
+	\subsubsection{העתקות צמודות לעצמן, והעתקות חיוביות}
 	
 	\defi{$V$ ממ''פ ו־$T \co V \to V$ ט''ל. אז $T$ נקראת \textit{סימטרית} ($\F = \R$) או \textit{הרמטית} ($\F = \C$) אם $\forall u, v \in V\la Tu \mid v \ra = \la u, Tv \ra$
 		באופן כללי, העתקה כזו תקרא \textit{צמודה לעצמה}. }
@@ -2304,8 +2392,20 @@
 	
 	\textbf{דוגמה נוספת} (בדמות משפט)
 	\theo{ההעתקה $v \mapsto p_U(v)$ עבור $U$ תמ''ו כלשהו, היא ההיטל, צמודה לעצמה. }
+	\begin{proof}
+		יהי $V$ תמ''ו. ניעזר בעובדה לכל $U$ תמ''ו ו־$u \in V$ ניתן לפרק את $u$ לפי $u = p_U(u) + p_{U^{\perp}}(u)$. עוד נבחין שמכיוון ש־$\Img p_U = U \land \Img p_{U\ort} = U\ort$ אז לכל $v, u \in V$ מתקיים $p_U(u)$ ניצב ל־$p_{U\ort}(v)$. 
+		\begin{align*}
+			\mut{p_U(v)}{u} &= \mut{p_U(v)}{p_U(u) + p_{U\ort}(u)} \\
+			&= \mut{p_U(v)}{p_U(u)} + \underbrace{\mut{p_U(v)}{p_{U\ort}(u)}}_{0} \\
+			&= \mut{p_U(v)}{p_U(u)} + \overbrace{\mut{p_{U\ort}(v)}{p_{U}(u)}} \\
+			&= \mut{p_U(v) + p_{U\ort}(v)}{p_U(u)} \\
+			&= \mut{v}{p_U(u)} \quad \top
+		\end{align*}\mathenvendproof
+	\end{proof}
 	
-	\theo{העתקה סימטרית אמ''מ היא דומה למטריצה סימטרית. }
+	\theo{נניח $V$ ממ''פ מעל $\C$. אז $T$ הרמיטית אמ''מ $\forall v \in V \co \mut{Tv}{v} \in \R$}
+	
+%	\theo{העתקה סימטרית אמ''מ היא דומה למטריצה סימטרית. }
 	
 	\theo{יהיו $T, S \co V \to V$ צמודות לעצמן. אז: 
 		\begin{enumerate}
@@ -2319,7 +2419,7 @@
 		נסיק: 
 		\[ \implies \forall v\mut{(ST - TS)v}{(ST - TS)v} = 0  \implies (ST - TS)v = 0 \implies STv = TSv \implies \top \]
 		מהכיוון השני, אם $TS = ST$ אז מהיות $S, T$ צמודות לעצמן: 
-		\[ \mut{STv}{u} = \mut{S(Tv)}{u} = \mut{Tv}{Su} = \mut{v}{TSu} = \mut{v}{STu} \]
+		\[ \mut{STv}{u} = \mut{S(Tv)}{u} = \mut{Tv}{Su} = \mut{v}{TSu} = \mut{v}{STu} \]\mathenvendproof
 	\end{proof}
 	\defi{$T \co V \to V$ תקרא חיובית/אי־שלילית/שלילית/אי־חיובית אם לכל $v \in V$: 
 		\begin{multicols}{2}
@@ -2329,13 +2429,14 @@
 				אי־חיובית: $\mut{Tv}{v} \le 0$
 		\end{multicols}
 	}
+	\rmark{באופן כללי, אין קשר הדוק בין ההגדרה הזו לבין הגדרת חיוביות של תבניות בי־לינאריות. המושגים יתקשרו אחד לשני בהמשך רק בהקשר של העתקות צמודות לעצמן. }
 	\theo{אם $T$ חיובית/שלילית, אז היא הפיכה. } \begin{proof}
 		נניח ש־$T$ לא הפיכה, נניח בשלילה שהיא חיובית. קיים $0 \neq v \in V$. אז $v \in \ker T$, אז $\mut{Tv}{v} = \mut{0}{v} = 0$, בסתירה לכך ש־$T$ חיובית. 
 	\end{proof}
 	\theo{נניח ש־$S$ צמודה לעצמה, אז $S^{2}$ צמודה לעצמה ואי־שלילית. }
 	\begin{proof}
 		ממשפט קודם $S^{2}$ צמודה לעצמה. נוכיח אי־שלילית: 
-		\[ \forall 0 \neq v \in V \co \mut{S^{2}v}{v} = \mut{Sv}{Sv} = \norm{Sv}^{2} \ge 0 \]
+		\[ \forall 0 \neq v \in V \co \mut{S^{2}v}{v} = \mut{Sv}{Sv} = \norm{Sv}^{2} \ge 0 \]\mathenvendproof
 	\end{proof}
 	\defi{פולינום $p \in \R[x]$ יקרא חיובי אם $\forall x \in \R\co p(x) > 0$. }
 	\theo{נניח $p(x) \in \R[x]$ חיובי, ו־$T \co V \to V$ צמודה לעצמה, אז $p(T)$ חיובית גם־כן, וצמודה לעצמה. }
@@ -2343,7 +2444,7 @@
 	רעיון להוכחת הלמה: מעל $\C$ זה מתפרק, ונוכל לכתוב $p(x) = a_n\prod_{j = 1}^{s} (x - i\ag_j)(x + i\ag_j)$ (מעל $\R$ כל פולינום מתפרק לגורמים ריבועיים, ואם כל שורשיו מרוכבים, כל גורמיו ריבועיים). הרעיון הוא להוכיח את הטענה ש־$g^2 h \bar h = g_1^2 + g_2^2$.
 	\begin{proof}[הוכחה (של המשפט, לא של הלמה). ]
 		יהי $0 \neq v \in V$. אז: 
-		\[ \mut{p(T)v}{v} = \underbrace{\mut{\sum_{i = 1}^{k}g_i^2(T)v}{v}}_{\mathclap{\sum_{i = 1}^{k} \mut{g_i^2(T)v}{v}\ge 0}} + \overbrace{c\mut{v}{v}}^{c\norm{v}^2 > 0} \ge 0 \]
+		\[ \mut{p(T)v}{v} = \underbrace{\mut{\sum_{i = 1}^{k}g_i^2(T)v}{v}}_{\mathclap{\sum_{i = 1}^{k} \mut{g_i^2(T)v}{v}\ge 0}} + \overbrace{c\mut{v}{v}}^{c\norm{v}^2 > 0} \ge 0 \]\mathenvendproof
 	\end{proof}
 	\cola{אם $T \co V \to V$ צמודה לעצמה ו־$p(x) \in \R[x]$ פולינום חיובי, אז $p(T)$ הפיכה. }
 	
@@ -2362,7 +2463,7 @@
 	
 	\lem{נניח $T$ סמטרית ו־$\lg \in \R$, אם $(T - \lg I)^{2} = 0$ אז $T - \lg I = 0$. }\begin{proof}
 		ידוע: 
-		\[ \forall v \co 0 = \mut{(T - \lg I)^{2}v}{v} = \mut{(T - \lg I)v}{(T - \lg I)v} = \norm{(T - \lg I)v}^2 \implies (T - \lg I)v = 0 \]
+		\[ \forall v \co 0 = \mut{(T - \lg I)^{2}v}{v} = \mut{(T - \lg I)v}{(T - \lg I)v} = \norm{(T - \lg I)v}^2 \implies (T - \lg I)v = 0 \]\mathenvendproof
 	\end{proof}
 	
 	\theo{אם $V$ ממ''פ ו־$T \co V \to V$ ט''ל צמודה לעצמה, אז הע''ע של $T$ ממשיים. }\begin{proof}
@@ -2397,7 +2498,41 @@
 		סה''כ הוכחנו קיום ויחידות כדרוש. 
 	\end{proof}
 	
-	\subsubsection{העתקה צמודה להעתקה}
+	\defi{$A \in M_n(\F)$ תקרא חיובית/אי־שלילית/שלילית/אי־חיובית אם לכל $v \in \F^{n}$: 
+		\begin{multicols}{2}
+			חיובית: $\mut{Av}{v} > 0$ \\
+			שלילית: $\mut{Av}{v} < 0$ \\
+			אי־שלילית: $\mut{Av}{v} \ge 0$ \\
+			אי־חיובית: $\mut{Av}{v} \le 0$
+		\end{multicols}
+		כאשר $\smut$ המ''פ הסטנדטית מעל $\F^{n}$. 
+	}
+	\rmark{זהו אינה הגדרה נפוצה. לרוב מדברים רק על מטריצה מוגדרת חיובית. }
+	
+	\theo{נניח ש־$A = A^* \in M_n(\F)$, אז התנאים הבאים שקולים (קיצור מוכר: TFAE, the following are equaivlent): 
+		\begin{enumerate}
+			\item $T_A \co \F^n \to \F^n$ חיובית. 
+			\item לכל $T \co V \to V$ ולכל בסיס אורתונורמלי $B$ כך ש־$A = [T]_B$, $A$ חיובית. 
+			\item קיימים $T \co V \to V$ חיובית/אי שלילית ו־$B$ בסיס אורתונורמלי, כך ש־$A = [T]_B$ חיובית. 
+			\item הע''ע של $A$ חיוביים (הם בהכרח ממשיים כי היא צמודה לעצמה). 
+		\end{enumerate}
+	}
+	\begin{proof}
+		מספיק לטעון זאת כדי להוכיח את השקילויות של 1, 2, 3: 
+		\[ \mut{Tv}{v}_V = \mut{[Tv]_B}{[v]_B}_{\F^n} = \mut{A[v]_B}{[v]_B}_{\F^n} \]
+		בשביל $1 \to 2$, ידוע שהאגף הימני גדול מ־$0$ מההנחה שהיא חיובית/אי שלילית על $\F^n$, ומכאן הראנו שהמיוצגת בכל בסיס חיובית כדרוש. בשביל $3 \to 1$, נפעיל טיעונים דומים מהאגף השמאלי במקום. הגרירה $2 \to 3$ ברורה. סה''כ הראינו את $1\lra2\lra 3$. 
+		
+		עתה נוכיח שקילות בין $1$ ל־$4$. 
+		\begin{itemize}
+			\item[$1 \to 4$] יהי $\lg \in \R$ ע''ע של $A$ (נוכל להניח $\lg$ ממשי כי $A$ צמודה לעצמה)
+			\[ \mut{Av}{v} = \lg\norm{v}^2 > 0 \implies \lg > 0 \]
+			\item[$4 \to 1$] יהי $B = (v_1 \dots v_n)$ בסיס א''נ של ו''ע, ויהי $V \ni v = \sum \ag_i v_i$. נקבל: 
+			\[ \mut{T_Av}{v} = \mut{Av}{v} = \mut{A\sumnio \ag_i v_i}{\sumnio \ag_i v_i} = \sum \lg_i |\ag_i|^2 > 0 \]
+		\end{itemize}\mathenvendproof
+	\end{proof}
+	\rmark{ההוכחה עובדת באותה הצורה בעבור $A$ אי־שלילית, שלילית או אי־חיובית, ולמען נוחות הוכחנו בעבור העתקה חיובית בלבד. }
+	
+	\subsubsection{ההעתקה הצמודה}
 	\theo{יהי $V$ ממ''פ מנ''ס ותהי $T \co V \to V$ לינארית. אז קיימת ויחידה $T^* \co V \to V$ ומקיימת $\forall u ,v \in V \co \mut{Tu}{v} = \mut{u}{T^*v}$. }
 	
 	\begin{proof}
@@ -2445,7 +2580,7 @@
 	
 	\noti{העתקה צמודה לעצמה לעיתים קרובות (בעיקר בפיזיקה) מסמנים ב־$T^{\dag}$. באופן דומה גם מטריצה צמודה מסמנים ב־$A^{\dag}$. }
 	
-	\theo{בהינתן $B$ אורתונורמלי של $V$ אז $[T^*]_B = [T]^*_B$ (שימו לב: האחד צמוד מטריציוני, והשני העתקה צמודה)}
+	\theo{בהינתן $B$ \textbf{אורתונורמלי} של $V$ אז $[T^*]_B = [T]^*_B$ (שימו לב: האחד צמוד מטריציוני, והשני העתקה צמודה)}
 	
 	\theo{$T$ צמודה לעצמה אמ''מ $\forall v \in V \co \mut{Tv}{v} \in \R$. }\begin{proof}
 		\begin{alignat*}{4}
@@ -2456,8 +2591,24 @@
 			& \iff && \forall v \in V \co \mut{Tv}{v} - \ol{\mut{Tv}{v}} = 0 \\
 			& \iff && \forall v \in V \co \Re (\mut{Tv}{v}) + \Im(\mut{Tv}{v}) - \Re(\mut{Tv}{v}) + \Im(\mut{Tv}{v}) = 0 \\
 			& \iff && \forall v \in V \co 2\Im(\mut{Tv}{v}) = 0 \iff \forall v \in V \co \Im(\mut{Tv}{v}) = 0 \iff \forall v \in V \co \mut{Tv}{v} \in \R \quad \top
-		\end{alignat*}
+		\end{alignat*}\mathenvendproof
 	\end{proof}
+	
+	\theo{התנאים הבאים שקולים: 
+		\begin{enumerate}
+			\item $T$ צמודה לעצמה. 
+			\item לכל בסיס $\ec$ אורתונורמלי מתקיים $[T]_\ec = [T]_{\ec}^*$. 
+			\item ל־$T$ קיים בסיס אורתונורמלי $\ec$ כך ש־$[T]_\ec = [T]_{\ec}^*$. 
+	\end{enumerate}}
+	\begin{proof}
+		את השקילות $1\lra 2$ הוכחנו במשפט הקודם. עתה נראה $1\to2\to3\to1$. ניעזר בכך שידוע שלכל $\ec$ אורתוגונלי מתקיים $[T^*]_\ec = [T]_\ec^*$. 
+		\begin{enumerate}
+			\item[$1 \to 2$] ידוע שלכל $\ec$ אורתוגונלי מתקיים $[T^*]_\ec = [T]_\ec^*$ וכן $T = T^*$ מהנתון, כלומר $[T]_\ec = [T^*]_\ec$. סה''כ $[T]_\ec = [T^*]_\ec$ לכל $\ec$ אורתוגונלי. 
+			\item[$2 \to 3$] מאלגו' גראם־שמידט, בהכרח קיים $\ec$ אורתוגונלי כלשהו. לכן מ־$4$ בפרט הוא מקיים $[T]_\ec = [T]_\ec^*$ כדרוש. 
+			\item[$3 \to 1$] ידוע קיום $\ec$ כך ש־$[T]_\ec = [T]_\ec^* = [T^*]_\ec$. לכן מהיות $[\cdots]_\ec$ העתקת הקורדינאטות לבסיס איזומורפיזם, בהכרח $T = T^*$ כדרוש. 
+		\end{enumerate}\envendproof
+	\end{proof}
+	\rmark{כאן מתקשר השם ''סימטרי`` לאופרטור סימטרי, כי למעשה משום שמטריצה סימטרית מקיימת $A = A^T = \overline{A^T} = A^*$ מעל $\R$, העתקה היא סימטרית אמ''מ המייצגת (תחת בסיס אורתוגונלי) סימטרית. }
 	
 	
 	\npage
@@ -2480,10 +2631,10 @@
 		\end{multline*}
 		ולכן $\forall v \in V \co (T - \lg I)(p(T)v) = 0$ ולכן $((x - \lg)(p(x))(T) = 0$ בסתירה למינימליות של $m_T(x)$. נאמר, מכפלת גורמים לינארים שונים, ולכן $T$ לכסינה, ונוכל לפרק את $V$ באמצעות: 
 		\[ V = \bigoplus_{i = 1}^{m} \ker (T - \lg_i I) \]
-		והמרחכים העצמיים הללו אורתוגונליים זה לזה, מטענה שהוכחנו. 
-		נבנה בסיס $B_i \subseteq \ker (T - \lg_i)$ וסה''כ $\bigcup_{i = 1}^{m} B_i$ בסיס אורתוגונלי מלכסן של $T$. 
+		והמרחבים העצמיים הללו אורתוגונליים זה לזה, מטענה שהוכחנו. 
+		נבנה בסיס $B_i$ של $\ker (T - \lg_i)$ וסה''כ $\bigcup_{i = 1}^{m} B_i$ בסיס אורתוגונלי מלכסן של $T$. 
 	\end{proof}
-	\theo{יהי $V$ נ''ס מעל $\R$ ותהי $T \co V \to V$ ט''ל. אז $T$ צמודה לעצמה אמ''מ קיים לה בסיס אורתוגונלי מלכסן. }\begin{proof}
+	\theo{יהי $V$ נ''ס מעל $\R$ ותהי $T \co V \to V$ ט''ל. אז $T$ סימטרית אמ''מ קיים לה בסיס אורתוגונלי מלכסן. }\begin{proof}
 		מכיוון אחד, הוכחנו באמצעות המשפט הספקטרלי להעתקות לינאריות צמודות לעצמן. 
 		מהכיוון השני, נניח שקיים ל־$V$ בסיס אורתוגונלי מלכסן של ו''ע של $T$. ננרמל לבסיס אורתונורמלי $B = (b_i)_{i = 1}^{n}$ של ו''ע של $T$, המתאימים ל־$\lg_1 \dots \lg_n$. עבור $v, u \in V$, נציג: 
 		\[ u = \sum_{i = 1}^{n}\ag_i b_i, \ v = \sum_{i = 1}^{n}\bg_i b_i \]
@@ -2493,7 +2644,7 @@
 		\[ \mut{u}{Tv} = \mut{\sumni \ag_i b_i}{T\cl{\sumni \bg_i b_i}} = \sumni \sum_{j = 1}^{n}\ag_i \bg_i \mut{b_i}{Tb_j} = \sum_{i = 1}^{n}\sum_{j = 1}^{n}\ag_i \bg_j \lg_j \underbrace{\mut{b_i}{b_j}}_{\dg_{ij}} = \sum_{i = 1}^{n}\ag_i \bg_j \lg_i \]
 		מטרנזטיביות שוויון, הראינו ש־$\mut{Tu}{v} = \mut{u}{Tv}$ ולכן $T$ צמודה לעצמה. השוויון לדלתא של כקוניקר נכונה מאורתוגונליות איברי הבסיס, והבי־לינאריות כי אנחנו מעל הממשיים. המשפט לא נכון מעל מהרוכבים. 
 	\end{proof}
-	הוכחה שהמשפט לא נכון מעל המרוכבים: ההעתקה $T(x) = ix$ היא העתקה סקלרית לינארית, לכן כל וקטור הוא ו''ע וכל בסיס מלכסן, בסיס אורתונורמלי כלשהו יהיה בסיס מלכסן על אף שההעתקה לא צמודה לעצמה, אלא אנטי־הרמיטית. 
+	הוכחה שהמשפט מתקיים בהכרח מעל המרוכבים: ההעתקה $T(x) = ix$ היא העתקה סקלרית לינארית, לכן כל וקטור הוא ו''ע וכל בסיס מלכסן, בסיס אורתונורמלי כלשהו יהיה בסיס מלכסן על אף שההעתקה לא צמודה לעצמה, אלא אנטי־הרמיטית. 
 	
 	
 	\subsubsection{ניסוח המשפט הספקטרלי בעבור העתקה כללית}
@@ -2514,6 +2665,20 @@
 		העתקה מוגדרת לפי מה שהיא עושה לבסיס ולכן $TT^* = T^*T$. 
 	\end{proof}
 	\defi{העתקה כזו המקיימת $AA^* = A^*A$ נקראת \textit{נורמלית} (או ``\textit{נורמאלית}'' בעברית של שנות ה־60). }
+	\lem{$T$ היא העתקה נורמלית אמ''מ $\forall v \in V\co\norm{Tv} = \norm{T^*v}$. }
+	\begin{proof}\,
+		\begin{enumerate}
+			\item[$\implies$] אם $T$ נורמלית, אז $TT^* = T^*T$ ואז: 
+			\[ \norm{Tv}^2 = \mut{Tv}{Tv} = \mut{T^*Tv}{v} = \mut{TT^*v}{v} = \mut{T^*v}{T^*v} = \norm{T^*v}^2 \]
+			\item[$\impliedby$] אם $\forall v \in V \co \norm{Tv} = \norm{T^*v}$, אז: 
+			\begin{align*}
+				\forall v \in V \co \quad 0 = \norm{Tv}^2 - \norm{T^*v}^2 = \mut{Tv}{Tv} - \mut{T^*v}{T^*v} = \mut{T^*Tv}{v} - \mut{TT^*v}{v} = \mut{(T^*T - TT^*)v}{v}
+			\end{align*}
+			נבחין ש־: 
+			\[ (T^*T - TT^*)^* = T^*(T^*)^* - (T^*)^*T^* = T^*T - TT^* =: \phi \]
+			כלומר, $\phi$ צמודה לעצמה. ממשפט שהוכחנו $\phi = 0$, כלומר $T^*T = TT^*$ כדרוש. 
+		\end{enumerate}\envendproof
+	\end{proof}
 	
 	מעתה ואילך, ננסה להראות שכל העתקה נורמלית מקיימת את התנאי של המשפט הספקטרלי (כלומר ניתן ללכסנה אורתוגונלית)
 	
@@ -2529,12 +2694,10 @@
 		\begin{itemize}
 			\item[$\implies$] לפי המסקנה הקודמת, אם ישנו לכסון אורתוגונלי $T$ בהכרח נורמלית. 
 			\item[$\impliedby$] נגדיר $S_1 = \frac{T + T^*}{2}, \ S_2 = \frac{T - T^*}{2i}$. הן וודאי צמודות לעצמן מהלינאריות וכל השטויות ממקודם, והן גם מתחלפות אם תטרחו להכפיל אותן. מהטענה קיים ל־$V$ בסיס אורתוגונלי של ו''עים משותפים ל־$S_1, S_2$ ונסמנו $\{b_i\}^{n}_{i = 1}$ וגם $S_1b_i = \ag_i b_i, \ S_2b_i= \bg_i b_i$. אפשר גם לטעון ש־$\ag_i, \bg_i \in \R$ אבל זה לא מועיל לנו. נשים לב ש־$T = S_1 + iS_2$, כלומר $\forall i \in [n] \co T(b_i) = S_1(b_i) + iS_2(b_i) = \ag_i b_i + i\bg_i b_i = (\ag + i\bg_i)b_i$ וזהו בסיס אורתוגונלי של ו''עים של $T$. 
-		\end{itemize}
+		\end{itemize}\envendproof
 	\end{proof}
 	
-	למעשה, הבנו מהפירוק של $S_1, S_2$ ש־$S_1$ נותנת את החלק הממשי של הע''ע ו־$S_2$ את החלק המדומה. 
-	
-	``אגב – לא השתמשתי במשפט היסודי של האלגברה''
+	למעשה, הבנו מהפירוק של $S_1, S_2$ ש־$S_1$ נותנת את החלק הממשי של הע''ע ו־$S_2$ את החלק המדומה. זהו פירוק מועיל שכדאי לזכור. 
 	
 	\textbf{נסכם: }יש לנו שתי גרסאות של המשפט הספקטרלי: 
 	
@@ -2596,7 +2759,7 @@
 	בפרט בעבור ניצבים $U \subseteq V \implies V = U \oplus U^{\perp}$. ניעזר בכך כדי להוכיח את המשפט הבא: 
 	\theo{אם $U \subseteq V$ תמ''ו אינוואריאנטי ביחס ל־$T$ אז $U^{\perp}$ הוא $T^*$־אינוואריאנטי. }\begin{proof}
 		יהי $w \in U^{\perp}$. רוצים להראות $T^*w \in U^{\perp}$. יהי $u \in U$ אז: 
-		\[ \mut{T^* w}{u} = \mut{w}{Tu} = \mut{w}{u'}, \ u' \in U \implies \mut{w}{u'} = 0 \quad \top \]
+		\[ \mut{T^* w}{u} = \mut{w}{Tu} = \mut{w}{u'}, \ u' \in U \implies \mut{w}{u'} = 0 \quad \top \]\mathenvendproof
 	\end{proof}
 	\theo{בעבור $T \co V \to V$ נורמלית, אם היא $U$־אינוואריאנטי אז גם $T^*$ הוא $U$־אינווארינטי}
 	\begin{proof}
@@ -2649,16 +2812,20 @@
 	\textbf{דוגמה. }עבור $T_\tg$ הסיבוב ב־$\tg$ מעלות, במישור $\R^2$, אז $(T_\tg)^* = T_{-\tg} = T\op_{\tg}$.  
 	\textbf{דוגמה. }עבור $T$ שיקוף מתקים $T^2 = I$ וכן $T^* = T$ וסה''כ $T^* = T = T\op$. 
 
-	\textbf{משפט. }$T$ איזומטריה אמ''מ מתקיים אחד מבין הבאים: 
-	\begin{enumerate}
-		\item (ההגדרה) \hfil $T^* = T\op$
-		\item \hfil $TT^* = T^*T = I$
-		\item \hfil $\forall u, v \in V \co \mut{Tu}{Tv} = \mut{u}{v}$
-		\item $T$ מעבירה כל בסיס א''נ של $V$ לבסיס א''נ של $V$
-		\item $T$ מעבירה בסיס א''נ אחד של $V$ לבסיס א''נ של $V$ לבסיס א''נ [מקרה פרטי של 4 בצורה טרוויאלית, אך גם שקול!]
-		\item \hfil $\forall v \in V \co \norm{Tv} = \norm{v}$
-	\end{enumerate}
-	כלומר: היא משמרת זווית (העתקה פנימית) וגודל. 
+	\theo{$T$ איזומטריה אמ''מ מתקיים אחד מבין הבאים: 
+		\begin{enumerate}
+			\item (ההגדרה) \hfil $T^* = T\op$
+			\item \hfil $TT^* = T^*T = I$
+			\item \hfil $\forall u, v \in V \co \mut{Tu}{Tv} = \mut{u}{v}$
+			\item $T$ מעבירה כל בסיס א''נ של $V$ לבסיס א''נ של $V$
+			\item $T$ מעבירה בסיס א''נ אחד של $V$ לבסיס א''נ של $V$ לבסיס א''נ [מקרה פרטי של 4 בצורה טרוויאלית, אך גם שקול!]
+			\item \hfil $\forall v \in V \co \norm{Tv} = \norm{v}$
+			\item \hfil $\widehat{u, v} = \widehat{Tu, Tv}$
+	\end{enumerate}}
+	כלומר: היא משמרת מכפלה פנימית, גודל וזווית. 
+	\rmark{את קבוצת המטריצות האורתוגונליות מסמנים ב־$O_n(\F)$, ומקובל להתייחס אליה כאל חבורה אבלית ביחס לפעולת ההרכבה. 
+		ישנן סוג מיוחד של מטריצות אוניטריות, כאלו שלא רק מקיימות $\sof{\det A} = 1$, אלא ממש $\det A = 1$. 
+	חבורת האובייקטים האלו קרויה $SO_n(\F)$, קיצור של Special Orthogonal Matrix. יש שתי קבוצות של מטריצות סיבוב מיוחדות שמעיינות אותנו – $SO_2(\R) \cong \{c \in C \co \sof{c} = 1\}$, איזומורפיזם שראינו בעבר כשלכסנו מעל המרוכבים מטריצות סיבוב, ו־$SO_3$ שמעניינת בגלל הקשר שלה לאלגברת קוורטרניונים. }
 	
 	
 	\defi{העתקה $T \co V \to V$ (כאשר $V$ ממ''פ) תקרא \textit{איזומטריה} אם $\forall v \in V \co \norm{v} = \norm{Tv}$}
@@ -2671,11 +2838,12 @@
 	
 	\begin{proof}נפרק לרצף גרירות
 		\begin{enumerate}
-			\item[$1 \to 2$] \hfil $T^* = T\op \implies \mut{Tv}{Tu} = \mut{v}{T^*Tu} = \mut{v}{u}$
-			\item[$2 \to 3$] נאמר ש־$(v_1 \dots v_n)$ א''נ. צ.ל. $(Tv_i)_{i = 1}^{n}$ א''נ. לשם כך נצטרך להוכיח את שני התנאים – החלק של האורתו והחלק של הנורמלי. בשביל שניהם מספיק להוכיח ש־: 
+			\item[$1 \to 2$] אם $T^* = T\op$ אז מהגדרה $TT^* = I$ ומהיות הופכית יחידה משני הצדדים $TT^* = T*^T = I$. 
+			\item[$2 \to 3$] \hfil $T^* = T\op \implies \mut{Tv}{Tu} = \mut{v}{T^*Tu} = \mut{v}{u}$
+			\item[$3 \to 4$] נאמר ש־$(v_1 \dots v_n)$ א''נ. צ.ל. $(Tv_i)_{i = 1}^{n}$ א''נ. לשם כך נצטרך להוכיח את שני התנאים – החלק של האורתו והחלק של הנורמלי. בשביל שניהם מספיק להוכיח ש־: 
 			$\mut{Tv_i}{Tv_j} = \mut{v_i}{v_j}  = \dg_{ij}$
-			\item[$3 \to 4$]טרוויאלי
-			\item[$4 \to 5$]יהי $(v_1 \dots v_n)$ בסיס א''נ כך ש־$(Tv_1 \dots Tv_n)$ א''נ. אז: 
+			\item[$4 \to 5$]טרוויאלי
+			\item[$5 \to 6$]יהי $(v_1 \dots v_n)$ בסיס א''נ כך ש־$(Tv_1 \dots Tv_n)$ א''נ. אז: 
 			\begin{align*}
 				v = \sumni \ag_i v_i \implies &\norm{v}^2 = \mut{\sumni \ag_i v_i}{\sumni \ag_i v_i} = \sumni |\ag_i|^2 \\
 				&\norm{Tv}^2 = \mut{T\cl{\sumni \ag_i v_i}}{T\cl{\sumni \ag_i v_i}} = \mut{\sumni \ag_i T(v_i)}{\sumni \ag_i T(v_i)} = \sum |\ag_i|^2
@@ -2687,12 +2855,12 @@
 			והיא אכן צמודה לעצמה. עוד נבחין ש־: 
 			\[ \mut{Sv}{v} = \mut{(T^* T - I)v}{v} =\mut{T^*Tv}{v} - \mut{v}{v} = \mut{Tv}{Tv} - \mut{v}{v} = \norm{Tv}^2 - \norm{v}^2 = 0 \]
 			השוויון האחרון נכון מההנחה היחידה שלנו ש־$\norm{Tv} = \norm{v}$. סה''כ $TT^* - I = 0$. סה''כ הוכחנו $TT^* - I = 0$ שזה שקול ל־$T^* = T\op$ מהשקילויות לעיל כדרוש. 
-		\end{enumerate}
+		\end{enumerate}\envendproof
 	\end{proof}
 	
 	\theo{תהי $T \co V \to V$ איזומטריה, ו־$\lg$ ע''ע של $T$. אז $|\lg| = 1$. } \begin{proof}
 		יהי $v$ ו''ע של הע''ע $\lg$. אז: 
-		\[ |\lg|^2 \mut{v}{v} = \lg\bar\lg \mut{v}{v} = \mut{Tv}{Tv} = \mut{v}{v} \]
+		\[ |\lg|^2 \mut{v}{v} = \lg\bar\lg \mut{v}{v} = \mut{Tv}{Tv} = \mut{v}{v} \]\mathenvendproof
 	\end{proof}
 	\rmark{מעל המרוכבים \textit{לא} מתקיים בהכרח $\lg \in \{1, -1\}$, בעוד מעל הממשיים כן. שימו לב שיש אינסוף מספרים המקיימים $\sof{\lg} = 1$ מעל המרוכבים, הם התמונה של $\lg x \in \R. \, e^{ix}$. }
 	\defi{תהי $A \in M_n(\F)$. אז $A$ תיקרא \textit{אוניטרית}/\textit{אורתוגונלית} אם $A^* = A\op$. }
@@ -2701,7 +2869,7 @@
 	\rmark{אוניטרית בה מלשון unit – היא שומרת על הגודל, על וקטורי היחידה (ה־unit vectors). }
 	\theo{יהי $\bc$ בסיס א''נ של $V$ ו־$T \co V \to V$ אז $T$ אוניטרית/אורתוגונלית אמ''מ $A = [T]_B$ אוניטרית/אורתוגונלית. }
 	\begin{proof}
-		\[ AA^* = [T]_\bc[T^*]_\bc = [TT^*]_\bc, I = AA^* \iff [TT^*]_\bc = I \iff TT^* = I \]
+		\[ AA^* = [T]_\bc[T^*]_\bc = [TT^*]_\bc, I = AA^* \iff [TT^*]_\bc = I \iff TT^* = I \]\mathenvendproof
 	\end{proof}
 	
 	``היה לי מרצה בפתוחה שכתב דבר לא מדויק בסיכום, ואז הוריד נקודות לסטודנטים שהסתמכו על זה. הוא אמר שזה מתמטיקה, אתם אחראים להבין מה נכון או לא – גם אם כתבתי שטויות''. 
@@ -2710,13 +2878,13 @@
 	
 	\theo{התאים הבאים שקולים על $A \in M_n(\F)$. 
 		\begin{enumerate}
-			\item $A$ א''נ
+			\item $A$ אוניטרית
 			\item שורות $A$ מהוות בסיס א''נ של $\F^n$ (ביחס למכפלה הפנימית הסטנדרטית)
 			\item עמודות $A$ מהוות בסיס א''נ של $\F^n$. 
 			\item (ביחס למכפלה הפנימית הסטנדרטית) \hfill $\forall u, v \in \F^n \co \mut{Au}{Av} = \mut{u}{v}$
-			\item (ביחס למכפלה הפנימית הסטנדרטית) \hfill $\forall v \in \F^n \co \norm{Av} = \norm{n}$
+			\item (ביחס למכפלה הפנימית הסטנדרטית) \hfill $\forall v \in \F^n \co \norm{Av} = \norm{v}$
 	\end{enumerate}}
-	\textit{הערה שלא קשורה למשפט: }נאמר ש־$[T^*]_B = [T]_B^*$ אמ''מ $B$ בסיס \textbf{א''נ}. עבור בסיס שאינו א''נ זה לא בהכרח מתקיים. 
+	\textit{הערה שלא קשורה למשפט: }נאמר ש־$[T^*]_B = [T]_B^*$ אמ''מ $B$ בסיס \textbf{אורתונורמלי}. עבור בסיס שאינו א''נ זה לא בהכרח מתקיים. 
 	
 	\textit{הערה נוספת: }זה בערך אמ''מ כי יש כמה מקרי קצה כמו מטריצת האפס. 
 	
@@ -2725,15 +2893,18 @@
 			\item[$1 \lra 2$] נוכיח את הגרירה הראושנה
 			\[ \pms{- & v_1 & - \\ & \vdots \\ - & v_n & -}\pms{\vert & & \vert\\ \bar v_1^T & \cdots & \bar v_n^T \\ \vert & & \vert} = AA^* = I \iff \text{א''נ}\, A \implies v_i \bar v_j^T = \dg_{ij} \] 
 			הטענה האחרונה שקולה לכך ש־$v_1 \dots v_n$ בסיס א''נ (ביחס למ''פ הסטנדטית של $\F^n$)
-			\item[$1 \lra 3$]מספיק להוכיח $A$ א''נ אמ''מ $A^T$ א''נ. מסימטריה ($(A^T)^T = A$) למעשה מספיק להוכיח $A$ א''נ גורר $A^T$ א''נ. נוכיח: 
+			\item[$1 \lra 3$]מספיק להוכיח $A$ אוניטרית אמ''מ $A^T$ אוניטרית (בגלל השקילות $1 \lra 2$). מסימטריה ($(A^T)^T = A$) למעשה מספיק להוכיח $A$ א''נ גורר $A^T$ א''נ. נוכיח: 
 			\[ A^*A = I \implies A^T\bar A = I \implies (A^T)^* = \bar A \implies A^T(A^T)^* = I \]
-			\item[$4 \lra 1$]נתבונן ב־$T_A \co \F^n \to \F^n$ כאשר $\ec$ הבסיס הסטנדרטי. אז $[T_A]_{\ec} = A$. אז $T_A$ א''נ אמ''מ $[T_A]_{\ec} =: A$. אז: 
+			\item[$4 \lra 1$]נתבונן ב־$T_A \co \F^n \to \F^n$ כאשר $\ec$ הבסיס הסטנדרטי, ו־$T_A(v) = Av$. לכן $[T_A]_{\ec} = A$. אז $T_A$ אוניטרית אמ''מ $[T_A]_{\ec}$ אוניטרית. אז: 
 			\[ \mut{Au}{Av} = \mut{T_Au}{T_Av} = \mut{u}{v} \]
-			\item[$5 \lra 1$] אותה הדרך כמו קודם. 
-		\end{itemize}
+			\item[$5 \lra 1$] תוצאה ישירה מ־$1\lra 4$, שכן מנוסחת הפולריזציה $A$ משמרת מכפלה פנימית אמ''מ היא משמרת נורמה. 
+		\end{itemize}\envendproof
 	\end{proof}
 	
 	\subsubsection{צורה נורמלית למטריצה אורתוגונלית}
+	\noti{נסמן ב־$A_{\ta_i}$ את מטריצת הסיבוב של $\R^{2}$ ב־$\ta$ מעלות, היא: 
+		\[ A_{\ta_i} = \pms{\cos \ta_i & \sin \ta_i \\ -\sin \ta_i & \cos \ta_i} \]
+	}
 	\textbf{שאלה. }מהן המטריצות $A \in M_2(\R)$ האורתוגונליות? \begin{proof}[התשובה]
 		בהינתן $A = \binom{a\, b}{c\, d}$ מהיות העמודות והשורות מהוות בסיס א''נ:
 		\[ \begin{cases}
@@ -2744,21 +2915,18 @@
 		עוד נבחין ש־$ac + bd = 0$ כי: 
 		\[ AA^T = I \implies \pms{a & b \\ c & d}\pms{a & c \\ b & d} = \pms{a^2 + b^2 & ac + bd \\ ac + bd & c^2 + d^2} = I \]
 		סה''כ מכך ש־$a^c + c^2 = 1$ ו־$b^2 + d^2 = 1$ נקבל שתי צורות אפשריות: 
-		\[ A_1:= A = \pms{\cos\ta & \sin\ta \\ \sin\ta & -\cos\ta} \lor A_2:= A = \pms{\cos\ta&\sin\ta \\ -\sin\ta & \cos\ta} \]
+		\[ A_1:= A = \pms{\cos\ta & \sin\ta \\ \sin\ta & -\cos\ta} \lor A_2:= A = \pms{\cos\ta&\sin\ta \\ -\sin\ta & \cos\ta} = A_{\ta} \]
 		נבחין ש־$A_2$ הוא סיבוב ב־$\ta$, ו־$A_1$ שיקוף ניצב ביחס ל־$\frac{\ta}{2}$. זה לא מפתיע שכן $\det A_1 = -1, \ \det A_2 = 1$. יתרה מכך, $A_1$ לכסינה עם ע''ע שני ע''ע – $1$ ו־$-1$. 
 	\end{proof}
 	''אם הייתם רוצים תקופות מבחנים נורמליות הייתם צריכים להיוולד בזמן אחר``
-	
 	\rmark{לבדיקת שפיות, ננסה לפרק מעל המרוכבים את הצורה שקיבלנו, ואכן: 
 	\[ \pms{e^{i\ta} & 0 \\ 0 & e^{-i\ta}} \sim \pms{\cos \ta & \sin\ta \\ -\sin\ta & \cos\ta} \]
 	בהתאם לכך ש־$\sof{e^{i\ta}} = \sof{e^{-i\ta}} = 1$ כמצופה מע''עים של מטריצה אוניטרית. }
 	
 	\begin{Collary}[הצורה הנורמלית של ט''ל אורתוגונלית]
-		תהי $T \co V \to V$ אורתוגונלית. אז קיים בסיס א''נ של $V$, שביחס אליו המטריצה המייצגת את $T$ היא מהצורה: 
-		\[ \pms{A_{\ta_1} \\ &\ddots \\ &&A_{\ta_n} \\ &&& 1 \\ &&&&\ddots \\ &&&&&1 \\ &&&&&&-1 \\ &&&&&&& \ddots \\ &&&&&&&&-1} \]
-		כאשר: 
-		\[ A_{\ta_i} = \pms{\cos \ta_i & \sin \ta_i \\ -\sin \ta_i & \cos \ta_i} \]
-		(אוניטרית לא מעיינת כי היא נורמלית ולכן לכסינה אורתוגונלית מהמשפט הספקטרלי)
+		תהי $T \co V \to V$ אורתוגונלית. אז קיים בסיס א''נ של $V$, שביחס אליו קיימות $\ta_1 \dots \ta_k$ זווית כך שהמטריצה המייצגת את $T$ היא מהצורה: 
+		\[ \diag(A_{\ta_1}, \cdots, A_{\ta_k}, 1, \cdots, 1, -1, \cdots, -1) \]
+		(לכאורה אוניטרית לא מעיינת כי היא נורמלית ולכן לכסינה אורתונורמלית מהמשפט הספקטרלי, וכל הע''עים המרוכבים שלה מגודל $1$ בכל מקרה)
 	\end{Collary}
 	
 	
@@ -2768,14 +2936,14 @@
 		נסמן $\square_i = \binom{\,\, a_i \, b_i}{-b_i \, a_i}$.
 		במקרה הזה משום שהיא אורתוגונלית על $\R$ אז $\lg_i = \pm1$ כי $|\lg_i| = 1$. נתבונן במטריצה $\square_i$ כלשהי, אז $\square_i$ הנפרש ע''י $u_k, u_{k + 1} =: U$ מקיים: 
 		\[ [T_{|U}]_{B_U} = \square_i = \pms{a_i & b_i \\ -b_i & a_i}\quad [Tu_k]_{U_B} = \pms{a \\ -b}, \quad [Tu_{k + 1}] = \pms{b \\ a} \]
-		ומשום שהצמצום של אורתוגונלית על מ''ו $T$־אינוואריאנטי היא עדיין אורתוגונלית, והראנו שהאורתוגונליות ב־$M_2(\R)$ הן מטריצות הסיבוב/השיקוף+סיבוב לעיל. המטריצה של שיקוף+סיבוב ב־$\frac{\ta}{2}$ לכסינה ולכן תהפוך לע''ע $\lg_1 \dots \lg_n$ (עד לכדי סדר איברי בסיס) שהם בהכרח מגודל $\pm 1$ בכל מקרה, ויבלעו בשאר הע''ע, ובכך סיימנו. 
+		ומשום שהצמצום של אורתוגונלית על מ''ו $T$־אינוואריאנטי היא עדיין אורתוגונלית, והראנו שהאורתוגונליות ב־$M_2(\R)$ הן מטריצות הסיבוב/השיקוף+סיבוב לעיל. המטריצה של שיקוף+סיבוב ב־$\frac{\ta}{2}$ (זו שסומנה לעיל ב־$A_1$) לכסינה ולכן תהפוך לע''ע $\lg_1 \dots \lg_n$ (עד לכדי סדר איברי בסיס) שהם בהכרח מגודל $\pm 1$ בכל מקרה, ויבלעו בשאר הע''ע, ובכך סיימנו. 
 	\end{proof}
 	
 	אבל האם הייצוג יחיד? ננסה להבין את יחידות הייצוג עבור נורמלית כללית, ומשם לגזור על אורתוגונלית. 
 	
 	\theo{כל שתי מטריצות בצורה לעיל שמייצגות את אותה $T \co V \to V$ נורמלית, שוות עד כדי סדר הבלוקים על האלכסון. }
 	
-	(יש כאן מה להוכיח רק בעבור $\R$, שכן מעל $\C$ לכסין). 
+	(יש כאן מה להוכיח רק בעבור $\R$, שכן מעל $\C$ לכסינה בכל מקרה, והע''עים וריבויים לא משתנים כתלות בייצוג). 
 	\begin{proof}
 		ידוע שבעבור $\lg_1 \dots \lg_k$ ע''עים: 
 		\[ f_T(x) = \cl{\prod (x - \lg_i)} \cl{\prod (x^2 - 2a_ix + a_i^2 + b_i^2)} \]
@@ -2803,13 +2971,13 @@
 		תהי $T_A \co \F^n \to \F^n$ כך ש־$T_A(x) = Ax$. אז $A= [T_A]_\ec$ כאשר $\ec = \{e_1 \dots e_n\}$ הבסיס הסטנדרטי. ידוע של־$T_A$ יש בסיס אורתונורמלי מלכסן, כלומר קיים בסיס א''נ $\bc$ כך ש־$[T_A]_\bc = D$ כאשר $D$ אלכסונית כלשהית. נבחין ש־$[T_A]_\bc = [Id]^\bc_\ec [T_A]_\ec [Id]_\bc^\ec$, נסמן $P = [Id]^\bc_\ec$ ונבחין ש־$[T_A]_\bc = P\op AP$ ומהלמה $P$ מטריצת מעבר מבסיס א''נ לבסיס א''נ ולכן איזומטריה. סה''כ הראנו את הדרוש. 
 	\end{proof}
 	
-	``יאללה הפסקה? לא!''
+	''יאללה הפסקה? לא!``
 	
 	\subsection{פירוק פולארי}
 	\subsubsection{מבוא, וקישור לתבניות בי־לינאריות}
-	\rmark{במקרה של $\F= \R$ נקבל ש־}
+	\rmark{עבור מטריצות אורתוגונליות, במקרה של $\F= \R$ נקבל ש־}
 	\[ A = P\op DP \implies PP^T = I \implies P\op = P^T \implies A = P^TDP \]
-	מה שמחזיר אותנו לתבניות בי־לינאריות. נוכל לקשר את זה לסינגטורה. זאת כי $A$ לא רק דומה, אלא גם חופפת ל־$D$. גם מעל $\C$ נקבל דברים דומים, אך לא במדויק, שכן מכפלה פנימית מעל $\C$ היא ססקווי־בי־לינארית ולא בי־לינארית רגילה. 
+	מה שמחזיר אותנו לתבניות בי־לינאריות. נוכל לקשר את זה לסינגטורה. זאת כי $A$ לא רק דומה, אלא גם חופפת ל־$D$. גם מעל $\C$ נקבל דברים דומים, אך לא במדויק, שכן מכפלה פנימית מעל $\C$ היא ססקווי־בי־לינארית פשוט בי־לינארית. 
 	
 	\theo{עבור $A \in M_n(\C)$ נורמלית, אז
 		\begin{itemize}
@@ -2817,7 +2985,7 @@
 			\item $A^* = A\op$ אמ''מ כל הע''ע שלה מנורמה $1$. 
 	\end{itemize}}
 	\begin{proof}
-		את הכיוון $\impliedby$ כבר הוכחנו. נותר להוכיח את הכיוון השני. 
+		את הכיוון $\impliedby$ כבר הוכחנו במשפט קודם. נותר להוכיח את הכיוון השני. 
 		\begin{itemize}
 			\item נניח שכל הערכים העצמיים ממשיים, ו־$A$ נורמלית. נוכל להשתמש במשפט הספקטרלי עליה: לכן קיימת מטריצה אוניטרית $P$ ואלכסונית $\Lg$ כך ש־$A = P\op \Lg P$. ידוע $\Lg \in M_n(\R)$ כי אלו הע''ע מההנחה. נבחין ש־: 
 			\[ A^* = P^* \Lg^* (P\op)^* = P\op \Lg P = A \]
@@ -2833,27 +3001,6 @@
 	
 	\textbf{תזכורת: }אם $V$ ממ''פ מעל $\F$, אז $T \co V \to V$ תקרא \textit{חיובית} או \textit{אי־שלילית} (וכו') אם $T = T^*$ וגם $\forall v \neq 0 \co \mut{Tv}{v} \ge\!/\!> 0$. 
 	
-	\theo{נניח ש־$A = A^* \in M_n(\F)$, אז התנאים הבאים שקולים (קיצור מוכר: TFAE, the following are equaivlent): 
-		\begin{enumerate}
-			\item $T_A$ חיובית/אי שלילית על $\F^n$. 
-			\item לכל $T \co V \to V$ ובסיס א''נ $B$ כך ש־$A = [T]_B$, $T$ חיובית/אי שלילית. 
-			\item קיימים $T \co V \to V$ חיובית/אי שלילית ו־$B$ בסיס, כך ש־$A = [T]_B$. 
-			\item הע''ע של $A$ (יודעים ממשיים כי צמודה לעצמה) חיובים/אי שליליים. 
-	\end{enumerate}}
-	\begin{proof}
-		מספיק לטעון זאת כדי להוכיח את השקילויות של 1, 2, 3: 
-		\[ \mut{Tv}{v}_V = \mut{[Tv]_B}{[v]_B}_{\F^n} = \mut{A[v]_B}{[v]_B}_{\F^n} \]
-		בשביל $1 \to 2$, ידוע שהאגף הימני גדול מ־$0$ מההנחה שהיא חיובית/אי שלילית על $\F^n$, ומכאן הראנו שהמיוצגת בכל בסיס חיובית כדרוש. בשביל $3 \to 1$, נפעיל טיעונים דומים מהאגף השמאלי במקום. הגרירה $2 \to 3$ ברורה. סה''כ הראינו את $1\lra2\lra 3$. 
-		
-		עתה נוכיח שקילות בין $1$ ל־$4$. 
-		\begin{itemize}
-			\item[$1 \to 4$] יהי $\lg \in \R$ ע''ע של $A$ (נוכל להניח ממשי כי $A$ צמודה לעצמה)
-			\[ \mut{Av}{v} = \lg\norm{v}^2 > 0 \implies \lg > 0 \]
-			\item[$4 \to 1$] יהי $B = (v_1 \dots v_n)$ בסיס א''נ של ו''ע, ויהי $V \ni v = \sum \ag_i v_i$. נקבל: 
-			\[ \mut{T_Av}{v} = \mut{Av}{v} = \mut{A\sumnio \ag_i v_i}{\sumnio \ag_i v_i} = \sum \lg_i |\ag_i|^2 > 0 \]
-		\end{itemize}
-	\end{proof}
-	
 	\textbf{תזכורת: }מעל $\R$, הוכחנו שלכל תבנית סימטרית, יש ייצוג יחיד באמצעות מטריצה אלכסונית עם $-1, 1, 0$ על האלכסון. 
 	\noti{הסיגנטורה של $f$ תסומן ע''י $\sg_-(f), \sg_0(f), \sg_+(f)$ כמספר האפסים, האחדים וה־$-1$ ב־$f$. }
 	
@@ -2862,10 +3009,11 @@
 	\theo{נניח ש־$A$ מייצגת את התבנית הסימטרית $f$ (עולם הדיון מעל $\R$). אז, הסיגנטורה שווה ל־$\sg_+ = \#(\lg \mid \lg > 0)$ עבור $\lg$ ע''ע עם חזרות (במידה ושייך ליותר מו''ע יחיד). באופן דומה $\sg_- = \#(\lg \mid \lg < 0)$ כאשר $\lg$ ע''ע. }
 	
 	\begin{proof}
-		משום ש־$A$ מייצגת סימטרית אז $A$ סימטרית. לפי המשפט הספקטרלי קיימת $P$ אורתוגונלית ו־$\Lg$ אלכסונית כך ש־$A = P\op\Lg P = P^T\Lg P$. $A$ דומה לאלכסונית וחופפת אליה. בעזרת נרמול המטריצה $\Lg$ האלכסונית (ניתן לבצע תהליך נרמול באמצעות פעולות שקולות תחת חפיפה), היא חופפת למטריצה מהצורה $\diag(1 \dots 1, -1 \ldots -1, 0 \ldots 0)$ כאשר הסימן נקבע לפני הנרמול. 
+		משום ש־$A$ מייצגת סימטרית אז $A$ סימטרית. לפי המשפט הספקטרלי קיימת $P$ אורתוגונלית ו־$\Lg$ אלכסונית כך ש־$A = P\op\Lg P = P^T\Lg P$. $A$ דומה לאלכסונית ממשית (כי $A$ סימטרית ולא סתם נורמאלית) וחופפת אליה. בעזרת נרמול המטריצה $\Lg$ האלכסונית (ניתן לבצע תהליך נרמול באמצעות פעולות שקולות תחת חפיפה), היא חופפת למטריצה מהצורה $\diag(1 \dots 1, -1 \ldots -1, 0 \ldots 0)$ כאשר הסימן נקבע לפני הנרמול. 
 	\end{proof}
+	\rmark{בניסוחים אחרים, מדברים על $A$ הרמיטית, במקום על $f$ סימטרית. שימו לב שבכל מקרה אין משמעות למשפט מעל המרוכבים (שכן במקרה הזה $\sg_- = 0 \land \sg_+ = \rk f$, וכן כל מספר מרוכב נוכל לנרמל ל־$1$) ולכן שני הניסוחים חזקים באותה המידה. }
 	
-	מכאן, שבהינתן $A$ מטריצה חיובית, היא מייצגת תבנית בי־לינארית חיובית וגם מייצגת העתקה חיובית. זה מתבקש ששתי ההגדרות שלנו לחיוביות יהיו זהות. 
+	\cola{מכאן, שבהינתן $A$ מטריצה הרמיטית חיובית, היא מייצגת תבנית בי־לינארית חיובית וגם מייצגת העתקה חיובית. למעשה, אפשר להוכיח שבהינתן $A$ הרמיטית, היא חיובית (בהבט של המכפלה הפנימית) אמ''מ היא חיובית (בהבט של תבניות בי־לינאריות). }
 	
 	\begin{Theorem}[קיום שורש לצמודה לעצמה אי־שלילית]
 		תהי $T \co V \to V$ צמודה לעצמה ואי שלילית $\mut{Tv}{v} \ge 0$, אז קיימת ויחידה $R \co V \to V$ אי־שלילית צמודה לעצמה כך ש־$R^2 = T$. 
@@ -2888,11 +3036,20 @@
 		לכל $A$ צמודה לעצמה ואי־שלילית חיובית קיים פירוק יחיד של מטריצה $R$ משולשית עליונה כך ש־$A=RR^*$. 
 	\end{Collary}
 	
+	\begin{Theorem}[לכסון סימולטני]
+		מעל $\R$, בהינתן $A$ מוגדרת חיובית ממש ו־$B$ מטריצה, שתיהן סימטריות, קיים בסיס $\pc$ בו $[A]_\pc$ אלכסונית וגם $[B]_\pc$ אלכסונית. 
+	\end{Theorem} \begin{proof}
+		נפרק ספרקטלית של $A$ ונקבל $A = P\Lg_A P^T$. ממשפט סילבסטר $\Lg_A$ מוגדרת ביחידות ועל איבריה הסינגטורה של $A$, שהם כולם $1$ מהיותה מוגדרת חיובית, כלומר $\Lg_A = I$. באופן דומה נוכל לפרק ספקטרלית את $PBP^T$ ולקבל $PBP^T = Q^T\Lg_BQ$ ומכאן $QPBP^TQ^T = \Lg_B$. נסמן $M = QP$ ואז $MBM^T = \Lg_B$. בסימון $\pc = \col(M)$ נקבל $[B]_\pc = \Lg_B$, וכמו כן: 
+		\[ [A]_\pc = MAM^T = Q\smash{\overbrace{PAP^T}^{I}}Q^T = QIQ^T = I \]
+		כלומר $[A]_\pc$ כדרוש. 
+	\end{proof}
+	
 	\subsubsection{ניסוח הפירוק הפולארי}
 	\begin{Theorem}[פירוק פולארי בעבור העתקות]
 		תהי $T \co V \to V$ הפיכה, אז קיימות $R \co V \to V$ חיובית וצמודה לעצמה ו־$U \co V \to V$ אוניטרית כך ש־$T = RU$. 
 	\end{Theorem}
 	\rmark{לא הנחנו $T$ צמודה לעצמה. הפירוק נכון להעתקה הפיכה כללית. }
+	\rmark{לעיתים נקרא ''פירוק UH`` או ''פירוק UP``. }
 	\begin{proof}
 		נגדיר $S = TT^*$. נבחין ש־$S$ צמודה לעצמה וחיובית: 
 		\[ \forall V \ni v \neq 0 \co \mut{Sv}{v} = \mut{TT^* v}{v} = \mut{T^* v}{T^*v} = \norm{T^*v} > 0 \]
@@ -2906,15 +3063,16 @@
 	\end{proof}
 	
 	\begin{Remark}[לגבי יחידות]
-		אם $T$ אינה הפיכה, מקבלי םש־$R$ יחידה אבל $U$ אינה. בשביל לא הפיכות נצטרך להצטמצם לבסיס של התמונה ועליו לפרק כמתואר לעיל. במקרה של הפיכות אז $T = RU = R \tl U$ ואז נקבל $R$ הפיכה כלומר $U = \tl U$ וגם $U$ הפיכה. 
+		אם $T$ אינה הפיכה, מקבלים ש־$R$ יחידה אבל $U$ אינה. בשביל לא הפיכות נצטרך להצטמצם לבסיס של התמונה ועליו לפרק כמתואר לעיל. במקרה של הפיכות אז $T = RU = R \tl U$ ואז נקבל $R$ הפיכה כלומר $U = \tl U$ וגם $U$ הפיכה. 
 	\end{Remark}
 	
 	עתה נראה ש־$R$ נקבעת ביחידות (בניגוד ליחידות $U$ – יחידות $R$ נכונה גם בעבור פירוק פולארי של העתקה שאיננה הפיכה): 
+	\theo{בפירוק פולארי $T = RU$, כאשר $R$ הרמיטית חיובית, אז בהכרח $R = \sqrt{TT^*}$ ולכן יחידה. }
 	\begin{proof}
 		\[ TT^* = RU(RU)^* = RUU^*R^* = R^2 \]
-		כלומר $R$ היא בכל פירוק שורש, והראינו קודם את יחידות השורש. 
+		כלומר $R$ היא בכל פירוק שורש של $TT^*$, והראינו קודם לכן את יחידות השורש. 
 	\end{proof}
-	\rmark{קיים גם פירוק כנ''ל מהצורה $T = UR$. }
+	\cola{קיים גם פירוק כנ''ל מהצורה $T = UR$. }
 	\begin{proof}
 		באותו האופן שפירקנו את $T$, נוכל לפרק את $T^* = \tl R \tl U$ פירוק פולארי. נפעיל $^*$ על שני האגפים ונקבל: 
 		\[ T^* =\tl R \tl U \implies T = (T^*)^* = \tl U^*\tl R^* = \tl U\op \tl R \]
@@ -2932,7 +3090,7 @@
 		סה''כ $TT^*, T^*T$ הן העתקות דומות ולכן יש להן את אותם הערכים העצמיים. 
 	\end{proof}
 	
-	\rmark{אז איך זה קשור לפולארי? $R$ האי־שלילית היא ``הגודל'', בעוד $U$ האוניטרית לא משנה גודל – היא ה''זווית''. }
+	\rmark{אז איך זה קשור לפולארי? $R$ האי־שלילית היא ''הגודל``, בעוד $U$ האוניטרית לא משנה גודל – היא ה''זווית''. ניתן לראות זאת גם באופן הבא: בהינתן $A = RU$ פירוק פולארי ל־$U$ אורתוגונלית ו־$R$ מוגדרת חיובית הרמיטית, אז $\det A = \sof{\det R} =: r$ וגם $\sof{\det U} = 1$ כלומר $\det U = e^{i\ta}$, ואז מקבלים $\det A = \det U \det R = re^{i\ta}$. }
 	
 	
 	\begin{Theorem}[פירוק פולארי בעבור מטריצות]
@@ -2993,6 +3151,10 @@
 %	\end{proof}
 	\defi{מטריצה $A \in M_{m \times n}$ מתאימה למטריצה $B \in M_{m \times n}$ אמ''מ קיימות מטריצות $U \in M_{m \times m}, V \in M_{n \times n}$ הפיכות כך ש־$A = UBV\op$. }
 	למעשה, פירוק SVD הוא התאמה אורתונורמלית ללכסינה, בדיוק כמו שפירוק ספקטרלי הוא דמיון אורתונורמלי ללכסינה (לכסון אורתונורמלי). 
+	\begin{proof}
+		בויקיפדיה האנגלית
+	\end{proof}
+	\theo{פירוק SVD יחיד אמ''מ הערכים הסינגולרים שונים. }
 	\cola{תהי $T \co Q \to W$. אז קיימים $\bc, \cc$ בסיסים אורתונורמליים כך ש־$[T]^{\bc}_{\cc}$ אלכסונית. }
 	כדי להוכיח מסקנה זו, נשתמש בשורות $U, V$ שיהוו את הבסיס האורתונרמלי הנדרש (עד לכדי העתקת קורדינאטות). 
 %	\begin{proof}
@@ -3019,11 +3181,10 @@
 		אם $T$ איננה הפיכה אז יש לה ערך סינגולרי $0$, ו־$T^*T$ איננה הפיכה (כי מכפלת לא הפיכות איננה הפיכה) וסיימנו. 
 		אם $T$ הפיכה, את $U$ הפיכה בהכרח. משום ש־$U$ אוניטרית, $U^T = U\op$. נפעיל את $\det$ על שני האגפים ונקבל: 
 		\[ \det(TT^*) = \det(U)\det(\Sg^2)\det(U\op) = \det(UU\op)\det(\Sg)^{2} = \det(\Sg)^2 =: * \]
-		בגלל שהוכחנו ש־$\Sg$ מטריצה אלכסונית שעל האלכסון הערכים הסינגולריים של $T$, אז נקבל שוויון: 
+		בגלל שהוכחנו ש־$\Sg$ מטריצה אלכסונית שעל האלכסונה הערכים הסינגולריים של $T$, אז נקבל שוויון: 
 		\[ * = \cl{\prod_{i = 1}^{n}\sg_i}^{2} \]
 		נוציא שורש ונקבל את הנדרש. 
 	\end{proof}
-	\rmark{עבור $T$ לא הפיכה, }
 	\cola{עבור $T$ ריבועית, נוכל לטעון: 
 	\[ \cl{\prod_{i = 1}^{n}\sg_i} = \det(TT^*) = \det(T)\det(\bar T^T) = \det(T) \det (\bar T) = \det T \overline{\det T} = \det T^2 \]
 	נוציא שורש ונקבל שהדטרמיננטה של $T$ היא מכפלת הערכים הסינגולריים: 
@@ -3057,11 +3218,12 @@
 	
 	\cola{בהינתן $g_1 \dots g_r, f_1 \dots f_r$ לעיל, אז: 
 		\[ T^*v = \sum_{i = 1}^{r}\sg_i \mut{v}{\vrm_i}\urm_i \]
-	}\begin{proof}ניעזר פעמיים בלינאריות ברכיב הראשון: 
-		\[ \mut{Tv}{w} = \mut{\sum_{i = 1}^{r} \sg_i \mut{v}{\urm_i}\vrm_i}{w} = \sum_{i = 1}^{r}\sg_i \mut{v}{\urm_i} \mut{\vrm_i}{w} = \Bigg\la v \Bigg \vert \underbrace{\sum_{i = 1}^{r}\sg_i\mut{\vrm_i}{w}\urm_i}_{\smash{T^*w}}\Bigg \ra \quad \top \]\envendproof
+	}\begin{proof}ניעזר פעמיים באדטיביות רכבי המכפלה הפנימית: 
+		\[ \mut{Tv}{w} = \mut{\sum_{i = 1}^{r} \sg_i \mut{v}{\urm_i}\vrm_i}{w} = \sum_{i = 1}^{r}\sg_i \mut{v}{\urm_i} \mut{\vrm_i}{w} = \Bigg\la v \Bigg \vert \underbrace{\sum_{i = 1}^{r}\sg_i\mut{\vrm_i}{w}\urm_i}_{\smash{T^*w}}\Bigg \ra \quad \top \]\mathenvendproof
 	\end{proof}
 	
 	\subsubsection{נורמה של העתקה}
+	\rmark{גם תת־הפרק להלן לא בחומר הרשמי של הקורס. אבל חשבתי שזה מגניב אז הוספתי את זה. }
 	\defi{ה\textit{נורמה} של העתקה $T \co V \to W$ מממ''פים מוגדרת להיות: 
 	\[ \norm{T} = \max\{\norm{Tv} \co v \in V \land \norm{v} \le 1\} \]
 	}
@@ -3105,83 +3267,178 @@
 	
 	
 	
-	\section[אלגוריתמים נפוצים]{\en{Common Algorithms}}
+	\section[נספחים]{\en{Appendices}}
 	בניגוד לפרק הבא, הפרק הזה לא מעניין בכלל. הוא מסכם בקצרה אלגוריתמים מועילים שרואים בתרגולים וכדאי לזכור (\textbf{אין} כאן סיכום מלא של התרגולים). 
-	\subsection{אלגוריתמים מרכזיים}
-	\subsubsection{לכסון}
-	\textbf{שלבים: }בהינתן $A \in M_n(\F)$ מטריצה. 
-	\begin{itemize}
-		\item נחשב את $f_A$
-		\item נמצא את שורשי $f_A$. אם אנו מתקשים למצוא את שורשי הפולינום, נמצא את $\fRed$. 
-		\item לכל ע''ע $\lg_i$, נמצא בסיס למרחב העצמי באמצעות חישוב $\nc(\lg_i I - A)$. איברי הבסיס יהיו הו''עים בעבור הע''ע $\lg_i$. 
-		\item סה''כ $\diag(\lg_1 \dots \lg_n)$ המטריצה האלכסונית המתקבלת ע''י מטריצת מעבר הבסיס הנתונה ע''י הו''עים מהשלב הקודם. 
-	\end{itemize}
-	\subsubsection{ג'ירדון}
-	\textbf{ג'רדון מטריצה כללית}
-	תהי $A \in M_n(\F)$ מטריצה שהפולינום האופייני שלה $f_A(x) = \prod_{j = 1}^{m}(x - \lg_j)^{r_j}$ (בה''כ מתקיים מעל הרחבה לשדה סגור אלגברית). לכל $j \in [m]$ נבצע את הפעולות הבאות: 
-	\begin{itemize}
-		\item נמצא את הפולינום $f_A(x)$ האופייני ונפרק אותו לכדי גורמים לינאריים. 
-		\item נחשב את $V_{\lg_j}^{(i)} := \nc((A - \lg_j)^{\ell_j})$ עד שנקבל $\dim\cl{V_{\lg_j}^{(\ml_j)}} = m_i$ (המרחב העצמי המוכלל). 
-		
-		\textit{הערה: }אפשר באופן חלופי לחשב את הפולינום המינימלי, שכן ראינו ש־$m_i$ הריבוי של $\lg_i$ ב־$m_T(x)$. 
-		\item נחזור על האלגו' למציאת צורת ג'ורדן למטריצה נילפוטנטית: 
-		\begin{itemize}
-			\item נגדיר $B_{\lg_j} = \varnothing$
-			\item לכל $i \in [\ell_j]$ נבצע: 
-			\begin{itemize}
-				\item נמצא בסיס כלשהו $C_{\lg_j}^{(i)-}$ של $V_{\lg_j}^{(i - 1)}$. 
-				\item נוסיף ל־$C_{\lg_j}^{(i)-}$ את $B \cap (V_{\lg_j}^{(i)} \setminus V_{\lg_j}^{(i - 1)})$
-				\item נשלים את $C_{\lg_j}^{(i)-}$ לבסיס של $V_{\lg_j}^{(i)}$. נסמן ב־$C_{\lg_j}^{(i)+}$. 
-				\item נוסיף ל־$B_{\lg_j}$ את $\ccb{(A - \lg_jI)^{k}v \mid 0 \le k < i, \ v \in C_{\lg_j}^{(i)+}}$. 
-			\end{itemize}
-			\item נגדיר $B = \bigcup_{j = 1}^{m} B_{\lg_j}$ הבסיס המג'רדן. 
-		\end{itemize}
-	\end{itemize}
+	\subsection{אלגוריתמים}
 	
-	\textbf{מציאת $J_n(\lg)^{m}$: }ידוע $J_n(\lg) = \lg I_n + J_n(0)$ ולכן מהיות $\lg I, J_n(0)$ מתחלפות נקבל מנוסחת הבינום של ניוטון: 
-	\[ (J_n(\lg)^{m})_{ij} = \begin{cases}
-		0 & j > i \\ 0 & j < i - m \\ \binom{m}{i - j}\lg^{m - (i - g)} & \other
-	\end{cases} \]
-	דהיינו: 
-	\[ J_n(\lg)^{m} = \pms{
-		\binom{m}{0}\lg^{m} \\ 
-		\binom{m}{1}\lg^{m - 1} & \binom{m}{0}\lg^{m} \\
-		\vdots & \ddots & \ddots \\
-		\binom{m}{m}\lg^{0} & \binom{m}{m - 1}\lg^{1} &\ddots& \ddots \\
-		0 & \binom{m}{m}\lg^{0} &\cdots&\ddots& \binom{m}{0}\lg^{m} \\
-		\vdots & 0 & \binom{m}{m}\lg^{0} &\cdots& \binom{m}{m - 1}\lg^{1} & \binom{m}{0}\lg^{m} \\
-		0 & \vdots & \ddots & \ddots
-	} \]
-	\subsubsection{אלגוריתם גראם־שמידט}
-	נרצה למצוא בסיס אורתונורמלי/אורתוגונלי לממ''פ כלשהו. יהי בסיס $B = v_1 \dots v_n$ של $V$. 
-	\begin{itemize}
-		\item \textbf{למציאת בסיס אורתוגונלי}: נגדיר לכל $i \in [n]$
-		\[ \tl v_i = v_i - \sum_{j = 1}^{i - 1}\frac{\mut{v_i}{\tl v_i}}{\mut{\tl v_i}{\tl v_j}} \cdot \tl v_j \]
-		ואז $(\tl v_1 \dots \tl v_n)$ בסיס אורתוגונלי (הבחנה: התהליך רקורסיבי, נתחיל מ־$i = 1$ ונסיים ב־$i = n$). במידת הצורך נוכל לנרמל בסוף ע''י הגדרת: 
-		\[ \bar v_i = \frac{\tl v_i}{\norm{\tl v_i}} \]
-		ואז $(\bar v_1 \dots \bar v_n)$ אורתונורמלי מסיבות ברורות. 
-		\item \textbf{מציאת בסיס אורתונורמלי}: (פחות יציב נומרית מאשר למצוא אורתונורמלי ואז לנרמל, אך יותר קל חישובית) נגדיר לכל $i \in [n]$: 
-		\[ \bar v_i = \frac{1}{\norm{v_i}} \cl{v_i - \sum_{j = 1}^{i - 1}\mut{v_i}{\bar v_i} \cdot \bar v_i} \]
-		בצורה זו נוכל לנרמל תוך כדי התהליך. 
-	\end{itemize}
-	\subsection{מספר אלגוריתמים נוספים}
-	\begin{itemize}
-		\item \textbf{אלגוריתם אוקלידס לתחום ראשי} (בפרט בעבור פולינומים): 
+	\begin{enumerate}[A']
+		\item \textbf{לכסון: }בהינתן $A \in M_n(\F)$ מטריצה. 
+		\begin{itemize}
+			\item נחשב את $f_A$
+			\item נמצא את שורשי $f_A$. אם אנו מתקשים למצוא את שורשי הפולינום, נמצא את $\fRed$. 
+			\item לכל ע''ע $\lg_i$, נמצא בסיס למרחב העצמי באמצעות חישוב $\nc(\lg_i I - A)$. איברי הבסיס יהיו הו''עים בעבור הע''ע $\lg_i$. 
+			\item סה''כ $\diag(\lg_1 \dots \lg_n)$ המטריצה האלכסונית המתקבלת ע''י מטריצת מעבר הבסיס הנתונה ע''י הו''עים מהשלב הקודם. 
+		\end{itemize}
+		
+		\item \textbf{ג'רדון מטריצה כללית: }
+			תהי $A \in M_n(\F)$ מטריצה שהפולינום האופייני שלה $f_A(x) = \prod_{j = 1}^{m}(x - \lg_j)^{r_j}$ (בה''כ מתקיים מעל הרחבה לשדה סגור אלגברית). לכל $j \in [m]$ נבצע את הפעולות הבאות: 
+			\begin{itemize}
+				\item נמצא את הפולינום $f_A(x)$ האופייני ונפרק אותו לכדי גורמים לינאריים. 
+				\item נחשב את $V_{\lg_j}^{(i)} := \nc((A - \lg_j)^{\ell_j})$ עד שנקבל $\dim\cl{V_{\lg_j}^{(\ml_j)}} = m_i$ (המרחב העצמי המוכלל). 
+				
+				\textit{הערה: }אפשר באופן חלופי לחשב את הפולינום המינימלי, שכן ראינו ש־$m_i$ הריבוי של $\lg_i$ ב־$m_T(x)$. 
+				\item נחזור על האלגו' למציאת צורת ג'ורדן למטריצה נילפוטנטית: 
+				\begin{itemize}
+					\item נגדיר $B_{\lg_j} = \varnothing$
+					\item לכל $i \in [\ell_j]$ נבצע: 
+					\begin{itemize}
+						\item נמצא בסיס כלשהו $C_{\lg_j}^{(i)-}$ של $V_{\lg_j}^{(i - 1)}$. 
+						\item נוסיף ל־$C_{\lg_j}^{(i)-}$ את $B \cap (V_{\lg_j}^{(i)} \setminus V_{\lg_j}^{(i - 1)})$
+						\item נשלים את $C_{\lg_j}^{(i)-}$ לבסיס של $V_{\lg_j}^{(i)}$. נסמן ב־$C_{\lg_j}^{(i)+}$. 
+						\item נוסיף ל־$B_{\lg_j}$ את $\ccb{(A - \lg_jI)^{k}v \mid 0 \le k < i, \ v \in C_{\lg_j}^{(i)+}}$. 
+					\end{itemize}
+					\item נגדיר $B = \bigcup_{j = 1}^{m} B_{\lg_j}$ הבסיס המג'רדן. 
+				\end{itemize}
+			\end{itemize}
+		
+		\item \textbf{מציאת $\bm{J_n(\lg)^{m}}$: }ידוע $J_n(\lg) = \lg I_n + J_n(0)$ ולכן מהיות $\lg I, J_n(0)$ מתחלפות נקבל מנוסחת הבינום של ניוטון: 
+			\[ (J_n(\lg)^{m})_{ij} = \begin{cases}
+				0 & j > i \\ 0 & j < i - m \\ \binom{m}{i - j}\lg^{m - (i - g)} & \other
+			\end{cases} \]
+			דהיינו: 
+			\[ J_n(\lg)^{m} = \pms{
+				\binom{m}{0}\lg^{m} \\ 
+				\binom{m}{1}\lg^{m - 1} & \binom{m}{0}\lg^{m} \\
+				\vdots & \ddots & \ddots \\
+				\binom{m}{m}\lg^{0} & \binom{m}{m - 1}\lg^{1} &\ddots& \ddots \\
+				0 & \binom{m}{m}\lg^{0} &\cdots&\ddots& \binom{m}{0}\lg^{m} \\
+				\vdots & 0 & \binom{m}{m}\lg^{0} &\cdots& \binom{m}{m - 1}\lg^{1} & \binom{m}{0}\lg^{m} \\
+				0 & \vdots & \ddots & \ddots
+			} \]
+		\item \textbf{גראם־שמידט: }
+		נרצה למצוא בסיס אורתונורמלי/אורתוגונלי לממ''פ כלשהו. יהי בסיס $B = v_1 \dots v_n$ של $V$. 
+		\begin{itemize}
+			\item \textbf{למציאת בסיס אורתוגונלי}: נגדיר לכל $i \in [n]$
+			\[ \tl v_i = v_i - \sum_{j = 1}^{i - 1}\frac{\mut{v_i}{\tl v_j}}{\norm{v_k}^{2}} \cdot \tl v_j \]
+			ואז $(\tl v_1 \dots \tl v_n)$ בסיס אורתוגונלי (הבחנה: התהליך רקורסיבי, נתחיל מ־$i = 1$ ונסיים ב־$i = n$). במידת הצורך נוכל לנרמל בסוף ע''י הגדרת: 
+			\[ \bar v_i = \frac{\tl v_i}{\norm{\tl v_i}} \]
+			ואז $(\bar v_1 \dots \bar v_n)$ אורתונורמלי מסיבות ברורות. 
+			\item \textbf{מציאת בסיס אורתונורמלי}: (פחות יציב נומרית מאשר למצוא אורתונורמלי ואז לנרמל, אך יותר קל חישובית) נגדיר לכל $i \in [n]$: 
+			\[ \bar v_i = \frac{1}{\norm{\tl v_i}} \Bigg(\smash{\underbrace{v_i - \sum_{j = 1}^{i - 1}\mut{v_i}{\bar v_j} \cdot \bar v_j}_{{\tl v_i}}}\Bigg) \]
+			בצורה זו נוכל לנרמל תוך כדי התהליך. 
+		\end{itemize}
+		\item \textbf{אלגוריתם אוקלידס לתחום אוקלידי} (בפרט בעבור פולינומים ומספרים שלמים): ניעזר בזהות $\gcd(a, b) = \gcd(a, b + qa)$. כדי למצוא את $\gcd(a, b)$ נחזור על הפעולה הבאה: בה''כ $a > b$, בתחום אוקלידי מוגדרת השארית $r$ כך ש־$a = bq + r$. לכן $\gcd(a, b) = \gcd(bq + r, b) = \gcd(b, r)$, ומהגדרה $N(r) < N(b)$ כאשר $N$ הנורמה האוקלידית. לכן נוכל להמשיך בתהליך עד שנגיע לזוג $\gcd(a', b')$ כך שאחד מהם (בה''כ $b'$) מקיים $b' = 0$ ואז $\gcd(a', b') = a'$. בחוג המספרים השלמים לאלגו' סיבוכיות $\mathcal{O}(\log_\vphi(\max\{a, b\}))$. 
 		\item \textbf{נרמול וקטור: }נגדיר $v = \frac{v}{\norm{v}}$ הוא $v$ מנורמל. 
 		\item \textbf{בדיקת $\bm{T}$־איווריאנטיות: }בהינתן $B$ בסיס של $W \subseteq V$ נחשב את $T(B)$ ונבדוק האם $T(B) \subseteq W$ ע''י מעבר על כל איבר בסיס ודירוג. 
-		\item \textbf{חישוב $\bm{A\op, A^{n + c}}$ באמצעות משפט קיילי־המילטון: }ידוע $f_A(A) = 0$, ואם נשאר גורם חופשי $\ag_nA^{n} + \cdot \ag_0 A^{0} = 0$ אז נוכל להעביר אגפים ולקבל: $I = A^0 = A\cl{\frac{\sum_{k = 1}^{n}\ag_kA^{k - 1}}{\ag_0}}$ ולכן $A\op = \frac{1}{\ag_0}\cl{\sumnko \ag_k A^{k - 1}}$. כדי לחשב את $A^{n + c}$ תחילה נחשב את $A^{n}$ באמצעות העברת אגפים וקבלת $A^{n} = -\sum_{k = 0}^{n - 1} \ag_kA^{k}$ (כי $\ag_n = 1$ כי הפולינום מתוקן). עתה, נכפול ב־$A$ בדיוק $c$ פעמים, ומשום שידוע $A^{n}$, בכל חלוקה שבא נקבל $A^{n + 1}$ נוכל להוציא גורם משותף ולקבל $A(A^{n}) = \sumnko \bg_kA^{k}$ ביטוי שהכפל הגבוהה ביותר בו תמיד $A^{n - 1}$. סה''כ נוכל לבטא את $A^{n + c}$ כקומבינציה לינארית של $I \cdots A^{n - 1}$, שעבור מספרי $n$ קטנים קל לחשב. 
+		\item \textbf{חישוב $\bm{A\op, A^{n + c}}$ באמצעות משפט קיילי־המילטון: }ידוע $f_A(A) = 0$, ואם נשאר גורם חופשי $\ag_nA^{n} + \ag_0 A^{0} = 0$ אז נוכל להעביר אגפים ולקבל: $I = A^0 = A\cl{\frac{\sum_{k = 1}^{n}\ag_kA^{k - 1}}{\ag_0}}$ ולכן $A\op = \frac{1}{\ag_0}\cl{\sumnko \ag_k A^{k - 1}}$. כדי לחשב את $A^{n + c}$ תחילה נחשב את $A^{n}$ באמצעות העברת אגפים וקבלת $A^{n} = -\sum_{k = 0}^{n - 1} \ag_kA^{k}$ (כי $\ag_n = 1$ כי הפולינום מתוקן). עתה, נכפול ב־$A$ בדיוק $c$ פעמים, ומשום שידוע $A^{n}$, בכל חלוקה שבא נקבל $A^{n + 1}$ נוכל להוציא גורם משותף ולקבל $A(A^{n}) = \sumnko \bg_kA^{k}$ ביטוי שהכפל הגבוהה ביותר בו תמיד $A^{n - 1}$. סה''כ נוכל לבטא את $A^{n + c}$ כקומבינציה לינארית של $I \cdots A^{n - 1}$, שעבור מספרי $n$ קטנים קל לחשב. 
 		\item \textbf{ייצוג בבסיס אורתוגונלי: }לכל $u \in V$ בהינתן $(v_1 \dots v_n)$ בסיס אורתוגונלי, מתקיים $u = \sumnio \frac{\mut{u}{v_i}}{\norm{v_i}^{2}} \cdot v_i$ (אין צורך לחלק בנורמה בעבור אורתונורמלי). 
 		\item \textbf{מציאת היטל אורתוגונלי: }בהינתן $(u_1 \dots u_n)$ בסיס אורתוגונלי של $U$ תמ''ו, אז $p_U(v) = \sum_{i = 1}^{k}\frac{\mut{v}{u_i}}{\norm{u_i}^2}u_i$ (גם כאן אין צורך לחלק בנורמה בעבור בסיס אורתונורמלי). 
+		
+		לחילופין, אפשר להיעזר בעובדה שבהינתן $v$ המוטל על $U = (u_1 \dots u_n)$, נאמר ו־$u$ היא התוצאה, אז ניתן לבטאו כ־$v = u + u^{\perp}$ כאשר $u\ort \in U\ort, u \in U$. לשם כך, נסמן ב־$u$ את התוצאה, ואז ידוע $v - u = u\ort$ כלומר $v - u \perp u_i$ לכל $i \in [n]$. קיבלנו מערכת לינארית משוואות ב־$n$ נעלמים שאפשר לדרג ולפתור. 
 		\item \textbf{מציאת ללכסון אוניטרי/אורתוגונלי} (אם קיים ממשפט הפירוק הספקטרלי)\textbf{: }
 		\begin{itemize}
 			\item נמצא את הע''ע של ההעתקה. 
 			\item לכל ע''ע, נמצא בסיס עצמי של ו''ע ואז נבצע עליו בראם־שמידט כדי לקבל וקטורים אורתוגונליים/אורתונורמליים. 
 			\item נשרשר את הבסיסים לקבלת בסיס אורתוגונלי/אורתונורמלי מלכסן. 
 		\end{itemize}
-		\item מציאת פירוק SVD: בהינתן $T$ העתקה, נמצא את הפירוק הספקטרלי של $TT^*, T^*T$ ומהזהויות		 $TT^* = U\Sg^2U^{T}$ ו־$T^*T = V\Sg^2 V^{T}$, נקבל $T = U\Sg V^{T}$. 
+		בניסוח אחר: נלכסן את ההעתקה $T$, אבל נעשה גראם־שמידט על כל ו''ע. כדי להוכיח שאלגו' זה אכן עובד, יש להוכיח את הטענה הנפוצה לפיה כל שני מרחבים עצמיים אורתוגונליים בהינתן העתקה נורמלית. 
+		\item \textbf{מציאת פירוק SVD: }בהינתן $T$ העתקה, נמצא את הפירוק הספקטרלי של $TT^*, T^*T$ ומהזהויות		 $TT^* = U\Sg^2U^{T}$ ו־$T^*T = V\Sg^2 V^{T}$, נקבל $T = U\Sg V^{T}$. 
+	\end{enumerate}
+	
+	\subsection{תרגילים מומלצים}
+	תת־הנושא הבא כולל תרגילים נפוצים במיוחד, או תרגילים קשים ומעניינים שאספתי ממבחני עבר. אני ממליץ בחום לעבור על כולם לקראת המבחן. 
+	
+	\exec{תהי $T$ מעל ממ''פ מרוכב, ו־$f_T = g \cdot h$ כאשר $g, h \in \F[x]$ פולינומים זרים, 
+		\begin{enumerate}[A']
+			\item הוכח שאם $T$ לכסינה, מתקיים $\ker(gT) = \ker(hT)^{\perp}$. 
+			\item הוכח שלכל $T$, מתקיים $\ker gT \oplus \ker hT = V$ (בסעיף זה אין ערך להיות ההעתקה מעל ממ''פ). 
+		\end{enumerate}
+		\textit{הדרכה: }נסו להתחיל מהמקרה של שני ערכים עצמיים מורחבים, ואז להכליל באמצעות פירוק למרחבים עצמיים.
+	} 
+	
+	\exec{הוכח שלכל $T$ נורמאלית, עם ע''עים $\lg_1 \dots \lg_k$, מתקיים לכל $n, m \in [k]$ ש־$\forall v \in V_{\lg_n}, \tl u \in V_{\lg_m} \co \mut{v}{u} = 0$ (דהיינו $V_{\lg_n}$ ניצב ל־$V_{\lg_m}$). }
+	\exec{הוכח שלכל $T \co V \to V$ מתקיים $\ker(T^*) = \Img(T)^{\perp}$ וגם $\Img(T^*) = \ker(T)^{\perp}$}
+	\exec{הוכח שלכל $T \co V \to V$ נורמלית, מתקיים: 
+		\begin{enumerate}[A']
+			\item \hfil $\ker T = \ker T^*$
+			\item \hfil $\Img T = \Img T^*$
+			\item \hfil $V = \ker T \oplus \Img T$
+		\end{enumerate}}
+	\exec{ללא שימוש בפירוק SVD, הראה שהערך הסינגולרי הגדול ביותר והקטן ביותר חוסמים את הנורמה $\norm{Tv}$ לכל $\norm{v} = 1$. }
+	
+	\subsection{סיכום תוצאות מרכזיות}
+	\subsubsection{סיכום פירוק פרימרי וצורת ג'ורדן}
+	התחלנו בלנסות ללכסן מטריצות. הבחנו שלא כל מטריצה היא לכסינה, ובהן מתקיים $r_\lg < d_\lg$ עבור ע''ע כלשהו. את הבעיה הזו תקפנו בשני כיוונים: 
+	\begin{itemize}
+		\item מצאנו את \textbf{משפט הפירוק הפרימרי}, שאומר שבהינתן פירוק של הפולינום המינימלי למכפלת פולינומים זרים $m_T(x) = g_1 \dots g_r$, אז $V = \bigoplus_{i = 1}^{r}\ker g_i(T)$ וגם $m_{T|_(\ker g_i(T))} = g_i$ כלומר $g_i$ הפולינום המינימלי של צמצמום $T$ על המ''ו $\ker g_i(T)$. גם הראינו שאם במקום $m_T(x)$ משתמשים בפולינום כלשהו $f$ המאפס את $T$ (כלומר $f(T) = 0$) החלק הראשון של המשפט עדיין מתקיים. 
+		
+		אז פשוט זרקנו את המשפט הזה על העתקה כללית, מעל שדה סגור אלגברית, ואז ראינו שבכל תמ''ו שפירקנו אליו אפשר להגדיר העתקה נילפוטנטית מהצורה $T - \lg I$. את המקרה של נילפוטנטיות חקרנו בנפרד, וגילינו שאפשר לייצג העתקה נילפוטנטית כמטריצת בלוקים $\diag(J_{x_1}(0) \dots J_{x_k}(0))$. כששירשרנו את הבסיסים והוספנו את ה־$\lg I$ בחזרה, קיבלנו את צורת ג'ורדן המתבקשת.
+		\item בצורה אחרת עשינו בדיוק את אותו הדבר. אך במקום להבטיח את משפט הפירוק הפרימרי ולגלות שדברים עובדים, ניסינו להבין לאילו בדיוק תתי־מרחבים המרחב מתפרק. מצאנו שהמרחבים האלו הם \textbf{המרחבים העצמיים המורחבים} של $T$ (והוכחנו את זה ללא תלות במשפט הפירוק הפרימרי), ועליהם כבר יכולנו להגיד הרבה יותר דברים. לדוגמה: 
+		\begin{itemize}
+			\item הגודל של מ''ו מורחב המשוייך לע''ע $\lg$ הוא הריבוי האלגברי, ולכן זוהי כמות הו''עים המשוייך לאותו הע''ע.
+			\item העתקה הנילפוטנטית $T - \lg I$ בצמצום על המ''ו הזה, בעלת דרגת נילפונטיות שהיא הריבוי של $\lg$ ב־$m_T$, ולכן זהו גודל בלוק הג'ורדן המירבי עם ע''ע $\lg$.
+			\item כל וקטור ב־$V(\lg)$ המ''ו העצמי הלא מורחב פותח שרשרת אחרת, ולכן כמות בלוקי הג'ורדן לע''ע $\lg$ הוא $\dim V(\lg) = r_\lg$ הריבוי הגיאומטרי. 
+		\end{itemize}
 	\end{itemize}
 	
+	הקטע הכיפי, הוא שצורת הג'ורדן היא יחידה עד כדי סדר בלוקים. לכן, כל המסקנות שלנו לגבי איך נראית צורת ג'ורדן שפיתחנו בשיטה כזו או אחרת, תקפות למעשה לכל צורת ג'ורדן של ההעתקה/מטריצה. 
+	
+	''על הדרך``, קיבלנו כל מני תוצאות מעניינות: 
+	\begin{itemize}
+		\item אם הפולינום האופייני מתפרק, האופרטור ניתן לשילוש (בפרט כל אופרטור ניתן לשילוש מעל שדה סגור אלגברית). 
+		\item הבחנו בקיום המטריצה המצורפת $A_f$, שהראתה לנו שלכל פולינום מתוקן קיימת מטריצה שהוא הפולינום האופייני שלה (הגדרתה מופיע בהמשך הסיכום). 
+		\item ג'ירדון ולכסון הוכחו ככלים יעלים לפתירת נוסחאות נסיגה לינאריות. 
+	\end{itemize}
+	בדרך, עברנו דרך תורת החוגים בעיקר כדי לצאת עם שתי הטענות הבאות: 
+	\begin{itemize}
+		\item חוג הפולינומים הוא תחום אוקלידי (ובפרט ראשי), מה שמאפשר לנו לחלק פולינומים עם שארית. 
+		\item קבוצת הפולינומים המאפסים של $T$ היא אידיאל, ומהיות חוג הפלינומים תחום ראשי, הוא נוצר על ידי פולינום מסויים שסימנו ב־$m_T$ (שמהגדרה הוא המינימלי ביחס ההכלה). 
+	\end{itemize}
+	
+	
+	\subsubsection{סיכום תבניות בי־לינאריות}
+	התעניינו באופן מיוחד בשלושה סוגים של תבניות בי־לינאריות: 
+	\begin{itemize}
+		\item \textbf{תבנית חיובית, }(או אי־שלילית וכו'), כזו המקיימת $f(v, v) \ge 0$ לכל $v \in V$, מה ששקול להיות התבנית הריבועית שהיא מגדירה, חיובית גם היא. תבנית היא חיובית אם הסינגטורה $\sg_+ = n$. 
+		\item \textbf{תבנית סימטרית. }הבחנו שכל תבנית אפשר לפרק לחלק סימטרי וחלק אנטי־סימטרי, ותבנית ריבועית מתייחסת לחלק הסימטרי בלבד (ואף שיש זיווג בין תבניות סימטריות לריבועיות). הבחנו שהמייצגת של תבנית כזו, סימטרית גם. ראינו שאם נשלב את ההנחה של סימטריות עם תבנית מוגדרת חיובית, אז נקבל מכפלה פנימית. 
+		\item \textbf{תבנית לא־מנוונת, }שמתקבלת ישירות מהגדרת הראדיקל של התבנית. ראינו שתבנית היא לא־מנוונת אמ''מ המטריצה המייצגת שלה הפיכה. 
+	\end{itemize}
+	הבחנו שבמידה והמטריצה המייצגת הרמיטית, אז הסימן של הערכים העצמיים קובע את הסינגטורה (זאת כי פירוק ספקטרלי הוא לא רק דמיון, אלא גם חפיפה!). 
+	\subsubsection{סיכום נושא הפירוקים}
+	יש לנו מספר סוגי העתקות שעניינו אותנו באופן מיוחד: 
+	\begin{center}\begin{tabular}{|c|c|c|c|}
+			\hline \textbf{הרמיטית}/\textbf{סימטרית} & \textbf{אורתוגונלית}/\textbf{אוניטרית} & \textbf{נורמאלית} & \textbf{$\C$/$\R$} \\
+			\hline $T^* = T$ & $T^* = T\op$ & $TT^* = T^*T$ & \textbf{הגדרה} \\
+			\hline $\mut{Tv}{u} = \mut{v}{Tu}$ & $\mut{Tv}{Tu} = \mut{v}{u}$ & $\mut{Tv}{Tu} = \mut{T^*v}{T^*u}$ & \textbf{מ''פ} \\
+			\hline $\lg \in \R$ & $\sof{\lg} = 1$ & $Tv = \lg v \iff T^*v = \bar\lg v$ & \textbf{ע''עים} \\
+			\hline
+	\end{tabular}\end{center}
+	
+	כאשר העתקה אוניטרית/אורתוגונלית נקראת באופן כללי \textbf{איזומטריה לינארית}. להגדרות אילו, נלווים המשפטים הבאים: 
+	\begin{itemize}
+		\item \textbf{משפט הפירוק הספקטרלי ב־$\R$: }העתקה היא סימטרית אמ''מ היא לכסינה אורתונורמלית. 
+		\item \textbf{משפט הפירוק הספקטרלי ב־$\C$: }אם העתקה היא נורמאלית, אז היא לכסינה אורתונורמלית. 
+		\item $T$ לכסינה אותורנורמלית אמ''מ $T$ לכסינה אורתוגונלית (תוצאה ישירה מנרמול). 
+	\end{itemize}
+	וההבחנה שאם $A$ מטריצה לכסינה אורתונורמלית (או מייצגת העתקה לכסינה אורתונורמלית), אז קיימת מטריצת מעבר בסיס $U$ אוניטרית/אורתוגונלית ו־$\Lg$ אלכסונית כך ש־$A = U\Lg U^*$. בפרט הפירוק הספקטרלי של מטריצה הניתנת ללכסון אונטירי, הוא פירוק ה־SVD שלה. 
+	
+	יש לנו שתי הגדרות לחיוביות (ושליליות, וכיו''ב): 
+	\begin{itemize}
+		\item \textbf{מטריצה מוגדרת חיובית: }אמ''מ היא מייצגת תבנית בי־לינארית חיובית, כלומר $\forall x \in \F^{n} \co x^TAx > 0$. 
+		\item \textbf{מטריצה חיובית: }הגדרה מצחיקה שלא מקובלת בשום מקום אחר חוץ מבקורס הזה, ודורשת ש־$\mut{Av}{v} > 0$. כל העתקה היא חיובית אמ''מ תחת ייצוג בבסיס אורתונורמלי, המטריצה המיייצגת חיובית. 
+	\end{itemize}
+	למזלנו, ההגדרות מתלכדות במקרה של ההעתקה או מטריצה צמודה לעצמה. זהו המקרה הרלוונטי ל\textbf{פירוק פולארי} שמפרק מטריצה כללית $A$ לכפל של מטריצה אוניטרית $U$ ומטריצה הרמיטית מוגדרת־חיובית $P$ כך ש־$A = UP$ (''לסובב ואז לשנות גודל``). למעשה, לא דיברנו בקורס כלל על מטריצה חיובית (בהבט של $\mut{Av}{v} > 0$) שאיננה צמודה לעצמה, וכאמור במקרה זה היא בכל מקרה מוגדרת־חיובית. 
+	
+	כבר ידוע שהע''עים של מטריצה צמודה לעצמה (כלומר הרמיטית/סימטרית) הם בהכרח ממשיים. אבל במקרה של מטריצה מוגדרת, נוכל לטעון שמטריצה מוגדרת חיובית אמ''מ הע''עים אף חיוביים (ובאופן דומה לגבי א־שלילית, שלילית, וא־חיובית)!
+	
+	בגלל שכל מכפלה פנימית היא סימטרית ובפרט צמודה לעצמה, אז כדי לקבוע שהמכפלה הפנימית אכן חיובית, יש רק צורך ללכסן את התכנית הריבועית כדי לוודא שהיא אכן מכפלה פנימית. 
+	
+	
+	
+	
 	\npage
+	
+	
 	
 	\section[מרחבים דואלים]{\en{Dual Spaces}}
 	את הפרק להלן המרצה של אודיסאה, בן בסקין, החליט להעביר, כדי לתת ראיה נרחבה יותר על לינארית – מנקודת מבט של תורת הקטגוריות. הרעיון הוא להבחין בכך ש־(א) בין כל קטגוריה לדואל שלה קיים פונקטור קונטראינווריאנטי, ו־(ב) הן הצמדת העתקה, והן פונקציונל, הן קטגוריות דואליות למרחב הוקטורי, ולכן איזומורפיות אחת לשנייה (שכן הדואל יחיד עד לכדי איזומורפיזם). 
