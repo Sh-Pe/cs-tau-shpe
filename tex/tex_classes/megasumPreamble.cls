@@ -207,8 +207,6 @@
 	\newcommand \exe   [1]    {\begin{Exercise}#1\end{Exercise}}
 	\newcommand \exec  [1]    {\begin{Exercise}[נפוץ]#1\end{Exercise}}
 	\newcommand \exeh  [1]    {\begin{Exercise}[קשה]#1\end{Exercise}}
-	
-\RequirePackage{mathShortcuts}
 
 \title{\@document@name}
 \author{שחר פרץ}
