@@ -1,415 +1,24 @@
+%  LINEAR ALGEBRA 2A SUMMARY ~ 2025B ~ by Shahar Perets ~ original .TeX
+%  file ~ compile with LuaLaTeX
+% 
+%  Copyright (C) 2025  Shahar Perets
+%  
+%  This program is free software: you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation, either version 3 of the License, or   
+%  (at your option) any later version.                                 
+%  
+%  This program is distributed in the hope that it will be useful,     
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of      
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the       
+%  GNU General Public License for more details.                        
+%  
+%  You should have received a copy of the GNU General Public License     
+%  along with this program.  If not, see https://www.gnu.org/licenses/.
+%  
+
 %! ~~~ Packages Setup ~~~ 
-\documentclass[a4paper]{article}
-\usepackage{lipsum}
-\usepackage{rotating}
-
-
-% Math packages
-\usepackage[usenames]{color}
-\usepackage{forest}
-\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
-\WithArrowsOptions{displaystyle}
-\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
-\usepackage{cancel,bm}
-\usepackage[thinc]{esdiff}
-
-
-% tikz
-\usepackage{tikz}
-\usetikzlibrary{graphs}
-
-% Design
-\usepackage[labelfont=bf]{caption}
-\usepackage[margin=0.85in]{geometry}
-\usepackage{multicol}
-\usepackage[skip=5pt, indent=0pt]{parskip}
-\usepackage[normalem]{ulem}
-\forestset{default}
-\renewcommand\labelitemi{$\bullet$}
-\usepackage{thmtools}
-\usepackage{titlesec}
-\titleformat{\section}[block]
-	{\fontsize{15}{15}}
-	{\sen \dotfill \huge \bfseries\thesection \she}
-	{0em}
-	{}
-\titleformat{\subsection}[block]
-	{\large\itshape}
-	{\normalfont\Large\bfseries\en{{\thesubsection}} \,\,$\sim$\,\,}
-	{0em}
-	{}
-%	[\vspace{-13pt}\rule{\linewidth}{0.25pt}]
-\titleformat{\subsubsection}[block]
-	{\normalsize\bfseries}
-	{\normalfont\large\bfseries\en{{\thesubsubsection}}}
-	{1em}
-	{}
-\renewcommand\le{\leqslant}
-\renewcommand\ge{\geqslant}
-	
-%\titleformat{command}[shape]{format}{label}{sep}{before-code}[after-code]
-\usepackage{graphicx}
-\graphicspath{ {./images} }
-\usepackage{hyperref}
-\hypersetup{
-	colorlinks,
-	citecolor=black,
-	filecolor=black,
-	linkcolor=black,
-	urlcolor=blue
-}
-
-\usepackage{calc}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\newcommand\name{רשימות אלגברה לינארית 2א}
-\fancyhead[C]{\textit{\textbf{\name}}}
-\fancyhead[L,R]{}
-\fancyfoot[R]{\textit{שחר פרץ, 2025}\, \en{{\Large({\thepage})}}}
-\fancyfoot[L]{\textit{\rightmark}}
-\fancyfoot[C]{}
-\renewcommand{\headrule}{\vspace{-7pt}\hfil\rule{200pt}{1pt}}
-
-
-% Hebrew initialzing
-\usepackage[bidi=basic]{babel}
-\PassOptionsToPackage{no-math}{fontspec}
-\babelprovide[main, import, Alph=letters]{hebrew}
-\babelprovide[import]{english}
-\babelfont[hebrew]{rm}{David CLM}
-\babelfont[hebrew]{sf}{David CLM}
-\usepackage[shortlabels]{enumitem}
-\newlist{hebenum}{enumerate}{1}
-
-% Language Shortcuts
-\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
-\newcommand\sen   {\begin{otherlanguage}{english}}
-	\newcommand\she   {\end{otherlanguage}}
-\newcommand\del   {$ \!\! $}
-
-\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
-\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
-			{\textbf{\textit{שחר פרץ, 2025}} \\
-				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
-	\end{center}} \vfil	}
-
-\newcommand      {\rn}[1]{
-	\textup{\uppercase\expandafter{\romannumeral#1}}
-}
-
-\newcommand\middleText[1] {\vfil {\hfil {#1}} \hfil \vfil \newpage}
-\newcommand\envendproof{\vspace{-17pt}}
-\newcommand\mathenvendproof{\par\vspace{-24pt}}
-
-\makeatletter
-\newcommand{\skipitems}[1]{
-	\addtocounter{\@enumctr}{#1}
-}
-\makeatother
-
-%! ~~~ Math shortcuts ~~~
-	
-% Letters shortcuts
-\newcommand\N     {\mathbb{N}}
-\newcommand\Z     {\mathbb{Z}}
-\newcommand\R     {\mathbb{R}}
-\newcommand\Q     {\mathbb{Q}}
-\newcommand\C     {\mathbb{C}}
-\newcommand\K     {\mathbb{K}}
-
-\newcommand\ml    {\ell}
-\newcommand\mj    {\jmath}
-\newcommand\mi    {\imath}
-
-\newcommand\powerset {\mathcal{P}}
-\newcommand\ps    {\mathcal{P}}
-\newcommand\pc    {\mathcal{P}}
-\newcommand\ac    {\mathcal{A}}
-\newcommand\bc    {\mathcal{B}}
-\newcommand\cc    {\mathcal{C}}
-\newcommand\dc    {\mathcal{D}}
-\newcommand\ec    {\mathcal{E}}
-\newcommand\fc    {\mathcal{F}}
-\newcommand\nc    {\mathcal{N}}
-\newcommand\vc    {\mathcal{V}} % Vance
-\newcommand\sca   {\mathcal{S}} % \sc is already definded
-\newcommand\rca   {\mathcal{R}} % \rc is already definded
-\newcommand\zc    {\mathcal{Z}}
-
-\newcommand\prm   {\bm{\mathrm{p}}}
-\newcommand\arm   {\bm{\mathrm{a}}} % x86
-\newcommand\brm   {\bm{\mathrm{b}}}
-\newcommand\crm   {\bm{\mathrm{c}}}
-\newcommand\drm   {\bm{\mathrm{d}}}
-\newcommand\erm   {\bm{\mathrm{e}}}
-\newcommand\frm   {\bm{\mathrm{f}}}
-\newcommand\nrm   {\bm{\mathrm{n}}}
-\newcommand\vrm   {\bm{\mathrm{v}}}
-\newcommand\urm   {\bm{\mathrm{u}}}
-\newcommand\srm   {\bm{\mathrm{s}}}
-\newcommand\rrm   {\bm{\mathrm{r}}}
-
-\newcommand\Si    {\Sigma}
-
-% Logic & sets shorcuts
-\newcommand\siff  {\longleftrightarrow}
-\newcommand\ssiff {\leftrightarrow}
-\newcommand\so    {\longrightarrow}
-\newcommand\sso   {\rightarrow}
-
-\newcommand\epsi  {\epsilon}
-\newcommand\vepsi {\varepsilon}
-\newcommand\vphi  {\varphi}
-\newcommand\Neven {\N_{\mathrm{even}}}
-\newcommand\Nodd  {\N_{\mathrm{odd }}}
-\newcommand\Zeven {\Z_{\mathrm{even}}}
-\newcommand\Zodd  {\Z_{\mathrm{odd }}}
-\newcommand\Np    {\N_+}
-
-% Text Shortcuts
-\newcommand\open  {\big(}
-\newcommand\qopen {\quad\big(}
-\newcommand\close {\big)}
-\newcommand\also  {\text{, }}
-\newcommand\defis {\text{ definitions}}
-\newcommand\given {\text{given }}
-\newcommand\case  {\text{if }}
-\newcommand\syx   {\text{ syntax}}
-\newcommand\rle   {\text{ rule}}
-\newcommand\other {\text{else}}
-\newcommand\set   {\ell et \text{ }}
-\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
-
-% Set theory shortcuts
-\newcommand\ra    {\rangle}
-\newcommand\la    {\langle}
-
-\newcommand\oto   {\leftarrow}
-
-\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
-\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
-\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
-\newcommand\eQEF  {\mathscr{Q.E.F.}}
-\newcommand\jQED  {\mathscr{Q.E.D.}}
-
-\DeclareMathOperator\dom   {dom}
-\DeclareMathOperator\Img   {Im}
-\DeclareMathOperator\range {range}
-
-\newcommand\trio  {\triangle}
-
-\newcommand\rc    {\right\rceil}
-\newcommand\lc    {\left\lceil}
-\newcommand\rf    {\right\rfloor}
-\newcommand\lf    {\left\lfloor}
-
-\newcommand\n     {$n$־יה\ }
-
-% Math A&B shortcuts
-\newcommand\logn  {\log n}
-\newcommand\logx  {\log x}
-\newcommand\lnx   {\ln x}
-\newcommand\cosx  {\cos x}
-\newcommand\sinx  {\sin x}
-\newcommand\tanx  {\tan x}
-
-\newcommand\seq   {\overset{!}{=}}
-\newcommand\slh   {\overset{LH}{=}}
-\newcommand\sle   {\overset{!}{\le}}
-\newcommand\sge   {\overset{!}{\ge}}
-\newcommand\sll   {\overset{!}{<}}
-\newcommand\sgg   {\overset{!}{>}}
-
-\newcommand\h     {\hat}
-\newcommand\ve    {\vec}
-\newcommand\lv    {\overrightarrow}
-\newcommand\ol    {\overline}
-
-\newcommand\mlcm  {\mathrm{lcm}}
-
-\newcommand\dx    {\,\mathrm{d}x}
-\newcommand\dt    {\,\mathrm{d}t}
-
-\newcommand\nt[1] {\frac{#1}{#1}}
-
-\newcommand\limz  {\lim_{x \to 0}}
-\newcommand\limxz {\lim_{x \to x_0}}
-\newcommand\limi  {\lim_{x \to \infty}}
-\newcommand\limh  {\lim_{x \to 0}}
-\newcommand\limni {\lim_{x \to - \infty}}
-\newcommand\limpmi{\lim_{x \to \pm \infty}}
-
-\newcommand\ta    {\theta}
-\newcommand\ap    {\alpha}
-
-\renewcommand\inf {\infty}
-\newcommand  \ninf{-\inf}
-
-% Combinatorics shortcuts
-\newcommand\sumnk     {\sum_{k = 0}^{n}}
-\newcommand\sumni     {\sum_{i = 0}^{n}}
-\newcommand\sumnko    {\sum_{k = 1}^{n}}
-\newcommand\sumnio    {\sum_{i = 1}^{n}}
-\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
-\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
-
-\newcommand\bink      {\binom{n}{k}}
-\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
-\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
-
-\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
-\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
-\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
-\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
-\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
-\newcommand\capiiai   {\bigcap_{i \in I} A_i}
-
-\newcommand\xot       {x_{1, 2}}
-\newcommand\ano       {a_{n - 1}}
-\newcommand\ant       {a_{n - 2}}
-
-% Linear Algebra
-\DeclareMathOperator{\chr}     {char}
-\DeclareMathOperator{\diag}    {diag}
-\DeclareMathOperator{\Hom}     {Hom}
-\DeclareMathOperator{\Sp}      {span} 
-\DeclareMathOperator{\sgn}     {sgn} 
-\DeclareMathOperator{\row}     {Row} 
-\DeclareMathOperator{\adj}     {adj} 
-\DeclareMathOperator{\rk}      {rank} 
-\DeclareMathOperator{\col}     {Col} 
-\DeclareMathOperator{\tr}      {tr}
-\DeclareMathOperator{\lcm}     {lcm}
-\DeclareMathOperator{\sym}     {Sym}
-\DeclareMathOperator{\asym}    {ASym}
-\DeclareMathOperator{\rad}     {rad}
-
-\newcommand\lra       {\leftrightarrow}
-\newcommand\chrf      {\chr(\F)}
-\newcommand\F         {\mathbb{F}}
-\newcommand\co        {\colon}
-\newcommand\tmat[2]   {\cl{\begin{matrix}
-			#1
-		\end{matrix}\, \middle\vert\, \begin{matrix}
-			#2
-\end{matrix}}}
-
-\makeatletter
-\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
-\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
-\newcommand\mat[2]    {M_{#1\times#2}}
-\newcommand\gmat      {\mat{m}{n}(\F)}
-\newcommand\tomat     {\, \dequad \longrightarrow}
-\newcommand\pms[1]    {\begin{pmatrix}
-		#1
-\end{pmatrix}}
-\newcommand\bms[1]    {\begin{bmatrix}
-		#1
-\end{bmatrix}}
-\newcommand\detms[1]  {\sof{\begin{matrix}
-			#1
-\end{matrix}}}
-\newcommand\ort       {^{\perp}}
-
-\newcommand\genein[1] {\tl \vc_{#1}}
-\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
-\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
-\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
-\newcommand\mut [2]   {\left \la #1 \,\middle|\, #2 \right \ra}
-\newcommand{\fRed}    {f^{\mathrm{red}}}
-
-% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
-\makeatletter
-\newlength\min@xx
-\newcommand*\xxrightarrow[1]{\begingroup
-	\settowidth\min@xx{$\m@th\scriptstyle#1$}
-	\@xxrightarrow}
-\newcommand*\@xxrightarrow[2][]{
-	\sbox8{$\m@th\scriptstyle#1$}  % subscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\sbox8{$\m@th\scriptstyle#2$} % superscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
-	{\mathmakebox[\min@xx]{\scriptstyle#2}}
-	\endgroup}
-\makeatother
-
-
-% Greek Letters
-\newcommand\ag        {\alpha}
-\newcommand\bg        {\beta}
-\newcommand\cg        {\gamma}
-\newcommand\dg        {\delta}
-\newcommand\eg        {\epsi}
-\newcommand\zg        {\zeta}
-\newcommand\hg        {\eta}
-\newcommand\tg        {\theta}
-\newcommand\ig        {\iota}
-\newcommand\kg        {\keppa}
-\renewcommand\lg      {\lambda}
-\newcommand\og        {\omicron}
-\newcommand\rg        {\rho}
-\newcommand\sg        {\sigma}
-\newcommand\yg        {\usilon}
-\newcommand\wg        {\omega}
-
-\newcommand\Ag        {\Alpha}
-\newcommand\Bg        {\Beta}
-\newcommand\Cg        {\Gamma}
-\newcommand\Dg        {\Delta}
-\newcommand\Eg        {\Epsi}
-\newcommand\Zg        {\Zeta}
-\newcommand\Hg        {\Eta}
-\newcommand\Tg        {\Theta}
-\newcommand\Ig        {\Iota}
-\newcommand\Kg        {\Keppa}
-\newcommand\Lg        {\Lambda}
-\newcommand\Og        {\Omicron}
-\newcommand\Rg        {\Rho}
-\newcommand\Sg        {\Sigma}
-\newcommand\Yg        {\Usilon}
-\newcommand\Wg        {\Omega}
-
-% Other shortcuts
-\newcommand\tl    {\tilde}
-\newcommand\op    {^{-1}}
-
-\newcommand\sof[1]    {\left | #1 \right |}
-\newcommand\cl [1]    {\left ( #1 \right )}
-\newcommand\csb[1]    {\left [ #1 \right ]}
-\newcommand\ccb[1]    {\left \{ #1 \right \}}
-
-\newcommand\bs        {\blacksquare}
-\newcommand\dequad    {\!\!\!\!\!\!}
-\newcommand\dequadd   {\dequad\duquad}
-
-\renewcommand\phi     {\varphi}
-
-\definecolor{myblue}{rgb}{0.2,0.35,0.7}
-\definecolor{mygreen}{rgb}{0.15,0.65,0.35}
-\definecolor{myyellow}{rgb}{0.0,0.4,0.5}
-\definecolor{mycyan}{rgb}{0.05,0.65,0.6}
-\definecolor{myred}{rgb}{0.05,0.1,0.75}
-\definecolor{mymagenta}{rgb}{0.1,0.7,0.1}
-
-\theoremstyle{definition}
-\newtheorem{Theorem}{\color{myblue}משפט}
-\newtheorem{Definition}{\color{mygreen}הגדרה}
-\newtheorem{Lemma}{\color{myyellow}למה}
-\newtheorem{Remark}{\color{mycyan}הערה}
-\newtheorem{Notion}{\color{myred}סימון}
-\newtheorem{Collary}{\color{mymagenta}מסקנה}
-\newtheorem{Exercise}{תרגיל}
-
-\newcommand\cola [1] {\begin{Collary}#1\end{Collary}}
-\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
-\newcommand\defi  [1] {\begin{Definition}#1\end{Definition}}
-\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
-\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
-\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
-\newcommand\exe   [1] {\begin{Exercise}#1\end{Exercise}}
-\newcommand\exec  [1] {\begin{Exercise}[נפוץ]#1\end{Exercise}}
-\newcommand\exeh  [1] {\begin{Exercise}[קשה]#1\end{Exercise}}
+\documentclass[name=רשימות אלגברה לינארית 2א]{megasumPreamble}
 
 %! ~~~ Document ~~~
 
@@ -419,25 +28,22 @@
 \date{2025 סמסטר ב'}
 \begin{document}
 	\renewcommand{\footrule}{\rule{\linewidth-19pt}{0.25pt}\vspace{-5pt}}
-	\thispagestyle{empty}
-	\,\!
-	
-%	\AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperwidth]{background.png}}
-	{\vspace{0.5\textheight-2em} 
-		{
-			\begin{center} 
-				{
-					\textbf{{\name}
-				} \\ 
-				\textit{שחר פרץ $\sim$ 2025B}}
-			\end{center}
-		}
-	}
+	\firstPage{2025B}
 	
 	\newpage
 	
-	\hfil \textit{גרסה 1.0.2}
+	\hfil \textit{גרסה 1.1.0}
+	
+	\vspace{-18pt}
+	
 	\section[מבוא]{\en{Introduction}}
+	\vspace{-2pt}
+	\subsection[רישיון]{License $\sim$ רישיון}
+	\en{The following summary is provided under the GNU General Public License version 3 (GPLv3). It can be distributed and/or modified under the terms of the license, or any later version of it. Additional information can be found \href{https://www.gnu.org/licenses}{here}. }
+	
+	הסיכום להלן מסופק תחת רשיון התוכנה החופשית של גנו גרסה 3 (GNU General Public License (GPL) version 3). ניתן להעתיקו ו/או להפיצו תחת GPLv3 או גרסה מאוחרת יותר. מידע נוסף אפשר למצוא \href{https://www.gnu.org/licenses}{כאן}. 
+	
+	\vspace{-2pt}
 	\subsection{הרבה מילים שאפשר לדלג עליהן}
 	הסיכום להלן נוצר משילוב של ארבעת המקורות הבאים: 
 	\begin{multicols}{2}
@@ -453,20 +59,19 @@
 	\begin{enumerate}
 		\item \textbf{אופרטורים ליניארים}, הן העתקות ממרחב לעצמו. 
 		\item \textbf{תבניות בי־ליניאריות}, אובייקט מתמטי נוסף שניתן לייצג ע''י מטריצה. 
-		\item \textbf{מרחבי מכפלה פנימית}, מרחבים בהם מוגדרת מעין תבנית ססקווי בי־לינארית שמאפשרת תיאור ``גודל'', ובהם יש ערך לפירוק מטריצות לכפל של מספר מטריצות שונות. 
+		\item \textbf{מרחבי מכפלה פנימית}, מרחבים בהם מוגדרת מעין תבנית ססקווי בי־לינארית שמאפשרת תיאור ''גודל``, ובהם יש ערך לפירוק מטריצות לכפל של מספר מטריצות שונות. 
 	\end{enumerate}
 	
-	הגרסה האחרונה של הסיכום תהיה זמינה \href{https://github.com/Sh-Pe/cs-tau-shpe/tree/master/lin2A/megasum}{בקישור הבא} כל עוד מיקרוסופט לא פשטו את הרגל. אם מצאתם בסיכום טעויות (החל בתקלדות, כלה בשגיהוט חטיב, וכמובן טעויות מתמטיות) אשמח אם תפנו אלי בטלפון או במייל (perets.shahar@gmail.com), בטלפון (אם יש לכם אותו), או באמצעות GitHub Issues (קישור בתחילת המשפט). 
+	הגרסה האחרונה של הסיכום תהיה זמינה \href{https://github.com/Sh-Pe/cs-tau-shpe/tree/master/lin2A/megasum}{בקישור הבא} כל עוד מיקרוסופט לא פשטו את הרגל. אם מצאתם בסיכום טעויות (החל בתקלדות, כלה בשגיהוט חטיב, וכמובן טעויות מתמטיות) אשמח אם תפנו אלי במייל (perets.shahar@gmail.com), בטלפון (אם אתם מכירים אותי ויש לכם אותו), או באמצעות GitHub Issues (קישור בתחילת המשפט). 
 	
 	מקווה שתהנו מהסיכום ותמצאו אותו מועיל; 
 	
 	\hfill שחר פרץ, 19.7.2025
 	
 	
-%	\color{red}\textbf{אזהרה!}\color{black}\, נכון למצב הנוכחי, הסיכום הזה עדיין בעבודה לצריך לעבור הגהה. אתם מוזמנים להשתמש בו, אך אין לראות בו כרגע גרסה סופית ואמינה. 
-	
 	\textbf{אזהרה. }הסיכום הזה מכיל בחלקו הוכחות שאני כתבתי ולא הופיעו בהרצאה. השימוש בסיכום על אחריות המשתמש ואני לא ערב לנכונות המידע. 
 	
+	\vspace{-2pt}
 	\subsection{סימונים}
 	בסיכום הבא נניח את הסימונים הבאים: 
 	\begin{itemize}
@@ -480,22 +85,28 @@
 		\item ט''ל הוא קיצור לטרנספורמציה לינארית. 
 	\end{itemize}
 	
-	\subsection{רשימת נושאים שנוספו לסיכום בהתווסף על החומר של הקורס}
+	\vspace{-2pt}
+	\subsection{רשימת נושאים שהוספתי לסיכום נוסף על החומר של הקורס}
 	\begin{itemize}
 		\item מציאת צורת ג'ורדן באמצעות מרחבים עצמיים מורחבים (עוזר מאוד להבין מה צורת ג'ורדן עושה). 
-		\item תוצאות מצורת ג'ורדן (מופיע בסמסטרים קודמים). 
+		\item תוצאות מצורת ג'ורדן (מופיע בסמסטרים קודמים וברמה הפרקטית חומר למבחן). 
 		\item הרחבה על הראדיקלים של תבניות בי־לינאריות (סתם כי זה מגניב). 
 		\item הרחבת פירוק SVD להעתקות שאינן אופרטורים (מועיל למדמ''חיסטים). 
 		\item מסקנות מ־SVD ושימוש הקונספט של ערכים סינגולריים. 
-		\item מרחבים דואלים (המרצה עשה על זה הרחבה קצרה בסיום ההרצאה האחרונה)
 	\end{itemize}
 	
+	
+	
 	\newpage
-	\setcounter{tocdepth}{3}
+	\setcounter{tocdepth}{3} % show subsubsections
 	\tableofcontents
+	
 %	\listoftheorems
 	
 	\middleText{\textit{בתיאבון}}
+	
+	\npchapter{חקר אופרטורים לינאריים וצורת ג'ורדן}
+	
 	\section[לכסון]{\en{Diagonalization}}
 	\subsection{מבוא לפרק}
 	\defi{נאמר ש־$A$ \textit{מטריצה אלכסונית}, אם: 
@@ -1471,6 +1082,7 @@
 	\begin{proof}[הוכחת המשפט באמצעות הלמה.]
 		$A$ לכסינה אמ''מ $m_A = f_A^{\mathrm{red}}$, ואנחנו יודעים כי $m_A(A) = 0$ ולכן $A$ לכסינה אמ''מ $f_A^{\mathrm{red}}(A) = 0$. 
 	\end{proof}
+	משום ש־$\fRed_A$ כולל את כל הגורמים הלינארים של $f_A$, עבור $\deg f_A > 4$ נוכל למצוא את $\fRed$ (באמצעות משפט 62, אלגו' אויקלדס, וחלוקת פולינומים) ולקוות שהוא ממעלה קטנה יותר, ואז נפרק גורמים לינארים ל־$\fRed$ במקום, ואז כבר יהיה קל למצוא את הריבוי כי נוכל להוציא מ־$f_A$ גורמים לינארים כגורם משותף החוצה. 
 	
 	\subsection{צורת ג'ורדן לאופרטור לינארי נילפוטנטי}
 	\subsubsection{נילפוטנטיות}
@@ -1493,9 +1105,9 @@
 		נפרק למקרים. 
 		\begin{itemize}
 			\item אם $m_T(x)$ לא מתפרק, הוא בהכרח לא קבוע אחרת $m_T(T) \neq 0$ וסתירה, לכן $m_T(x) = (x - \lg)$ לינארי כלשהו (אם לא לינארי ניתן לפרק לגורמים לינארים ואז $m_T$ מתפרק וסתירה). 
-			\item אם $m_T(x)$ מתפרק, אז נוציא גורם לינארי אחד ונקבל $m_T = g_1 \cdots g_i$ כאשר $g$ לינארי, דהיינו ממשפט הפירוק הפרימרי, נניח בשלילה $g_i \neq g_j$ ומהיות $m_T$ מתוקן נקבל $\gcd(g_i, g_j) = 1$ כלומר $V = \ker \bigoplus_{i = 1}^{s}\ker g_i(T)$ ולכן $V$ פריק וסתירה. דהיינו $g_i = g_j$ וסה''כ $m_T(x)$ הוא מהצורה $m_T(x) = g_i^{s} = (x - \lg)^{s}$ כדרוש. 
+			\item אם $m_T(x)$ מתפרק, אז נוציא גורם לינארי אחד ונקבל $m_T = g_1 \cdots g_i$ כאשר $g_i$ לינאריים, דהיינו ממשפט הפירוק הפרימרי, נניח בשלילה $g_i \neq g_j$ ומהיות $m_T$ מתוקן נקבל $\gcd(g_i, g_j) = 1$ כלומר $V = \ker \bigoplus_{i = 1}^{r}\ker g_i(T)$ ולכן $V$ פריק וסתירה. דהיינו $g_i = g_j$ וסה''כ $m_T(x)$ הוא מהצורה $m_T(x) = g_i^{r} = (x - \lg)^{r}$ כדרוש. 
 		\end{itemize}
-		עתה ניגש להוכיח את החלק השני של ההוכחה. משום ש־$m_T(x) = (x - \lg)^{r}$, אזי $0 = M_T(T) = (T - \lg I)^{r}$ ולכן $n(T - \lg I) \le r$, ומהמינימליות של $m_T$ נסיק $n(T - \lg I) = r$ כדרוש. 
+		עתה ניגש להוכיח את החלק השני של ההוכחה (ש־$T - \lg I$ ניל' מדרגה $r$). משום ש־$m_T(x) = (x - \lg)^{r}$, אזי $0 = M_T(T) = (T - \lg I)^{r}$ ולכן $n(T - \lg I) \le r$, ומהמינימליות של $m_T$ נסיק $n(T - \lg I) = r$ כדרוש. 
 	\end{proof}
 	נסמן $S = T - \lg I$ בהקשר לעיל. עוד כדאי להבחין ש־$V$ הוא $S$־איווריאנטי (\textbf{אך לא בהכרח אי־פריק ביחס ל־$S$}) שכן $S(V) = T(V) - \lg V \in V$ מסגירות לכפל בסקלר $\lg$ ולחיבור נגדי. 
 	
@@ -1523,7 +1135,7 @@
 	
 	\theo{$T \co V \to V$ נילפוטנטית, אז כל שרשרת היא בת''ל. }
 	\begin{proof}
-		יהיו $\ag_0 \dots \ag_k \in \F$ כך ש־$\sum_{i = 0}^{k}\ag_i T^{(i)}(v) = 0$. נניח בשלילה שהצירוף אינו טרוויאלי. אז קיים $j$ מינימלי שעבורו $\ag_j \neq 0$. נניח $n$ המקסימלי שלא מאפס. אז: 
+		יהיו $\ag_0 \dots \ag_k \in \F$ כך ש־$\sum_{i = 0}^{k}\ag_i T^{(i)}(v) = 0$. נניח בשלילה שהצירוף אינו טרוויאלי. אז קיים $j$ מינימלי שעבורו $\ag_j \neq 0$. נניח $n$ המקסימלי ש־$T^{n}$ לא מאפס את $v$. אז: 
 		\[ T^{n - j}\cl{\sum \ag_i T^{(i)}(v)} = T^{n - j}\cl{\sum_{i = j}^{k}\ag_iT^{i}(v)} = \ag_jT^{n - 1}(v) + 0 = 0 \]
 		אבל $\ag_j, T^{n - 1} \neq 0$ וזו סתירה. 
 	\end{proof}
@@ -1531,7 +1143,7 @@
 	\textbf{תזכורת. }תמ''ו שקיים לו בסיס שהוא שרשרת, נקרא ציקלי. 
 	
 	\textbf{אנטי־דוגמה: }ישנם מ''וים שאינם $T$־ציקליים. למשל: 
-	\[ V = \ccb{f \co \R^2 \to \R \mid f\pms{x \\ y} - P(x) + h(y) \mid \text{פולינומים ממעלה $\le n$} \ p, h} \]
+	\[ V = \ccb{f \co \R^2 \to \R \mid f\pms{x \\ y} - p(x) + h(y) \mid \text{פולינומים ממעלה $\le n$} \ p, h} \]
 	ו־$T$ אופרטור הגזירה הפורמלית. 
 	כדי ש־$V$ יהיה ציקלי, צריך למצוא בסיס ציקלי שממדו הוא לכל היותר דרגת הנילפוטנטיות. נבחין ש־$n(T) = n  + 1$, וידוע ש־$\dim V = 2n + 1$, ולכן שרשרת מקסימלית באורך $n + 1$ ולכן לא יכול להיות בסיס שרשרת. לכן $V$ אינו $T$־ציקלי. 
 	
@@ -1631,7 +1243,7 @@
 	\end{proof}
 	
 	\begin{Theorem}[משפט ג'ורדן בעבור ט''ל נילפוטנטית 2]
-		עבוד $T \co V \to V$ נילפוטנטית, קיים בסיס $B$ של $V$ שהוא איחור של שרשראות. 
+		עבוד $T \co V \to V$ נילפוטנטית, קיים בסיס $B$ של $V$ שהוא איחוד של שרשראות. 
 	\end{Theorem}
 	\cola{בעבור $B$ בסיס מג'רדן, נסיק: 
 		\[ [T]_B = \pms{\square & 0 & \dots &0 \\ 0 & \square & \ddots & \vdots \\ \vdots & \ddots & \ddots & 0 \\ 0 & \cdots & 0 & \square} \]
@@ -1723,7 +1335,7 @@
 	\end{proof}
 	במילים אחרות – נעזרנו בפירוק פרימרי ע''מ לפרק את המרחב למרחבים $T$־איווראינטים פריקים מינימליים (בהמשך נראה שאלו \textit{המרחבים העצמיים המוכללים} של $T$, שמקיימים כל מיני תכונות נחמדות) ואת המרחבים אליהם פירקנו, ניתחנו בעזרת צורת ג'ורדן להעתקות נילפוטנטיות. 
 	
-	\theo{צורת ג'ורדן היא יחידה עד לכדי סדר בלוקים}
+	\theo{צורת ג'ורדן היא יחידה עד לכדי סדר בלוקים. }
 	%TODO
 	
 	\subsubsection{בעזרת מרחביים עצמיים מוכללים}
@@ -1735,7 +1347,7 @@
 	\defi{\textit{וקטור עצמי מוכלל} הוא וקטור $v \in V$ כך ש־$\exists i \in [n] \co T^{(i)}v = \lg v$. }
 	
 	\rmark{החלק הזה ואילך, אז סוף הפרק, הינו הרחבה שלי בלבד ואילו אינם משפטים המופיעים בקורס. עם זאת, המשפטים להלן מאפשרים להבין בצורה הרבה יותר טובה את צורת ג'ורדן, ולעיתים קרובות תצטרכו להוכיח אותם בעצמכם. }
-	\rmark{מרגישים אבודים? אני ממליץ על \href{https://youtu.be/1L4hvyHGKsE}{הסרטון הבא}. }
+	\rmark{מרגישים אבודים? אני ממש ממליץ על \href{https://youtu.be/1L4hvyHGKsE}{הסדרה הבאה} (פרקים 36-42) (סליחה למי שהמליץ לי על זה במקור, אני לא זוכר מי זה היה אז אני לא אוכל לתת קרדיט). }
 	\theo{תהי העתקה $T$ כללית ו־$\lg \in \F$ סקלר, אז $\genein{\lg} = \nc(T - \lg I)^{\dim V}$ (כאשר $\nc$ המרחב המאפס/הקרנל של המטריצה)}
 	\begin{proof}
 		נוכיח באמצעות הכלה דו כיוונית. הכיוון $\nc(T - \lg I)^{\dim V} \subseteq \genein{\lg}$ טרוויאלי. יהי $v \in \nc(T - \lg I)^{j}$, אם $j < \dim V$ אז $(T - \lg)^{j}v = 0$ ולכן $(T - \lg I)^{\dim V}v = 0$ וסה''כ $v \in \nc(T - \lg I)^{\dim V}$, אחרת $j > \dim V$ ואז הוכחנו $\nc(T - \lg I)^{j} = \nc(T - \lg I)^{\dim V}$. נסיק מעקרון ההחלפה: 
@@ -1803,6 +1415,13 @@
 	
 	\subsection{תוצאות מצורת ג'ורדן}
 	\theo{כמות בלוקי הג'ורדן לע''ע $\lg$ היא הריבוי הגיאומטרי. }
+	\begin{proof}
+		נראה שהריבוי הגיאומטרי $r_{\lg}$ שווה לכמות בלוקי הג'ורדן השייכים ל־$\lg$. בהינתן בלוקי ג'ורדן $J_{k_1}(\lg) \dots J_{k_\ml}(\lg)$ השייכים ל־$\lg$, ידוע שלכל אחד מהם קיים בסיס שרשרת $B_{i} = \{v, (\tl T)v, \dots (\tl T)^{k_i}v\}$ כאשר $\tl T = T - \lg I$. כמו כן ידוע קיום $w_1 \dots w_{r_\lg}$ בלתי תלויים לינארית כך ש־$Tw_i = \lg w_i$ כלומר $w_i \in \ker \tl T$, ומכאן $\tl T w_i = 0$. 
+		\begin{itemize}
+			\item \textbf{חסם עליון: }לכל $k_i$ ידוע ש־$(\tl T)^{k_i}$ הוא המקסימלי שלא מאפס את $v$, כלומר $T((\tl T)^{k_i}v_i) = (\tl T)^{k_i + 1}v = 0$ ולכן $(\tl T)^{k_i}v_i \in \ker \tl T = V_{\lg}$. משום שכל השרשאות בלתי תלויות לינארית (אחרת השרשור שלהן לא יהווה בסיס), בהכרח $\{(\tl T)^{k_i}w_i\}_{i = 1}^{\ml} \subseteq V_{\lg}$ קבוצה בלתי תלוייה לינארית וה־$\Sp$ שלה תמ''ו של $V_{\lg}$, ולכן $\ml \le r_{\lg}$. 
+			\item \textbf{חסם תחתון: }מהחסם העליון, כל $w_i$ יכול להוות סיום של שרשרת, ולכן יש לפחות $r_\lg$ שרשראות שונות (שימו לב: יש לנו חופש בבחירת הבסיס ${w_i}_{i = 1}^{r_{\ml}}$, ומכאן החופש בבחירת הבסיס המג'רדן), ומכאן החסם התחתון.
+		\end{itemize}\envendproof
+	\end{proof}
 	\theo{כמות הוקטורים בבסיס המג'רדן המשוייכים ל־$\lg$ הוא הריבוי האלגברי $d_{\lg}$ (ניסוח אחר: סכום גדלי הבלוקים השייכים ל־$\lg$ בצורת הג'ורדן הוא $d_{\lg}$). }
 	\begin{proof}
 		ראינו בצורת ג'ורדן בעזרת פירוק למרחבים עצמיים מוכללים, שמספר הוקטורים השייכים ל־$\lg$ הוא $\dim \genein{\lg}$ וידוע שזה מ''ו מממד $d_{\lg}$. סה''כ הראינו את הדרוש. 
@@ -1821,9 +1440,18 @@
 	\begin{proof}
 		ממשפט ג'ורדן ל־$A$ יש צורת ג'ורדן $\Lg$, כלומר קיימת $P$ הפיכה כך ש־$P\op \Lg P = A$ ו־$\Lg$ מטריצה אלכסונית עם בלוקי גו'רדן. נבחין בכך ש־$A^{T} = (P\op \Lg P)^{T} = P^{T}\Lg^{T}(P\op)^{T}$, כלומר $A^{T} \sim \Lg^{T} \land A \sim \Lg$. נותר להוכיח $\Lg \sim \Lg^{T}$, כלומר, כל בלוק ג'ורדן $J_i(\lg) \sim J_i(\lg)^{T}$. טענה זו אכן מתקיימת בעבור מעבר לבסיס הסדור $(e_1 \dots e_n) \to (e_n \dots e_1)$. סה''כ אכן כל מטריצה דומה לשחלוף שלה. 
 	\end{proof}
+	\theo{תהי $A \in M_n(\F)$ מטריצה מעל $\F$ שדה. אז בהינתן $\lg_1 \dots \lg_k$ הערכים העצמיים של $A$ מעל $\K$ הרחבת $\F$ לסגור אלגברית, אז $\det A = \prod_{i = 1}^{k}\lg_i^{d_{\lg_i}}$. }\begin{proof}
+		ידוע של־$\F$ קיימת הרחבה ל־$\K$. מעל $\K$, ל־$A$ יש צורת ג'ורדן $A = P\op N P$ כך ש־$N$ מטריצת בלוקים הכוללת לפחות $k$ בלוקים, כאשר הבלוק ה־$\square_i$ יסומן להיות הבלוק הכולל את בלוקי הג'ורדן המשוייכים לע''ע $\lg_i$. אזי $\square_i$ מטריצה משולשית עליונה מגודל $d_i$ (ממשפט קודם, לפיו כמות הוקטורים המשוייכים לע''ע $\lg$ היא $d_\lg$) עם $\lg_i$ על האלכסון ולכן $\det \square_i = \lg_i^{d_i}$. מדטרמיננטה של מטריצת בלוקים נסיק:
+		\[ \det A = \det P\op NP = \smash{\underbrace{\det\smash{\overbrace{P\op P}^{I}}}_{1}} \cdot \det N = \prod_{i = 1}^{k} \det\square_i = \prod_{i = 1}^{k}\lg_i^{d_i} \]
+		כדרוש. 
+	\end{proof}
 	
 	
 	\npage
+	
+	\npchapter{הגדרה וחקר מרחבי מכפלה פנימית}
+	
+	
 	\section[תבניות בי־לינאריות]{\en{Bi-Linear Forms}}
 	\subsection{הגדרות בסיסיות בעבור תבניות בי־לינאריות כלליות}
 	
@@ -3266,180 +2894,7 @@
 	\npage
 	
 	
-	
-	\section[נספחים]{\en{Appendices}}
-	בניגוד לפרק הבא, הפרק הזה לא מעניין בכלל. הוא מסכם בקצרה אלגוריתמים מועילים שרואים בתרגולים וכדאי לזכור (\textbf{אין} כאן סיכום מלא של התרגולים). 
-	\subsection{אלגוריתמים}
-	
-	\begin{enumerate}[A']
-		\item \textbf{לכסון: }בהינתן $A \in M_n(\F)$ מטריצה. 
-		\begin{itemize}
-			\item נחשב את $f_A$
-			\item נמצא את שורשי $f_A$. אם אנו מתקשים למצוא את שורשי הפולינום, נמצא את $\fRed$. 
-			\item לכל ע''ע $\lg_i$, נמצא בסיס למרחב העצמי באמצעות חישוב $\nc(\lg_i I - A)$. איברי הבסיס יהיו הו''עים בעבור הע''ע $\lg_i$. 
-			\item סה''כ $\diag(\lg_1 \dots \lg_n)$ המטריצה האלכסונית המתקבלת ע''י מטריצת מעבר הבסיס הנתונה ע''י הו''עים מהשלב הקודם. 
-		\end{itemize}
-		
-		\item \textbf{ג'רדון מטריצה כללית: }
-			תהי $A \in M_n(\F)$ מטריצה שהפולינום האופייני שלה $f_A(x) = \prod_{j = 1}^{m}(x - \lg_j)^{r_j}$ (בה''כ מתקיים מעל הרחבה לשדה סגור אלגברית). לכל $j \in [m]$ נבצע את הפעולות הבאות: 
-			\begin{itemize}
-				\item נמצא את הפולינום $f_A(x)$ האופייני ונפרק אותו לכדי גורמים לינאריים. 
-				\item נחשב את $V_{\lg_j}^{(i)} := \nc((A - \lg_j)^{\ell_j})$ עד שנקבל $\dim\cl{V_{\lg_j}^{(\ml_j)}} = m_i$ (המרחב העצמי המוכלל). 
-				
-				\textit{הערה: }אפשר באופן חלופי לחשב את הפולינום המינימלי, שכן ראינו ש־$m_i$ הריבוי של $\lg_i$ ב־$m_T(x)$. 
-				\item נחזור על האלגו' למציאת צורת ג'ורדן למטריצה נילפוטנטית: 
-				\begin{itemize}
-					\item נגדיר $B_{\lg_j} = \varnothing$
-					\item לכל $i \in [\ell_j]$ נבצע: 
-					\begin{itemize}
-						\item נמצא בסיס כלשהו $C_{\lg_j}^{(i)-}$ של $V_{\lg_j}^{(i - 1)}$. 
-						\item נוסיף ל־$C_{\lg_j}^{(i)-}$ את $B \cap (V_{\lg_j}^{(i)} \setminus V_{\lg_j}^{(i - 1)})$
-						\item נשלים את $C_{\lg_j}^{(i)-}$ לבסיס של $V_{\lg_j}^{(i)}$. נסמן ב־$C_{\lg_j}^{(i)+}$. 
-						\item נוסיף ל־$B_{\lg_j}$ את $\ccb{(A - \lg_jI)^{k}v \mid 0 \le k < i, \ v \in C_{\lg_j}^{(i)+}}$. 
-					\end{itemize}
-					\item נגדיר $B = \bigcup_{j = 1}^{m} B_{\lg_j}$ הבסיס המג'רדן. 
-				\end{itemize}
-			\end{itemize}
-		
-		\item \textbf{מציאת $\bm{J_n(\lg)^{m}}$: }ידוע $J_n(\lg) = \lg I_n + J_n(0)$ ולכן מהיות $\lg I, J_n(0)$ מתחלפות נקבל מנוסחת הבינום של ניוטון: 
-			\[ (J_n(\lg)^{m})_{ij} = \begin{cases}
-				0 & j > i \\ 0 & j < i - m \\ \binom{m}{i - j}\lg^{m - (i - g)} & \other
-			\end{cases} \]
-			דהיינו: 
-			\[ J_n(\lg)^{m} = \pms{
-				\binom{m}{0}\lg^{m} \\ 
-				\binom{m}{1}\lg^{m - 1} & \binom{m}{0}\lg^{m} \\
-				\vdots & \ddots & \ddots \\
-				\binom{m}{m}\lg^{0} & \binom{m}{m - 1}\lg^{1} &\ddots& \ddots \\
-				0 & \binom{m}{m}\lg^{0} &\cdots&\ddots& \binom{m}{0}\lg^{m} \\
-				\vdots & 0 & \binom{m}{m}\lg^{0} &\cdots& \binom{m}{m - 1}\lg^{1} & \binom{m}{0}\lg^{m} \\
-				0 & \vdots & \ddots & \ddots
-			} \]
-		\item \textbf{גראם־שמידט: }
-		נרצה למצוא בסיס אורתונורמלי/אורתוגונלי לממ''פ כלשהו. יהי בסיס $B = v_1 \dots v_n$ של $V$. 
-		\begin{itemize}
-			\item \textbf{למציאת בסיס אורתוגונלי}: נגדיר לכל $i \in [n]$
-			\[ \tl v_i = v_i - \sum_{j = 1}^{i - 1}\frac{\mut{v_i}{\tl v_j}}{\norm{v_k}^{2}} \cdot \tl v_j \]
-			ואז $(\tl v_1 \dots \tl v_n)$ בסיס אורתוגונלי (הבחנה: התהליך רקורסיבי, נתחיל מ־$i = 1$ ונסיים ב־$i = n$). במידת הצורך נוכל לנרמל בסוף ע''י הגדרת: 
-			\[ \bar v_i = \frac{\tl v_i}{\norm{\tl v_i}} \]
-			ואז $(\bar v_1 \dots \bar v_n)$ אורתונורמלי מסיבות ברורות. 
-			\item \textbf{מציאת בסיס אורתונורמלי}: (פחות יציב נומרית מאשר למצוא אורתונורמלי ואז לנרמל, אך יותר קל חישובית) נגדיר לכל $i \in [n]$: 
-			\[ \bar v_i = \frac{1}{\norm{\tl v_i}} \Bigg(\smash{\underbrace{v_i - \sum_{j = 1}^{i - 1}\mut{v_i}{\bar v_j} \cdot \bar v_j}_{{\tl v_i}}}\Bigg) \]
-			בצורה זו נוכל לנרמל תוך כדי התהליך. 
-		\end{itemize}
-		\item \textbf{אלגוריתם אוקלידס לתחום אוקלידי} (בפרט בעבור פולינומים ומספרים שלמים): ניעזר בזהות $\gcd(a, b) = \gcd(a, b + qa)$. כדי למצוא את $\gcd(a, b)$ נחזור על הפעולה הבאה: בה''כ $a > b$, בתחום אוקלידי מוגדרת השארית $r$ כך ש־$a = bq + r$. לכן $\gcd(a, b) = \gcd(bq + r, b) = \gcd(b, r)$, ומהגדרה $N(r) < N(b)$ כאשר $N$ הנורמה האוקלידית. לכן נוכל להמשיך בתהליך עד שנגיע לזוג $\gcd(a', b')$ כך שאחד מהם (בה''כ $b'$) מקיים $b' = 0$ ואז $\gcd(a', b') = a'$. בחוג המספרים השלמים לאלגו' סיבוכיות $\mathcal{O}(\log_\vphi(\max\{a, b\}))$. 
-		\item \textbf{נרמול וקטור: }נגדיר $v = \frac{v}{\norm{v}}$ הוא $v$ מנורמל. 
-		\item \textbf{בדיקת $\bm{T}$־איווריאנטיות: }בהינתן $B$ בסיס של $W \subseteq V$ נחשב את $T(B)$ ונבדוק האם $T(B) \subseteq W$ ע''י מעבר על כל איבר בסיס ודירוג. 
-		\item \textbf{חישוב $\bm{A\op, A^{n + c}}$ באמצעות משפט קיילי־המילטון: }ידוע $f_A(A) = 0$, ואם נשאר גורם חופשי $\ag_nA^{n} + \ag_0 A^{0} = 0$ אז נוכל להעביר אגפים ולקבל: $I = A^0 = A\cl{\frac{\sum_{k = 1}^{n}\ag_kA^{k - 1}}{\ag_0}}$ ולכן $A\op = \frac{1}{\ag_0}\cl{\sumnko \ag_k A^{k - 1}}$. כדי לחשב את $A^{n + c}$ תחילה נחשב את $A^{n}$ באמצעות העברת אגפים וקבלת $A^{n} = -\sum_{k = 0}^{n - 1} \ag_kA^{k}$ (כי $\ag_n = 1$ כי הפולינום מתוקן). עתה, נכפול ב־$A$ בדיוק $c$ פעמים, ומשום שידוע $A^{n}$, בכל חלוקה שבא נקבל $A^{n + 1}$ נוכל להוציא גורם משותף ולקבל $A(A^{n}) = \sumnko \bg_kA^{k}$ ביטוי שהכפל הגבוהה ביותר בו תמיד $A^{n - 1}$. סה''כ נוכל לבטא את $A^{n + c}$ כקומבינציה לינארית של $I \cdots A^{n - 1}$, שעבור מספרי $n$ קטנים קל לחשב. 
-		\item \textbf{ייצוג בבסיס אורתוגונלי: }לכל $u \in V$ בהינתן $(v_1 \dots v_n)$ בסיס אורתוגונלי, מתקיים $u = \sumnio \frac{\mut{u}{v_i}}{\norm{v_i}^{2}} \cdot v_i$ (אין צורך לחלק בנורמה בעבור אורתונורמלי). 
-		\item \textbf{מציאת היטל אורתוגונלי: }בהינתן $(u_1 \dots u_n)$ בסיס אורתוגונלי של $U$ תמ''ו, אז $p_U(v) = \sum_{i = 1}^{k}\frac{\mut{v}{u_i}}{\norm{u_i}^2}u_i$ (גם כאן אין צורך לחלק בנורמה בעבור בסיס אורתונורמלי). 
-		
-		לחילופין, אפשר להיעזר בעובדה שבהינתן $v$ המוטל על $U = (u_1 \dots u_n)$, נאמר ו־$u$ היא התוצאה, אז ניתן לבטאו כ־$v = u + u^{\perp}$ כאשר $u\ort \in U\ort, u \in U$. לשם כך, נסמן ב־$u$ את התוצאה, ואז ידוע $v - u = u\ort$ כלומר $v - u \perp u_i$ לכל $i \in [n]$. קיבלנו מערכת לינארית משוואות ב־$n$ נעלמים שאפשר לדרג ולפתור. 
-		\item \textbf{מציאת ללכסון אוניטרי/אורתוגונלי} (אם קיים ממשפט הפירוק הספקטרלי)\textbf{: }
-		\begin{itemize}
-			\item נמצא את הע''ע של ההעתקה. 
-			\item לכל ע''ע, נמצא בסיס עצמי של ו''ע ואז נבצע עליו בראם־שמידט כדי לקבל וקטורים אורתוגונליים/אורתונורמליים. 
-			\item נשרשר את הבסיסים לקבלת בסיס אורתוגונלי/אורתונורמלי מלכסן. 
-		\end{itemize}
-		בניסוח אחר: נלכסן את ההעתקה $T$, אבל נעשה גראם־שמידט על כל ו''ע. כדי להוכיח שאלגו' זה אכן עובד, יש להוכיח את הטענה הנפוצה לפיה כל שני מרחבים עצמיים אורתוגונליים בהינתן העתקה נורמלית. 
-		\item \textbf{מציאת פירוק SVD: }בהינתן $T$ העתקה, נמצא את הפירוק הספקטרלי של $TT^*, T^*T$ ומהזהויות		 $TT^* = U\Sg^2U^{T}$ ו־$T^*T = V\Sg^2 V^{T}$, נקבל $T = U\Sg V^{T}$. 
-	\end{enumerate}
-	
-	\subsection{תרגילים מומלצים}
-	תת־הנושא הבא כולל תרגילים נפוצים במיוחד, או תרגילים קשים ומעניינים שאספתי ממבחני עבר. אני ממליץ בחום לעבור על כולם לקראת המבחן. 
-	
-	\exec{תהי $T$ מעל ממ''פ מרוכב, ו־$f_T = g \cdot h$ כאשר $g, h \in \F[x]$ פולינומים זרים, 
-		\begin{enumerate}[A']
-			\item הוכח שאם $T$ לכסינה, מתקיים $\ker(gT) = \ker(hT)^{\perp}$. 
-			\item הוכח שלכל $T$, מתקיים $\ker gT \oplus \ker hT = V$ (בסעיף זה אין ערך להיות ההעתקה מעל ממ''פ). 
-		\end{enumerate}
-		\textit{הדרכה: }נסו להתחיל מהמקרה של שני ערכים עצמיים מורחבים, ואז להכליל באמצעות פירוק למרחבים עצמיים.
-	} 
-	
-	\exec{הוכח שלכל $T$ נורמאלית, עם ע''עים $\lg_1 \dots \lg_k$, מתקיים לכל $n, m \in [k]$ ש־$\forall v \in V_{\lg_n}, \tl u \in V_{\lg_m} \co \mut{v}{u} = 0$ (דהיינו $V_{\lg_n}$ ניצב ל־$V_{\lg_m}$). }
-	\exec{הוכח שלכל $T \co V \to V$ מתקיים $\ker(T^*) = \Img(T)^{\perp}$ וגם $\Img(T^*) = \ker(T)^{\perp}$}
-	\exec{הוכח שלכל $T \co V \to V$ נורמלית, מתקיים: 
-		\begin{enumerate}[A']
-			\item \hfil $\ker T = \ker T^*$
-			\item \hfil $\Img T = \Img T^*$
-			\item \hfil $V = \ker T \oplus \Img T$
-		\end{enumerate}}
-	\exec{ללא שימוש בפירוק SVD, הראה שהערך הסינגולרי הגדול ביותר והקטן ביותר חוסמים את הנורמה $\norm{Tv}$ לכל $\norm{v} = 1$. }
-	
-	\subsection{סיכום תוצאות מרכזיות}
-	\subsubsection{סיכום פירוק פרימרי וצורת ג'ורדן}
-	התחלנו בלנסות ללכסן מטריצות. הבחנו שלא כל מטריצה היא לכסינה, ובהן מתקיים $r_\lg < d_\lg$ עבור ע''ע כלשהו. את הבעיה הזו תקפנו בשני כיוונים: 
-	\begin{itemize}
-		\item מצאנו את \textbf{משפט הפירוק הפרימרי}, שאומר שבהינתן פירוק של הפולינום המינימלי למכפלת פולינומים זרים $m_T(x) = g_1 \dots g_r$, אז $V = \bigoplus_{i = 1}^{r}\ker g_i(T)$ וגם $m_{T|_(\ker g_i(T))} = g_i$ כלומר $g_i$ הפולינום המינימלי של צמצמום $T$ על המ''ו $\ker g_i(T)$. גם הראינו שאם במקום $m_T(x)$ משתמשים בפולינום כלשהו $f$ המאפס את $T$ (כלומר $f(T) = 0$) החלק הראשון של המשפט עדיין מתקיים. 
-		
-		אז פשוט זרקנו את המשפט הזה על העתקה כללית, מעל שדה סגור אלגברית, ואז ראינו שבכל תמ''ו שפירקנו אליו אפשר להגדיר העתקה נילפוטנטית מהצורה $T - \lg I$. את המקרה של נילפוטנטיות חקרנו בנפרד, וגילינו שאפשר לייצג העתקה נילפוטנטית כמטריצת בלוקים $\diag(J_{x_1}(0) \dots J_{x_k}(0))$. כששירשרנו את הבסיסים והוספנו את ה־$\lg I$ בחזרה, קיבלנו את צורת ג'ורדן המתבקשת.
-		\item בצורה אחרת עשינו בדיוק את אותו הדבר. אך במקום להבטיח את משפט הפירוק הפרימרי ולגלות שדברים עובדים, ניסינו להבין לאילו בדיוק תתי־מרחבים המרחב מתפרק. מצאנו שהמרחבים האלו הם \textbf{המרחבים העצמיים המורחבים} של $T$ (והוכחנו את זה ללא תלות במשפט הפירוק הפרימרי), ועליהם כבר יכולנו להגיד הרבה יותר דברים. לדוגמה: 
-		\begin{itemize}
-			\item הגודל של מ''ו מורחב המשוייך לע''ע $\lg$ הוא הריבוי האלגברי, ולכן זוהי כמות הו''עים המשוייך לאותו הע''ע.
-			\item העתקה הנילפוטנטית $T - \lg I$ בצמצום על המ''ו הזה, בעלת דרגת נילפונטיות שהיא הריבוי של $\lg$ ב־$m_T$, ולכן זהו גודל בלוק הג'ורדן המירבי עם ע''ע $\lg$.
-			\item כל וקטור ב־$V(\lg)$ המ''ו העצמי הלא מורחב פותח שרשרת אחרת, ולכן כמות בלוקי הג'ורדן לע''ע $\lg$ הוא $\dim V(\lg) = r_\lg$ הריבוי הגיאומטרי. 
-		\end{itemize}
-	\end{itemize}
-	
-	הקטע הכיפי, הוא שצורת הג'ורדן היא יחידה עד כדי סדר בלוקים. לכן, כל המסקנות שלנו לגבי איך נראית צורת ג'ורדן שפיתחנו בשיטה כזו או אחרת, תקפות למעשה לכל צורת ג'ורדן של ההעתקה/מטריצה. 
-	
-	''על הדרך``, קיבלנו כל מני תוצאות מעניינות: 
-	\begin{itemize}
-		\item אם הפולינום האופייני מתפרק, האופרטור ניתן לשילוש (בפרט כל אופרטור ניתן לשילוש מעל שדה סגור אלגברית). 
-		\item הבחנו בקיום המטריצה המצורפת $A_f$, שהראתה לנו שלכל פולינום מתוקן קיימת מטריצה שהוא הפולינום האופייני שלה (הגדרתה מופיע בהמשך הסיכום). 
-		\item ג'ירדון ולכסון הוכחו ככלים יעלים לפתירת נוסחאות נסיגה לינאריות. 
-	\end{itemize}
-	בדרך, עברנו דרך תורת החוגים בעיקר כדי לצאת עם שתי הטענות הבאות: 
-	\begin{itemize}
-		\item חוג הפולינומים הוא תחום אוקלידי (ובפרט ראשי), מה שמאפשר לנו לחלק פולינומים עם שארית. 
-		\item קבוצת הפולינומים המאפסים של $T$ היא אידיאל, ומהיות חוג הפלינומים תחום ראשי, הוא נוצר על ידי פולינום מסויים שסימנו ב־$m_T$ (שמהגדרה הוא המינימלי ביחס ההכלה). 
-	\end{itemize}
-	
-	
-	\subsubsection{סיכום תבניות בי־לינאריות}
-	התעניינו באופן מיוחד בשלושה סוגים של תבניות בי־לינאריות: 
-	\begin{itemize}
-		\item \textbf{תבנית חיובית, }(או אי־שלילית וכו'), כזו המקיימת $f(v, v) \ge 0$ לכל $v \in V$, מה ששקול להיות התבנית הריבועית שהיא מגדירה, חיובית גם היא. תבנית היא חיובית אם הסינגטורה $\sg_+ = n$. 
-		\item \textbf{תבנית סימטרית. }הבחנו שכל תבנית אפשר לפרק לחלק סימטרי וחלק אנטי־סימטרי, ותבנית ריבועית מתייחסת לחלק הסימטרי בלבד (ואף שיש זיווג בין תבניות סימטריות לריבועיות). הבחנו שהמייצגת של תבנית כזו, סימטרית גם. ראינו שאם נשלב את ההנחה של סימטריות עם תבנית מוגדרת חיובית, אז נקבל מכפלה פנימית. 
-		\item \textbf{תבנית לא־מנוונת, }שמתקבלת ישירות מהגדרת הראדיקל של התבנית. ראינו שתבנית היא לא־מנוונת אמ''מ המטריצה המייצגת שלה הפיכה. 
-	\end{itemize}
-	הבחנו שבמידה והמטריצה המייצגת הרמיטית, אז הסימן של הערכים העצמיים קובע את הסינגטורה (זאת כי פירוק ספקטרלי הוא לא רק דמיון, אלא גם חפיפה!). 
-	\subsubsection{סיכום נושא הפירוקים}
-	יש לנו מספר סוגי העתקות שעניינו אותנו באופן מיוחד: 
-	\begin{center}\begin{tabular}{|c|c|c|c|}
-			\hline \textbf{הרמיטית}/\textbf{סימטרית} & \textbf{אורתוגונלית}/\textbf{אוניטרית} & \textbf{נורמאלית} & \textbf{$\C$/$\R$} \\
-			\hline $T^* = T$ & $T^* = T\op$ & $TT^* = T^*T$ & \textbf{הגדרה} \\
-			\hline $\mut{Tv}{u} = \mut{v}{Tu}$ & $\mut{Tv}{Tu} = \mut{v}{u}$ & $\mut{Tv}{Tu} = \mut{T^*v}{T^*u}$ & \textbf{מ''פ} \\
-			\hline $\lg \in \R$ & $\sof{\lg} = 1$ & $Tv = \lg v \iff T^*v = \bar\lg v$ & \textbf{ע''עים} \\
-			\hline
-	\end{tabular}\end{center}
-	
-	כאשר העתקה אוניטרית/אורתוגונלית נקראת באופן כללי \textbf{איזומטריה לינארית}. להגדרות אילו, נלווים המשפטים הבאים: 
-	\begin{itemize}
-		\item \textbf{משפט הפירוק הספקטרלי ב־$\R$: }העתקה היא סימטרית אמ''מ היא לכסינה אורתונורמלית. 
-		\item \textbf{משפט הפירוק הספקטרלי ב־$\C$: }אם העתקה היא נורמאלית, אז היא לכסינה אורתונורמלית. 
-		\item $T$ לכסינה אותורנורמלית אמ''מ $T$ לכסינה אורתוגונלית (תוצאה ישירה מנרמול). 
-	\end{itemize}
-	וההבחנה שאם $A$ מטריצה לכסינה אורתונורמלית (או מייצגת העתקה לכסינה אורתונורמלית), אז קיימת מטריצת מעבר בסיס $U$ אוניטרית/אורתוגונלית ו־$\Lg$ אלכסונית כך ש־$A = U\Lg U^*$. בפרט הפירוק הספקטרלי של מטריצה הניתנת ללכסון אונטירי, הוא פירוק ה־SVD שלה. 
-	
-	יש לנו שתי הגדרות לחיוביות (ושליליות, וכיו''ב): 
-	\begin{itemize}
-		\item \textbf{מטריצה מוגדרת חיובית: }אמ''מ היא מייצגת תבנית בי־לינארית חיובית, כלומר $\forall x \in \F^{n} \co x^TAx > 0$. 
-		\item \textbf{מטריצה חיובית: }הגדרה מצחיקה שלא מקובלת בשום מקום אחר חוץ מבקורס הזה, ודורשת ש־$\mut{Av}{v} > 0$. כל העתקה היא חיובית אמ''מ תחת ייצוג בבסיס אורתונורמלי, המטריצה המיייצגת חיובית. 
-	\end{itemize}
-	למזלנו, ההגדרות מתלכדות במקרה של ההעתקה או מטריצה צמודה לעצמה. זהו המקרה הרלוונטי ל\textbf{פירוק פולארי} שמפרק מטריצה כללית $A$ לכפל של מטריצה אוניטרית $U$ ומטריצה הרמיטית מוגדרת־חיובית $P$ כך ש־$A = UP$ (''לסובב ואז לשנות גודל``). למעשה, לא דיברנו בקורס כלל על מטריצה חיובית (בהבט של $\mut{Av}{v} > 0$) שאיננה צמודה לעצמה, וכאמור במקרה זה היא בכל מקרה מוגדרת־חיובית. 
-	
-	כבר ידוע שהע''עים של מטריצה צמודה לעצמה (כלומר הרמיטית/סימטרית) הם בהכרח ממשיים. אבל במקרה של מטריצה מוגדרת, נוכל לטעון שמטריצה מוגדרת חיובית אמ''מ הע''עים אף חיוביים (ובאופן דומה לגבי א־שלילית, שלילית, וא־חיובית)!
-	
-	בגלל שכל מכפלה פנימית היא סימטרית ובפרט צמודה לעצמה, אז כדי לקבוע שהמכפלה הפנימית אכן חיובית, יש רק צורך ללכסן את התכנית הריבועית כדי לוודא שהיא אכן מכפלה פנימית. 
-	
-	
-	
-	
-	\npage
-	
-	
-	
+	\npchapter{נספחים}
 	\section[מרחבים דואלים]{\en{Dual Spaces}}
 	את הפרק להלן המרצה של אודיסאה, בן בסקין, החליט להעביר, כדי לתת ראיה נרחבה יותר על לינארית – מנקודת מבט של תורת הקטגוריות. הרעיון הוא להבחין בכך ש־(א) בין כל קטגוריה לדואל שלה קיים פונקטור קונטראינווריאנטי, ו־(ב) הן הצמדת העתקה, והן פונקציונל, הן קטגוריות דואליות למרחב הוקטורי, ולכן איזומורפיות אחת לשנייה (שכן הדואל יחיד עד לכדי איזומורפיזם). 
 	\subsection{הגדרות בסיסיות}
@@ -3564,6 +3019,181 @@
 	נבחין ש־: 
 	\[ [T^*]^{\bc^*}_{\ac^*} = ([T]^{\ac}_{\bc})^T \]
 	כאשר $\ac$ בסיס ל־$V$, $\ac^*$ ל־$V^*$, $\bc$ ל־$W$, $\bc^*$ ל־$W^*$. 
+	
+	
+	\npage
+	
+	
+	\section[סיכום תוצאות מרכזיות]{\en{Summary of Notable Result}}
+	\subsection{סיכום פירוק פרימרי וצורת ג'ורדן}
+	התחלנו בלנסות ללכסן מטריצות. הבחנו שלא כל מטריצה היא לכסינה, ובהן מתקיים $r_\lg < d_\lg$ עבור ע''ע כלשהו. את הבעיה הזו תקפנו בשני כיוונים: 
+	\begin{itemize}
+		\item מצאנו את \textbf{משפט הפירוק הפרימרי}, שאומר שבהינתן פירוק של הפולינום המינימלי למכפלת פולינומים זרים $m_T(x) = g_1 \dots g_r$, אז $V = \bigoplus_{i = 1}^{r}\ker g_i(T)$ וגם $m_{T|_(\ker g_i(T))} = g_i$ כלומר $g_i$ הפולינום המינימלי של צמצמום $T$ על המ''ו $\ker g_i(T)$. גם הראינו שאם במקום $m_T(x)$ משתמשים בפולינום כלשהו $f$ המאפס את $T$ (כלומר $f(T) = 0$) החלק הראשון של המשפט עדיין מתקיים. 
+		
+		אז פשוט זרקנו את המשפט הזה על העתקה כללית, מעל שדה סגור אלגברית, ואז ראינו שבכל תמ''ו שפירקנו אליו אפשר להגדיר העתקה נילפוטנטית מהצורה $T - \lg I$. את המקרה של נילפוטנטיות חקרנו בנפרד, וגילינו שאפשר לייצג העתקה נילפוטנטית כמטריצת בלוקים $\diag(J_{x_1}(0) \dots J_{x_k}(0))$. כששירשרנו את הבסיסים והוספנו את ה־$\lg I$ בחזרה, קיבלנו את צורת ג'ורדן המתבקשת.
+		\item בצורה אחרת עשינו בדיוק את אותו הדבר. אך במקום להבטיח את משפט הפירוק הפרימרי ולגלות שדברים עובדים, ניסינו להבין לאילו בדיוק תתי־מרחבים המרחב מתפרק. מצאנו שהמרחבים האלו הם \textbf{המרחבים העצמיים המורחבים} של $T$ (והוכחנו את זה ללא תלות במשפט הפירוק הפרימרי), ועליהם כבר יכולנו להגיד הרבה יותר דברים. לדוגמה: 
+		\begin{itemize}
+			\item הגודל של מ''ו מורחב המשוייך לע''ע $\lg$ הוא הריבוי האלגברי, ולכן זוהי כמות הו''עים המשוייך לאותו הע''ע.
+			\item העתקה הנילפוטנטית $T - \lg I$ בצמצום על המ''ו הזה, בעלת דרגת נילפונטיות שהיא הריבוי של $\lg$ ב־$m_T$, ולכן זהו גודל בלוק הג'ורדן המירבי עם ע''ע $\lg$.
+			\item כל וקטור ב־$V(\lg)$ המ''ו העצמי הלא מורחב פותח שרשרת אחרת, ולכן כמות בלוקי הג'ורדן לע''ע $\lg$ הוא $\dim V(\lg) = r_\lg$ הריבוי הגיאומטרי. 
+		\end{itemize}
+	\end{itemize}
+	
+	הקטע הכיפי, הוא שצורת הג'ורדן היא יחידה עד כדי סדר בלוקים. לכן, כל המסקנות שלנו לגבי איך נראית צורת ג'ורדן שפיתחנו בשיטה כזו או אחרת, תקפות למעשה לכל צורת ג'ורדן של ההעתקה/מטריצה. 
+	
+	''על הדרך``, קיבלנו כל מני תוצאות מעניינות: 
+	\begin{itemize}
+		\item אם הפולינום האופייני מתפרק, האופרטור ניתן לשילוש (בפרט כל אופרטור ניתן לשילוש מעל שדה סגור אלגברית). 
+		\item הפולינום המינימלי מתפרק לגורמים לינאריים שונים, אם ורק אם המטריצה לכסינה, אם ורק אם $m_T = \fRed_T$. 
+		\item הבחנו בקיום המטריצה המצורפת $A_f$, שהראתה לנו שלכל פולינום מתוקן קיימת מטריצה שהוא הפולינום האופייני שלה (הגדרתה מופיע בהמשך הסיכום). 
+		\item ג'ירדון ולכסון הוכחו ככלים יעלים לפתירת נוסחאות נסיגה לינאריות. 
+	\end{itemize}
+	בדרך, עברנו דרך תורת החוגים בעיקר כדי לצאת עם שתי הטענות הבאות: 
+	\begin{itemize}
+		\item חוג הפולינומים הוא תחום אוקלידי (ובפרט ראשי), מה שמאפשר לנו לחלק פולינומים עם שארית. 
+		\item קבוצת הפולינומים המאפסים של $T$ היא אידיאל, ומהיות חוג הפלינומים תחום ראשי, הוא נוצר על ידי פולינום מסויים שסימנו ב־$m_T$ (שמהגדרה הוא המינימלי ביחס ההכלה). 
+	\end{itemize}
+	
+	
+	\subsection{סיכום תבניות בי־לינאריות}
+	התעניינו באופן מיוחד בשלושה סוגים של תבניות בי־לינאריות: 
+	\begin{itemize}
+		\item \textbf{תבנית חיובית, }(או אי־שלילית וכו'), כזו המקיימת $f(v, v) \ge 0$ לכל $v \in V$, מה ששקול להיות התבנית הריבועית שהיא מגדירה, חיובית גם היא. תבנית היא חיובית אם הסינגטורה $\sg_+ = n$. 
+		\item \textbf{תבנית סימטרית. }הבחנו שכל תבנית אפשר לפרק לחלק סימטרי וחלק אנטי־סימטרי, ותבנית ריבועית מתייחסת לחלק הסימטרי בלבד (ואף שיש זיווג בין תבניות סימטריות לריבועיות). הבחנו שהמייצגת של תבנית כזו, סימטרית גם. ראינו שאם נשלב את ההנחה של סימטריות עם תבנית מוגדרת חיובית, אז נקבל מכפלה פנימית. 
+		\item \textbf{תבנית לא־מנוונת, }שמתקבלת ישירות מהגדרת הראדיקל של התבנית. ראינו שתבנית היא לא־מנוונת אמ''מ המטריצה המייצגת שלה הפיכה. 
+	\end{itemize}
+	הבחנו שבמידה והמטריצה המייצגת הרמיטית, אז הסימן של הערכים העצמיים קובע את הסינגטורה (זאת כי פירוק ספקטרלי הוא לא רק דמיון, אלא גם חפיפה!). 
+	\newpage
+	\subsection{סיכום נושא הפירוקים}
+	יש לנו מספר סוגי העתקות שעניינו אותנו באופן מיוחד: 
+	\begin{center}\begin{tabular}{|c|c|c|c|}
+			\hline \textbf{הרמיטית}/\textbf{סימטרית} & \textbf{אורתוגונלית}/\textbf{אוניטרית} & \textbf{נורמאלית} & \textbf{$\C$/$\R$} \\
+			\hline $T^* = T$ & $T^* = T\op$ & $TT^* = T^*T$ & \textbf{הגדרה} \\
+			\hline $\mut{Tv}{u} = \mut{v}{Tu}$ & $\mut{Tv}{Tu} = \mut{v}{u}$ & $\mut{Tv}{Tu} = \mut{T^*v}{T^*u}$ & \textbf{מ''פ} \\
+			\hline $\lg \in \R$ & $\sof{\lg} = 1$ & $Tv = \lg v \iff T^*v = \bar\lg v$ & \textbf{ע''עים} \\
+			\hline
+	\end{tabular}\end{center}
+	
+	כאשר העתקה אוניטרית/אורתוגונלית נקראת באופן כללי \textbf{איזומטריה לינארית}. להגדרות אילו, נלווים המשפטים הבאים: 
+	\begin{itemize}
+		\item \textbf{משפט הפירוק הספקטרלי ב־$\R$: }העתקה היא סימטרית אמ''מ היא לכסינה אורתונורמלית. 
+		\item \textbf{משפט הפירוק הספקטרלי ב־$\C$: }אם העתקה היא נורמאלית, אז היא לכסינה אורתונורמלית. 
+		\item $T$ לכסינה אותורנורמלית אמ''מ $T$ לכסינה אורתוגונלית (תוצאה ישירה מנרמול). 
+	\end{itemize}
+	וההבחנה שאם $A$ מטריצה לכסינה אורתונורמלית (או מייצגת העתקה לכסינה אורתונורמלית), אז קיימת מטריצת מעבר בסיס $U$ אוניטרית/אורתוגונלית ו־$\Lg$ אלכסונית כך ש־$A = U\Lg U^*$. בפרט הפירוק הספקטרלי של מטריצה הניתנת ללכסון אונטירי, הוא פירוק ה־SVD שלה. 
+	
+	יש לנו שתי הגדרות לחיוביות (ושליליות, וכיו''ב): 
+	\begin{itemize}
+		\item \textbf{מטריצה מוגדרת חיובית: }אמ''מ היא מייצגת תבנית בי־לינארית חיובית, כלומר $\forall x \in \F^{n} \co x^TAx > 0$. 
+		\item \textbf{מטריצה חיובית: }הגדרה מצחיקה שלא מקובלת בשום מקום אחר חוץ מבקורס הזה, ודורשת ש־$\mut{Av}{v} > 0$. כל העתקה היא חיובית אמ''מ תחת ייצוג בבסיס אורתונורמלי, המטריצה המיייצגת חיובית. 
+	\end{itemize}
+	למזלנו, ההגדרות מתלכדות במקרה של ההעתקה או מטריצה צמודה לעצמה. זהו המקרה הרלוונטי ל\textbf{פירוק פולארי} שמפרק מטריצה כללית $A$ לכפל של מטריצה אוניטרית $U$ ומטריצה הרמיטית מוגדרת־חיובית $P$ כך ש־$A = UP$ (''לסובב ואז לשנות גודל``). למעשה, לא דיברנו בקורס כלל על מטריצה חיובית (בהבט של $\mut{Av}{v} > 0$) שאיננה צמודה לעצמה, וכאמור במקרה זה היא בכל מקרה מוגדרת־חיובית. 
+	
+	כבר ידוע שהע''עים של מטריצה צמודה לעצמה (כלומר הרמיטית/סימטרית) הם בהכרח ממשיים. אבל במקרה של מטריצה מוגדרת, נוכל לטעון שמטריצה מוגדרת חיובית אמ''מ הע''עים אף חיוביים (ובאופן דומה לגבי א־שלילית, שלילית, וא־חיובית)!
+	
+	בגלל שכל מכפלה פנימית היא סימטרית ובפרט צמודה לעצמה, אז כדי לקבוע שהמכפלה הפנימית אכן חיובית, יש רק צורך ללכסן את התכנית הריבועית כדי לוודא שהיא אכן מכפלה פנימית. 
+	
+	\npage
+	
+	\section[אלגוריתמים]{\en{Algorithms}}
+	הנושא הזה מסכם בקצרה אלגוריתמים מועילים שרואים בתרגולים וכדאי לזכור (\textbf{אין} כאן סיכום מלא של התרגולים). 
+	
+	\begin{enumerate}[A']
+		\item \textbf{לכסון: }בהינתן $A \in M_n(\F)$ מטריצה. 
+		\begin{itemize}
+			\item נחשב את $f_A$
+			\item נמצא את שורשי $f_A$. אם אנו מתקשים למצוא את שורשי הפולינום, נמצא את $\fRed$. 
+			\item לכל ע''ע $\lg_i$, נמצא בסיס למרחב העצמי באמצעות חישוב $\nc(\lg_i I - A)$. איברי הבסיס יהיו הו''עים בעבור הע''ע $\lg_i$. 
+			\item סה''כ $\diag(\lg_1 \dots \lg_n)$ המטריצה האלכסונית המתקבלת ע''י מטריצת מעבר הבסיס הנתונה ע''י הו''עים מהשלב הקודם. 
+		\end{itemize}
+		
+		\item \textbf{ג'רדון מטריצה כללית: }
+			תהי $A \in M_n(\F)$ מטריצה שהפולינום האופייני שלה $f_A(x) = \prod_{j = 1}^{m}(x - \lg_j)^{r_j}$ (בה''כ מתקיים מעל הרחבה לשדה סגור אלגברית). לכל $j \in [m]$ נבצע את הפעולות הבאות: 
+			\begin{itemize}
+				\item נמצא את הפולינום $f_A(x)$ האופייני ונפרק אותו לכדי גורמים לינאריים. 
+				\item נחשב את $V_{\lg_j}^{(i)} := \nc((A - \lg_j)^{\ell_j})$ עד שנקבל $\dim\cl{V_{\lg_j}^{(\ml_j)}} = m_i$ (המרחב העצמי המוכלל). 
+				
+				\textit{הערה: }אפשר באופן חלופי לחשב את הפולינום המינימלי, שכן ראינו ש־$m_i$ הריבוי של $\lg_i$ ב־$m_T(x)$. 
+				\item נחזור על האלגו' למציאת צורת ג'ורדן למטריצה נילפוטנטית: 
+				\begin{itemize}
+					\item נגדיר $B_{\lg_j} = \varnothing$
+					\item לכל $i \in [\ell_j]$ נבצע: 
+					\begin{itemize}
+						\item נמצא בסיס כלשהו $C_{\lg_j}^{(i)-}$ של $V_{\lg_j}^{(i - 1)}$. 
+						\item נוסיף ל־$C_{\lg_j}^{(i)-}$ את $B \cap (V_{\lg_j}^{(i)} \setminus V_{\lg_j}^{(i - 1)})$
+						\item נשלים את $C_{\lg_j}^{(i)-}$ לבסיס של $V_{\lg_j}^{(i)}$. נסמן ב־$C_{\lg_j}^{(i)+}$. 
+						\item נוסיף ל־$B_{\lg_j}$ את $\ccb{(A - \lg_jI)^{k}v \mid 0 \le k < i, \ v \in C_{\lg_j}^{(i)+}}$. 
+					\end{itemize}
+					\item נגדיר $B = \bigcup_{j = 1}^{m} B_{\lg_j}$ הבסיס המג'רדן. 
+				\end{itemize}
+			\end{itemize}
+		
+		\item \textbf{מציאת $\bm{J_n(\lg)^{m}}$: }ידוע $J_n(\lg) = \lg I_n + J_n(0)$ ולכן מהיות $\lg I, J_n(0)$ מתחלפות נקבל מנוסחת הבינום של ניוטון: 
+			\[ (J_n(\lg)^{m})_{ij} = \begin{cases}
+				0 & j > i \\ 0 & j < i - m \\ \binom{m}{i - j}\lg^{m - (i - g)} & \other
+			\end{cases} \]
+			דהיינו: 
+			\[ J_n(\lg)^{m} = \pms{
+				\binom{m}{0}\lg^{m} \\ 
+				\binom{m}{1}\lg^{m - 1} & \binom{m}{0}\lg^{m} \\
+				\vdots & \ddots & \ddots \\
+				\binom{m}{m}\lg^{0} & \binom{m}{m - 1}\lg^{1} &\ddots& \ddots \\
+				0 & \binom{m}{m}\lg^{0} &\cdots&\ddots& \binom{m}{0}\lg^{m} \\
+				\vdots & 0 & \binom{m}{m}\lg^{0} &\cdots& \binom{m}{m - 1}\lg^{1} & \binom{m}{0}\lg^{m} \\
+				0 & \vdots & \ddots & \ddots
+			} \]
+		\item \textbf{גראם־שמידט: }
+		נרצה למצוא בסיס אורתונורמלי/אורתוגונלי לממ''פ כלשהו. יהי בסיס $B = v_1 \dots v_n$ של $V$. 
+		\begin{itemize}
+			\item \textbf{למציאת בסיס אורתוגונלי}: נגדיר לכל $i \in [n]$
+			\[ \tl v_i = v_i - \sum_{j = 1}^{i - 1}\frac{\mut{v_i}{\tl v_j}}{\norm{v_k}^{2}} \cdot \tl v_j \]
+			ואז $(\tl v_1 \dots \tl v_n)$ בסיס אורתוגונלי (הבחנה: התהליך רקורסיבי, נתחיל מ־$i = 1$ ונסיים ב־$i = n$). במידת הצורך נוכל לנרמל בסוף ע''י הגדרת: 
+			\[ \bar v_i = \frac{\tl v_i}{\norm{\tl v_i}} \]
+			ואז $(\bar v_1 \dots \bar v_n)$ אורתונורמלי מסיבות ברורות. 
+			\item \textbf{מציאת בסיס אורתונורמלי}: (פחות יציב נומרית מאשר למצוא אורתונורמלי ואז לנרמל, אך יותר קל חישובית) נגדיר לכל $i \in [n]$: 
+			\[ \bar v_i = \frac{1}{\norm{\tl v_i}} \Bigg(\smash{\underbrace{v_i - \sum_{j = 1}^{i - 1}\mut{v_i}{\bar v_j} \cdot \bar v_j}_{{\tl v_i}}}\Bigg) \]
+			בצורה זו נוכל לנרמל תוך כדי התהליך. 
+		\end{itemize}
+		\item \textbf{אלגוריתם אוקלידס לתחום אוקלידי} (בפרט בעבור פולינומים ומספרים שלמים): ניעזר בזהות $\gcd(a, b) = \gcd(a, b + qa)$. כדי למצוא את $\gcd(a, b)$ נחזור על הפעולה הבאה: בה''כ $a > b$, בתחום אוקלידי מוגדרת השארית $r$ כך ש־$a = bq + r$. לכן $\gcd(a, b) = \gcd(bq + r, b) = \gcd(b, r)$, ומהגדרה $N(r) < N(b)$ כאשר $N$ הנורמה האוקלידית. לכן נוכל להמשיך בתהליך עד שנגיע לזוג $\gcd(a', b')$ כך שאחד מהם (בה''כ $b'$) מקיים $b' = 0$ ואז $\gcd(a', b') = a'$. בחוג המספרים השלמים לאלגו' סיבוכיות $\mathcal{O}(\log_\vphi(\max\{a, b\}))$. 
+		\item \textbf{נרמול וקטור: }נגדיר $v = \frac{v}{\norm{v}}$ הוא $v$ מנורמל. 
+		\item \textbf{בדיקת $\bm{T}$־איווריאנטיות: }בהינתן $B$ בסיס של $W \subseteq V$ נחשב את $T(B)$ ונבדוק האם $T(B) \subseteq W$ ע''י מעבר על כל איבר בסיס ודירוג. 
+		\item \textbf{חישוב $\bm{A\op, A^{n + c}}$ באמצעות משפט קיילי־המילטון: }ידוע $f_A(A) = 0$, ואם נשאר גורם חופשי $\ag_nA^{n} + \ag_0 A^{0} = 0$ אז נוכל להעביר אגפים ולקבל: $I = A^0 = A\cl{\frac{\sum_{k = 1}^{n}\ag_kA^{k - 1}}{\ag_0}}$ ולכן $A\op = \frac{1}{\ag_0}\cl{\sumnko \ag_k A^{k - 1}}$. כדי לחשב את $A^{n + c}$ תחילה נחשב את $A^{n}$ באמצעות העברת אגפים וקבלת $A^{n} = -\sum_{k = 0}^{n - 1} \ag_kA^{k}$ (כי $\ag_n = 1$ כי הפולינום מתוקן). עתה, נכפול ב־$A$ בדיוק $c$ פעמים, ומשום שידוע $A^{n}$, בכל חלוקה שבא נקבל $A^{n + 1}$ נוכל להוציא גורם משותף ולקבל $A(A^{n}) = \sumnko \bg_kA^{k}$ ביטוי שהכפל הגבוהה ביותר בו תמיד $A^{n - 1}$. סה''כ נוכל לבטא את $A^{n + c}$ כקומבינציה לינארית של $I \cdots A^{n - 1}$, שעבור מספרי $n$ קטנים קל לחשב. 
+		\item \textbf{ייצוג בבסיס אורתוגונלי: }לכל $u \in V$ בהינתן $(v_1 \dots v_n)$ בסיס אורתוגונלי, מתקיים $u = \sumnio \frac{\mut{u}{v_i}}{\norm{v_i}^{2}} \cdot v_i$ (אין צורך לחלק בנורמה בעבור אורתונורמלי). 
+		\item \textbf{מציאת היטל אורתוגונלי: }בהינתן $(u_1 \dots u_n)$ בסיס אורתוגונלי של $U$ תמ''ו, אז $p_U(v) = \sum_{i = 1}^{k}\frac{\mut{v}{u_i}}{\norm{u_i}^2}u_i$ (גם כאן אין צורך לחלק בנורמה בעבור בסיס אורתונורמלי). 
+		
+		לחילופין, אפשר להיעזר בעובדה שבהינתן $v$ המוטל על $U = (u_1 \dots u_n)$, נאמר ו־$u$ היא התוצאה, אז ניתן לבטאו כ־$v = u + u^{\perp}$ כאשר $u\ort \in U\ort, u \in U$. לשם כך, נסמן ב־$u$ את התוצאה, ואז ידוע $v - u = u\ort$ כלומר $v - u \perp u_i$ לכל $i \in [n]$. קיבלנו מערכת לינארית משוואות ב־$n$ נעלמים שאפשר לדרג ולפתור. 
+		\item \textbf{מציאת ללכסון אוניטרי/אורתוגונלי} (אם קיים ממשפט הפירוק הספקטרלי)\textbf{: }
+		\begin{itemize}
+			\item נמצא את הע''ע של ההעתקה. 
+			\item לכל ע''ע, נמצא בסיס עצמי של ו''ע ואז נבצע עליו בראם־שמידט כדי לקבל וקטורים אורתוגונליים/אורתונורמליים. 
+			\item נשרשר את הבסיסים לקבלת בסיס אורתוגונלי/אורתונורמלי מלכסן. 
+		\end{itemize}
+		בניסוח אחר: נלכסן את ההעתקה $T$, אבל נעשה גראם־שמידט על כל ו''ע. כדי להוכיח שאלגו' זה אכן עובד, יש להוכיח את הטענה הנפוצה לפיה כל שני מרחבים עצמיים אורתוגונליים בהינתן העתקה נורמלית. 
+		\item \textbf{מציאת פירוק SVD: }בהינתן $T$ העתקה, נמצא את הפירוק הספקטרלי של $TT^*, T^*T$ ומהזהויות		 $TT^* = U\Sg^2U^{*}$ ו־$T^*T = V\Sg^2 V^{*}$, נקבל $T = U\Sg V^{*}$. 
+	\end{enumerate}
+	
+	\npage
+	
+	\section[תרגילים מומלצים]{\en{Recommended Exercises}}
+	תת־הנושא הבא כולל תרגילים נפוצים במיוחד, או תרגילים קשים ומעניינים שאספתי ממבחני עבר. אני ממליץ בחום לעבור על כולם לקראת המבחן. 
+	
+	\exec{תהי $T$ מעל ממ''פ מרוכב, ו־$f_T = g \cdot h$ כאשר $g, h \in \F[x]$ פולינומים זרים, 
+		\begin{enumerate}[A']
+			\item הוכח שאם $T$ לכסינה, מתקיים $\ker(gT) = \ker(hT)^{\perp}$. 
+			\item הוכח שלכל $T$, מתקיים $\ker gT \oplus \ker hT = V$ (בסעיף זה אין ערך להיות ההעתקה מעל ממ''פ). 
+		\end{enumerate}
+		\textit{הדרכה: }נסו להתחיל מהמקרה של שני ערכים עצמיים מורחבים, ואז להכליל באמצעות פירוק למרחבים עצמיים.
+	} 
+	
+	\exec{הוכח שלכל $T$ נורמאלית, עם ע''עים $\lg_1 \dots \lg_k$, מתקיים לכל $n, m \in [k]$ ש־$\forall v \in V_{\lg_n}, \tl u \in V_{\lg_m} \co \mut{v}{u} = 0$ (דהיינו $V_{\lg_n}$ ניצב ל־$V_{\lg_m}$). }
+	\exec{הוכח שלכל $T \co V \to V$ מתקיים $\ker(T^*) = \Img(T)^{\perp}$ וגם $\Img(T^*) = \ker(T)^{\perp}$}
+	\exec{הוכח שלכל $T \co V \to V$ נורמלית, מתקיים: 
+		\begin{enumerate}[A']
+			\item \hfil $\ker T = \ker T^*$
+			\item \hfil $\Img T = \Img T^*$
+			\item \hfil $V = \ker T \oplus \Img T$
+		\end{enumerate}}
+	\exec{ללא שימוש בפירוק SVD, הראה שהערך הסינגולרי הגדול ביותר והקטן ביותר חוסמים את הנורמה $\norm{Tv}$ לכל $\norm{v} = 1$. }
 	
 	
 	{\dotfill \\ \vfil {\begin{center}
