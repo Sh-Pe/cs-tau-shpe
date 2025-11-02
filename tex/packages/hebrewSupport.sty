@@ -1,0 +1,46 @@
+% Hebrew initialzing
+	\RequirePackage [bidi=basic]  {babel}
+	\RequirePackage [no-math]     {fontspec}
+	\babelprovide   [main, import, Alph=letters] {hebrew}
+	\babelprovide   [import] {english}
+	\babelfont      [hebrew] {rm} {David CLM}
+	\babelfont      [hebrew] {sf} {David CLM}
+	\RequirePackage [shortlabels] {enumitem}
+	\newlist {hebenum} {enumerate} {1}
+
+% Language Shortcuts
+	\newcommand \en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+	\newcommand \sen   {\begin{otherlanguage}{english}}
+		\newcommand \she   {\end{otherlanguage}}
+	\newcommand \del   {$ \!\! $}
+	
+	\newcommand \npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+	\newcommand \ndoc  {\dotfill \\ \vfil {\begin{center}
+				{\textbf{\textit{שחר פרץ, 2025}} \\
+					\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+		\end{center}} \vfil	}
+	
+	\newcommand       {\rn}[1]{
+		\textup{\uppercase\expandafter{\romannumeral#1}}
+	}
+	
+	\newcommand \middleText[1] {\vfil {\hfil {#1}} \hfil \vfil \newpage}
+	\newcommand \envendproof{\vspace{-17pt}}
+	\newcommand \mathenvendproof{\par\vspace{-24pt}}
+	
+	\newcommand{\skipitems}[1]{
+		\addtocounter{\@enumctr}{#1}
+	}
+	\newcommand\firstPage[1] {
+		\thispagestyle{empty}
+		\,\! % To stablize the next lines on smth
+		
+		{\vspace{0.5\textheight-2em} 
+			{
+				\begin{center}
+					\textbf{\@document@name} \\ 
+					\textit{שחר פרץ $\sim$ #1}
+				\end{center}
+			}
+		}
+	}
