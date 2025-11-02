@@ -707,7 +707,7 @@
 	
 	\subsection{חוג הפולינומים}
 	(תת־פרק זה לקוח מתרגול בקורס)
-	\defi{ה\textit{דרגה} של הפולינום היא $\deg(f) := \max\{n \in \N \mid a_n \neq 0\}$, ומגדירים $\deg(0) = -\inf$}
+	\defi{ה\textit{דרגה} של הפולינום היא $\deg(f) := \max\{n \in \N \mid a_n \neq 0\}$, ומגדירים $\deg(0) = -\inft$}
 	\theo{
 	\[ \deg(fg) = \deg f + \deg g \quad \deg(d + g) = \max\{\deg f, \deg g\} \]}
 	
@@ -719,7 +719,7 @@
 	\cola{\,
 		\begin{enumerate}
 			\item $f(a) = 0 \iff (x - a) \mid f$ (משפט בזו)
-			\item אם $\deg f = n > -\inf$, ל־$f$ לכל היותר $n$ שורשים כולל ריבוי. 
+			\item אם $\deg f = n > -\inft$, ל־$f$ לכל היותר $n$ שורשים כולל ריבוי. 
 			\item נניח ש־$f, g \in \F[x]$ ו־$\F \subseteq \K$, כאשר $K$ שדה. אם $g \mid f$ מעל $K$ אז $g \mid f$ מעל $\F$. 
 		\end{enumerate}
 	}
@@ -1350,7 +1350,7 @@
 	\theo{תהי העתקה $T$ כללית ו־$\lg \in \F$ סקלר, אז $\genein{\lg} = \nc(T - \lg I)^{\dim V}$ (כאשר $\nc$ המרחב המאפס/הקרנל של המטריצה)}
 	\begin{proof}
 		נוכיח באמצעות הכלה דו כיוונית. הכיוון $\nc(T - \lg I)^{\dim V} \subseteq \genein{\lg}$ טרוויאלי. יהי $v \in \nc(T - \lg I)^{j}$, אם $j < \dim V$ אז $(T - \lg)^{j}v = 0$ ולכן $(T - \lg I)^{\dim V}v = 0$ וסה''כ $v \in \nc(T - \lg I)^{\dim V}$, אחרת $j > \dim V$ ואז הוכחנו $\nc(T - \lg I)^{j} = \nc(T - \lg I)^{\dim V}$. נסיק מעקרון ההחלפה: 
-		\[ \tl \vc_{\lg} = \bigcup_{j = 1}^{\inf}\nc(T - \lg I)^{j} = \bigcup_{j = 1}^{\mathclap{\dim V}}\nc(T - \lg I)^{j} \,\,\cup\,\, \bigcup_{\mathclap{j = \dim V}}^{\inf}(T - \lg I)^{j} = \nc (T - \lg I)^{\dim V} \]
+		\[ \tl \vc_{\lg} = \bigcup_{j = 1}^{\inft}\nc(T - \lg I)^{j} = \bigcup_{j = 1}^{\mathclap{\dim V}}\nc(T - \lg I)^{j} \,\,\cup\,\, \bigcup_{\mathclap{j = \dim V}}^{\inft}(T - \lg I)^{j} = \nc (T - \lg I)^{\dim V} \]
 	\end{proof}
 	\theo{בהינתן $v$ ו''ע מוכלל של $T$, קיים (מהגדרה) ויחיד $\lg_i$ כך ש־$v \in \genein{\lg_i}$. }
 	\begin{proof}
@@ -2909,7 +2909,7 @@
 	
 	נבחין שאפשר להגדיר: 
 	\defi{$V^{**} = \hom(V^*, \F)$}
-	ואכן $\dim V < \inf$ אז: 
+	ואכן $\dim V < \inft$ אז: 
 	\[ V \cong V^* \cong V^{**} \]
 	במקרה הזה, בניגוד לאיזו' הקודם, יש איזו' ``טבעי'' (קאנוני), כלומר לא תלוי באף בסיס. 
 	
