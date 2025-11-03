@@ -4,7 +4,7 @@
 \usepackage{../../../../tex/packages/theoremsSupport}
 
 \author{שחר פרץ}
-\title{\textit{חדו''א 2א 2}}
+\title{\textit{חדו''א 1א 2}}
 \begin{document}
 	\maketitle
 	
@@ -95,7 +95,7 @@
 		לכן, לפי התרגיל, $m - \ml = 0$ כלומר $m = \ml$. 
 	\end{proof}
 	\defi{נאמר כי סדרה $\an$ \textit{מתכנסת} כאשר קיים לה גבול $\ml \in \R$}
-	\defi{אם $\an$ מתכנסת וגבולה (היחיד) הוא $\ml$, נסמן $\lim_{n \to \inf} a_n = \ml$. }
+	\defi{אם $\an$ מתכנסת וגבולה (היחיד) הוא $\ml$, נסמן $\lim_{n \to \inft} a_n = \ml$. }
 	''אבל בפיזיקה עשינו את זה עד עכשיו וזה עבד`` 
 	
 	\lem{קבוצה חסומה אמ''מ $\exists M > 0 \co \forall a \in A \co \sof{a} \le M$. }
@@ -131,7 +131,7 @@
 	
 	''אין לי שום דבר נגד הוכחות בשלילה. אני תמיד נמנע מהן``. ''למה את 1?`` -- ''כי למה לא`` -- ''כי למה לא 1 זה נכון``. ''וזו ההתייחסות הנכונה להוכחות. אנחנו כותבים שירה``. ''לאחד חלקי איש יש $\frac{1}{10}$ אצבעות``. 
 	
-	\theo{תהא $\an$ סדרה. יהי $\ml \in \R$. נניח כי $\ml \neq 0$ וגם $\limani = \ml$. אז קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n} \ge \frac{\sof{\ml}}{2}$. }
+	\theo{תהא $\an$ סדרה. יהי $\ml \in \R$. נניח כי $\ml \neq 0$ וגם $\limasi = \ml$. אז קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n} \ge \frac{\sof{\ml}}{2}$. }
 	במילים אחרות – $a_n$ הוא bounded away from zero. באופן כללי אפשר גם להוכיח את זה עם $\frac{\sof{\ml}}{\pi}$ או כל מספר אחר במכנה. אבל הרעיון העקרי הוא, ש־$\an$ לא יכול להתקרב ל־$0$ החל מנקודה כלשהי, אם הסדרה שואפת לנקודה שאיננה אפס. 
 	
 	\begin{proof}
@@ -151,7 +151,7 @@
 	
 	\subsection{אריתמטיקה של גבולות}
 	זה הקטע שבו אנחנו רואים שגבול הוא לינארי. 
-	\theo{תהאנה $\an, \bc$ סדרות. יהיו $\ml, m \in \R$ ממשיים. נניח כי $\limani = \ml \land \limbni = m$. אז: 
+	\theo{תהאנה $\an, \bc$ סדרות. יהיו $\ml, m \in \R$ ממשיים. נניח כי $\limasi = \ml \land \limbsi = m$. אז: 
 	\begin{enumerate}
 		\item \hfil $\displaystyle \limsi (a_n + b_n) = \ml + m$
 		\item \hfil $\displaystyle \forall \ag \in \R \co \limsi (\ag a_n) = a \ml$
@@ -186,7 +186,7 @@
 	\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$+\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \i \ge N \co a_n > M$}
 	\defi{תהא $\an$ סדרה. אנרמ כי $\an$ שואפת ל־$-\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n < -M$}
 	
-	\theo{תהיינה $\an, \bn$ סדרות. נניח $\limani = +\inft \land \limbni b_n = + \inft$. אז $\limsi a_n + b_n = + \inft$}
+	\theo{תהיינה $\an, \bn$ סדרות. נניח $\limasi = +\inft \land \limbsi b_n = + \inft$. אז $\limsi a_n + b_n = + \inft$}
 	\begin{proof}
 		יהי $M > 0$. קיים $N_1, N_2 \in \N$ כך ש־$\forall n \ge N_1 \co a_n > M$ וכן $\forall n \ge N_2\co b_n > M$. נתבונן ב־$N = \max\{N_1, N_2\}$. אז $a_n + b_n > M + M = 2M > M$ וסיימנו. 
 	\end{proof}
