@@ -132,7 +132,7 @@
 	\newcommand \inft      {\infty}
 	\newcommand \ninf      {-\inft}
 	
-	% Combinatorics shortcuts
+% Combinatorics shortcuts
 	\newcommand \sumnk     {\sum_{k = 0}^{n}}
 	\newcommand \sumni     {\sum_{i = 0}^{n}}
 	\newcommand \sumnko    {\sum_{k = 1}^{n}}
@@ -155,7 +155,7 @@
 	\newcommand \ano       {a_{n - 1}}
 	\newcommand \ant       {a_{n - 2}}
 	
-	
+% Linear Algebra
 	\let        \lra       \leftrightarrow
 	\newcommand \chrf      {\chr(\F)}
 	\newcommand \F         {\mathbb{F}}
@@ -164,9 +164,27 @@
 			\end{matrix}\, \middle\vert\, \begin{matrix}
 				#2
 	\end{matrix}}}
-	
+	\newcommand \rrr[1]    {\xxrightarrow{1}{#1}}
+	\newcommand \rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+	% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+	\makeatletter
+	\newlength\min@xx
+	\newcommand*\xxrightarrow[1]{\begingroup
+		\settowidth\min@xx{$\m@th\scriptstyle#1$}
+		\@xxrightarrow}
+	\newcommand*\@xxrightarrow[2][]{
+		\sbox8{$\m@th\scriptstyle#1$}  % subscript
+		\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+		\sbox8{$\m@th\scriptstyle#2$} % superscript
+		\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+		\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+		{\mathmakebox[\min@xx]{\scriptstyle#2}}
+		\endgroup}
+	\makeatother
+
 	\newcommand \mat[2]    {M_{#1\times#2}}
 	\newcommand \gmat      {\mat{m}{n}(\F)}
+	\newcommand \tomat     {\, \dequad \longrightarrow}
 	\newcommand \pms[1]    {\begin{pmatrix}
 			#1
 	\end{pmatrix}}

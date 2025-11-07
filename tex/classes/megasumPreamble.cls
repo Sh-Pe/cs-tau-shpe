@@ -69,20 +69,20 @@
 			\RequirePackage [normalem]             {ulem}
 		% Titles
 			\titleformat{\section}       [block]
-			{\fontsize{15}{15}}
-			{\sen \dotfill \huge \bfseries\thesection \she}
-			{0em}
-			{}
+				{\fontsize{15}{15}}
+				{\sen \dotfill \huge \bfseries\thesection \she}
+				{0em}
+				{}
 			\titleformat{\subsection}    [block]
-			{\large\itshape}
-			{\normalfont\Large\bfseries\en{{\thesubsection}} \,\,$\sim$\,\,}
-			{0em}
-			{}
+				{\large\itshape}
+				{\normalfont\Large\bfseries\en{{\thesubsection}} \,\,$\sim$\,\,}
+				{0em}
+				{}
 			\titleformat{\subsubsection} [block]
-			{\normalsize\bfseries}
-			{\normalfont\large\bfseries\en{{(\thesubsubsection)}}}
-			{0.5em}
-			{}
+				{\normalsize\bfseries}
+				{\normalfont\large\bfseries\en{{(\thesubsubsection)}}}
+				{0.5em}
+				{}
 			\setcounter{secnumdepth}{3} % enable subsubsection
 			
 			\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{} % disable double pages

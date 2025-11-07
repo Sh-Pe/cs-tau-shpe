@@ -1760,7 +1760,7 @@
 	\cola{התבנית $f$ היא מ''פ אמ''מ המייצגת שלה $A$ בבסיס כלשהו, היא סימטרית חיובית. }
 	\noti{בקורס מסמנים $\la \cdot, \cdot \ra$ אבל אני מגניב אז אני משתמש ב־$\smut$. }
 	
-	\lem{$\forall v \in V \co \mut{v}{v} \ge 0$ ו־$\la v, v \ra$ אמ''מ $v = 0$. }הוכחה מסימטריה. 
+	\lem{$\forall v \in V \co \mut{v}{v} \ge 0$ ו־$\la v, v \ra = 0$ אמ''מ $v = 0$. }הוכחה מסימטריה. 
 	
 	\textbf{דוגמה. }(\textit{המכפלה הפנימית הסטנדרטית} על $\R^n$, AKA כפל סקלרי): 
 	\[ \mut{\pms{x_1 \\ \vdots\\ x_n}}{\pms{y_1 \\ \vdots \\ y_n}} = \sum_{i = 1}^{n}x_iy_i \]
@@ -1868,10 +1868,12 @@
 				u - \ag v \perp v \\ u - \ag v \perp v
 			\end{cases}\dequad  \\
 			\implies &\norm{u}^2 = \norm{(u - \ag v + \ag v)}^2 = \smash{\overbrace{\norm{u - \ag v}^2}^{\ge 0}} + |\ag|^2\norm{v}^2 \\ 
-				&\ge |\ag|\cdot\norm{v}^2 = \frac{|\mut{v}{u}|^2}{(\norm{v}^2)^2} = \norm{v}^2 = \frac{|\mut{u}{v}|^2}{\norm{v}^2} \\
-			\implies &\sof{\mut{v}{u}}^2 \le \norm{v} \cdot \norm{u}
+				&\ge \sof{\ag}^2\cdot\norm{v}^2 = \frac{\sof{\mut{v}{u}^2}\cdot \cancel{\norm v}^2}{{\norm{v}^2}^{\cancel{2}}} =\frac{\sof{\mut{v}{u}}^2}{\norm v^2} \\
+			\implies &\sof{\mut{v}{u}}^2 \le \norm{v}^2 \cdot \norm{u}^2 \\
+			\implies &\sof{\mut{v}{u}} \le \norm v \norm u
 		\end{align*}
-		בפרט $\norm{u - \ag v}^2 = 0$ אמ''מ הם תלויים לינארית ומכאן הכיוון השני של המשפט. 
+		כאשר המעבר האחרון נכון משום ש־$\norm v, \norm u, \sof{\mut{v}{u}} \ge 0$, ולכן ניתן להוציא שורש לאי השוויון. 
+		בפרט $\norm{u - \ag v}^2 = 0$ אמ''מ הם תלויים לינארית ומכאן שיש שוויון אמ''מ $u, v$ ת''ל. 
 	\end{proof}
 	
 	\rmark{זה לא מדויק להגיד שזה נגרר ממשפט הקוסינוסים מעל $\R^{n}$, משום שהגדרת הזווית בין $u, v$ בגיאומטריה האוקלידית מבוצעת כדלקמן: 
