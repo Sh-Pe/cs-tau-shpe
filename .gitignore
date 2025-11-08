@@ -306,3 +306,7 @@ TSWLatexianTemp*
 
 # kate cache (KDE text editor)
 *.kate-swp
+
+## file managers
+# dolphin
+*.directory
