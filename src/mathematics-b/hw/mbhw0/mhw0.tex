@@ -1,0 +1,238 @@
+\documentclass[]{article}
+\usepackage{blindtext}
+
+% Math packages
+\usepackage[uames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,unicode-math}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+%\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% combinatorics
+\newcommand\p     {\mathcall{p}}
+\newcommand\C     {\mathcall{c}}
+\newcommand\s     {\mathcall{s}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+\newcommand\oop    {^{-2}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\sumnk {\sum_{k = 0}^{n}}
+\newcommand\sumni {\sum_{i = 0}^{n}}
+\newcommand\sumnko{\sum_{k = 1}^{n}}
+\newcommand\sumnio{\sum_{i = 1}^{n}}
+
+\title{תרגיל הכנה – לקראת קורס ב' – חופשת סמסטר}
+\author{שחר פרץ}
+\begin{document}
+	\maketitle
+	\sen
+	\section{Complex Numbers' Operations}
+	$\set z = 6 + 3i, \ w = 2-5i$
+	\begin{itemize}
+		\item $\Re(z) = \mathbf{6}$
+		\item $\Im(z) = \mathbf{3}$
+		\item $\bar z = \Re(z)-  \Im(z)i = \mathbf{6 - 3i} $
+		\item $\Re(w) = \mathbf{2}$
+		\item $\Im(w) = \mathbf{-5}$
+		\item $\bar w = \Re(z) - \Im(z)i = \mathbf{3i + 5i}$
+		\item $|w| = \sqrt{2^2 + 5^2} = \mathbf{\sqrt{29}} \approx 5.385$
+		\item $z + w = 6 + 2 + 3i - 5i = \mathbf{8 - 2i}$
+		\item $z - w = 6 - 2 + 3i + 5i = \mathbf{4 + 8i}$
+		\item $z \cdot w = 6 \cdot 2 - 6 \cdot 5i + 3i \cdot 2 - 3i \cdot 5i = 12 - 30i + 6i + 15 = \mathbf{27 - 24i}$
+		\item $\frac{z}{w} = \frac{6 + 3i}{2 - 5i} = \frac{12 - 15}{4 + 25} + \frac{6 + 30}{4 + 25}i = \mathbf{-\frac{3}{29} + \frac{36}{29}i}$
+		\item $\frac{w}{z} = \frac{2 - 5i}{6 + 3i} = \frac{12 - 15}{36 + 9} + \frac{- 30 - 6}{36 + 9}i = \mathbf{-\frac{1}{15} + -\frac{4}{5}i} $
+		\item $z^2 = (6 + 3i)^2 = (6^2 - 3^2) + 2 \cdot 3 \cdot 6 i = \mathbf{27 + 36i}$
+		\item $w^3 = (2 - 5i)^3 = (2 - 5i)^2 \cdot (2 - 5i) = [(2^2 - 5^2) - 4 \cdot 5i](2 - 5i) = (-21 - 20i)(2 - 5i) = \mathbf{-142 + 65i} $
+	\end{itemize}
+	\section{An Equation}
+	\setlength{\abovedisplayskip}{2pt}
+	\setlength{\belowdisplayskip}{2pt}
+	\setlength{\abovedisplayshortskip}{2pt}
+	\setlength{\belowdisplayshortskip}{2pt}
+	\begin{align}
+		(1 - 5i)x^2 + 2 + 10i &= 12x \\
+		(1 - 5i)x^2 - 12x + (2 + 10i) &= 0
+	\end{align}
+	\begin{align}
+		x_{1, 2} &= \frac{12 \pm \sqrt{12^2 - 4(1 - 5i)(2 + 10i)}}{2(1 - 5i)} \\
+		x_{1, 2} &= \frac{12 \pm \sqrt{-64}}{2 - 10i} = \frac{12 \mp \frac{1 + i}{\sqrt2}}{(2 - 10i)} \\
+		x_{1, 2} &= \frac{12 \pm \sqrt2 / 2 + \sqrt2 / 2i}{2 - 10i} \\
+		x_{1, 2} &\approx \mathbf{0.1764 + 1.235i, \ 0.2852 + 1.0723i}
+	\end{align}
+	\section{}
+	\textit{``There is nothing to do''} $\sim$ pacman
+	\section{Differentiation and Integration}
+	\begin{enumerate}[a.]
+		\item \begin{align}
+			&[9x \cos x - 8x \sin x + 15x + 4]' \\
+			= \ &9\cos x - 9x \sin x - 8 \sin x -8x \cos x + 15
+		\end{align}
+		\item \begin{align}
+			&[\left(x^3 - 8x + 1 \right)^{20} + \sin(\sin(x))]' \\
+			= \ & 20(x^3 - 8x + 1)^{19} \cdot (3x^2 - 8) + \cos(\sin(x)) \cdot (- \cosx) \\
+			= \ & 20(x^3 - 8x + 1)^{19}(3x^2 - 8) - \cos(\sinx)\cosx
+		\end{align}
+		\item \begin{align}
+			& \left[\frac{2x + 6}{2 - 3x^2}\right]' \\
+			= \ & \frac{x(2 - 3x^2) - (-6x)(2x + 6)}{(2 - 3x)^2} \\
+			= \ & \frac{2x - 3x^3 + 12x^2 + 36x}{4 - 6x + 9x^2} = \frac{-3x^3 + 12^2 + 38x}{9x^2 - 6x + 4}
+		\end{align}
+		\item \begin{align}
+			\tanx' = \left [\frac{\sinx}{\cosx}\right ]' = \frac{\sinx'\cosx - \cosx'\sinx}{\cos^2 x} = \frac{\cos^2x + \sin^2x}{\cos^x} = \cos^{-2} x
+		\end{align} 
+		hence
+		\begin{align}
+			&[(2x)^{50}\tan 3x]' \\
+			= \ & (50(2x)^{49} \cdot \tan {3x}) + (-\cos^{-2} 3x \cdot (2x)^{50}) \\
+			= \ & (2x)^{49}(50\tan 3x - 2x\cos\oop3x)
+		\end{align}
+		\item \begin{alignat}{9}
+			&\int \frac{5}{x^2} - \frac{3}{\cos^2 x} + 9 \dx \\
+			= \ & 5\int x^{-2} \dx + 3 \int \cos^{-2}x \dx + \int 9 \dx \\
+			= \ & -5 \cdot x\op + 3 \tanx + 9x + c && \quad \open \text{since was proven } \tanx' = \cos^{-2}x \text{ before} \close \\
+		\end{alignat}
+		\item \begin{align}
+			&\int \cos(7x + 7) - 5x^4 \dx \\
+			= \ & \int \cos(7x + 7) - 5\int x^4 \\
+			= \ & \frac{\sin (7x + 7)}{7}- 5 \cdot \frac{1}{5}x^5 \\
+			= \ & \frac{1}{7}\sin(7x + 7) - x^5
+		\end{align}
+		
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,29 @@
+\RequirePackage[usenames]{color}
+\RequirePackage{amsthm}
+\RequirePackage{xcolor}
+
+\definecolor{myblue}      {rgb} {0.2,0.35,0.7}
+\definecolor{mygreen}     {rgb} {0.15,0.65,0.35}
+\definecolor{myyellow}    {rgb} {0.0,0.4,0.5}
+\definecolor{mycyan}      {rgb} {0.05,0.65,0.6}
+\definecolor{myred}       {rgb} {0.05,0.1,0.75}
+\definecolor{mymagenta}   {rgb} {0.1,0.7,0.1}
+
+\theoremstyle{definition}
+\newtheorem {Theorem}     {\color{myblue}משפט}
+\newtheorem {Definition}  {\color{mygreen}הגדרה}
+\newtheorem {Lemma}       {\color{myyellow}למה}
+\newtheorem {Remark}      {\color{mycyan}הערה}
+\newtheorem {Notion}      {\color{myred}סימון}
+\newtheorem {Collary}     {\color{mymagenta}מסקנה}
+\newtheorem {Exercise}    {\normalcolor תרגיל}
+
+\newcommand \cola  [1]    {\begin{Collary}#1\end{Collary}}
+\newcommand \theo  [1]    {\begin{Theorem}#1\end{Theorem}}
+\newcommand \defi  [1]    {\begin{Definition}#1\end{Definition}}
+\newcommand \rmark [1]    {\begin{Remark}#1\end{Remark}}
+\newcommand \lem   [1]    {\begin{Lemma}#1\end{Lemma}}
+\newcommand \noti  [1]    {\begin{Notion}#1\end{Notion}}
+\newcommand \exe   [1]    {\begin{Exercise}#1\end{Exercise}}
+\newcommand \exec  [1]    {\begin{Exercise}[נפוץ]#1\end{Exercise}}
+\newcommand \exeh  [1]    {\begin{Exercise}[קשה]#1\end{Exercise}}

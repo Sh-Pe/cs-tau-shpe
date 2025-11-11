@@ -1,0 +1,561 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{אלגברה לינארית 1א $\sim$ תרגיל בית 3}}
+\begin{document}
+	\maketitle
+	\section{}
+	יהיו $(A \mid a)$ ו־$(B \mid b)$ מערכות משוואות מסדר $m \times n$. מעל $\R$. נוכיח שלא ייתכן שיש בדיוק $10$ פתרונות למשוואות. 
+	\begin{proof}
+		$x$ פתרון משותף לשני המשוואות אמ"מ $Ax = a \land Bx = b$. נסמן ב־$\pms{A \\ B}$ את המטריצה מסדר $2m \times n$ שמתחילה ב־$A$ ומתחתיה $B$ (מטריצת הבלוקים). באופן דומה, $\pms{a \\ b}$ תהיה המטריצה/וקטור מגודל $2m \times 1$ הכולל פעמיים את איברי $x$. נבחין כי מתקיימת השקילות $(Ax = a \land Bx = b) \iff \pms{A \\ B}x = \pms{a \\ b}$. ממשפט, למערכת המשוואות הזו יש או פתרון יחיד, או $0$ פתרונות, או לפחות $|\F|$ פתרונות. משום ש־$0, 1 \neq 10$, אז $|\F| \ge 10$, אך $\F = \R$ ו־$10 \not\ge \taz$. לכן לא ייתכן שיש למערכת המשוואות הזו $10$ פתרונות עבור $x$־ים שונים, ומאקסיומת ההקפיות (שוויון קבוצות) $\{Ax = a \land Bx = b \mid x \in \R\} = \mathrm{sols}\pms{A \\ B}$ וממשפט לשוויון עוצמות $|\{Ax = a \land Bx = b \mid x \in \R\}| = \sof{\mathrm{sols}\pms{A\\ B}} $ ובפרט לא שווה ל־$10$, וסה"כ למערכות המשוואות $(A \mid a), (B \mid b)$ אין $10$ פתרונות משותפים. 
+	\end{proof}
+	\section{}
+	
+	תהי $(A \mid 0)$ מערכת משוואות, ו־$\bar c, \ \bar d$ פתרונות. צ.ל. $\bar c + \bar d$ פתרון. \begin{proof}
+		ידוע $\bar c, \bar d$ פתרונות אמ"מ $A \bar c = A \bar d = 0$. נחבר את המשוואות ונקבל $A \bar c + A \bar d = 0$. מדיסטריבוטיביות כפל מטריצה בוקטור/מטריצה, סה"כ $A(\bar c + \bar d) = 0$, כלומר $\bar c + \bar d$ פתרון כדרוש. 
+		
+		\textit{הוכחה לדיסטרבוטיביות בה השתמשתי. }נסמן ב־$C_i^A$ את העמודה ה־$i$ של המטריצה ה־$A$. 
+		\[ \forall \bar c, \bar d \in \F^n,\, A \in M_{m \times n}(\F) \co A\bar c + A \bar d = \sum_{i = 1}^{n}C_i^A\bar c_i + \sum_{i = 1}^{n}C_i^A\bar d_i = \sum_{i = 1}^{n}C_i^A\underbrace{(\bar c_i + \bar d_i)}_{(\bar c + \bar d)_i} = A(\bar c + \bar d) \quad \top \]
+	\end{proof}
+	
+	\section{}
+	נסמן: 
+	\[ \ac = \ccb{\pms{3 - 2s \\ 1 - s - t \\ 2t} \mid s, t \in \R} \]
+	\begin{enumerate}[(A)]
+		\item נראה כי לא קיימת מערכת משוואות הומוגנית ש־$\ac$ קבוצת הפתרונות שלה. לשם כך, נוכיח למה – לכל $A$ מטריצה, $\ker A := \{x \in \R^3 \co Ax = 0\}$ הוא תמ"ו של $\R^3$. \begin{proof}\,
+			\begin{itemize}
+				\item נוכיח קיום איבר $0$ – עבור $x = 0$ מתקיים $Ax = A0 = 0$ (מהגדרת כפל מטריצה בוקטור). 
+				\item נוכיח סגירות לחיבור – לכל $x, y \in \ker A$ מתקיים $Ax = Ay = 0$ ומשאלה 2 מתקיים $A(x + y) = 0$ כלומר $x + y \in \ker A$ מעקרון ההפרדה. 
+				\item נוכיח סגירות לכפל בסקלר – לכל $\lg \in \R, \ x \in \ker A$ מתקיים $Ax = 0$ ולכן $A(\lg x) = \lg (Ax) = \lg 0 = 0$ וסה"כ $\lg x \in \ker A$ כדרוש. 
+			\end{itemize}
+		\end{proof}
+		נחזור לטענה: 
+		\begin{proof}
+			נניח בשלילה ש־$\ac$ קבוצת הפתרונות של איזושהי מערכת משוואות הומוגנית $(A \mid 0)$. אז מהגדרה $\ac = \ker A$. לכן $\ac$ מ"ו כלומר $0 \in \ac$. נפתור מערכת משוואות: 
+			\[ \begin{cases}
+				3 - 2s = 0 &\implies 3 - 2 \cdot 1 = 3 - 2 = 1 = 0 \\
+				1 - s - t = 0 &\implies 1 - s = 0 \implies s = 1 \\
+				2t = 0 &\implies t = 0
+			\end{cases} \]
+			סה"כ $1 = 0$ וזו סתירה. 
+		\end{proof}
+		\item עתה נראה ש־$\ac \cup 0_V$ כאשר $0_V$ וקטור ה־$0$ ב־$\R^3$, לא קיים בעבורה מערכת משוואות הומוגנית שזו קבוצת הפתרונות שלה. \begin{proof}
+			עבור $s = t = 0$, ניכר כי $(3, 1, 2) \in \ac$. מסגירות, $0.5(2, 1, 3) \in \ac$. לכן: 
+			\[ \begin{cases}
+				3 - 2s = 1.5 \implies 3 - 2 \cdot 0 = 3 = 1.5 \\
+				1 - s - t = 0.5 \implies 1 - s - 0.5 = 0.5 \implies s = 0 \\
+				2t = 1 \implies t = 0.5
+			\end{cases} \]
+			סה"כ $3 = 1.5$ וזו סתירה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	כבר בתרגיל הבית הקודם כתבתי את קבוצת הפתרונות המתאימה לכל מערכת משוואות. אעתיק שוב לתרגיל הבית הזה: 
+	\begin{align*}
+		(4a) \quad & \ccb{\pms{15 + 5x_3 + 3x_4 \\ -19 - 7x_3 - 5x_4 \\ x_3 \\ x_4} \mid x_3, x_4 \in \R} \\
+		(4b) \quad & \ccb{\pms{-\frac{6}{7} \\ \frac{1}{7} \\ \frac{15}{7} \\ 0}} \\
+		(4c) \quad & \ccb{\pms{1 \\ -1 \\ 1}} \\
+		(5a) \quad & \ccb{\pms{- 2x_4 \\ 1 - 2x_3 \\ x_3 \\ x_4}\mid x_3, x_4 \in \F_5} \\
+		(5b) \quad & \ccb{\pms{0 \\ 1 - 2x_3 - 4x_4\\ x_3 \\ x_4} \mid x_3, x_4 \in \F_7}  \\
+		(5c) \quad & \ccb{\pms{0 \\ 1 - x_4 - x_5 \\ 1 - x_4 \\ x_4 \\ x_5} \mid x_4, x_5 \in \{0, 1\}}
+	\end{align*}
+	
+	\section{}
+	נפתור את מערכת המשוואות הבאה מעל $\Z_5$: 
+	\begin{gather*}\begin{cases}
+			x + y + z = 2 \\
+			3x + y + 2z = 1 \\
+			x + 3z = 4
+		\end{cases} \!\tomat \pms{1 & 1 & 1 & 2 \\ 
+			3 & 1 & 2 & 1 \\ 
+			1 & 0 & 3 & 4 \\ 
+		} \rrt{R_2 \to R_2 - 3R_1}{R_3 \to R_3 - R_1} \pms{1 & 1 & 1 & 2 \\ 
+			0 & 3 & 4 & 0 \\ 
+			0 & 4 & 2 & 2 \\ 
+		} \\\rrr{R_2 \to 2R_2} \pms{1 & 1 & 1 & 2 \\ 
+			0 & 1 & 3 & 0 \\ 
+			0 & 4 & 2 & 2 \\ 
+		} \rrr{R_3 \to R_3 - 4R_2} \pms{1 & 1 & 1 & 2 \\ 
+			0 & 1 & 3 & 0 \\ 
+			0 & 0 & 0 & 2 \\ 
+		} 
+	\end{gather*}
+	מהשורה התחתונה, בהנחה בשלילה שקיים פתרון $(x, y, z)$, נבחין בשוויון $0x + 0y + 0z = 2$. ממשפטים על שדות $0 = 2$, וזו סתירה. כלומר – לא קיים פתרון למערכת המשוואות. סה"כ קבוצת הפתרונות היא $\varnothing$. 
+	
+	\section{}
+	בעבור $p$ ראשוני כלשהו, נתבונן בשדה $\Z_p$. נתבונן במערכת המשוואות הלינארית הבאה מעל $\Z_p$:  
+	\[ \begin{cases}
+		x_1 + x_2 + \cdots + x_{k + 1} = 0
+	\end{cases} \]
+	אזי, מערכת המשוואות לעיל תהיה בעלת קבוצת הפתרונות: 
+	\[ (x_1, x_2, \dots x_{k + 1}) \sim \ccb{\cl{-\sum_{i = 1}^{p}\ag_i,\, \ag_1,\, \ag_2,\, \dots,\, \ag_{k}} \mid \ag_1 \cdots \ag_p \in \Z_p} =: \sca \]
+	נבחין כי $\underbrace{|\Z_p| \cdot |\Z_p| \cdots |\Z_p|}_{k \text{\, \en{times}}} = |\sca|$, כלומר למערכת המשוואות יש $p^k = |\sca|$ פתרונות. 
+	
+	בפרט, בעבור $p = 3, k = 4$ מצאנו מערכת משוואות עם $81$ פתרונות. 
+	
+	עתה, נראה אי־קיום מערכת משוואות לינארית עם $36$ פתרונות. בעבור מערכת משוואות לינארית $(A \mid b)$ כלשהי, מצורתה המדורגת נבחין כי גודל קבוצת הפתרונות של $(A \mid b) $הוא $|\F|^k$ כאשר $k$ מספר האיברים החופשיים. נניח בשלילה כי קיימת מערכת משוואות לינארית עם $36$ פתרונות, אזי משום ש־$k = 2$ השלם היחידי בעבורו קיים $a \in \N$ כך ש־$a^k = 36$, בהכרח $|\F|^2 = 36$ מהמשפט הקודם. נוציא שורש, נקבל $|\F| = \pm 6$. אם $|\F| = -6$ סתירה להגדרת עוצמה, ואם $|\F| = 6$ אז $3, 2$ מחלקים ראשוניים זרים של $6$ ולכן הוא אינו מהצורה $p^n$ בעבור $p$ ראשוני ו־$n$ טבעי, בניגוד למשפט הנתון כחלק מסעיף זה. לכן לא קיים $\F$ מתאים, ונסיק ש
+	\section{}
+	יהי $\F$ שדה סופי. 
+	\begin{enumerate}[(A)]
+		\item נראה קיום $0 < m \in \N$ כך ש־$\underbrace{1 + 1 + \cdots + 1}_{m \text{\en{\,times}}} = 0$, נקראו \textit{המציין של השדה} ונסמנו $\chr \F$
+		\begin{proof}
+			יהי סופי. נגדיר את הפונקציה $f \co \N \to \F$ לפי $f(n) = \underbrace{1 + 1 + \cdots + 1}_{n \text{\en{\, times}}}$ (במקרה הריק $f(0_\N) = 0_\F$). נסמן $f(n) = n_\F$. משום ש־$\F$ סופי אז $|\F| < |\N|$ וממשפטים על עוצמות $f$ איננה חח"ע, ולכן קיימים שני מספרים $n, m \in \F$ שונים כך ש־$n_\F = m_\F$. בה"כ $n > m$, אז $n - m > 0$ ולכן $(n - m)_\F \in \F$. קיבלנו	$(n - m)_\F = n_\F - m_\F = n_\F - n_\F = 0$, משמע: 
+			\[ \underbrace{1 + 1 + \cdots + 1}_{n - m\, \text{\en{times}}} = 0_\F \]
+			ולכן לפי הגדרה $\chr \F$ קיים, שכן $n - m = \chr \F$ או ש־$0 < \chr \F < n - m$ מהגדרת מינימליות. 
+		\end{proof}
+		\item צ.ל. $\chr \F$ ראשוני. \begin{proof}
+			יהי $\F$ שדה סופי. נראה ש־$\chr \F=: p$ ראשוני. נניח בשלילה שהוא לא ראשוני, אזי הוא פריק מהלמה של אוקלידס, ולכן קיימים $n, m$ טבעיים כך ש־$nm = p$ וכן $n, m \notin \{p, 1\}$. בגלל ש־$n, m < p$ ומהיות $p$ המינימלי כך ש־$p_\F = 0_\F$ (בסימונים מהסעיף הקודם), אז $n_\F, m_\F \neq 0_\F$. קל לראות ש־$0_\F = p_\F = (nm)_\F = n_\F m_\F$, וממשפט שראינו $n_\F = 0_\F \lor m_\F = 0_\F$, בסתירה לכך ש־$n_\F, m_\F \neq 0_\F$. סה"כ הנחת השלילה נסתרה ולכן $p$ ראשוני כדרוש. 
+		\end{proof}
+		\item נראה כי־$\Z_20$ איננו שדה. \begin{proof}ניעזר בסימון $a_\F$ מהסעיף הראשון. 
+			נראה כי בעבור $\Z_p$ כלשהו, $\chr \Z_p = p$. נתחיל מלהוכיח ש־$p_\F = 0$: 
+			\[ p_\F = (\underbrace{1 + 1 + \cdots + 1}_{p\, \text{\en{times}}})\bmod p = p\bmod p = 0 \]
+			נראה מינימליות. נניח בשלילה קיום $0 \neq n < p$ כך ש־$n_\F = 0$, אזי $n \bmod p = 0$, ולכן $p \mid n$. סה"כ נסיק $n \in \{kp \mid k \in \Z\}$, ומכיוון ש־$0 < n < p$ נבחין בסתירה שכן לא קיים $k$ מתאים. 
+			
+			סה"כ, $\chr \Z_p = p$. בפרט, $\chr \Z_{20} = 20$ ומכיוון ש־$20$ איננו ראשוני, מהסעיף הקודם $\Z_{20}$ איננו שדה – כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\ndoc
+\end{document}

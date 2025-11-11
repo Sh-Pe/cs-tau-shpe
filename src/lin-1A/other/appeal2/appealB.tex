@@ -1,0 +1,585 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+%! ~~~ Document ~~~
+
+\title{\textit{ערעור $\sim$ אלגברה ליניארית 1א $\sim$ מועד ב'}}
+\begin{document}
+	\maketitle
+	
+	\section*{שאלה 1}
+	בשאלה 1, נכתב "למה" מעל הטקסט במקרה שבו $A$ עם שורת אפסים אחת. נכתב בשלוש השורות האלו: 
+	"משום ש־$A$ קאנונית שורת האפסים היא השורה הרביעית והאחרונה, ולכן לכל $i \neq 4$ ו־$j, i \in \{1, 2, 3, 4\}$ יתקיים שב־$A_{ij}$ שורת אפסים ואז $|A_{ij}| = 0$.". 
+	
+	אולי לא הסברתי טוב את דברי. 
+	\begin{itemize}
+		\item הטענה שאם $A$ קאנונית אז שורת האפסים היא האחרונה, נובעת מהעובדה שקיימת שורת אפסים מהגדרת המקרה (זהו המקרה שלישי בפירוק למקרים שעשיתי בשאלה) ובגלל שהיא קאנונית כל שורות האפסים נמצאות בתחתית המטריצה. 
+		\item הטענה שבתנאים המוזכרים לעיל $|A_{ij}| = 0$ נכונה, שכן משום ש־$A \in M_{4 \times 4}(\F)$ ולכן השורה האחרונה היא השורה ה־$4$. על כן, כל מינור שלא יסיר את השורה ה־$4$, יכלול בתוכו שורת אפסים. בפרט, בכל מקרה ב־$i \neq 4$ נקבל שב־$A_{ij}$ שורת אפסים, ובגלל שדטרמיננטה של מטריצה בה ישנה שורת אפסים היא $0$, נסכם שבמקרה זה $|A_{ij}| = 0$. 
+	\end{itemize}
+	
+	אני לא חושב שיש בעיה בהמשך, בגלל שלא עליו הבודק סימן את סימני השאלה. ליתר בטיחון, הנה הסבר קצר של המשך הפתרון שלי, והבעיות שעלולות להופיע בקריאתו; בהמשך, כתבתי את $\adj A$ מפורשות לפי הגדרה כתלות בדטרמיננטה של מינורים מ־$A$, והראיתי סתירה לכך שהגענו למצב בו כל השורה הימנית של $\adj A$ איברים פותחים. יש לציין שבפסקה זו אני משתמש בסימון $A_{ij}$ כדי לציין את האיבר ה־$ij$ ב־$A$ ולא את המינור, בניגוד לפסקה הראשונה באותו העמוד בה אני משתמש בסימון זה בשביל המינור, דבר שאולי יכל לגרום לבלבול. דבר אחר שיכל לגרום לבלבול הוא צמד המילים "איברים פותחים" שנכתבה בכתב לא ברור. 
+	
+	\section*{שאלה 3}
+	בשאלה 3 כתבתי פתרון נכון ברובו, אך לא ברור ומבולגן. הבודק התקשה להבין את הפתרון המסורבל שלי ("לא מצליח להבין את זה", "אני לא מבין את המעבר הזה" וכו'). על כן, אספק כאן שני דברים – ראשית, הוכחה מסודרת לנכונות הבניה שלי מהמבחן, ושנית, תמלול מוקלד ומלא של ההוכחה שלי מהמבחן. אני מקווה, שקריאה של פתרון דומה אך מסודר יותר, יחד עם הקלדת הפתרון המקורי מהמבחן, יאפשר לכם להבין יותר בקלות את מה שכתבתי. אני מתנצל על הבלגן של הפתרון, ועל אורך הערעור, בלחץ המבחן התקשתי לכתוב יותר מסודר מזה, ועתה אצטרך להבהיר את נכונותו של פתרון ארוך. גם הפתרון שלי מהמבחן נכון ברובו – אך ההוכחה המסודרת שמצורפת להלן ברורה בהרבה, ועל כן אני ממליץ לכם לקרוא אותה קודם לקריאת תמלול המבחן. 
+	
+	\subsection*{הוכחה מסודרת לבניית הבסיס שלי בשאלה 3}
+	יהיו $V$ מ"ו על $\F$ שדה, $v \in V$ וקטור לא $0$, ו־$(\ag_i)_{i = 1}^{n}$ קבוצת סקלרים. נבנה בסיס $w_1 \dots w_n$ כך ש־$v = \sum_{i = 1}^{n}\ag_iw_i$. 
+	
+	נגדיר כמה סימונים – ראשית כל: 
+	\[ \dg_j = \begin{cases}
+		1 & \ag_j \neq 0\\
+		0 & \ag_j = 0
+	\end{cases}, \ \dg_j \co \{\ag_i\}^{n}_{i = 1} \to \{0, 1\} \]
+	נגדיר את $i$ להיות המספר המינימלי כך ש־$\dg_j = 1$ ($i$ קיים משום שנתון ש־$\ag_i$ לא טרוויאלי), ומעתה ואילך כל סכום $\sum_{i = k}^{m}f(k)$ יוגדר להיות $0$ במידה ו־$k = m$. נגדיר $\ag^{1} = (i \in \{1 \dots n\} \mid \dg_i = 1)$ סדור בסדר עולה, ואת $m_j$ להיות האיבר הבא אחרי $j$ ב־$\ag^1$ (כלומר, ה־$k > j$ המינימלי כך ש־$\ag_k = 1$). אם לא קיים כזה (כלומר, אם $j$ מקסימלי ב־$\ag^1$), נגדיר $m_j = n$. 
+	
+	עתה, ידוע לנו קיום בסיס $v_1 \dots v_n$ של $V$, ולכן קיימות $\lg_1 \dots \lg_n \in \F$ סקלרים כך ש־$\sum_{j = 1}^{n} \lg_jv_j = v$. ניעזר בו בשביל לבנות את $w_j$. 
+	
+	עתה, נגדיר לכל $j \in \ag^1$: 
+	\[ w_j' = \frac{\lg_j}{\ag_j}v_j + \sum_{k = j + 1}^{m_j - 1}\cl{v_k \cdot \frac{\lg_k}{\ag_j}} \]
+	ולכל $j \notin \ag^1$ נגדיר $w_j = v_j$. (עולם הדיון הוא $j \in [n]$). ה"אינטואציה" היא שכל $j \in \ag^1$ מטפל בכל הוקטורים ממנו ועד $m_j - 1$, ודואג שהם יתווספו לסכום הסופי (הוכחה פורמלית של האינטואציה הזו תבוא בהמשך). 
+	
+	ניזכר בהגדרה של הקבוע $i$ מלמעלה. נגדיר: 
+	\[ w_i = w_i' + \sum_{j = 1}^{i - 1}\cl{v_j \cdot \frac{\lg_j}{\ag_i}} \]
+	ובכל שאר המקרים בהם $i \neq j$, נגדיר $w_i = w_j$ [הטיפול שלי ב־$w_i$ בהוכחה המקורית שגוי במעט, בניית שאר $n - 1$ הוקטורים נכונה]. ההגיון מאחורי המהלך הוא ש־$i$ הוא האיבר הראשון ב־$\ag^1$ ולכן צריך לטפל גם ב־$v_i$־ים שקודמים לו. 
+	
+	נבחין כי החלוקה ב־$\ag_j$ מתבצעת תמיד באופן חוקי, שכן מתבצעת אם ורק אם $j \in \ag^1$ (כלומר $\ag_j \neq 0$). 
+	
+	עתה יש להראות ש־$(w_i)_{i = 1}^{n}$ בסיס. קל לראות שעבור רצף כלשהו של $(\bg_i)_{i = 1}^{n}$ סקלרים, נוכל לכנס את המקדמים של וקטורי $v_i$, ולראות שהביטוי בת"ל מזה ש־$v_i$ בסיס. [הסבר יותר מפורט בהוכחה המקורית מהמבחן]. משום שזוהי סדרת וקטורים מגודל $n$, ונתון $\dim V = n$, אז $(w_i)_{i = 1}^{n}$ בסיס. 
+	
+	נבחין כי לכל $j \notin \ag^1$, מהגדרה $\dg_j = 0$ כלומר $\ag_j = 0$, ונקבל $\ag_jw_j = 0 \cdot v_j = 0$. אשתמש בכך מספר פעמים, ונראה כי הבודק לא הבין זאת בגלל ריבוי הסימונים ("איפה כל יתר האלפות ששונות מאפס?"). 
+	
+%	עתה נראה את השוויון שנדרשנו להראות בהתחלה. משום שההגדרה של $w_i$ מופרדת מהגדרת $w_j, \ j \neq i$, נראה קודם כל את השוויון הבא: (השוויון לאפס שמצוין בשורה הראשונה, נובע מהגדרת מינימליות $i$ ב־$\ag^1$ כלומר $\forall k < i \co \dg_k = 0$);
+%	\begin{align*}
+%		\sum_{k = 1}^{i} \ag_k w_k &= \ag_i\Bigg(w = i + 1 = i + 1_i + \sum_{k = i + 1}^{m_i - 1}\cl{v_k \cdot \frac{\lg_k}{\ag_i}} + \overbrace{\sum_{k = 1}^{i - 1}\ag_k w_k}^{=0}\Bigg) \\
+%		&= \ag_i w_i \\
+%		&= \ag_i \frac{\lg_i}{\ag_i}v_i + \sum_{k = 1}^{i - 1}\frac{\lg_k}{ }
+%	\end{align*}
+	עתה ניגש להראות את השוויון $\sum_{j = 1}^{n} \ag_jw_j = v$. בהוכחה ניאלץ לטפל בשלושה מקרים: אם $j = i$, אם $i \neq j \in \ag^1$, ואם $j \notin \ag^1$, זאת כי הגדרת $w_j$ מפוצלת בין שלושת מקרים אלו. 
+	\begin{align*}
+		\sum_{j = 1}^{n}\ag_j w_j &= \ag_i w_i + \sum_{\mathclap{i \neq j \in \ag^1}}\ag_j w_j + \sum_{j \notin \ag^1}\ag_jw_j \\
+		&= \ag_i \underbrace{\Bigg (\frac{\lg_i}{\ag_i}v_i + \sum_{j = 1}^{i - 1}\cl{\frac{\lg_j}{\ag_i} v_j} + \sum_{j = i + 1}^{m_i - 1}\cl{\frac{\lg_j}{\ag_i}v_j} \Bigg )}_{= w_i}
+		+ \sum_{i \neq j \in \ag^1}\cl{\ag_j \Bigg({\frac{\lg_j}{\ag_j}v_j + \sum_{k = j + 1}^{m_k - 1}\frac{\lg_k}{\ag_j}v_k}\Bigg) } + \underbrace{\sum_{j \notin \ag^1}\ag_j v_j}_{=0} \\
+		&= \lg_i v_i + \sum_{j = 1}^{i - 1}\cl{\lg_j v_j} + \sum_{j = i + 1}^{m_i - 1}\cl{\lg_j v_j} + \sum_{i \neq j \in \ag^1}\cl{\lg_j v_j + \sum_{\mathclap{k = j + 1}}^{m_k - 1} \lg_k v_k} \\
+		&= \sum_{j = 1}^{i - 1}\lg_i v_i + \sum_{j \in \ag^1} \cl{\sum_{k = j}^{m_k - 1} \lg_k v_k} \\
+		&= \sum_{j = 1}^{n}\lg_jv_j = v
+	\end{align*}
+	השוויון האחרון נכון כי אנחנו "מרצפים" את $n$ המספרים – ראשית כל מ־$1$ עד $i - 1$, משום ש־$i$, האיבר הראשון ב־$\ag^1$, ואז משם נסכום מ־$i$ ל־$m_i - 1$, ואז מ־$m_i$ ל־$m_{m_i} - 1$ וכו' עד שנגיע ל־$m_j = n$ (מהגדרת $m_j$, כאשר $j$ מקסימלי ב־$\ag^1$ אז $m_j = n$). בכך הראינו את הדרוש. 
+	\textit{הערה: }בפתרון המקורי מהמבחן במצורף לעיל, הראתי את השוויון הארוך שהוכחתי עכשיו באמצעות מספר שוויונות ששילבתי לשוויון אחד בסוף. 
+	
+	\subsection*{תמלול שאלה 3}
+	להלן מצורף תמלול מדויק של מה שכתבתי במבחן. 
+	
+	\begin{proof}
+		יהי $V$ מ"ו מממד $n$ מעל $\F$ שדה, ויהי $v \in V$ וקטור לא $0$. יהיו $(\ag_i)_{i = 1}^{n}$ קבוצת סקלרים $\ag_i \in \F$. ידוע קיים $\ag_x \neq 0$ כלשהו. נראה קיום בסיס $\{w_1 \dots w_n\}$ כך ש־$v = \sum_{i = 1}^{n} \ag_i w_i$. 
+		
+		משום ש־$v = 0$ ו־$v \in V$ אז בעבור בסיס $\{v_1 \dots v_n\}$ כלשהו של $V$ יתקיים $v = \sum_{i = 1}^{n}\lg_iv_i$ קיום $(\lg_i)_{i = 1}^{n}$ כלשהן צירוף לא טריוואלי. 
+		
+		נגדיר: 
+		\[ \dg_i = \begin{cases}
+			1 & \ag_i \neq 0 \\
+			0 & \ag_i = 0
+		\end{cases}, \ \dg_i \co \{\ag_i\}^{n}_{i = 1} \to \{0, 1\} \]
+		פונ'.
+		
+		נפעל לפי האלגוריתם הבא: עבור $i$ מינימלי כך שמתקיים ש־$\dg_i = 1$ (קיים לפי הנתון כזה), נגדיר: 
+		\[ v_i' = \frac{\lg_i}{\ag_i} v_i + \sum_{j = 1}^{i - 1}\cl{v_j \cdot \frac{1}{\ag_i}} \]
+		(אם סכום ריק אז סכום $0$). ולכל $j \neq i$ נגדיר $v_j' = v_j$. 
+		
+		מעתה ואילך, תהי $\ag^1 = (i \mid \dg_i = 1)$ לא ריקה מהנתון, וסדורה בסדר עולה. אז לכל $j \in \ag^1$: 
+		\[ w_j = \frac{\lg_j}{\ag_j}v_j' + \sum_{\mathclap{k = j + 1}}^{m - 1}\cl{v_k' \cdot \frac{1}{\ag_j}} \]
+		כאשר $m$ הוא המספר הקטן הבא אחרי $j$ ב־$\ag^1$, אם קיים, אחרת $n$. 
+		אם $j + 1 \ge m -1$ נגדיר את הסכום להיות 0. לכל $j \notin \ag^1$ נגדיר $w_j = v_j$. 
+		
+		(עד כה חלוקה ב־$\ag_j$ חוקית כי תמיד $\dg_j = 1$)
+		
+		ראשית, נראה ש־$(w_i)_{i = 1}^{n}$ בסיס; יהיו $\F \ni (\bg_i)_{i = 1}^{n}$ סקלרים: 
+		\[ \sum \bg_k w_k = \cl{\sum v_j \cdot \frac{1}{\ag_i}} \cdot \bg_i
+		+ \underbrace{\sum_{k = 1}^{i - 1}\bg_k v_k}_{\ag_k = 0\, \text{כי}}
+		+ \sum_{k \in \ag^1} \cl{\frac{\lg_k}{\ag_k} + \sum_{x = k + 1}^{m_k - 1} \frac{1}{\ag_k}v_x} \cdot \bg_k \]
+		[חץ מצביע לכיתוב ־$x = k + 1$ בביטוי לעיל] כי עבור $k = i$ טיפלנו, אחרת $v_k' = v_k$
+		
+		($m_k$ המספר שבא אחרי $k$ ב־$\ag^1$, אם קיים אחרת $n$)
+		
+		נבחין כי נוכל לכנס איברים ולקבל קומבינציה ליניארית של $(v_k)_{k = 1}^{n}$ שכן לכל איבר כופל באחד מאיברי $(v_k)$. אזי זהו צירוף ליניארי לא טריוואלי של בסיס ולכן $0$, כדרוש. 
+		
+		סה"כ $(w_i)^{n}_{i = 1}$ בת"ל, וגם $\sof{(w_i)^{n}_{i = 1}} = n = \dim V$ ולכן $|(w_i)_{i = 1}^{n}|$ בסיס ל־$V$. 
+		
+		עתה נראה את השוויון שנדרשנו להראות בתחילת השאלה. 
+		
+		תחילה, נראה כי $\sum_{k = 1}^{m_i - 1}\lg_kv_k = \sum_{k =1}^{i} \ag_k w_k$; 
+		(גם כאן $m_i$ מוגדר כמו לעיל)
+		\[ \sum_{k = 1}^{i}\ag_kw_k = \ag_i w_i + \sum_{i \neq k = 1}^{m_i - 1}\underbrace{\ag_k}_{\mathclap{\overset{0}{\dg_k = 0\text{כי }}}} w_k = \ag_iw_i
+		= \ag_iw_i
+		= \ag_i \frac{\lg_i}{\ag_i}v_i + \sum_{k = 1}^{i - 1}\frac{\lg_j}{\cancel{\ag_i}}\cancel{\ag_i} v_k + \sum_{k = i + 1}^{m_i - 1}\frac{\lg_k}{\cancel{\ag_i}}\cancel{\ag_i}v_k
+		= \sum_{k = 1}^{i}\lg_kv_k \]
+		כדרוש. 
+		
+		עתה, נראה שלכל $\ag^1 \ni j \neq 1$ מתקיים $\ag_jw_j = \sum_{m_j - 1}^{k = j}v_k\lg_k$:
+		
+		\begin{align*}
+			w_j\ag_j &= \ag_j\cl{\frac{\lg_j}{\ag_j}v_j + \sum_{k = j + 1}^{m_j - 1} v_k \cdot \frac{\lg_k}{\ag_j} }\\
+			&= \lg_jv_j + \sum_{k = j + 1}^{m_j - 1}v_k\lg_k \\
+			&= \sum_{k = j}^{m_j - 1}v_k \lg_k
+		\end{align*}
+		סה"כ: 
+		\begin{align*}
+			&\sum_{j = 1}^{n} \ag_j w_j = \sum_{j \notin \ag^1}\underbrace{\ag_j}_{\mathclap{\overset{\ag_j=0}{\dg_j = 0 \, \text{כי}}}} w_j + \sum_{j \in \ag^1}\ag_jw_j = \sum_{j \in \ag^1} \ag_jw_j \\
+			=& \sum_{j \in \ag^1}\cl{\sum_{k = j}^{m_j - 1}v_k \lg_k} = \sum_{k =1}^{n}v_k\lg_k = v
+		\end{align*}
+		
+		השוויון האחרון נכון כי ישנו ריצוף כזה: 
+		\[ (\ag^1)_1 \underbrace{.....}_{\notin \ag^1}\overbrace{(\ag^1)_2}^{m(\ag^1)_1} ........ (\ag^1)_{(|\ag^1| - 1)} ..... \underbrace{\overbrace{*}^n}_{m_{|\ag^1| - 1}} \]
+		
+		וסה"כ $(w_i)^{n}_{i = 1}$ בסיס וגם $v = \sum_{j = 1}^{n}\ag_jw_j$ כדרוש. 		
+	\end{proof}
+	
+	\subsection*{למען הספר ספק, הוכחה שהבסיס אכן בת"ל}
+	בשתי ההוכחות דילגתי על שלבים הוכחת הבת"ליות, משום שזה נראה לי כקטע לא רלוונטי ולא עיקרי, שמעמיס על הוכחה ארוכה ממילא. למען הספר ספק, כחלק מערעור זה אני מצרף גם הוכחה שהבסיס שבניתי אכן בת"ל. אם זה ברור לקרוא, אין טעם לקרוא את ההוכחה האלגברית המצורפת. 
+	\begin{proof}
+		נעבוד עם בסיס תחת הסימונים של ההוכחה המסודרת המופיעה לעיל. יהיו $(\bg_i)_{i = 1}^{n} \in \F$ סקלרים. נדרוש שוויון של הקומבינציה הליניארית של $(w_i)_{i = 1}^{n}$ איתם ל־$0$. אז: 
+		\begin{align*}
+			\sum_{i = 1}^{n} \bg_iw_i &= \bg_i \underbrace{\Bigg (\frac{\lg_i}{\ag_i}v_i + \sum_{j = 1}^{i - 1}\cl{\frac{\lg_j}{\ag_i} v_j} + \sum_{j = i + 1}^{m_i - 1}\cl{\frac{\lg_j}{\ag_i}v_j} \Bigg )}_{= w_i}
+			+ \sum_{i \neq j \in \ag^1}\cl{\bg_j \Bigg({\frac{\lg_j}{\ag_j}v_j + \sum_{k = j + 1}^{m_k - 1}\frac{\lg_k}{\ag_j}v_k}\Bigg) } + \sum_{j \notin \ag^1}\bg_j v_j \\
+			&= \sum_{j \notin \ag^1}\cl{\cl{\bg_j + \bg_*\frac{\lg_j}{\ag_*}}v_j}
+			+ \sum_{j \in \ag^1}\cl{\cl{\frac{\lg_j}{\ag_j}\bg_j}v_j} = 0
+		\end{align*}
+		כאשר $\bg_*$ איזשהו $\bg_j$ כלשהו כך ש־$j \in \ag^1$ (ליתר דיוק – הוא ה־$*$ המקסימלי ב־$\ag^1$ כך ש־$* < j$, אך אין זה משנה להוכחת הבת"ליות). השוויון האמצעי נכון מנימוקים שכבר הובאו מספר פעמים לעיל (ראה/י סוף ההוכחה המסודרת) ועל כן אחסוך לכתוב אותם גם כאן. 
+			
+		סה"כ הגענו לקומבינציה ליניארית של $(v_i)_{i = 1}^{n}$ שהוא בסיס, כלומר הקבועים בהם כפלנו טרוויאלים. נתבונן בקבועים, ונסיק שלכל $j \in \ag^1$ יתקיים $\frac{\lg_j}{\ag_j}\bg_j = 0$ ולכן $\bg_j = 0$. באופן דומה: 
+		\[ \forall j \in \ag^1 \, \exists * \notin \ag^1 \co \bg_j + \underbrace{\bg_k\frac{\lg_j}{\ag_k}}_{\mathclap{k \in \ag^1 \implies \bg_k = 0}} = \bg_j = 0 \]
+		וסה"כ בין אם $j \in \ag^1$ ובאין אם לאו, מתקיים $\bg_j = 0$ כלומר $(\bg_i)_{i = 1}^{n}$ טרוויאלי, כדרוש. 
+	\end{proof}
+	
+	\dotfill
+	
+	אני מעריך מאוד את הזמן שהושקע בקריאת ערעור זה. 
+	
+	
+\end{document}

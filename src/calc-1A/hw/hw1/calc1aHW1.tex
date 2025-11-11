@@ -1,0 +1,210 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\title{חדו''א 1א $\sim$ \textit{תרגיל בית 1}}
+\begin{document}
+	\maketitle
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נוכיח כי אם $a + \frac{1}{a}$ שלם, אז $a^3 + \frac{1}{a^3}$ שלם. \begin{proof}
+			נניח $a + \frac{1}{a}$ שלם. אז: 
+			\[ Z \ni \cl{a + a\op}^{3} = a^3 + 3a^2a\op + 3aa^{-2} + a^{-3} = a^3 + a^{-3} + 3(a + a\op) \]
+			נסמן $z = a + a\op$. סה''כ קיבלנו $z^3 = a^{3} + \frac{1}{a^3} + 3z$ כלומר $a^{3} + \frac{1}{a^{3}} = z^{3} - 3z$. השלמים סגורים לכפל וחיבור כלומר $a^{3} + \frac{1}{a^{3}} \in \Z$ כדרוש. 
+		\end{proof}
+		\item נוכיח $\sqrt[3]{2} \notin \Q$ \begin{proof}
+			נניח בשלילה $\sqrt[3]{2} \in \Q$, ואז $\sqrt[3]{2} = \frac{n}{m}$ עבור $n, m$ זרים כלשהם (כלומר $\gcd(n, m) = 1$). אז: 
+			\[ \begin{WithArrows}
+				\frac{n}{m} &= \sqrt[3]{2} \Arrow{$()^{3}$} \\
+				\frac{n^3}{m^3} &= 2 \Arrow{$\times m^3$} \\
+				n^3 &= 2m^3
+			\end{WithArrows} \]
+			אזי, מהמשפט היסודי של האריתמטיקה ובגלל ש־$2$ ראשוני, נסיק של־$m, n$ בהכרח קיים גורם משותף גדול מ־1, בסתירה להיותם זרים. 
+		\end{proof}
+		\item נוכיח כי לכל $a, b \ge 0$, מתקיים $\min\{-a, -b\} = - \max\{a, b\}$. \begin{proof}
+			בה''כ $a \ge b$. אזי ממשפט מהכיתה $-a \le -b$. לכן מהגדרה $\max\{a, b\} = a$ וכן $\min\{-a, -b\} = -a$. סה''כ $\min\{-a, -b\} = -a = -\max\{a, b\}$ ומטרנזטיביות נקבל את הדרוש. 
+		\end{proof}
+		\item יהיו $a, b \in \Z$. נראה ש־$3 \mid a^2 + b^2 \iff (3 \mid a \land 3 \mid b)$. \begin{proof}נוכיח את שתי הגרירות. 
+			\begin{itemize}
+				\item[$\implies$] נניח $3 \mid a^2 + b^2$. אזי קיים $k \in \Z$ כך ש־$3k = a^2 + b^2$. נפרק למקרים. 
+				\begin{itemize}
+					\item אם $3$ מחלק לפחות אחד מהם, אז בה''כ $3 \mid a$ ואז קיים $m$ כך ש־$3m = a$. סה''כ נקבל $3k - a^2 = b^2$ כלומר $3(k - 3m^2) = b^2$ כלומר $3 \mid b^2$ ומהמשפט היסודי של האריתמטיקה, בגלל ש־$3$ ראשוני בהכרח $3 \mid b$ וסיימנו. 
+					\item אם $3$ לא מחלק אף אחד מהם, נוכיח טענת עזר: אם $3\nmid c \in \Z$, אז $c \equiv_3 1$. אם $3 \nmid c$ אז $c = 3k + r$ כאשר $k \in \Z, r \in \{1, 2\}$. ואז: 
+					\[ c^{2} = (3k + r)^{2} = 3^{2}k^{2} + 3kr + r^{2} = 3(3k^2 + kr) + r^{2} \equiv_3 r^{2} =: \cdots \]
+					סה''כ בעבור $r = 1$ נקבל $\cdots \equiv_3 1^1 = 1$ ועבור $r = 2$ נקבל $\cdots \equiv_3 2^{2} = 4 \equiv_3 1$. כלומר $c^{2} \equiv_3 1$ כדרוש. 
+					
+					מכאן שקיימים $k_1, k_2$ כך ש־$a^{2} = 3k_1 + 1, b^{2}= 3k_2 + 1$. נסיק: 
+					\[ a^{2} + b^{2} = 3k_1 + 1 + 3k_2 + 1 = 3(k_1 + k_2) + 2 \equiv 2 \not\equiv_3 0 \implies 3 \nmid a^{2} + b^{2} \]
+					וזו סתירה לכך ש־$3 \mid a^{2} + b^{2}$, כלומר $3$ מחלק לפחות אחד מהם (מה שמחזיר אותנו למקרה הראשון שהוכח). 
+				\end{itemize}
+				\item[$\impliedby$]נניח $3 \mid a \land 3 \mid b$. נוכיח $3 \mid a^{2} + b^{2}$. מהגדרה, קיימים $k, m \in \Z$ כך ש־$3k = a, \ 3m = b$. אז: 
+				\[ a^{2} + b^{2} = (3k)^{2} + (3m)^{2} = 3(3k^2 + 3m^{2}) \equiv_3 0 \implies 3 \mid a^{2} + b^{2} \]
+				כדרוש. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נוכיח בעזרת אקסיומות השדה הסדור את הטענות הבאות: 
+	\begin{enumerate}[(A)]
+		\item יהיו $x, y \in \R$. נראה ש־$x< y \implies 0 < y - x$. \begin{proof}
+			יהיו $x, y \in \R$. נניח $x < y$. מאדטיביות יחס הסדר $x + (-x) < y + (-x)$ ומהגדרת הנגדי $0 < y - x$ כדרוש. 
+		\end{proof}
+		\item יהיו $x, y \in \R$. נראה ש־$(0 < x \land 0 < y \land x^2 < y^2) \implies x < y$. \begin{proof}
+			יהיו $x, y \in \R$ כך ש־$x, y> 0$ וכן $x^2 < y^2$. קיים נגדי $-x^2$ והוכחנו יחיד ל־$x$, ולכן נוכל להוסיף אותו לשני האגפים מאקטיביות יחס הסדר. מהגדרת הנגדי $0 < y^2 - x^2$. קל לראות מדיסטרבוטיביות, קומטטיביות והגדרת נגדי ש־$(x - y)(x + y) = x^2 - y^2$. כלומר $0 < (x + y)(x - y)$. בגלל ש־$x, y > 0$ אזי $x + y > 0 + y = y > 0$ (הוספנו $y$ לשני אגפי $x > 0$) ובפרט לא שווה ל־$0$, לכן קיים הופכי בכפל $\frac{1}{x + y} > 0$ שנוכל לכפול בו את שני אגפי המשוואה בהתאם לאחת מאקסיומת יחס הסדר. סה''כ נקבל $(x - y) = (x - y)\frac{x + y}{x + y} > \frac{0}{x + y} = 0 \cdot \frac{1}{x + y}  = 0$ כלומר $x - y > 0$ ומסעיף קודם $x > y$ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נוכיח את א''ש המשולש ההפוך. 
+		\begin{proof}
+			נסמן ב־$\overset{\trio}{\le}$ א''שים הנובעים מא''ש המשולש שכבר הוכחנו. יהיו $x, y \in \R$. נפרק למקרים לפי הגדרת הערך המוחלט. 
+			\begin{itemize}
+				\item אם $\sof y \ge \sof x$ אז $\sof x - \sof y = \sof{\sof x - \sof y}$ ואז: 
+				\[ \sof x \le \sof{x - y + y} \overset{\trio}{\le} \sof{x - y} + \sof y \implies \underbrace{\sof x - \sof y}_{\mathclap{\sof{\sof x - \sof y}}} \le \sof {x - y} \]
+				\item אם $\sof y < \sof x$ אז $-(\sof x - \sof y) = \sof{\sof x - \sof y}$, ואז: 
+				\[ \sof y = \sof{y - x + x} \overset{\trio}{\le} \underbrace{\sof{y - x}}_{\mathclap{\sof{=-(x - y)} = \sof{x - y}}} + \sof x \implies \overbrace{\sof y - \sof x}^{\mathclap{=-(\sof{x} - \sof y) = \sof{\sof{x} - \sof y}}} \le \sof{x - y} \]
+			\end{itemize}
+			סה''כ בכל המקרים אי־השוויון מתקיים. 
+			
+			שוויון מתקיים אמ''מ השווינות לעיל הדוקים, שהדוקים במקרים שבהם א''ש המשולש הדוק (וידוע $\sof a + \sof b = \sof{a + b}$ אמ''מ $\sgn a = \sgn b$). זה יקרה כאשר $\sgn(y - x) = \sgn x = \sgn y = \sgn(x - y)$. באופן כללי, $\sgn a = \sgn b$ אמ''מ $ab \ge 0$, כלומר נוכל לפשט את התנאי לכך ש־$xy > 0$ וגם $(x - y)(y - x) > 0$. 
+		\end{proof}
+		\item נוכיח ש־$\sof{a + \frac{1}{a}} \ge 2$ לכל $a \neq 0$. \begin{proof}
+			נפרק למקרים. 
+			\begin{itemize}
+				\item אם $a > 0$, אז מתקיים $(a - 1)^{2} \ge 0$ שכן ריבוע של מספר ממשי הוא חיובי. מכאן נקבל: 
+				\[ a^2 - 2a + 1 \ge 0 \implies a^2 + 1 \ge 2a \]
+				משום ש־$a > 0$, נוכל לחלק ב־$a$ ואי השוויון ישמר. סה''כ נקבל $a + \frac{1}{a} \ge 2$ ומשום ש־$\sof{a + \frac{1}{a}} = a + \frac{1}{a}$ לכל $a > 0$, קיבלנו את הדרוש. 
+				\item אם $a< 0$, אז ידוע $\sof{a + \frac{1}{a}} = \sof{-\sof{a} + \frac{1}{-\sof{a}}} = \sof{-\cl{a + \frac{1}{a}}} = \sof{\sof{a} + \frac{1}{\sof{a}}}$. בגלל ש־$\sof{a} > 0$, ועבור המקרה הזה כבר הוכחנו, במקרה הקודם, סיימנו. 
+			\end{itemize}
+			
+			עתה נמצא תנאי הכרחי ומספיק לשוויון. טענה: $a = \pm1$ אמ''מ ישנו שוויון. 
+			\begin{itemize}
+				\item \textbf{מספיק: }אם $a = 1$, אז $\sof{a + \frac{1}{a}} = \sof{\pm\cl{1 + \frac{1}{1}}} = 1 + 1 = 2$ כדרוש. 
+				\item \textbf{הכרחי: }אם ישנו שוויון $\sof{a + \frac{1}{a}} = 2$, נפרק למקרים. 
+				\begin{itemize}
+					\item אם $a > 0$ אז $a + \frac{1}{a} = 2$ ואז $a^2 + 1 = 2a$ כלומר $a^2 + 2a + 1 = 0$. השורשים היחידים של הפולינום הזה הם $\pm 1 = a$. 
+					\item אם $a < 0$ אז $-a - \frac{1}{a} = 2$ ואז $-a^2 - 1 = 2a$ כלומר $-a^2 - 2a - 1 = 0$. השורשים היחידים של הפולינום הזה הם $\pm 1 = a$. 
+				\end{itemize}
+			\end{itemize}
+		\end{proof}
+		\item נוכיח ש־$\sqrt x + \sqrt y \le \frac{x}{\sqrt y} + \frac{y}{\sqrt x}$ לכל $x, y > 0$. \begin{proof}
+			יהיו $x, y \in \R$. נגדיר $a = \sqrt x, b = \sqrt y$. אז: 
+			\[ \begin{WithArrows}[format=Crl]
+				\iff & a + b &\ \le \frac{a^{2}}{b} + \frac{b^2}{a} \\
+				\iff & (a + b)ab &\ \le a^3 + b^3 \\
+				\iff & a^2b + b^2 a &\ \le a^3 + b^3 \\
+				\iff & 0 & \ \le a^3 + b^3 - a^2b - b^2 a \\
+				\iff & 0 & \ \le a(a^2 - b^2) - b(a^2 - b^2) \\
+				\iff & 0 & \ \le \underbrace{(a - b)}_{\ag}\underbrace{(a^2 - b^2)}_{\bg}
+			\end{WithArrows} \]
+			אם $a > b$ אז $\ag, \bg > 0$ וסיימנו. אם $a < b$ אז $\ag, \bg < 0$ וכפל מספרים שליליים הוא חיובי, אז סיימנו. בשני המקרים הקודמים בהכרח נקבל מספר שאינו $0$. אם $a = b$ אז נקבל שקילות לשוויון ל־$0$, וזה יתרחש אמ''מ $x = y$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נוכיח באינדוקציה מספר טענות. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\sumnko k^2 = \frac{n(n + 1)(2n + 1)}{6}$. \begin{proof}נוכיח באינדוקציה על $n$. 
+			\begin{itemize}
+				\item \textbf{בסיס: }עבור $n = 1$ מתקיים $1^2 = \frac{6}{6} = \frac{1(1 + 1)(2 + 1)}{6}$ כדרוש. 
+				\item \textbf{צעד: }נניח את נכונות הטענה על $n$ ונוכיח בעבור $n + 1$. 
+				\begin{multline*}
+					\sum_{k = 1}^{n + 1}k^2 = (n + 1)^{2} + \sumnko k^2 \overset{\text{ה.א.}}{=} (n + 1)^{2} + \frac{n(n + 1)(2n + 1)}{6} = \frac{6n^2 + 12n + 6 + 2n^3 + n^2 + n + 2n^2}{6} \\
+					= \frac{2n^3 + 7n^2 + 13n + 6}{6} = \frac{(n + 1)(n + 2)(2n + 3)}{6} = \frac{(n + 1)((n + 1) + 1)(2(n + 1) + 3)}{6}
+				\end{multline*}
+				ואכן הצעד מתקיים כדרוש. 
+			\end{itemize}
+		\end{proof}
+		\item נוכיח שלכל $q \neq 1$ מתקיים $\sumni q^{i} = \frac{1 - q^{n + 1}}{1 - q}$ \begin{proof}
+			נוכיח באינדוקציה על $n$. 
+			\begin{itemize}
+				\item \textbf{בסיס: }בעבור $n = 1$ מתקיים $1 = \frac{1 - q^{1}}{1 - q}$ כדרוש. 
+				\item \textbf{צעד: }נניח באינדוקציה את נכונות הטענה בעבור $n$, ונוכיח בעבור $n + 1$. 
+				\[ \sum_{i = 1}^{n + 1} q^{i} = q^{n + 1} + \sum_{i = 1}^{n} q^{i} \overset{\text{ה.א.}}{=} q^{n + 1} + \frac{1 - q^{n + 1}}{1 - q} = \frac{1 - q^{n + 1} + (1 - q)q^{n + 1}}{1 - q} = \frac{1 - q^{n + 1} + q^{n + 1} - q^{n + 2}}{1 - q} = \frac{1 - q^{(n + 1) + 1}}{1 - q} \]
+				וסה''כ צעד האינדוקציה עובד בהתאם לה.א. 
+			\end{itemize}
+		\end{proof}
+		\item נוכיח ש־$\forall n \in \N \co 18 \mid 7^{n} + 12n + 17$. \begin{proof}
+			נתחיל את ההוכחה מהלמה הבאה, שנוכיח באינדוקציה: $\forall n\in \N\co 3 \mid 7^{n} + 2$. בסיס $n = 1$ עבורו $3 \cdot 3 = 7 + 2$ כדרוש. בעבור הצעד נניח באינדוקציה על $n$ ונוכיח בעבור $n + 1$, מה.א. $7^{n} + 2 = 3m$ עבור $m \in \N$ כלשהו ואז: 
+			\[ 7^{n + 1} + 2 = 7^{n} \cdot 6 + 7^{n} + 2 = 3(2 \cdot 7^{n} + m) \implies 3 \mid 7^{n + 1} + 2 \]
+			וסה''כ הצעד מתקיים והראינו את הלמה. 
+			
+			 נוכיח באינדוקציה על $n$. 
+			\begin{itemize}
+				\item \textbf{בסיס: }בעבור $n = 1$ מתקיים $18 \mid 36 = 7^1 + 12 \cdot 1 + 17$. 
+				\item \textbf{צעד: }נניח באינדוקציה את נכונות בטענה בעבור $n$. נוכיחה בעבור $n + 1$. מה.א. ידוע קיום $k$ כך ש־$18k = (7^{n} + 12n + 17)$. מהלמה שלנו ידוע קיום $m \in \N$ כך ש־$7^{n} + 2 = 3m$. 
+				נבחין ש־: 
+				\[ 7^{n + 1} + 12(n + 1) + 17 = \underbrace{7 \cdot 7^{n}}_{6 \cdot 7^{n} + 7^{n}} + 12n + 17 + 12 = \underbrace{7^{n} + 12n + 17}_{18k} + \,6 \cdot 7^{n} + 6 \cdot 2 = 18 k + 6(\underbrace{7^{n} + 2}_{3m}) = 18(k + m) \]
+				משום ש־$k, m \in \N$ הוכחנו את הדרוש. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נוכיח ש־: 
+	\[ \forall n\in\N \co \sumnk (-1)^{k}\binom{n}{k} = 0 \]
+	\begin{proof}
+		מהבינום של ניוטון: 
+		\[ \sumnk (-1)^{k}\binom{n}{k} = \sumnk \binom{n}{k}(-1)^{k}(1)^{k} = (-1 + 1)^{k} = 0^{k} = 0 \]
+		כדרוש. 
+	\end{proof}
+	
+	\section{}
+	יהי $h > 0$ וכן $x, y, a, b \in \R$ כך ש־$\sof{x - a} < h \land \sof{y - b} < h$. נוכיח $\sof{xy - ab} < h(\sof a + \sof b + h)$. 
+	\begin{proof}
+		נבחין שמא''ש המשולש ההפוך: 
+		\[ \sof x - \sof a \le \sof{\sof{x} - \sof{a}} \le \sof{x - a} < h \implies \sof x \le h + \sof a \]
+		עוד נבחין ש־: 
+		\[ \begin{WithArrows}
+			\sof{xy - ab} = &\sof{xy - xb - ab + xb} \Arrow[up]{א''ש המשולש} \\
+			\le &\sof{xy - xb} + \sof{-ab + xb} = \sof x\sof{y - b} + \sof b\sof{x - a} \Arrow[down]{$\sof{x - a} < h \land \sof{y - b} < h$}\\
+			\le &\sof x h + \sof bh = h(\sof b + \sof x) \Arrow[ll]{מהטענה שהוכחנו} \\
+			\le &\,h(\sof a + \sof b + h)
+		\end{WithArrows} \]
+		כדרוש. 		
+	\end{proof}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נוכיח את א''ש ברנולי המוכלל: 
+		\[ \forall (x_i)_{i = 1}^{n} \in \R^{n} \co (\forall i \in [n]\co x_i \ge 0) \implies \prod_{i = 1}^{n}(1 + x_i) \ge 1 + \sumnio x_i \]
+		\begin{proof}נוכיח באינדוקציה על $n$. 
+			נוכיח את הלמה הבאה: עבור $x, y \ge 0$ מתקיים $(1 + x)(1 + y) \ge 1 + x + y$. בה''כ $x \le y$ ואז: 
+			\[ (1 + x)(1 + y) \ge (1 + y)(1 + y) = (1 + y)^{2} \overset{(1)}{\ge} 1 + 2y = 1 + y + y \ge 1 + x + y \]
+			כאשר $(1)$ נכון מא''ש ברנולי עבור $n = 2$. עתה נפנה להוכיח באינדוקציה את הטענה עצמה. 
+			
+			\begin{itemize}
+				\item \textbf{בסיס: }נובע ישירות מא''ש ברנולי עבור $n = 1$. 
+				\item \textbf{צעד: }נניח באינדוציה בעבור $n$ ונוכיח ל־$n + 1$. 
+				\[ 1 + \sum_{i = 1}^{n + 1} x_{n + 1} = 1 + x_{n + 1} + \sumnio x_n \overset{\text{ה.א.}}{\le} 1 + x_{n + 1} + \cl{\prod_{i = 1}^{n} x_i} \overset{\text{הלמה}}{\le} x_{n + 1}\prod_{i = 1}^{n} x_i = \prod_{i = 1}^{n + 1}x_i \]
+			\end{itemize}
+		\end{proof}
+		
+		\item נוכיח את א''ש המשולש המוכלל: 
+		\[ \sof{\sumnio x_i} \le \sumnio \sof {x_i} \]
+		
+		\begin{proof}
+			נוכיח באינדוקציה על $n$. 
+			\begin{itemize}
+				\item \textbf{בסיס: }ישירות מא''ש המשולש. 
+				\item \textbf{צעד: }נניח באינדוקציה על $n$ ונוכיח בעבור $n + 1$. 
+				\[ \sof{\sum_{i = 1}^{n + 1} x_i} = \sof{x_{n + 1} + \sumnio x_i} \overset{(1)}{=} \sof{x_{n + 1}} + \sof{\sumnio x_i} \overset{(2)}{=} \sof{x_{n + 1}} + \sumnio \sof{x_i} = \sum_{i = 1}^{n + 1}\sof{x_i} \]
+				כאשר $(1)$ נובע מא''ש המשולש ו־$(2)$ נובע מה.א. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהיו $d, a_0$ ממשיים חיוביים וכן $n \in \N$ כלשהו. נסמן $a_k = a_0 + kd$ לכל $k \in [n + 1]$. נוכיח ש־: 
+	\[ \sum_{i = 1}^{n}\frac{1}{a_ia_{i + 1}} = \frac{n}{a_1a_{n + 1}} \]
+	\begin{proof}
+		באינדוקציה על $n$. עבור $n = 1$ טרוויאלי. נניח נכונות על $n$ ונוכיח בעבור $n + 1$. 
+		\[ \sum_{i = 1}^{n + 1} \frac{1}{a_ia_{i + 1}} = \frac{1}{a_{n}a_{n + 1}} + \sumnio \frac{1}{a_{i}a_{i +1}} \overset{\text{ה.א.}}{=} \frac{1}{a_n(a_0 + nd + d)} \cdot \frac{n}{(a_0 + d)a_{n}} = \frac{n(a_0 + nd + d) + (a_0 +d)}{a_1a_na_{n + 1}} = \frac{n\cancel{a_n}}{a_1\cancel{a_n}a_{n + 1}} = \frac{n}{a_1a_{n + 1}} \quad \top \]
+	\end{proof}
+	
+	\ndoc
+\end{document}

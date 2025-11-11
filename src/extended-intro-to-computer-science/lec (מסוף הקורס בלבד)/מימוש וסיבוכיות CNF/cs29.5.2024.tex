@@ -1,0 +1,399 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מ.מ.למדמ''ח $\sim$ משהו?}
+
+\begin{document}
+	\maketitle
+	\section{דקדוק – תזכורות}
+	תזכורת: 
+	\[ G = (V, \Si, R, S) \]
+	\begin{itemize}
+		\item $V$ -- משתנים
+		\item $Si$ -- אלפבית
+		\item $R$ -- כללי גזירה
+		\item $S \in V$ -- משתנה התחלה
+	
+	\end{itemize}	דוג': 
+	\begin{gather}
+	V = \{A, B\} \\
+	\Si = \{0, 1, \#\}\\
+	R \colon \begin{WithArrows}
+		A &\to 0A1 \\
+		A &\to B \\
+		B &\to B 
+	\end{WithArrows} \iff \begin{WithArrows}
+		A &\to 0A1 \mid B \\
+		B &\to B 
+	\end{WithArrows}\\
+	S = A
+	\end{gather}
+	במקרה הזה: 
+	\[ L(G) = \{0^n\#1^n \mid n \in \N\} \]
+	לדוגמה $00\#11 \in L(G)$. 
+	תזכורת: אנו נתמקד אך ורק בדקדוקים חסרי הקשר – בכללי הגזירה, בצד שמאל מפיע רק משתנה אחד (וללא בתווים מ־$\Si$). לדוגמה, דקדוק שיכלול את הכלל $aV \to A$, יהיה לא חסר הקשר. (חסר הקשר = Sensitive Context ודקדוק לא חסר הקשר = Grammers Free Context \del). 
+	
+	שאלות ששאלנו בשיעור שעבר: 
+	\begin{itemize}
+		\item האם $L(G_1) = L(G_2)$?
+		\item האם $L(G_1) \subseteq L(G_2)$?
+		\item האם יש יותר מעץ גזירה אחד לכל ילה ב־$L(G_1)$?
+		\item האם $L(G_1) \cap L(G_2) \neq \emptyset$?
+	\end{itemize}
+	כל הדברים להלן, שקולים לבקשה לכתוב תוכנת מחשב המקבלת כקלט תוכנית מחשב, ולהחזיר אם התוכנית תיגמר בזמן סופי או לא. השאלה הזו בלתי אפשרית לפתרון סופי. 
+	
+	השאלות האלו קרויות \textbf{לא כריעות} – מלשון הכרעה, לא ניתן להכריע את התוצאה שלהן. 
+	
+	נרצה לענות בזמן טוב על שאלות יותר קלות: בהינתן דקדוק חסר הקשר $G$, ומילה $w$: 
+	\begin{itemize}
+		\item האם $w \in L(G)$ (Recognition) \del? 
+		\item אם $w \in L(G)$, למצוא עץ גזירה כלשהו של $w$ ב־$G$ (Parsing) \del. 
+	\end{itemize}
+	
+	\pagebreak
+	\section{פתרון הבעיות}
+	\subsection{CNF}
+	על מנת לענות על השאלות הללו, נמיר דקדוק ל־Form Normal Chomsky \del, ובצורה זו קל יותר לענות על השאלות האלו. 
+	
+	\textbf{הגדרה: }דקדוק חסר הקשר הוא מצורת CNF אמ''מ כל כללי הגזירה בו הם מהצורה הבאה: 
+	\begin{alignat}{9}
+		A &\to a, &&\quad A \in V, \ a \in \Si \\
+		A &\to BC &&\quad A \in V, B, C \in V \setminus \{S\} \\
+		S &\to \vepsi
+	\end{alignat}
+	
+	\textbf{שימו לב שזו הגדרה הנכונה, בזו של השיעור שעבר נפלה טעות}
+	
+	\textbf{טענה: }כל דקדוק חסר הקשר ניתן לכתיבה והמרה בצורת CNF \del. 
+	
+	כדי ``להוכיח'', נראה כיצד נפתור כללי גזירה לא תקינים: 
+	\begin{alignat}{9}
+		A&\to BCD &&\quad \implies \quad \begin{cases}
+			A \to BE \\
+			E \to CD
+		\end{cases} \\
+		A &\to \vepsi &&\quad \implies \quad \begin{cases}
+			B \to A \\
+			B \to a | aA
+		\end{cases} \\
+		A &\to aB &&\quad \implies \quad \begin{cases}
+			A \to A'B \\
+			A' \to a
+		\end{cases}
+	\end{alignat}
+	
+	נתרגם את בחלק (1) למעלה ל־CNF. שני הכללים הראשונים לא עונים להגדרה. 
+	\begin{align}
+		\begin{cases}
+			A \to 0A1 \\
+			A \to B\\
+			B \to \#
+		\end{cases} \implies 
+		\begin{cases}
+			C_0 \to 0 \\
+			C_1 \to 1 \\
+			A \to C_0AC_1 \\
+			A \to B \\
+			B \to \#
+		\end{cases} \implies
+		\begin{cases}
+			C_0, C_1 \to 0, 1 \\
+			A \to C_0A \\
+			A_1 \to AC_1 \\
+			A \to \#
+		\end{cases}
+	\end{align}
+	
+	\subsubsection{סיכום}
+	בצורת CNF עלולים להיות יותר משתנים ויותר כללי גזירה, ובכלל, הדקדוק עלול להיות פחות קריא לאנשים. \\
+	אבל, עבור המחשב, צורה זו מאוד נוחה. 
+	\subsection{אלגו' CYK -- Cocke-Younger-Karzem}
+	אלג' לזיהוי ופירוש של מילה בהינתן דקדוק חסר הקשר בצורת CNF. 
+	
+	\textit{רעיון (רקורסיבי): }אם $G = (V, \Si, R, S)$ ונתונה המילה $w$, נאמר $w \in L(G)$ אמ''מ מתקימים אחד משלושת התנאים הבאים: 
+	\begin{itemize}
+		\item $w = \vepsi$ וקיים הכלל $S \to \vepsi$. 
+		\item $w = x \in \Si$ וקיים הכלל $S \to x$. 
+		\item קיימת חלוקה $1 \le k \le |w| - 1$ של $w$ לשתי מחרוזות לא ריקות $w[:k], \ w[k: ]$ וקיים כלל $S \to XY$ כך שניתן לגזור את $w[:k]$ מ־$X$ וניתן לגזור את $w[k:]$ מ־$Y$. 
+	\end{itemize}
+	זהו לא פתרון יעיל, אך הוא עובד, וסופי, ונוכל ליעל אותו. 
+	
+	לצורך נוחות, נסמן מתשנים באותיות גדולות באנגלית ותווים בעזרת אותיות קטנות, ואת כללי הגזירה נייצג במילון עם משתנה לקבוצת הכללים שלו. לדוגמה, $A \to AB, \ A \to a, \ B \to b$ יהיה שקול ל-:
+	\sen
+	\begin{lstlisting}
+R = {A: {AB, a}, B: {b}}, Si = {A, B}, V = {a, b}, S = A \end{lstlisting}
+	\she
+	
+	\pagebreak
+	\subsection{קוד}
+	זה הזמן להתחיל לחרבש קוד: 
+	\sen
+	\begin{lstlisting}
+def CYK(rules, start_var, w):                            # w, i, j)
+	if len(w) < 2:                                       # j - i < 2
+		return w in rules(start_var)                     # w[i:j]
+	for k in range(1, len(w)):                           # range(i + 1, j)
+		for rule in rules[start_var]: 
+			if len(rules) == 2: 
+				if CYK(rules, reuls[0], w[:k]) and \     # w, i, k)
+				   CYK(rules, rules[1], w[k:]):          # w, k, j)
+				       return True
+				   
+	return False\end{lstlisting}
+	\she
+	
+	דוג': 
+	\begin{gather}
+		V = \{S, A< B< C\} \\
+		\Si = \{a, b\} \\
+		R \colon \begin{WithArrows}
+			S&\to AB | BC \\
+			A&\to BA | a \\
+			B&\to CC | b \\
+			C&\to AB | a
+		\end{WithArrows} \\
+		w = baaba
+	\end{gather}
+	
+	נמצא שכבר בקריאה הראשונה לרקורסיה, נעשה $16$ קריאות רקורסיביות עוד בקריאה הראשונה לפונקציה. לא אפרט איך זה עובד למאות שהמורה פירט את זה על הלוח כי זה נראה לי מיותר. 
+	
+	יש כאן פעולה מאוד מיותרת ויקרה – slicing \del. נוכל לשנות את חתימת הפונקציה, כך שהיא תקבל אינדקס של $i, j$ אינטרוואל קריאה. כדי לחסוך את זה – ראה הערות על הקוד. 
+	
+	הסיבוכיות של המימוש הרקורסיבי היא לפחות אקספוננציאלית. הסיבה – אנחנו מחשבים שוב ושוב את אותם הערכים. נרצה להבדיל בין תכנון דינמי לממואיזה – בממואיזה נביא פטיש, נשמור הכל מחוץ לרקורסיה ונקווה לטוב, ובתכנון דינמי נתכנן את הפתרון ונבנה את זה באמצעות ממואיזה. 
+	
+	כמות עצי הגזירה השונים – אספוננציאלית (הרי זה שקול ללעבור באלגו' הרגיל בלי הממואיזה). אך כמות הצמתים בעץ היא כמעט $n$. 
+	
+	נשתמש בעובדה שעשינו ממואיזה (פשוט תניחו שהקוד כתוב איפשהו). נגדיר $rr = |rules|$ ו־$n = |w|$ אז משום שאנו צריכים לבחור בזכרון את $i, j, start_var$, כאשר $i \in [n], j \in [n]$ ו־$r$ חוסם את כמות האפשרויות של $start_var$, אז סה''כ גודל הטבלה יהי $n^2r$ לכל היותר. זמן הריצה יהיה: 
+	\[ O\left (\sum_{i < j} \sum_{var} \sum_{i < k < j} |rules[var]| \right ) = O(n^3r^2) \]
+	אך זה לא הדוק. נוכל לשנות את הסדר של הסיגמות (זה טריק של סכומים שכדאי להכיר): 
+	\[ O\left (\sum_{i < j} \sum_{i < k < j} \sum_{var} |rules[var]| \right ) = O\Bigg (\sum_{i < k < j} \underbrace{\sum_{var} |rules[var]|}_{O(r)} \Bigg ) = O(n^3r) \]
+	אומנם $rules[var] \le r$ וגם כמות האפשרויות ל־$var$ קטנה מ־$r$, ולכן זה חסום מלמעלה גם ע''י $r^2$. אך למעשה בשני הסכומים הללו עברנו ``רק'' על כל החוקים (כל $var$ וכל אחד מהחוקים שלו)! 
+	
+	
+	
+	
+\end{document}

@@ -1,0 +1,494 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \en{GitHub.com/shpe/cs-tau-shpe}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+\newcommand\lcm                {\ell\mathrm{cm}}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\K         {\mathbb{K}}
+\newcommand\co        {\colon}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+\newtheorem{Hence}{מסקנה}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 9} $\sim$ מבוא לצורת ג'ורדן, פולינום מינימלי}
+\begin{document}
+    \maketitle
+    רשימת פולינומים חמודים: 
+    \begin{itemize}
+        \item הפולינום האופייני $f_A = f_T = \det(Ix - A)$
+        \item בהינתו מטריצה, המטריצה המצורפת $A_f$
+    \end{itemize}
+    
+    \theo{תהי $A \in M_n(\F)$, נביט בקבוצה $I_A = \{p \in \F[[x] \co p(A) = 0]\}$, אז $I_A \subseteq \F[x]$ אידיאל, קיים ויחיד ב־$I_A$ פולינום מתוקן בעל דרגה מינימלית. }
+    \defi{$I_A$ לעיל}
+    \begin{proof}
+        נבחין כי $0 \in I_A$. סגירות לחיבור – ברור. תכונת הבליעה – גם ברור. סה''כ אידיאל. 
+        $\F[x]$ תחום שלמות ולכן נוצר ע''י פולינום יחיד $I_A = (p)$. אם $I_A = (p) = (p')$ אז $p \sim p'$. אם נקבע אותו להיות מתוקן אז הוא יחיד. לפולינום הנ''ל נקרא הפולינום המינימלי של $A$ הוא $m_A$. באותו האופן, עבור $T \co V \to V$ ט''ל ניתן להגדיר את $M_T$. 
+    \end{proof}
+    
+    \rmark{אם $A \in M_n(\F)$ ו־$p \in \F[x]$ כך ש־$p(A) = 0$, אז $p \in I_A$ ומתקיים $m_A \mid p$. }
+    
+    \rmark{אנו יודעים ש־$m_a \mid f_a$ ממספט קיילי המילטון. }
+    
+    \textbf{דוגמאות. }עבור $A = I_n$ אז $f_A = (x - 1)^{n}$ ו־$m_a = (x - 1)$. לא בהכרח $m_a = f_a$, אל לפעמים כן – לדגומה בעבור $D \co \F[x] \to \F[x]$ אופרטור הגזירה מתקיים $f_D = x^{n + 1}$ וכן $m_D = x^{n + 1}$ כי יש פולינומים שנדרש לכזור $n$ פעמים ע''מ לקבל $0$, לדוגמה $x^{n}$. 
+    
+    \theo{(תזכורת) תהא $A =A_f$ המטריצה המצורפת ל־$A$. אז $f_A = m_A$.}
+    \theo{אם $A$ מייצגת את $T \co V \to V$ אז $m_A = m_T$.}
+    \begin{proof}
+        נבחר בסיס ל־$V$, $B$. יהי $p \in \F[x]$. אז $[p(T)]_B = p([T]_B)$. שני האגפים מתאפסים ביחד, ולכן $I_A = I_T$. 
+    \end{proof}
+    \begin{Hence}
+        נניח ש־$A$ לכסינה והע''ע השונים הם $\lg_1 \dots \lg_k$ (כלומר $f_A = \prod_{i = 1}^{k}(x - \lg_i)^{r^i}$) אז $m_a = \prod_{i = 1}^{k}(x - \lg_i)$. 
+    \end{Hence}
+    \begin{proof}
+        בה''כ $A$ אלכסונית, $A = \diag(\lg_1 \dots \lg_k)$ עם חזרות. נבחין ש־$\prod_{i = 1}^{k} (x - \lg_iI) = 0$ (הסברים בהמשך). $A$ מייצגת העתקה $T \co V \to V$ ול־$V$ יש בסיס של ו''עים $B = (v_1 \dots v_n)$.  אז $\cl{\prod_{i = 1}^{k}(T - \lg_i)}(v_j) = 0$ כי $v_j$ מתאים ל־$\lg_i$ כלשהו וכך זה מתאפס. ידוע $m_a \mid \prod_{i = 1}^{k}(x - \lg_i)$. אם נוריד את אחד המכופלים אז ה''ע שירד לא יתאפס/לא יפאס הז הוקטור העצמי המצאים. 
+    \end{proof}
+    
+    \subsection*{איפיון דרגת הפולינום המינימלי}
+    למעשה, $d$ הנ''ל הוא המינימלי שעבורו ניתן לבטא את $A^{d}$ כצ''ל של חזקות נמוכות יותר. 
+    \rmark{אם $A \in M_n(\F)$, ו־$\F \subseteq \K$, אז ניתן לחשוב על $A \in M_n(\K)$ ו־$m_A$ לא משתנה ללא תלות בשדה. }
+    \theo{אם $g, h \in \F[x]$ ו־$T \co V \to V$ ט''ל אז $g(T), h(T)$ מתחלפות. }
+    \begin{proof}
+        \[ \big(g(T) \circ h(T)\big)(v) = (g \cdot h)(T)(v) = (h \cdot g)(T)(v) = \big(h(T) \cdot g(T) \big)(v) \]
+    \end{proof}
+    
+    \lem{(למה המחלק של פולינום מינימלי). יהי $m_T$ הפולינום המינימלי של ט''ל $T \co V \to V$. אם $f(x) \mid m_T(x)$ וגם $\deg f > 0$ אז $f(T)$ אינו הפיך. }
+    \begin{proof}
+        בכלל ש־$f \mid m_T$ אז קיים $g\in \F[x]$ כך ש־$f \cdot g = m_T$. נניח בשלילה ש־$f(T)$ הפיכה. אז: 
+        \[ f(T) \circ g(T) = m_T(T) = 0, \ 0 = f(T)\op \circ (0) = g(T) \]
+        ידוע: 
+        \[ \deg m_T = \underbrace{\deg f}_{>0} + \deg g \implies \deg g< \deg m_T \]
+        בה''כ $g$ מתוקן וקיבלנו סתירה למינימליות של $m_T$, אלא אם כן $g(x)$ פולינום ה־$0$ אבל $m_T = 0$ בסתירה להגדרתו של פולינום מינימלי. 
+    \end{proof}
+    הוכחה זהה עבור מחלק של $m_A$, עבור $A$ מטריצה. 
+    \theo{אם $\lg$ ע''ע של $T$ אז $m_T(\lg) = 0$. }\begin{proof}
+        נשתמש בטענת עזר: אם $p \in \F[x]$ פולינום המקיים $p(T) = 0$, ו־$\lg$ ע''ע של $T$, אז $p(\lg) = 0$. [טענת עזר זו יותר חזקה מהמשפט]. קיים $v \neq 0$ שעבורו $0 = p(T)(v) = p(\lg \mathrm{Id})(v) = p(\lg)v$ (הסיבה לשוויון האחרון – תפתחו את $p(\lg \mathrm{Id})$ וזה יהיה די ברור, אבל הנה נימוק קצר)
+        \[ p(x) = \sum_{i = 0}^{n}a_ix^i, \ p(T)(v) = \cl{\sum_{i = 0}^{n}a_iT^{i}}\cl{v} = \sum_{i = 0}^{n}a_iT^{i}(v) = \cl{\sum_{i = 0}^{n}a_i\lg^i}v = p(\lg)v \] 
+    \end{proof}
+    ``זה טבעוני, זה טבעוני וזה ממששש טבעוני''. ``מה זה אומר שזה לא טבעוני? יש בזה קצת ביצה''. 
+    \theo{$\lg$ ע''ע של $T$ אמ''מ $m_T(\lg) = 0$} \begin{proof}
+        כיוון אחד הוכח. מהכיוון השני, ידוע $m_T(\lg) = 0$. לפי משפט בזו $(x - \lg) \mid m_T(x)$. ידוע $m_T \mid f_T$ וסה''כ $(x - \lg) \mid f_T$ וסה''כ $\lg$ ע''ע של $T$. 
+    \end{proof}
+    
+    \theo{$m_A(x) \mid f_A(x) \mid (m_A(x))^{n}$}
+    \begin{proof}
+        נותר להוכיח $f_A(x) \mid (m_A(x))^{n}$. ידוע שפולינום מינימלי/אופייני נשארים זהים מעל כל שדה שמכיל את $\F$. לכן, ניתן להניח שהוא מתפרק לגורמים לינאריים. ראינו שאם $f, g \in \F[x]$, $\F \subseteq \K$ ומתקיים $f \mid g$ מעל $\K$, אז $f \mid g$ מעל $\F$. אז: 
+        \[ (\sum n_i = n) \quad\quad f_A = \prod_{i = 1}^{k}(x - \lg_i)^{n_i}, \ m_A(x) = \prod_{i = 1}^{k}(x - \lg_i)^{m_i} \quad (1 \le m_i \le n_i), \ (m_a(x))^{n} = \prod_{i = 1}^{k}(x - \lg_i)^{n \mid m_i} \]
+        בגלל ש־$1 \le m_i \implies n \le m_i \cdot n$ אז מצאנו $f_A\mid m_A^{n}$. 
+    \end{proof}
+    הוכחה זהה עבור $T \co V \to V$ עם $\dim V = n$. 
+    
+    \textbf{מסקנה (שימושית!). }נניח ש־$g \mid f_A$. נניח ש־$g$ אי פריק. אז $g \mid m_A$. \begin{proof}
+        \[ g \mid f_A \mid (m_A)^{n} \]
+        ידוע $g$ אי פריק, ולכן ראשוני (כי $\F[x]$ תחום ראשי) ולכן $g \mid m_A$. 
+    \end{proof}
+    \theo{נניח ש־$A$ בלוקים עם בלוקים על האלכסון, $A = \diag(A_1 \dots A_k)$ כך ש־$\forall i \in [k] \co A_i \in M_{n_i}(\F), \ \sum n_i = n$, אז מתקיים $m_a = \lcm(m_{A_1} \dots m_{A_k})$. }
+    \defi{$R$ תחום שלמות, $a_1 \dots a_n \in R$ ו־$\ml = \lcm(a_1 \dots a_n)$ אמ''מ: 
+    \begin{enumerate}
+        \item \hfil $\forall i \in [n] \co a_i \mid \ml$
+        \item \hfil $\forall b \in R \co \forall i \in [n] \co a_i \mid b \so \ml \mid b$
+    \end{enumerate}}
+    \textbf{דוגמה. }$R = \Z, \ \lcm(2, 6, 5) = 30$. 
+    במקרה שלנו, ה־$\lcm$ הנ''ל הוא הפולינום בעל הדרגה המינימלית שמתחלק בכל ה־$m_A(x)$. באופן כללי, $\lcm(a_1 \dots a_n)$ מתקבל כיוצר של אידיאל החיתוך בתחום הראשי. כלומר: 
+    \[ I = (\ml) = \bigcap_{i = 1}^{n}R a_i \]
+    (הבהרת הסימון: $ Ra = (a) = \la a \ra $). 
+    \begin{proof}[הוכחה (למשפט לעיל). ]
+        לכל $g \in \F[x]$ מתקיים: 
+        \[ g(A) = \pms{g(A_1) & & \\ & \ddots & \\ && g(A_k)} \]
+        מתקיים $g(A) = 0$ אמ''מ $\forall i \in [k] \quad g(A_i) =0$. לכן $\forall i \in [k] \quad m_{A_i} \mid g$. מהגדרת ה־$\lcm$ סיימנו. 
+    \end{proof}
+    
+    \theo{נניח ש־$T, S \co V \to V$ ט''ל מתחלפות. אז: 
+    \begin{enumerate}
+        \item $\Img S, \ \ker S$ הם $T$־אינווריאנטים (ולהפך). 
+        \item אם $S \subseteq W$ תמ''ו הוא $T$־אינוו' אז גם $S(W)$ הוא $T$־אינ'. 
+        \item אם $W_1, W_2 \subseteq V$ הם $T$־אינ' אז גם $W_1 + W_2, \ W_1 \cap W_2$ הם $T$־אינ'. 
+        \item אם $f \in \F[x]$ ו־$W \subseteq V$ תמ''ו $T$־אינ', אז $W$ גם $f(T)$־אינ'. 
+    \end{enumerate}}
+    \begin{proof}
+        \begin{enumerate}
+            \item יהא $v \in \Img S$, אז קיים $u \in V$ כך ש־$S(u) = v$: 
+            \[ Tv = T(S(u)) = (T \circ S)(u) = (S \circ T)(u) = S(T(u)) \in \Img S \]
+            ועבור $v \in \ker S$: 
+            \[ S(T(v)) = \cdots = T(S(v)) = T(0) = 0 \implies T(v) \in \ker S \]
+            \item יהי $v \in S(W)$. קיים $w \in W$ כך ש־$v = S(w)$
+            \[ T(v) = T(S(w)) = S(T(w)) \in S(W) \]
+            כי $T(w) \in W$. 
+            \item ראינו בתרגול הקודם
+            \item יהי $w \in W$. 
+            \[ f = \sum_{i = 1}^{n}a_ix^{i}, \ f(T)w( = \cl{\sum_{i = 0}^{n}a_iT^{i}}(w) = \sum_{i = 0}^{n}a_iT^{i}(w) \]
+            באינדוקציה $T^{i}(w) \in W$. $W$ תמ''ו ולכן סגור וצ''ל וסיימנו. [בסיכום כתוב הוכחה: קל]
+        \end{enumerate}
+    \end{proof}
+    (הערה: 3, 4 לא תלויים בהיות הטרנספורמציות מתחלפות)
+    \theo{(``מאוד חשוב'') יהי $V$ מ''ו מעל $\F$. נניח $T \co V \to V$ ט''ל. נניח $f(T) = 0$. נניח ש־$f = g \cdot h$ עבור $\gcd(g, h) = 1$. אז: 
+        \[ V = \ker g(T) \oplus \ker h(T) \]
+        ואם $f = M_T$, אז $g, h$ הם הפולינומים המינימליים לצמצום $T$ על תת־המרחבים לעיל בהתאמה. 
+    }
+    הבהרת הכוונה ב''פולינום המינימלי לצמצום $T$ על תתי המרחבים'': בהינתן $T = U \oplus W$, $T_u = T_{\mid_U} \co U \to U$ ובאופן דומה $T_w$, אז $m_T = m_{T_U} \cdot m_{T_W}$. 
+    \begin{proof}
+        מכך ש־$(g, h) = 1$ קיימים $a, b \in \F[x]$ כך ש־$ag + bh = 1$. בפרט, קיימים $a, b \in \F[x]$ כך ש־$ag + bh = 1$. אזי: 
+        \[ a(T) \circ g(T) + b(T) \circ h(T) = \mathrm{Id} \]
+        אזי: 
+        \[ (a(T) \circ g(T))(v) + (b(T) \circ h(T))(v) = v \]
+        \textbf{טענת עזר. }$(a(T)\circ g(T))(v) \in \ker h(T)$. זאת כי: 
+        \[ (h(T) \circ a(T) \circ g(T))(v) = a(T) \circ (h\cdot g)(T) = a(T)(0) = 0 \]
+        באופן זהה $(b(T) \circ h(T))(v) \in \ker g(T)$. סה''כ הצגנו כל וקטור כסכום של וקטור מ־$\ker g(T)$ ווקטור מ־$\ker h(T)$, ולכן $\ker h(T) + \ker g(T) = V$. עתה נראה שהסכום הוא ישר. יהא $v \in \ker g(T) \cap \ker h(T)$. נבחין ש־: 
+        \[ 0 + 0 = (a(T) \circ g(T))(v) + (b(T) \circ h(T))(v) = v \]
+    \end{proof}
+    
+    
+    \ndoc
+\end{document}

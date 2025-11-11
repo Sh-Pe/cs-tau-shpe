@@ -1,0 +1,213 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% combinatorics
+\newcommand\p     {\mathcall{p}}
+\newcommand\C     {\mathcall{c}}
+\newcommand\s     {\mathcall{s}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\sumnk {\sum_{k = 0}^{n}}
+\newcommand\sumni {\sum_{i = 0}^{n}}
+\newcommand\sumnko{\sum_{k = 1}^{n}}
+\newcommand\sumnio{\sum_{i = 1}^{n}}
+\newcommand\bink  {\binom{n}{k}}
+
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\author{שחר פרץ}
+\title{בדידה $\sim$ קומבינטוריקה $\sim$ סיכום ראשון – עקרון ההכלה וההדחה}
+\date{15 למאי 2024}
+
+\begin{document}
+	\maketitle
+	\section{הקדמה לעקרון ההכלה וההדחה}
+	\textbf{שאלה: }כמה מספרים טבעיים יש בין $1$ ל־ $300$ כולל שמתחלקים ב־$2$ או ב־$3$. \\
+	\textbf{פתרון: }מתחלקים ב־$2$: $\frac{300}{2} = 150$. מתחלקים ב־3: $\frac{300}{3} = 100$. אם נחבר נספור פמעיים את מה שמתחלק ב־6, לכן נוריד את כל מה שמתחלק ב־6: $\frac{300}{6} = 50$. סה"כ $150 + 100 - 50 = 200$ אפשרויות. 
+	
+	נקבל תרגיל היום על הכלה והדחה, ובשיעור שלאחר מכן נלמד על שובך היונים. לאחר מכן לא יהיה שיעור, אך יתווספו תרגילים על שובך היונים למודל. 
+	
+	\section{עקרון ההכלה וההדחה}
+	עקרון ההכלה וההדחה: כמה איברים יש באיחוד של $ \bigcup_{i = 1}^n A_i $?
+	
+	מקרה $n = 2 $: יהיה $|A \cup B| = |A| + |B| - |A \cap B|$. \\
+	מקרה $n = 3 $: יהיה $ |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |A \cap C| + |A \cap B \cap C|$ (תציירו דיארגמת ון בשביל להבין, אני לא עומד להתעסק עם tikz \del). \\
+	מקרה כללי: 
+	\[ \left |\bigcup_{i = 1}^n A_i \right | = \sumnio |A_i| - \sum_{1 \le i < j \le n} |A_i \cap A_j| + \dots + (-1)^{n - 1} \left |\bigcap_{i = 1}^n A_i\right | \]
+	אותו הדבר רק יותר יפה: 
+	\[ \left |\bigcup_{i = 1}^n A_i \right | = \sum_{\emptyset \neq I \subseteq [n]} (-1)^{|I| - 1} \left | \bigcap_{i \in I}A_i \right | \]
+	\textit{הערה: }בעזרת עקרון ההכלה וההדחה (הידוע גם בשם עקרון הכלת ההפרדה) וכללי דה־מורגן, אפשר לחשב גם את חיתוך הקבוצות: 
+	\[ \overline{A\cup B} = (A \cup B)^C = A^c \cap B^c \]
+	ובפרט שווי עוצמה. ובאופן שללי [עקרון המשלים]: 
+	\[ \bigcap_{i = 1}^n \overline A_i = \overline{\bigcup_{i = 1}^n A_i} \]
+	ובפרט עוצמתן שווה. כלומר, בהינתן $u$ עולם דיון, אז: 
+	\[ \left | \bigcap_{i = 1}^n A_i^C \right | = |u| - \left | \bigcup_{i = 1}^n A_i \right | \]
+	
+	\subsection{המקרה הסימטרי}
+	אם לכל $1 \le k \le n$ יתקיים ש־$ | \bigcap_{i \in I} A_i |$ כך ש־$|I| = k$ הוא קבוע, (כלומר $|A_i \cap A_j| = |A_k \cap A_g| $), אז: 
+	\[ \left | \bigcup_{i \in I}^n A_i \right | = \sumnko (-1)^{n - 1}\binom{n}{k} \cdot \left | \bigcap_{j = 1}^k A_j \right | \]
+	
+	\section{תרגילים}
+	\textbf{שאלה: }כמה מספרים זרים יש ל־70 ישנם אשר גדולים ממש מ־1 וקטנים שווים ל־500. \\
+	\textbf{פתרון:}
+	מכיוון ש־$ 70 = 7 \cdot 5 \cdot 2 $, העולם $u = \{2, \dots, 500\}, |u| = 499 $. נגדיר $= A_1 $ מתחלקים ב־2, $= A_2 $ מתחלקים ב־ 5, $= A_3 $מתחלקים ב־7. ידוע $|A_1| = \frac{500}{2}$, $|A_2| = 100' |A_3| = 71 $, נחשב את גודל חיתוכי הזוגות, נוסיף את החיתוך של כולם וכו'. 
+	
+	\textbf{שאלה: }ידועה בתור תמורות ללא נקודות שבת / בעית הדוור המבולבל. 
+	\textbf{ניסוח ראשון: }בהינתן $n$ מעטפות שמיועדות ל־$n$ אנשים שונים, הדבר מעוניין לדעת כמה אפשרויות יש לחלק את המכתבים בלי שאף נמען יקבל את המיועד לו. \textbf{ניסוח שני: }כמה תמורות $f \colon [n] \to [n]$ (זיווג) כך שהן ללא נקודות שבת ($i$ נקרא נקודת שבת אמ"מ $f_i = i$ – מלשון לשוב). \\
+	\textit{הערה: את התשובה לבעיה נסמן ב־$D(n)$, ולפעמים $D_n$. } \\
+	\textbf{תשובה: }פתרון: נשתמש בעקרון המשלים. עולם דיון $= u $כל התמורות על $[n]$, ולכן $|u| = n!$. נגדיר לכל $1 \le i \le n$: $= A_i$ כל התמורות בהן $i$ היא נקודת שבת. רוצים: $| \bigcap_{i = 1}^n A_i^c|$. לכל $1 \le i \le n$, יתקיים $|A_i| = (n-1)!$. לכל $1 \le i M j \le n$ יתקיים $|A_i \cap A_j| = (n - 2)!$. באופן כללי, נמצא שאנחנו במקרה הסימטרי – אין חישבות למספר הקבוצה (זה לא משנה אם לוקחים את $A_1 $ ו־$A_2$, לדוגמה, או כל קבוצה אחרת), כלומר, $\forall 1 \le k \le n. \forall I \subseteq[n]. |I| = k. |\bigcap_{i \in I} A_i| = (n - k)!$. לכן; 
+	\begin{align}
+		D_n = | \bigcap_{i = 1}^n A_i^C | =& \; n! - \sum_{k = 1}^{n}(-1)^{k - 1} \cdot \bink \cdot (n - k)! \\
+		= & \; n! + \sum_{n}^{k = 1}\frac{n!}{k!} \\
+		= & \; \sumnk (-1)^k \cdot \frac{n!}{k!} \\
+		= & \; \sumnk n! \sumnk \frac{(-1)^k}{k!}
+	\end{align}
+	המעבר בין (2) ל־(3). המעבר בין (1) ל־(2) נכון כי $\bink (n - k)! = \frac{n!}{(n - k)!k!} \cdot (n - k!) = \frac{n!}{k!}$. 
+	המעבר בין (3) ל־(4) נכון כי בחדו"א למדנו כי $\sum_{k = 0}^{\infty} \frac{x^k}{k!} = e^x$, ומכאן נובע כי: 
+	\[\sumnk \frac{(-1)^k}{k!} = e - \underbrace{\sum_{k =  n + 1}^{\infty} \frac{(-1)^k}{k!}}_{\displaystyle| \dots| < \frac{1}{(n + 1)!}}\]
+	לכל $n \ge 2 $, נקבל ש־$D(n) \approx \frac{n!}{e}$, וה"שגירה" קטנה מ־$n! \cdot \frac{1}{(n + 1)!} = \frac{1}{n + 1} \le \frac{1}{3}$. לכן $D(n) = \left [ \frac{n!}{e} \right ]$ (כאשר $[]$ מסמן עיגול לערך הקרוב). 
+	
+	
+\end{document}

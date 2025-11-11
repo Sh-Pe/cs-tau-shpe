@@ -1,0 +1,649 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill \ (\thesection) \dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+\newcommand\bgr[1] {
+	\begin{center}
+		\en{\tikz\graph {#1}; }
+	\end{center}
+}
+\newcommand\unquad {\!\!\!\!}
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\co    {\colon}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+% Math operators
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+% Calc shorcuts
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Greek letters shortcuts
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+\newcommand\ag    {\alpha}
+\newcommand\bg    {\beta}
+\newcommand\cg    {\gamma}
+\newcommand\pg    {\pi}
+\newcommand\sg    {\sigma}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{עבודה מסכמת במתמטיקה בדידה 2}}
+\begin{document}
+	\maketitle
+	
+	{\Large \sen\hfill \textbf{Combinatorics} \hfill\she}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item \textbf{שאלה: }כמה סידורים של חבילה מלאה של 52 קלפים יש שבהן ארבעת האסים, אינם מופיעים ברצף אחד אחרי השני? 
+		
+		\textbf{תשובה: }ראשית כל, נתבונן ב־$52!$ הסידורים האפשריים של החפיסה כולה. עתה נתבונן בקבוצת המשלים – כמות האפשרויות לחפיסות בהן ישנם 4 אסים רצופים. נתייחס לרצף כמו קלף גדול יחודי בפני עצמו, ולכן, מכיוון שארבעת האסים יחשבו כאחד, יהיו $49!$ אפשרויות לסדר חלק זה. לסדר הפנימי של האסים עצמם יהיה $4!$ אפשרויות. סה"כ מכלל הכפל $58 \cdot 48!$ אפשרויות בקבוצת המשלים. סה"כ: 
+		\[ \ans = \bm{52! - 49! \, 4!} \]
+		\item \textbf{שאלה: }כמה סידורים של חבילה מלאה של 52 קלפים יש בהן כל 4 קלפים מאותו הסוג (13 סוגים שונים) אינם מופיעים ברצף אחד אחרי השני? 
+		
+		\textbf{תשובה: }נגדיר $=a_i$ כמות האפשרויות לסידור בו $i$ רצפים של 4 תווים. מובן כי $0 \le i \le \frac{52}{4} = 13$ (לא ייתכנו רצפים בסדר גודל הארוך יותר מהחפיסה כולה). 
+		
+			כדי למצוא את $a_i$, נבחר את הרצף הראשון מבין $13$ האפשרויות. ואת השני מבין $12$ האפשרויות שנותרו, ונמשיך הלאה. באופן דומה לסעיף הקודם, לכל אחד מהסדרות האלו נתייחס קקלף "גדול" יחודי אחד, לכל אחת מ־$i$ הסדרות סדר פנימי של $4!$, וסה"כ סדר כולל של $(52 - 4i + i)!$ אפשרויות ($-4i$ על הקלפים שנוציא החוצה, ו־$+i$ ל"קלף גדול" כמוהו לסדרה עצמה). סה"כ: 
+			\[ a_i = (52 - 3i)!\, 4!^i \]
+			בכלליות:
+			
+			ומעקרון ההכלה וההדחה, אם $=A_i$ קבוצת כל הרצפים באורך 4 מסוג נתון, ומשום שאין הגבלה על הכלליות בבחירת קלף מסויים, $\sof{\bigcap_{i \in I}A_i}$ זהה בערכו לכל $I \in [n]$ כך ש־$|I|$ קבוע בגודל $k$, ובפרט שווה ל־$a_k$ (המקרה הסמטרי של העקרון), ובשילוב עם עקרון המשלים (על קבוצת על הקומבינציות שגודלה $52!$), נקבל: 
+			\begin{align*}
+				\ans &= 52! - \sum_{\mathclap{\varnothing \neq I \in [n]}} (-1)^{|I| - 1}\sof{\bigcap_{i \in I}A_i} \\
+				&= 52! - \sum_{k = 1}^{n} (-1)^{k - 1}\bink a_k \\
+				&= \bm{52! - \sum_{k = 1}^{n} (-1)^{k - 1}\bink (52 - 3k)!\, 4!^k}
+			\end{align*}
+	\end{enumerate}
+	\section{}
+	יהי סריג דו ממדי, ונגדיר מסלול חוקי אמ"מ בכל צעד מ־$\la x, y \ra$ ננוע אך ורק לנקודה $\la x + 1, y + r \ra$ לכל $r \in \N$. 
+	\begin{enumerate}[(A)]
+		\item \textbf{שאלה: }כמה מסלולים חוקיים קיימים מ־$\la 0, 0 \ra$ ל־$\la n, k\ra$? 
+		
+		\textbf{תשובה: }יהי מסלול $a := \{a_i\}_{i = 0}^n$ מ־$\la 0, 0 \ra$ ל־$\la n, k \ra$ כאשר $\forall i \in [n]. \exists x, y \in \N. a_i = \la x, y \ra$. נניח שהמסלול חוקי; אזי: 
+		\[\forall i \in [n - 1]. \pi_1(a_i) - \pi_1(a_{i + 1}) = 1 \land \exists r \in \N. \pi_2(a_{i + 1}) - \pi_2(a_{i}) = r\]
+		ולכן נוכל להגדיר מיפוי: 
+		\[ \forall i \in [n - 1]. a_k \mapsto \pi_2(a_{i + 1}) - \pi_2(a_{i}) =: r_i \in \N \]
+		חח"ע ועל לקבוצת המסלולים החוקיים. תמונת המיפוי תהיה $\N^{n - 1}$. מהגדרת המסלול, $a_n = \la n, k \ra$ ולכן: 
+		\begin{align*}
+			\sum_{i = 1}^{n - 1}r_i &= \sum_{i = 1}^{n - 1}\pi_2(a_i) - \pi_2(a_{i + 1}) \\ 
+			&= \pi_2(a_1) \cancel{- \pi_2(a_2) + \pi_2(a_2)} \cancel{- \pi_2(a_3) + \pi_2(a_3)} - \cdots \cancel{+ \pi_2(a_i) - \pi_2(a_i)} + \dots + \pi_2(a_n) \\
+			&= \pi_2(a_1) + \pi_2(a_n) = 0 + k = k
+		\end{align*}
+		בכך, התייחסנו לכל ההגבלות – חוקיות המסלול באורך $n$ (מובעת בהיותה חח"ע ועל לקבוצה המאפשרת זאת), והיותו נגמר ב־$\pi_2(a_n) = k$ (הכרחי ומספיק להיות סכום $\sum r_i = k$). נקבע את גודל הסדרות התמונה המקיימות זאת. ידוע שכמות האפשרויות לסכום מספרים יהיה $S(n - 1, k)$, ולכן סה"כ זהו פתרון הבעיה. נסכם: 
+		\[ \ans = \bm{S(k, n - 1)} \]
+		\item \textbf{שאלה: }כמה מסלולים חוקיים קיימים מ־$\la 0, 0 \ra \to \la n, k \ra$, כך שאף צעד בהם אינו מסתיים בנקודה $\la n, k \ra$?
+		
+		\textbf{תשובה: }באופן דומה לסעיף הקודם, כמות הצעדים מ־$\la 0, 0 \ra$ ל־$\la 2n, 2k\ra$ תהיה $S(2k, 2n - 1)$. נחפש את קבוצת המשלים. בהינתן מסלול שעובר בין הראשית ל־$\la 2n, 2k\ra$ הוא יכלל בקבוצת המשלים אמ"מ הוא עבור ב־$\la n, k \ra$, כלומר הוא למעשה מסלול $\la 0, 0 \ra \to \la n, k\ra$ ואז עוד מסלול $\la n, k\ra \to \la 2n, 2k \ra$. המסלול האחרון שקול לבעיה הראשונה בעבור טרנספורמציה איזומטרית של $\la x, y \ra \mapsto \la x - n, y - k\ra$ שלמעשה תבהיר כי פתרון שתי הבעיות הוא $S(k, n - 1)$, וכאשר נחבר אותם יחדיו, מכלל הכפל, גודל קבוצת המשלים הוא סה"כ $S(k, n - 1)^2$. אזי: 
+		\[ \ans = \bm{S(2k, 2n - 1) - S(k, n - 1)^2} \]
+		\item \textbf{שאלה: }כמה מסלולים קיימים מ־$\la 0, 0 \ra \to \la n, k \ra$ כך שכל צעד $\la x_1, y_1 \ra \to \la x_2, y_2 \ra$ מקיים $y_1 + 2 \le y_2$?
+		
+		\textbf{תשובה: }נבחין שקילות לאחד הנתונים: 
+		\[ y_1 + 2 \le y_2 \iff \pi_2(a_i) - \pi_2(a_{i + 1}) \le -2 \iff \underbrace{\pi_2(a_{i + 1}) - \pi_2(a_i)}_{=r_i} \ge 2 \]
+		ואכן ננסה למצוא את כמות הסדרות $\{r_i\}_{i = 1}^{n - 1}$ כך ש־$r_i \ge 2$, כך ש־$\sum r_i = k$, לפי השקילות שהוכחה בסעיף (א). לבעיה זו קיימת בעיה שקולה ידועה, היא חלוקת $k$ כדורים ל־$n - 1$ תאים, כשבכל תא לפחות 2 כדורים. אזי, ניאלץ להתחיל מלשים שני כדורים בכל תא, וסה"כ נבזבז $2n - 2$ כדורים. את $k - 2n - 2$ הכדורים נותרים נחלק בין התאים. סה"כ, קיבלנו: 
+		\[ \ans = \bm{S(k - 2n - 2, n - 1)} \]
+	\end{enumerate}
+	\section{}
+	יהיו $n$ כדורים ממוספרים.  יש לסדרם ב־$n$ תאים ממוספרים, כאשר בכל תא יימצא בדיוק כדור אחד. לכל $1 \le i \le n - 1$ עסור להכניס את הכדור ה־$i$ לתא ה־$i$, בעוד אין מגבלה על הכדור ה־$i$. כמות האפשרויות לסידורים כאלו תהיה $F(n)$. 
+	\begin{enumerate}[(A)]
+		\item \textbf{שאלה: }הביעו את $F(n)$ בעזרת $D_m$. 
+		
+		\textbf{תשובה: }נפלג למקרים. 
+		\begin{itemize}
+			\item אם הכדור ה־$i$ נמצא בתא ה־$i$, אז יש עוד $n - 1$ תאים נותרים בהם אי־אפשר שכדור יהיה בתא המתאים לו מבחינת מספר. כלומר, יהיו $D_{n - 1}$ אפשרויות. 
+			\item אם הכדור ה־$i$ לא נמצא בתא ה־$i$, אז כל $n$ הכדורים לא נמצאים בתא המתאים להם, כלומר יש $D_n$ אפשרויות. 
+		\end{itemize}
+		סה"כ מכלל החיבור: 
+		\[ \ans = D_n + D_{n - 1} \]
+		
+		\item \textbf{שאלה: }מצאו נוסחת נסיגה ל־$F(n)$ ללא שימוש ב־$D(n)$ או בסימן סכום. 
+		
+		\textbf{תשובה: }נוכיח $D(n) = (n - 1)(D_{n - 1} + D_{n - 2})$. נתבונן בסדרה בעלת $n$ איברים. נבחר את האיבר הראשון בה, נסמנו $a_1$. יהיו $n - 1$ אפשרויות לבחור מספר שהיא תפנה אליו (כמות האפשרויות, פחות היא עצמה), נסמנו $a_j$. אם $a_j$ מפנה אליה, אז סה"כ ידועות לנו שתי הפניות ויהיו $D_{n - 2}$ אפשרויות – כמות האפשרויות לסדר את כל השאר. אם לא, אז נתבונן בכמות האפשרויות לסדר את $n - 1$ האיברים כולל $a_j$, שהיא $D_{n - 1}$, אך על כל סידור נגדיר הרכבה ב־$j \to 1$, כי כבר ידוע ש־$j$ מופנה ע"י 1. סה"כ שני הביטויים קשורים בבחירת $j$, כלומר נקבל $(n - 1)(D_{n - 1} + D_{n - 2})$ כדרוש. 
+		
+		סה"כ נציב בנוסחה מסעיף (א) ונקבל נוסחת נסיגה שלא תלויה בשום דבר פרט לעצמה. כתנאי התחלה, $F(0) = 1$. 
+	\end{enumerate}
+	\section{}
+	\begin{enumerate}[(A)]
+		\item הוכיחו באופן קומבינרטורי: 
+		\[ \sum_{i = 0}^{n - 1}(-1)^{i} \binom{n}{i} \underbrace{\binom{n + r - i - 1}{r}}_{S(n - i, r)} = \underbrace{\binom{r - 1}{n - 1}}_{\mathclap{S(r - n + 2, n - 1)}} \]
+		\textbf{סיפור: }יש לחלק $n$ כדורים ל־$r$ תאים כך שאין אף תא ריק. 
+		
+		\textbf{אגף ימין: }נתבונן ב־$r$ הכדורים, ונחלק ל־$n$ התאים $n$ מהם. נקבל באופן ישיר את הדרוש. 
+				
+		\textbf{אגף שמאל: }נבחין שזו עקרון ההכלה וההפרדה עם סימן שלילי בהתחלה, ועם חיבור של איבר בעבורו $i = 0$. ניקח את $i = 0$ כקבוצה הכוללת – כמות האפשרויות לסדר $n$ כדורים ל־$r$ תאים (הבינום יהיה 1, ובפרט לכך נקבל $S(n, r)$). בעבור המשלים, נבחר $i$ כדורים להוציא החוצה (יהיו $\binom{n}{i}$ אפשרויות), ונכפול בכמות הדרכים לסדר את מה שנשאר (היא $S(n - i, r)$). נאחד את הכל, ונחסר את המשלים. סה"כ קיבלנו את הדרוש. 
+		
+		\item מצאו ביטוי ללא סכימה לאגף שמאל של המשוואה: 
+		\[ \sum_{k = 2}^{n} k(k - 1)\bink = n(n - 1) \cdot 2^{n - 2} \]
+		\textbf{סיפור: }מתוך $n - 1$ איברים, קבוצה של לפחות שני איברים, ומתוכה נבחר שניים שונים ונסמנם בכחול ובירוק. כמה אפשרויות יש לכך? 
+		
+		\textbf{אגף ימין: }נבחר כדור כחול ($n$ אופציות) ולאחריו ירוק ($n - 1$ אופציות). עתה, בעבור $n - 2$ האיברים הנותרים, נשייך להם את המספר $1$ אם נרצה להכניסם לקבוצה ו־$0$ אם לאו – לכך, יהיו $|\{0, 1\}|^{n - 2}$ אפשרויות. סה"כ מכלל הכפל $n(n - 1)2^{n - 2}$ אפשרויות. 
+		
+		\textbf{אגף שמאל: }נניח שגודל הקבוצה הוא $2 \le k \le n$ (בהכרח גודל הקבוצה גדול מ־2 כי קיים מה כדור כחול וירוק) – לבחירה מתוך קבוצה $\bink$ אופציות. לכן, מתוך $n$ האיברים שיש לנו, נבחר $k$ איברים לשים בקבוצה. מאילו, נבחר אחד כחול ($k$ אפשרויות) ואחד ירוק ($k - 1$ אפשרויות) וסה"כ מכלל הכפל $\binom{n}{k}k(k - 1)$ בעבור $k$ נתון, ומכלל החיבור $\sum_{k = 2}^{n}k(k - 1)\bink$ אופציות. 
+		
+	\end{enumerate}
+	\section{}
+	צ.ל.: 
+	\[ \textstyle \forall (a_i)_{i = 1}^{2n}, (b_i)_{i = 1}^{2n}. (\forall i \in [2n]. 1 \le a_i \le n) \implies (\exists I \neq J \subseteq [2n]. \sum_{i \in I} a_i = \sum_{j \in J}b_j) \]
+	\begin{proof}
+		יהיו $a_i, b_i$ סדרות כמתוארות להלן. אזי: 
+		\[ |I| \le \sum_{i \in I} 1 \le \sum_{i \in I}a_i \le \sum_{i \in I} n = |I|n \]
+			ובאופן דומה על $b_i$. נסמן $|I| = k$, ונדע $I \subseteq [2n]$ כלומר $0 \le I \le 2n$. לכן, כמות האפשרויות ל–$|I|$ תהיה $2n^k$. וסך האפשרויות בעבור כל $k$, יהיה:
+			\[ S_1 := \sum_{k = 1}^{2n} 2n^k = \frac{2n^{1} - 2n^{2n + 1}}{1 - 2n} = \frac{2n(2n^{2n} - 1)}{2n - 1} = (2n - 1)(2n^{2n} - 1) - \frac{2n^{2n} - 1}{2n - 1}\]
+			בעוד כמות האפשרויות לאידקסים, בעבור כל $k$: 
+			\[ S_2 := \sum_{k = 1}^{2n} k(n - 1) = (n - 1) \frac{2n(2n + 1)}{2} = (2n + 1)\frac{2n(n - 1)}{2} \]
+			כאשר היחס ביניהם: 
+			\[ \frac{S_1}{S_2} = 2\frac{\frac{2n(2n^{2n} - 1)}{2n - 1}}{2n(n - 1)(2n - 1)} = 2\frac{(2n^{2n} - 1)}{(2n - 1)^{2}(n - 1)} \ge 2 \]
+			ולכן מעקרון שובך היונים המורחב, קיימים שתי אפשרויות שונות לאינדקסים, בעבור אותו הסכום, כלומר בהכרח קיימים $I, J$ מתאימים. 
+	\end{proof}
+	
+	\pagebreak
+	\setcounter{section}{0}
+	{\Large \sen\hfill \textbf{Graph Theory} \hfill\she}
+	
+	\section{}
+	נוכיח או נפריך קיום גרף מתאים: 
+	\begin{enumerate}[(A)]
+		\item 6 צמתים מדרגות $1, 3, 3, 3, 4, 5$. \textbf{נפריך קיום. }נניח בשלילה שקיים גרף כזה, אזי קיים גרף בעל 5 צמתים מדרגה זוגית ($1, 3 \times 3, 5$) בסתירה למשפט לפיו קיים מספר זוגי (ובפרט אינו $5$) של צמתים בעלי דרגה אי זוגית. 
+		\item 6 צמתים מדרגות $1, 3, 3, 3, 5, 5$. \textbf{נפריך קיום. }נניח בשלילה קיום גרף כזה. אזי, קיים שני קודודים מדרגה $5$, היא פחותה ב־1 מכמות הצמתים בגרף כולו – ומשום זה לא יכול להכיל קשת בינו צומת לבין עצמה, הם יפנו לכל שאר הצמתים. אזי, הצומת $v$ שקיים מהנתונים ודרגתו $1$ יופנה משתי הצמתים הללו (שדרגתן $5$), וסה"כ $1 = d(v) \ge 2$ וזו סתירה. 
+		\item 6 צמתים מדרגות $1, 3, 3,3, 4, 4$. \textbf{נוכיח קיום. } 
+		
+		\bgr{a$_1$ -- b$_4$ -- {c$_3$, d$_4$, e$_4$} -- f$_3$, c$_3$ -- d$_4$, e$_4$-- d$_4$}
+		
+	\end{enumerate}
+	\section{}
+	\begin{enumerate}[(A)]
+		\item צ.ל. בכל עץ עם $n \ge 2$ צמתים יש לפחות שני עלים. 
+		\begin{proof}
+			נניח בשלילה קיום עץ בעל $n \ge 2$ צמתים, שיש לו פחות משני עלים. אזי, ל־$n - 1$ מהצמתים בו הם אינם עלים, ולכן דרגתם היא $d(v) \ge 2$. נסמן ב־$\tl v$ את הקודקוד היחיד שלא ידוע שמקיים זאת, בעבורו $d(\tl v) \ge 1$ (עם $d(\tl v) = 0$ אז הגרף אינו קשיר וזו סתירה). ממשפט על סכום הדרגות וכמות הצמתים ביחס לכמות קשתות בגרף, נקבל: 
+			\[ \begin{WithArrows}
+				&2(|V| - 1) = 2|E| = \sum_{v \in V}d(v) = d(\tl v) + \sum_{\mathclap{v \in V \setminus \{\tl v\}}}d(v) \ge 1 + 2(n - 1) = 2n - 1 \Arrow[down]{$\times 0.5$} \\
+				&|V| - 1 \ge \frac{2n - 1}{2} \implies n = |V| \ge n + 0.5 \implies 0 \ge 0.5
+			\end{WithArrows} \]
+			וזו סתירה. 
+			\item יהי $G = \la V, E \ra$ גרף. נוכיח שלכל גרף $H = \la [n], E_h \ra $, שאיזומורפי ל־$G$ מתקיים $G = H$ אמ"מ $V = \varnothing$. 
+			\begin{proof}
+				content...
+			\end{proof}
+		\end{proof}
+	\end{enumerate}
+	\section{}
+	יהי $G = \la V, E \ra$ גרף. נניח $\forall v \in V. d(v) \ge k >1$. צ.ל. קיום מעגל פשוט באורך לפחות $k + 1$. 
+	\begin{proof}
+		נניח בשלילה שהמעגל הפשוט המקסימלי $U$ הוא באורך $m \le k$. נראה באינדוקציה על $j$ המסלול הארוך ביותר הכולל צומת יחיד במעגל, ש־$j$ לא חסום.
+		\begin{itemize}
+			\item בסיס: נניח $j = 0$ כלומר המעגל מכיל את כל הצמתים בגרף, אזי נתון מעגל באורך $m \le k$, וידוע שלכל אחד מ־$m$ הקודקודים דרגה $k$, וכבר במעגל מחוברים לשני קודקודים נוספים ומשום שהגרף פשוט לא תתיכן קשת בין צומת לעצמה, כלומר מבין $m$ הצמתים במעגל ל־$m - 3$ ייתכן החיבור, בעוד נותר לחבר ל־$k - 2$ צמתים נוספים. נבחין בסתירה כי $k - 2 \ge m - 2 > m - 3$, כלומר אין מספיק צמתים לחבר אליהם. כן בעבור כל קודקוד, כלומר יש צורך ב־$k$ צמתים נוספים, ואכן כל קודקוד מתחבר לקודקוד שמחוץ למעגל כלומר $j > 0$. 
+			\item צעד: נניח באינדוקציה על נכונות הטענה על $j - 1$ ונוכיחה בעבור $j$. נתבונן בקצה המסלול באורך $j$ אותו נסמן ב־$J$, בו ימצא קודקוד $v$. ידוע $d(v) \ge k$. אם ישלח איזושהי צומת אל המעגל, נסיק כי $U \cup \{v\}$ מעגל פשוט באורך $m + 1$, סתירה לכך ש־$U$ הוא המינימלי. אם ישלח קשת אל אחד מהקודקודים הידועים המסלול שאינו $J$, בה"כ $\tl J$, אז $U \cup J \cup \{v\}$ מעגל פשוט באורך גדול מ־$m$ בסתירה לכך ש־$m$ אורך המעגל המינימלי. מכיוון שלא שלח קשת לקודקוד ב־$U$ או לאחד מהמסלולים $\tl J$ שיצאו מ־$U$, ניוותר עם שני מקרים: הראשון, בו שלח קשת לקודקוד שאיננו קשור למדובר עד כה, אז המסלול $J$ יתארך ויהיה ל־$j + 1$ ובכך אכן $j$ לא חסום וסיימנו, וסה"כ הוא בהכרח ישלח צומת לקודקוד ב־$J$. לכן, $J \ge d(v) \ge k$, וגם קודקודי $J$ מהווים מעגל (הרי הם כולם מקושרים במסלול, ועתה יש צומת המחברת בין הראשון לאחרון במסלול היא $v$) אבל המעגל הזה באורך $|J| \ge k + 1$ על אף שאורך המעגל המקסימלי הוא $m \le k$. מצאנו בכל מקרים סתירה, כדרוש. 
+		\end{itemize}
+		סה"כ, בעבור כל ערך $j$, יתקיים שבהכרח נצטרך ערך $j$ גדול יותר (לכן $j$ לא חסום). ניתן דעתנו על כך שהטענה זו מהווה סתירה, כי אם $j$ גדול לא חסום ובפרט גדול ככל רצוננו ומשום ש־$j \le |V|$, אז  $|V|$ לא חסום ויש כמות אין־סופית של קודקודים. בכך ההנחה בשלילה הוכחה כשגויה, ותמה ההוכחה. 
+%		TODO: להוכיח קיום
+	\end{proof}
+	\section{}
+	יהי $G = \la [n], E_G \ra$ גרף. נוכיח שלכל $H = \la [n], E_H \ra$ שאיזימורפי ל־$G$ מתקיים $G = H$, אם ורק אם $G = C_n \lor E_G = \varnothing$. 
+	\begin{itemize}
+		\item[$\implies$]יהי $G$ גרף על $[n]$, ויהי $H$ גרף איזומורפי, בעבור $f \colon [n] \to [n]$ איזומורפיזם. נפלג למקרים. 
+		\begin{enumerate}
+			\item אם $G = C_n$, אז:
+			\[ E_H = \{\{f(v_1), f(v_2) \colon \{v_1, v_2\} \in \underbrace{E_G}_{\mathclap{\ps_2([n])}}\}\} = \{\{v_1, v_2\} \colon \underbrace{\{f(v) \colon v \in [n] \}}_{\Img(f) = [n]}\} = \ps_2[n] = E_G \]
+			וסה"כ מהמשפט היסודי של זוגות סדורים $G = H$ כדרוש. 
+			\item אם $E_G = \emptyset$ אז: 
+			\[ E_H = \{\{f(v_1), f(v_2) \colon \{v_1, v_2\} \in \underbrace{E_G}_{\varnothing}\}\} = \emptyset = E_G \]
+			ובאפן דומה $G = H$ כדרוש. 
+		\end{enumerate}
+		\item[$\impliedby$]נניח בשלילה $G \neq C_n \land E_G \neq \varnothing$. נוכיח קיום $H$ כך ש־$G \neq H$, בעבורו קיימת איזומורפיזם $f \colon [n] \to [n]$ כך ש־$G \sim H$. מהנחת השלילה, $E_G \neq \ps_2([n])$ ולכן קיימים $w, v \in [n]$ כך ש־$\{w, v\} \notin E_G$. אם אין קשתות, סתירה לנתון. אם $d(v) = d(w) = 0$, אז קיים $q \in [n]$ כך ש־$d(q) > 0$, ואם לא, אז קיים $q$ שכן של בה"כ $v$. בעבור הגרף שיווצר מהאיזומורפיזם הבא: 
+		\[ h \colon [n] \to [n], \ w \mapsto q, q \mapsto w, x \in [n] \setminus \{w, q\} \mapsto x \]
+		הוא $H$, יתקיים $H$ איזומורפי ל־$G$ ונניח בשלילה $G = H$, אך ב־$H$ או ש־$w$ בעל $d(v) > 0$ וזו סתירה לכך ש־$d(v) = 0$, או שיש צומת בין  $w$ ל־$v$ כלומר $\{w, v\} \in E_h$ וזו סתירה ש־$\{w, v\}\in E_H = E_G \not\ni \{w, v\}$. סה"כ סתירה בכל המקרים
+	\end{itemize}
+	הוכחנו את הגרירה הדו־כיוונית, ובכך ההוכחה הושלמה. 
+	\section{}
+	\begin{proof}
+		לאורך כל ההוכחה, אלא אם ייצוין אחרת, $v, n, a, b \ge 1$. 
+		יהיו $G_1 = \la V, E_1 \ra, G_2 = \la V, E_2 \ra$ גרפים;
+		\[ V = [100], \ E_1 = \{\{a, b\} \in \ps_2(V) \colon |a - b| = 10 \lor |a - b| = 90\}, \ E_2 = \{\{a, b\} \in \ps_2(V) \colon |a - b| = 11 \lor |a - b| = 89\} \]
+		נוכיח ש־$G_1$ אינו איזומורפי ל־$G_2$. 
+		
+		\textbf{למה 1. }\textit{השוויון להלן: }
+		\[ \exists m \neq n. \ m + n = 100 \land E = \{\{a, b\} \in \ps_2(V) \colon |a - b| = n \lor |a - b| = m\} \!\!\implies\!\! E \seq \{i \in [n] \colon \{i, i + m\}\} \cup \{i \in [m] \colon \{i, i + n\}\} =: \tl E \]
+		
+		כאשר $\tl E$ תקרא "ההגדרה המפושטת [של למה 1 בעבור $E$]``. 
+		נוכיח באמצעות הכלה דו־כיוונית: 
+		\begin{itemize}
+			\item[$\subseteq$:] יהי $\{a, b\} \in E$, בה"כ $|a - b| = n$, ובה"כ $a \ge b$ כלומר $a - b = n$. אזי $a = b + n$. ידוע $a \in [100]$, נרצה להראות $a \in [m]$. נניח בשלילה $a \in [100] \setminus [m]$, כלומר $a > m = 100 - n$. נקבל $b + n > 100 + n$. נעביר אגפים ונקבל $b > 100$ וזו סתירה. אזי $a \in [m] \land \{b, \underbrace{b + n}_{a}\} \in E$ ומעקרון ההפרדה $\{b, a\} \in E$ כדרוש. 
+			\item[$\supseteq$:] יהי $\{a, b\} \in \tl E$, ובה"כ $a \ge b$ ובה"כ $\{a, b\} \in \{i \in [n] \colon \{i, i + m\}\}$ כלומר קיים $i \in [n]$ כך ש־$\{a, b\} = \{i, i + m\}$ ומההנחות $a = i + m, b = i$. צ.ל. $\{a, b\} \in E$. ידוע: $b \le a = i + m \le n + m = 100$ כלומר $a, b \in [100]$ ולכן $\{a, b\} \in \ps_2(V)$. גם נדע $|a - b| = a - b = i + m - i = m$. סה"כ מעקרון ההפרדה $\{a, b\} \in E$ כדרוש. 
+		\end{itemize}
+		
+		נסמן ב־$V_n^1$ וב־$V_n^2$ את קבוצת כל הקודקודים מדרגה $n$ בגרף $G_1$ ו־$G_2$ בהתאמה. 
+		
+		\textbf{למה 2. }$|V_2^1| = |V_2^2|$. \textit{הוכחה.}
+		
+		נבחין כי הקבוצות $E_1, E_2$ הן מהצורה בעבורה הוכחנו את הטענה לעיל, כלומר מצאנו הגדרה שקולה, מפושטת, לקבוצות הללו. נניח בשלילה קיום איזומורפיזם $f \colon V^V$ בין $G_1$ ל־$G_2$. על בסיס טענה שהוכחנו בכיתה, $\forall v \in V. d_{G_1}(v) = d_{G_2}(f(v))$. נניח בשלילה $|V_n^1| \neq |V_n^2|$, ובה"כ $|V_n^1| > |V_n^2|$, אזי מעקרון שובך היונים קיימת $v \in V_n^1$ כך ש־$f(v) \notin V_n^2$, כלומר $d_{G_2}(f(v)) \neq d_{G_1}(v)$ וזו סתירה לטענה שהוזכרה קודם לכן. בפרט, נדע $|V_2^1| = |V_2^2|$ כדרוש. 
+		
+		\textbf{למה 3. }
+		\[ V_2^E = [\min\{n, m\}] \, \, \big(\unquad \implies |V_2^E| = \min\{n, m\}\big) \]
+		\textit{הוכחה. }בה"כ $n \le m$ (כלומר $\min\{n, m\} = n$). נוכיח הכלה דו כיוונית. מצד אחד, אם $v \in V_2^E$, אז מההגדרה השקולה המפושטת מצאנו $\{v, v + n\}, \{v, v + m\} \in E$. ידוע $v + m \in V$ כלומר $v + m \le 100$ ונציב ונקבל $v + 100 - n \le 100$ וסה"כ $v \le n$ אזי $v \in [n]$ כדרוש. מצד שני, אם $v \in [n]$ אז $v \in [m]$ ולכן מההגדרה המפושטת $\underbrace{\{v, v + n\}}_{e_2},\underbrace{ \{v, v + m\} }_{e_1}\in E$, ומשום ש־$n \neq m$ אז $v + m \neq v + n$ ולכן $e_1 \neq e_2$ אלו שני צמתים שונים, וסה"כ $d(v) = 2$ (לא ייתכן יותר כי אין עוד מקרים בהגדרה בעבורם תתכן יצירת קשת נוספת) כלומר $v \in V_e^E$. 
+		
+		סה"כ, מלמה 3, $|V_2^1| = 10, |V_2^2| = 11$ כלומר $|V_2^1| \neq |V_2^2|$ וזו סתירה ללמה 2. הנחת השלילה נסתרה, וההוכחה תמה. 
+	\end{proof}
+	
+	\section{}
+	צ.ל. יהי $G = \la V, E \ra$, $G$ הוא עץ אמ"מ יש מסלול פשוט יחיד בין כל שני צמתים ב־$G$. 
+	\begin{proof}
+		נסמן ב־$\tl P$ את הטענה "בין כל שני צמתים יש מסלול פשוט יחיד``, וב־$P$ את הטענה "בין שני כל צמתים יש מסלול פשוט". נסמן ב־$C$ את הטענה "$G$ גרף חסר מעגלים``' ב־$W$ "$G$ הוא גרף קשיר``, וב־$T$ "$G$ הוא עץ``. 
+		
+		בהרצאה, הוכחה הטענה $P \sim W$. נוכיח את הטענה $\tl P \sim C$, ולאחר מכן ניעזר במספר מעברים לוגיים כדי להראות ש־$T \sim \tl P$. 
+		
+		\begin{itemize}
+			\item[$\implies$] נניח כי בין כל שני צמתים ב־$G$ יש מסלול פשוט יחיד, ונוכיח ש־$G$ חסר מעגלים. נניח בשלילה קיום מעגל ב־$G$, הוא $\la v_i \ra_{i = 0}^{n}$ כאשר $v_0 = v_n$. נסיק, שבין $v_0$ לבין $v_1$ יתקיימו המסלולים $\la v_0, v_1 \ra$ אך גם $\la v_1, v_2, \dots, v_n, v_1 \ra$ יהיה מסלול ביניהם. המסלולים הללו שונים מאחר ש־$v_2 \notin \la v_0, v_1 \ra$ (ו־$v_2$ קיים בהכרח כי לא ייתכן מעגל באורך $2$ בלבד, ו־$\la v_i \ra_{i = 0}^n$ נתון להיות מעגל). בכך הראנו סתירה לזה שבין כל שני צמתים ב־$G$ קיים מסלול יחיד. 
+			\item[$\impliedby$] נניח ש־$G$ חסר מעגלים, ונוכיח שבין כל שני צמתים בו קיים מסלול פשוט יחיד. נניח בשלילה שקיימים שני מסלולים פשוטים בין קודקוד $\tl v$ לבין $\bar v$, נסמנם $w = \la w_i \ra_{i = 0}^n, \ j = \la j_i \ra_{i = 0}^m$ כאשר $w_0 = j_0 = \tl v, \ w_n = j_m = \bar v$. נסמן $j\op = \la j_i \ra_{i = m}^0$, וברור כי $j\op$ גם מסלול (קשתות בגרף לא מחובר הן דו־כיווניות). נסמן $O = w \uplus j\op = \la w_0, w_1, \dots, w_n = j_m, j_{m - 1}, \dots, j_0 \ra$. בגלל ש־$O$ הוא מסלול וגם $w_0 = j_0$, אז $O$ הוא מעגל, כלומר $\lnot C$, בסתירה לכך ש־$G$ חסר מעגלים. 
+		\end{itemize}
+		נדע $\tl P \therefore P$ כי אם בין כל שני צמתים ב־$G$ יש מסלול פשוט יחיד, אז בפרט בין כל שני צמתים ב־$G$ קיים מסלול (הוא המסלול הפשוט הנתון). 
+		
+		נתבונן בידוע לנו: 
+		\[ \begin{cases}
+			T \sim C \land W \\
+			C \sim \tl P \\
+			W \sim P \\
+			\tl P \to P
+		\end{cases} \unquad \unquad \unquad \unquad \implies
+		\tl P \siff P \land \tl P \siff C \land W \therefore \tl P \sim C \land W \\
+		\]
+		ולכן הטענות ביניהם היה צריך להוכיח שקילות, שקולות. 
+	\end{proof}
+	\section{}
+	\textbf{שאלה: }בהינתן $T = \la V, E \ra$ וקודקוד $ \in V$. אם נסיר העץ את $b$ ואת הקשתות הנוגעות בו, כמה רכיבי קשירות יהיו בגרף שיתקבל? 
+	
+	\textbf{תשובה: }כמות רכיבי הקשירות בגרף שיתקבל יהיה $d(v)$. 
+	
+	\begin{proof}
+		יהי $T = \la V, E \ra$ עץ, ו־$v \in V$ קודקוד. נוכיח שבגרף $\tl T := \la \overbrace{V \setminus \{v\}}^{\tl V}, \overbrace{E \setminus \{e \in E \colon v \notin e\}}^{\tl E} \ra$ יש $d(v)$ רכיבי קשירות. 
+		
+		\textbf{למה 1. }\textit{כאשר מסירים צומת מגרף $G = \la V_G, E_G \ra$ חסר מעגלים, נסמן את הגרף שהתקבל $G'$, ב־$G'$ יש רכיב קשירות אחד נוסף.}
+		
+		\textit{הוכחה. }נניח שהצומת שהוסרה היא חלק מרכיב הקשירות $U \subseteq V_G$. לא ייתכן שהיא חלק מרכיב קשירות נוסף, כי $\sim$ הוא יחס שקילות. נסמן $e = \{a, b\}$. 
+		\begin{itemize}
+			\item[$\ge$] נוכיח שכמות רכיבי הקשירות גדלה. נניח בשלילה $a \sim b$ ב־$G'$, אזי קיים ביניהם מסלול $O$ מ־$a$  ל־$b$, ונדע $O \oplus \la a \ra$ הוא מעגל ב־$G$ כי בין כל הצמתים בו ידוע קיום מסלול מהיות $O$ מסלול, פרט לצומת בין $a$ ל־$b$ שידוע קיומה מהיות $e$ קיימת, כלומר $O \oplus \la a \ra$ הוא מסלול ונבחין שגם מעגל כי $O_1 = O_{-1} = a$. סה"כ בסתירה לכך ש־$G$ חסר מעגלים. לכן, בהסרת $e$, ב־$G'$ לא קיים מסלול בין $a$ ל־$b$ ובהכרח יש לנו רכיב קשירות נוסף. 
+			\item[$\le$] נוכיח שכמות רכיבי הקשירות גדלה בלא יותר מ־$1$. נוכיח טענה יותר חזקה – שני רכיבי הקשירות החדשים, $U_1, U_2$, מוכלים ב־$U$, ולא קיימים רכיבי קשירות נוספים. 
+			\begin{itemize}
+				\item נניח בשלילה שקיים רכיב קשירות $J \subseteq V_{G}$ המקיים $J \nsubseteq U$. אם $J$ לא מוכל באף רכיב קשירות של $G$, אז קיימים בו $j_1, j_2 \in J$ כך שכל אחד ביניהם נמצא ברכיב קשירות שונה ב־$G$, כלומר $\lnot j_1 \sim_{G} j_2$, ובגלל שב־$G'$ רק הסחרנו קשתות – $\lnot j_1 \sim_{G'} j_2$, וזו סתירה. לכן, $J$ מוכל ברכיב קשירות $J'$ של $G$, נסמן $J \subsetneq J'$ (אם יתקיים שוויון חזק הוא לא יהיה רכיב קשירות חדש). משום ש־$e \notin J'$ (הוכח קודם לכן) אז $J = J'$, וזו סתירה.
+				\item נותר להוכיח שלא קיים רכיב קשירות פרט ל־$U_1, U_2$ שמוכל ב־$U$. ידוע בה"כ $a \in U_1, b \in U_2$ כי $a, b \in U$ אך $\lnot a \sim_{G'} b$. נניח בשלילה קיום $U_3 \neq \varnothing$ כך ש־$U_3 \subsetneq U, U_3 \neq U_1, U_2$. מכיוון ש־$U_3$ מחלקת שקילות ב־$\sim_{G'}$ אז $U_3$ זר ל־$U_1, U_2$ גם הן מחלקות שקילות. הוא לא ריק, אזי $\exists c \in V_{G'}. c \in U_3$. בגלל ש־$c \notin U_2, U_1$ אז $\lnot (c \sim b \lor c \sim a)$ (דה מורגן לפישוט). מכיוון ש־$a, b, c \in U$ אז $c \sim_{G} b, c \sim_G a$ ונסמן את המסלולים ב־$G$ שנוצרו כ־$W_{c, b}, W_{c, a}$ בהתאמה. זו סתירה כי $W_{b, c} \oplus W_{c, a} \oplus \la a \ra$ מעגל ב־$G$ כי קיימת קשת $e = \{a, b\}$ וזו סתירה להיותו חסר מעגלים. 
+			\end{itemize}
+		\end{itemize}
+		\textbf{למה 2. }\textit{ב־$\tl T' = \la V, \tl E \ra$, הסינגלטון $\{v\}$ הוא רכיב קשירות. }
+		
+		\textit{הוכחה. }נניח בשלילה שקיים $\bar v \in V$ כך ש־$\bar v \sim_{\tl T'} v$. אזי קיים מסלול $W$ ביניהם, הכולל את $v$ בסופו ועוד לפחות קודקוד נוסף $w$, ולכן $e := \{w, v\} \in \tl E$. מעקרון ההפרדה, $e \in E \land v \notin e$ וזו סתירה לכך ש־$v \in e = \{w, v\}$. 
+		
+		ניעזר בלמות. ידוע מהשיעור שבהסרת צומת מגרף חסר מעגלים, נקבל גרף חסר מעגלים. לכן, אם נסיר צומת המחברת ל־$v$ מהגרף $T$ נקבל גרף חסר מעגלים, ומלמה 1 יהיו בו שני רכיבי קשירות. כצעד אינדוקציה בעבור גרף חסר מעגלים עם $n$ רכיבי קשירות, נסיר מהגרף שקיבלנו צומת נוספת, נקבל גרף חסר מעגלים, ויהיו בו $n + 1$ רכיבי קשירות. כלומר, ב־$\tl T'$ לאחר הסרת $d(v)$ קשתות, נקבל שיהיו בו $d(v) + 1$ רכיבי קשירות. בגלל ש־$\tl T$ הוא למעשה $\tl T'$ בהסרת $v$, אז מלמה 2 הסרנו מ־$\tl T'$ בדיוק רכיב קשירות אחד כאשר ייצרנו את $\tl T$, וסה"כ ב־$\tl T$ ישנם $d(v)$ רכיבי קשירות. 
+	\end{proof}
+	\section{}
+	\begin{enumerate}[(A)]
+		\item צ.ל. בהינתן $s, t \ge 2$ וגם $R(s - 1, t), R(s, t - 1)$ זוגיים, אז $R(s, t) \le R(s - 1, t) + R(s, t - 1) - 1$. 
+		
+		\begin{proof}
+			נתבונן בקליקה בעלת $2n + 2m - 1$ צמתים. ראשית כל, נוכיח קיום צומת ממנה לא יוצאים $2m - 1$ קשתות אדומות. נסמן ב־$E_R$ את קבוצת הקשתות המסומנות בצבע אדום. נניח שמכל הצמתים יוצאים $2m - 1$ קשתות אדומות, אזי סכום הדרגות האדומות (דרגה אדומה = כמות הקשתות בצבע אדום היוצאים צומת, יסומן ב־$d_R(v)$) יהיה: 
+			\[ 2|E_R| = \sum_{v \in V} d_R(v) = (2m - 1)(2n + 2m - 1) \implies |E_R| = \frac{(2m - 1)(2n - 1)}{2} \]
+			ידוע ש־$(2m - 1)$ אי זוגי וגם $2n + 2m - 1$ אי זוגי, וכפל אי זוגיים אי זוגי, ולכן חילוקם בשניים לא יהיה שלם וזו סתירה. 
+			
+			בהינתן אותו הקודקוד, נסמנו $v$, נסמן את קבוצת הצמתים המחוברים בקשת אדומה אליה ב־$R$ ואת קבוצת הצמתים המחוברים בקשת כחולה ב־$B$. ידוע $|R| \neq 2m - 1$. בגלל ש־$|V| = |R| + |B| = R(s, t - 1) + S(s - 1, t) - 1$ אז בפרט נדע שיתקיים $|V| \ge R(s, t - 1), R(s - 1, t)$. לכן, $|R| \ge 2m \lor |B| \ge 2n$ כי אחרת: 
+			\[ \begin{cases}
+				2m - 1 \neq |R| < 2m \implies |R| < 2m - 1 \\
+				|B| < 2n
+			\end{cases} \!\!\!\!\implies |R| + |B| < 2n + 2m -1 = |V|  \]
+			וזו סתירה. לכן בה"כ $|B| \ge 2n = R(s, t - 1)$, ולכן או שקיימת קליקה אדומה בגודל $s$ וגמרנו, או שקיימת בתוך הצמתים ב־$|B|$ קליקה גודל $t - 1$ ויחד עם $v$ נקבל קליקה בגודל $t$ כדרוש. 
+		\end{proof}
+		\item צ.ל. $R(4, 4) \le 18$. \begin{proof}
+			בהרצאה הוכח כי $R(2, k) = k$ וגם $R(3, 3) = 6$. נתבונן בא"שים הבאים (נסתמך על מה שהוכחנו למעלה): 
+			\[ R(3, 4) = R(4, 3) = R(3, 3) + R(2, 4) - 1 = 6 + 4 - 1 = 9 \]
+			ולכן, מהא"ש $R(s, t) = R(s - 1, t) + S(s, t - 1)$: 
+			\[ R(4, 4) \le R(4, 3) + R(3, 4) = 9 + 9 = 18 \]
+			כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	\section{}
+	נגדיר את $\chi(G)$ להיות מספר הצביעה החוקית המינימלי של הגרף $G$, ואת $\alpha(G)$ להיות גודל הקבוצה הבלתי־תלויה הקטנה ביותר, כאשר $U \subseteq V$ היא קבוצה בלתי־תלויה ב־$G = \la V, E \ra$ אמ"מ אין אף צלא בין שני קודקודים ב־$U$. 
+	\begin{enumerate}[(A)]
+		\item צ.ל. $|V| \le \chi(G) \cdot \ag(G)$. \begin{proof} \ \\
+			\textbf{למה 1. }\textit{קיימת קבוצה בלתי תלויה $U$ בגרף $G$ המקיימת $|U| = \alpha(G)$, ובעבורה $\forall v \in U\colon 2 = \min \{d(w, v) \mid v \neq w \in U\}$, בנחה שקיים רכיב קשירות עם יותר משני איברים. }
+			
+			בעבור חסם תחתון, אם $d(w, v) = 0$ אז הם אותו הקודקוד וזו סתירה, ואם $d(w, v) = 1$ אז קיימת קשת $\{w, v\}$ וזו סתירה לכך שהם בלתי־תלויים אחד בשני. לכן $d(w, v) \ge 2$. מצד שני, אם $d(w, v) > 3$ אז קיים מסלול $\{v, t_1, t_2 t_3, \dots, w\}$ ונוכל לבחור $\tl U = U \setminus \{w\} \cup t_2$ היקיים את הטענה. אם $t_2$ תלוי בקשת אחרת ב־$U$, אז יש מסלול יותר קצר בין $v$ לאותה הקשת, וזו סתירה לכך שזהו האורך המינימלי. לכן $\tl U$ היא קבוצה בלתי תלויה, וגם $|\tl U| = |U| - 1 + 1 - |U| = \ag(G)$ כדרוש. 
+			
+			נפצל למקרים. 
+			\begin{itemize}
+				\item אם $E \neq \varnothing$ וגם קיים רכיב קשירות בו לפחות שני צמתים, אז קיימת קשת $e = \{w, v\} \in E$, ולכן $c(w) \neq c(v)$ (כאשר $c$ פונקציית הצביעה בעבור $\chi(G)$) וסה"כ $\chi(G) \ge 3$. מלמה 1, נדע $3\ag(G) \ge |V|$ כי נוכל "לשייך" לכל צומת ב־$U$ לכל היותר שני צמתים הצמודים אליו בצורה שתחסה את הגרף. סה"כ $\alpha(G)\chi(G) \ge |V|$ כדרוש. 
+				\item אחרת, אם $V = \varnothing$ אז $|V| = 0 \ge \chi(G) \cdot \alpha(G)$ כי כפל חיובים הוא חיובי, וסיימנו
+				\item אחרת, אם $E = \varnothing$, אז $\chi(G) = 1$ כי נוכל לצבוע כל צומת באותו הצבע (לא ייתכן מספר נמוך יותר כי אז $\chi(v) \in \emptyset$) וגם $\alpha(G) = |V|$ כי אף צומת לא תלוי בשני (ולא ייתכן יותר מזה כי אז $U \nsubseteq V$) ונוכל לבחור $U = V$. 
+				\item אחרת, כל רכיבי הקשירות הם באורך לכל היותר שניים. אם כולם באורך אחד, אז $E = \emptyset$ וזו סתירה. אחרת, קיים רכיב קשירות באורך $2$ וממנו $\chi(G) = 2$, וברור כי $\ag(G) \ge n / 2$ (כי כל רכיבי הקשירות הם לכל היותר שניים) וסה"כ נעביר אגפים ונציב, $\chi(G)\ag(G) \ge |V|$ כדרוש. 
+			\end{itemize}
+			סה"כ הטענה הוכחה בכל המקרים האפשריים, כדרוש. 
+		\end{proof}
+		\item יהי $G = \la V, E \ra$ גרף, צ.ל. $|E| \ge \binom{\chi(G)}{2}$
+		\begin{proof}
+			נניח בשלילה $|E| < \binom{\chi(G)}{2}$. בעבור כל קבוצה $U$ של צמתים המקיימים $|c[U]| = |U| = \chi(G)$ (ובפרט הפונקציה $c|_U$ היא חח"ע ועל) וגם $U \subseteq V$. כמות הקשתות המקסימלית בגרף $\tl G = \la U, \tl E := \{w, v \in U \mid \{w, v\} \in E\} \ra$ היא כמות הדרכים לבחור קשתות מתוך $|U|$, היא $\binom{\chi(G)}{2}$. משום ש־$\tl E \subseteq E$ אז $|\tl E| < |E|$ ולכן $|\tl E| < \binom{\chi(G)}{2} = |V|$. לכן, קיימים שני קודקודים $v, w \in U$ כך שאין בינהם קשת. נבחר להשמיד את $c(v)$, ונגדיר $\tl c$ כך ש־$\tl c(v) = c(w)$. באופן דומה, בעבור כל $U$ אפשרית, נמצא $m, n$ מתאימים ולאחד מביניהם עבורו זה יתאפשר, נגדיר בה"כ $\tl c(n) = c(w)$. סה"כ $\tl c$ בעל תמונה בגודל $\chi(G) - 1$ וגם צביעה חוקית, וזו סתירה לכך ש־$\chi(G)$ הצביעה החוקית המינימלית בעבור הגרף $G$. 
+		\end{proof}
+		\item נסמן ב־$G - v$ את הגרף המתקבל מהסרת $v \in V$ מהגרף $G$. צ.ל. $\chi(G - v) \in \{\chi(G), \, \chi(G - 1)\}$. 
+		\begin{proof}
+			נתבונן בגרף $G - v = \la \tl V, \tl E \ra$. נניח בה"כ ש־$c(v) = 1$ (עד לכדי זיווג $[n] \to \Img(c)$). נתבונן בקשת $\{v, w\}$ שהוסרה, ונניח $c(w) = 2$. אם קיימת קשת $\{v, \bar w\}$ כך ש־$c(\bar w) = 2$, אז לא יהיה אפשר לחבר את הצביעה של הצמתים בצבע $1$ אם אלו בצבע $2$, ושאר הצבעים לא שונו ולכן הצביעה המינימלית עודנה $\chi(G)$. אחרת, אין שום קשת בין צומת מצבע $1$ לצומת מצבע $2$ – ולכן אפשר ליצור פונקציה $\tl c$ שתגדיר: 
+			\[ \begin{cases}
+				x \mapsto x, \ c(x) \neq 2\\
+				x \mapsto 1, \ \other
+			\end{cases} \]
+			שתהיה פונקציית צביעה חוקית מסדר של $\chi(G) - 1$. לא ייתכן פחות מכך, כי כל שאר קבוצות הצבעים האחרות נותרו עם אותם הצמתים והקשתות בדיוק. 
+			
+			\textit{(יש חור קטן בהוכחה שלא הצלחתי לפתור, בנוגע למה קורה אם משנים לחלוטין את סדר הצביעה. אשמח אם יסבירו בהרצאה או בתרגול איך לסגור אותו)}
+			
+		\end{proof}
+		\item צ.ל. $\chi(G) + \chi(\ol G) \le |V| + 1$. 
+		
+		\textit{לא הצלחתי לפתור את הסעיף, ולא ידוע לי על מישהו אחד שפתר את הסעיף. }
+	\end{enumerate}
+	\section{}
+	יהי $G$ גרף עם $5n + 1$ קודקודים. נצבע את הקודקודים ב־$n$ צבעים. צ.ל. שב־$G$ או ב־$\ol G$ יש משולש שכל הקודקודים שלו צבועים באותו הצבע. 
+	
+	\begin{proof}
+		משובך יונים מורחב, עבור $5n  +1$ יונים הן הקודקודים בעבור $n$ תאים הם הצבעים, שיש בהכרח לפחות $\lf \frac{5n + 1}{n} \rc = 6$ קודקודים מצבע יחיד, בה"כ צבע ורוד. נסמן את קבוצת הקודקודים הללו ב־$c$. נתבונן בקליקה הבנוייה מ־$V = c$, בה נסמן בצבע כחול את $\{x, y\}$, אם $x, y \in c \land x \sim_G y$, ותכלת אם לאו. ידוע $R(3, 3) = 6$ ובגלל ש־$|V| = |c| = 6 \le 6$ אז בתוך הקליקה קיים משולש. אם המשולש בצבע כחול, אז מיד נובע קיום משולש ב־$G$ בין הצמתים ב־$c$, אחרת המשולש בצבע כלת ואז יש משולש ב־$\ol G$. בכך הוכחנו קיום משולש מתאים בין צמתים מאותו הצבע (נזכור כי ב־$c$ כל הצמתים מאותו הצבע) וסיימנו. 
+	\end{proof}
+	
+\end{document}

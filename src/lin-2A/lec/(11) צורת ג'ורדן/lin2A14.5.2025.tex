@@ -1,0 +1,556 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+    language=Java,
+    emphstyle=\color{deepred},
+    backgroundcolor=\color{codegray},
+    keywordstyle=\color{deepblue}\bfseries\itshape,
+    numberstyle=\scriptsize\color{codenumber},
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{codegreen}\itshape,
+    breakatwhitespace=false, 
+    breaklines=true, 
+    captionpos=b, 
+    keepspaces=true, 
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false, 
+    tabsize=4, 
+    morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+    keywordstyle=\color{codeblue},
+    emph={var, List, Iterable, Iterator},          % Custom highlighting
+    emphstyle=\color{codered},
+    stringstyle=\color{codegreen},
+    showstringspaces=false,
+    abovecaptionskip=0pt,belowcaptionskip =0pt,
+    framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+    \AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mgreen,
+    linkcolor=black,
+    urlcolor=mblue,
+    pdftitle={Document by Shahar Perets},
+    %	pdfpagemode=FullScreen,
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+    \newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+            {\textbf{\textit{שחר פרץ, 2025}} \\
+                \scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+    \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+    \addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\mathrm{, }}
+\newcommand\defis {\mathrm{ definitions}}
+\newcommand\given {\mathrm{given }}
+\newcommand\case  {\mathrm{if }}
+\newcommand\syx   {\mathrm{ syntax}}
+\newcommand\rle   {\mathrm{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\Asym}    {ASym}
+\newcommand\lcm                {\ell\mathrm{cm}}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\K         {\mathbb{K}}
+\newcommand\co        {\colon}
+\newcommand\pms[1]    {\begin{pmatrix}
+        #1
+\end{pmatrix}}
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+\newtheorem{Hence}{מסקנה}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{לינארית 2א 11 $\sim$ צורת ג'ורדן}}
+\begin{document}
+    \maketitle
+    תזכורת: $T \co V \to V$ ט''ל, ו־: 
+    \[ \forall i \neq j \co \gcd(g_i, g_j) =1 \land m_T(x) = \prod_{i = 1}^{s}g_i \]
+    אז: 
+    \[ V = \bigoplus_{i = 1}^{s} \ker(g_i(T)) \land \forall i \co m_{T|_{\ker g_i(T)}} = g_i \]
+    
+    בעיה: $A = M_5(\Z)$, קבעו אם היא לכסינה מעל $\C$. 
+    \begin{itemize}
+        \item נחשב את $f_A(x)$
+        \item נמצא שורשים, אלו הם הע''ע
+        \item לכל ע''ע נחשב את $v_\lg$
+        \item אם סכום הממדים מסעיף ג' הוא 5, אז היא לכסינה
+        \item $T$ לכסינה אמ''מ קיים בסיס ו,ע אמ''מ ריבוי גיאומטרי = ריבוי אלגברי
+    \end{itemize}
+    
+    אבל הוכיח שאין פתרונות לפולינומים ממעלה חמישית ויותר, וגלואה מצא דוגמאות לפולינומים שאי אפשר לבצע עליהם נוסחאת שורשים ופיתח את התורה של הרחבת שדות לשם כך. 
+    
+    היוונים העתיקים ביססו את הגיאומטריה שלהם באמצעות דברים שאפשר לבדוק עם שדה ומחוגה. באמצעות כלים של גלואה אפשר לראות מה אפשר לעשות עם האמצעים האלו, ולהוכיח שלוש בעיות שהיוונים לא הצליחו לפתור – האם אפשר לרבע את המעגל (האם אפשר לבנות באמצעות שדה ומחוגה ריבוע ששטחו שווה לשטח המעגל), או במילים אחרות, האם אפשר למצוא את $\sqrt\pi$ – אי אפשר כי זה לא מספר אלגברי. שאלות אחרות היו, בהינתן קובייה, האם אני יכול למצוא קובייה בנפח כפול? באותה המידה אי אפשר למצוא את $\sqrt3$. שאלה אחרת הייתה האם אפשר לחלק זווית ל־3 חלקים שווים. 
+    
+    גלואה הראה שכדי לעשות את זה צריך למצוא שורשים שלישיים של כל מני דברים, שבאמצעות סרגל ומחוגה אי אפשר לעשות זאת. בעיות שהיו פתוחות לעולם המתמטי במשך אלפי שנים נפתרו בעזרת אותן התורות. 
+    
+    \textbf{הגדרה. }בהינתן $f(x) = \prod_{k}(x - \lg_k)^{r_k} \quad \forall i \neq j \co \lg_i \neq \lg_j$. אז $f^{\mathrm{red}} = \prod_{k}(x - \lg_k)$
+    
+    טענה משיעורי הבית: 
+    \[ f^{\mathrm{red}} = \frac{f}{\gcd(f, f')} \]
+    
+    \theo{$A$ לכסינה אמ''מ $f_A^{\mathrm{red}}(A) = 0$}
+    
+    \lem{$f_A^{\mathrm{red}} \mid m_A$ ושוויון אמ''מ $A$ לכסינה. }
+    
+    \begin{proof}
+        יהיו $\lg_1 \dots \lg_r$ הע''ע של $A$ (אפשר בה''כ להרחיב שדה כדי שהם יהיו קיימים). אז אם $f_A(x) = \prod_{i = 1}^{r}(x - \lg_i)^{s_i}$ ומתקיים $m_A(x) = \prod_{i = 1}^{r}(x - \lg_i)^{r_i}$ וידוע $1 \le r_i \le s_i$ ולכן $f_A^{\mathrm{red}} \mid m_A$. 
+        
+        עתה נוכיח את החלק השני של המשפט. אם $A$ לכסינה, אז יש בסיס של ו''עים ועם $\lg$ הוא ע''ע של ו''ע בבסיס $V$ אז $Av_\lg - \lg v_\lg = 0$, ולכן $f_A^{\mathrm{red}}(A) = 0$ וסה''כ $m_A \mid f_A$. 
+        
+        אם $f_A^{\mathrm{red}} = m_A$ אז $m_A$ מכפלה של גורמים לינארית זרים, וראינו גרירה ללכסינות. 
+    \end{proof}
+    
+    עתה נוכיח את מהשפט 1: 
+    \begin{proof}
+        $A$ לכסינה אמ''מ $m_A = f_A^{\mathrm{red}}$, ואנחנו יודעים כי $m_A(A) = 0$ ולכן $A$ לכסינה אמ''מ $f_A^{\mathrm{red}}(A) = 0$. 
+    \end{proof}
+    
+    \theo{נניח $T \co V \to V$ לכסינה, וקיים $W \subseteq V$ תמ''ו $T$-שמור. אז $T_{|_W}$ לכסינה. }\begin{proof}
+        נסמן $S = T_{|_W}$. אנחנו יודעים $m_T(T) = 0$ ולכן $m_T(S) = 0$. ידוע $m_S \mid m_T = \prod_{i = 1}^{r}(x - \lg_i)$ ולכן $m_S$ מתפרק לגורמים לינארים זרים, סה''כ $S$ לכסינה. 
+    \end{proof}
+    
+    \textbf{מטרה: }בהינתן $אT \co V \to V$ נרצה לפרק את $V$ לסכומים ישרים של מרחבים $T$־אינווריאנטים. 
+    
+    \defi{יהי $T \co V \to V$ ט''ל. נאמר ש־$V$ \textit{פריק ל־$T$} אם קיימים $U, W \subseteq V$ תמ''וים כך ש: 
+    \[ V = U \oplus W \quad \land \quad \dim U, \dim W > 0 \quad \land \quad U, W \ \text{\en{are $T$-invariant}} \]}
+    
+    מעתה ואילך, נניח ש־$f_T(x)$ מתפצל מעל $f$ לגורמים לינארים (כלומר, נרחיב לשדה סגור אלגברית). 
+    
+    \begin{Hence}
+        (ממשפט הפירוק הפרימרי) אם $S \ge 2$, ידוע־$V = \bigoplus_{i = 1}^s \ker g_i(T)$ ולכן $V$ פריק ביחס ל־$T$. בהינתן ההנחה כי $f_T$ מתפצל לחלוטין, ונניח $V$ אי־פריק ביחס ל־$T$, אז $m_T(x) = (x - \lg)^{r}$. 
+    \end{Hence}
+    
+    \defi{$T \co V \to V$ ט''ל. $T$ נקראת \textit{נילפוטנטית} אם קיים $n \in \N$ כך ש־$T^{n} = 0$. באופן דומה $A$ מטריצה \textit{נילפוטנטית} אם $\exists n \in \N \co A^{n} = 0$. }
+    \defi{עבור $n$ המינימלי שעבורו $T^{n} = 0 / A^{n} = 0$, אז $n$ הנ''ל נקרא \textit{דרגת הנילפוטנטיות} של $T/A$, ומסמנים $n(T)/n(A)$. }
+    
+    ``ניל'' בא מלשון null. הרעיון: דבר מה שמתבטל. 
+    
+    \textbf{דוגמה. }בסיטואציה ש־$m_T(x) = (x - \lg)^{r}$ נסיק ש־: 
+    \[ (T - \lg I)^{r} = 0\implies S = T - \lg I, \ n(S) = r \]
+    
+    \textit{הערה: }כל פירוק של $V$ ל־$T$ נותן פירוק שלו ל־$T - \lg I$ ולהיפך. 
+    
+    \begin{proof}
+        ההערה נכונה כי אם $V = U \oplus W$ כאשר $U, W$ הם $T$־שמורים, לא טרוויאלים, אז הם גם $T - \lg I$־שמורים. זאת כי אם $U$ הוא $T$ שמור אז: 
+        \[ \forall u \in U \co T(u) \in U \implies (T - \lg)(u) = \underset{\in U}{T(u)} - \underset{\in U}{\lg u} \in U \]
+        
+    \end{proof}
+    \textit{המשך ההערה. }כדי להבין איך נראים תת־מרחבים אי־פריקים, עשינו רדוקציה לט''ל ניל' [רדוקציה=מספיק לי להבין את המקרה הזה בשביל להבין את המקרה הכללי]. 
+    
+    מעתה נניח שכל $T \co V \to V$ ניל'
+    
+    \theo{$T \co V \to V$ ניל' אז לכל $0 \neq v \in V$ הקבוצה $v, Tv, \dots, T^{k}v \neq 0$ היא בת''ל. }
+    \begin{proof}
+        יהיו $\ag_0 \dots \ag_k \in \F$ כך ש־$\sum_{i = 0}^{k}\ag_i T^{(i)}(v) = 0$. נניח בשלילה שהצירוף אינו טרוויאלי. אז קיים $j$ מינימלי שעבורו $\ag_j \neq 0$. נניח $n$ המקסימלי שלא מאפס. אז: 
+        \[ T^{n - j}\cl{\sum \ag_i T^{(i)}(v)} = T^{n - j}\cl{\sum_{i = j}^{k}\ag_iT^{i}(v)} = \ag_jT^{n - 1}(v) + 0 = 0 \]
+        אבל $\ag_j, T^{n - 1} \neq 0$ וזו סתירה. 
+    \end{proof}
+    
+    \defi{קבוצה מהצורה $\{v, Tv \cdots T^kv\}$ כאשר $T^{k + 1}v = 0$ והוא המינימלי, נקרתא \textit{שרשרת}. }
+    
+    \subsection{ציקליות}
+    \defi{תמ''ו שקיים לו בסיס שהוא שרשרת, נקרא ציקלי. }(ראה לינארית 2א סיכום 8)
+    
+    \textbf{אנטי־דוגמה: }ישנם מ''וים שאינם $T$־ציקליים. למשל: 
+    \[ V = \ccb{f \co \R^2 \to \R \mid f\pms{x \\ y} - P(x) + h(y) \mid \text{פולינומים ממעלה $\le n$} \ p, h} \]
+    ו־$T$ אופרטור הגזירה הפורמלית. 
+    כדי ש־$V$ יהיה ציקלי, צריך למצוא בסיס ציקלי שממדו הוא דרגת הנילפוטנטיות. נבחין ש־$n(T) = n  + 1$, וידוע ש־$\dim V = 2n + 1$, ולכן שרשרת מקסימלית באורך $n + 1$ ולכן לא יכול להיות בסיס שרשרת. לכן $V$ אינו $T$־ציקלי. 
+    
+    \begin{Hence}
+        יהי $T \co V \to V$ ניל' ו־$\dim V = n$ אז $n(T) \le n$ וישנו שוויון אמ''מ $V$ ציקלי. 
+    \end{Hence}
+    
+    \begin{Hence}
+        אם $T \co V \to V$ ניל' ו־$V$ ציקלי אז $V$ אי־פריק ל־$T$. 
+    \end{Hence}
+    \begin{proof}
+        נניח בשלילה שישנו פירוק לא טרוויאלי של $V$ ל־$T$. אז $V = U \oplus W$ לא טרוויאלים. נסמן $\dim U = k, \dim W = \ml$ וידוע $k, \ml < n$. בה''כ $k \ge \ml$. נסמן $B_v = (v, Tv \dots T^{n - 1}v)$. קיימים (ויחידים) $u \in U, w \in W$ כך ש־$v = u + w$. אז: 
+        \[ T^{k}v = T^ku + T^kw \]
+        אך משום ש־$T$ ניל' אז $T_{|_U}, T_{|_W}$ ניל' גם כן. ידוע $n(T_{|_U}), n(T_{|_W}) \le k$ ולכן בפרט $T^{k}(u) = T^{k}(w) = 0$ ולכן $T^{k}v = 0$ אבל $k < n \land T^k(v) \in B_v$. 
+    \end{proof}
+    
+    \theo{תהי $T \co V \to V$ ניל' ונניח $U$ תמ''ו של $V$ הוא $T$־אינו' וציקלי, אז עבור $T_{_U} =: S$: 
+    \begin{enumerate}
+        \item $\dim U \le n(T)$
+        \item $\Img(T_{_U}) = T(U)$ ציקלי ו־$\dim T(U) = \dim U - 1$
+    \end{enumerate}}
+    \begin{proof}\,
+        \begin{enumerate}
+            \item $n(T) \ge n(T_{|_U})$ וגם $\dim U = n(T_{_W})$
+            \item $T(u) = T(\Sp(v, \dots T^{k}v)) = \Sp (Tv \dots T(T^k v))$ ז''א $T(U) = \Sp(Tv \dots T^k v)$, זו קבוצה בת''ל ופורתש את $T(U)$ ולכן $\dim T(U) = \dim U - 1$. 
+        \end{enumerate}
+    \end{proof}
+    
+    \defi{$U \subseteq V$ תמ''ו ציקלי ייקרא ציקלי מקסימלי אם $\dim U = n(T)$. }
+    \theo{לכל $V$ מ''ו, $T \co V \to V$ ניל' קיים תמ''ו ציקלי מקסימלי. }
+    \begin{proof}
+        קיים $v \in V$ כך ש־$T^{n(T) - 1}v \neq 0$. אז $v \neq 0$ ו־$v, Tv, \dots T^{n(T) - 1}$ ומטעה מקודם בת''ל ולכן $\Sp(v \dots T^{n(T) -1})$ תמ''ו ציקלי מקסימלי. 
+    \end{proof}
+    
+    
+    \theo{נניח $U \subseteq V$ תמ''ו ציקלי מקסימלי. אזי: 
+    \begin{enumerate}
+        \item אם $T(U) \subseteq T(V)$ הוא גם ציקלי מקסימלי. \textsf{(הערה: הורדת הממד באחד מועילה מאוד באינדוקציה)}
+        \item $U \cap T(V) = T(U)$ 
+    \end{enumerate}}
+    \begin{proof}\,
+        \begin{enumerate}
+            \item $U$ – ציקלי. לכן $\dim T(U) = \dim U - 1$. 
+            טענה: 
+            \[ \dim T(U) = n\cl{T_{|_{T(V)}}} = n(T) - 1 \]
+            וסיימנו. 
+            \item ידוע $T(U) \subseteq U$ כי $U$ ציקלי ולכן שמור, וכן $U \subseteq V$ והסקנו $T(U) \subseteq T(V)$, לכן $T(U) \subseteq U \cap T(V)$
+            
+            עתה נוכיח שוויון באמצעות שיקולי ממד. אם לא היה שוויון אז: 
+            \[ T(U) \subsetneq U \cap T(V) \subseteq U \implies \dim T(U) < \dim (U \cap T(V)) \le \dim (T(U)) + 1 \implies U \cap T(V) = U \]
+            זו סתירה כי: 
+            \[ U \cap T(V) \subseteq T(V) \implies n(T_{|_{T(v)}}) = n(T) - 1 \implies n(T) = \dim U \le n(T) - 1 \]
+            
+        \end{enumerate}
+    \end{proof}
+    
+    \subsection{צורת מייקל ג'ורדן לט''ל ניל'}
+    \theo{(המשלים הישר לתמ''ו ציקלי מקסימלי) נניח $T \co V \to V$ ט''ל לינ' ניל' (ניל''י), $U \subseteq V$ תמ''ו ציקלי מקסימלי אז קיים $W \subseteq V$ תמ''ו $T$־אינ' כך ש־$V = U \oplus W$. }
+    \begin{proof}
+        נוכיח באינדוקציה על $n = n(T)$. 
+        \begin{itemize}
+            \item[בסיס: ]אם $n(T) = 1$ אז $T = 0$ ``יש מה להוכיח בכלל'' אז כל $W \subseteq V$ הוא $T$־אינ'. והיות שכל קבוצה בת''ל ניתנת להשלמה לבסיס, אז $U = \Sp(v)$ אז $W = \Sp(v_2 \dots v_m)$ כאשר $B_V = (v := v_1 \dots v_m)$. 
+            \item[צעד: ](``צעד, מעבר, אותו דבר, תקראו לזה איך שבא לכם'') נניח שאנו יודעים את נכונות הטענה עבור $n = n(T) - 1$. נוכיח עבור $n = n(T)$. נצמצם את $T$ ל־$T_{|_{T(V)}}$. ידוע $T(U) \subseteq T(V)$ ציקלי מקסימלי. לכן, לפי ה.א. קיים $W_1$ הוא $T$־אינ' כך ש־$T(V) = T(U) \oplus W_1$. 
+            
+            נגדיר $W_2 = \{v \in V \mid Tv \in W_1\}$. אז \lem{(``למה א''')
+                \begin{itemize}
+                    \item $U + W_2 = V$ (לאו דווקא סכום ישר)
+                    \item $U \cap W_1 = \{0\}$
+                \end{itemize}
+            }
+            \lem{(``למה ב'') בהינתן $W_1 \subseteq W_2$ ו־$U \subseteq V$ תמ''ו כך ש־$U + W_2 = V$ וגם $U \cap W_1 = \{0\}$ אז קיים $W' \subseteq V$ כך ש־$W_1 \subseteq W' \subseteq W_2$ וגם $U \oplus W' = V$} 
+            
+            נניח שהוכחנו את הלמות. יהי $w \in W_1$ אז $T(w) \in W_1$ ולכן $w \in W_2$ ולכן $W_1 \subseteq W_2$.          
+            אז מצאנו $W'$ תמ''ו של $V$ כך ש־$W_1 \subseteq W' \subseteq W_2$. יהי $w \in W'$ בפרט $w \in W_2$ ולכן $T(w) = W_1 \subseteq W'$. 
+        \end{itemize}
+        ולכן מש''ל משפט. 
+    \end{proof}
+    
+    ציור של למה 2: אני לא יודע לעבוד עם tikz מספיק טוב, ואני בטוח ש־chatGPT יוכל לעשות tikz עבורי, אבל אני גם רוצה להיות מרוכז בהרצאה. אז בבקשה פשוט תעשו דיאגרמת ואן ללמה ב'. גם המרצה לא הוכיח, זה משחקים על הרחבות בסיס וממדים בצורה כזו שאתם מכירים מלינארית 1א. אודיסאים: תראו את הלמה הזו בשיעורי הבית. אודיסאים שחוזרים על לינארית 1א: זה תרוגל טוב למבחן. 
+    
+    נוכיח את למה א'. \begin{proof}
+        יהי $v \in V$, נביט ב־$T(v)$. קיימים $u \in U, w_1 \in W_1$ כך ש־: 
+        \[ Tv = Tu + w_1 \implies Tv - Tu = w_1 \implies T(v - u) = w_1 \in W_1 \]
+        ידוע $v = v - u + u$. לכן $T(v - u) \in W_1 \implies v - u \in W_2$. 
+        
+        אזי משהו $V = U + W_2$ ו־$W_1 \subseteq T(V)$ ולכן: 
+        \[ U \cap W_1 = U \cap (T(V) \cap W_1) \]
+        ידוע ש־: 
+        \[ U \cap W_1 = (U \cap T(V)) \cap W_1 \implies U \cap T(V) = T(U) \implies T(V) = T(U) \oplus W_1 \implies U \cap W_1 = T(U) \cap W_1 = \{0\} \]
+    \end{proof}
+    
+    preview לאיך נראה בלוק ג'ורדן למטריצה ניל': 
+    יהי $U$ תמ''ו ו־$T$־ציקלי, כאשר $T$ ניל'. נגדיר $B_U = (v \dots T^{n - 1}v)$. אז:
+    \[ [T_{|_{U}}]_{B_U} = \pms{0 & 0 & \cdots & 0 \\ 1 & 0 & \cdots & 0\\ 0 & \ddots & \ddots & \vdots \\ 0 & \cdots & 1 & 0} = J_n(0) \]
+    הוא בלוק ג'ורדן אלמנטרי נילפוטנטי. 
+    
+    \ndoc
+\end{document}

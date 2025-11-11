@@ -1,0 +1,290 @@
+\RequirePackage{amsmath,bm,amsfonts}
+
+% Letters shortcuts
+	\newcommand \N         {\mathbb{N}}
+	\newcommand \Z         {\mathbb{Z}}
+	\newcommand \R         {\mathbb{R}}
+	\newcommand \Q         {\mathbb{Q}}
+	\newcommand \C         {\mathbb{C}}
+	\newcommand \K         {\mathbb{K}}
+	
+	\newcommand \ml        {\ell}
+	\newcommand \mj        {\jmath}
+	\newcommand \mi        {\imath}
+	
+	\newcommand \powerset  {\mathcal{P}}
+	\newcommand \ps        {\mathcal{P}}
+	\newcommand \pc        {\mathcal{P}}
+	\newcommand \ac        {\mathcal{A}}
+	\newcommand \bc        {\mathcal{B}}
+	\newcommand \cc        {\mathcal{C}}
+	\newcommand \dc        {\mathcal{D}}
+	\newcommand \ec        {\mathcal{E}}
+	\newcommand \fc        {\mathcal{F}}
+	\newcommand \nc        {\mathcal{N}}
+	\newcommand \vc        {\mathcal{V}}
+	\newcommand \sca       {\mathcal{S}} % \sc is already definded
+	\newcommand \rca       {\mathcal{R}} % \rc is already definded
+	\newcommand \zc        {\mathcal{Z}}
+	
+	\newcommand \prm       {\bm{\mathrm{p}}}
+	\newcommand \arm       {\bm{\mathrm{a}}} % x86
+	\newcommand \brm       {\bm{\mathrm{b}}}
+	\newcommand \crm       {\bm{\mathrm{c}}}
+	\newcommand \drm       {\bm{\mathrm{d}}}
+	\newcommand \erm       {\bm{\mathrm{e}}}
+	\newcommand \frm       {\bm{\mathrm{f}}}
+	\newcommand \nrm       {\bm{\mathrm{n}}}
+	\newcommand \vrm       {\bm{\mathrm{v}}}
+	\newcommand \urm       {\bm{\mathrm{u}}}
+	\newcommand \srm       {\bm{\mathrm{s}}}
+	\newcommand \rrm       {\bm{\mathrm{r}}}
+	
+	\newcommand \Si        {\Sigma}
+	
+% Logic & sets shorcuts
+	\newcommand \siff      {\longleftrightarrow}
+	\newcommand \ssiff     {\leftrightarrow}
+	\newcommand \so        {\longrightarrow}
+	\newcommand \sso       {\rightarrow}
+	
+	\let        \epsi      \epsilon
+	\let        \vepsi     \varepsilon
+	\let        \vphi      \varphi
+	\newcommand \Neven     {\N_{\mathrm{even}}}
+	\newcommand \Nodd      {\N_{\mathrm{odd }}}
+	\newcommand \Zeven     {\Z_{\mathrm{even}}}
+	\newcommand \Zodd      {\Z_{\mathrm{odd }}}
+	\newcommand \Np        {\N_+}
+	
+% Text Shortcuts
+	\newcommand \open      {\big(}
+	\newcommand \qopen     {\quad\big(}
+	\newcommand \close     {\big)}
+	\newcommand \also      {\text{, }}
+	\newcommand \defis     {\text{ definitions}}
+	\newcommand \given     {\text{given }}
+	\newcommand \case      {\text{if }}
+	\newcommand \syx       {\text{ syntax}}
+	\newcommand \rle       {\text{ rule}}
+	\newcommand \other     {\text{else}}
+	\newcommand \set       {\ell et \text{ }}
+	\newcommand \ans       {\mathscr{A}\!\mathit{nswer}}
+	
+% Set theory shortcuts
+	\newcommand \ra        {\rangle}
+	\newcommand \la        {\langle}
+	
+	\newcommand \oto       {\leftarrow}
+	
+	\newcommand \QED       {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+	\newcommand \QEF       {\quad\quad\mathscr{Q.E.F.}}
+	\newcommand \eQED      {\mathscr{Q.E.D.}\;\;\blacksquare}
+	\newcommand \eQEF      {\mathscr{Q.E.F.}}
+	\newcommand \jQED      {\mathscr{Q.E.D.}}
+	
+	\newcommand \trio      {\triangle}
+	
+	\newcommand \rc        {\right\rceil}
+	\newcommand \lc        {\left\lceil}
+	\newcommand \rf        {\right\rfloor}
+	\newcommand \lf        {\left\lfloor}
+	
+	\newcommand \n         {$n$־יה\ }
+	
+% Math A&B shortcuts
+	\newcommand \logn      {\log n}
+	\newcommand \logx      {\log x}
+	\newcommand \lnx       {\ln x}
+	\newcommand \cosx      {\cos x}
+	\newcommand \sinx      {\sin x}
+	\newcommand \tanx      {\tan x}
+	
+	\newcommand \seq       {\overset{!}{=}}
+	\newcommand \slh       {\overset{LH}{=}}
+	\newcommand \sle       {\overset{!}{\le}}
+	\newcommand \sge       {\overset{!}{\ge}}
+	\newcommand \sll       {\overset{!}{<}}
+	\newcommand \sgg       {\overset{!}{>}}
+	
+	\let        \h         \hat
+	\let        \ve        \vec
+	\let        \lv        \overrightarrow
+	\let        \ol        \overline
+	
+	\newcommand \mlcm      {\mathrm{lcm}}
+	
+	\newcommand \dx        {\,\mathrm{d}x}
+	\newcommand \dt        {\,\mathrm{d}t}
+	
+	\newcommand \nt[1]     {\frac{#1}{#1}}
+	
+	\newcommand \limz      {\lim_{x \to 0}}
+	\newcommand \limxz     {\lim_{x \to x_0}}
+	\newcommand \limi      {\lim_{x \to \infty}}
+	\newcommand \limh      {\lim_{x \to 0}}
+	\newcommand \limni     {\lim_{x \to - \infty}}
+	\newcommand \limpmi    {\lim_{x \to \pm \infty}}
+	
+	\newcommand \ta        {\theta}
+	\newcommand \ap        {\alpha}
+	
+	\newcommand \inft      {\infty}
+	\newcommand \ninf      {-\inft}
+	
+% Combinatorics shortcuts
+	\newcommand \sumnk     {\sum_{k = 0}^{n}}
+	\newcommand \sumni     {\sum_{i = 0}^{n}}
+	\newcommand \sumnko    {\sum_{k = 1}^{n}}
+	\newcommand \sumnio    {\sum_{i = 1}^{n}}
+	\newcommand \sumai     {\sum_{i = 1}^{n} A_i}
+	\newcommand \nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+	
+	\newcommand \bink      {\binom{n}{k}}
+	\newcommand \setn      {\{a_i\}^{2n}_{i = 1}}
+	\newcommand \setc[1]   {\{a_i\}^{#1}_{i = 1}}
+	
+	\newcommand \cupain    {\bigcup_{i = 1}^{n} A_i}
+	\newcommand \cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+	\newcommand \cupiiai   {\bigcup_{i \in I} A_i}
+	\newcommand \capain    {\bigcap_{i = 1}^{n} A_i}
+	\newcommand \capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+	\newcommand \capiiai   {\bigcap_{i \in I} A_i}
+	
+	\newcommand \xot       {x_{1, 2}}
+	\newcommand \ano       {a_{n - 1}}
+	\newcommand \ant       {a_{n - 2}}
+	
+% Linear Algebra
+	\let        \lra       \leftrightarrow
+	\newcommand \chrf      {\chr(\F)}
+	\newcommand \F         {\mathbb{F}}
+	\newcommand \tmat[2]   {\cl{\begin{matrix}
+				#1
+			\end{matrix}\, \middle\vert\, \begin{matrix}
+				#2
+	\end{matrix}}}
+	\newcommand \rrr[1]    {\xxrightarrow{1}{#1}}
+	\newcommand \rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+	% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+	\makeatletter
+	\newlength\min@xx
+	\newcommand*\xxrightarrow[1]{\begingroup
+		\settowidth\min@xx{$\m@th\scriptstyle#1$}
+		\@xxrightarrow}
+	\newcommand*\@xxrightarrow[2][]{
+		\sbox8{$\m@th\scriptstyle#1$}  % subscript
+		\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+		\sbox8{$\m@th\scriptstyle#2$} % superscript
+		\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+		\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+		{\mathmakebox[\min@xx]{\scriptstyle#2}}
+		\endgroup}
+	\makeatother
+
+	\newcommand \mat[2]    {M_{#1\times#2}}
+	\newcommand \gmat      {\mat{m}{n}(\F)}
+	\newcommand \tomat     {\, \dequad \longrightarrow}
+	\newcommand \pms[1]    {\begin{pmatrix}
+			#1
+	\end{pmatrix}}
+	\newcommand \bms[1]    {\begin{bmatrix}
+			#1
+	\end{bmatrix}}
+	\newcommand \detms[1]  {\sof{\begin{matrix}
+				#1
+	\end{matrix}}}
+	\newcommand \ort       {^{\perp}}
+	
+	\newcommand \genein[1] {\tl \vc_{#1}}
+	\newcommand \norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
+	\newcommand \snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
+	\newcommand \smut      {\left \la \cdot \mid \cdot \right \ra}
+	\newcommand \mut [2]   {\left \la #1 \,\middle|\, #2 \right \ra}
+	\newcommand \fRed      {f^{\mathrm{red}}}
+	
+	
+% Greek Letters
+	\let        \ag        \alpha
+	\let        \bg        \beta
+	\let        \cg        \gamma
+	\let        \dg        \delta
+	\let        \eg        \vepsi
+	\let        \zg        \zeta
+	\let        \hg        \eta
+	\let        \tg        \theta
+	\let        \ig        \iota
+	\let        \kg        \keppa
+	\renewcommand\lg       {\lambda} % turns out lg stands for log in base 10. Who th uses this?
+	\let        \og        \omicron
+	\let        \rg        \rho
+	\let        \sg        \sigma
+	\let        \yg        \usilon
+	\let        \wg        \omega
+	
+	\let        \Ag        \Alpha
+	\let        \Bg        \Beta
+	\let        \Cg        \Gamma
+	\let        \Dg        \Delta
+	\let        \Eg        \Epsi
+	\let        \Zg        \Zeta
+	\let        \Hg        \Eta
+	\let        \Tg        \Theta
+	\let        \Ig        \Iota
+	\let        \Kg        \Keppa
+	\let        \Lg        \Lambda
+	\let        \Og        \Omicron
+	\let        \Rg        \Rho
+	\let        \Sg        \Sigma
+	\let        \Yg        \Usilon
+	\let        \Wg        \Omega
+	
+% Other shortcuts
+	\let        \tl        \tilde
+	\newcommand \op        {^{-1}}
+	\let        \co        \colon
+	
+	\newcommand \sof[1]    {\left | #1 \right |}
+	\newcommand \cl [1]    {\left ( #1 \right )}
+	\newcommand \csb[1]    {\left [ #1 \right ]}
+	\newcommand \ccb[1]    {\left \{ #1 \right \}}
+	
+	\let        \bs        \blacksquare
+	\newcommand \dequad    {\!\!\!\!\!\!}
+	\newcommand \dequadd   {\dequad\duquad}
+	
+	\let        \phi       \varphi
+	
+
+
+% Math Operators
+	\DeclareMathOperator      {\dom} {dom}
+	\DeclareMathOperator      {\Img} {Im}
+	\DeclareMathOperator    {\range} {range}
+	\DeclareMathOperator      {\chr} {char}
+	\DeclareMathOperator     {\diag} {diag}
+	\DeclareMathOperator      {\Hom} {Hom}
+	\DeclareMathOperator       {\Sp} {span} 
+	\DeclareMathOperator      {\sgn} {sgn} 
+	\DeclareMathOperator      {\row} {Row} 
+	\DeclareMathOperator      {\adj} {adj} 
+	\DeclareMathOperator       {\rk} {rank} 
+	\DeclareMathOperator      {\col} {Col} 
+	\DeclareMathOperator       {\tr} {tr}
+	\DeclareMathOperator      {\lcm} {lcm}
+	\DeclareMathOperator      {\sym} {Sym}
+	\DeclareMathOperator     {\asym} {ASym}
+	\DeclareMathOperator      {\rad} {rad}
+
+% Calc 1
+	\newcommand \floor[1]    {\lf #1 \rf}
+	\newcommand \ceil [1]    {\lc #1 \rc}
+	\newcommand \ang         {\{a_n\}_{n = 1}^{\inft}}
+	\newcommand \bng         {\{b_n\}_{n = 1}^{\inft}}
+	\newcommand \cng         {\{c_n\}_{n = 1}^{\inft}}
+	\newcommand \an          {(a_n)_{n = 1}^{\inft}}
+	\newcommand \bn          {(b_n)_{n = 1}^{\inft}}
+	\newcommand \cn          {(c_n)_{n = 1}^{\inft}}
+	\newcommand \limsi       {\lim_{n \to \inft}}
+	\newcommand \limasi      {\lim_{n \to \inft} a_n}
+	\newcommand \limbsi      {\lim_{n \to \inft} b_n}

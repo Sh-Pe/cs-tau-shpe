@@ -1,0 +1,462 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+%tikz
+\usepackage{tikz}
+\tikzset{dot/.style={fill=black,circle}}
+\usepackage{forest}
+\forestset{default preamble={for tree={circle, draw}}}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+
+\renewcommand\inf {\infty}
+\newcommand\ninf  {-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+
+\author{שחר פרץ}
+\title{מתמטיקה בדידה $\sim$ תרגיל בית 19 $\sim$ עקרון שובך היונים, עקרון ההכלה וההדחה}
+\date{30 במאי 2024 (הגשה באיחור של יומיים, באישור של דלית)}
+
+\begin{document}
+	\maketitle
+	\section{} %%1
+	\textbf{שאלה: }בכמה דרכים ניתן לחלק 55 כדורים זהים ל־5 תאים (שונים) כך שבתא ה־$i$ לא יהיו יותר מ־$ 10i $ כדורים?
+	
+		\textbf{תשובה: } הדיון שלנו, או החסם העליון לפתרון, הוא כמות האפשרויות לחלק 55 כדורים ל־5 תאים ללא הגבלה; $S(5, 55)$. 	נסמן $=A_i$ כמות האפשרויות כך שיש יותר מ־$10i$ כדורים בתא ה־$i$. 
+		
+		בהינתן $i \in I$, נרצה למצוא את $\capiiai$. ידוע שבתא ה־$i \in I$ יש יותר מ־$10i$ כדורים, כלומר סה''כ יש במינימום $\sum_{i \in I} 10i $ כדורים בתאים ה־$i$־ים. הסידור הפנימי שלהם יהיה כמות האפשרויות לחלק את הסכום (כמות הכדורים) ל־$|I|$ תאים, כלומר $S(|I|, \sum_{i \in I} 10i)$ אפשרויות, במינימום, עד ל־$55$, המקסימום (שאר הכדורים יסודרו באופן חופשי, תקין או בלתי תקין). נשים לב שזאת יהיה נכון אך ורק תחת ההנחה שנקח כמות כדורים פחותה מ־55; אחרת המקרה יהיה בלתי אפשרי (כלומר 0), אך למעשה כלל החיבור יתחשב במקרה זה. נציב לסיום בעקרון ההכלה וההדחה, ובעקרון המשלים: 
+		\[ \ans = S(5, 55) - \cupai{5} = S(5, 55) - \sum_{i \in I} (-1)^{|I| - 1} \cdot \sum_{\mathclap{k = \sum_{i \in I}10i}}^{55} S(|I|, k) \]
+		עתה, נוכל לחשב ידנית את החיתוכים (שכמותם סופית) ולהגיע לתשובה מספרית. 
+	
+	\section{} %%2
+	נסמן $A = \{1, \dots, 2023\}$. נתייחס לתמורות על $A$ כמו והיו מחרוזות באורך $n:= |A| = 2023 $, שתוויהן שונים. גודל עולם הדיון יהיה $n!$, כמות התמורות השונות שייתכנו. 
+	\begin{enumerate}[(a)]
+		\item \begin{itemize}
+			\item \textbf{שאלה: }בכמה תמורות של $A$ יופיעו הרצפים $ 1, 2 $ ו־$ 3, 4 $?
+			
+			\textbf{תשובה: }נתייחס לרצף $1, 2 $ כמו והיה מספר בפני עצמו, כך שתמיד יופיעו $1$ ו־$2$ יחדיו, ונמצא שיש $(n - 1)!$ אפשרויות. באופן דומה, נתייחס ל־$2, 3 $ כאילו והיו מספר יחיד, וסה"כ נמצא שיש $(n - 2) = \bm{2021!}$ אפשרויות. 
+			
+			\item \textbf{שאלה: }בכמה תמורות מפיע הרצף $5, 6, 7$. דומה לסעיף הקודם, נתייחס לרצף כאילו והיה מספר יחיד, וסה"כ איבדנו שני מספרים מהסכום הכולל, כלומר יהיו $(n - 2)! = \bm{2021!}$ אפשרויות. 
+		\end{itemize}
+		\item \textbf{שאלה: }בכמה תמורות של $A$ לא מופיע שום רצף מהצורה $i, i + 1$?
+		
+		\textbf{תשובה: }נגדיר $A_i$ ככמות התמורות של $A$ כך שיופיע הרצף $i, i + 1$. נוכיח שאנו במקרה הסימטרי של עקרון ההכלה וההדחה, כלומר, שלכל $|I| = k$ הביטוי $|\cupiiai|$ קבוע. יהי $I_1, I, I_2 \in I$ ונניח $|I| = |I_1| = |I_2| = k$. נוכיח באינדוקציה על $k$ שיתקיים $|\cupiiai = (n - k)!$. \textit{בסיס: }יתקיים $k = 1$, כלומר נרצה לבדוק את כמות הפעמים בהם $i, i + 1$ לא יופיע ברצף. נתייחס לרצף כאל מספר יחיד, ונמצא שיהיו $(n - 1)! = (n - k)!$ אפשרויות. \textit{צעד: }נניח באינדוקציה את נכונות הטענה בעבור $k$ ונוכיחה בעבור $k + 1$. משום ש־$|I| = k + 1 > 1$ אזי נוכל "להוציא" איבר $i$ יחיד מ־$I$ כך ש־$I' = I \setminus \{i\} \neq \emptyset$. מהנחת האינדוקציה, משום ש־$|I'| = k $, נסיק ש־$|\bigcup_{i \in I'}A_i| = (n - k)!$. אך, נרצה שמתוך $(n - k)!$ המקרים להלן לא יופיע הרצף $i, i + 1$, ומטיעונים דומים לאלו שכבר הועלו – סה"כ ניוותר עם $(n - k - 1)! = (n - (k + 1))!$ אפשרויות כדרוש. כלומר, מעקרון ההכלה והדחה: 
+		\[ \sof{\cupiiai} = \sumnko (-1)^{k - 1} \bink(n - k)! = \sumnko (-1)^k \frac{n!}{k!} \]
+		
+		נבחין, שלמעשה הוכחנו שכמות המקרים הלא רצויים היא $|\cupiiai| = D_n$, כאשר $D_n$ מייצג את כמות התמורות ללא נקודות שבת, וסה"כ מפיתוחים של הבעיה שהוכחו בהרצאה, יחדיו עם עקרון המשלים, נמצא כי כמות האפשרויות היא: 
+		\[ u - \sof{\cupiiai} = D_n = \left [\frac{n!}{e}\right ] = \bm{\left[ \frac{2023!}{e} \right]} \approx 1.1742 \cdot 10^{5811} \]
+	\end{enumerate}
+	
+	\section{} %%3
+	\textbf{שאלה: }כמה מספרים שלמים יש בין 1 ל־1000 שלא מתחלקים באף אחד מהמספרים $ 4, 6, 9 $?
+	
+	\textbf{תשובה: }נשתמש בעקרון ההכלה וההדחה. נסמן $= A_i$ כמות המספרים המתחלקים ב־$i$, כאשר $i \in \{4, 6, 9\}$. 
+	
+	נחשב ונמצא כי: 
+	\begin{gather}
+		|A_4| = \frac{1000}{4} = 250, \ |A_6| = \lf \frac{1000}{6} \rf = 166, \ |A_9| = \lf \frac{1000}{9} \rf = 111, \ |A_4 \cap A_6| = \lf \frac{1000}{\mlcm(4, 6)} \rf = 83, \\
+		|A_6 \cap A_9| = \lf \frac{1000}{\mlcm(6, 9)} \rf = 55, \ |A_9 \cap A_4| = \lf \frac{1000}{\mlcm(9, 4)} \rf = 27, \ |A_4 \cap A_6 \cap A_9| = \lf \frac{1000}{\mlcm(4, 6, 9)} \rf = 27
+	\end{gather}
+	מעקרון ההכלה וההדחה: 
+	\begin{align}
+		\{n \colon 4 \mid n \lor 6 \mid n \lor 9 \mid n \} &= |A_4 \cup A_6 \cup A_9| = |A_4| + |A_6| + |A_9| - |A_4 \cap A_6| - |A_6 \cap A_9| - |A_4 \cap A_9| + |A_4 \cap A_6 \cap A_9| \\
+		&= 250 + 166 + 111 - 83 - 55 - 27 + 27 \\
+		&= 389
+	\end{align}
+	לכן, מעקרון המשלים עבור עולם דיון עם $1000$ מספרים: 
+	\[ \ans = 1000 - 389 = 611 \]
+	
+	\section{} %%4
+	\textbf{שאלה: }100 סטודנטים לומדים קורס, וציוניהם מספרים טבעיים עד 100 המתחלקים ב־5. ממוצע הקורס יהיה לפחות 60. 
+	
+	\textbf{תשובה: }למען הנוחות, נחלק את כל הציונים ב־5 (כלומר, ציוניהם של התלמידים לא יעלו על 20, והממוצע בקורס יהיה לפחות 12). נוכל לעשות זאת בלי לאבד מידע מכיוון שציוניהם ממילא מתחלק ב־5. 
+	
+	למען הנוחות, נגדיר את הפונקציה $\Sigma \colon \ps([n]) \to \N$ להיות $\Sigma = \lambda N \in \ps([n]). \sumni N_i$. 
+	
+		ידוע שמתקיים $ 12 \le \frac{\sumai}{100} \le 20 $, כלומר $1200 \le \sumai \le 2000 $. ננסה למצוא את כמות הפתרונות שאינם תקינים ולהיעזר בעקרון המשלים. כמות הפתרונות שאינם תקינים, היא כמות הפתרונות למשואה $\sumai < 1200 $. אם לא הייתה כל הגבלה על $A_i$, נוסיף איבר עזר שערכו לכל הפחות 1, ונמצא שכמות האפשרויות היא $S(101, 1200 - 1)$. ננסה גם כאן למצוא את סך כל המקרים שאינם תקינים (כלומר $\exists i \in \N. A_i > 20 $) ולהחסיר אותם. 
+		
+		נסמן $= B_i$ כמות האפשרויות בהינתן שקיימים $i$ תלמידים שונים שציונם גדול ממש מ־20. נסמן $[n]' = [n] \setminus [20]$. בהינתן $i$ תלמידים כאלו, הכרח הוא שציניהם יהיו נתונים ב־$j \in [1200]'$. בעבור $ 100 - i $ התלמידים הנותרים, נותרו $ 1200 - \Sigma(j)$ נקודות. סה"כ מכלל החיבור יהיו $\sum_{j \in [1200]'} S(101 - i, 1200 - \Sigma(i))$ אפשרויות. 
+		
+		\textit{הערה: }הטענה תקפה גם עבור מקרים לא מוגדרים היטב, בהם יותר תלמידים ממה שייתכן יקבלו ציון גבוהה מ־20, כי בהן הסכום יגדל על $1200$ ונקבל מכפלה ב־ $\bink$ כאשר $k < 0$, כלומר, הביטוי יתאפס. 
+		
+		סה"כ מעקרון ההכלה וההדחה, משום שאנו במקרה הסימטרי (הטענה לעיל נכונה לכל כמות נתונה של תלמידים שקיבלו ציון מעל 20, ללא תלות באיזה תלמידים הם), נקבל שכמות הציונים מתחת לממוצע בהם תלמידים קיבלו יותר מ־20 היא: 
+		\[ \sumnk \left [ (-1)^{n - 1} \bink \ \ \; \sum_{\mathclap{i \in [1200] \setminus [20]}} \ S(101 - k, 1200 - \Sigma(i)) \right ] \]
+		
+		ומעקרון המשלים (עבור עולם דיון $ 20^{100 }$, כמות הדרכים לבחור 100 מספרים עד 20), הכמות הכוללת של אפשרויות היא: 
+		\[ 20^{n} - S(n + 1, 1200 - 1) + \sumnk \left [ (-1)^{n - 1} \bink \ \ \; \sum_{\mathclap{i \in [1200] \setminus [20]}} \ S\big(n + 1 - k, 1200 - \Sigma(i)\big) \right ] \]
+		כאשר $n = 100 $. 
+	
+	\section{} %%5
+	נאמר שפונקציה $f \colon [n] \to \ps([k])$ היא מונוטונית עולה חלש ביחס להכלה אמ"מ $\forall i, j \in [n]. i \le j \sso f(i) \subseteq f(j)$, ומונוטנית עולה חלש תוגדר באופן דומה אך באמצעות $\subsetneq$ במקום. 
+	\begin{enumerate}[(a)]
+		\item \textbf{שאלה: }כמה פונקציות $f \colon [n] \to \ps([k])$ הן מונוטוניות עולות חלש ביחס להכלה?
+		
+		\textbf{תשובה: }לכל $j \in \ps([k])$, נרצה להבין מה האינדקס שלו בפונקציה (יהיו $n$ אפשרויות), או שאינו נמצא בפונקציה כלל (יוסיף אפשרות אחת). כלומר, לכל אחד מ־$k$ האינדקסים, יהיו $n + 1$ אפשרויות. משום שהמקרים בלתי־תלויים, אזי מכלל הכפל $\bm{(n + 1)^k}$ אפשרויות.
+		
+		\item \textbf{שאלה: }כמה פונקציות $f \colon [n] \to \ps([k])$ הן מונוטוניות עולות חזק ביחס להכלה? 
+		
+		\textbf{תשובה: }נגדיר $= A_i$ כמות הפונקציות בהן לא מתווסף ערך במיקום ה־$i$. אנו מצויים במקרה הסמטרי, כלומר יהי $j$, נוכיח שלכל $I \in [n]$ ו־$|I| = j$ יתקיים שהחיתוך יהיה קבוע. כבסיס, עבור $k = 1$, אם במיקום ה־$i$ אין שום ערך אז את שאר הערכים כ־$(n + 1 - 1)^k$ אפשרויות, ועבור התא הספציפי הזה נקבע שאין שום דבר. באינדוקציה, נוכל לקבל שעבור $|I| = j$ יהיו $(n + 1 - j)^k$ אפשרויות. כלומר, מעקרון ההכלה וההדחה: 
+		\[ \sof{\cupiiai} = \sum_{j = 1}^{n} (-1)^{j - 1} \binom{n}{j} (n + 1 - j)^k \]
+		ומעקרון המשלים, עבור עולם דיון שחושב בסעיף (א): 
+		\[ \ans = (n + 1)^k - \sum_{j = 1}^{n} (-1)^{j - 1} \binom{n}{j} (n + 1 - j)^k \]
+	\end{enumerate}
+	
+	\section{} %%6 
+	נסמן $U = \{0, 1\}^{2n}$ (כלומר אוסף המחרוזות הבינאריות באורך $ 2n $). נגדיר $A_i = \{x \in U \mid x_i = 0 \land x_{i + 1} = 1\}$, עבור $1 \le i \le 2n - 1$. 
+	\begin{enumerate}[(a)]
+		\item \textbf{שאלה: }תהי $J \in \ps_r([2n - 1])$, מהו $\ac := \ans := \sof{\bigcap_{j \in J} A_j}$ (כאשר $\ps_r$ היא קבוצת תתי הקבוצות בעוצמה $r$)? \\
+		\textbf{שאלה נוספת: }\textit{(שממנה אני אתחיל כי ככה יהיה לי יותר קל)} עבור כמה $j \in J$ החיתוך אינו ריק? 
+		
+		\textbf{תשובה לשאלה הנוספת: }ניעזר בטענת עזר. 
+		\textit{טענה: }עבור כל $j \in J$ החיתוך יהיה ריק אמ''מ $\exists n < m \in \N. j_n + 1 = j_m$. נוכיח. \begin{proof}נוכיח את שני הכיוונים של הגרירה. 
+			
+			$\implies$\!\!: נניח קיום $n, m$ העונים על התנאים לעיל. לכן $\ac \subseteq A_n \cap A_m$. ידוע $A_n = \{x \in U \mid x_n = 0 \land x_m = 1\}$ וגם $A_m = \{x \in U \mid x_m = 0 \land x_{m + 1} = 1\}$ (מתוך הצבת הנתונים). נניח בשלילה קיום $I \in A_n \cap A_m$, לכן $I_m = 1 \land i_m = 0$ וזו סתירה. 
+			
+			$\impliedby$\!: נניח שבעבור $j \in J$ החיתוך ריק. נניח בשלילה אי־קיום $n, m \in \N$ העונים על תנאי הסיפא של הגרירה. אזי נרכיב באינדוקציה, מחרוזת באופן הבא: עבור התא במיקום ה־$i$ בה, אם קיים $k \in J$ כך ש־$k = i$ אזי נקבע את התו להיות $0$, אם קיים $k \in J$ כך ש־$k - 1 = i$ נקבע את התו להיות $1$, אחרת נקבע את התו להיות $0$. נבסיס ההנחה, כל המקרים להלן זרים, ולכן יענו על תנאי החיתוך (מעקרון ההפרדה והגדרת החיתוך). סה''כ מצאנו מחרוזת בתוך החיתוך, וזו סתירה להנחת השלילה. 
+		\end{proof}
+		
+		לפי כללי הלוגיקה, החיתוך לא יהיה ריק אמ''מ $\nexists n < m \in \N. j_n + 1 = j_m$. ננסה להבין עבור כמה $J \in \ps_r([2n - 1])$ התנאי יתקיים. במצב רגיל, עולם הדיון שלנו יהיה $\binom{2n - 1}{r}$. אך, נצטרך להדיח את המקרים שלא עונים על התנאי לעיל. נגדיר, $= A_i$ כמות האפשרויות כך ש־$i \in J \land i + 1 \in J$. מעקרון ההכלה וההדחה, כמות האפשרויות תהיה: 
+		\[ \ans = \binom{2n - 1}{r} - \sum_{\mathclap{I \in [2n - 1]}} (-1)^{|I| - 1}\sof{\ps_r([2n - 1]) \cap \bigcap_{i \in I}A_i} \]
+		נרצה להדיח/להוסיף את $\sof{\bigcap_{i \in I}A_i}$ בחיתוך עם האפשרויות שגודלן שווה ל־$r$, אחרת הוא מחוץ לעולם הדיון. זהו סיבת החיתוך הנוסף בתוך הסכום. 
+		
+		
+		
+		\textbf{תשובה לשאלה המקורית: }נפריד למקרים. אם, קיימים $j_1, j_2 \in \N$ כך ש־$j_1 = j_2 + 1$, אזי ע''פ הטענה לעיל נסיק שהחיתוך יהיה ריק כלומר $\ans = \emptyset$. בכל מקרה אחר, יהיו $r$ איברים ב־$J$, שיגבילו $2r $ מספרים ב־$n$ להיות $0$ או $1$, זאת זאת מתוך ההנחה וכי $A_j$ יגביל שני מספרים $j, j + 1$ להיות $0, 1$ בהתאמה. סה''כ, בעבור $2r$ מספרים נקבע הערך, ובעבור $2n - 2r$ המספרים הנותרים לאו – כלומר נבחר להם ערך בינארי, ללא תלות או החזרה אך אם חשיבות לסדר, כלומר מכלל הכפל $2^{2n - 2r}$ אפשרויות. מאלגברה נקבל $2^{2n - 2r} = 2^{2(n - r)} = 4^{n - r}$. 
+		\[ \ans = \begin{cases}
+			0 & \exists j, k \in J. j = k + 1 \\
+			4^{n - r} & \other
+		\end{cases} \]
+		
+		
+		\item \textbf{שאלה: }הוכיחו באמצעות שיקול קומבינטורי: 
+		\[ \sum_{r = 0}^{n}(-1)^r\binom{2n - r}{r}2^{2n - 2r} = 2n + 1 \]
+		
+		\textbf{תשובה: }
+		\begin{itemize}
+			\item \textit{סיפור קומבינטורי: }מהי כמות המחרוזות הבינריות באורך $2n$ שלא מכילות את רצף התווים $01$?
+			\item \textit{אגף ימין: }המחרוזת ותרכב מרצף של $1$-ים ולאחריו רצף של $0$־ים (כאשר הרצפים יכולים להכיל $0$ תווים), כדי להמנע מהופעת התווים $01$ אחר לאחר השני. יהיו $2n + 1$ מקומות לנקודת השבירה (מספר ה''רווחים'' בין $2n$ תווים), כלומר התשובה היא $2n$. 
+			\item \textit{אגף שמאל: }נמצא שיש $\binom{2n - r}{r}$ קבוצות ב־$\ps_r([2n])$, שיענו על התנאי שלא יהיו שני מספרים עוקבים בהם (כי למעשה על כל אחד מ־$r$ המספרים שנבחר, נוריד אופציה אחת מ־$2n$). כאן, אנו במקרה הסימטרי של עקרון ההכלה וההדחה; כמו שהוכח בסעיף (א), יהיו $2^{2n - 2r}$ מחרוזות שלא יכילו $01$ עבור $r$ מיקומים שונים. כלומר, מהעקרון נקבל שאגף ימין כמעט וייצג את האיחוד של כל ה־$A_i$־ים; רק דבר אחד השתנה, והוא הכפל ב־$(-1)^{r}$ במקום ב־$(-1)^{r - 1}$, שהוא יסמן על החלפת סימן, והתחלת הסכום מ־$r = 0$ במקום $r = 1$; אם מעט מאוד פיתוחים אלגבריים ברורים למדי, זהו חיסור של האיחוד מהמשלים, כלומר נחסר מכל המחרוזות באשר הן, את כל המחרוזות שאין בהן $01$ רצוף; כדרוש. 
+		\end{itemize}
+	\end{enumerate}
+	\section{} %%7
+	\textbf{שאלה: }כמה דרכים ניתן לסדר את האותיות במילה \sen boondoggle \she כך שלא יופיעו הרצפים \sen oo gg, le, el, \she\del? 
+	
+	\textbf{תשובה: }נחשב את כמות האפשרויות של המשלים. 
+	כמות הדרכים כך שבהכרח יופיעו שתי אותיות נתונות (לצורך הדוגמה, $oo$) תהיה $(n - 1)! $, כאשר $n$ כמות האותיות הכוללת, כמפורט בשאלה 2. באופן דומה, הוכח באינדוקציה בשאלה $2$ שכמות האפשרויות כך שנרחיב את ההגבלה ליותר אותיות, תהיה $n - i$, כאשר $i$ היא כמות זוגות האותיות אשר הכרח עליהן שיופיעו יחדיו (הטענה תקפה גם בעבור מחרוזות בהן יש תווים זהים). סה''כ, מעקרון ההכלה וההדחה בעבור מקרים סימטריים, כמות האפשרויות של המשלים היא: 
+	\[ \overline \ans = \sum_{i = 1}^{4}(-1)^n \binom{4}{i} \cdot (10 - i!) = 4 \cdot 9! - 6 \cdot 8! + 4 \cdot 7! - 1 \cdot 6! = 1229040 \]
+	ומעקרון המשלים, עבור עולם דיון של כל האפשרויות באופן כללי לפרמוטציות $ 10! $:
+	\[ \ans = |u| - \overline \ans = 10! - 1229040 = \bm{2399760} \]
+	\textit{הערה: }הפתרון תקין, כי לאחר חיסור המשלים, כל התווים שונים בהכרח. 
+	
+	\section{} %%8
+	\textbf{שאלה: }נתון ריבוע עם צלא באורך $7cm$, ובתוכו 51 נקודות. הוכיחו שקיימות שלוש נקודות שניתן לכשות ע''י עיגול שרדיוסו 1. 
+	\begin{proof}
+		נעביר 5 קווים אופקיים ו־5 קווים אנכים, שווים במרחקם בריבוע, לקבלת $25$ ריבועים שווי שטח המרכיבים את הריבוע הגדול. \textit{יונים: }51 הכדורים. \textit{תאים: }25 הריבועים הקטנים. 
+		
+		נכניס יונה לתא באמצעות הכנסת נקודה לריבוע. מעקרון שובך היונים המוכלל, נמצא שיש תא בו לפחות $\lc \frac{51}{25} \rc = 3 $ נקודות. ידוע ששטח הריבוע הגדול הוא $7^2 = 49 $, וכדי למצוא את שטח הריבועים הקטנים ניעזר בעבודה שהם שווי שטח ונמצא כי שטחם $S:=\frac{49}{25} \le \sqrt2 $. נגדיר $= a$ צלע הריבועים הקטנים, לכן $a^2 = S \le \sqrt 2 \implies a \le \sqrt 2 $ ומפיתגורס אלכסון כל אחד מהריבועים, שהוא המרחק הארוך ביותר בתוך הריבוע, אורכו קטן מ־$2$. נקבע באמצע אלכסון התא בעל 3 הנקודות את מרכז המעגל שיש להוכיח את קיומו, אזי מרחקו מבין קצוות הריבוע קטן מ־1 (כי הוא על האלכסון) ובפרט בין הנקודות הכי רחוקות בריבוע, כלומר כל שלושת הנקודות נמצאות ברדיוס של $ 1cm $ ממרכז המעגל, כדרוש. 
+	\end{proof}
+	\section{} %%9
+	\textbf{שאלה: }צ.ל. $\forall k \in \Nodd. \exists n > 0 \in \N. k \mid 2^n - 1$. 
+	
+	\textbf{תשובה: }נניח בשלילה שהטענה אינה נכונה, כלומר קיים $k \in \Nodd$ כך שכל $n > 0$ יתקיים $k \mid 2^n$. נתבונן ב־$k$ ערכי ה־$n$ הראשונים. מהם, נפרק ל־$2^n = j_nk + r_n$ כאשר $r_n$ השארית המינימלית. מתוך הנחת השלילה, $r_n \neq 0, k$, אך פרט לכך $r_n \in [k - 1]$. נגדיר \textit{יונים: }כמות המספרים, ו\textit{תאים: }כמות השאריות האפשריות. נקבל שקיימים $n, m$ שונים שיש להם את אותה שארית $r$, כלומר: 
+	\[ \begin{cases}
+		2^n = j_n k + r \\
+		2^m = j_m k + r
+	\end{cases} \]
+	בה''כ נניח $n < m$. נחסר את המשוואות ונקבל: 
+	\[ 2^n - 2^m = 2^n(2^{n - m} - 1) \seq j_n k - j_m k \cancel{ + r - r} = k(j_n - j_m) \]
+	כלומר, $k \mid 2^n(2^{n - m} - 1)$. אך, ידוע ש־$k$ ו־$2^n$ זרים, כי $k$ אי־זוגי (כלומר $2$ אינו גורם ראשוני שלו) אך עבור $2^n$ הפירוק היחיד לגורמים ראשוניים, יהיה של $2$־ים בלבד, ומהמשפט היסודי של האריתמטיקה סה''כ הגורמים הראשוניים של $k$ לא יופיעו ב־$2^n$, כלומר הכרח הוא שהם יופיעו ב־$2^{n - m}  - 1$. נבחר $n' = n - m$, ובכך הוכחנו קיום $n' \in \N$ המקיים $k \mid 2^{n'} - 1$, וזו סתירה להנחת השלילה. 
+	
+	כלומר, הנחת השלילה התבררה כשגויה, שהיא השלילה הלוגית של אשר צ.ל., משמע ההוכחה השולמה. 
+	\section{} %%10
+	\begin{enumerate}[(a)]
+		\item \textbf{שאלה: }תהה רשת עם 3 שורות ו־9 נקודות בכל שורה, כאשר כל נקודה צבועה בסגול או כתום. צ.ל. קיום מלבן על גבי הרשת שקודקודיו הן 4 נקודות שונות בעלי אותו הצבע. 
+		\begin{proof}
+			נבחר \textit{יונים}: 27 הנקודות, \textit{תאים}: כמות האפשרויות לצבעים (כתום או סגול – 2). מעקרון שובך היונים המורחב יהיו לפחות $\lc \frac{27}{2} \rc = 14$ כדורים מאותו הצבע, בה''כ סגול. 
+			
+			נניח בשלילה אי־קיום מלבן בהעונה על התנאים שנדרשו. עתה, נגדיר \textit{יונים: }14 הנקודות הסגולות, \textit{תאים: }3 השורות. נתאים יונה לתא ונמצא כי מעקרון שובך היונים המרוחב יהיו $5$ נקודות סגולות באותה השורה. לפי הגדרת הרשת, יהיו לכל היותר $9$ כדורים בשורה. נסמן $5 \le a \le 9$ ככמות הכדורים הסגולים בעמודה. לכן, בשאר העמודות יהיו $ 5 \le a - 14 \le 9 $ כדורים. ומושבך היונים המורחב, באופן דומה $b := \lc \frac{a - 14}{2} \rc$ כדורים באותה העמודה הנוספת. \\
+			ברור לכל כי אם יש לפחות שני טורים בהם שני כדורים באותו הטור, ושני כדורים באותה השורה, אז יווצר מלבן. נשתמש בטענה הזו. 
+			נפלג למקרים: 
+			\begin{itemize}
+				\item אם $a = 9$ אז $b = 3$ כדורים בעמודה נוספת, כולם באותו טור עם כדור סגול אחר, וזו סתירה. 
+				\item אם $a = 8$ אז $b = 3$ ויתקיים ש־$2$ מהם לפחות יהיו באותה עמודה עם כדור סגול אחר, וסה''כ גם שם יהיה מלבן. 
+				\item אם $a = 7$ אז $b = 4$ וגם כאן יתקיים ש־$2$ מהם לפחות יהיו באותה העמודה עם כדור סגול אחר. 
+				\item אם $a = 5$ אז $b = 9$ וזה זהה מסימטריה למקרה הראשון. 
+				\item אם $a \not \in [5, 9] \cap \N$ אז $a$ מחוץ לתחום הגדרה. 
+			\end{itemize}
+			סה''כ בכל המקרים יש מלבן, וזו סתירה להנחת השלילה, כדרוש. 
+		\end{proof}
+		\item \textbf{שאלה: }האם הדבר נכון לקשת עם $3$ שורות ו־$7 $ עמודות?
+		
+		\begin{proof}
+			נניח בשלילה שהטענה אינה נכונה. באופן דומה, נוכל למצוא שיש בה''כ $\lc \frac{3 \cdot 7}{2} \rc = 11$ כדורים סגולים משובך יונים מורחב. . מעקרון שובך היונים המורחב, כאשר 11 הכדורים הם היונים ו־3 השורות הן התאים, יהיו 4 כדורים לפחות באחת השורות, בה''כ הראשונה, ובה''כ נמקמם בצד שמאל. נסמן בשטח הכחול, את השטח שלא מעל הנקודות הסגולות שנקבע מקומן, כלומר הוא לא מוגבל להכיל שתי נקודות בו בלבד. 
+			\begin{center}
+				\begin{tikzpicture}[scale=0.5]
+					\tikzset{dot/.style={fill=white,circle,draw}}
+					\node[dot, fill=purple] at (1, 1){}; \node[dot, fill=white] at (1, 2){}; \node[dot, fill=white] at (1, 3){};
+					\node[dot, fill=purple] at (2, 1){}; \node[dot, fill=white] at (2, 2){}; \node[dot, fill=white] at (2, 3){};
+					\node[dot, fill=purple] at (3, 1){}; \node[dot, fill=white] at (3, 2){}; \node[dot, fill=white] at (3, 3){};
+					\node[dot, fill=purple] at (4, 1){}; \node[dot, fill=white] at (4, 2){}; \node[dot, fill=white] at (4, 3){};
+					\node[dot, fill=white ] at (5, 1){}; \node[dot, fill=blue ] at (5, 2){}; \node[dot, fill=blue ] at (5, 3){};
+					\node[dot, fill=white ] at (6, 1){}; \node[dot, fill=blue ] at (6, 2){}; \node[dot, fill=blue ] at (6, 3){};
+					\node[dot, fill=white ] at (7, 1){}; \node[dot, fill=blue ] at (7, 2){}; \node[dot, fill=blue ] at (7, 3){};
+				\end{tikzpicture}
+				\hfil
+				\begin{tikzpicture}[scale=0.5]
+					\tikzset{dot/.style={fill=white,circle,draw}}
+					\node[dot, fill=purple] at (1, 1){}; \node[dot, fill=white] at (1, 2){}; \node[dot, fill=white] at (1, 3){};
+					\node[dot, fill=purple] at (2, 1){}; \node[dot, fill=white] at (2, 2){}; \node[dot, fill=white] at (2, 3){};
+					\node[dot, fill=purple] at (3, 1){}; \node[dot, fill=white] at (3, 2){}; \node[dot, fill=white] at (3, 3){};
+					\node[dot, fill=purple] at (4, 1){}; \node[dot, fill=white] at (4, 2){}; \node[dot, fill=white] at (4, 3){};
+					\node[dot, fill=purple] at (5, 1){}; \node[dot, fill=white] at (5, 2){}; \node[dot, fill=white] at (5, 3){};
+					\node[dot, fill=white ] at (6, 1){}; \node[dot, fill=blue ] at (6, 2){}; \node[dot, fill=blue ] at (6, 3){};
+					\node[dot, fill=white ] at (7, 1){}; \node[dot, fill=blue ] at (7, 2){}; \node[dot, fill=blue ] at (7, 3){};
+				\end{tikzpicture}
+				\hfil
+				\begin{tikzpicture}[scale=0.5]
+					\tikzset{dot/.style={fill=white,circle,draw}}
+					\node[dot, fill=purple] at (1, 1){}; \node[dot, fill=white] at (1, 2){}; \node[dot, fill=white] at (1, 3){};
+					\node[dot, fill=purple] at (2, 1){}; \node[dot, fill=white] at (2, 2){}; \node[dot, fill=white] at (2, 3){};
+					\node[dot, fill=purple] at (3, 1){}; \node[dot, fill=white] at (3, 2){}; \node[dot, fill=white] at (3, 3){};
+					\node[dot, fill=purple] at (4, 1){}; \node[dot, fill=white] at (4, 2){}; \node[dot, fill=white] at (4, 3){};
+					\node[dot, fill=purple] at (5, 1){}; \node[dot, fill=white] at (5, 2){}; \node[dot, fill=white] at (5, 3){};
+					\node[dot, fill=purple] at (6, 1){}; \node[dot, fill=white] at (6, 2){}; \node[dot, fill=white] at (6, 3){};
+					\node[dot, fill=white ] at (7, 1){}; \node[dot, fill=blue ] at (7, 2){}; \node[dot, fill=blue ] at (7, 3){};
+				\end{tikzpicture}
+				\hfil
+				\begin{tikzpicture}[scale=0.5]
+					\tikzset{dot/.style={fill=white,circle,draw}}
+					\node[dot, fill=purple] at (1, 1){}; \node[dot, fill=white] at (1, 2){}; \node[dot, fill=white] at (1, 3){};
+					\node[dot, fill=purple] at (2, 1){}; \node[dot, fill=white] at (2, 2){}; \node[dot, fill=white] at (2, 3){};
+					\node[dot, fill=purple] at (3, 1){}; \node[dot, fill=white] at (3, 2){}; \node[dot, fill=white] at (3, 3){};
+					\node[dot, fill=purple] at (4, 1){}; \node[dot, fill=white] at (4, 2){}; \node[dot, fill=white] at (4, 3){};
+					\node[dot, fill=purple] at (5, 1){}; \node[dot, fill=white] at (5, 2){}; \node[dot, fill=white] at (5, 3){};
+					\node[dot, fill=purple] at (6, 1){}; \node[dot, fill=white] at (6, 2){}; \node[dot, fill=white] at (6, 3){};
+					\node[dot, fill=purple] at (7, 1){}; \node[dot, fill=white] at (7, 2){}; \node[dot, fill=white] at (7, 3){};
+				\end{tikzpicture}
+			\end{center}
+			ברור ששלושה כדורים בשטח שמעל הכדורים הסגולים יביא לסתירה, כי אז בהכרח יש שני כדורים באותה השורה מעליהם כלומר יווצר מלבן. 
+			נפרק למקרים באופן דומה לסעיף הקודם (רק שהפעם הבנתי איך אני מסרטט): 
+			\begin{enumerate}
+				\item \textit{4 כדורים למטה: }אזי 6 מקומות בשטח הכחול, שיכול להכיל עד 4 כדורים בלי שיווצר בו מלבן, אך נותרו $11 - 2 - 4 = 5$ (נחסר מכמות הכדורים הכוללת את כמות הכדורים שמיקמנו וכמות הכדורים שיכולים להיות מעליהם) כלומר יהיו 5 כדורים בשטח הכחול דבר שיוביל ליצירת מלבן בו – סתירה. 
+				\item \textit{5 כדורים למטה: }אזי 4 מקומות בשטח הכחול, שיכול להכיל עד 3 כדורים בלי שיווצר בו מלבן, אך נותרו $ 11 - 5 - 2 = 4 $ כלומר יהיו לפחות 4 כדורים בשטח הכחול דבר שיוביל ליצירת מלבן בו – סתירה. 
+				\item \textit{6 כדורים למטה: }אזי 2 מקומות בשטח הכחול, שיכול להכיל עד 2 כדורים בלי להתמלא, אך נותרו $ 11 - 6 - 2 = 3 $ כלומר יהיו לפחות 3 כדורים בשטח הכחול וזה לא אפשרי – סתירה. 
+				\item \textit{7 כדורים למטה: }אזי מצויים $11 - 7 = 4$ כדורים מעל הכדורים הסגולים, כלומר משובך יונים יש לפחות שניים מהם בטורים שונים, והם יצרו מלבן עם הנקודות הסגולות – סתירה. 
+			\end{enumerate}
+			בכל המקרים הגענו לסתירה כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{} %%11
+	\textbf{שאלה: }הוכיחו שבכל קבוצה של $2023$ מספרים טבעיים, קיימים שני מספרים שסכומם או הפרשם מתחלק ב־$4041$. 
+	
+	\textbf{תשובה: }תהה $A \in \N, \ |A| = 2023$ קבוצה של $2023$ מספרים טבעיים. כלומר, לכל $a \in A$ יתקיים $a \ge 0$. נבחר $a = 4041k_a + j_a$ לכל $a \in A$, ולכן $j \in [4041]$. נבחר גם, $j_a' = |2020.5 - j_a|$ לכל $a \in A$. נעשה מעט אלגברה: 
+	\begin{alignat*}{9}
+		&j' = |2020.5 - j| &&\implies \pm j' = 2020.5 - j \implies j' =  \pm 2020.5 \mp j \\
+		\implies &0.5 \le j' \le 2020.5 &&\implies j' \in \{0.5 + n \mid n \in [2020]\}
+	\end{alignat*}
+	כאשר החסם העליון מתקיים בעבור שני מקרי הקצה: $j = 4041, j = 0 $ והחסם התחתון בעבור $j = \pm 1 $. מהטענה לעיל, יש $2020$ אפשרויות לערכי $j'$. נגדיר \textit{יונים: }$4041$ המספרים ב־$A$, ו\textit{תאים: }$2020$ האפשרויות לערכי $j'$. נתאים יונה לתא, ונקבל מעקרון שובך היונים, שישנם $a, b \in A $ שונים בעלי אותו ערך $j'$. משום שנקבל מאלגברה ש־$j = 2020.5 \pm j' $
+	לכן: 
+	\[ \begin{cases}
+		a = 4041k_a + j_a \\
+		b = 4041k_b + j_b
+	\end{cases} \implies \begin{cases}
+		a = 4041k_a + 2020.5 \pm j' \\
+		b = 4041k_b + 2020.5 \pm j'
+	\end{cases} \]
+	כאשר הסימנים אינם תלויים אחר בשני. אם שני הסימנים זהים יקרא המקרים מקרה $A$, ואם לאו, יקרה מקרה $B$. נחסר או נחבר את המשוואות, בהתאם למקרה: 
+	\[ \begin{cases}
+		a - b = 4041k_a - 4041k_b - 4041 \pm 2j' = 4041(k_a  - k_b) &\text{case}\ A\\
+		a + b = 4041k_a + 4041k_b + 4041 + \cancel{j' - j'} = 4041(k_a + k_b + 1) &\text{case} \ B
+	\end{cases} \]
+	
+	סה''כ בשני המקרים מצאנו ש־$a + b$ מתחלק ב־$4041$, או ש־$a - b$ מתחלק ב־$4041$, כלומר בכלליות קיימים שני מספרים ב־$A$ שסכומם או הפרשם מתחלק ב־$4041$, כדרוש. 
+	
+	\section{} %%12
+	\textbf{שאלה: }10 מדמ''חיסטים ו־10 כימאים (קבוצות זרות) יושבים על שולחן ולא מוכנים לקום. הסרט ``Her'' מוקרן על 20 מסכים, מתוכם 10 עם כתוביות בהצרנה שרק סייבר יכולים לקרוא ו־10 עם כתוביות מוצפנות בנוסחאות כימיות שרק כימיה יכולים לקרוא. הוכיחו שניתן לסובב את השולחן כך שלפחות 10 אנשים יבינו את התרגום. 
+	
+	\begin{proof}
+		לכל אדם, יהיו 10 אפשרויות להבין את התרגום, מתוך הנתונים. יש 20 אנשים, כלומר סה''כ יש $20 \cdot 10 = 200$ אנשים בסך כל הסיבובים שיבינו משהו. נגדיר \textit{יונים: }אדם שמבין משהו; \textit{תאים: }20 אפשרויות לסיבוב. נתאים יונה לתא: נשים מצב בו אדם מבין משהו לכל אפשרות לסיבוב, ומעקרון שובך היונים המורחב וכי $\lc \frac{200}{10} \rc = 20$ נסיק שיש אפשרות סיבוב בה לפחות 10 אנשים יבינו את התרגום. 
+	\end{proof}
+	\section{} %%13
+	\textbf{שאלה: }מרצה מכיר 9 בדיחות, ובכל שבוע בהרצאה הוא מספר 3 בדיחות שונות זו מזו. הוכיחו כי לאחר 13 הרצאות, בהכרח יהיו שתי בדיחות שסופרו יחד בלפחות שתי הרצאות. 
+	\begin{proof}
+		נוכיח. נבחר \textit{יונים: }כמות הבדיחות שהמרצה מכיר ($9$); \textit{תאים: }כמות הבדחיות שסופרו ($ 3 \cdot 13 = 39 $). נתאים יונה לתא באמצעות התאמת בדיחת לעת בה היא סופרה, ומעקרון שובך היונים המוכלל נמצא שישנה לפחות בדיחה אחת שסופרה $ \lc \frac{39}{9} \rc = 5 $ פעמים. בה''כ, זו הבדיחה ``מה ההבדל בין פיל לפסנתר? פסנתר אפשר להפיל אבל פיל אי־אפשר לפסנתר''. נניח בשלילה שהבדיחה על הפיל לא סופרה פעמיים עם בדיחה נוספת; בכל הרצאה בה היא סופרה, סופרו $3$ בדיחות, כלומר עוד $2$ נוספות, אשר שונות ממנה לפי הנתונים. לא ייתכן שאותן שתי הבדיחות הופיעו בהרצאה נוספת, כלומר סה''כ יהיו $ 2 \cdot 5 = 10 $ בדיחות שונות זו מזו ושונות מהבדיחה על הפיל, כלומר המרצה מכיר $11$ בדיחות, וזו סתירה לנתון שהמרצה מכיר $9$ בדיחות בלבד. סה''כ, הוכחנו כי ישנה בדיחה נוספת שהופיע עם הבדיחה על הפיל בשתי הרצאות שונות לפחות, כדרוש. 
+	\end{proof}
+	
+	\dotfill
+	{\vfil \hfil \textbf{\textit{שחר פרץ, 2024}} \hfil \vfil}
+	
+\end{document}

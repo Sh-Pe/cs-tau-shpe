@@ -1,0 +1,645 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 1א – תרגיל בית 4}}
+\begin{document}
+	\maketitle
+	\section{}
+	יהי $V = [0, 1] \to \R$ מ"ו מעל $\R$. יהי $U$ תמ"ו של $V$ שיש בו רק פונקציות מונוטוניות חלש. צ.ל. $\dim U \le 2$. 
+	
+	\begin{proof}
+		יהיו $f, g, h \in U$ כך ש־$f, g, h$ מונוטוניות חלש. נניח בשלילה $f, g, h$ אינן תלויות ליניארית.
+		אף אחת מהן לא איבר ה־0 (אחרת הייתה תלות ליניארית). מעקרון שובך היוניים שתיים מהן מונוטוניות באותו הכיוון – בה"כ יהיו אלו $f, g$. 
+		\begin{multline*}
+			\pms{f(0) & g(0) & h(0) \\ g(1) & f(1) & h(1)} \rrr{R_1 \to \frac{R_1}{f(0)}} 
+			\pms{1 & \frac{g(0)}{f(0)} & \frac{h(0)}{f(0)} \\ g(1) & f(1) & h(1)}
+			\rrr{R_2 \to g(1)R_1}
+			\pms{1 & \frac{g(0)}{f(0)} & \frac{h(0)}{f(0)} \\ 0 &  - \frac{f(1)f(0) - g(1)g(0)}{f(0)} &  - \frac{h(1)f(0) - h(0)g(1)}{f(0)}} \\ 
+			\rrr{R_2 \to -\frac{R_2f(0)}{f(1)f(0) - g(1)g(0)}}
+			\pms{1 & \frac{g(0)}{f(0)} & \frac{h(0)}{f(0)} \\ 0 &  1 & \frac{h(1)f(0) - h(0)g(1)}{f(1)f(0) - g(1) g(0)}}
+		\end{multline*}
+		המטריצה מדורגת. 
+		
+		נבחין שהנחנו ש־$f(0) \neq 0$ וש־$g(1) \neq 0$. המקרים סימטריים בהחלפת שורות, לכן בה"כ נניח $f(0) = 0$: 
+		\[ \pms{0 & g(0) & h(0) \\ f(1) & g(1) & h(1)} \rrr{R_1 \lra R_2} \pms{f(1) & g(1) & h(1) \\ 0 & g(0) & h(0)} \rrt{R_1 \to \frac{R_1}{f(1)}}{R_2 \to \frac{R_2}{g(0)}} \pms{1 & \frac{g(1)}{f(1)} & \frac{h(1)}{f(1)} \\ 0 & 1 & \frac{h(0)}{g(0)}} \]
+		גם המטריצה הזו מדורגת. נותר להראות שבדירוג הראשון, החילוק אכן מוגדר ותוצאתו אינה 0. אם $f(1)f(0) \neq g(1)g(0)$, אז למעשה הגענו קודם למטריצה: 
+		\[ \pms{1 & \frac{g(0)}{f(0)} & \frac{h(0)}{f(0)} \\ 0 &  0 &  - \frac{h(1)f(0) - h(0)g(1)}{f(0)}} \rrr{R_3 \to -\frac{f(0)}{h(1)}f(0) - h(0)g(1)} \cdots \]
+		שרק מניח $f(0) \neq 0$, מקרה שנפתר. הפתרון איננו טרוויאלי, שכן: 
+		\[ \frac{h(0)}{f(0)} \neq \frac{h(1)f(0) - h(0)g(1)}{f(1)f(0) - g(1)g(0)} \]
+		מהיות $f, g$ עולות באותו הכיוון. *
+		
+		סה"כ מצאנו בכל המקרים פתרון לא טרוויאלי למערכת המשוואות, כלומר מצאנו קבועים עבורם $k:= af + bg + ch$ יקיים $k(0) = k(1) =  0$ וממונוטוניות אם קיים $r \in [0, 1]$ כך ש־$k(r) \neq 0$ אז $0 = k(0) \le k(r) \le k(0) = 0$ (או $\ge$ באופן דומה) ובהכרח $k(r) = 0$ וזו סתירה. סה"כ $\forall r \in \dom k \co k(r) = 0$ כלומר $k = 0$ (במרחב $V$) וסה"כ מצאנו פתרון לא טאוויאלי למערכת $af + bg + ch = 0$ ולכן $f, g, h$ ת"ל. 
+		
+		נניח בשלילה קיום בסיס $B$ גדול (חלש) מ־$3$, אזי קיימות בו $3$ פונקציות עליהן הראינו שאפשר למצוא קבועים $a, b, c$ כך שהם תלויים ליניארית, ועבור שאר הפונקציות/וקטורים (אם יש כאלו) נבחר את הקבועים של הקומבינציות הליניאריות להיות $0$, ומשום שלפחות אחד מ־$a, b, c$ לא $0$ אז הפתרון הוא $0$ אך לא טרוויאלי, וסה"כ $B$ בסיס ת"ל וזו סתירה כי בסיס בת"ל, כדרוש. 
+	\end{proof}
+	
+	\npage
+	
+	\section{}
+	
+	מצאו את מרחב הפתרונות $U$ של המערכת הבאה, ולאחר מכן השלימו אותה לבסיס של $\R^5$. 
+	\begin{multline*}
+		\begin{cases}
+			x_1 + 4x_2 + x_3 - x_4 + 5x_5  = 0 \\
+			x_1 + 4x_2 + 2x_3 + 8x_5 = 0 \\
+			x_3 + x_4 + 3x_5 = 0
+		\end{cases} \tomat
+		\pms{1 & 4 & 1 & -1 & 5 \\ 1 & 4 & 2 & 0 & 8 \\ 0 & 0 & 1 & 1 & 3}
+		\rrr{R_2 \to R_2 - R_1}
+		\pms{1 & 4 & 1 & -1 & 5 \\ 0 & 0 & 1 & 1 & 3 \\ 0 & 0 & 1 & 1 & 3}
+		\\ \rrr{R_3 \to R_3 - R_2}
+		\pms{1 & 4 & 1 & -1 & 5 \\ 0 & 0 & 1 & 1 & 3 \\ 0 & 0 & 0 & 0 & 0}
+		\rrr{R_1 \to R_1 - R_2}
+		\pms{1 & 4 & 0 & -2 & 2 \\ 0 & 0 & 1 & 1 & 3 \\ 0 & 0 & 0 & 0 & 0}
+		\implies \ccb{\pms{ - 4s + 2t - 2w \\ s \\  - t - 3w \\ t \\ w} \bigg \vert t, s, w, \in \R }
+	\end{multline*}
+	מקבוצת הפתרונות נסיק: 
+	\[ \Sp \cdots = \ccb{\pms{-4 \\ 1 \\ 0 \\ 0 \\ 0}, \pms{2 \\ 0 \\ -1 \\ 1 \\ 0}, \pms{-2 \\ 1 \\ -3 \\ 0 \\ 1}} \]
+	נדרג במטריצה כדי שנוכל להבחין איזה וקטורים מהבסיס הטרוויאלי חסרים: 
+	\[ \pms{-4 & 1 & 0 & 0 & 0 \\ 2 & 0 & -1 & 1 & 0 \\ -2 & 1 & -3 & 0 & 1}
+	\rrr{R_2 \lra R_1}
+	\pms{2 & 0 & -1 & 1 & 0 \\ -4 & 1 & 0 & 0 & 0 \\ -2 & 1 & -3 & 0 & 1}
+	\rrt{R_2 \to R_2 + 2R_1}{R_3 \to R_3 + R_2}
+	\pms{2 & 0 & -1 & 1 & 0 \\ 0 & 1 & -2 & 2 & 0 \\ 0 & 1 & -4 & 0 & 1}
+	\rrr{R_3 \to R_3 - R_2}
+	\pms{2 & 0 & -1 & 1 & 0 \\ 0 & 1 & -2 & 2 & 0 \\ 0 & 0 & -6 & -2 & 1}
+	 \]
+	 נבחין כי $e_4$ ו־$e_5$ לא תלויים ליניארית כי משתניהם לא קשורים, ולכן הם הוקטורים הדרושים בשביל להשלים לבסיס פורש. נקבל בסיס: 
+	 \[ \R^5 = \ccb{\pms{-4 \\ 1 \\ 0 \\ 0 \\ 0}, \pms{2 \\ 0 \\ -1 \\ 1 \\ 0}, \pms{-2 \\ 1 \\ -3 \\ 0 \\ 1}, \pms{0 \\ 0 \\ 0 \\ 1 \\ 0}, \pms{0 \\ 0 \\ 0 \\ 0 \\ 1}} \]
+	
+	
+	\section{}
+	מצאו בסיס למרחב $V := \{p \in \R^3[x] \mid p(1) = 0\}$. מצאו את מימדו. 
+	\begin{proof}
+		נוכיח שהקבוצה הבאה הינה בסיס של $V$: 
+		\[ \ccb{\pms{1 \\ 0 \\ 0 \\ 0}, \pms{0 \\ 1 \\ -1 \\ 0}, \pms{0 \\ 0 \\ 1 \\ -1}} \]
+		נוכיח בת"ל, כלומר, שלא קיים צירוף ליניארי טרוויאלי: 
+		\[ \begin{pmatrix}
+			1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -1 & 1 \\ 0 & 0 & -1
+		\end{pmatrix} \rrr{R_3 \to R_3 + R_2}
+		\pms{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & -1} \]
+		ולמטריצה ההומוגנית הזו אין פתרון (לא טרוויאלי) שכן $\forall c \in \R_{\neq 0}. -1 \cdot c \neq 0$, וסה"כ הקבוצה בת"לית. נוכיח שהיא פורשת. נשים אותה בשורות מטריצה למען נוחות. 
+		\[ \begin{pmatrix}
+			1 & 0 & 0 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 1 & -1
+		\end{pmatrix} \]
+		נשים לב שכל המשתנים תלויים, כלומר אין שורה שהיא אפסים, וסה"כ כל הוקטורים הכרחיים לפרישת המרחב הוקטורי לעיל. למעשה הוכחנו שהיא בת"ל פורש, בלומר בסיס, כדרוש. ובפרט, $\dim V = 3$. נותר להוכיח שהבסיס פורש את הקבוצה. נתבונן בפולינום כללי המקיים את הדרוש: 
+		\[ (x - 1)(\ag x^2 + \beta x + \cg) = \ag x^3 + (\beta - \ag)x^2 + (\cg - \bg)x + \cg \]
+		נתבונן בקומבינציות הליניאריות, ונדרוש קיום פתרון כך שיתקיים שוויון: 
+		\[ a \pms{1 \\ 0 \\ 0 \\ 0} + b \pms{0 \\ 1 \\ -1 \\ 0} + c \pms{0 \\ 0 \\ 1 \\ -1} = \pms{a \\ b \\ c - b \\ -c} \seq \pms{\ag \\ \bg - \ag \\ \cg - \bg \\ \cg} \]
+		ולכן: 
+		\[ \tmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 0 & -1}{\ag \\ \bg - \ag \\ \cg - \bg \\ \cg}
+		\rrt{R_3 \to -(R_3 - R_2)}{R_3 \to -R_3}
+		\tmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1}{\ag \\ \bg - \ag \\ -\cg + 2\bg - \ag \\ -\cg} \]
+		סה"כ מצאנו צורה מודרגת קאנונית למטריצה, כלומר לכל $\ag, \bg, \cg \in \R$ שהראינו כי מייצגים פולינום ב־$V$, מצאנו קומבינציה ליניארית מתאימה. 
+		
+	\end{proof}
+	\section{}
+	נתונים שני תמ"ו של $\R^4$: 
+	\[ U = \Sp \underbrace{\ccb{\pms{1 \\ 1 \\ -1}, \pms{2 \\ 3 \\ -1}}}_{:= \tl U}, \ V = \Sp\underbrace{\ccb{\pms{1 \\ 1 \\ 1}, \pms{1 \\ - 1\\ 3}}}_{:= \tl V} \]
+
+	נמצא בסיס ומימד ל־$U, V, U \cap V, U + V$. נמצא האם $U + V$ הוא סכום ישר. 
+	\subsection{$U + V$}
+	נראה למצוא בסיס ל־$U + V$. כלומר, נתבונן בוקטורים של שניהם. ונצנצם את שקיבלנו לבת"ל. דירוג מטריצה לא משנה את מרחב השורות, וניעזר בו בשביל למצוא שורות שיידורגו לאפסים (בכך נוריד את הוקטורים התלויים ליניארית אחד בשני). משום שיש לנו שלושה משתנים וארבעה וקטורים, אז הקבוצה פורשת לכל היותר את $\R^3$ כלומר הבסיס קטן מ־$3$. אזי, אחד מהוקטורים הללו מיותר, ונבחר להוריד את $(1, -1, 3)$: 
+	\[ \pms{1 & 1 & -1 \\ 2 & 3 & -1 \\ 1 & 1 & 1} \rrt{R_2 \to R_2 - R_1}{R_3 \to R_3 - R_2}
+	\pms{1 & 1 & -1 \\ 0 & 1 & 1 \\ 0 & 2 & 0}
+	\rrr{R_3 \to R_3 -  2R_2}
+	\pms{1 & 1 & -1 \\ 0 & 1 & 1 \\ 0 & 0 & -2} \]
+	וסה"כ: 
+	\[ U + V = \ccb{\pms{- t + s \\ - s \\ 0} \mid (t, s) \in \R^2}, \
+	\mathrm{base} \ \ccb{\pms{1 \\ 1 \\ 0}, \pms{-1 \\ 1 \\ -2}} \]
+	ובפרט $\dim (U + V) = 2$ (ישנם שני וקטורים בבסיס שמצאנו)
+	\subsection{$U \cap V$}
+	נדרוש חיתוך. כלומר: 
+	\[ \forall w \in U \cap V\co \begin{cases}
+		\exists a, b \co a\tl U_1 + b \tl U_2 = v \\
+		\exists c, d \co a\tl V_1 + b \tl V_2 = v
+	\end{cases} \iff a\tl U_1 + b\tl U_2 - c \tl V_1 - d \tl V_2 = v - v = 0 \]
+	ניעזר במטריצה לשם כך. 
+	\begin{multline*}
+		\pms{1 & 2 & -1 & -1 \\ 1 & 3 & -1 & 1 \\ -1 & -1 & -1 & -3}
+		\rrt{R_2 \to R_2 - R_1}{R_3 \to R_3 + R_1}
+		\pms{1 & 2 & -1 & -1 \\ 0 & 1 & 0 & 2 \\ 0 & 1 & -2 & -4}
+		\rrr{R_2 \to R_2 - R_3}
+		\pms{1 & 2 & -1 & -1 \\ 0 & 1 & 0 & 2 \\ 0 & 0 & -2 & -6}
+		\rrr{R_3 \to -0.5R_3}
+		\pms{1 & 2 & -1 & -1 \\ 0 & 1 & 0 & 2 \\ 0 & 0 & 1 & 3}
+		\\ \rrr{R_1 \to R_1 + R_3 - 2R_2} 
+		\pms{1 & 0 & 0 & -2 \\ 0 & 1 & 0 & 2 \\ 0 & 0 & 1 & 3}
+		\quad \set d = t \implies U \cap V = \ccb{\pms{2t \\ - 2t \\ - 3t} \mid t \in \R}, \ 
+		\mathrm{base} \ \ccb{\pms{2 \\ -2 \\ -3}}
+	\end{multline*}
+	בפרט, עבור $t = 1$ מצאנו קיום וקטור שאינו $0$ ב־$U \cap V$ כלומר $U \cap V \neq \{0\}$ ולכן $U + V$ לא סכום ישר. גם הראינו $\dim U \cap V = 1$
+	
+	\subsection{U}
+	בסעיף 4.1 דירגנו את $U \cup \{1, 1, 1\}$ ומצאנו בת"ל, לכן בפרט $U$ בת"ל. $\tl U$ פורש את ה־$\Sp$ של עצמו לפי הגדרה ולכן $\tl U$ בסיס ל־$U$. 
+	\subsection{V}
+	באופן דומה להסעיף הקודם, יש להוכיח ש־$\tl V$ בת"ל: 
+	\[ \pms{1 & 1 & 1 \\ 1 & -1 & 3} \rrr{R_2 \to R_2 - R_1} \pms{1 & 1 & 1 \\ 0 & -2 & 2} \]
+	אין שורות שהן אפסים ולכן בת"ל. אזי $\tl V$ בסיס. 
+	
+	\section{}
+	הוכח/הפרך: אם $S$ מרחב וקטורי נוצר סופית ו־$U, V, W$ תמ"ו של $S$ אז: 
+	\[ \dim(U + V + W) = \dim U + \dim V + \dim W - \dim(U \cap W) - \dim (U \cap W) - \dim (V \cap W) + \dim(U \cap V \cap W) \]
+	
+	\begin{proof}[הפרכה. ]
+		נתבונן במרחבים הוקטורים הבאים (נגדיר את המרחבים הוקטורים כ־$\Sp$ של וקטור נתון ממרחב קיים הוא $\R^2$ כדי לחסוך הוכחת מרחב וקטורי) עם פעולות החיבור והכפל המוגדרות על $\R^2$ 
+		\[ V = \Sp\ccb{\pms{1 \\ 1}}, \ U = \Sp\ccb{\pms{1 \\ 0}}, \ U = \Sp\ccb{\pms{0 \\ 1}} \]
+		קל לראות כי: 
+		\[ \dim V, \dim U, \dim W = 1 \quad \dim V \cap U, \dim U \cap W, \dim W \cap V = \dim \{0\} = 0 \quad \dim V \cap U \cap W = \dim \{0\} = 0 \]
+		נניח בשלילה שהמשפט נכון. אזי: 
+		\[ 2 = \dim \R^2 = \ccb{\pms{t \\ s} \mid t, s \in \R} = \dim \ccb{\pms{1 \\ 0}, \pms{0 \\ 1}} = \dim U + V = \dim U + V + W = 3 \]
+		הסתמכנו על כך ש־$\dim U + V = \dim U + V + W$. הטענה הזו נכונה כי $U + V = U + V + W$ כי הבסיס של $W$ הוא $(1, 1)$ תלוי ליניארית בבסיסים של $V, W$ בעבור קומבינציה ליניארית בקבועים $1, 1$. סה"כ הגענו לשוויון $2 = 3$, נחסר אגפים ונגיע ל־$0 = 1$ וזו סתירה. 
+	\end{proof}
+	\section{}
+	יהי $V$ מרחב וקטורי נוצר סופית, ויהיו $U, W, W'$ תמ"וים של $V$ כך ש‏$V = U \oplus W$ וגם $V = U \oplus W'$. צ.ל. $\dim(W \cap W') \ge \dim V - 2 \dim U$. 
+	
+	\begin{proof}
+		נראה כי $W = W'$. נניח בשלילה $W \neq W'$, אזי קיים בה"כ $w \in W \setminus W'$. בגלל ש־$W$ זרה ל־$U$, אז $w \notin U$. לכן $w \notin U + W' = U \oplus W' = V$, אך $w \in U \subseteq U + W = U \oplus W = V$, כלומר $w \in V \land w \notin V$ וזו סתירה. לכן $W = W'$ ומכאן $W' \cap W = W$. התרגול הראינו ש־$\dim V = \dim U + \dim W$ נגרר מכך ש־$V = U \oplus W$. אזי: 
+		\[ \dim V = \dim U + \dim W \le 2 \dim U + \dim W \implies \dim V - 2\dim U \le \dim W = \dim (W \cap W') \]
+		ומטרנזיטיביות $\dim W \cap W' \ge \dim V - 2 \dim U$ כדרוש. 
+	\end{proof}
+	\section{}
+	נגדיר: 
+	\[ T \co M_2(\R) \to \R_2[x], \ T\cl{\pms{a & b \\ c & d}} = (2c + 2d)x^2 + (2c + 2d)x + (a + b) \]
+	צ.ל. $T$ העתקה ליניארית, ומצאו את מונותה וגרעינה. 
+	
+	\begin{proof}
+		נוכיח ש־$T$ העתקה ליניארית. 
+		\begin{itemize}
+			\item שמירת חיבור. יהיו $M^1, M^2 \in M_2(\R)$, נוכיח $T(M^1 + M^2) = T(M^1) + T(M^2)$. נסמן: 
+			\[ M^1 := \pms{a_1 & b_1 \\ c_1 & d_1}, \ M^2 := \pms{a_2 & b_2 \\ c_2 & d_2} \]
+			אזי: 
+			\begin{align*}
+				T(M^1 + M^2) &= T \cl{\pms{a_1 + a_2 & b_1 + b_2 \\ c_1 + c_2 & d_1 + d_2}} \\
+				&= (2c_1 + 2c_2 + 2d_1 + 2d_2)x^2 + (2c_1 + 2c_2 + 2d_1 + 2d_2)x + (a_1 + a^2 + b_1 + b_2) \\
+				&= (2c_1 + 2d_1)x^2 + (2c_1 + 2d_1)x + (a_1 + b_1) + (2c_2 + 2d_2)x^2 + (2c_2 + 2d_2)x + (a_2 + b_2) \\
+				&= T\cl{\pms{a_1 & b_1 \\ c_1 & d_1}} + T\cl{\pms{a_2 & b_2 \\ c_2 & d_2}} = T(M^1) + T(M^2)
+			\end{align*}
+			כדרוש. 
+			\item שמירת כפל. יהיו $M \in M_2(\R), \ \lg \in \R$. צ.ל. $T(\lg M) = \lg T(M)$. 
+			\begin{gather*}
+				\begin{aligned}
+					 M := \pms{a & b \\ c & d} \!\implies T\cl{\lg M} &= T \cl{\pms{\lg a & \lg b \\ \lg c & \lg d}} \\
+					&= (2\lg c + 2\lg d)x^2 + (2\lg c + 2\lg d)x + (\lg a + \lg b) \\
+					&= \lg (2c + 2d)x^2 + \lg (2c + 2d)x + \lg (a + b) \\
+					&= \lg \big((2c + 2d)x^2 + (2c + 2d)x + (a + b) \big) \\
+					&= \lg T \pms{a & b \\ c& d} = \lg T(M)
+				\end{aligned}
+			\end{gather*}
+			כדרוש. 
+		\end{itemize}
+		ההעתקה משמרת כפל וחיבור ולכן היא ליניארית. נמצא את הגרעין ואת התמונה שלה. 
+		
+		\textit{הערה: }בההוכחה הנחנו קיום $a, b, c, d$ מתאימים כך שהמטריצה שווה למטריצה הריבועית הנוצרת מהם. נוכל להניח זאת מהיות המטריצה ב־$M_2$.
+		\begin{enumerate}
+			\item תמונה. נסמן $t = 2c + 2d, \ s = a + b$. נקבל: 
+			\begin{gather*}
+				\forall v \in \Img(T)\co v = tx^2 + tx + s = \pms{t \\ t \\ 0} + \pms{0 \\ 0 \\ s} = t \pms{1 \\ 1 \\ 0} + s \pms{0 \\ 0 \\ 1} \\
+				\implies v \in \{tx^2 + tx + s \mid t, s \in \R\} = \Sp\ccb{\pms{1 \\ 1 \\ 0}, \pms{0 \\ 0 \\ 1}} = \Img T
+			\end{gather*}
+			(הוקטורים ב־$\R_2[x]$, הוא הטווח של הפונקציה)
+			\item גרעין. נדרוש  $T(M) = 0$. נשתמש בסימונים של $t, s$ מהסעיף הקודם. נקבל: 
+			\[ tx^2 + tx + s = 0 \iff \pms{t \\ t \\ s} = \pms{0 \\ 0 \\ 0} \iff \begin{cases}
+				t = 0 \\ t = 0 \\ s = 0
+			\end{cases} \dequad\iff \begin{cases}
+				2c + 2d = 0 \\
+				a + b = 0
+			\end{cases} \dequad\iff \begin{cases}
+				c = -d \\ a = -b
+			\end{cases} \dequad\iff M = \pms{a & -a \\ c & -c}
+			 \]
+			 ולכן נסיק: 
+			 \[ M \in \Sp\ccb{\pms{1 & -1 \\ 0 & 0}, \pms{0 & 0 \\ 1 & -1}} = \ccb{\pms{a & -a \\ b & -b} \big\vert a, b \in \R} = \ker T \]
+		\end{enumerate}
+	\end{proof}
+	
+	\section{}
+	תהי $T \co \R\to R$ פונקציה המקיימת $\forall x, y,  \in \R\co T(x + y) = T(x)  +T(y)$. הוכיחו כי $T$ העתקה ליניארית כאשר מסתכלים על $\R$ כשמסתכלים על $\R$ כמ"ו מעל $\Q$. 
+	\begin{proof} יהי $r \in \R$. 
+		
+		\textbf{למה 1. }$T$ משמרת כפל מעל $\N^+$. נוכיח באינדוקציה על $n \in \N^+$ המקדם: 
+		\begin{itemize}
+			\item בסיס. עבור $n = 1$ יתקיים $nT(r) = T(r) = T(1 \cdot r)$. 
+			\item צעד. עבור $n$ כללי, נניח באינדוקציה את נכונות הטענה עבור $k < n$, ונוכיחה עבור $n$. בכלל ש־$n > 1$ מקרה הבסיס, קיימים $a, b \in \N^+$ כך ש־$a + b = n$. בפרט $a, b < n$. מה.א. $aT(r) = T(ar), \ bT(r) = T(br)$. 
+			אזי: 
+			\[ nT(r) = (a + b)T(r) = aT(r) + bT(r) = T(ar) + T(br) = T((a + b)r) = T(nr) \]
+			כאשר המעבר האחרון נכון מהיותה משמרת חיבור. 
+		\end{itemize}
+		
+		\textbf{למה 2. }$T$ משמרת כפל מעל $\Z$. נוכיח $-T(r) = T(-r)$. נדע $T(0) = T(a \cdot 0) = aT(0)$ מהטענה הקודמת, ולכן אם $T(0) \neq 0$ אז נחלק את השני האפגים בו ונקבל בהכרח $a = 1$ וזו סתירה, ולכן $T(0) = 0$. ולכן 		
+		יתקיים $0 = T(0) = T(r - r) = T(r)  + T(-r) \implies T(r) = -T(r)$. לכל $z \in \Z$, אם $z > 1$ אז כבר הוכחנו סגירות, אם $z = 0$ אז $T(rz) = T(0) = 0 = z(T(r))$, ואם $z < 0$ אז קיים $a \in \N^+$ כך ש־$z = -a$. ולכן: 
+		\[ T((-a)r) = T((-1) \cdot a \cdot r) = -T(ar) = -aT(r) \]
+		מלמה 1 ומסגירות לכפל ב־$-1$, כדרוש. 
+		
+		\textbf{למה 3. }$T$ משמרת כפל ב־$-\frac{1}{n}$ לכל $n \in \N^+ \cup \{\inf\}$. נוכיח באינדוקציה. 
+		\begin{itemize}
+			\item בסיס. כבר הוכחנו את הבסיס עבור $\frac{1}{\inf} = 0$ מלמה 2. 
+			\item צעד. נניח באינדוקציה את נכונות הטענה לכל $\frac{1}{k} < \frac{1}{n}$. נתבונן ב־$\frac{r}{n}$. מה.א. $T\cl{\frac{1}{0.5}n r} = \frac{T(r)}{0.5n}$ מה.א., וכי $\frac{1}{0.5n} < n$
+			\[ T\cl{\frac{r}{n}} = T\cl{\frac{1}{0.5n}r + \frac{1}{0.5n}r} = \frac{1}{0.5n} \cdot 2T\cl{r} = \frac{T(r)}{n} \]
+			כדרוש. 
+			
+			\textit{הערה: }האינדוקציה מתחילה מ־$\frac{1}{\inf}$ ויורדת עד ל־$\frac{1}{1}$ ולכן חוקית. 
+		\end{itemize}
+		
+		יהי $q \in \Q$. לכן מהגדרה שקולה להגדרת הרציונליים, קיימים $a \in \Z, b \in \N^+$ כך ש־$q = \frac{a}{b}$. 
+		מלמה 3 ו־2 נקבל: 
+		\[ T(rq) = T\cl{\frac{a}{b}r} = aT\cl{\frac{r}{b}} = \frac{a}{b}T(r) = qT(r) \]
+		כדרוש. 
+	\end{proof}
+\end{document}

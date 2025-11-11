@@ -1,0 +1,696 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#1]{#2}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 1א – תרגיל בית 2}}
+\begin{document}
+	\maketitle
+	\section{}
+	יהי $|\F|$ שדה סופי. צ.ל. $\chr(F) \mid |\F|$
+	\begin{proof}בדומה להוכחה מההרצאה: יהי $\F$ שדה סופי. אזי מקדמו ראשוני הוא $p$, כי אינו $0$, ולכן מוכל בו שדה $\Z_p$ (עד לכדי הומומורפיזם). לפי טענה נתונה $\F$ שדה וקטורי מעל כל השדות שמוכלים בו, ובפרט $\F'$. לכל מרחב וקטורי ידוע קיום בסיס, ולכן קיים בסיס ל־$\F$ כמרחב וקטורי מעל $\Z_p$, נסמנו $B$. מהיות $B$ פורש: 
+		\[ \sof{\F} = \sof{\left\{\sum_{i = 0}^{|B|}B_i\lambda_i \Big\vert \lambda_i \in \Z_p, \ B_i \in B \right\}} = |\Z_p|^{|B|} = p^{|B|} = \chr(\F)^{|B|} \]
+		בפרט, $\chr(\F)$ הוא גורם ראשוני של $\sof{\F}$ ולכן מחלק אותו, כדרוש. 
+	\end{proof}
+	\section{}
+	נפתור את מערכות המשוואות הבאות מעל $\R$: 
+	\begin{enumerate}
+		\item נפתור את מערכת המשוואות הבאה: 
+		\begin{multline*}
+			\begin{cases}
+				2x_1 + 3x_2 + 4x_3 = 3 \\
+				3x_1 - 2 x_2 + 5x_3 = 10\\
+				7x_1 + 9x_2 + 3x_3 = 1
+			\end{cases} \tomat \tmat{2 & 3 & 4 \\
+				3 & -2 & 5 \\
+				7 & 9 & 3}{3\\ 10 \\ 1} \rrr{R_1 \to \frac{1}{2}R_1} \tmat{1 & 1.5 &2 \\
+				3 & -2 & 5 \\
+				7 & 9 & 3}{1.5\\ 10 \\ 1} \rrt{R_3 \to R_3 - 7R_1}{R_2 \to R_2 - 3R_1} \tmat{1 & 1.5 &2 \\
+				0 & -6.5 & -10 \\
+				0 & -1.5 & -11}{1.5\\ 5.5 \\ -9.5} \\
+			\rrr{R_2 \to -\frac{2}{13}R_2} \tmat{1 & 1.5 &2 \\
+				0 & 1 & \frac{20}{13} \\
+				0 & -1.5 & -11}{1.5\\ \frac{11}{13} \\ -9.5} \rrr{R_3 \to R_3 + 1.5R_2} 
+			\tmat{1 & 1.5 &2 \\
+				0 & 1 & \frac{20}{13} \\
+				0 & 0 & -\frac{113}{13}}
+			{1.5\\ \frac{11}{13} \\ -\frac{107}{13}} 
+			\rrr{R_3 \to -\frac{13}{113}R_3} 
+			\tmat{1 & 1.5 &2 \\
+				0 & 1 & \frac{20}{13} \\
+				0 & 0 & 1}
+			{1.5\\ \frac{11}{13} \\ -\frac{107}{113}} 
+			\\ \rrt{R_2 \to R_2 - \frac{20}{13}R_3}{R_1 \to R_1 - 2R_3}
+			\tmat{1 & 1.5 &0 \\
+				0 & 1 & 0 \\
+				0 & 0 & 1}
+			{\frac{751}{226}\\ -\frac{69}{113} \\ -\frac{107}{113}} \rrr{R_1 \to R_1 - 1.5R_2} 
+			\tmat{1 & 0 &0 \\
+				0 & 1 & 0 \\
+				0 & 0 & 1}
+			{\frac{479}{113}\\ -\frac{69}{113} \\ -\frac{107}{113}} \implies \begin{pmatrix}
+				x_1 \\ x_2 \\ x_3
+			\end{pmatrix} = \begin{pmatrix}
+				\frac{479}{113}\\ -\frac{69}{113} \\ -\frac{107}{113}
+			\end{pmatrix}
+		\end{multline*}
+		\item נפתור את מערכת המשוואות הבאה: 
+			\begin{multline*}
+				\begin{cases}
+					-x_1 + x_2 + x_3 + x_4 = 2 \\
+					x_1 - x_2 + x_3 + x_4 = 2 \\
+					x_1 + x_2 - x_3 + x_4 = 2 \\
+					x_1 + x_2 + x_3 - x_4 = 2
+				\end{cases} \tomat \tmat{-1 & 1 & 1 & 1 \\
+				1 & -1 & 1 & 1 \\
+				1 & 1 & -1 & 1 \\
+				1 & 1 & 1 & -1}{2 \\ 2 \\ 2 \\ 2} \rrr{R_1 \to -R_1} \tmat{
+				1 & -1 & -1 & -1 \\
+				1 & -1 & 1 & 1 \\
+				1 & 1 & -1 & 1 \\
+				1 & 1 & 1 & -1}{-2 \\ 2 \\ 2 \\ 2} \rrt{R_2 \to R_2 - R_1}{\begin{aligned}
+					\scriptstyle R_3 \to R_3 - R_1 \\
+					\scriptstyle R_4 \to R_4 - R_1
+					\end{aligned}} \\ \tmat{1 & -1 & -1 & -1 \\
+				0 & 1 & 2 & 2 \\
+				0 & 2 & 1 & 2 \\
+				0 & 2 & 2 & 1}{-2 \\ 4 \\ 4 \\ 4} \rrt{R_4 \to R_4 - 2R_2}{R_3 \to R_3 - 2R_2} \tmat{
+				1 & -1 & -1 & -1 \\
+				0 & 1 & 2 & 2 \\
+				0 & 0 & -3 & -2 \\
+				0 & 0 & -2 & -3}{2 \\ 4 \\ -4 \\ -4} \rrr{R_3 \to -\frac{1}{3}R_3} \tmat{
+				1 & -1 & -1 & -1 \\
+				0 & 1 & 2 & 2 \\
+				0 & 0 & 1 & \frac{2}{3} \\
+				0 & 0 & -2 & -3}{-2 \\ 4 \\ \frac{4}{3} \\ -4} \\ \displaybreak \rrr{R_4 \to R_4 + 2R_3} \tmat{
+				1 & -1 & -1 & -1 \\
+				0 & 1 & 2 & 2 \\
+				0 & 0 & 1 & \frac{2}{3} \\
+				0 & 0 & 0 & -\frac{5}{3}}{-2 \\ 4 \\ \frac{4}{3} \\ -\frac{4}{3}} \rrr{R_4 \to -\frac{3}{5}R_4} \tmat{
+				1 & -1 & -1 & -1 \\
+				0 & 1 & 2 & 2 \\
+				0 & 0 & 1 & \frac{2}{3} \\
+				0 & 0 & 0 & 1}{-2 \\ 4 \\ \frac{4}{3} \\ 0.8} \rrt{R_1 \to R_1 + R_4
+					}{\begin{aligned}
+					\scriptstyle R_3 \to R_3 - \frac{2}{3}R_4 \\
+					\scriptstyle R_2 \to R_2 - 2R_4\end{aligned}
+					} \tmat{
+					1 & -1 & -1 & 0 \\
+					0 & 1 & 2 & 0 \\
+					0 & 0 & 1 & 0 \\
+					0 & 0 & 0 & 1}{-\frac{6}{5} \\ \frac{12}{5} \\ \frac{4}{5} \\ 0.8} \\
+				\rrt{R_2 \to R-2 - 2R_3}{R_1 \to R_1 + R_3} \tmat{
+					1 & -1 & 0 & 0 \\
+					0 & 1 & 0 & 0 \\
+					0 & 0 & 1 & 0 \\
+					0 & 0 & 0 & 1}{-\frac{2}{5} \\ \frac{4}{5} \\ \frac{4}{5} \\ \frac{4}{5}} \rrr{R_1 \to R_1 + R_2} \tmat{
+					1 & 0 & 0 & 0 \\
+					0 & 1 & 0 & 0 \\
+					0 & 0 & 1 & 0 \\
+					0 & 0 & 0 & 1}{\frac{4}{5} \\ \frac{4}{5} \\ \frac{4}{5} \\ \frac{4}{5}} \implies \begin{pmatrix}
+					x_1 \\ x_2 \\ x_3 \\ x_4
+					\end{pmatrix} = \begin{pmatrix}
+					0.8 \\ 0.8 \\ 0.8 \\ 0.8
+					\end{pmatrix}
+			\end{multline*}
+	\end{enumerate}
+	
+	\section{}
+	נפתור את מערכות המשוואות הבאות: 
+	\begin{enumerate}
+		\item (מעל $\C$)
+		\begin{multline*}
+			\begin{cases}
+				ix + (1 - i)y = 0\\
+				2x - (1 - i)y = 0
+			\end{cases} \tomat \tmat{i & (1 - i) \\ 2 & (i - 1)}{0 \\ 0} \rrr{R_1 \to \frac{R_1}{i}} \tmat{1 & (-1 - i) \\ 2 & (i - 1)}{0 \\ 0} \rrr{R_2 - 2R_1} \tmat{1 & (-1 - i) \\ 0 & (1 + 3i)}{0 \\ 0} \\ \rrr{R_2 \to \frac{R_2}{1 + 3i}} \tmat{1 & (-1 -i) \\ 0 & 1}{0 \\ 0} \rrr{R_1 \to (i + 1)R_2} \tmat{1 & 0 \\ 0 & 1}{0 \\ 0} \implies (x_1, x_2) = (0, 0)
+		\end{multline*}
+		(כלומר, הראינו שהפתרון היחיד למערכת ההומגנית להלן הוא הפתרון הטרוויאלי)
+		\item (מעל $\C$)
+		\begin{multline*}
+			\begin{cases}
+				x - (2 - i)y = 3 - 2i \\
+				(2i - 1)x + 5iy = 1 + 8i
+			\end{cases} \tomat \tmat{1 & (-2 + i) \\ (2i - 1) & 5i}{(3 - 2i) \\ (1 + 8i)} \rrr{R_2 \to R_2 + (1 + 2i)R_1} \tmat{1 & (-2 + i) \\ 0 & (-4 + 2i)}{(3 - 2i) \\ (8 + 12i)} \\ \rrr{R_2 \to \frac{R_2}{-4 + 2i}}
+			\tmat{1 & (-2 + i) \\ 0 & 1}{(3 - 2i) \\ (-0.4 -3.2i)} \rrr{R_1 \to R_1 + (2 - i)R_2} 
+			\tmat{1 & 0 \\ 0 & 1}{(-1 - 8i) \\ (-0.4 -3.2i)} \implies \begin{pmatrix}
+				x_1, x_2
+			\end{pmatrix} = \begin{pmatrix}
+				-1 - 8i \\ -0.4 -3.2i
+			\end{pmatrix}
+		\end{multline*}
+		\item (מעל $\Z_{13}$) 
+		\begin{multline*}
+			\begin{cases}
+				-x + 2y = 1\\
+				2x + y = 3
+			\end{cases} \tomat \tmat{-1 & 2 \\ 2 & 1}{1 \\ 3} \rrr{R_1 \to -R_1} \tmat{1 & 12 \\ 2 & 1}{12 \\ 3} \rrr{R_2 \to R_2 - 2R_1} \tmat{1 & 12 \\ 0 & 3}{12 \\ 5} \rrr{R_2 \to 9R_2} \tmat{1 & 12 \\ 0 & 1}{12 \\ 6} \\ \rrr{R_1 - 12R_2}\tmat{1 & 0 \\ 0 & 1}{5 & 6} \implies \begin{pmatrix}
+				x_1 \\ x_2
+			\end{pmatrix} = \begin{pmatrix}
+				12 \\ 6
+			\end{pmatrix}
+		\end{multline*}
+	\end{enumerate}
+	
+	\section{}
+	בוצעו הפעולות האלמנטריות הבאות על מטריצה $A \in \mat{3}{3}(\R)$. ננסה להופכן כדי לקבל את המטריצה המקורית. לשם כך, נהפוך את סדרן ונבצע את הפעולות ההופכיות. 
+	\[ id_{3 \times 3} \cl{\begin{aligned}
+			R_2 &\to R_2 - 3R_1 \\
+			R_2 &\leftrightarrow R_3 \\
+			R_3 &\to R_3 + R_2 \\
+			R_1 &\to 2R_1 - R_2 \\
+			R_2 &\to R_2 + R_3 \\
+			R_1 &\to R_1 - 0.5R_3
+	\end{aligned}}\op \dequad = \begin{pmatrix}
+	1 & 0 & 0 \\
+	0 & 1 & 0 \\
+	0 & 0 & 1
+\end{pmatrix}\cl{\begin{aligned}
+		R_1 &\to R_1 + 0.5R_3 \\
+		R_2 &\to R_2 - R_3 \\
+		R_1 &\to 0.5R_1 + 0.5R_2 \\
+		R_3 &\to R_3 - R_2 \\
+		R_3 &\lra R_2 \\
+		R_2 &\to R_2 + 3R_3
+	\end{aligned}} \]
+נפעיל את הפעולות על מטריצת היחידה: 
+	\begin{multline*}
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & 1 & 0 \\
+			0 & 0 & 1
+		\end{pmatrix} \rrr{R_1 \to R_1 + 0.5R_3} \begin{pmatrix}
+			1 & 0 & 0.5 \\
+			0 & 1 & 0 \\
+			0 & 0 & 1
+		\end{pmatrix} \rrr{R_2 \to R_2 - R_3} \begin{pmatrix}
+			1 & 0 & 0.5 \\
+			0 & 1 & -1 \\
+			0 & 0 & 1
+		\end{pmatrix} \rrr{R_1 \to R_1 + R_2} \begin{pmatrix}
+			1 & 1 & -0.5 \\
+			0 & 1 & -1 \\
+			0 & 0 & 1
+		\end{pmatrix} \\ \rrr{R_1 \to 0.5R_2} \begin{pmatrix}
+			0.5 & 0.5 & -0.25 \\
+			0 & 1 & -1 \\
+			0 & 0 & 1
+		\end{pmatrix} \rrr{R_3 \to R_3 - R_2} \begin{pmatrix}
+			0.5 & 0.5 & -0.25 \\
+			0 & 1 & -1 \\
+			0 & -1 & 2
+		\end{pmatrix} \rrr{R_3 \lra R_2} \begin{pmatrix}
+			0.5 & 0.5 & -0.25 \\
+			0 & -1 & 2 \\
+			0 & 1 & -1
+		\end{pmatrix} \rrr{R_2 \to R_2 + 3R_3} \begin{pmatrix}
+			0.5 & 0.5 & -0.25 \\
+			0 & 2 & -1 \\
+			0 & 1 & -1
+		\end{pmatrix}
+	\end{multline*}
+	
+	\section{}
+	נגדיר: 
+	\[ A = \begin{pmatrix}
+		1 & 3 &  \cdots & 2n + 1 \\
+		2n + 1 & 2n + 3 & \cdots & 4n + 1 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		2(n - 1)n + 1 & 2(n - 1)n + 3 & \cdots & 2n(n - 1)n + 2n + 1
+	\end{pmatrix}\, \quad b = \begin{pmatrix}
+		1 \\ 2 \\ \vdots \\ n
+	\end{pmatrix} \]
+	נפתור את מערכת המשוואות $(A \mid b)$. נעשה את הפעולות האלמנטריות הבאות: 
+	\begin{gather*}
+		(A \mid b) \rrr{\forall 0 < i < n\co R_i \to R_i - R_1} \tmat{
+			1 & 3 & \cdots & 2n + 1 \\
+			2n & 2n & \cdots & 2n \\
+			4n & 4n & \cdots & 4n \\
+			\vdots & \vdots & \ddots & \vdots \\
+			2(n - 1)n & 2(n - 1)n & \cdots & 2(n - 1)n
+		}{0 \\ 1 \\ 2 \\ \vdots \\ n - 1} \\ \rrr{\forall 0 < i < n\co R_i \to \frac{R_i}{n}} \tmat{
+			1 & 3 & \cdots & 2n + 1 \\
+			2 & 2 & \cdots & 2 \\
+			4 & 4 & \cdots & 4 \\
+			\vdots & \vdots & \ddots & \vdots \\
+			2(n - 1) & 2(n - 1) & \cdots & 2(n - 1)
+		}{0 \\ \frac{1}{n} \\ \frac{2}{n} \\ \vdots \\ \frac{n - 1}{n}} \rrr{\forall 0 \le i < n \co R_i \to R_i - 2n} \tmat{
+		1 & 3 & \cdots & 2n + 1 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \cdots  & 0
+		}{1 \\ \vdots \\ \frac{n - 1}{n} - 2(n - 1)}
+	\end{gather*}
+	בחילוק ב־$n$ הנחנו $n \neq 0$. אם $n = 0$, אז המטריצה בגודל $0$, וכל פתרון נכון באופן ריק. אחרת, מצאנו איבר תלוי יחיד, וסה"כ קבוצת הפתרונות: 
+	\[ \ans = \{x + 3x + 5x + \cdots + (2n + 1)x \mid x \in \R\} = \left\{\sum_{i = 0}^{n}(2i + 1)x \mid x \in \R \right\} \]
+	
+	\section{}
+	תהי $A \in \mat{m}{n}(\R)$. יהי $b \in \R^m$. נוכיח או נפריך את הטענות הבאות: 
+	\begin{enumerate}[A.]
+		\item יהיו $x, y \in \R^n$ פתרונות של מערכת $(A \mid b)$, אז $x + y$ הוא פתרון של $(A \mid b)$
+		\begin{proof}[הפרכה.]נניח בשלילה שהטענה נכונה, כלומר $A(x + y) = b$ בהכרח. אזי, מדיסטרבוטביות של שדה המטריצות מגודל $m \times n$ (נאמר בתרגול שאפשר להגדיר שדה כזה ואני מסתמך על ההגדרה מגוגל)
+			\[ Ax = b \land Ay = b \implies b + b = Ax + Ay = A(x + y) = b \implies b = 2b \]
+			נבחר $b = 1$ ונקבל $1 = 2$, וזו סתירה. 
+		\end{proof}
+		\item יהיו $x, y \in \R^n$ פתרונות של המערכת $(A \mid b)$, אזי $x - y$ הוא פתרון של המערכת $(A \mid 0)$. 
+		\begin{proof}
+			מהנתון $Ax = b, Ay = b$. צ.ל. $A(x - y) = 0$. באופן דומה לסעיף הקודם: 
+			\[ b - b = Ax - Ay = A(x - y) \]
+			כדרוש. 
+		\end{proof}
+		\item נניח ש־$(z_1, \dots, z_n) =: z \in \C^n$ פתרון של מערכת מהשוואות. אז $\Im(z) := (\Im(z_1), \Im(z_2), \dots, \Im(z_n))$ הוא פתרון של $(A \mid b)$. באופן דומה נגדיר $\Re(z)$. 
+		\begin{proof}
+			\begin{gather*}
+				b = Az = \begin{pmatrix}
+					a_{11}z_1 + a_{12}z_2 + \cdots + a_{1n}z_n \\
+					\vdots \\
+					a_{m1}z_1 + a_{m2}z_2 + \cdots + a_{mn}z_n
+				\end{pmatrix} = \begin{pmatrix}
+					a_{11}(\Im z_1 + \Re z_1) + a_{12}(\Im z_2 + \Re z_2) + \cdots + a_{1n}(\Im z_n + \Re z_n) \\
+					\vdots \\
+					a_{m1}(\Im z_1 + \Re z_1) + a_{m2}(\Im z_2 + \Re z_2) + \cdots + a_{mn}(\Im z_n + \Re z_n)
+				\end{pmatrix} \\
+				=\begin{pmatrix}
+					a_{11}\Im(z_1) + \cdots + a_{1n}\Im(z_n) + a_{11}\Re(z_1) + \cdots + a_{1n}\Re(z_n) \\
+					\vdots \\
+					a_{m1}\Im(z_1) + \cdots + a_{mn}\Im(z_n) + a_{m1}\Re(z_1) + \cdots + a_{mn}\Re(z_n)
+				\end{pmatrix} \\ 
+				\implies \forall i \in [n]\co b_i = a_{i1}\Im(z_1) + \cdots + a_{in}\Im(z_n) + a_{i1}\Re(z_1) + \cdots + a_{in}\Re(z_n) = R_i\Re(b) + R_i\Im(b)
+			\end{gather*}
+			נפתור כמו מערכת משוואות מרוכבת רגילה; את האיבר המרוכב בנפרד לאיבר הממשי (נבחין כי $R_i \in \R$ ולכן לא ישנה את הבסיס עליו האיבר רץ). 
+			\[ \forall i \in [n]. \Re(b_i) = R_i\Re(b) \ \land \ \Im(b_i) = R_i\Im(b) \implies \Im(b)A = b \land \Re(b)A = b \]
+			וסה"כ $\Re(b), \Im(b)$ הם פתרונות חוקיים למטריצה $(A \mid b)$, כדרוש. 
+		\end{proof}
+		\item באופן דומה, בעבור $\Re(b)$. הוכח כחלק מסעיף קודם. 
+		\item אם לכל $x \in \R^n$ הוא פתרון של המערכת $(A \mid 0)$, אז $A = 0$. 
+		\begin{proof}
+			עבור כל שורה $i \in [m]$: 
+			\[ a_{i1}x_1 + \cdots + a_{ij}x_j + a_{in}x_n = 0 \]
+			נציב את הוקטורים $e_1 \dots e_n$: 
+			\[ \begin{cases}
+				R_ie_1 = a_{i1}1 + a_{i2}0 + \cdots + a_{ij} 0 + a_{i(j + 1)}0 + \cdots + a_{in}0 = a_1 = 0 \\
+				\vdots \\
+				R_ie_j = a_{i1}0 + a_{i2}0 + \cdots + a_{ij} 1 + a_{i(j + 1)}0 + \cdots + a_{in}0 = a_j = 0 \\
+				\vdots \\ 
+				R_ie_n = a_{i1}0 + a_{i2}0 + \cdots + a_{ij}0 + a_{i(j + 1)}0 + \cdots + a_{in}1 = a_n = 0 \\
+			\end{cases} \]
+			סה"כ קיבלנו $\forall i \in [m]. \forall j \in [n]. a_{ij} = 0$, כלומר $A = 0 $ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	צ.ל. כל מטריצה שקולה למטריצה מדורגת קאונינית יחידה. 
+	\begin{proof}
+		תהי מטריצה $A \in \mat{m}{n}$. הוכח בהרצאה קיום מטריצה מדורגת קאנונית אליה היא שקולה, נסמנה $A_1$. נניח בשלילה קיום מטריצה מדורגת קאנונית אחרת, נסמנה $A_2$. במטריצה מדרוגת קאנונית, בכל שורה שאינה אפסים יש מימין ומשמאל לאיבר היחידה התלוי אפסים (פרט לשורה האחרונה). כלומר, נוכל לייצג את שורות צמצום המטריצות הללו ע"י האינדקס בו איבר היחידה נמצא (כאשר $1$ האינדקס הראשון ו־$0$ אם השורה אפסים). בצורה זו נגדיר פונקציה חח"ע $f \co R_i \to [0, n] \cap \N$ (חח"ע כי אחרת יש איבר יחידה תחת שורה אחרת וזו סתירה לזה שנמצא משמאל לשורה שמעליו ולכן באינדוקציה לכל השורות שמעליו). (נגדיר את הפונקציה כך שמקבלת שורה על $\R^n$, מתוך מטרציה מדורגת קאנונית כלשהי). 
+		
+		מכיוון ש־$A_1 \neq A_2$, אז קיים $i \in \N$ כך ש־$R^{A_1}_i \neq R^{A_2}_i$ ולכן $\ell_1 := f(R^{A_1}_i) \neq f(R^{A_2}_i)=:\ell_2$. משום שפלט הפונקציה הוא איבר היחידה בשורה, אז $x_{\ell_1} = b^{A_1}_{\ell_1}$ וגם $x_{\ell_2} = b^{A_2}_{\ell_2}$. בה"כ $\ell_1 > \ell_2$. ידוע ש־$x_{\ell_1}$ קשור ב–$A_2$ כי יש להן קבוצת פתרונות שווה משקילות. גם ידוע $x_{\ell_2}$ קשור כי יש לו ערך קבוע בשורה $R_{\ell_2}$. ב־$A_1$, יהיו $p$ משתנים קשורים הקטנים באינדקסם מ־$\ell_1$, ומשקילות גם ב־$A_2$. אך, ב־$A_1$ אף לא אחד מהם $x_{\ell_2}$, אבל $x_{\ell_2}$ קשור ב־$A_2$ וקטן מ־$\ell_1$ ולכן $p + 1$ משתנים הקטנים מ־$\ell_1$ ב־$A_2$, וסה"כ $p = p + 1$. נחסר אגפים ונקבל $0 = 1$ וזו סתירה. 
+	\end{proof}
+	
+	\ndoc
+	
+\end{document}

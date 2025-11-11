@@ -1,0 +1,638 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{algorithm2e}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={LaTeX document by Shahar Perets}
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+\newcommand\sna   {\overset{(1)}{=}}
+\newcommand\snb   {\overset{(2)}{=}}
+\newcommand\snc   {\overset{(3)}{=}}
+\newcommand\snd   {\overset{(4)}{=}}
+\newcommand\sne   {\overset{(5)}{=}}
+\newcommand\snf   {\overset{(6)}{=}}
+\newcommand\sng   {\overset{(7)}{=}}
+\newcommand\snh   {\overset{(8)}{=}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+% DS
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+\DeclareMathOperator\tim     {time}
+\DeclareMathOperator\BF      {BF}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+	\SetKwFunction{RetrieveFirst}{Retrieve-First}
+	\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+	\SetKwFunction{DeleteFirst}{Delete-First}
+	\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+	\SetKwFunction{InsertFirst}{Insert-First}
+	\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+	\SetKwFunction{AddEdge}{Add-Edge}
+	\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\dsDict{
+    \SetKwFunction{Dict}{Dictionary}
+    \sFunc{Search}
+    \sFunc{Min}
+    \sFunc{Max}
+    \sFunc{Successor}
+    \sFunc{Predecessor}
+%    exists: Insert, Delete
+}
+\newcommand\importDs{
+    \DontPrintSemicolon
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+    \dsDict
+    \SetKwProg{Fn}{function}{ is}{end}
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codeblue}null}
+    \SetKwData{True}{\color{codeblue}true}
+    \SetKwData{False}{\color{codeblue}false}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+\newcommand\alg[1]          {\sen\begin{algorithm}
+        \importDs
+        #1
+    \end{algorithm}\she}
+\newcommand\centerenv[1]    {\sen\begin{center}
+        #1
+    \end{center}\she}
+
+%! ~~~ Document ~~~
+
+\author{Shahar Perets}
+\title{Data Stractures $\sim$ Homework 3 $\sim$ \textit{2025B}}
+\begin{document}
+	\sen\maketitle\she
+    \subsection*{הערות ומידע אישי}
+    קצת לא הייתי בטוח בתרגיל הבית הזה לגבי האיזון בין פסאדו־קוד לבין הסברים במילים. אם אני מפרט יותר מדי או פחות מדי, אשמח לדעת. 
+    
+    כל שאלה מופיעה בעמוד נפרד. ניתן אישור במודל להגיש את התרגיל שלא על גבי הקובץ המקורי בעבור מי שמקליד על המחשב. 
+    
+    \textbf{שם: }שחר פרץ \\
+    \textbf{ת.ז.: }334558962
+    
+    \npage
+    
+	
+	\section{}
+    \subsection*{סעיף א'}
+    נתאר מבני נתונים התומך בפעולות על קבוצה $S$ מתחום בעל סדר מלא, התומך בהכנסה ומחיקה ב־$O(\logn)$ וכן בפעולות min, max, median בזמן קבוע. לשם כך, ניעזר ב־Finger AVL tree השומר מצביעים לאבות, ל־successor ול־predecessor (תחזוקת מצביעים כאלו ללא שינוי זמן הריצה, תוארה בהרצאה ואפשרית). 
+    \begin{itemize}
+        \item \textbf{תיאור מצביע: }מצביע למינימום העץ, הוא האיבר הכי השמאלי בעץ. \\
+        \textbf{תחזוקת המצביע: }בעת הוספת איבר, נלך למצביע ונבדוק אם הוא קטן מהמינימום. אם הוא אינו קטן מהמינימום, נמשיך כרגיל. אם הוא קטן מהמינימום, אז נעדכן את המצביע אליו ונמשיך כרגיל. במחיקת איבר, אם לא מוחקים את המינימום נמשיך כרגיל, אחרת נעביר את מצביע המינימום לאביו ונמשיך כרגיל. 
+        
+        \item \textbf{תיאור המצביע: }מצביע למקסימום העץ, הוא האיבר הימני ביותר בעץ. \\
+        \textbf{תחזוקת המצביע: }באופן זהה אך הפוך לתחזוקת המינימום. 
+        
+        \item \textbf{תיאור המצביע: }מצביע לחציון העץ, האיבר האמצעי בעת מיון האיברים. \\
+        \textbf{תחזוקת המצביע: }בעת הוספת איבר, אם גודל העץ המעודכן אי־זוגי לא נעשה דבר. אחרת, נבדוק את הערך במצביע: אם האיבר החדש גדול ממנו, נזיז את המצביע לחציון ל־predecessor של הצומת אליו הוא מפנה. באופן דומה, אם המספר קטן ממנו, נזיז את המצביע לחציון ל־successor של הצומת אליו הוא מפנה. במילים אחרות, אחרי שביצענו הסופה רגילה, נפעיל את הפסאודו־קוד הבא: 
+        
+        \sen\begin{algorithm}
+            \importDs
+            \sData{medianPointer}\sData{newNode}\sData{val}\sData{median}
+            \val $\gets$ $\newNode$.value\;
+            \If{$\val \bmod 2 = 0$}{
+                \uIf{\val $>$\medianPointer.value}{
+                    \medianPointer $\gets$ \medianPointer.predeccessor\;
+                }\Else{
+                    \medianPointer $\gets$ \medianPointer.successor\;
+                }
+            }
+        \end{algorithm}\she
+    \end{itemize}
+    
+    \subsection*{סעיף ב'}
+    ניצור מבנה נתונים חדש לחלוטין, שישמור שני עצים – עץ אחד יכיל את הכל עד $\frac{n}{2}$ (עד לכדי עיגול לערך שלם) ועץ שני יכיל הכל אחרי $\frac{n}{2}$. שני העצים הללו יהיו בנויים מ־Finger Trees שמתחזקים מינימום ומקסימום, כמתואר בסעיף הקודם. נתאר את תחזוקם: 
+    \begin{itemize}
+        \item Insert: באופן דומה לסעיף הקודם: 
+        \begin{itemize}
+            \item אם נוסיף לעץ הראשון עד $\frac{n}{2}$ (נוכל להכריע לאיזה עץ מוסיפים ע''פ בדיקת מינימום העץ השני) אז אם כמות האיברים זוגית נעביר את המקסימום להיות המינימום בעץ השני ונעשה רוטציות (תוספת של $O(1)$ כי יש הפניות להכל). 
+            \item אם נוסיף לעץ השני מ־$\frac{n}{2}$ ויש בו כמות סופית של איברים, אז נעביר את המינימום להיות המקסימום בעץ הראשון ונעשה רוטציות (סה''כ $O(1)$). 
+        \end{itemize}
+        בשני המקרים ההוספה חסומה ב־$\frac{n}{2}$ גודל העץ ולכן $O(\log \frac{n}{2})$ סיבוכיות לוגירתמית. 
+        \item Delete: זהה לסעיף הקודם, רק הפוך בשינויים. 
+        \item Search: נבצע חיפוש בעץ AVL רגיל, פרט לכך שנחפש בעץ המתאים (ע''י בדיקת המינימום בעץ השני, וההבנה האם האיבר שקיבלנו אמור להיות בעץ החדש או הישן). החיפוש יתבצע מהמינימום בעץ. ראינו בהרצאה שחיפוש בעץ AVL שמתחיל מהמינימום בעץ יארח $\log i$. אך, במקרה הזה, אם $i \ge \frac{n}{2}$ אז הנ''ל יהיה נכון בעבור $i' = i - \frac{n}{2}$ וסיבוכיות $\log i'$, כי זהו עץ נפרד. סה''כ מהגדרת מודולו, וכי החיפוש לא מוגדר בעבור $i > n$, נסיק $\log\cl{i \bmod \frac{n}{2}}$ כדרוש. 
+    \end{itemize}
+    
+    \npage
+    
+    \section{}
+    נתכנן מבנה נתונים המכיל מפתחות טבעיים ללא חזות, ותומך בפעולות Insert, Delete, Search בזמן $O(\logn)$ ובפעולה IncreaseAll(k) ב־$O(1)$, וכן בפעולה EvenLees(x) ב־$O(\logn)$ המחזירה את סכום המפתחות הזוגיים שערכם חסום ב־$x$. 
+    
+    נבנה מבנה נתונים שדה על בסיס עץ AVL. בכל צומת, נשמור שדה בשם addition. 
+    \begin{itemize}
+        \item \textbf{\en{Delete(x)}: }נבצע מחיקה רגילה ב־AVL, פרט לכך שאם $x' = x - \text{\en{offset}}$ זוגי, בדרך ל־$x'$ נעדכן את addition בכל אחד מהצמתים בהם נפנה שמאלה להיות גדול יותר ב־$-x'$. 
+        \item \textbf{\en{Insert(x)}: }נבצע הוספה רגילה ל־AVL, פרט לכך שאם $x' := x - \text{\en{offset}}$ זוגי בדרך ל־$x'$ נעדכן את addition בכל אחד מהצמתים בהם נפנה שמאלי להיות גדול יותר ב־$+x'$. 
+        \item \textbf{\en{IncreaseAll(k)}: }נשמור באיפוס המבנה משתנה בשם offset זכרון שמאופס עם ערך $0$. בקריאה ל־\en{\texttt{IncreaseAll($k$)}}\, נגדיל את המשתנה offeset ב־$k$. 
+        \item \textbf{\en{EvenLess(x)}: }נעשה חיפוש בעץ בינארי למשתנה $x - \text{\en{offset}}$, אך בתחילת הרצת הפונקציה נשמור משתנה בשם sum ונאפסו ל־$0$ בזכרון, ובכל צומת שנעבור דרכו לבן הימני שלו, נוסיף את ה־addition שלו לסכום sum. נחזיר את sum. 
+    \end{itemize}
+    
+    פסאודו קוד של חלק מהפונקציות להבהרה, כאשר בירוק השינויים של מהמימוש הרגיל: 
+    
+    \sen\begin{multicols}{2}
+        \subsection*{EvenLess}
+        
+        \begin{algorithm}[H]
+            \importDs
+            \sData{x}\sData{T}\sData{node}\sData{sum}\sData{offset}
+            \io{\x supremum, \T tree}{the sum of all the even elements up to \x in the tree \T}
+            \node $\gets$ \T.root\;
+            $\sum \gets 0$\;
+            \x $\gets$ $\x - \offset$\;
+            \While{\node.value $\neq$ \x}{
+                \uIf{\x < \node.value} {
+                    \node $\gets$ \node.left\;
+                }\Else{
+                    \color{codegreen}\x $\gets$ \x $+$ \node.additionc\color{black}\;
+                    \node $\gets$ \node.right\;
+                }
+            }
+            
+            \Return{\sum}
+        \end{algorithm}
+        \columnbreak
+        \subsection*{Insert}
+        
+        \begin{algorithm}[H]
+            \importDs\sData{T}\sData{x}\sData{node}\sData{prevNode}\sData{offset}
+            \Input{\T tree, \x insertion to the tree}
+            \node $\gets$ \T.root\;
+            \x $\gets$ $\x - \offset$\;
+            \While{\node $\neq$ \Null}{
+                \prevNode $\gets$ \node\;
+                \color{codegreen}\node.addition $\gets$ \node.addition $+$ \x \color{black}\;
+                \uIf{x < \node.value}{
+                    \node $\gets$ \node.left\;
+                }\Else{
+                    \node $\gets$ \node.right
+                }
+            }
+            Create a new node and assign it to \prevNode.right/left 
+        \end{algorithm}
+    \end{multicols}\she
+    \textit{ניתוח זמן ריצה: }מחיקה והוספה נשאר בזמן ריצה זהה, פרט לתחזוק פרמטרים בזמן ריצה קבוע לצומת שבכל מקרה אנו מבקרים בה, ולכן $\Theta(\logn)$. פעולת ה־IncreaseAll תיארך זמן קבוע של חישוב סכום של שני מספרים ושמירתם בזכרון. פעולת ה־EvenLess תיארך זמן של חיפוש בינארי ועוד $\logn$ פעולות אריתמטיות, כלומר $\Theta(\logn)$ גם כן, כדרוש. 
+    
+    \npage
+    \section{}
+    נתון עץ AVL בו מאוחסנים מפתחות טבעיים שונים זה מזה. נתון שבצומת $v$ שמור $\mathrm{size}(v)$, גודל תת־העץ שלו. 
+        
+    \subsection{סעיף א'}
+        נבחין שאם $k - \rk(k) > 1$ כאשר $\rk (k)$ מספר המפתחות הקטנים או השווים ל־$k$, משום שיש $k$ מספרים טבעיים לפני $k$, אז המספר הטבעי המינימלי לא נמצא בתת העץ הזה. נקרא לבדיקה זו \texttt{check1}. ניעזר בה כדי למצוא את הטבעי המינימלי בסיבוכיות לוגריתמית: 
+        \sen\begin{algorithm}
+            \importDs
+            \sData{T}\sFunc{Rank}\SetKwFunction{cck}{check1}\sData{N}\sFunc{FindMinNatural}\sData{T}\sData{currentNode}
+            \Fn{\cck{\N node}}{
+                \If{\N.left $=$ \Null}{
+                    \Return{\N.value $ > 1$} \tcc*{Empty case}
+                }
+                \Return{\N.value $-$ \N.left.size $>$ $1$}\;
+            }
+            \Fn{\FindMinNatural{\T tree}}{
+                \currentNode $\gets$ \T.root\;
+                \tcc*[f]{While not at the maximum}\\[-\baselineskip]
+                \While{\currentNode.right $\neq$ \Null}{
+                    \If{\cck{\currentNode}}{
+                        \If{\currentNode.left $=$ \Null}{
+                            \Return{\currentNode.value $-$ $1$} \tcc*{Natural since check1 has passed}
+                        }
+                        \currentNode $\gets$ \currentNode\textit{.left}\;
+                    }
+                }
+                \Return{\currentNode.value $+$ $1$}
+            }
+        \end{algorithm}\she
+    
+        משום שבמהלך ריצת האלגוריתם, אנחנו עוברים כלפי מטה בעץ בלבד, זמן הריצה שלו יהיה חסום מלמעלה בגובה העץ הוא עץ AVL, כלומר $O(\logn)$. 
+    
+    \subsection{סעיף ב'}
+    עתה נממש את\ttt{nextMissingAfter(i)}. לשם כך, נשאר עם קוד זהה לזה של הסעיף הקודם, פרט לשינוי ב־\texttt{check1}: 
+    \sen\begin{algorithm}
+        \importDs
+        \sData{T}\sFunc{Rank}\SetKwFunction{cck}{check1}\sData{N}\sFunc{FindMinNatural}\sData{T}\sData{currentNode}\sData{i}
+        \Fn{\cck{\N node, \i minimum}}{
+            \uIf{\N.value $\le$ \i}{
+                \Return{\False}
+            }
+            \ElseIf{\N.left $=$ \Null}{
+                \Return{\N.value $ > 1$}
+            }
+            \Return{\N.value $-$ \N.left.size $>$ $1$}\;
+        }
+    \end{algorithm}\she
+    
+    אופן המעבר על העץ זהה לסעיף הקודם, ולכן גם כאן הסיבוכיות זהה. 
+    
+    \npage
+    
+    \section{}
+    נוכיח מספר טענות בעבור עצי AVL: 
+    \begin{enumerate}[(A)]
+        \item יהי עץ AVL מגובה $h$. נוכיח שכל העלים בעומק של לפחות $\frac{h}{2}$. \begin{proof}
+        נוכיח באינדוקציה על $h$ גובה העץ. 
+        בסיס: מקרה בו שורש ובן יחיד או שורש ושני בנים. מתקיים בשניהם. \\
+        צעד: נוכיח באינדוקציה מלאה נכונות לכל $k \le h$, נוכיח ל־$h + 1$. יהי עץ $T$ מגובה $h + 1$, נתבונן בשורש – בה''כ תת־העץ הימני מגובה $h$, אזי גובה השני חסום מלמטה ב־$h - 1$ כי $\sof{\BF} \le 1$. נסמנם $T_1$ ו־$T_2$ בהתאמה, ונסמן ב־$\mathrm{minL}(P)$ את עומק העלה הנמוך ביותר בעץ $P$ כלשהו. אזי: 
+        \[ \mathrm{minL}(T_2) \ge \frac{h  - 1}{2} \land \mathrm{minL}(T_1) \ge \frac{h}{2} \implies \mathrm{minL}(T) \ge \min\{\mathrm{minL}(T_1), \ \mathrm{minL}(T_2)\} + \underbrace{1}_{\mathclap{\text{כי הם במרחק 1 מהשורש}}} = \frac{h - 1}{2} + 1 = \frac{h + 1}{2} \]
+        סה''כ העלה במרחק מינימלי בעומק $\frac{h + 1}{2}$, ובפרט כל העלים בעץ במרחק של לכל בעומק של לפחות $\frac{h + 1}{2}$. 
+        \end{proof}
+        \item נוכיח כי לכל סדרה בת $n$ הכנסות לעץ AVL, גם הטובה ביותר וגם הגרועה ביותר, עלותהְ $\Theta(n \log n)$ \begin{proof}
+            \begin{itemize}נוכיח חסם עליון ותחתון
+                \item \textbf{חסם תחתון: }בעבור העץ הסופי, נתבונן בעלי העץ, שמשום שהוא מאוזן יהיו $\Theta(\frac{n}{2})$ מאלו. מאופן ההכנסה לעץ, עבור כל אחד מהם יש צורך להשקיע $\Theta(\logn)$ פעולות בהבאתם לשם (ייתכן שבאמצעות סיבובים, וייתכן שישירות באמצעות הכנסה), זאת כי כל צומת יגיע למיקום שלו באמצעות חיפוש מהשורש או מסיבובים (שישנו עומק ב־1 על כל סיבוב). וסה''כ, נשקיע $\Omega(\frac{n}{2}) \cdot \Omega(\logn) = \Omega(n \log n)$ פעולות. 
+                
+                \item \textbf{חסם עליון: }ראינו שלוקח זמן קבוע לאזן עץ, וכן ראינו כי החיפוש בעץ מגודל $i$ מבוצע ב־$\log i$ זמן. כמו כן בהכנסה ה־$i$ גודל העץ יהיה $i$. אזי זמן הריצה חסום מלמעלה ע''י: 
+                \[ \cost(op_1 \dots op_n) = O\cl{\sum_{i = 0}^{n - 1} \log i} = O(n \logn) \]
+            \end{itemize}
+        \end{proof}
+        
+        \item יהי עץ AVL ויהי $m \in \N$ ב־AVL. בתרגול 4 הראינו שגובה העץ המתואר הוא $h = O(\log m)$, כחלק מניתוח אותו העץ. לתרגיל זה נוספה תזכורת כי עץ בעל $N$ בגובה $h$, מקיים $h \le \log_{\Phi}N$. הבחנו כי במקרה הזה $h = O(\log m)$, וסה''כ: 
+        \[ \log N \le h \implies N \le 2^{h} = 2^{O(\log m)} \]
+        עבור קבועים $c, n_0$ כלשהם, מתקיים: 
+        \[ \forall n \ge n_0 \colon N \le 2^{c \log m} = 2^{c \log 2\log m} = \underbrace{c}_{\mathclap{constant}} m = \bm{O(m)} \]
+        
+    \end{enumerate}
+    
+    \npage
+    \section{}
+    נציע מימוש למבנה ששומר ישרים מצורת $y = ax + b$ ומכניס אותם למבנה אמ''מ לא קיים ישר במבנה החותך אותו ב־$[0, 1]$. 
+    
+    לצורך כך, נשמור כל צומת בתור $(b, a + b)$, במילון. אפשר להסתכל על ייצוג זה כעל ערך ה־$y$ של הישר ב־$x = 0$ וב־$x = 1$ (שכן ערך ה־$x$ כבר ידוע), מב''תליות הייצוג הזה קיים ויחיד לכל ישר. 
+    המילון יהיה מבוסס AVL, המסודר לפי ערכי ה־$b$. נתאר פעולות: 
+    \begin{itemize}
+        \item \texttt{\sen\textbf{Search(a, b)}\she}, כלומר בדיקה האם $y = ax + b$ נמצא במבנה – נחפש ב־$O(\logn)$ את \ttt{Dict(b)}, ואם נמצא שם $a + b$ נחזיר אמת, אחרת נחזיר שקר. הפונקציה תקינה, כי לא ייתכנו שני ישרים שונים בעלי אותו ערך $b$ – כי אז הם נפגשים ב־$0 \in [0, 1]$. 
+        \item \texttt{\sen\textbf{Insert(a, b)}\she}, כלומר הוספת $y = ax + b$ – גם כאן נחפש את $b$ במבנה. אם קיים $b$ כזה לא נעשה דבר שכן יש כבר ישר באותו המבנה. אחרת, נוכל לעצור את החיפוש כאשר נגיע ל־$b_1 > b$, ואז גם ה־predeccessor שלו $b_2$ מקיים $b_1 > b > b_2$. ערכם נסמן בהתאמה $b_1 + a_1, b_2 + a_2$. נבחין כי בין $y = a_1x + b_1$ ו־$y = a_1x + b_2$ אין עוד שום ישרים, משום שאחרת הישרים שבמבנה מתנגשים וזו סתירה לבניית המבנה (פורמלית, באינדוקציה, כאשר הבסיס נכון כי המבנה ריק). לכן, רק נצטרך לוודא ש־$a_2 + b_2 > a + b > a_1 + b_1$ (הערה: מקרי קצה כמו $b_2$ מקסימום או $b_1$ מינימום יטופלו ע''י השמת ערכים כגון $-\inf, +\inf$ בהתאם). ראה פירוט בפסאדו קוד. 
+        
+        ננסח בפסאדו־קוד: 
+        \sen\begin{algorithm}
+            \importDs\SetKwData{A}{a}\SetKwData{B}{b}\sData{T}\sData{NextNode}\sData{PrevNode}\sData{func}\sFunc{SearchClosest}
+            \Input{\A, \B real numbers}
+            \NextNode $\gets$ \SearchClosest{\T, \B} \tcc*{If nothing found, \SearchClosest{} returns the node that the loop was in it when it stopped. }
+            \func\!\!$(x)$ $\gets$ $\A x + \B$\;
+            \PrevNode $\gets$ \NextNode.predeccesor\;
+            \If{$(\PrevNode(1) < \func(1) < \NextNode(1)) \land (\func(0) \neq \NextNode(0))$}{
+                \Insert(T, \func)\;
+            }
+        \end{algorithm}\she
+        (הכוונה ב־\en{\texttt{Node}$(x)$}, היא הצבת $x$ בפונקציה המיוצגת ע''י הצומת)
+        
+        החיפוש להלן בעץ יקח $O(\logn)$ ולכן אנו עומדים בדרישות הסיבוכיות. 
+    \end{itemize}
+    
+    \npage
+    
+    \section{}
+    \begin{enumerate}[(A)]
+        \item בסדרה יהיו $n$ הכנסות, וכך או אחרת הוכחנו בהרצאה שהכנסה לכל מקום תקין בעץ AVL (שתלויה במיקום ההכנסה, ולא באיפה התחיל החיפוש), תיארך זמן קבוע. הזמן הזה לעולם לא $0$ שכן תמיד ישנה עלות בלבדוק את ה־$\BF$ והאם יש צורך לתקן. סה''כ נבחין שעלויות התיקון יהיו ב־צ$\Theta(n)$, כי יהיו $n$ הכנסות ועל כן $\Theta(n)$ תיקונים בזמן קבוע. 
+        
+        דרך אחרת לנסח את זה, היא שראינו שעלות תיקון amortized היא $O(1)$. מהגדרת חסם amortized, עבור רצף של $n$ פעולות, עלות התיקון תהיה $n \cdot O(1) = O(n)$ כדרוש. 
+        
+        \item נניח שיש $d_i$ איברים שגדולים מ־$i$. אזי תת־העץ המינימלי שכולל את המקסימום ואת $i$, יכיל לכל היותר $2d_i + 1$ צמתים (שכן כל ה־$d_i$־ים ימצאו בו, ועוד $\ge d_i + 1$ צמתים הקטנים ממנו, כי $\sof{\BF} \le 1$). בפרט, ההגעה לתת־העץ הזה והחיפוש בו יארכו $2\log(2d_i + 1)$ ומתקיים: 
+        \[ \ans = 2\log(2d_i + 1) = O(\log(d_i + 1)) = O(\log d_i + \log 1) = \bm{O(\log d_i)} \]
+        סה''כ סיבוכיות ההכנסה של $i$ כלשהו, היא $\log d_i$. על כן, הסיבוכיות הכוללת היא: 
+        \[ \ans = O\cl{\sum_{i = 1}^{n} \log d_i} =\, O\cl{\log \prod_{i =1}^{n}d_i} = \bm{O\cl{\log \Big (\prod_{i = 1}^{n} (d_i+2) \Big)}} \]
+        \item מא''ש הממוצעים: 
+        \[ \begin{WithArrows}
+            \frac{I}{n} = \frac{\sum_{i = 1}^{n} d_i}{n} = \mathrm{AM}(d_i) &\ge  \mathrm{GM}(d_i) = \sqrt[\displaystyle n]{\prod_{i = 1}^{n}d_i} \Arrow[down]{$()^{n}$} \\
+            \cl{\frac{I}{n}}^{n} &\ge \prod_{i = 1}^{n}d_i
+        \end{WithArrows} \]
+        נציב ונקבל: 
+        \[ \ans = \underbrace{O(n)}_{\text{תיקונים}} + \underbrace{O\cl{\log \prod_{i = 1}^{n}d_i}}_{\quad\text{הכנסות}\quad\!} = O\cl{n + \log \Big(\frac{I}{n}\Big)^n} = O\cl{n + n\log \Big(\frac{I}{n}\Big)} \overset{(1)}{=} \bm{O\cl{n \log \Big(\frac{I}{n} + 2\Big)}} \]
+        השוויון $(1)$ כי $n$ זניח אסימפטוטית ביחס ל־$n \log \cl{\frac{I}{n} + 2}$ כי $\frac{I}{n} + 2 \ge 1$. 
+    \end{enumerate}
+	
+	\ndoc
+\end{document}

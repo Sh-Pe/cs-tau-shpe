@@ -1,0 +1,757 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill\she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={AI Something},
+	pdfpagemode=FullScreen,
+}
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+%\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\he[1] {\she#1\sen}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
+			{\textbf{\textit{שחר פרץ, 2025}} \\
+				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
+	\end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\newcommand\One   {\mathit{1}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\mathrm{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+\newcommand\ceil  [1] {\lc #1 \rc}
+\newcommand\floor [1] {\lf #1 \rf}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\sgn}    {sgn} 
+\DeclareMathOperator{\row}    {Row} 
+\DeclareMathOperator{\adj}    {adj} 
+\DeclareMathOperator{\rk}     {rank} 
+\DeclareMathOperator{\col}    {Col} 
+\DeclareMathOperator{\tr}     {tr}
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}     {char}
+\DeclareMathOperator{\diag}    {diag}
+\DeclareMathOperator{\Hom}     {Hom}
+\DeclareMathOperator{\Sym}     {Sym}
+\DeclareMathOperator{\ASym}    {ASym}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\gmat      {\mat{m}{n}(\F)}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\renewcommand\phi     {\varphi}
+
+\newtheorem{Theorem}{משפט}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{Lemma}{למה}
+\newtheorem{Remark}{הערה}
+\newtheorem{Notion}{סימון}
+
+\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
+\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
+\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
+\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
+\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
+
+% DS
+\newcommand\limsi     {\limsup_{n \to \inf}}
+\newcommand\limfi     {\liminf_{n \to \inf}}
+
+\DeclareMathOperator\amort   {amort}
+\DeclareMathOperator\worst   {worst}
+\DeclareMathOperator\type    {type}
+\DeclareMathOperator\cost    {cost}
+
+\newcommand\dsList{
+	\sFunc{List}
+	\sFunc{Retrieve}
+	\SetKwFunction{RetrieveFirst}{Retrieve-First}
+	\SetKwFunction{RetrieveLast}{Retrieve-Last}
+	\sFunc{Delete}
+	\SetKwFunction{DeleteFirst}{Delete-First}
+	\SetKwFunction{DeleteLast}{Delete-Last}
+	\sFunc{Insert}
+	\SetKwFunction{InsertFirst}{Insert-First}
+	\SetKwFunction{InsertLast}{Insert-Last}
+	\sFunc{Shift}
+	\sFunc{Length}
+	\sFunc{Concat}
+	\sFunc{Plant}
+	\sFunc{Split}
+}
+\newcommand\dsQueue{
+	\sFunc{Queue}
+	\sFunc{Enqueue}
+	\sFunc{Head}
+	\sFunc{Dequeue}
+}
+\newcommand\dsStack{
+	\sFunc{Stack}
+	\sFunc{Push}
+	\sFunc{Top}
+	\sFunc{Pop}
+}
+\newcommand\dsVector{
+	\sFunc{Vector}
+	\sFunc{Get}
+	\sFunc{Set}
+}
+\newcommand\dsGraph{
+	\sFunc{Graph}
+	\sFunc{Edge}
+	\SetKwFunction{AddEdge}{Add-Edge}
+	\SetKwFunction{RemoveEdge}{Remove-Edge}
+	\sFunc{InDeg} \sFunc{OutDeg}
+}
+\newcommand\importDs{
+	\dsList
+	\dsQueue
+	\dsStack
+	\dsVector
+	\dsGraph
+	\SetKwData{error}{\color{codered}error}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwRepeat{Do}{do}{while}
+	\SetKwData{Null}{\color{codeblue}null}
+}
+
+
+% Algorithems
+\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
+\newcommand\sData [1] {\SetKwData{#1}{#1}}
+\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
+\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
+\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{אלגברה לינארית 1א $\sim$ תרגיל בית 4}}
+\begin{document}
+	\maketitle
+	\section{}
+	נוכיח או נפריך ש־$V$ בצירוף האופרטורים הנתונים הוא מ"ו מעל $\R$. 
+	\begin{enumerate}[(A)]
+		\item נסמן $V = \Q$, נוכיח $V$ אינו מ"ו מעל $\R$. \textbf{נפריך} סגירות לכפל בסקלר. נתבונן ב־$1 =: v \in V$, וב־$\sqrt{2} = \lg \in \R$, אז $\lg v = 1 \sqrt{2} \notin \Q = V$ ולכן $\lg v \notin V$ וסתירה לכפל בסקלר. 
+		\item \textbf{נוכיח} ש־$V = \C$ הוא מ"ו מעל $\R$. כדי להראות זאת, נוכיח למה יותר חזקה: כל שדה $\F$ ש־$\R$ תת־שדה שלו, הוא מ"ו מעל $\R$, כאשר הפעולות מושרות מהשדה $\F$. 
+		\begin{proof}
+			יהיה שדה $\F$ כך ש־$\R \subseteq \F$. אז לכל $\lg \in \R, \ v, w \in \F$ מתקיים $\lg \cdot v, v + w \in \F$ מסגירות $+ , \cdot$ פעולות השדה $\F$. קיים ל־$\F$ איבר $0$, ולכן $\forall v \exists w \co v - w = 0$ עבור $0$ כלשהו (בפרט נבחין שהוא $0_\R$). דיסטרבוטיביות, קומטטיביות, אסוציאטיביות, נטרליות כפל ביחידת השדה נתונה מהיות הפעולות מושרות מ־$\F$. קיום איבר נגדי נובע מהיות $\F$ שדה גם כן. 
+		\end{proof}
+		בעבור $\C$ מעל $\R$, נבחין כי הפעולות של $\R$ הן הפעולות המושרות מ־$\C$, ולכן ע"פ המשפט שהוכח $\C$ הוא מ"ו מעל $\R$. 
+		\item נראה שמ"ו הפונקציות החסמות מ־$\R \to \R$ \textbf{הוא מ"ו} מעל $\R$ (נסמנו $\F$) \begin{proof}
+			נראה סגירות של פעולות החיבור והכפל בסקלר. יהיו $f, g \in \F$ ו־$\ag, \bg \in \R$. ניכר כי הפעולות האלו סגורות ב־$\R \to \R$, אך יש להראות שהפונקציה נותרת חסומה. מהיות $f, g \in \F$ ידוע ש־$f, g$ נחסמות החל מ־$n_f, n_g$ ב־$C_f, C_g$ בהתאמה (כלומר $\forall n \ge n_f \co f(n) \le C_f$ באופן דומה על $g$). אזי נבחין כי: 
+			\[ \begin{cases}
+				\forall n \ge n_f \co \ag f(n) \le \ag C_f
+				\\ \forall n \ge n_g \co \bg g(n) \le \bg C_g
+			\end{cases}\dequad\!\! \implies \ag f + \bg g \le \ag C_f + \bg C_g \]
+			סה"כ הראינו ש־$\ag f + \bg g \in \F$ כי היא פונקציה מ־$\R$ ל־$\R$ שחסומה בקבוע $\ag C_f + \bg C_g$. 
+			
+			לכן הפונקציות החסומות במ"ו הפונקציות הממשיות הוא תמ"ו של $\R \to \R$ ובפרט מ"ו. 
+		\end{proof}
+		\item נסמן ב־$\F$ את קבוצת הפונקציות שאם מציבים בהם $17$, ונראה \textbf{שהיא מ"ו} מעל $\R$. \begin{proof}
+			באופן דומה לסעיף הקודם, גם כאן יש להוכיח סגירות בלבד. יהיו $\ag, \bg \in \R$, ו־$f, g \in \F$, נראה $\ag f + \bg g \in \F$. 
+			\[ (\ag f + \bg g)(17) \overset{\mathrm{by \, definition}}{=} (\ag f)(17) + (\bg g)(17) \overset{\mathrm{by \, definition}}{=} \ag f(17) + \bg g(17) = \ag \cdot 0 + \bg \cdot 0 = 0 + 0 = 0 \]
+			כלומר $\ag f + \bg g$ אכן פונקציה עם שורש ב־$17$, ולכן היא ב־$\F$ כדרוש. מכאן סגירות. 
+		\end{proof}
+		\item נראה ש־$\F$, קבוצת הפונקציות מ־$\R$ ל־$\R$ עבורן $f(17) = 1$, \textbf{אינה מ"ו}. \begin{proof}
+			נתבונן בפונקציות הבאות: 
+			\[ f(x) = 17, \ g(x) = \begin{cases}
+				1 & x = 17 \\
+				0 & \other
+			\end{cases} \quad f, g \in \R^{\R} \]
+			נניח בשלילה $\F$ אכן מ"ו, אזי מסגירות: 
+			\[ \F \ni f + g, \ (f + g)(17) = f(17) + g(17) = 1 + 1 = 2 \neq 1 \]
+			בסתירה להגדרת $\F$. 
+		\end{proof}
+		\item נראה ש־$\F$, קבוצת הפונקציות בעבורה $\forall n \in \{1, 2, 3\}\co f^{(n)}(17) = 0$, \textbf{היא מ"ו} מעל $\R$. \begin{proof}
+			בדומה לסעיפים הקודמים, גם כאן יש להוכיח תמ"ו בלבד שכן $\R \to \R$ מ"ו. 
+			\begin{itemize}
+				\item \textit{סגירות לחיבור: }יהיו $f, g \in \F$, אז $f^{(1)}(17) = f^{(2)}(17) = f^{(3)}(17) = g^{(1)}(17) = f^{(2)}(17) = f^{(3)}(17) = 0$. מאדטיביות נגזרת: 
+				\begin{alignat*}{9}
+					(f + g)'(17) = (f + g)^{(1)}(17) &= f^{(1)}(17) + g^{(1)}(17) &&= 0 + 0 = 0 \\
+					(f + g)''(17) = (f + g)^{(2)}(17) &= f^{(2)}(17) + g^{(2)}(17) &&= 0 + 0 = 0 \\
+					(f + g)'''(17) = (f + g)^{(3)}(17) &= f^{(3)}(17) + g^{(3)}(17) &&= 0 + 0 = 0
+				\end{alignat*}
+				וסה"כ בהתאם לעקרון ההפרדה $f + g \in \F$. 
+				\item \textit{סגירות לכפל: }יהיו $f, g \in \F$, אז $f^{(1)}(17) = f^{(2)}(17) = f^{(3)}(17) = 0$. לכן מלינארית נגזרת: 
+				\begin{alignat*}{9}
+					(\lg f)'(17) &= (\lg f)^{(1)}(17) &= \lg f^{(1)}(17) &= \lg \cdot 0 = 0 \\
+					(\lg f)''(17) &= (\lg f)^{(2)}(17) &= \lg f^{(2)}(17) &= \lg \cdot 0 = 0 \\
+					(\lg f)'''(17) &= (\lg f)^{(3)}(17) &= \lg f^{(3)}(17) &= \lg \cdot 0 = 0 
+				\end{alignat*}
+				כלומר $\lg f \in \F$ כדרוש. 
+				\item \textit{קיום איבר 0: }מסגירות לכפל. 
+			\end{itemize}
+			סה"כ $\F$ תמ"ו של $\R \to \R$ ולכן הוא מ"ו כדרוש. 
+		\end{proof}
+		\item נתבונן בקבוצה הבאה עם חיבור וכפל בסקלר ב־$\R$ ונראה \textbf{שהיא תמ"ו} ובפרט מ"ו של $\R^3$. 
+		\[ \ac := \ccb{\pms{a \\ b \\ a - b} \mid a, b \in \R} \]
+		\begin{proof}
+			נוכיח שזהו תמ"ו של $\R^3$: 
+			\begin{itemize}
+				\item \textit{סגירות חיבור. }יהיו $v, u \in \ac$. אזי קיימים $a_v, b_v, a_u, b_u \in \R$ כך ש־
+				\[ v = \pms{a_v \\ b_v \\ a_v - b_v}, \ u = \pms{a_u \\ b_u \\ a_u - b_u} \implies a + b = \pms{(a_v + a_u) \\ (b_v + b_u) \\ (a_v + a_u) - (b_v + b_u)} = \pms{a \\ b \\ a - b} \]
+				בעבור הסימון $a = a_v + a_u, \ b = b_v + b_u$. סה"כ הראינו קיום $a, b$ מתאימים מעקרון ההחלפה כך ש־$a + b \in \ac$ כדרוש. 
+				\item \textit{סגירות לכפל בסקלר: }יהי $v \in \ac$, אזי קיימים $a, b \in \R$ כך ש־$v = (a, b, a - b)$. יהי $\lg \in \R$, נראה $\lg v \in \ac$. 
+				\[ \lg v = \lg \pms{a \\ b \\ a - b}  = \pms{\lg a - \lg b \\ \lg b \\ \lg a - \lg b} = \pms{\tl a \\ \tl b \\ \tl a - \tl b} \]
+				סה"כ בעבור $\tl a := \lg a, \ \tl b = \lg b$ מתקיים שמצאנו $\tl a, \tl b$ מתאימים כך שמעקרון ההפרדה $\lg v \in \ac$, כדרוש. 
+				\item \textit{קיום $0$:} מסגירות כפל ובפרט בעבור כפל ב־$\lg = 0$. 
+			\end{itemize}
+			סה"כ $\ac$ תמ"ו של $\R^3$ ובפרט מ"ו. 
+		\end{proof}
+		\item \textbf{נסתור} את היות הקבוצה הבאה מ"ו מעל $\R$ עם חיבור וכפל בסקלר של וקטורים: 
+		\[ \ac := \ccb{\pms{a \\ a^2 \\ a} \mid a \in \R} \]
+		\begin{proof}[הפרכה. ]
+			נסתור סגירות לכפל בסקלר. ניכר כי בעבור $a = 1$ מתקיים ש־$(1, 1, 1) \in \ac$. אזי מסגירות כפל בסקלר נקבל $2(1, 1, 1) \in \ac$, כלומר קיים $a \in \R$ כך ש־
+			\[ \ac \ni 2 \cdot \pms{1 \\ 1 \\ 1} = \pms{2 \\ 2 \\ 2} = \pms{a \\ a^2 \\ a} \]
+			וסה"כ קיבלנו $2 = a = a^2$. אם $a = 0$ אז סתירה כי $a \neq 2$, אחרת נחלק ב־$a$ ונקבל $a = 1$ ואז $1 = 2$ וזו סתירה גם. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $n$ טבעי. נוכיח ש־$V$, הוא קבוצת כל הת"ק של $[n]$, הוא מ"ו מעל $\Z_2$ עם הפעולות $S_1 + S_2 := S_1 \trio S_2$ ו־$1 \cdot S = S, \ 0 \cdot S = \varnothing$. 
+	\begin{proof}נוכיח את הדרוש בעבור מ"ו: 
+		\begin{enumerate}
+			\item \textbf{סגירות לחיבור: }\hfil $\forall S_1, S_2 \in \ps([n]) \co S_1 + S_2 = S_1 \trio S_2 \subseteq S_1 \cup S_2 \subseteq [n] \implies S_1 + S_2 \in \ps([n]) \quad \top$
+			\item \textbf{סגירות לכפל: }\hfil $\forall S_1 \in \ps([n]) \co \begin{cases}
+				S_1 \cdot 0 = \varnothing \subseteq [n] \\
+				S_1 \cdot 1 = S \subseteq [n]
+			\end{cases} \dequad \implies \forall \lg \in \Z_2 \co \lg S_1 \in [n] \implies \lg S_1 \in \ps([n]) \quad \top$
+			\item \textbf{קומטטיביות חיבור: }\hfil $\forall S_1, S_2 \in \ps([n]) \co S_1 + S_2 = S_1 \trio S_2 = (S_1 \cup S_2) \setminus (S_1 \cap S_2) = (S_2 \cup S_1) \setminus (S_2 \cap S_1) = S_2 \trio S_1 \quad \top$
+			\item \textbf{אסוציאטיביות חיבור: }אסוציאטיביות $\trio$ הוכחה בבדידה 1. 
+			\item \textbf{קיום ניטרלי לחיבור: }\hfil $\forall S_1 \in \ps([n]) \co S_1 + \varnothing = S_1 \trio \varnothing = (S_1 \cup \varnothing) \setminus (S_1 \cap \varnothing) = S_1 \setminus \varnothing = S_1 \quad \top$
+			\item \textbf{קיום נגדי לחיבור: }ראינו ש־$\varnothing$ ניטרלי לחיבור. נראה שלכל $S_1 \in \ps([n])$ קיים $-S_1$ כך ש־$S_1 + (- S_1) = \varnothing$: 
+			\[ \forall S_1 \in \ps([n])\so S_1 + \!\!\!\underbrace{S_1}_{:= -S_1}\!\!\!\! = S_1 \trio S_1 = (S_1 \cup S_1) \setminus (S_1 \cap S_1) = S_1 \setminus S_1 = \varnothing \quad \top \]
+			\item \textbf{דיסטרבוטיביות מהסוג הראשון: }
+			\[ \forall S_1, S_1 \in \ps([n]), \ \lg \in \Z_2 \co \begin{cases}
+				\lg = 0\co & \lg(S_1 + S_2) = \varnothing = \varnothing \trio \varnothing = \lg S_1 + \lg S_2 \\
+				\lg = 1\co & \lg(S_1 + S_2) = S_1 + S_2 = \lg S_1 + \lg S_2
+			\end{cases} \]
+			\item \textbf{דיסטרבוטיביות מהסוג השני: }יהיו $\lg, \mu \in \Z_2$ סקלרים ו־$S \in \ps([n])$ וקטור, אז אם $\lg + \mu = 1$ אז אחד מהם $1$ והשני $0$, בה"כ $\lg = 1 \land \mu = 0$. נסיק 
+			$(\lg + \mu)S = 1 \cdot S = S = 1 \cdot S \trio \varnothing = \lg \cdot S + \mu \cdot S$
+			כדרוש. אחרת $\lg + \mu = 0$, ולכן שניהם $0$ או שניהם $1$. אם שניהם $0$: 
+			\[ (\lg + \mu)S = 0 \cdot S = \varnothing = \varnothing + \varnothing = \lg S + \mu S \]
+			אחרת שניהם $1$: 
+			\[ (\lg + \mu)S = 0 \cdot S = \varnothing = S - S = S \trio S = S + S = \lg S + \mu S \]
+			\item \textbf{אסוציאטיביות כפל: }יהיו $\mu, \lg \in \Z_2$ סקלרים ו־$S \in \ps([n])$ וקטור. אם אחד מהם הוא $0$ בה"כ $\lg = 0$, אז $\lg (\mu S) = \varnothing = \mu (\lg S)$. אחרת שניהם $1$, ואז $\lg (\mu S) = \mu S = S = \lg S = \mu (\lg S)$ כדרוש. 
+			\item \textbf{ניטרליות כפל ביחידה: }נתון ישירות ש־$\forall S \in \ps([n])\co 1 \cdot S = S$. 
+		\end{enumerate}
+		סה"כ הוכחנו את כל אקסיומות המ"ו כדרוש. 
+	\end{proof}
+	\section{}
+	יהי $V$ מ"ו מעל $\F$ ו־$U \subseteq V$ ת"ק לא ריקה כך ש־$U$ סגורה לחיבור. 
+	\begin{enumerate}[(A)]
+		\item נראה שעבור $\F = \Z_p$ מתקיים ש־$U$ תמ"ו של $V$. \begin{proof}
+			נראה סגירות לחיבור. יהי $n \in \F_p$ (נציג אז $0 \le n < p$). יהי $v \in U$, ונראה $nv \in U$. 
+			
+			ידוע קיום איבר יחידה ב־$\Z_p$ השדה (שדה כי נתון $p$ ראשוני). אזי $\underbrace{1 + 1 + \cdots + 1}_{n\, \mathrm{times}} = n$ בתוך $\Z_p$ (הביטוי "$n$ פעמים" מוגדר רק כי עובדים בתוך $\Z_p$ שדה סופי כלומר $n \in \N$). מדיסטריבטיביות: 
+			\[ nv = \underbrace{(1 + 1 + \cdots + 1)}_{n\, \mathrm{times}}v = \underbrace{1v + \cdots + 1v}_{n\, \mathrm{times}} \overset{(1)}{=} v + \cdots + v \in \F \]
+				כאשר הטענה ש־$v + \cdots + v \in \F$ נובעת מסגירות לחיבור שנתונה, והשוויון $(1)$ נכון כי $1 \cdot v = v$ מאקסיומות המ"ו $V$ ש־$U$ מוכל בו ומשרה פעולות ממנו. 
+				
+				הראינו סגירות לכפל. נותר להראות קיום איבר $0$, שנובע מהזהות $v \cdot 0_{\Z_p} = 0_U$ שנכונה ב־$U$, ביחד עם הסגירות לכפל. 
+				
+				סה"כ ישנה סגירות לחיבור ולכפל וקיום איבר $0$, ולכן $U$ תמ"ו כדרוש. 
+		\end{proof}
+		\item נראה שהטענה לעיל לא נכונה לכל $\F$ שדה. \begin{proof}[הפרכה.]
+			נתבונן ב־$\F = \R$ וב־$V = \R$, בסעיף 1(ב) הראינו למה לפיה ש־$U$ מ"ו מעל $\F$ שכן $\F = V \subseteq \F$. נבחין כי $V = \Z$ מקיים $V \subseteq U$, וכן הוא סגור לחיבור, אך נבחין שאיננו מ"ו שכן לכל $n \in U$ מתקיים ש־$\frac{1}{2n} \in \F$ ולכן סגירות הכפל בסקלר גורר $\frac{n}{2n} \in U = \Z$ אך $0.5 \notin \Z$ וזו סתירה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\npage
+	
+	\section{}
+	נגדיר: 
+	\[ \Sym_n(\F) = \{A \in M_n(\F) \mid \forall i, j \co A_{ij} = A_{ji}\}, \ \ASym_n(\F) = \{A \in M_n(\F) \mid \forall i, j \co A_{ij} = -A_{ji}\} \]
+	נראה ש־$\ASym_n(\F) + \Sym(\F) = M_n(\F)$ (סכום ישר) נסמן $\Sym := \Sym_n(\F)$ ו־$\ASym := \ASym_n(\F)$. 
+	
+	\begin{enumerate}[(A)]
+		\item נבחין ש־$\Sym_n(\F), \ASym_n(\F) \subseteq M_n(\F)$ מעקרון ההפרדה. עתה נראה בשניהם סגירות לחיבור ולכפל: 
+		\begin{itemize}
+			\item \textbf{סגירות לכפל: }
+			\begin{itemize}
+				\item עבור $\Sym$, יהיו $\lg \in \F, \ M \in \Sym$, ונבחין שלכל $i, j \in [n]$ עדיין $\lg M$ מקיים $(\lg M)_{ij} = \lg (M)_{\ij} = \lg (M)_{ji} = (\lg M)_{ji}$. 
+				\item עבור $\ASym$, לכל $\lg \in \F , \ M \in \ASym$ עדיין מתקיים $\forall i, j \in [n]\co (\lg M)_{ij} = \lg (M)_{ij} = -\lg (M)_{ji} = -(\lg M)_{ji}$. 
+			\end{itemize}
+			\item \textbf{סגירות לחיבור: }
+			\begin{itemize}
+				\item עבור $\Sym$, יהיו $M, P \in \Sym$ ואכן $(M + P)_{ij} = (M)_{ij} + (P)_{ij} = (M)_{ji} + (P)_{ji} = (M + P)_{ji}$. 
+				\item עבור $\ASym$, יהיו $M, P \in \ASym$ ואכן $(M + P)_{ij} = (M)_{ij} + (P)_{ij} = -(M)_{ji} - (P)_{ji} = -(M + P)_{ji}$. 
+			\end{itemize}
+			\item \textbf{קיום אפס: }
+			\begin{itemize}
+				\item עבור $\Sym$ נבחין ש־
+				$(0_M)_{ij} = 0_\F = (0_M)_{ji}$
+				\item עבור $\ASym$ נבחין ש־: 
+				$(0_M)_{ij} = 0_\F = -0_\F = -(0_M)_{ji}$
+			\end{itemize}
+		\end{itemize}
+		סה"כ הראינו ש־$\Sym, \ \ASym$ תמ"וים. נראה ש־$\Sym \cap \ASym = \{0_M\}$. יהי $A \in \Sym \cap \ASym$. אזי: 
+		\[ -(A)_{ij} \!\overset{\Sym}{=}\! -(A)_{ji} \!\overset{\ASym}{=}\! (A)_{ij} \]
+		אם $(A)_{ij} \neq 0$, אז נוכל לחלק בו ולקבל $-1 = 1$ וזו סתירה. סה"כ $\forall i, j \in [n] \co (A)_{ij} = 0$, ולכן $A = 0_M$, כלומר אכן $\Sym \cap \ASym = \{0_M\}$ כדרוש. 
+		\item עתה נראה שלכל $A \in M_n(\F)$ קיימות שתי מטריצות $A_s, \ A_{as} \in \ASym$ כך ש־$A = A_s + A_{as}$. \begin{proof}
+			תהי $A \in M_n(\F)$, נסמן $A_s = \frac{A + A^T}{2}$ ו־$A_{as} = \frac{A - A^T}{2}$. אזי: 
+			\begin{itemize}
+				\item $\bm{A_s \in \Sym}$\textbf{: }יהיו $i, j \in [n]$, אז: 
+				\[ (A_s)_{ij} = \cl{\frac{A + A^T}{2}}_{ij} = \frac{\overbrace{(A)_{ij}}^{(A^T)_{ji}} + \overbrace{(A^T)_{ij}}^{(A)_{ji}}}{2} = \frac{(A)_{ji} + (A^T)_{ji}}{2} = (A_s)_{ji} \quad \top \]
+				\item $\bm{A_{as} \in \Sym}$\textbf{: }יהיו $i, j \in [n]$, אז: 
+				\[ (A_{as})_{ij} = \cl{\frac{A - A^T}{2}}_{ij} = \frac{\overbrace{(A)_{ij}}^{(A^T)_{ji}} - \overbrace{(A^T)_{ij}}^{(A)_{ji}}}{2} = \frac{(A^T)_{ji} - (A)_{ji}}{2} = -\frac{(A)_{ji} + (A^T)_{ji}}{2} = -(A_s)_{ji} \quad \top \]
+				\item $\bm{A_s + A_{as} = A}$\textbf{: }
+				\[ A_s + A_{as} = \frac{A + A^T}{2} + \frac{A - A^T}{2} = \frac{A + A + \cancel{A^T - A^T}}{2} = \frac{2A}{2} = A \quad \top \]
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	סה"כ הראינו ש־$\ASym_n(\F) \oplus \Sym_n(\F) = M_n(\F)$ סכום ישר. 
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item ניזכר בכך ש־$\R$ הוא מ"ו מעל $\Q$ על החיבור והכפל הסטנדרטיים. נראה ש־$\Q$ תמ"ו שלו. \begin{proof}
+			נראה סגירות וקיום 0: 
+			\begin{itemize}
+				\item \textit{סגירות: }יהיו $q_1, q_2 \in \Q = V, \ \lg_1, \lg_2 \in \Q = \F$. צ.ל. $\lg_1 q_1 + \lg_2 q_2 \in \Q = V$. מהיות $q_1, q_2 \in \Q$ ידוע שקיימים $a_1, a_2, b_1, b_2 \in \Z$ כך ש־$\frac{a_1}{b_1} = q_1, \ \frac{a_2}{b_2} = q_2$. באופן דומה קיימים $\ag_1, \ag_2, \bg_1, \bg_2 \in \Z$ כך ש־$\frac{\ag_1}{\bg_1} = \lg_1, \ \frac{\ag_2}{\bg_2} = \lg_2$
+				 אזי: 
+				\[ \lg_1 q_1 + \lg_2 q_2 = \frac{\ag_1}{\bg_1}\cdot \frac{a_1}{b_1} + \frac{\ag_2}{\bg_2} \cdot \frac{a_2}{b_2} = \frac{\ag_1 a_1 \bg_2 b_2 + \ag_2 a_2 \bg_1 \bg_2}{\bg_1b_1\bg_2b_2} =: \frac{n}{m} \]
+				ומסגירות חיבור וכפל ב־$\Z$, $n, m \in \Z$ ולכן $\lg_1 q_1 + \lg_2 q_2 \in \Q$ כדרוש. 
+				\item \textit{קיום אפס: }כי $0_\Q = 0_\R$ ו־$0_\Q \in \Q$ כי $\frac{0}{1} = 0$. 
+			\end{itemize}
+		\end{proof}
+		\item נסתור את זה ש־$\Q$ הוא תמ"ו של $\R$ מעל $\R$. זאת כי הוא אינו סגור לכפל בסקלרים מ־$\R$: $1 \in \Q$ ו־$\sqrt{2} \in \R = \F$ אך $1 \cdot \sqrt{2} \notin \Q$. 
+	\end{enumerate}
+	
+	\section{}
+	יהי $V$ מ"ו ו־$S, T \subseteq V$ קבוצות מגודל סופי. נוכיח ונפריך את הטענות הבאות: 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\Sp(S \cap T) \subseteq \Sp S \cap \Sp T$. \begin{proof}
+			יהי וקטור $v \in \Sp(S \cap T)$, נראה $v \in \Sp S \land v \in \Sp T$. משום ש־$v \in \Sp(S \cap T)$ אזי הוא ניתן לביטוי כקומבינציה לינארית של הוקטורים $w_1 \dots w_k \in S \cap T$. בפרט, הוא ניתן לביטוי כקומבינציה לינארית של $w_1 \dots w_k \in S$ ולכן $v \in \Sp S$ מהגדרה, ובאופן דומה הוא ניתן לביטוי כקומבינציה לינארית של אותם $w_1 \dots w_k \in T$ וקטורים כך ש־$v \in \Sp T$ מהגדרה, וסה"כ מהגדרת $\cap$ נבחין ש־$v \in \Sp S \cap \Sp T$ כדרוש. 
+		\end{proof}
+		\item נפריך ש־$\Sp(S \cap T) \reflectbox{\subseteq} \Sp(S) \cap \Sp(T)$. \begin{proof}[הפרכה. ]
+			נתבונן בדוגמה הנגדית הבאה, מעל $\R$: 
+			\[ S = \ccb{\pms{0 \\ 1}, \ \pms{1 \\ 0}}, \ T = \ccb{\pms{1 \\ 1}, \ \pms{0 \\ 2}} \]
+			משום ש־$S, T$ קבוצות בת"ליות של שני וקטורים מגודל $2$, נבחין ש־$\Sp T = \Sp S = \R^2$. אזי, $\Sp T \cap \Sp S = \R^2$. אך, $S \cap T = \varnothing$ ולכן $\Sp(S \cap T) = \{0\}$. לכן
+			 $\R^2 = \Sp S \cap \Sp T \, {\nsubseteq} \, \Sp(S \cap T) = \{0\}$
+		\end{proof}
+		\item נפריך ש־$\Sp(S \cup T) = \Sp S \cup \Sp T$. \begin{proof}[הפרכה. ]
+			נתבונן בדוגמה הבאה: 
+			\[ S = \ccb{\pms{0 \\ 1}}, \ T = \ccb{\pms{1 \\ 0}} \implies S \cup T = \ccb{\pms{1 \\ 0}, \ \pms{0 \\ 1}} \]
+			אזי, $S \cup T$ הבסיס הסטנדטי ל־$\R^2$ ולכן $\Sp(S \cup T) = \R^2$, ובפרט $\binom{1}{1} \in \Sp(S \cup T)$. נניח בשלילה את הטענה, אז $\binom{1}{1} \in \Sp S \cup \Sp T$, אך: 
+			\[ \Sp S = \ccb{\pms{0 \\ \ag}, \ \mid \ag \in \R}, \ \Sp T = \ccb{\pms{\ag \\ 0} \mid \ag \in \R} \]
+			אך אף אחת מהקורדינאטות של $\binom{1}{1}$ אינה $0$, וזו סתירה לטענה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $V$ מ"ו ו־$S, T \subseteq V$ קבוצות סופיות. נוכיח את הטענות הבאות: 
+	\begin{enumerate}[(A)]
+		\item נוכיח שאם $S \subseteq T$ אז $\Sp S \subseteq \Sp T$. \begin{proof}
+			יהי $v \in \Sp S$. אזי הוא ניתן לביטוי כקמובינציה לינארית של הוקטורים $w_1 \dots w_k \in S$. משום ש־$S \subseteq T$, אזי $w_1 \dots w_k \in T$. לכן, הוא ניתן לביטוי כקומבינציה לינארית של וקטורים מ־$T$, כלומר $v \in \Sp T$. סה"כ מהגדרה משום ש־$v \in \Sp S \rightarrow v \in \Sp T$ אז $\Sp S \subseteq \Sp T$. 
+		\end{proof}
+		\item נוכיח $\Sp S = \Sp T \iff (S \subseteq \Sp T \land T \subseteq \Sp S)$ \begin{proof}נוכיח את שני כיווני הגרירה. 
+			\begin{itemize}
+				\item[$\implies$]נניח $\Sp S = \Sp T$ ונוכיח $S \subseteq \Sp T \land T \subseteq \Sp S$. זאת כי: 
+				\[ S \subseteq \Sp S \subseteq \Sp T \land T \subseteq \Sp T \subseteq \Sp S \implies S \subseteq \Sp T \land T \subseteq \Sp S \quad \top \]
+				\item[$\impliedby$]נניח $S \subseteq \Sp T \land T \subseteq \Sp S$ ונוכיח $\Sp S = \Sp T$. נעשה זאת באמצעות הוכחת הכלה דו כיוונית. ראשית נראה $\Sp S \subseteq \Sp T$. יהי $v \in \Sp S$, אזי הוא ניתן לביטוי כקומבינציה לינארית $v = \ag_1 w_1 \dots \ag_k w_k$ כאשר $(w_i)_{i = 0}^{k} \in S$ ו־$(\ag_i)_{i = 0}^{k} \in \F$, אז $(w_i)_{i = 0}^{k} \in \Sp T$ ומסגירות חיבור וכפל בסקלר, הוקטור $v = \sum_{i = 1}^{k}\ag_i w_i \in \Sp T$, וסה"כ $v \in \Sp T$ כלומר $\Sp S \subseteq \Sp T$. באופן סמטרי לחלוטין (שכן הנתונים סימטריים) נבחין ש־$\Sp T \subseteq \Sp S$, וסה"כ מהכלה דו־כיוונית $\Sp S = \Sp T$ כדרוש. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\ndoc
+\end{document}

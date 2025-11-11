@@ -1,0 +1,555 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{\en{, }}}
+\newcommand\defi  {\text{\en{ definition}}}
+\newcommand\defis {\text{\en{ definitions}}}
+\newcommand\given {\text{\en{given }}}
+\newcommand\case  {\text{\en{if }}}
+\newcommand\syx   {\text{\en{ syntax}}}
+\newcommand\rle   {\text{\en{ rule}}}
+\newcommand\other {\text{\en{else}}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+\DeclareMathOperator\col   {Col}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\rk}     {rk}
+\DeclareMathOperator{\sgn}    {sgn} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+\newcommand\wmid      {\;\middle\vert\;}
+
+\renewcommand\phi     {\varphi}
+\newcommand\bcl[1]    {\big(#1\big)}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 1א $\sim$ תרגיל בית 7}}
+\date{9 בינואר 2025}
+\begin{document}
+	\maketitle
+	
+	\section{}
+	תהא $A$ מטריצה ריבועית, נניח $(A + 2I)^2 = 0$. צ.ל. $A + \lg I$ הפיכה אמ"מ $\lg \neq 2$.
+	\begin{proof}\,
+		\begin{enumerate}
+			\item[$\implies$]נניח $\lg \neq 2$. אז נתון $(A + 2I)^2 = 0$, נסמן $B = A + 2I$ ונוכיח ש־$B$ לא הפיכה. נתבונן ב־$\phi = [B]^E_E$ כאשר $E$ הוא הבסיס הסטנדטי. וידוע $B^2 = 0$ ולכן $\phi \circ \phi = 0$. סה"כ: 
+			\[ \forall v \in V \co (\phi \circ \phi)(v) = 0 \implies \phi(\phi(v)) = 0 \implies \phi(v) \in \ker \phi \]
+			באופן שקול, $\Img\phi = \ker \phi$ משוויון קבוצות. נפלג למקרים: 
+			\begin{enumerate}
+				\item אם $\Img\phi = 0$ אז $\phi$ לא על (אלא אם המ"ו ממימד $0$ ואני מאוד מקווה שהוא לא) ובפרט לא איזומורפיזם. 
+				\item אחרת $\Img\phi > 0$ כלומר $\ker\phi > 0$, ולכן $\ker \phi \neq 0$ באופן שקול $\phi$ לא חח"ע, ולכן $\phi$ איננה איזומורפיזם. 
+			\end{enumerate}
+			סה"כ $\phi$ אינה איזומורפיזם, ואם $B$ הייתה הפיכה אז היא מייצגת איזומורפיזמים ו־$\phi$ איזמורפיזם, סתירה. 
+			\item[$\impliedby$]יהי $\lg \in \F \setminus \{2\}$ (כאשר $2 = 1_\F + 1_\F$, ו־$2 \neq 0_\F$ בהנחה שהשדה מגודל $3$ או יותר, הנחה שהמתבצעת בשאלה בעת השימוש ב־$2$). 
+			\[ (A + \lg I)\frac{(A + 4I - \lg I)}{-(\lg - 2)^2} = \frac{A^2 + 4IA - \lg IA + \lg I A+ 4I\lg - \lg^2 I}{-(\lg - 2)^2} \overset{BI = B}{=} 
+			\frac{\overbrace{A^2 + 4A + 4}^{=0} + \lg 4I - 4I - \lg^2 I}{-(\lg - 2)^2} = I\frac{-(\lg - 2)^2}{-(\lg - 2)^2} = I \]
+			כאשר השוויון המצוין ל־$0$ מתקיים בגלל ש־: 
+			\[ 0 = (A + 2I)^2 = A^2 + A2I + 2IA + 4I^2 = A^2 + 4A + 4I \]
+			והחילוק מוגדר כי: 
+			\[ -(\lg - 2)^2 \neq 0 \overset{(-1)}{=} (\lg - 2)^2 \neq 0 \overset{\sqrt{\, }}{=} \lg - 2 \neq 0 \overset{+2}{=} \lg \neq 2 \]
+			שנתון. סה"כ מצאנו הופכית כדרוש. 
+		\end{enumerate} 
+	\end{proof}
+	
+	\section{}
+	תהי $A \in M_n(\F)$ מטריצה הפיכה. צ.ל. קיו ם$p \in \F_{n^2}[x]$ כך ש־$A\op = p(A)$, כאשר $p(A) = \sum_{i = 0}^{m}a_iA^i$. 
+	\begin{proof}
+		תהי $A \in M_n(\F)$ מטריצה הפיכה. נבחר $\F_{n^2 - 1}(\F) \ni p = \lg_0x^0 + \cdots + \lg_{n^2}x^{n^2}$. 
+		נתבונן ב־$p(A)$: 
+		\[ p(A) = \lg_0I + \lg_1A + \cdots + \lg_{n^2 - 1}A^{n^2} \]
+		נבחין שיש כאן חיבור של $n^2 + 1$ וקטורים, בעבור מ"ו ממימד $n^2$ ולכן, ממשפט, ת"ל, ולכן קיים צירוף ליניארי לא טרוויאלי בעבורו יתקיים $p(A) = 0$. נסמן את $\lg_i$ להיות האיבר שאינו אפס בעבור $i$ מינימלי, שקיים כי אם לא הצירוף הליניארי היה טרוויאלי. אז $\forall \lg_j < \lg_i \co \lg_j = 0$. לכן: 
+		\[ \begin{WithArrows}
+			0 &= \sum_{j = 0}^{n^2}\lg_jA^{j} \\
+			&=\underbrace{\sum_{j = 0}^{i - 1}\lg_jA^{j}}_{=0} + \sum_{j = i}^{\mathclap{n^2}}\lg_jA^{j} \Arrow{$\cdot -(\frac{1}{\lg_i})$}\\
+			&=-A_i - \sum_{j = i + 1}^{\mathclap{n^2}}\frac{\lg_j}{\lg_i}A^{j} \Arrow{$(\cdot A^i)\op$}\\
+			&=-I + \sum_{j = i + 1}^{n^2}-\frac{\lg_j}{\lg_i}A^{j - i}
+		\end{WithArrows} \]
+		נחבר $I$ לשני האגפים ונקבל גרירה לכך שאגף ימין הוא הזהות. מכיוון ש־$j - i \in [n]$, סה"כ מצאנו פולינום ממעלה לכל היותר $n^2$ (ובפרט ממעלה $n^2$ בעבור מקדמים טרוויאלים לאחר מעלה לא $0$ מקסימלית), נסמנו ב־$p(x)$, שמקיים $p(A) = I$, כדרוש.		
+	\end{proof}
+	
+	\section{}
+	תהי $A$ מטריצה כך ש־$A^m = 0$. נוכיח $I + A$ ו־$I - A$ הפיכות. 
+	
+	\begin{proof}
+		נתון קיום $m \in \N$ כך ש־$A^m = 0$. אז: 
+		\begin{alignat*}{9}
+			(I + A)\overbrace{\cl{\sum_{i = 1}^{m - 1}{(-1)^{i}A^{i}}}}^{\tl B} &= &&\sum_{i = 0}^{m - 1}\bcl{I(-1)^iA^{i}} + &&\sum_{i = 0}^{m - 1}\bcl{(-1)^iA^{i + 1}} &&= \sum_{i = 0}^{m - 1}\bcl{(-1)^{i}A^i} + \sum_{i = 1}^{m}\bcl{(-1)^{i - 1}A^{i}} \\
+			 &= I \,+ &&\sum_{i = 1}^{m - 1}\bcl{(-1)^{i}A^i} + &&\sum_{i = 1}^{m - 1}\bcl{(-1)^{i - 1}A^{i}} + A^m
+			 &&= I + A^m + \sum_{i = 1}^{m - 1}(-1)^{i}\underbrace{A^{i} + (-1)^{i - 1}A^{i}}_{=0} \\
+			 &= I\,  + &&\, A^{m} = I
+		\end{alignat*}
+		\begin{alignat*}{9}
+			(I - A)\overbrace{\cl{\sum_{i = 1}^{m - 1}{A^{i}}}}^{=: \bar B} &= &&\sum_{i = 0}^{m - 1}\bcl{IA^{i}} + &&\sum_{i = 0}^{m - 1}\bcl{-A^{i + 1}} &&= \sum_{i = 0}^{m - 1}\bcl{A^i} + \sum_{i = 1}^{m}\bcl{-A^{i}} \\
+			&= I \,+ &&\sum_{i = 1}^{m - 1}\bcl{A^i} + &&\sum_{i = 1}^{m - 1}\bcl{-A^{i}} + A^m
+			&&= I + A^m + \sum_{i = 1}^{m - 1}(-1)^{i}\underbrace{A^{i} -A^{i}}_{=0} \\
+			&= I\,  + &&\, A^{m} = I
+		\end{alignat*}
+		וסה"כ $(I - A)\bar B = I = (I + A) \tl B$, ולכן הן הפיכות מימין, וממשפט הפיכות. 
+	\end{proof}
+	
+	\section{}
+	יהיו $A, B, C \in M_n(\F)$ מטריצות. נניח $AB$ הפיכה ו־$BC$ לא הפיכה. 
+	\begin{enumerate}
+		\item נוכיח $AC + BC$ לא הפיכה. 
+		\begin{proof}
+			ממשפט, $\rk(AC + BC) \le \rk BC$. ידוע $\rk BC = n$ אמ"מ $BC$ הפיכה אך היא איננה הפיכה, וגם ידוע $\rk BC  \le n$, וסה"כ $\rk BC < n$, ומטרנזיטיביות $\rk (AC + BC) < n$ ובפרט אי־שוויון ל־$n$, כלומר $AC + BC$ איננה הפיכה. 
+		\end{proof}
+		\item נוכיח שלא בהכרח $A + B$ הפיכה. 
+		\begin{proof}
+			נניח בשלילה לכל $A, B, C$ בתנאים לעיל, $A + B$ הפיכה. בפרט, בעבור $A = I, B = -I$ שתיהן הפיכות וכפל הפיכות הוא הופכי, כלומר $AB$ הפיכה, יתקיים $A + B = I - I = 0$ שהיא העתקה בעבורה $n \neq 0 = \Img 0 = \Img(A + B)$, לכן $A + B$ איננה הפיכה בסתירה לטענה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	hvhu $A, B \in M_n(\F)$ מטריצות, ונניח $A = I + AB$. אז: 
+	\begin{enumerate}[A.]
+		\item נוכיח $A$ הפיכה. 
+		\begin{proof}
+			מהנתון: 
+			\[ A = I + AB \overset{\mathclap{-AB}}{\implies} A - AB = I \implies A(I - B) = I \]
+				וסה"כ $A$ הפיכה מימין ע"י $I - B$ ולכן $A$ הפיכה. 
+		\end{proof}
+		\item נוכיח $A, B$ מתחלפות. 
+		\begin{proof}
+			\[ A(I - B) = I \overset{(*)}{\iff} (I - B)A = I \implies A - BA = I \implies A - AB = I = A - BA \overset{-A, \cdot (-1)}{\iff} BA = AB \quad \top \]
+		\end{proof}
+		
+		\item נניח $A$ סימטרית, כלומר $A = A^T$. אז:
+		\begin{multline*}
+			A(I - B) = I \rrr{\text{\en{transpose}}} (I - B)^{T}A^{T} = I^{T} = I, A = A^{T} \overset{\cdot A\op}{\iff} I = A^{T}\underbrace{(I - B)}_{A\op} \overset{(*)}{\iff} (I - B)^T = (I - B) \\
+			\iff I - B^T = I^T - B^T = I - B \overset{-I}{\iff} -B^T = -B \overset{\cdot (-1)}\iff B = B^{T}
+		\end{multline*}
+		ולכן $B$ סימטרית. $(*)$ נכון מיחידות ההופכית ל־$A^T$, ומטרניזטיביות. משקילות בפרט $B$ סימטרית גורר $A$ סימטרית, כדרוש. 
+		\item 
+		\[ 1 + B + B^2 = A \overset{1 + B + B^2}{\iff} (1 - B)(1 + B + B^2) = A(I - B) \iff 1 - B + B + B^2 - B^2 + B^3 = I \iff I + B^3 = I \iff B^3 = 0 \]
+		(שקילות כי כפל במטריצה הופכית, והיא מטריצה הופכית כי הראינו בפרט שההופכית שלה היא $(I -B)$, וזה אינו טיעון מעגלי כי הגרירה ימינה נכונה גם כאשר אין היא הופכית)
+	\end{enumerate}
+	
+	\section{}
+	המטריצות האלמנטריות ב־$M_2(\Z_3)$: 
+	\begin{gather*}
+		\pms{1 & 1 \\ 0 & 1}, \ \pms{1 & 2 \\ 0 & 1}, \ \pms{1 & 0 \\ 1 & 1}, \ \pms{1 & 0 \\ 2 & 1}, \ \pms{0 & 1 \\ 1 & 0}
+	\end{gather*}
+	\section{}
+	\begin{enumerate}[A.]
+		\item נרצה למצוא $P$ הפיכה כך ש־: 
+		\[ \underbrace{\pms{0 & 2 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1}}_{:= B} = P \underbrace{\pms{1 & 2 & 0 & 1 \\ 3 & 2 & 0 & 1 \\ 1 & 1 & 1 & 1}}_{:= A} \]
+		נדרג
+		\begin{multline*}
+			(A \mid I) = 
+			\tmat{1 & 2 & 0 & 1 \\ 3 & 2 & 0 & 1 \\ 1 & 1 & 1 & 1}{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}
+			\rrr{R_2 \to R_2 - R_1}
+			\tmat{1 & 2 & 0 & 1 \\ 2 & 0 & 0 & 0 \\ 1 & 1 & 1 & 1}{1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & 0 & 1}
+			\rrr{R_2 \to 0.5R_2}
+			\tmat{1 & 2 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 1 & 1 & 1 & 1}{1 & 0 & 0 \\ -0.5 & 0.5 & 0 \\ 0 & 0 & 1} \\
+			\rrt{R_1 \to R_1 - R_2}{R_3 \to R_3 - R_2}
+			\tmat{0 & 2 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1}{1.5 & -0.5 & 0 \\ -0.5 & 0.5 & 0 \\ 0.5 & -0.5 & 1} \overset{(*)}{=} (B \mid P)
+		\end{multline*}
+		$(*)$ מתקיים ממשפטים מההרצאה. $P$ אכן הפיכה כי היא הרכבה של מטריצות אלמנטריות. 
+		\item נמצא מטריצה הפיכה $Q$ עבורה: 
+		\[ \underbrace{\pms{1 & 3 & -1 \\ 2 & 3 & -1}}_{:= B} = \underbrace{\pms{1 & 2 & 1 \\ 2 & 1 & 1}}_{:= A} Q \]
+		ידוע $AQ = B \iff Q^TA^T = B^T$. לכן, באופן שקול, יתקיים: 
+		\[ \pms{1 & 2 \\ 3 & 3 \\ -1 & -1} = Q^T \pms{1 & 2 \\ 2 & 1 \\ 1 & 1} \]
+		נדרג כדי למצוא סדרה של פעולות אלמנטריות שתביא אותנו למטריצה הדרושה, כמו בסעיף הקודם: 
+		\[ (A^T \mid I) = \tmat{1 & 2 \\ 2 & 1 \\ 1 & 1}{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1} \rrr{R_2 \to R_2 + R_1}
+		\tmat{1 & 2 \\ 3 & 3 \\ 1 & 1}{1 & 0 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 1} \rrr{R_3 \to R_3 - \frac{2}{3}R_2} \tmat{1 & 2  \\ 3 & 3 \\ -1 & -1}{1 & 0 & 0 \\ 1 & 1 & 0 \\ -\frac{2}{3} & -\frac{2}{3} & 1} \overset{(*)}{=} (B^T \mid Q^T) \]
+		$(*)$ מתקיים ממשפטים מההרצאה. $Q^T$ אכן הפיכה כי היא הרכבה של פעולות אלמנטריות, וכן $Q$ הפיכה כי $Q^T$ הפיכה (ע"פ משפט). סה"כ: 
+		\[ Q = \pms{1 & 1 & -\frac{2}{3} \\ 0 & 1 & -\frac{2}{3} \\ 0 & 0 & 1} \]
+	\end{enumerate}
+	
+	\ndoc
+	
+\end{document}

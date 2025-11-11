@@ -1,0 +1,291 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[legalpaper, margin=0.5in]{geometry}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+
+\newcommand\n     {$n$־יה\ }
+
+\title{מתמטיקה בדידה – תרגיל בית 15}
+\author{שחר פרץ}
+
+\begin{document}
+	\maketitle
+	
+	\section*{שאלה 1}
+	צ.ל. שלכל $n \in \N_+$ הקבוצה $\N^n$ בת מנייה. 
+	\begin{proof} נוכיח באינדוקציה על $n$. 
+		\begin{itemize}
+			\item ידוע $|\N^1| = |\N| = \az$ לפי הגדרה.
+			\item יהי $n > 1$, ונניח $|\N^n| = \az$. נוכיח $|\N^{n + 1}| := |\N^n \times \N| = \az$. מההנחה, קיימת פונקציית זיווג $h \colon \N^n \to \N$. בשיעור הוכח כי $|\N \times \N| = \az$, לכן די להוכיח כי $| \N^n \times \N | = |\N \times \N|$. נבחר את הזיוג $f \colon \N^n \times \N \to \N^2, \ f = \lambda \la N, n \ra \in \N^n \times \N. \la h(N), n \ra$. נוכיח כי הוא זיווג. 
+			\begin{itemize}
+				\item \textbf{על: }יהי $\la n, m \ra \in \N^2$. משום ש־$h$ זיווג אז $h^{-1}$ זיווג גם היא. סה"כ $f(h^{-1}(n), m) = \la h(h^{-1}(n))), m \ra = \la n, m \ra $. (המעברים חוקיים כי $h$ זיווג). 
+				\item \textbf{חח"ע: }נניח $f(\la a_1, b_1 \ra) = f(\la a_2, b_2 \ra)$ ונניח בשלילה $\la a_1, b_1 \ra \neq \la a_2, b_2 \ra$. מהשוויון ומהתכונה המרכזית של זוג סדור $h(a_1) = h(a_2) \land b_1 = b_2 \ra$, כלומר מהנחת השלילה $a_1 \neq a_2$ בסתירה לכך ש־$h$ זיווג ובפרט חח"ע. 
+			\end{itemize}
+		\end{itemize}
+	\end{proof}
+	
+	\section*{שאלה 2}
+	\subsection*{(א)}
+	 יהי $R$ יחס שקילות על הקבוצה A, צ.ל. $|A/R| \le |A|$
+	\begin{proof}
+		מאקסיומת הבחירה קיימת פונקציה $ f \colon |A / R| \to A $ הבוחרת איבר $ a $ מכל מחלקת שקילות $ [a]_R $. נסמן $ f([a_1]_R) = f_1 $. נוכיח $ f $ חח"ע: יהי $ [a_1]_R, [a_2]_R \in A / R $, ונניח $ f([a_1]_R) := f_1 = f([a_2]_R) := f_2 $. נניח בשלילה $ [a_1]_R \neq [a_2]_R $, ידוע לפי הגדרה $ f_1 \in [a_1]_R \land f_2 \in [a_2]_R $, ומשום ש־$ f_1 = f_2 $ אז $ f_1 \in [a_1]_R \cap [a_2]_R $ בסתירה לכך ש־$ [a_1]_R, [a_2]_R \in A / R $ כאשר $ A / R $ חלוקה. סה"כ $ f $ חח"ע כלומר $ |A / R| \le |A| $ כדרוש. 
+	\end{proof}
+	\subsection*{(ב)}
+	נתבונן היחס השקילות לשוויון עוצמות מעל $\ps(\N)$, נסמנו $R$. צ.ל. $|\ps(\N) / R | = \az$. 
+	\begin{proof}
+		מטעמי נוחות, נגדיר $ \max(N) = \iota n \in \N. |\N_n| = |N| $. נשים לב שלכל קבוצה עליה הסימון מוגדר, הוא מוגדר באופן ח"ע לפי משפט. \\
+		נבחר זיווג המוגדר באופן הבא:
+		$$ f \colon \ps(\N)/R \to \{\N_n \mid n \in \N\} \cup \{\N\},\ f = \lambda [N]_R \in \ps(\N)/R. \begin{cases}
+			\N_n &\exists n \in \N. \max(N) = n \\
+			\N &\other
+		\end{cases}$$
+	נוכיח ש־f פונקציית זיווג המוגדרת היטב. 
+	\begin{itemize}
+		\item \textbf{מוגדרת היטב: }יהי $N_1, N_2 \in \ps(\N)$ ונניח $[N_1]_R \neq [N_2]_R$, כלומר $|N_1| \neq |N_2|$. נוכיח $f(N_1) \neq f(N_2)$. נוכל להניח קיום $n$ מקסימום, כי אם אין מקסימום לאחת מהקבוצות (בה"כ $N_1$) אך לשנייה יש, $\forall n \in \N. |f(N_1) = |\N_n| = |N_1|\neq |N_2| = |\N| = |f(N_2)|)$ ולכן של עצמה שווה לעצמה אז $f(N_1) \neq f(N_2)$. אם לשתי הקבוצות אין מקיסמום אז $|N_1| = \az = |N_2|$ כלומר $[N_1]_R = |N_2|_R$ וזו סתירה. נסמן את $\max(N_1) = n_1, \max(N_2) = n_2$, ולכן $|f(N_1)| = |\N_{n_1}| = |N_1| \neq |N_2| = |N_{n_2}| = |f(N_2)|$  ולכן $f(N_1) \neq f(N_2)$ כדרוש. 
+		\item \textbf{חח"ע: }יהיו $N_1, N_2 \in \ps(\N)$ ונניח $f([N_1]_R) = f([N_2]_R)$. נפלג למקרים: 
+		\begin{itemize}
+			\item אם $N_1$ סופית, אז קיים לה מקסימום $n \in \N$ ולכן $f([N_1]) = \N_n =  f([N_2]_R)$. לכן $N_2$ סופית בעלת אותו המקיסמום, כלומר $|N_2| = \N_n = |N_1|$ כלומר $N_1 R N_2$ ולכן $[N_1]_R = [N_2]_R$ כדרוש. 
+			\item אם $N_1$ חסרת מקסימום, אז $N_1$ אינסופית ולכן $|N_1| \ge \az$. משום ש־$N_1 \in \ps(\N)$ אז $\N_1 \subseteq \N$ ולכן $|N_1| \le \az$. מקש"ב סה"כ $|N_1| = \az$. נוסף על כך, בגלל שלא קיים מקסימום אז $f([N_1]_R) = \N = f([N_2]_R)$ כלומר $N_2$ אינסופית גם היא (כי נניח בשלילה שהיא לא אינסופית ואז קיים $n \in \N$ כך ש־$\N_n = \N$ וזו סתירה כי $\N$ לא סופית) ולכן $|N_2| = \N$ גם כן, וסה"כ מטרנזיטביות $|N_1| = |N_2|$ כלומר $N_1RN_2$ משמע $[N_1]_R = [N_2]_R$ כדרוש. 
+		\end{itemize}
+		\item \textbf{על: }יהי $N \in \{\N_n \mid n \in \N\} \cup \N$. משום ש־$N \in \ps(\N)$ נוכל לבחור $[N]_R$ ולהוכיח $[N]_R = N$. נפצל למקרים: אם $N = \N$ אז $N$ אינסופית ולכן $f(N) = \N = N$ כדרוש, ואם $N \neq \N$ אז $N \in \{\N_n \mid n \in \N\}$ ולכן מעקרון ההחלפה קיים $n \in \N$ כך ש־$N = \N_n$ כלומר $f(N) = \N_n = N$ כדרוש.  
+	\end{itemize}
+	עתה, נותר להוכיח כי $|\{\N_n \mid n\in \N\} \cup \N| = \az$. נבחר את הזיווג: 
+	$$ g \colon \N \to \{\N_n \mid n \in \N\} \cup \N,\ g = \lambda n \in \N. \begin{cases}
+		\N &n = 0 \\
+		\N_{n - 1} &\other
+	\end{cases}$$
+נוכיח ש־$g$ זיווג. 
+	\begin{itemize}
+		\item \textbf{חח"ע: }יהי $n, m \in \N$ ונניח $g(n) = g(m)$. נוכל להניח ש־$n, m \neq 0$ כי אם אחד מהם בלבד הוא $0$ (בה"כ $N_1$) אזי $g(N_1) = \N \neq \N_{n + 1} = g(N_2)$ וזו סתירה, ואם שניהם 0 אז $n = m = 0$ כדרוש. לכן, $g(n) = \N_n = \N_m = g(m)$ וברור כי מכאן $n = m$ כדרוש. 
+		\item \textbf{על: }יהי $N \in \{\N_n \mid n \in \N\} \cup \N$, אם $N = \N$ אז נבחר $n = 0$ ולכן $g(0) = \N = N$, ואם לא כן אז קיים $m \in \N$ כך ש־$\N_m = N$ ונבחר $n = m$ וסה"כ $g(n) = \N_n = N$ כדרוש. 
+	\end{itemize}
+	\end{proof}
+	
+	\section*{שאלה 3 – הוכחות באמצעות קש"ב}
+	\subsection*{(א)}
+	צ.ל. \selectlanguage{english} $|\ps(\N)| = |\{X \subseteq \N \colon X \text{ is infinite}\}| := A$. 
+	\selectlanguage{hebrew}
+	\begin{proof}
+		נוכיח באמצעות קש"ב. ידוע $ A \subseteq \ps(\N) $ ולכן $ |A| \le |\ps(\N)| $. מהצד השני, צ.ל. $ |A| \ge |\ps(\N)| $. ידוע $ |\Neven|= |\N| $, אז לפי משפט $ \ps(\N) = \ps(\Neven) $ ולכן נוכל להוכיח לפי משפט ש־$ |A| \ge |\ps(\Neven)| $. נמצא פונקציה חח"ע: 
+		\[ f \colon \ps(\Neven) \to A, \ f = \lambda N \in \ps(\Neven). N \cup \Nodd \]
+		נוכיח שהיא חח"ע. יהי $ N, M \subseteq \Neven $ ונניח $ f(N) = f(M) $ כלומר $ N \cup \Nodd = M \cap \Nodd $. משום ש־$ \Neven \cap \Nodd = \emptyset $ אז $ N, M $ זרות ל־$ \Nodd $, ולכן מהשוויון לעיל $ N = M $ כדרוש. נותר להוכיח $ \range(f) = A $, כלומר יהי $ N \subseteq \Neven $, צ.ל. $ f(N) = N \cup \Nodd \in A $, ובאופן שקול לפי עקרון ההפרדה צ.ל. $ N \cup \Nodd $ אינסופית, וזה מתקיים כי $ |N \cup \Nodd| \ge |\Nodd| =\az $ כלומר $ N \cup \Nodd $ לפחות ברת מנייה ולכן אינסופית לפי הגדרה. 
+	\end{proof}
+	
+	\subsection*{(ב)}
+	צ.ל.
+	$ |\N \to \{0, 1\}| = |\{f \colon \N \to \{0, 1\} \colon \nexists i \in \N. f(i) = f(i + 1) = 0)\} := A$
+	\begin{proof}
+		נוכיח באמצעות קש"ב. ידוע $ A \subseteq \N \to \{0, 1\} $ ולכן $ |A| \le |\N \to \{0, 1\}| $ ובכך השלמנו כיוון אחד. מהכיוון השני, נרצה להוכיח $ |\N \to \{0, 1\}| \le |A| $. כטענת עזר, נוכיח $ \az \le |A| $. נבחר את הפונקציה החח"ע הבאה: 
+		\[ f \colon \N \to A.  \lambda n \in \N. \lambda i \in \N. \begin{cases}
+			0 & n = i \\
+			1 &\other
+		\end{cases} \]
+	נוכיח ש־$ f $ חח"ע ובטווח המתאים. יהי $ n, m \in \N $ ונניח $ f(n) = f(m) $. לכן מכללי $ \beta, \eta $ של תחשיב למדא, מתקיים:
+	\[ \forall i \in \N. \begin{cases}
+		0 & i = n \\
+		1 &\other 
+	\end{cases} = \begin{cases}
+		0 & i = m \\
+		1 &\other
+	\end{cases} \]
+	ובפרט בעבור $ i = n $, יתקיים שוויון אמ"מ $ m = i $, כלומר מטרנזיטיביות $ m = n $ כדרוש. \\
+	עתה, נותר להוכיח כי הפונקציה אכן בטווח המתאים. יהי $ n \in \N $, נניח בשלילה קיום $ i \in \N $ כך ש־$ f(n)(i) = f(n)(i + 1) = 0 $, נסיק $ n = i \land n = i + 1 $ כלומר, מטרנזיטיביות $ i  = i + 1 $, נחסר את האפגים ונקבל $ 0 = 1 $ וזו סתירה. באופן שקול לחוסר הקיום, $ f(n) \in A $, כדרוש. 
+	
+ידוע $ \N \to \{0, 1\} \subseteq \N \to \N \subseteq \N \times \N $ ולכן $ |\N \to \{0, 1\}| \le \az $. סה"כ $ |\N \to \{0, 1\}| \le \az \land \az \le |A| $ כלומר $ |\N \to \{0, 1\}| \le |A| $. 
+
+סה"כ, $ |\N \to \{0, 1\}| \le |A| \land |A| \le |\N \to \{0, 1\}| $, ומקש"ב $ |\N \to \{0, 1\}| = |A| $ כדרוש. 
+	\end{proof}
+
+	\section*{שאלה 4 – על איחוד לכל היותר בן מניה של קבוצות בנות מניה}
+	\subsection*{(א)}
+	נפריך את המשפט "איחוד בן מנייה של קבוצות סופיות הוא בן מנייה". 
+	\begin{proof}
+	נתובנן באיחוד בן מנייה (לפי הגדרה) של קבוצות בנות מניה (לפי הגדרה): $ \bigcup_{i \in \N} \{0\}  = \{0\} $. ברור למדי כי השוויון מתקיים, אך $ |\{0\}| \neq \az $ בסתירה משפט. 
+	\end{proof}
+	\subsection*{(ב)}
+	נוכיח את המשפט "איחוד סופי של קבוצות בנות מניה הוא בן מנייה" באמצעות קש"ב. 
+	\begin{proof}
+		תהי קבוצת קבוצות בנות מניה $ A $ וידוע $ |A| = \N_n $, לכן קיים זיווג $ h \colon \N_n \to A $ ונוכל לסמן באופן חח"ע לכל $ i \in \N_n $ ש־$ A_i = h(i) $. נתבונן באיחוד הסופי של קבוצות בנות מנייה הכללי הבא: 
+		$ \bigcup_{i \in \N_n} A_i := \bigcup A$
+		משום שאיחוד סופי הוא לכל היותר בן מניה, אזי $ \bigcup A \le \az $. תחת ההנחה $ n \neq 0 $ (אחרת האיחוד לא ממש מוגדר), $ A_1 $ קיים ולכן $ A_1 \subseteq \bigcup A $. מכאן, $ \az = |A_1| \le | \bigcup A| $ ולכן סה"כ מקש"ב $ |\bigcup A| = \az $ כדרוש. 
+	\end{proof}
+	
+	\section*{שאלה 5 – הוכחות להיות איחודים של קבוצות בנות מנייה, בן מנייה}
+	\subsection*{(א)}
+	נתבונן בקבוצת הפולינום על מקדמים שלמים. מכיוון שהקבוצה אינה מוגדרת היטב, נגדיר פולינום ע"י \n סדורה המכילה את כל מקדמי הפולינום לפי סידרם. קבוצת כל הפולינומים תהיה קבוצת כל ה־$n$־יות הסדורות באורך $ n \in \N $ [=בעוצמה סופית] האפשריות, ונסמנה ב־$ B $ (אני מודע לכך שהגדרת קבוצה באופן הזה אינה פורמלית, אך התרגיל עצמו לא הוגדר באופן פורמלי אז אין לי מה לעשות עם זה יותר מדי\dots). צ.ל. $ |B| = \az $. 
+	\begin{proof}
+		ראשית כל, נוכיח שבהינתן $ n \in \N $, קבוצת כל ה־$ n $־יות הסדורות באורך $ n $ היא ב־$ \az $ (נסמן את הקבוצה הזו ב־$ \nc_n $). לפי משפט בקומבינטוריקה, מספר הפרמוטציות האפשריות לסידור $ n $ איברים היא $ n! $, ולכן $ |\nc_n| = n! $ (ובפרט סופי כתלות ב־$ n $). בהתאם להגדרה של $ B $, ידוע $ B := \bigcup_{n \in \N} \nc_n $. בהתאם למה שהוכח, $ \nc_n $ סופית ולכן לפחות בת מנייה, ו־$ \N $ בת מנייה לכן לפחות בת מנייה, וסה"כ $ B $ איחוד לפחות בן מנייה של קבוצות בנות מנייה, ולכן $ B $ לפחות בת מנייה כדרוש (או בנוסח חילופי, $ |B| \le \az $). 
+	\end{proof}
+	\subsection*{(ב)}
+נגדיר:
+	\[ B := \{ f \in \N \to \N \colon \exists a \in \N \ \exists n_0 \in \N \ \forall n \ge n_0. f(n) = a\} \]
+	צ.ל. $ |B| = \az $
+	\begin{proof}
+		לפי הגדרת איחוד מוכלל: 
+			\[ B = \bigcup_{a \in \N} \{f \colon \N \to \N \mid \exists n_0 \ \forall n \ge n_0. f(n) = a\} = \bigcup_{a \in \N} \bigcup_{n_0 \in \N} \{f \colon \N \to \N \mid \forall n \ge n_0. f(n) = a\} := \ac_{n_0, a}\]
+		יהיו $ a, n_0 \in \N $, נוכיח שהקבוצה $ \ac_{n_0, a} := \ac$ בת־מנייה. ידוע $ |\N^{n_0}| = \az $. נבחר את הזיווג $ F \colon \ac \to \N^{n_0}, F = \lambda f \in \ac. \la f(0), f(1), \dots, f(n_0) \ra $. נוכיח שהוא זיווג. 
+		\begin{itemize}
+			\item \textbf{חח"ע: }יהי $ f, g \in \ac $ ונניח $ F(f) = F(g) $. מההנחות, $ \forall n \ge n_0. f(n) = f(g) = a $. נותר להוכיח שוויון לכל $ n < n_0 $. ידוע $ \la f(0), \dots, f(n_0) \ra = \la g(0), \dots, g(n_0) \ra $, ומהמשפט המרכזי של \n סדורה, נסיק $ f(0) = g(0), \dots f(n_0) = g(n_0) $ כלומר $ \forall n \le n_0. f(n) = f(g) $ כדרוש. 
+			\item \textbf{על: }תהי \n סדורה באורך $ n_0 $ ונסמנה $ N $, נבחר את הפנוקציה הבאה: 
+			\[ f \colon \N \to \N, f = \lambda n \in \N. \begin{cases}
+				N_n &\case n \le n_0 \\
+				a &\other
+			\end{cases} \]
+				ומתחשיב למדא נקבל $ F(f) = N $ כדרוש. 
+		\end{itemize}
+	סה"כ, לכל $ a, n_0 $ מתקיים ש־$ \ac_{n_0, a} $ ברת מנייה, ולכן $ \bigcup_{n_0 \in \N} \ac_{n_0, a} $ איחוד בר מנייה של קבוצות בנות מנייה ולכן לכל היותר בן מנייה, ועל כן $ B $ הוא איחוד בר מנייה של קבוצות לכל היותר בנות מנייה, ועל כן לכל היותר בן מנייה, כלומר $ |B| \ge \az $. 
+	
+	נותר להוכיח כי $ \az \le |B| $. נבחר את הפונקציה החח"ע הבאה: $ G \colon \N \to B, G = \lambda n \in \N. \lambda n \in \N. n $ (כאשר טווח אכן $ B $ עבור הערכים $ n_0 = 1, a = n $). נוכיח כי היא חח"ע: נניח $ G(n) = G(m) $, נפעיל את כלל $ \beta $ ופעמיים את כלל $ \eta $ ונקבל $ n = m $ כדרוש.  
+	
+	נסכם: $ |B| \le \az \land \az \le |B| $, כלומר מקש"ב $ |B| = \az $ כדרוש. 
+	\end{proof}
+	
+	\section*{שאלה 6}
+	תהי פונקציה $ f $, נקראה \textbf{סוף־חד־ערכית} (נסמן: סח"ע) אם ורק אם: 
+	$ \forall x \in \dom(f). |\{a \in \dom(f) \colon f(a) = f(x)\} < \az $
+	תהי $ A $ קבוצה, ונניח שקיימת $ f \colon A \to \Q $ סח"ע, צ.ל. $ |A| \le \az $. 
+	\begin{proof}
+		נגדיר יחס שקילות $ a \sim x \iff f(x) = g(x) $ (לא אוכיח שזה יחס שקילות אבל די ברור שזה מקיים את התנאים הדרושים). ראשית כל, נוכיח $ |A / \sim | \le \az $. נבחר את הפונקציה הבאה הבא: 
+		$ f \colon A / \sim \to \Q, \ f = \lambda [x]_\sim \in A / \sim. f(x) $
+		הפונקציה מוגדרת היטב לפי ההגדרה של יחס השקילות. נוכיח שהיא חח"ע: יהי $ [q]_\sim, [p]_\sim \in A / \sim $ ונניח $ f([q]_\sim) = f([p]_\sim) $ כלומר $ f(q) = f(p) $, לכן $ q \sim p $ וסה"כ $ [q]_R = [p]_R $ כדרוש. סה"כ $ |A / \sim| \le |\Q| = \az $ כלומר $ |A / \sim| \le \az $ כדרוש. 
+		
+		בהצבת יחס השקילות בנתונים, נקבל $ \forall x \in A.|[f(x)]_\sim| < \az $, כלומר כל מחלוקות השקילות של היחס $ \sim $ סופיות. ידוע $ A / \sim $ חלוקה של $ A $ לפי משפט, לכן $ \bigcup A / \sim = A $ כחלק מהגדרת חלוקה. יתרה מכך: משום ש־$ A / \sim $ לכל היותר בת מנייה אזי האיחוד הזה לכל היותר בן מנייה גם הוא, משום שכל מחלוקות השקילות סופיות (ובהכללה, לכל היותר בנות מנייה) נסיק שהאיחוד הוא של קבוצות לכל היותר בנות מנייה. איחוד בן מנייה של קבוצות בנות מנייה הוא לכל היותר בן מנייה, וסה"כ $ |\bigcup A / \sim| \le \az $. מהצבה, $ |A| \le \az $ כדרוש. 
+	\end{proof}
+	
+	\section*{שאלה 7}
+	צ.ל.: 
+	\[ X := \{f \in \N \to \N \mid \forall m, n \in \N. (nEm \implies f(n) = f(m))\}, \ |X| = \az \]
+	\begin{proof}
+		נוכיח $ |X| \ge \az $. נבחר את הפונקציה הבאה: 
+		\[ f \colon \N \to X, \ f = \lambda n \in \N. \lambda m \in \N. n \]
+		נוכיח שהפונקציה חח"ע ובטווח המתאים. יהי $ n, m \in \N $, נניח $ f(n) = f(m) $, נוכיח $ n = m $. מתחשיב למדא: 
+		\[ \begin{WithArrows}
+			(\lambda i \in \N. \lambda j \in \N. i)(n) &= (\lambda i \in \N. \lambda j \in \N. i)(m) \Arrow{$\beta$}\\
+			\lambda j \in \N. n &= \lambda j \in \N. m \Arrow{$\eta$}\\
+			\forall j \in \N. n &= m \implies n = m
+		\end{WithArrows} \]
+	כדרוש. עתה, נוכיח שאכן $ \range(f) = X $. יהי $ i \in \N $, נוכיח $ f(i) \in X $. ידוע $ f(n) = \lambda a \in \N. i $. יהי $ n, m \in \N $, צ.ל. $ nEm \to f(n) = f(m) $, כלומר $ nEm \to i = i $, שמתקיים באופן טרוויאלי. באופן שקול, $ f(n) \in X $ כדרוש. 
+	
+	נותר להוכיח $ |X| \le \az $. נגדיר את $ P $ להיות קבוצת הראשוניים הטבעיים. לפי משפט מתומא"ס $ P $ אינסופית, וידוע $ P \subseteq \N $, לכן מקש"ב $ |P| = \az $. לכן, קיימת פונקציית זיווג $ h \colon \N \to P $, ונסמן $ h(n) = P_n $ (הסימון מוגדר היטב באופן חח"ע לשני הכיוונים כי $ h $ זיווג, כלומר $ P_n $ הוא מספר מוגדר. ידוע $ |\N/E| < \az $, וממשפטים ידועים קיים $ n \in \N $ כך ש־$ |\N / E| = n $. \\
+	משום ש־$ |\N / E| $ סופית, נוכל ללא תלות באקסיומת הבחירה ליצור פונקציית בחירה חח"ע $ h_1 \colon \N / E \to E $ (הוכחה לכך שהיא חח"ע בסעיף (2)(א)), ובגלל ש־$ |\N / E| = |\N_n| $ אז קיים זיווג $ h_2 \colon \N_n \to \N / R $, וסה"כ נסמן $ h = h_1 \circ h_2, h \colon \N_n \to E $ חח"ע (הרכבת פונקציות חח"ע היא חח"ע). 
+	נקבע פונקציה חח"ע מתאימה: 
+	\[ F \colon X \to \N, \ F = \lambda f \in X. \prod_{i = 0}^{n}(P_i^{f(h(n))}) \]
+	נעתה נוכיח שהפונקציה חח"ע: יהי $ f, g \in X $, נניח $ F(f) = F(g) $. נניח בשלילה $ f \neq g $, ולכן קיים $ n \in \N $ כך ש־$ f(n) \neq g(n) $, ולכן קיים $ P_i $ כך ש־$ P_i^{f(n)} \neq P_i^{g(n)} $, וזו סתירה לשוויון לעיל בגלל המשפט היסודי של האריתמטיקה. 
+	
+	סה"כ $ |X| \le \az \land \az \le |X| $ ולכן מקש"ב $ \az = |X| $ כדרוש. 
+	\end{proof}
+	
+	\section*{שאלה 8}
+	נקרא לקבוצה $ A \subseteq \N $ צפופה אמ"מ לכל $ B \subseteq \N $ אינסופית, $ A \cap B \neq \emptyset $. 
+	\subsection*{סעיף (א)}
+	צ.ל. $ A\subseteq\N $ צפופה אמ"מ $ \exists n \in \N. \N \setminus \N_n \subseteq A $
+	\begin{proof}
+		נוכיח את שני הכיוונים. 
+		\begin{itemize}
+			\item $ \implies $ נניח קיום $ n \in \N $ כך ש־$ \N \setminus \N_n \subseteq A $. ידוע $ (\N \setminus \N_n) \cap B =(\N \cap B) \setminus \N_n = B \setminus \N_n$. נניח בשלילה $ B \setminus \N_n = \emptyset $, נסיק $ B \subseteq \N_n $ כלומר $ |B| \le n $ וזו סתירה לכך ש־$ B $ אינסופית. לכן, $ B \setminus \N_n \neq \emptyset $, ומשום ש־$ B \setminus \N_n \subseteq \N \setminus \N_n \subseteq A $ וגם $ B \setminus \N_n \subseteq B $ אז $ B \setminus \N_n \subseteq A \cap B $ ולכן $ A \cap B \neq \emptyset $ כדרוש. 
+			\item $ \impliedby $ תהי $ A \subseteq \N $ קבוצה צפופה. נניח בשלילה $ \nexists n \in \N. \N \setminus \N_n \subseteq A $, או באופן שקול לפי חוקי לוגיקה והגדרת הכלה,  $ \forall n \in \N. \exists a \in \N \setminus \N_n. a \not\in A $. מאקסיומת הבחירה, קיימת פונקציה $ h \colon \N \to \N $ המקבלת $ n \in \N $ ומאפשרת לבחור $ a \in \N $ מתאים. נתבונן ב־$ B := \bigcup_{n \in \N} h(n) $, נקבל לפי הגדרה $ \forall b \in B. b \not\in A $ כלומר $ B \cap A =  \emptyset $, ומשום שברור כי $ B $ אינסופית זו סתירה לכך ש־$ A $ צפופה. 
+		\end{itemize}
+	\end{proof}
+	
+	\subsection*{סעיף (ב)}
+	נסמן ב־$ \ac $ את קבוצת כל תתי הקבוצות הצפופות של $ \N $. צ.ל. $ \ac $ בת מנייה. 
+	\begin{proof}
+		יהי $ n \in \N $, נסמן ב־$ \bc_n = \{A \cup (\N \setminus \N_n) \mid A \in \ps(\N_n)\} $. קל להבין כי $ \bc_n $ היא קבוצת כל הקבוצות המקיימות $ \N \setminus \N_n \subseteq A $ (כיוון 1: $ \forall A. A \cup (\N \setminus \N_N) \subseteq \N \setminus \N_n) $ לפי הגדרה, כיוון 2: נניח בשלילה שקיימת קבוצה $ B \subseteq \N \setminus \N_n $, נבחר $ A = B \cap \N_n $ המקיימת $ A \in \ps(\N_n) $ וסה"כ $ A \cup (\N \setminus \N_n) = B \in \bc_n $ וזו סתירה). לכן, לפי סעיף (א), $ \ac = \bigcup_{n \in \N} \bc_n $. יהי $ n \in \N $, נוכיח $ \bc_n $ סופית: $ |\bc_n| \le |\ps(\N_n)| = 2n $ (זאת כי $ \N_n $ סופית), וסה"כ $ \bc_n $ סופית כדרוש. \\
+		סה"כ $ \ac $, בהגדרה לעיל, היא איחוד בן מנייה של קבוצות סופיות (ובהכללה, קבוצות לכל היותר בנות מנייה), ולכן היא בת מנייה לפי משפט ידוע, כדרוש. 
+	\end{proof}
+	
+	עבודה ראשונה מחוץ ל־libreoffice! שרדתי את זה...
+\end{document}ת

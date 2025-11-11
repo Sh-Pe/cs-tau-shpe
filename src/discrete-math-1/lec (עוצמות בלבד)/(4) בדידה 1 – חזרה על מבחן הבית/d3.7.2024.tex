@@ -1,0 +1,397 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+\renewcommand\P   {\mathbb{P}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{בדידה 1 $\sim$ נטלי שלום $\sim$ חזרה על מבחן הבית}
+\date{3 ליולי 2024}
+
+\begin{document}
+	\maketitle
+	\section{\en{Q1}}
+	\begin{enumerate}[a.]
+		\item \textbf{שאלה: }נניח שהשערת הרצף נכונה. (כלומר, $\taz$ היא העוצמה הקטנה בויותר שגדולה מ־$\az$). הוכיחו/הפריכו: קיימת חלוקה $\Pi$ של $\R$ כך ש־$|\Pi| < \taz \land \forall X \in \Pi. |X| < \taz$. 
+		
+		\begin{proof}
+			נפריך. לפי השערת הרצף, מתקיים $|\Pi| \le \az$, ולכל $X \in \Pi$ מתקיים $|X| \le \az$. אז: 
+			\[ |\R| =\sof{\bigcup_{X \in \Pi} X} \le \az \]
+			לפי איחוד לכל היותר בן מנייה של קבוצות לכל היותר בנות מנייה הוא לפחות בן מנייה. 
+		\end{proof}
+		\item\textbf{שאלה: }הוכיחו קיום חלוקה $\Pi$ של $\R$ המקיימת $|\Pi| = \taz$, ולכל $X \in \Pi, |X| = \taz$. 
+		
+		\begin{proof}
+			ידוע $|\R| = |\R \times \R|$. לכן קיים זיווג $f \colon \R \times \R \to \R$. נגדיר לכל $r \in \R$, $A_r = f[\{r\} \times \R]$. החלוקה $\Pi = \{A_r \mid r \in \R\}$ מקיימת את הדרוש. צ.ל. $\Pi$ חלוקה, $|\Pi| = \al, \forall X \in \Pi. |X| = \al$. נוכיח ש־$\Pi$ חלוקה. 
+			\begin{itemize}
+				\item $\bm{\varnothing \neq \Pi}$\textbf{: }לכל $r \in \R$, נראה $A_r \neq \emptyset$. מתקיים, $\la r, 0 \ra \in \{r\} \times \R$. $f$ פונקציה ובפרט יחס מלא, ולכן קיים $f(\la r, 0 \ra) \in f[\{r\} \times \R] = A_r$. לכן $A_r$ אינו ריק. 
+				\item $\bm{\bigcup \Pi = \R}$: ניעזר בהכלה דו־כיוונית. 
+				\begin{itemize}
+					\item[$\subseteq$] לכל $r \in \R$, $A_r = f[\{r\} \times \R]$ ולכן גם $\bigcup_{r \in \R} A_r \subseteq \R$. 
+					\item[\reflectbox{$\subseteq$}] יהי $x \in \R$. צ.ל. קיום $r \in \R$ כך ש־$x \in A_r$. מכיוון ש־$F$ על, אז קיים $\la a, b \r a\in \R \times \R$ כך ש־$f(\la a, b \ra) = x$. ניקח $r := a$, אז $x = f(\la a, b \ra) \in f[\{r\} \times \R]=A_r$. 
+				\end{itemize}
+				\item \textbf{זרות בזוגות: }יהיו $r_1, r_2 \in \R$ שונים, נרצה להוכיח $A_{r_1} \neq A_{r_2}$. אז ניקח ש־\[x \in A_{r_1} = f[\{r_1\} \times \R] \implies \exists b_1 \in \R. x = f(\la r_1, b_1)\]
+				באופן דומה, מכיוון ש־$x \in A_{r_2}$ אז נובע שקיים $b_2 \in \R$ כך ש־$x = f(\la r_2, b_2 \ra)$. כלומר, $f(\la r_1, b_1\ra) = f(\la r_1, b_1 \ra)$. מכיוון ש־$f$ זיווג, נקבל $\la r_1, b_1 \ra = \la r_2, b_r \ra$ ובפרט $r_1 = r_2$ וסתירה לז שהם שונים. 
+			\end{itemize}
+			עד כה, $\Pi$ חלוקה. נוכיח את הטענות שנותרו. 
+			\begin{itemize}
+				\item $\bm{|\Pi| = \al}$\textbf{: }הוכחנו שלכל $r_1, r_2 \in \R$ שונים, $A_{r_1}, A_{r_2}$ זרות ולא ריקות ובפרט נובע $A_{r_1} \neq A_{r_2}$ ולכן $\lambda r \in \R. A_r$ זיווג, ולכן $|\Pi| = \al$. 
+				\item \textbf{לכל }$\bm{r \in \R, |A_r| = \al}$\textbf{: }לכל $r \in \R$, הפונקציה $\lambda x \in \R. f(\la r, x \ra)$ היא זיווג בין $\R$ ל־$A_r$ (כי $f$ חח"ע ועל. במבחן לפרט עוד) ולכן $|A_r| = \al$. 
+			\end{itemize}
+		\end{proof}
+		\item שאלה ברמה קצת יותר גבוהה ממבחן. \textbf{שאלה: }נגדיר יחס שקילות מעל $\R\to \R$ ע"י: 
+		\[ S = \{\la f, g \ra \in (\R \to \R)^{2} \colon \sof{\{x \in \R\mid f(x) \neq g(x)\}} \le \az\} \]
+		מצאו את $|\underbrace{(\R\to \R) / S}_{B}|$
+		
+		\textit{רמז: }סעיף ב'. 
+		
+		\begin{proof}
+			נוכיח שהעוצמה היא $2^{\al}$.
+			\begin{itemize}
+				\item[$\le$]  לכל מערכת נציגים של $S$, הפונקציה $\lambda a \in A. [a]_S$ היא זיווג. לכן, אם נקבע $a$ כזו, נקבל $|(\R \to \R)/ S| = |A| \le |\R\to \R| = \al^{\al} = (\taz)\ual = 2^{\al \cdot \az} = \tal$. 
+				\item[$\ge$] נמצא פונקציה חח"ע $(\R \to \R) \to B$: 
+				\[ H = \lambda g \in \R\to \R. [f_g]_S \]
+				כמה הערות: (ה"מטרה": להגדיר את $f_g$ באופן כזה שלכל $g_1, g_2 \in \R \to \R$ שונות, יתקיים $|\{x \in \R\mid f_{g_1}(x) \neq f_{g_{2}}(x)| = \al\}$). נסמן $t \in X_t = [t]_{R_\Pi}$ כאשר $\Pi$ החלוקה מסעיף (ב), ו־$R_\Pi$ הוא היחס המושרה של החלוקה (תזכורת: בהינתן $\Pi$ חלוקה של $A$, יחס השיקלות המושרה מ־$\Pi$ הוא $R_\Pi := \{\la x, y \ra \in A \times A \mid \mid \exists X \in \Pi. x, y \in X\} = \bigcup_{C \in \Pi} (C \times C)$). 
+				
+				מסעיף ב', ידוע שקיימת חלוקה $\Pi$ של $\R$ כך ש־..., ומכיוון ש־$|\Pi| = \al$, קיים $\vphi \colon \Pi \to \R$ זיווג. נבחר: 
+				\[ f_g := \lambda t \in \R. g(\vphi([t]_{R_\Pi})) \]
+				
+				נוכיח כמה טענות שנדרשות מאיתנו: 
+				\begin{itemize}
+					\item \textbf{$\bm H$ חח"ע: }נניח $g_1 \neq g_2 \colon \R \to \R$ צ.ל. $\al = \sof{\{x \in \R\mid f_{g_1}(x) \neq f_{g_2}(x)\}}$. אז קיים $r \in \R$ כך ש־$g_1(r) \neq g_2(r)$. אז קיים $X \in \Pi$ כך ש־$\vphi(x) = r$ מכיוון ש־$\vphi$ על. אז לכל $t \in X$ מתקיים $f_{g_1}(t) = g(\vphi([t]_{R_\Pi})) = g_1(\vphi(X)) = g_1(r)$ ובאופן דומה $f_{g_2}(t) = g_2(r) \neq g_1(r)$ ולכן $\al = |X| \le \sof{\{x \in \R \mid f_{g_1}(x) \neq f_{g_2}(x)\}}$. 
+				\end{itemize}
+			\end{itemize}
+		\end{proof}
+		
+		\end{enumerate}
+		
+		\section{\en{Q4}}
+		נגדיר $X = \{f \in \N \to \N \mid \forall n \in \N. f(n^2) = f(n)\}$. הוכיחו ע"י לכסון ש־$|X| \neq \az$. 
+		
+		\begin{proof}
+			נניח בשלילה שיש זיווג $F \colon \P \to X$. כאשר $\P$ קבוצת הראשוניים, ומתקיים $|\P| = \az$. 
+			\[ g = \lambda n \in \N. \begin{cases}
+				F(p)(n) + 1 & \exists p \in \P. \exists k \in \N_+. p^{k} = n \\
+				0 & \other
+			\end{cases} \]
+			
+			צ.ל.: $g \in X$, $\forall p \in \P. g \neq F(p)$. נוכיח. 
+			\begin{itemize}
+				\item יהי $n \in \N$. נוכיח $g(n^2) = g(n)$. נפלג למקרים. 
+				\begin{enumerate}
+					\item אם $\exists p \in \P. \exists k \in\N_+. n = p^{k}$ אז: 
+					\[ g(n^2) = F(p)(n^2) + 1 = F(p)(n) + 1 = g(n) \]
+					כי $F(p) \in X, \ n = p^k, n^2 = p^{2k}$. 
+					\item אחרת: גם $n, n^2$ ךא מקיימים את התנאי, ולכן $g(n^2) = 0 = g(n)$
+				\end{enumerate}
+				\item לא הוכחנו בכיתה. 
+			\end{itemize}
+			
+		\end{proof}
+\end{document}

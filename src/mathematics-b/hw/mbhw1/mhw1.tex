@@ -1,0 +1,476 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% tikz
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+	{\fontsize{15}{15}}
+	{\sen \dotfill \, \!\!\! \thesection \,\! \dotfill \she}
+	{1em}
+{\MakeUppercase}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה B $\sim$ תרגיל בית 1 $\sim$ מרוכבים וגבולות}
+
+\newcommand{\eqline}{\noalign{\smallskip} \hline \noalign{\smallskip}}
+
+\begin{document}
+	\maketitle
+	\section{} %%1
+	צ.ל. לחשב את המספר המרוכב הבא:
+	\begin{align*}
+		&2i(i - 1) + \ol{(\sqrt 3 + i)}^3 + (1 + i)\ol{(1 + i)} \\
+		= &-2 - 2i + (\sqrt 3 - i)^3 + 1^2 + 1^2 \\
+		= &-2 - 2i + (3 - 2\sqrt3i - 1)(\sqrt 3 - i) + 2 \\
+		= &-2 - 2i + 3\sqrt3 - 6i - \sqrt 3 - 3i - 2 \sqrt 3 + i + 2 \\
+		= &\bm{- 10i}
+	\end{align*}
+	\section{} %%2
+	\sen
+	\begin{enumerate}
+		\item $\set a + bi = z$
+		\begin{alignat*}{9}
+			     &&z^2 \bar z &&&\, = z \\
+			\iff \quad &&z \cdot z\bar z &&&\, = z \\
+			\iff \quad &&z \cdot (a^2 + b^2) &&&\, = z \\
+			\iff \quad &&a(a^2 + b^2) + bi(a^2 + b^2) &&&\, = a + bi \\
+			\iff \quad &&\begin{cases}
+				a(a^2 + b^2) \!\!\!\! &= a\\
+				b(a^2 + b^2) \!\!\!\! &= b\\
+			\end{cases}
+			&&&\iff \, a^2 + b^2 = 1 \lor a, b = 0 \\
+			\iff \quad &&\bm{b} &&&\, \bm{= \pm\sqrt{1 - a^2}, \ \lor \; a, b = 0}
+		\end{alignat*}
+		
+		\item $\set a + bi = w$
+		
+		\[ \begin{WithArrows}
+			     |3w + 1| & = |w| \\ 
+			|3(a + bi) + 1| & = |a + bi| \Arrow{by\defi} \\
+			\sqrt{(3a + 1)^2 + (3b)^2} & = \sqrt{a^2 + b^2} \Arrow{$()^2$} \\
+			9a^2 + 6a + 1 + 9b^2 & = a^2 + b^2 \Arrow{$- a^2 - 9b^2$} \\
+			8a^2 + 6a + 1 &= -8b^2 \Arrow{$\cdot \frac{1}{-8}$} \\
+			b^2 &= -\frac{8a^2 + 6a + 1}{8} \Arrow{$\sqrt{\ \ }$} \\
+			\bm{b} &\bm{= \pm \sqrt{-\frac{8a^2 + 6a + 1}{8}}}
+		\end{WithArrows} \]
+		
+	\end{enumerate}
+	\she
+	נסרטט: 
+	\npage
+	
+	
+	\begin{center}        
+		\begin{tikzpicture}[scale=0.7]
+			\begin{axis}[xmin=-3, xmax=3, ymin=-3, ymax=3, axis lines=middle, ytick={-3, -2, -1, 0, 1, 2, 3}, yticklabels={-3i, -2i, -1i, 0i, 1i, 2i, 3i}, title={2 סעיף}]
+				\node at (0,0) [circle,color=blue,fill,inner sep=1.5pt]{};
+				\addplot[color=blue, smooth, y filter/.expression={y<0.1 ? 0 : y}, samples=2056] { sqrt(1 - x^2)};
+				\addplot[color=blue, smooth, y filter/.expression={y>-0.1 ? 0 : y}, samples=2056] {-sqrt(1 - x^2)};
+			\end{axis};z
+		\end{tikzpicture} \quad \quad \quad \quad \quad \quad \quad \quad 
+		\begin{tikzpicture}[scale=0.7]
+			\begin{axis}[xmin=-2, xmax=2, ymin=-2, ymax=2, axis lines=middle, yticklabels={-3i, -2i, -i, 0, i, 2i}, title={1 סעיף}]
+				\addplot[color=blue, smooth, y filter/.expression={y<0.1 ? 0 : y}, samples=1000] { sqrt((-8*x^2 + 6*x + 1)/8)};
+				\addplot[color=blue, smooth, y filter/.expression={y>-0.1 ? 0 : y}, samples=1000] {-sqrt((-8*x^2 + 6*x + 1)/8)};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	\section{} %%3
+	\begin{equation*}
+		\begin{alignedat}{102}
+			&      && && && && && x^2 && - && 4x && + &&2  \\ 
+			x^2 + 3x - 5 \quad 
+			&\Big / &&x^4 \; &&- \; &&x^3 && - \; &&15x^2 \; && + \; &&16x \; &&+ \; &&6  \\
+			&(-) \; &&x^2 &&+ &&3x^{3} &&- &&5x^2  \\ \eqline{}
+			&    \; &&    &&- &&4x^3   &&- &&10x^2 &&+ &&16x \\
+			&(-) \; &&    &&- &&4x^3   &&- &&12x^2 &&+ &&20x \\ \eqline
+			&    \; &&    &&  &&       &&+ &&2x^2  &&- &&4x  &&+ &&6 \\ 
+			&(-) \; &&    &&  &&       &&+ &&2x^2  &&+ &&6x  &&- &&10 \\ \eqline
+			&    \; &&    &&  &&       &&  &&      &&- &&10x &&+ &&16
+		\end{alignedat} \implies \frac{x^4 - x^3 - 15x^2 + 16x + 6}{x^2 + 3x - 5} = x^2 - 4x + 2 + \frac{-10x + 16}{x^2 + 3x - 5}
+	\end{equation*}
+	
+	\section{} %%4
+	יהי $z = r(\cost + i\sint ) \in \C$, בעבור $r, \tt \in \R$. 
+	\begin{enumerate}[(a)]
+		\item צ.ל. לכל $n \in \N$ מתקיים $z^n = r^n(\cos n\ta + i\sin n \ta) =: z_n$. \begin{proof}
+				נוכיח באינדוקציה. \textit{בסיס: }בעבור $n = 1 $ יתקיים $z_1 = z = z^1 $ וסה''כ הוכח השוויון כדורש. 
+				
+			\textit{צעד: }יהי $n \in \N$, נניח באינדוקציה נכונות בעבור $n$ ונוכיח עבור $n + 1$:
+			\begin{align*}
+				z^{n + 1} & = z^n \cdot z = r^n(\cos n \ta + i \sin n \ta) \cdot r (\cos \ta + i \sin \ta) \\
+				& = r^{n + 1}\big((\cost \cos n \ta - \sint \sin n \ta) + (\cost \sin n \ta + \cos n \ta \sint)i \big) \\
+				& = r^{n + 1}\Big( \begin{WithArrows}
+					  &\big(0.5(\cos( \ta - n \ta) + \cos((n + 1)\ta)) & \; - \; 0.5(\cos(\ta - n \ta) - \cos((n + 1)\ta)) \big) \\
+					+ &\big(0.5(\sin((n + 1)\ta) - \sin(\ta - n\ta)) &\; + \; 0.5(\sin((n + 1)\ta) - \sin(\ta - n\ta)) \big) \; \Big)
+				\end{WithArrows} \\
+				& = r^{n + 1}\big( 0.5(2\cos(n + 1)\ta) + 0.5(2\sin((n + 1)\ta))i \big) \\
+				& = r^{n + 1}(\cos (n + 1)\ta + i\sin (n + 1)\ta )
+			\end{align*}
+			כדרוש. בכך, צעד האינדוקציה הושלם, והטענה הוכחה. 
+			\end{proof}
+		\item נחשב את $(1 + \sqrt3i)^{2024}$. נתבונן בוקטור $(1, \sqrt3)$ ונפרק אותו לגורמים; נוציא $\ta = \arctan\left (\sqrt 3\right ) = \arctan3^{0.5} = \frac{\pi}{3} $. ממשפט פיתגורס האורך $r = \sqrt{1 + \sqrt{3}^2} = \sqrt4 = 2$. סה''כ $\ta = \frac{\pi}{3}, \ r = 2$. נציב: 
+		\begin{align}
+			(1 + \sqrt3i)^{2024} &= \left [2\cl{\cl{\cos\frac{\pi}{3}} + i \sin \cl{\sin \frac{\pi}{3}}}  \right ] ^{2024} \\
+			&= 2^{2024}\Bigg(\cl{\cos \cl{2024\frac{\pi}{3}}} + i \cl{\sin \cl{2024 \frac{\pi}{3}}} \Bigg) \\
+			&= 2^{2024}\cl{\cos \cl{674\frac{2}{3}\pi} + i \sin\cl{674\frac{2}{3}\pi}} = 2^{2024}\Big(-0.5 + \frac{\sqrt3}{2}\Big) \\
+			&= 2^{2023}(-1 + \sqrt3) \approx -9.631 \cdot 10^{608} + 1.668 \cdot 10^{609}
+		\end{align}
+		\item נגדיר ששורש יחידה מסדר $n$ הוא פתרון $z \in \C$ למשוואה $z^n = 1$. צ.ל. $\ac = \{1, u, u^2, \dots, u^{n - 1}\}$ האי קבוצת כל שורשי היחדיה מסדר $n$, כאשר $u = \cos \frac{2\pi }{n} + i \sin \frac{2\pi }{n}$. 
+		\begin{proof}
+			בכלליות, נוכל להגיד $\ac = \{u^{k} \mid k \in [0, n - 1] \cap \N\}$, ונצטרך להוכיח שזו קבוצת כל שורשי היחידה. ניעזר בהכלה דו כיוונית. 
+			\begin{itemize}
+				\item יהי $z \in \ac$, נוכיח $z^n = 1 $. מעקרון ההפרדה קיים $לk \in \N$, $0 \le k < n$ כך ש־$z = u^{k}$. מהטענה שהוכחה בסעיף (א), נקבל: 
+				\[ z = u^k = 1^{k}\left (\cos \frac{2k\pi}{n} + i \sin \frac{2k\pi}{n} \right ) \]
+				ולפי אותה הטענה: 
+				\[ z^n = \left (\cos \frac{2k\pi}{n} + i \sin \frac{2k\pi}{n} \right )^n = \cos 2k\pi + i \sin 2k\pi = \cos 0 + i \sin 0 = 1 + 0i = 1 \]
+				כאשר הטענה האחרונה לפי המחזוריות של $\sin, \cos $ כל $2\pi $. 
+				\item מהכיוון השני, יהי $z^n = 1$ ובה''כ נסמן $z = r(\cos \ta + i \sin \ta)$, $\ta \in \R, \ r \in \R_{\ge 0}$ (זיווג למערכת פולארית), נוכיח $a \in \ac$. מהטענה שהוכחה סעיף (א): 
+				\[ z^n = r^n(\cos n\ta + i \sin n\ta) = 1 + 0i \implies \begin{cases}
+					r^n \cos n \ta = 1 \\
+					r^n \sin n \ta = 0 \implies \sin n \ta = 0
+				\end{cases} \]
+				משום ש־$\sin n \ta = 0 $ ומהמחזוריות של $\sin$, נקבל שבהכרח $n \ta = k2\pi $ עבור $k \in \N $. נחלק ונקבל $\ta = \frac{2\pi k}{n}$. נותר להוכיח כי $r = 1 $. מהמשוואה הראשונה נקבל: 
+				\[ r^n \cos n \ta = 1 \implies r^n \cos n \frac{2\pi k}{n} = 1 \implies r^n \cos 2\pi k = 1 \implies r^n \cdot 1 = 1 \implies r^n = 1 \implies r = 1\]
+				כאשר הפעולה האחרונה היא העלה בחזקת $()^{\frac{1}{n}}$, שחוקית בגלל עולם דיון ממשי חיובי. 
+				
+				רק, נעיר שנוכל להשתמש ב־$0 \le k \le n - 1 $ בכלל המחזוריות של הפונקציות הטריגונומטריות. 
+			\end{itemize}
+			
+		\end{proof}
+		\item נרצה לחשב את סכום כל שורשי היחידה מסדר $n$:
+		\[ z := \sum_{k = 0}^{n - 1}u^{k} = \sum_{k = 0}^{n - 1}\cos \frac{2\pi k}{n} + i \sin \frac{2\pi k}{n} = \sum_{k = 0}^{n - 1} \cos k \frac{2\pi}{n} + i\sum_{k = 0}^{n - 1}\sin k \frac{2\pi}{n} \]
+		לפי הסכום $\sum_{k = 0}^{n} \sin k \ta = \frac{\cos \frac{\ta}{2} - \cos \left ((n + \frac{1}{2})\ta \right )}{2 \sin \frac{\ta}{2}}$ שראינו בכיתה, נקבל: 
+		\[ \Im(z) = \frac{\cos \left (\frac{2\pi}{2n}\right ) - \cos \cl{(n - 1 + 0.5)\frac{2\pi}{n}}}{2 \sin \frac{2\pi}{2n}}
+		          = \frac{\cos \frac{\pi}{n} - \cos \cl{2\pi - \frac{\pi}{n}}}{2 \sin \frac{\pi}{n}}
+		          = \frac{\cancel{\cos \frac{\pi}{n} - \cos \frac{\pi}{n}}}{\sin \frac{\pi}{n}}
+		          = 0 \]
+		ולפי הנוסחה $\sum_{k=0}^n \cos k\theta = \frac{\sin \frac\ta2 + \sin\left(\left(n + \frac\ta2\right)\theta\right)}{2\sin\frac\ta2}$ שהוצאתי מויקיפדיה אבל נראית מספיק דומה לזו שראינו בכיתה אז אניח שמותר לנו להשתמש בה: 
+		\[ \Re(z) = \frac{\sin \left (\frac{2\pi}{2n}\right ) + \sin \cl{(n - 1 + 0.5)\frac{2\pi}{n}}}{2 \sin \frac{2\pi}{2n}}
+		          = \frac{\sin \frac{\pi}{n} + \sin \cl{2\pi - \frac{\pi}{n}}}{2 \sin \frac{\pi}{n}}
+		          = \frac{\cancel{\sin \frac{\pi}{n} - \sin \frac{\pi}{n}}}{2\sin \frac{\pi}{n}}
+		          = 0 \]
+		וסה''כ: 
+		\[ z = \sum_{i = 0}^{n - 1} \ac_i = \Re(z) + i\Im(z) = 0 \]
+	\end{enumerate}
+	
+	\npage 
+	
+	\pagebreak
+	\section{} %%5
+	נחשב את הגבולות שלהלן: 
+	\begin{enumerate}[(a)]
+		\item משום שהפונקציה רציפה בנקודה $x = 0$ (כי אין בה חור באותה הנקודה, והיא פונקציה רציונלית) אז: 
+		\[ \limz \frac{x + 1}{x - 1} = \frac{1}{-1} = \bm{-1} \]
+		\item לכל $x > 2$ יתקיים שערך הפונקצייה יהיה חיובי (משום ש־$x > 2 \implies x - 2 > 0 \implies \frac{1}{x - 2} > 0$) ולכן: 
+		\[ \lim_{x \to 2^+} \frac{1}{x - 2} = \bm{+\inf} \]
+		\item 
+		\[ \limi \frac{x - 2}{x^2 + 3} = \limi \frac{1 - \frac{2}{x}}{x + \frac{3}{x}} = \frac{1 - 0}{\inf + 0} = \bm{0} \]
+		\item 
+		\[ \limi \frac{5x^3 + 3x - 1}{2x^3 + x^2} = \limi \frac{5 + \frac{3}{x^2} - \frac{1}{x^3}}{2 + \frac{1}{x}} = \frac{5}{2} = \bm{2.5} \]
+		\item משום שלכל $x > 0$ יתקיים $\frac{x}{|x|} = 1$, אז: 
+		\[ \lim_{x \to 0^+} \frac{x}{|x|} + \frac{1}{2} = \frac{1}{1} + \frac{1}{2} = \bm{1.5} \]
+	\end{enumerate}
+	\section{} %%6
+	\sen
+	\begin{enumerate}[(a)]
+		\item \begin{alignat*}{9}
+			&\limz \frac{\sqrt{x + 1} - 1}{x} &&= \limz \frac{\sqrt{x + 1} - 1}{x} \cdot \frac{\sqrt{x + 1} + 1}{\sqrt{x + 1} + 1} \\
+			=& \limz \frac{x + 1 - 1}{x \sqrt{x + 1} + x} &&= \limz \frac{1}{\sqrt{x + 1} + 1} = \frac{1}{\sqrt{1} + 1} = \bm{\frac{1}{2}}
+		\end{alignat*}
+		\item \begin{alignat*}{9}
+			&\lim_{x \to 64} \frac{\sqrt[3]{x} - 4}{x - 64} = \lim_{x \to 64} \frac{\sqrt[3]{x} - 4}{x - 64}  \cdot \frac{\sqrt[3]{x^2}  + 4 \sqrt[3]{x} + 16}{\sqrt[3]{x^2} + 4 \sqrt[3]{x} + 16} \\
+			&= \lim_{x \to 64}\frac{x - 64}{(\sqrt[3]{x^2} + 4 \sqrt[3]{x} + 16)(x - 64)} \\
+			&= \lim_{x \to 64}\frac{x - 64}{48(x - 64)} = \bm{\frac{1}{48}}
+		\end{alignat*}
+		\item 
+		\begin{alignat*}{9}
+			 & \lim_{x \to 2} \frac{\sqrt{x + 2} - \sqrt{3x - 2}}{\sqrt{4x + 1} - \sqrt{5x - 1}} \\
+			=& \lim_{x \to 2} \frac{\sqrt{x + 2} - \sqrt{3x - 2}}{\sqrt{4x + 1} - \sqrt{5x - 1}} \cdot  \frac{\sqrt{x + 2} +  \sqrt{3x - 2}}{\sqrt{x + 2} +  \sqrt{3x - 2}} \\
+			=& \lim_{x \to 2} \frac{x + 2 - 3x + 2}{(\sqrt{4x + 1} - \sqrt{5x - 1})(\underbrace{\sqrt{x + 2} +  \sqrt{3x - 2}}_{=4})} \\
+			=& \lim_{x \to 2} \frac{-2x + 4}{4(\sqrt{4x + 1} - \sqrt{5x - 1})} \\
+			=& \lim_{x \to 2} \frac{-x + 2}{2(\sqrt{4x + 1} - \sqrt{5x - 1})} \cdot \frac{\sqrt{4x + 1} + \sqrt{5x - 1}}{\sqrt{4x + 1} + \sqrt{5x - 1}} \\
+			=& \lim_{x \to 2} \frac{(-x + 2)(\sqrt{4x + 1} + \sqrt{5x - 1})}{2(4x + 1 - 5x + 1)} = \lim_{x \to 2}\frac{6(-x + 2)}{2(-x + 2)} \\
+			=& \lim_{x \to 2} \frac{-6x + 12}{-2x + 4} = \lim_{x \to 2}\frac{-6\cancel{(x - 2)}}{-2\cancel{(x - 2)}} = \bm{3}
+		\end{alignat*}
+		\item 
+		\begin{alignat*}{9}
+			 & \lim_{x \to \inf} (\sqrt{x^2 + 3x + 1} - \sqrt{x^2 - 3x + 1}) \\
+			=& \lim_{x \to \inf^+} (\sqrt{x^2 + 3x + 1} - \sqrt{x^2 - 3x + 1}) \cdot \frac{(\sqrt{x^2 + 3x + 1} + \sqrt{x^2 - 3x + 1})}{(\sqrt{x^2 + 3x + 1} + \sqrt{x^2 - 3x + 1})} \\
+			=& \lim_{x \to \inf}\frac{x^2 + 3x + 1 - x^2 + 3x - 1}{\sqrt{x^2 + 3x + 1} + \sqrt{x^2 - 3x + 1}}
+			=  \lim_{x \to \inf} \frac{6}{\sqrt{1 + \frac{3}{x} + \frac{1}{x^2}} + \sqrt{1 - \frac{3}{x} + \frac{1}{x^2}}} \\
+			=& \frac{6}{\sqrt{1} + \sqrt{1}} = \bm{3}
+		\end{alignat*}
+		\item \begin{alignat*}{9}
+			   & \limpmi\left (\frac{x^3}{x^2 - 1} - \frac{x^2}{x + 3} \right ) 
+			&&=  \limpmi\cl{\frac{x^3(x + 3) - x^2(x^2 - 1)}{(x^2 - 1)(x + 3)}} \\
+			  =& \limpmi\cl{\frac{x^4 + 3x^3 - x^4 + x^2}{x^3 + 3x^2 - x - 3}} 
+			&&=  \limpmi\cl{\frac{3 + \cancel{\frac{1}{x}}}{1 + \cancel{\frac{3}{x} - \frac{1}{x^2} - \frac{1}{x^3}}}} = \bm{3}
+		\end{alignat*}
+	\end{enumerate}
+	\she
+	\section{} %%7
+	נתונה הפונקציה: 
+	\[ f(x) = \begin{cases}
+		\displaystyle f_1(x) := \frac{\sqrt{x + 13} - 2\sqrt{x + 1}}{x^2 - 9}, &  x > 3 \\
+		\displaystyle f_2(x) := \frac{ax}{6}, &x \le 3
+	\end{cases} \]
+	צ.ל. לחשב את הערך של $a$ עבורו הפונקציה הרציפה בכל תחום הגדרתה. 
+	
+	לכל $x > 3 $, יתקיים שערך הפונקציה וגבולה יהיה $f_1(x)$, שהיא פונקציה המוגדרת לכל $x^2 - 9 > 0 $, אי שוויון שיתקיים לכל $x > 3 $ כי תחת הנתונים $x^2 > 9 \implies x^2 - 9 > 0 $. כלומר, הפונקציה תהיה מוגדרת בכל תחום, והיא פונקציה רציונלית, כלומר רציפה בכל נקודה פרט לנקודות אי־ההגדרה שלה. 
+	
+	לכל $x < 3 $, יתקיים שערך הפונקציה וגבולה יהי $f_2(x)$, שגם היא פונקציה רציפה באופן דומה. 
+	
+	עבור $x = 3 $, יתקיים שערך הפונקציה יהיה $f_2(x) = \frac{ax}{6}$, אך גבולה יהיה שונה משני הצדדים. נדרוש, ששני הגבולות יהיו שווים לערכה בנקודה. מצד אחד: 
+	\[ \lim_{x \to 3^-} f(x) = \lim_{x \to 3^-} f_2(x) = f_2(x) \]
+	כדרוש. מהצד השני: 
+	\begin{alignat*}{9}
+		 & \lim_{x \to 3^+} f(x) = \lim_{x \to 3^+} f_2(x) = \lim_{x \to 3^+} \frac{\sqrt{x + 13} - 2\sqrt{x + 1}}{x^2 - 9} \\
+		=& \lim_{x \to 3^+} \frac{\sqrt{x + 13} - 2\sqrt{x + 1}}{x^2 - 9} \cdot \frac{\sqrt{x + 13} + 2\sqrt{x + 1}}{\sqrt{x + 13} + 2\sqrt{x + 1}} \\
+		=& \lim_{x \to 3^+} \frac{x + 13 - 4(x + 1)}{(x^2 - 9)(\sqrt{x + 13} + 2\sqrt{x + 1})} = \lim_{x \to 3^+} \frac{-3x + 9}{8(x^2 - 9)} \\
+		=& \lim_{x \to 3^+} \frac{-3(x - 3)}{(x + 3)(x - 3)8} = \lim_{x \to 3^+} \frac{-3}{(x + 3) \cdot 8} = \frac{-3}{6 \cdot 8} = -\frac{1}{16}
+	\end{alignat*}
+	נדרוש שוויון. 
+	\begin{alignat*}{9}
+		\lim_{x \to 3^+} f(x) &\seq f(3)
+		&&\implies \frac{1}{16} &&\seq \frac{3a}{6} \\
+		\implies -0.375 &\seq 3a &&\implies \bm{a} &&\bm{=} \bm{-\frac{1}{8}}
+	\end{alignat*}
+	סה''כ מצאנו ש־$a = -0.125 $. 
+\end{document}

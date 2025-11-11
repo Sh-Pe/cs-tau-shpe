@@ -1,0 +1,189 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[legalpaper, margin=0.5in]{geometry}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\al    {\aleph}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\p     {\text{, }}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+\newcommand\tl[1] {\tilde{#1}}
+
+\title{עוצמות 6}
+\author{שחר פרץ}
+\date{13 למרץ 2024}
+
+\begin{document}
+	\maketitle
+	\section*{עוד על חשבון עוצמות}
+	תזכורות: בעבור $ A, B $ קבוצות הגדרנו: 
+	\begin{itemize}
+		\item $ |A| + |B| = |A \times \{0\}| \uplus |B \times \{1\}| $ (הערה: במידה ונתונה לנו רק אחת מהקבוצות, מותר לבחור את הקבוצה השניה כך שהן יהיו זרות)
+		\item $ |A| \cdot |B| = |A \times B| $
+		\item $ |A|^{|B|} = |B \to A| = |A^B| $ (כי $ A \to B := A^B $)
+		\item על תמציאו $ -, \tfrac{|A|}{|B|} $ כי זה לא מוגדר. 
+	\end{itemize}
+	\textbf{משפט (מונוטוניות): }יהיו $ a, b, c, d $ עוצמות כך ש־$ c \le d \land a \le b $, לכן: 
+	\begin{enumerate}
+		\item $ a + c \le b + d $
+		\item $ a \cdot c \le b \cdot d $
+		\item $ a^c \le a^d $ (אלא אם $ a = c = 0 \land d \neq 0 $)
+		\item $ a^c \le b^c $
+	\end{enumerate}
+	\begin{proof}
+		נוכיח את הטענה השלישית. יהיו $ A, C, D $ קבוצות כך ש־$ |A| = a, \ |C| = c, \ |D| = d $. נתון $ c \le d $ ולכן קימת $ g \colon C \to D $ חח"ע. נרצה להגדיר $ \vphi \colon (C \to A) \to (D \to A) $ חח"ע. נגדיר $ \tl{g} \colon D \to C $ [ללא שימוש ב־AC – בחירה סופית]: יהי $ \tl{c} \in C $ קבוע (נניח $ C \neq \emptyset $): 
+	\[ \tl{g} = \lambda d \in D. \begin{cases}
+		\iota x \in C. g(x) = d, & d \in \Img g \\
+		\tl{c} & d \in D \setminus \Img g
+	\end{cases} \]
+	$ \tl{g} $מוגדרת היטב מאחר ו־ $ g $ חח"ע. מתקיים: $ \tl{g} \circ g = id_C $. את $ \vphi = \lambda h \in C \to A. h \circ \tl{g} $. נוכיח $ \vphi $ חח"ע: יהיו $ h_1, h_2 \in C \to A $ כך ש־$ \vphi(h_1) = \vphi(h_2) $. לכן $ h_1 \circ \tl{g} = h)2 \circ \tl{g} $. אם נרכיב על $ g $, נקבל $ (h \circ \tl{g}) \circ g = (h_2 \circ \tl{g}) \circ g $ ומאסוציאטיביות $ h_1 \circ ( \tl{g} \circ g) = h_2 \circ(\tl{g} \circ g) $ ומהזהות לעיל $ h_1 \circ id_C = h_2 \circ id_C $ כלומר $ h_1 = h_2 $ כדרוש. \\
+	נחזור למקרה בו $ C = \emptyset $. אם לכן $ c = 0 $. נפריד למקרים: 
+	\begin{itemize}
+		\item אם $ a \neq 0 $: אז $ a^c = a^0 = 1 $ וכן $ a^d $ אם $ d = 0 $ tz $ a^d = a^0 = 1 $ ואז $ a^c = a^d $. אם $ d \neq 0 $ אז $ a^d $. אם $ d \neq 0 $ אז $ a^d = |D \to A| \ge 1 $, כלומר $ ^d \le a^c = 1 $ כדרוש. 
+		\item אם $ a = 0 $ אז $ a^c = 0^0 = 1 $, במקרה זה הנחנו $ d = 0 $ ולכן $ a^d = 0^0 = a^c $
+	\end{itemize}
+	כיסינו את כל המקרים. 
+	\end{proof}
+	\textbf{משפט: }("סופר־שימושי"): 
+	\begin{enumerate}
+		\item $ \az \cdot \az = \az + \az  = \az $ (כבר הוכחנו את השוויון לגבי הכפל כשהוכחנו $ |\N\times\N| = \az $)
+		\item $ \taz \cdot \taz = \taz + \taz = \taz $ (גם כאן הוכחנו את הכפל בשיעור שעבר)
+		\item $ \az \cdot \taz = \az + \taz = \taz $
+	\end{enumerate}
+	(הטענות האלו נכונות עבור כל עוצמה אינסופית תחת אקסיומת בחירה, אבל אסור לנו להניח את זה ואין משפט כזה בקורס)
+	\begin{proof} נוכיח את שלושת הטענות: \\
+	(1): עבור כפל כבר הוכחנו, עבור חיבור נשתמש בקש"ב. מהמונוטוניות: $ \az \le \az + 0 \le \az + \az $ ומצד שני $ \az + \az = |\Nodd \uplus \Neven| = |\N| = \az $ כדרוש. \\
+	(2): עבור כפל כבר הוכחנו (שיעור שעבר הוכחנו כי $ |\R\times\R| = |\R| $), ובעבור $ \taz + \taz $ נוכיח באמצעות קש"ב, $ \taz + \taz \ge \taz + 0 = \taz $ ומהצד השני $ \taz + \taz = |\underbrace{\R \times \{0\} \uplus \R\times \{1\}}_{\subseteq \R\times\R}| \le |\R\times\R| = \taz$ כדרוש. [אפשר גם להוכיח עם קרנות]. \\
+	(3): תזכורת; היה תרגיל בשיעורי הבית להוכיח כי $ |[0, 1) \times \Z| = |\R| $ ולכן $ \taz \cdot \az = \taz $. אפשר גם להוכיח ע"י חשבון עוצמות: $ \az \times \taz \ge 1 \cdot \taz = \taz $, ומהצד השני $ \az \times \taz \ge \taz  \cdot \taz = \taz $, וסה"כ הוכחנו מקש"ב $ \az \times \taz = \taz $ כדרוש. בעבור $ \az + \taz $ ידוע $ \az + \taz \ge 0+ \taz = \taz \land \az + \taz \le \taz + \taz = \taz $ וסה"כ מקש"ב $ \az + \taz = \taz $ כדרוש. 
+	\end{proof}
+	
+	\textbf{משפט (חוקי חזקות): }
+	\begin{enumerate}
+		\item $ (a^b)^c = a^{b \cdot c} $
+		\item $ (a \cdot b)^c = a^c \cdot b^c $
+		\item $ a^{b + c} = a^b \cdot a^c $
+	\end{enumerate}
+	\begin{proof}
+		יהיו $ A, B, C, D $ קבוצות ונסמן $ a = |A|, b = |B|, c = |C|, d = |D| $. כדי להוכיח את (1) צ.ל. קיום זיווג $ \vphi \colon ((B \times C) \to A) \to (C \to (B \to A)) $ והרי שפונקציית $ Cu := curry $ (קורי) היא זיווג\dots \ וזהו כאן די נגמרים השימושים של הפונקציה הזו לקורס הזה, סתם חפרו לנו עליה לפני חצי שנה. 
+	\end{proof}
+	\textbf{טענה: }
+	\begin{enumerate}
+		\item לכל עוצמה אינסופית $ a $ מתקיים $ a + \az = a $
+		\item לכל עוצמה אינסופית $ a $ ולכל $ n \in \N $, מתקיים $ a + n = a $
+	\end{enumerate}
+	\begin{proof}
+		("אה רגע יש לי שתי דקות, אז בו נוכיח"). נוכיח את (1). תהי $ A $ קבוצה כך ש־$ |A| = a $ ומאחר ש־$ A $ אינסופית, אזי קיימת לה ת"ק [=תת קבוצה] בת מנייה $ B \subseteq A $. 
+		\begin{align*}
+			a + \az = |A| + |B| = |(A \setminus B) \uplus (B)| + |B| = |A \setminus B| + \underbrace{|B|}_{\az} + \underbrace{|B|}_{\az} = |A \setminus B| + \az = |(A \setminus B) \uplus B| = |A| = a
+		\end{align*}
+	\end{proof}
+\end{document}

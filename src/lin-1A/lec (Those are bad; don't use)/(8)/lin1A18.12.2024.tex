@@ -1,0 +1,597 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection)\dotfill \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#1]{#2}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+\renewcommand\phi     {\varphi}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{ליניארית 8}}
+\begin{document}
+	\maketitle
+	כמה תזכורות מפעמים קודמות, והשלמות להוכחות: 
+	
+	\textbf{טענה. }יהיו $U, V$ מ"ו מעל שדה $\F$ ממימדים $n = \dim V, m = \dim U$ ויהי $C = (u_j) \subseteq U, B = (v_i) \subseteq V$ בסיסים אז כל מטריצה $(a_i) \in M_{m \times n}(F) = A$ מגדירה העתיקה ליניארית שהיא $\forall x_j \in F, \ 1 \le j \le n\co \phi(\sum_j x_j v_j) = \sum_{i, j \in I}x_ja_{ij}u_i \ \mathrm{where} \ T = \{(x, y) \mid x \in \{1 \dots m\}, y \in \{1 \dots n\}\}$ ויתקיים $[\phi]_C^B = A$. 
+	
+	\textit{הבהרה: יתקיים}
+	\[ \sum_{i, j \in I}x_ja_{ij}u_i = \sum^m_{i = 1} u_i \cl{\sum_{j = 1}^{n} x_ja_{ij}} = \sum_{i = 1}^n u_i x_j C_i \]
+	
+	\begin{proof}
+		יהי $A$ מט' כרצוי. נבנה $\phi$ במשפט. נראה ש־$\phi$ ליניארית ואז ש־$[\phi]_C^B = A$
+		\begin{itemize}
+			\item ליניארית. יהיו $\lg, \ag \in F, v, w \in V$. נראה ש־$\trio = \phi(\lg v + \ag w) = \lg \phi(v) + \ag \phi(w)$. נסמן: 
+			\[ V = \sum_{j = 1}^{n}x_jv_j, \ W = \sum_{j = 1}^ny_jv_j \]
+			קיימים $(x_j), (y_j)$ מתאימים כי $B$ הוא בסיס. 
+			\[ \trio = \phi\cl{\lg \sum x_jv_j + \ag \sum y_jv_j} = \phi\cl{\sum (\lg x_j + \ag y_j)v_j} \]
+			מהגדרה: 
+			\begin{align*}
+				\trio &= \sum_{i, j \in T} (\lg x_j + \ag y_j)a_{ij}u_j \\
+				&= \lg \sum_{i, j \in T} x_ja_{ij}u_j + \ag \sum_{i, j \in T}y_ja_{ij}u_j\\
+				&= \lg \phi(v) + \ag \phi(w)
+			\end{align*}
+			לפי הגדרת $\phi$. כדרוש. 
+			\item $[\phi]_C^B = A$. יהי $1 \le j \le m$. נסתכל על העמודה ה־$j$ שלהן, ונראה שהן שוות. 
+			\begin{itemize}
+				\item $[\phi]_C^B = [\phi(v_j)]_C$ (לפי ההגדרה של מטריצה מייצגת)
+				\item העמודה ה־$j$ של $A$ היא $\begin{pmatrix}
+					a_{1j} \\ \vdots & a_{mj}
+				\end{pmatrix}$
+				\item נחשב את $\phi(v_j)$: 
+				\[ \begin{WithArrows}
+					\phi(v_j) &= \phi\cl{\sum_{\mathclap{j \neq t = 1}}^n 0v_t + 1v_t} = \sum_{i, \ml \in T}x_{i\ml} a_{i \ml}u_i = \sum_i \underbrace{x_j}_{=1} a_{ij} + u_{i} + \underbrace{\sum_{\mathclap{i, j \in T \setminus \{(i, j) \mid i \in \{1 \dots m\}\}}} x_ca_{i\ml}u_i}_{=0} \\
+					&= \sum_i a_{ij} \implies [\phi(v_j)]_C = \begin{pmatrix}
+						a_{1j} \\ \vdots \\ a_{mj}
+					\end{pmatrix}
+				\end{WithArrows} \]
+			\end{itemize}
+		\end{itemize}
+	\end{proof}
+	
+	\section{\en{Mat Mul}}
+	תזכורות מהשיעור הקודם: 
+	\[ A  +B := (a_{ij} + b_{ij}) \quad \lg A := (\lg a_{ij}) \]
+	ויתקיים:
+	\[ [\phi + \psi]_C^B = [\phi]_C^B + [\psi]_C^B, \ [\lg \phi]_C^B = \lg [\phi]_C^B \]
+	\begin{proof}
+		יהי $1 \le j \le n$. נראה שהעמודה ה־$j$ של שני הצצדים שווים. מצד אחד, בעמודה ה־$j$: 
+		\[ [\phi + \psi]_C^B = [(\phi + \psi)(v_j)]_C \]
+		מנגד, בצד השני, בעמודה ה־$j$: 
+		\[ [\phi]_C^B + [\psi]_C^B \seq [\phi(v_j)]_C + [\phi(v_j)]_C \]
+		נחשב את $(\phi + \psi)(v_j) = \phi(v_j) + \psi(v_j)$. נסמן את $\phi(v_j) = \sum_{i = 1}^{m} \ag _iu+i$ ובאופן דומה ב־$u_i$ את $\psi(v_j)$ ונקבל: 
+		\[ \sum \ag_i u_i = \sum \beta_i u_i = \sum(\ag_i + \beta_i)u_i \]
+		וסה"כ 
+		\[ [(\phi + \psi)(v_j)]_C = \pms{\ag_1 \\ \vdots \\ a_m} + \pms{\bg_a \\ \vdots \\ \bg_m } \] 
+		וזה בדיוק כמו ...
+	\end{proof}
+	
+	\textbf{מסקנה. }$U, V$ מ"ו. $B, C$ בסיסים ממימדים $n, m$ בהתאמה, אז קיימת $T \co \hom(V, U) \to M_{m \times n}(F)$ כך ש־$T(\phi) = [\phi]_C^B$, כך ש־$T$ איזומורפיזם. 
+	
+	\begin{proof}
+		/נראה ש־$T$ חח"ע ,על, ליניארית, ושטווחה מ"ו. 
+		\begin{itemize}
+			\item טווח מ"ו. הטווח הוא $M_{m \times n}(F)$ עם $+, \cdot$ כמו שהוגדר קודם, הוא מ"ו $A+ B, \lg A$. נובע זה שהפעולות פר נקודה (מה שהמורה כתב וציין שלא מספיק פורמלי). 
+			\item ליניארית. יהי $\phi, \psi $ העתקות מ־$V$ ל־$U$. יהיו $\lg, \ag \in F$. נראה: 
+			\[ T(\lg \phi + \ag \psi) = \lg T (\phi) + \ag T(\psi) \]
+			ואכן: 
+			\[ T(\lg \phi + \ag \psi) = [\lg \phi + \ag\psi]_C^B = [\lg \phi]_C^B + [\ag \psi]_C^B = \lg [\phi]_C^B + \ag[\psi]_C^B = \lg T(\phi) + \ag T(\psi) \]
+			\item על. מטענה קודמת לכל מט' $A$ קיימת $\phi \co V \to U$ כך ש־$[\phi]_C^B = A$ ולכן $T(\phi) = A$. 
+			\item חח"ע. יהי $\phi, \psi$ העתקות ליניאריות כך ש־$T(\phi) = T(\psi)$. אז יש להן אותה הטריצה המייצגת, ומכיוון שאיברי הבסיס הולכים לאותו הערך, אז אילו אותן ההעתקות. 
+		\end{itemize}
+	\end{proof}
+	
+	\textbf{הגדרה. }$A = (a_{ij})\in M_{m \times s}, \ B = (b_{ij}) \in M_{s \times n}$. נגדיר: 
+	\[ AB := A \cdot B := (c_ij) = \cl{\sum_{k = 1}^{s}a_{ik}b_{kj}} \in M_{m \times n}(F) \]
+	כלומר כפל מטריצות יתבצע למטריצות מהצורה: 
+	\[ \pms{\  & s & \cdots \\ m & & \\ \vdots & &} \cdots \pms{\  & n & \cdots \\ s & & \\ \vdots & &} \]
+	כאשר $i \in [m], j \in [m]$. אז לדוגמה: 
+	\[ AB := C, \ C_{11} = \sum_{s} {a_{1k}b_{k1}} \]
+	עוד דרך להסתכל על הכפל: בעבור $A, B$ כלליות, ותחת הסימון $A_i \in M_{1 \times s}$ השורה ה־$i$ של $A$ ו־$B_j \in M_{s\times 1}$ ואז להסתכל על כפל מטריצות כמו $AB = (A_i \cdot B_j)_{i, j \in ...}$. 
+	
+	דרך אחרת להסתכל על הכפל, יהיה כמו להסתכל על $\hat e_i \in M_{1 \times n}, \ e_i \in M_{n \times 1}$ בסיסים סטנדרטיים של המ"ו, אז $A \cdot e_i$ יהיה העמודה ה־$i$ ו־$\hat e_i \cdot A$ יהיה השורה ה־$i$. 
+	
+	\textbf{דוגמה. }
+	\[ \pms{1 & -1 & 2 \\ 3 & -2 & 1}_{2 \times 3} \pms{5 & -2 \\ 0 & -3 \\ -1 & 4}_{3 \times 2} = \pms{5 \cdot 1 + 0  -1 \cdot 2 & 2 + 3 + 8 \\ 15 + 0 - 1 & 6 + 6 + 4} = \pms{3 & 13 \\ 14 & 16} \]
+	דוגמה נוספת: 
+	\[ \pms{1 \\ 2 \\ 3}\pms{1 & 2 & 3 & 4} = \pms{1 & 2 & 3 & 4 \\ 2 & 4 & 6 & 8 \\ 3 & 6 & 9 & 12} \]
+	שימו לב שהכפל לא קומטטיבי. במקרה הזה, ההפוך כלל לא היה הכפל. 
+	
+	\textbf{טענה. }
+	יהיו $\phi \co V \to U$ ו־$\psi \co U \to W$ העתקות ליניאריות, ו־$B_v, B_u. B_w$ בהתאמה. אז: 
+	\[ [\psi \circ \phi]_{B_w}^{B_v} = [\psi]_{B_w}^{B_u} \cdot [\phi]_{B_u}^{B_w} \]
+	\begin{proof}
+		נסמן: 
+		\begin{align*}
+			B_V &= (v_1 \dots v_s) \\
+			B_W &= (w_1 \dots w_r) \\
+			B_U &= (u_1, \dots, u_t) \\
+			[\psi]^{B_U}_{B_W} := Y &:= (y_{ij}) \in M_{r \times t}(\F) \\
+			[\psi \circ \phi]_{B_W}^{B_V} := Z &:= (z_{ij}) \in M_{r \times s}(\F)
+		\end{align*}
+		נראה ש־$Z = Y \cdot X$ ע"י זה שנראה עבור כל עמודה (מכיוון שהמרצה לא יסמן את זה אז אני כן, $A^j$ תהיה העמודה ה־$j$ במטריצה $A$, $i$ להיות השורה). 
+		\[ YX := \hat Z_{ij} = \sum_{k = 1}^t x_{ik}y_{kj} \]
+		תקשיבו, די נמאס לי, אי אפשר לעקוב אחרי המרצה, יש את זה בסיכום של אלגברה ליניארית בעמוד 34 (אני רואה את הסיכום של המורה במסך של המחשב של מנטין מולי והמרצה פשוט מנסה להעתיק מזה) שאתם יכולים למצוא בכל מקרה בלעדי. 
+		השורה התחתונה שלו היא: 
+		\begin{align*}
+			&[(\psi \circ \phi)(v_j)]_{B_W}^j \\
+			= &[\psi(\phi(v_j))]_B{W}^j \\
+			= &\csb{\psi\cl{\sum_{j = 1}^{t}x_{kj}u_k}}_{B_W}^j \\
+			= &\csb{\sum_{k = 1}^{t}x_{kj} \cdot \psi(u_k)}_{B_W}^j \\
+			= &\csb{\sum_{k = 1}^{t}x_{kj} \cdot \sum_{p = 1}^{n}y_{px}w_p}_{B_W}^j
+		\end{align*}
+		זה השלב שבו המרצה זועק לעזרה כי אין לו מושג מה לעשות. אחרי 2 דקות של דיבורים על הכיתה כדי להבין מה קורה: 
+		\begin{align*}
+			= &\csb{\sum_{p = 1}^{r}w_p \sum_{k = 1}^{t}x_{kj}y_{rk}}_{B_W}^j \\
+			= &\pms{\sum y_k x_{kj} \\ \vdots \\ \sum y_{rk}x_{kj}}
+		\end{align*}
+		ולכן
+		\[ (Z)_{ij} = \sum_{k = 1}^{t}y_{ik}x_{kj} \]
+		כדרוש. 
+	\end{proof}
+	
+	\textbf{מסקנה. }יהיו $A, B, C$ מטריצות, אז 
+	\begin{enumerate}
+		\item $(AB)C = A(BC)$
+		\item $A(B + C) = AB + AC$ (בהנחה שהכפל מוגדר)
+	\end{enumerate}
+	\begin{proof}
+		קיימות $\ag, \bg, \cg$ העתקות ליניאריות ומרחבים $F^a, F^b, F^c$. נבקש $A = [\ag]$, $B =[\bg]$  ו־$C =[\cg]$ כאשר $[\phi] = [\phi]_e$ עבור $e$ הבסיס הסטנדרטי ($e = (e_1 \dots e_n)$). נוכל לעשות זאת מהטענה שראינו בתחילת השיעור. אז:
+		\[ (AB)C = ([\ag] [\bg]) [\cg] = [\ag \circ \bg][\cg] = [\ag \circ \bg \circ \cg] = [\ag \circ (\bg \circ \cg)] = \cdots = A(BC) \]
+		ו־2 באופן דומה. 
+	\end{proof}
+	
+	נמשיך עם הוכחה לכך שכפל מטריצות לא חילופי שראיתי קודם על המחשב של מנטין, על הסיכום שהמרצה מעתיק ממנו: 
+	\[ A = \pms{0 & 1 \\ 0 & 0}, B = \pms{0 & 0 \\ 0 & 1} \]
+	יתקיים: 
+	\[ AB = \pms{0 & 1 \\ 0 & 0} \neq \pms{0 & 0 \\ 0 & 0} = BA \]
+	בינתיים מיכאל ומנטין מחליפים icon packs של intelji מולי
+	
+	למה אני בהרצאה הזו בכלל, אם הייתי רוצה מרצה שמקריא מדף הייתי הולך לפתוחה, פותח את הספר שלהם ושם קורא מסך. 
+	
+	\textbf{הגדרה. }$In := \pms{1 & 0 & 0 & \cdots \\ 0 & 1 & 0 &\cdots \\ 0 & 0 & \ddots & 0 \\ 0 & 0 & 0 & 1}$
+	היא מטריצת היחידה. 
+	אם יש מ"ו ממימד $n$ עם בסיס $B$ אז $[id_v]^B_B = T_n$.
+	
+	\textbf{למה. }תהי $A \in M_{m \times n}(F)$ 
+	
+	\textbf{טענה. }תהי $A = (a_{ij}) \in M_{m \times n}(F)$. יהי $x = (x_j) \in F^n$ ו־$b = (b_i) \in F^m$. אז $Ax = b$ אמ"מ $x$ פתרון למערכת המשוואות ש־$(A \mid b)$ מייצג (ליטרלי השתמשתי בזה בש.ב. 2 לפני חודש כי נראה לי הגיוני שככה מגדירים את זה)
+	\begin{proof}[הוכחה. באמת?]
+		\[ b_i = Ax = \sum a_{it}x_t \]
+	\end{proof}
+	
+	\textbf{מסקנה. }יהי "אותם תנאים כמו של הטענה הקודמת" מרחב הפתרונות $Ax = 0$ הוא מ"ו. וגם, עבור כל $\phi$ העתקה ליניארית מ־$V$ ל־$U$ עם בסיסים $B, C$ בהתאמה, כך ש־$[\phi]_C^B = A$, יתקיים שמרחב הפתרונות $\ker \phi=$
+	
+	\textit{תודה מנטין שבשלב הזה בהרצאה שלח לי את הסיכום שהמורה שאני מעתיק ממנו מעתיק ממנו. זה כמו העתקות ליניאריות. }
+	
+	\textit{זה השלב שבו אני שולח קטעים מהסיכום בקבוצה של אודיסאה כי כל מי ש"מסכם" את השיעור ב־intelji זמין על הוואטסאפ}
+	
+	\textit{מתישה, שקצת אחרי שקרני כתב java על הלוח האחורי כדי להסביר למי שישב לידו משהו, הואה התחיל להסביר למרצה למה הוא טועה במה שכתב על הלוח}
+	
+	\begin{proof}
+		נראה שמ"ו וגם שעבור כל $\phi$ כל ש־$[\phi] = A$ מתקיים $=\ker\phi$ מרחב הפתרונות ב־???
+		
+		תהי $\phi$ כך ש־$[\phi] = A$ מתקיים שלכל $v \in V \co \phi(v) = Av$ (מטענה קודמת עבור $\phi$). נניח בסיסים סטנדטרטיים: 
+		\[ x \ \mathrm{solution} \iff Ax = 0 \iff x = \ker\phi \]
+		
+	\end{proof}
+	
+	\textit{טיפה לא נעים לי ביחס למורה. הוא די רוצה שנצליח אבל לא נראה לי כאילו הוא משקיע מספיק. או שהוא פשוט לא יודע את החומר. }
+	
+	\section{\en{``MESHUHLEPHET"}}
+	\textbf{הגדרה. }מטריצה משוחלפת \textit{(להבדיל ממטריצה עוגיפלצת)}, בהינתן מטריצה $A = (a_{ij}) \in M_{m \times n}(F)$, המטריצה המשוחלפת תהיה $A^t := (a_{ij}) \in m_{n \times m}(F)$ (למעשה, להחליף שורות ועמודות). באנגלית -- transposed. 
+	
+	
+	\textbf{לדוגמה. }
+	\begin{gather*}
+		\pms{1 & 2 \\ 3 & 4 \\ 5 & 6} = \pms{1 & 3 & 5 \\ 2 & 4 & 6} \\
+		(In)^{t} = In
+	\end{gather*}
+	
+	\textbf{טענות. }
+	\begin{itemize}
+		\item $(A^t)^t = A$
+		\item $(\lg A)^t = \lg A^t$
+		\item $(A + B)^t = A^t + B^t$
+		\item $(AB)^t = B^tA^t$
+	\end{itemize}
+	
+	\begin{proof}[הוכחה (עבור הראשון).]
+		\textit{אינטואיציה. }נסתכל על הגודל של $(A^t)^t$. הוא יהיה כמו $A$ כי החליף עמודות ושורות פעמיים. 
+		
+		\textit{אשכרה הוכחה. }נסתכל על האיבר ה־$i, j$ של $\iota = (A^t)^t$. הוא: 
+		\[ \iota_{ij} = (A^t)^B, \ c_{ij} = B_{ij} = A_{ij} \]
+		זה השלב שבו המרצה מציין $B = A^t$ ולכן כל $B_{x, y} = A_{y, x}$. 
+	\end{proof}
+	
+	\textbf{טענה. }יהי $A \in M_{m \times n}(F)$ מטריצה. אז $\phi \co F^m \to F^n$ העתקה, אז $\phi_A = (\lg \dots \lg_m) = (\lg \dots \lg_n) \cdot A$, ויתקיים $[\phi_A] = A^t$ (בבסיסים סטנדרטיים). 
+	
+\end{document}

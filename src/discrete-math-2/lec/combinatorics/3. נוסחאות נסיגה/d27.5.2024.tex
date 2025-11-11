@@ -1,0 +1,296 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\sinx  {\sin x}
+\newcommand\tanx  {\tan x}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+
+\renewcommand\inf {\infty}
+\newcommand\ninf  {-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+
+\author{שחר פרץ}
+\title{סיכום מתמטיקה בדידה $\sim$ קומבי 3 $\sim$ נוסחאות נסיגה}
+\date{27 ליוני 2024}
+
+\begin{document}
+	\maketitle
+	
+	\section{נוסחאות נסיגה – מבוא}
+	\textbf{הגדרה: }(פורמלי אבל התרגילים פחות) נוסחה מהצורה $a_n = f(n, a_{n - 1}, a_{n - 2}, \dots a_{n - k})$ כאשר $k \in \N_+$ ו־$f \colon \N \times \R^{k + 1} \to \R$ נקראת נוסחת נסיגה מסדר $k$. 
+	
+	בהינתן הערכים של $a_i$ עבור $0 \le i \le k - 1$, שנקראים תנאי התחלה [תנאי עצירה במדמ''ח], מוגדרת סדרה יחידה $\lambda n \in \N. a_n$ שמקיימת את נוסחת הנסיגה ואת תנאי ההתחלה. 
+	
+	\section{דוגמאות}
+	\begin{enumerate}
+		\item $a_n = a_{n - 1} + 3, \ a_0 = 7$ – 
+		זוהי סדרה חשבונית; $7, 10, 13, \dots $ (מתחילה מקבוע וגודלת בקצב קבוע). הנוסחא הסגורה: $a_n = 7 + 3n $. המספר $3$ יסומן ב־$d$. 
+		\item \[ \begin{cases}
+			b_n &= \ 3b_{n - 1} \\
+			b_0 &= \ 2
+		\end{cases} \]
+		
+		סדרה הנדסית – מתחילה בקבוע ומכפילה את עצמה בכל פעם. במקרה הזה $ 2, 6, 18, \dots $. נוסחה סגורה: $a_n = 2 \cdot 3^n $ (בכלליות: $a_0 \cdot q^n$, כאשר $a_0 $ מקרה בסיס, והמקדם ב־$q$). בד''כ מוגדר $q \neq 0 $. 
+		
+		עובדה מועילה: נוסחה לסכום $N$ האיברים הראשונים בסדרה הנדסית: 
+		\[ \bm{S_N = \frac{a_0 \cdot (q^N - 1)}{q - 1}} \quad (q \neq 1) \]
+		צריך לזכור בע''פ -- לומדים אותה לבגרות, והקורס נלקח ע''י האנשים שעברו בגרות...  [הערה לפני העלאה לגיטהאב – אנחנו תלמידי אודיסאה, אין לנו בגרות עדיין]
+		
+		\textit{הערה: $S_n = a_0 + \dots + a_{n - 1}$}
+		\item אם $c_n = n!$, אז עבור טבעיים: 
+		\[ \begin{cases}
+			c_n = n \cdot c_{n - 1} \\
+			c_0 = 1
+		\end{cases} \]
+		\item סדרת פיבונאצ'י: 
+		\[ \begin{cases}
+			F_n = F_{n - 1} + F_n \\
+			F_0 = 0, \ F_1 = 1
+		\end{cases} \]
+		שאתם כנראה זוכרים בע''פ את חלקה. חשובה בגלל עלי כותרת של פרחים וחמניות. זו היא אינה סדרה הנדסית, אל היחס בין שני איברים בקבוצה (אינו קבוע) מתקרב לאיזשהו גבול בשאיפה לאינסוף – יחס הזהב. 
+	\end{enumerate}
+	
+	\section{תרגילים}
+	
+	\subsection{}
+	\textbf{שאלה: }בכמה מילים באורך $n $מעל $\{A, B, C, D, E \}$ האות $E$ מופיעה מספר זוגי של פעמים [בדומה לעבודה של פסח. אפשר לפתור אות ה גם בשיטה הזו]? 
+	
+	\textbf{פתרון: }נפצל למקרים על כמות הפעמים ש־$E $ מופיע. נבחר איפה יש $E$ ($\bink$) ואז את כל השאר ($4^{n - k}$)
+	\[ \sum_{k = 0, \ k \in \Neven}^{n} \binom{n}{k}4^{n - k} = \frac{1}{2} \left [\sumnk \bink 4^{n - k} + \sumnk \bink 4^{n - k}(-1)^{k}\right ] = \frac{3^n + 5^n}{2} \]
+	זהו ``טריק'' פופלארי שריך להכיר. 
+	
+	\textbf{פתרון (כן רקורסיבי): }נסמן את התשובה ב־$a_n$. נפצל למקרים, לפי התו הראשון במילה: 
+	\begin{itemize}
+		\item אם הוא לא $E$: נותרנו עם $n - 1$ תווים, יהיו $4a_{n - 1}$ אפשרויות (4 אפשרויות לתו שהוא לא $E$, ולאחר מכן מחרוזת שיש בה מספר זוגי של פעמים את האות $E$). 
+		\item אם הוא כן $E$: מעקרון המשלים. באופן כללי, עולם הדיון בגודל $5_{n - 1}$ למה שנשאר. נפריד את כל המקרים בהם $E$ מופיעה מספר זוגי של פעמים (במחרוזת שלאחר ה־$E$ שאנו יודעים את מיקומה). מצאנו $5^n - 4a_{n - 1}$ אפשרויות. 
+	\end{itemize}
+	סה''כ מכלל החיבור: 
+	\[ a_n = 4a_{n - 1} + 5^{n - 1} - a_{n - 1} = 3a_{n - 1} + 5^{n - 1} \]
+	זוהי נוסחת נסיגה מסדר $1$ ולכן נגדיר תנאי התחלה יחיד. יתקיים $a_0 = 1 $ (המילה הריקה). אם היינו מתקשים לחשב את $a_0 $, היה אפשר לחשב אותו לפי $a_1 $: 
+	\[ a_1 = 4 = 4a_1 + 5^0 \implies 4 = 3a_0 + 1 \implies 3 = 3a_0 \implies a_0 = 1 \]
+	תמיד נתבקש להגיד היטב את ה־$a_0 $ הכי קטן. 
+	
+	נרצה להגיע לנוסחה סגורה של התרגיל. 
+	
+	\textit{אינטואציה: }הצבה חוזרת. 
+	\begin{align}
+		&a_n = 3a_{n - 1} + 5^{n - 1} = 3(3a{n - 2} + 5^{n - 2}) + 5^{n - 1} = 3(3(3a_{n - 3} + 5^{n - 3} ) + 5^{n-  2}) + 5^{n - 1} \\
+		= &\dots = 3^ka_{n - k} + 3^{k - 1}5^{n - k} + \dots + 5^{n - 1} \\
+		= &3^n \cdot a_0 + 3^{n - 1}\cdot 5^0 + 3^{n - 2} \cdot 5^1 + \dots + 5^{n - 1} \\
+		= &3^n + \sum_{k = 0}^{n - 1}3^k \cdot 5^{n - 1 - k} = 3^n + 5^{n - 1} \cdot \sum_{k = 0}^{n - 1}3^k5^{-k} \\
+		= &3^{n} + 5^{n - 1} \cdot \sum_{k = 0}^{n - 1}\left (\frac{5}{3} \right )^k = 3^n + 5^{n - 1} \cdot \frac{\left  (\frac{3}{5} \right  )^k}{\frac{3}{5} - 1} = 3^n + \frac{5}{2} \cdot \left (1 - \frac{3^n}{5^n}\right ) \cdot 5^{n - 1} \\
+		= &3^n \cdot \frac{1}{2} \cdot 5^n - \frac{1}{2} \cdot \cancel{5^n} \cdot \frac{3^n}{\cancel{5^n}} = \frac{1}{2}(3^n + 5^n)
+	\end{align}
+	זו דרך סולידית יחסית אך שאינה פורמלית. עלינו להוכיח באינוקציה את השוויון $a_n = \frac{1}{2} (3^n + 5^n)$ (בעיקר בגלל המעבר בשורה 3)
+	
+	\subsection{}
+	\textbf{שאלה: }נסמן ב־$a_n $ את מספר המחרוזות הבינאריות באורך $n $ בהן לא מופיע הרצף $ 1, 0, 1 $. כתבו נוסחת נסיגה ותנאי התחלה ל־$a_n$. 
+	
+	\textbf{פתרון: }
+	\[ a_n = \underbrace{\quad \quad \quad}_{n} \begin{cases}
+		0\underbrace{\quad \quad}_{n - 1}a_{n - 1} \implies a_{n - 1} \\
+		1\underbrace{\quad \quad}_{n - 1} \implies b_n\begin{cases}
+			10\underbrace{\quad \quad}_{n - 2} \implies 100a_{n - 3} \\
+			11\underbrace{\quad \quad}_{n - 2} \implies b_{n - 1} \quad \begin{cases}
+				\cdots
+			\end{cases}
+		\end{cases}
+	\end{cases} \]
+	
+	נגדיר $ = b_n $ מס' המחרוזות באורך $n$ ללא $101 $ שמתחילת ב־$1$. לפי העץ: 
+	\[ \begin{cases}
+		a_n = a_{n - 1} + b_n \implies b_n = a_n - a_{n - 1} \\
+		b_n = a_{n - 3} + b_{n - 1}
+	\end{cases} \implies a_n - a_{n - 1} = a_{n - 3} + a_{n - 1} - a_{n - 2} \]
+	סה''כ $\bm{a_n = 2a_{n - 1} - a_{n - 2} + a_{n - 3}}$. 
+	נצטרך להגדיר שלושה תנאי התחלה. $= a_0$ המילה הריקה $1 = $. $a_1 = 2, \ a_2 = 4 $. לבינתיים, לא נדע כיצד לפתור את זה. 
+	
+	\section{פתרון נוסחאות נסיגה ע''י שיטת הפולינום האופייני}
+	\textbf{הגדרה: }נוסחת נסיגה ליניארית עם מקדמים קבועיים היא נושחא מהצורה $a_n = c_1a_{n - 1} + c_2a_{n - 2} + \dots + c_ka_{n - k} + g(n)$
+	כאשר $c_1, \dots c_k $ הם קבועים ו־$g$ היא פונקציה התלוייה רק ב־$n$. 
+	אם $c_k \neq 0 $, אז נאמר שהנוסחה מסדר $k$. 
+	
+	הבהרה: הנוסחה $a_n = a_{n - 3} + 5 $ היא מסדר $3$ ולא מסדר $1$ (כי צריך שלושה תנאי התחלה). זו גם נוסחאת נסיגה ליניאית עם תנאים קבועים
+	
+	אם $g = \lambda n \in \N. 0 $ נאמר שהנוסחה הומוגנית. 
+	\subsubsection{דוגמאות נגד (לא פונקציות נסיגה ליניאריות עם מקדמים קבועים)}
+	\begin{enumerate}
+		\item $c_n = nc_{n - 1}$ – המקדם אינו קבוע 
+		\item $a_n = \frac{1}{a_{n - 1}}$ – לא ליניארית
+	\end{enumerate}
+	
+	אנחנו נעבוד בקורס רק על נוסחאות נסיגה ליניאריות עם מקדמים קבועים הומוגניות מסדר $2$, כדי לפתור באמצעות השיטה שבכותרת. נרחיב בשיעור הבא. ייתכן ויהיו שינויים שכן אנו ניגשים רק בשנה הבא למבחן. 
+	
+\end{document}

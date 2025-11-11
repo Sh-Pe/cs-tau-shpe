@@ -1,0 +1,336 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[A4, margin=0.5in]{geometry}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default preamble={for tree={circle, draw}}}
+\renewcommand\labelitemi{$\bullet$}
+
+% Hebrew initialzing
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX]{David CLM}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\setlist[hebenum,1]{
+	labelindent=\parindent,
+	label={{\hebrewfont{\protect\hebrewnumeral{\value{hebenumi}}}}.}
+}
+
+% Math shortcuts
+
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\bs    {\blacksquare}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+\newcommand\logn  {\log n}
+
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\p     {\text{, }}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\title{מתמטיקה בדידה – תרגיל בית 17}
+\author{שחר פרץ}
+
+\begin{document}
+	\maketitle
+	\section*{שאלה 1}
+	תהי $ a $ עוצמה, צ.ל.
+	$ \forall n \in \N_+. \underbrace{a \cdot a \cdot \dotsc \cdot a}_{n \ \mathrm{times}} = a^n $
+	\begin{proof}
+		נסמן $ |A| = a $. נוכיח באינדוקציה;
+		\begin{itemize}
+			\item בסיס: נניח $ n = 0 $, מכאן $ a = a^1 $ שנכון ממשפט וגמרנו. 
+			\item צעד: נניח באינדוקציה את נכונות הטענה על $ n $ ונוכיח בעבור $ n + 1 $. מכאן, צ.ל. $ \underbrace{a \cdot a \cdot \dotsc \cdot a}_{n + 1 \ \mathrm{times}} = \underbrace{a^n}_{\mathrm{induction}} \cdot \ a \seq a^{n + 1} $. ידוע $ a = a^1 $ כלומר מחוקי חזקות של עוצמות $ a^n \cdot a = a^n \cdot a^1 = a^{n + 1} $ כדרוש. 
+		\end{itemize}
+	\end{proof}
+	\section*{שאלה 2}
+	נניח $ a \le b \land c \le d $, נוכיח מספר טענות. נניח קיום $ A, B, C, D $ קבוצות כך ש־$ |A| = a, \ |B| = b, \ |C| = c, \ |D| = d $. לצורך הנוחות, נניח שאלו קבוצות זרות. 
+	\begin{hebenum}[(a)]
+		\item $ a + c \le b + d $ \begin{proof}
+			מחשבון עוצמות, צ.ל. $ |A \uplus C| \le |B \uplus D| $. מההנחות קיימות פונקציות $ f \colon A \to B, g \colon C \to D $ חח"ע. נטען $ h = f \cup g $ פונקציה $ (A \uplus C) \to (B \uplus D) $ חח"ע. היא תהיה מוגדרת היטב (במקרה הזה, ח"ע) אמ"מ $ f \cap g = \emptyset $, נוכיח זאת. נניח בשלילה קיום איבר $ \la x, y \ra \in f, g $ ומכאן $ x \in A \land x \in C $ כלומר $ A, C $ אינן זרות וזו סתירה. סה"כ $ h $ מוגדרת היטב. נותר להוכיח $ h $ חח"ע. יהי $ x_1, x_2 \in A \cup C $ שונים ונניח בשלילה $ y_1 := h(x_1) = h(x_2) =: y_2 $. מכאן $ \la x_1, y_1 \ra, \la x_2, y_2 \ra \in (A \to B), (C \to D) $. אם הם בקבוצות שונות אז מזרות הקבוצות $ y_1 \neq y_2 $ וזו סתירה וסיימנו. אם לא אז בה"כ הם ב־$ A \to B $, כלומר הם ב־$ f $, וסה"כ גמרנו מחח"ע הפונקציה $ f $ כדרוש. 
+		\end{proof}
+	\item $ a \cdot c \le b \cdot d $ \begin{proof}
+		מחשבון עוצמות, צ.ל. $ |A \times C| \le |B \times D| $. ידוע קיום $ f \colon A \to B, \ g \colon C \to D $ פונקציות חח"ע. נתובנן בפונקציה $ h \colon (A \times C) \to (B \times D) $ הבאה: $ h = \lambda \la a, c \ra \in A \times C. \la f(a), \ g(c) \ra $ ונטען להיותה חח"ע. \textbf{מוגדרת היטב: } $ f(a), \ g(c) $ ביטויים מוגדרים היטב כי $ a \in A, c \in C $ מכפל קרטזי, והפונקציה בעלת טווח מתאים כי $ f(a) \in B, \ g(c) \in D $. \textbf{חח"ע: } יהי $ a_1, a_2 \in A, \ c_1, c_2 \in C $ שונים, מכאן $ f(a_1) \neq f(a_2) $ מחח"ע, כלומר מהמשפט המרכזי של זוג סדור $ \la f(a_1), c_1 \ra \neq \la f(a_2), c_2 \ra $ ומכלל $ \beta $ סה"כ $ h(\la a_1, c_1 \ra) \neq h(\la a_2, c_2 \ra) $ כדרוש. סה"כ מצאנו פונקציה חח"ע בעלת תחום וטווח מתאימים והוכחנו את הטענה לפי הגדרה כדרוש. 
+	\end{proof}
+	\item $ a^c \le b^c $ \begin{proof}
+		מחשבון עוצמות, צ.ל. $ |C \to A| \le |C \to B| $. מההנחות קיימות פונקציות $ f \colon A \to B, g \colon C \to D $ חח"ע. נתבונן בפונקציה $ h \colon (C \to A) \to (C \to B) $ המוגדרת לפי $ h = \lambda k \in C \to A. \ f \circ k $. היא מוגדרת היטב בהתאם לטווחים של הפונקציות שהרכבנו. נוכיח שהיא חח"ע. יהי $ g_1, g_2 \colon C \to A $ שונות ונוכיח $ h(g_1) \neq h(g_2) $. כלומר צ.ל. $ f \circ g_1 \neq f \circ g_2 $. מהיותן פונקציות שונות קיים $ c \in C $ כך ש־$ g_1(c) \neq g_2(c) $. לכן מחח"ע הפונקציה $ f $ יתקיים $ (f \circ g_1)(c) = f(g_1(c)) \neq f(g_2(c)) = (f \circ g_2)(c) $ ומשוויון פונקציות הוכחנו את אשר דרוש. 
+	\end{proof}
+	\end{hebenum}
+	\section*{שאלה 3}
+	יהיו $ a, b, c $ עוצמות. נבחר $ A, B, C $ קבוצות זרות כך ש־$ |A| = a, \ |B| = b, \ |C| = c $. נוכיח מספר טענות. 
+	\begin{hebenum}[(a)]
+		\item $ (a \cdot b)^c = a^c \cdot b^c $
+		\begin{proof}
+			מהגדרת חשבון עוצמות צ.ל. $ |(C \to (B \times A))| = |(C \to A) \times (C \to B)| $. נבחר זיווג בין הקבוצות האלו המוגדר באופן הבא: 
+			\[ h \colon (C \to (A \times B)) \to (C \to A) \times (C \to B), \ h = \lambda f \in (C \to (A \times B)). \ \lambda c \in C. \la \pi_1(f(c)), \ \pi_2(f(c)) \ra \]
+			נוכיח ש־$ h $ זיווג. \textbf{על: }יהיו $ f \colon C \to A, g \colon C \to B $ פונקציות, נבחר $ k = \lambda c \in C. \la f(c), \ g(c) \ra $ יקיים $ h(k) = \la f, g \ra $. נמצא שזה נכון לפי כללי $ \beta, \eta  $ של תחשיב למדא, ולפי הטענה המרכזית של זוג סדור. \textbf{חח"ע: }יהיו $ k_1, k_2 \colon (C \to (A \times B)) $ שונים, כלומר קיים $ c \in C $ כך ש־$ k_1(c) \neq k_2(c) $. נסמן $ k_1(c) = \la a_1, b_1 \ra, h_2(c) = \la a_2, b_2 \ra $ ובה"כ $ a_1 \neq a_2 $. נניח בשלילה $ h(k_1) = h(k_2) $. סה"כ מכלל $ \beta $ נקבל $ \lambda c \in C. \la a_1, b_2 \ra = \lambda c \in C. \la a_1, b_2 \ra  $ כלומר מכלל $ \eta $ נסיק $ \la a_1, b_1 \ra = \la a_2, b_2 \ra $ משמע $ a_1 = a_2 $ וזו סתירה. 
+		\end{proof}
+		\item $ a^{b + c}  = a^b \cdot a^c $ \begin{proof}
+			מהגדרת חשבון עוצמות צ.ל. 
+			$ |(B \uplus C) \to A| = |(B \to A) \times (C \to A)| $. נבחר את הזיווג הבא: 
+			\[ h \colon |(B \uplus C) \to A| = |(B \to A) \times (C \to A)|, \ h = \lambda f \in (B \uplus C) \to A. \big \la \{\la b, a \ra \in f \mid b \in B\}, \{\la c, a \ra \in f \mid c \in B \} \big \ra \]
+			נוכיח שהפונקציה עונה על דרישותנו. \textbf{מוגדרת היטב: }יש להוכיח כי הפונקציה בעלת טווח מתאים, כלומר, לכל קלט $ f $ תקין, נרצה להראות ש־$ \pi_1(h(f)) \in B \to A \land \pi_2(h(f)) \in C \to A $. נוכיח את הטענה הראשונה, והשנייה תתקיים באופן דומה. ראשית, $ \pi_1(h(f)) $ ח"ע כי אם לא כן אז קיימים $ b_1, b_2 \in B, a \in A $ כך ש־$ \la b_1, a \ra, \la b_2, a \ra \in f $ וזו סתירה לכך ש־$ f $ פונקציה ח"ע. שנית, $ \pi_1(h(f)) $ מלא כי אם לא כן אז קיים $ b \in B $ כך שלכל $ a \in A $ לא מתקיים $ \la b, a \ra \in f $ וזו סתירה לכך ש־$ f $ מלאה ב־$ B \uplus C $. \textbf{על: }יהיו $ f \colon B \to A, \ g \colon C \to A $ פונקציות, ונוכיח קיום $ k $ כך ש־$ h(k) = \la f, g \ra $. נבחר $ k = g \cup f $, ומכאן ואילך – ראה את חלק למוגדרת היטב בהוכחה 2(א) במסמך זה (עד לכדי החלפת שמות משתנים), ולכן $ k $ מוגדרת היטב, ולפי עקרון ההפרדה טענה על דרישותנו לכך ש־ $ h(k) = \la f, g \ra $. \textbf{חח"ע: }יהי $ f_1, f_2 \colon (B \uplus C) \to A $ שונים. נניח בשלילה $ h(f_1) = h(f_2) $ ונראה סתירה. מכך שהם שונים, נסיק בה"כ קיום $ \tl b \in B $ כך ש־$ f_1(\tl b) \neq f_2(\tl b) $. מהנחת השלילה, $ \{\la b, a \ra \in f_1 \mid b \in B\} = \{\la b, a \ra \in f_2 \mid b \in B\} $, ובפרט $ \la \tl b, a \ra \in f_1 \iff \la \tl b, a \ra \in f_2 $, ומשום שהפונקציות מלאות, אזי השקילות מתקיימת באופן שאינו ריק (טריוואלי), כלומר $ f_1(\tl b) = f_2(\tl b) = a $ וזו סתירה. 
+		\end{proof}
+	\end{hebenum}
+	\section*{שאלה 4}
+	נחשב את עוצמת הקבוצות הבאות באמצעות חשבון עוצמות: 
+	\begin{hebenum}[(a)]
+		\item $ |\R \to \R| $
+		\[ |\R \to \R| = \ttaz = \tal \]
+		\item $ |\ps(\N) \to \N| $
+		\[ |\ps(\N) \to \N| = |\taz \to \az| = (\az)\utaz = \az^\al \]
+		\[ \tal \le \az^\al \le (\taz)^\al = 2^{\az \cdot \al} = 2^\al \implies |\ps(\N) \to \N)| = \tal \]
+		\item $ |\N \to \ps(\N)| $
+		\[ |\N \to \ps(\N)| = |\az \to \taz| = (\taz)\uaz = 2^{\al \cdot \al} = \taz = \al \]
+		\item $ |\ps(\N \times \N)| $
+		\[ |\ps(\N \times \N)| = 2^{|\N \times \N|} = 2^{\az \cdot \az} = \taz = \al \]
+		\item $ |\ps(\N \to \N)| $
+		\[ |\ps(\N \to \N)| = 2^{|\N \to \N|} = \ttaz = \tal \]
+		\item $ |\ps(\N \to \R)| $
+		\[ |\ps(\N \to \R)| = 2^{|\N \to \R|} = 2^{\left ( \al\uaz \right )} = 2^{\left ((\taz)\uaz \right )} = 2^{2^{\az \cdot \az}} = 2\utaz = 2\ual \]
+		\item $ |\ps(\R \to \N)| $
+		\[ |\ps(\R \to \N)| = 2^{|\R\to \N|} = 2^{\left (\az^\al \right )} =  2\utal \]
+		\textit{[השמשתי בטענה שהוכחתי בסעיף (ב)]}
+		\item $ |\ps(\R) \to \N| $
+		\[ |\ps(\R) \to \N| = |\ttaz \to \az| = |\tal \to \az| = \az\utal = 2\utal \]
+		\[ 2\utal \le \az\utal \le (\taz)\utal = 2^{\az \cdot \tal} = 2\utal \implies \az\utal = 2\utal \]
+	\end{hebenum}
+	\section*{שאלה 5}
+	תהי $ A $ קבוצה. נניח $ 1 < |A \times A| \le |A| $. נפריך $ |A|\uaz = |A| $. 
+	\begin{proof}
+		נניח בשלילה שהמשפט נכון. בפרט, הוא יהיה נכון בעבור $ A = \N $, כלומר $ |A| = \N $, כי $ 1 < \az \times \az = \az $. מהנחת השלילה, $ \az\uaz = \az $. נחשב את העוצמה $ \az\uaz $: 
+		\[ \taz \le \az\uaz \le (\taz)\uaz = 2^{\az \cdot \az} = \taz \]
+		מקש"ב נקבל $ \az\uaz = \taz $, ומטרזניטיביות שוויון עוצמות סה"כ נקבל $ \taz = |A| = \az $ וזו סתירה למשפט קנטור. 
+	\end{proof}
+	\section*{שאלה 6}
+	נוכיח מספר טענות. 
+	\begin{hebenum}
+		\item $ \az^{\left (\taz \right )} > \taz $ \begin{proof}
+			נוכיח אי שוויון חזק. 
+		\begin{itemize}
+			\item $ \le $: ממונוטוניות, $ \az \utaz \le 2\utaz \le \taz $ (כי $ 2 \le \az \land \az \le \taz $) כדרוש. 
+			\item $ \neq $: נניח בשלילה שוויון. מכאן: 
+			\[ 2\utaz \le \az\utaz \le \taz \implies 2\utaz \le \taz \]
+			ובפרט עבור $ |\R| = \taz $, יתקיים לפי הטענה לעיל $ |\ps(\R)| \le |\R| $, בסתירה למשפט קנטור. 
+		\end{itemize}
+		הוכחנו את כל אשר דרוש לאי שוויון חזק, וסה"כ $ \az\utaz > \taz $ כדרוש. 
+		\end{proof}
+		\item תהי $ A $ קבוצה, מתקיים $ 2^{|A|} \neq \az $. \begin{proof}
+					תהי $ |A| $ קבוצה. נניח בשלילה קיום שוויון. אם $ |A| $ סופית, אז $ \exists n \in \N. n = |A| $, נקבל $ 2^n = \az $ וזו סתירה. אחרת $ |A| $ אינסופית. אם $ |A| = \az $ אז $ \taz = \az $ וזו סתירה. אחרת $ |A| \ge \az $ וממונוטוניות $ \az = 2^{|A|} \ge \taz $ כלומר $ \az \ge \taz $ וזו סתירה גם כן. סה"כ הגענו לסתירה בכל המקרים לכן $ 2^{|A|} \neq \az $ כדרוש. 
+		\end{proof}
+	\end{hebenum}
+	\section*{שאלה 7}
+	הוכך/הפרך: יהיו $ a, b, c, d $ עוצמות ונניח קיום $ A, B, C, D $ קבוצות כך ש־$ |A| = a, \ |B| = b, \ |C| = c, \ |D| = d $. 
+	\begin{hebenum}[(a)]
+		\item $ a < b \implies a^c < b^c $: הטענה אינה נכונה. \begin{proof}
+			נניח בשלילה שהטענה נכונה, ונראה דוגמה ניגדית. נבחר $ a = 2, b = 4, c = \az $. ידוע $ 2 < 4 $, ולפיכך מהטענה $ 2^{\az} < 4^{\az} $ ובפרט לא שווה, בסתירה לכך ש־$ \taz = \taz \cdot \taz = 2^{2 \cdot \az} = 4^{\az} $. 
+		\end{proof}
+		\item $ b < c \implies a^b < a^c $: הטענה אינה נכונה. \begin{proof}
+			נניח בשלילה שהטענה נכונה ונראה דוגמה ניגדית. נבחר $ a = \az, b = 1, c = 2 $. ידוע $ b < c $, ולפיכך מהטענה $ \az^1 < \az^2 $ ובפרט לא שווה, בסתירה לכך ש־$ \az^1 = \az = \az \cdot \az = \az^2 $. 
+		\end{proof}
+		\item $ a < b \land c \le d \implies a + c < b + d $: הטענה אינה נכונה. \begin{proof}
+			נניח בשלילה שהטענה נכונה ונראה דוגמה ניגדית. נבחר $ c  = d = \az, \ a = 1, \ b = 2 $. ידוע $ c \le d \land a < b $, ולפיכך מהטענה $ \az + 1 < \az + 2 $ ובפרט לא שווה, בסתירה לכך ש־$ \az + 1 = \az = \az + 2 $ (לפי משפט). 
+		\end{proof}
+		\item $ a < b \land c \le d \implies a \cdot c > b \cdot d $ הטענה אינה נכונה. \begin{proof}
+			נניח בשלילה שהטענה נכונה ונראה דוגמה ניגדית. נבחר $ c  = d = \az, \ a = 1, \ b = 2 $. ידוע $ c \le d \land a < b $, ולפיכך מהטענה $ \az \cdot 1 < \az \cdot 2 $ ובפרט לא שווה, בסתירה לכך ש־$ \az \cdot 1 = \az = \az + \az = \az \cdot 2 $. 
+		\end{proof}
+	\end{hebenum}
+	\section*{שאלה 8}
+	\begin{enumerate}[(a)]
+		\item נרצה להוכיח כי קבוצת כל היחסים הסימטריים, נסמנה $ \sca $, בעלת עוצמה $ \taz $.\begin{proof}
+			 ראשית כל, ידוע $ \sca \subseteq \ps(\N \times \N) $, כלומר $ |\sca| \le |\ps(\N \times \N)| $, וחשבון עוצמות $ \ps(\N \times \N) = 2^{|\N \times \N|} = \taz $, וסה"כ $ |\sca| \le \taz $. נרצה להוכיח $ |S| \ge \taz $. נעשה זאת באמצעות מציאות פונקציה חח"ע בין $ |\ps(\N)| = \taz $ ל־$ \sca $. נבחר בפונקציה הבאה: 
+			\[ f \colon \ps(\N) \to \sca, \ f = \lambda N \in \ps(\N). \{\la n + 1, 0 \ra \mid n \in N\} \cup \{\la 0, n + 1 \ra \mid n \in N\} \]
+			ראשית כל, נוכיח ש־$ f $ מוגדרת היטב ובעלת הטווח המתאים. יהי $ N \in \ps(\N) $. נוכיח ש־$ f(N) \in \sca $, כלומר שהוא יחס סימטרי על $ \N $. יהי $ \la a, b \ra \in f(N) $, נוכיח $ \la b, a \ra \in f(N) $ וש־$ a, b \in N $. בה"כ $ \la a, b \ra \in \{\la n + 1, a \ra \mid n \in N\} $. מכאן $ \exists n \in N $ (ולכן גם $ n \in \N $) כך ש־$ a = n + 1, b = 0 $, כלומר $ a, b \in \N $. נבחר את אותו ה־$ N $, ונקבל כי $ \la b, a \ra \in \{\la 0, n + 1 \mid n \in N\} $, ומהגדרת איחוד סה"כ $ \la b, a \ra \in \sca $ כדרוש. עתה, נוכיח כי $ f $ חח"ע. יהיו $ N_1, N_2 \in \ps(N) $ שונות, נוכיח $ S_1 := f(N_1) \neq f(N_2) =: S_2 $. משום שהקבוצות שונות, קיים בה"כ $ n \in N_1 \setminus N_2 $. סה"כ $ \la n + 1, 0 \ra \in S_1 $, ונניח בשלילה את קיומו ב־$ S_2 $, נקבל $ n+ 1 = 0 $ כלומר $ n = -1 \not\in\N $ וזו סתירה, או ש־$ n \in N_2 $ וזו סתירה. סה"כ הגענו לסתירה ולכן $ S_1 \neq S_2 $ כדרוש. \\
+			נסכם: הוכחנו $ |\sca| \le \taz \land |\sca| \ge \taz $, ולכן מקש"ב $ |\sca| = \taz $ כדרוש.
+		\end{proof}
+		\item נגדיר $ A = \{f \in \N \ \to \{0, 1\} \colon |f\op[\{0\}]| = |f\op[\{1\}]| \} $. נוכיח $ |A| = \al $. \begin{proof}
+			
+			
+			ידוע $ A \subseteq \N \to \{0, 1\} $ כלומר $ |A| \le |\N \to \{0, 1\}| $, ומחשבון עוצמות $ |A| \le \taz = \al $. בעבור הכיוון השני נמצא פונקציה חח"ע: 
+			\[ h \colon (\N \to \{0, 1\}) \to A, \ h = \lambda f \in \N \to \{0, 1\}. \lambda n \in \N. \begin{cases}
+					0 & n \equiv 0 \\
+					1 & n \equiv 1 \\
+					f(\frac{n - 2}{3}) & n \equiv 2 \\
+			\end{cases} \pmod{3} \]	
+			\textbf{מוגדרת היטב: }(טווח מתאים) יהי $ f \in \N \to \{0, 1\} $, נוכיח $ h(f) \in A $. בכל המקרים יוחזר $ 0 $ או $ 1 $, לכן $ h(f) \in \N \to \{0, 1\} $. ניגש להוכיח את התנאי השני. טענה: $ \mathfrak{A} := \{n \equiv 0 \mod 3 \mid n \in \N\} $ קבוצה סופית, סתירה בעבור הפונקציה החח""ע $ \lambda n \in \N. 3n $. מצד שני, $ |\mathfrak{A}| \le \az $ כי הוא מוכל בה, ולכן מקש"ב $ \mathfrak{A} = \az $. באופן דומה בעבור $ \mathfrak{B} := \{n \equiv 1 \mid n \in \N\} $. מהפיצול למקרים בפונקציה, נקבל $ h(f)[\mathfrak{A}] = 0, \ h(f)[\mathfrak{B}] = 1 $, ומשום ש־$ |\mathfrak{A}| = |\mathfrak{B}| = \az $, אזי $ |h(f)\op[\{0\}]| = |h(f)\op[\{1\}]| = \az $, לכן $ h(f) \in A $. \textbf{חח"ע: }יהי $ f_1, f_2 \in \N \to \{0, 1\} $ פונקציות שונות (לכן קיים $ n \in \N $ כך ש־$ f_1(n) \neq f_2(n) $), נוכיח $ h(f_1) \neq h(f_2) $. נניח בשלילה שוויון, בעבור $ 3m + 2$ יתקיים $ h(f_1)(3m + 2) = f_1(\tfrac{3m + 2 - 2}{3}) = f_1(m) \neq f_2(m) = f_2(\tfrac{3m + 2 - 2}{3}) = h(f_2)(3m + 2) $ (זאת כי $ 3m + 2 \equiv 2 \mod 3 $). \\
+			סה"כ $ |\N \to \{0, 1\}| \le |A| \le \taz $, ומשום ש־$ |\N \to \{0, 1\}| = \taz $ מחשבון פונקציות, אזי מקש"ב $ |A| = \taz = \al $ – כדרוש. 
+		\end{proof}
+		\item נסמן את קבוצת כל יחסי השקילות מעל $ \R $ ב־$ \rca $. נרצה להוכיח $ |\rca| = \tal $ \begin{proof}
+			ידוע $ \rca \subseteq \ps(\R \times \R) $, ומכאן כי $ |\rca| \le |\ps(\R \times \R)| $. ידוע $ |\ps(\R\times\R)| = 2^{\R\times\R} = 2^{\al \cdot \al} = \tal $. סה"כ $ |\rca| \le \tal $. נרצה להוכיח $ |\rca| \ge \tal $. נמצא פונקציה חח"ע מתאימה ($ \tal = |\ps(\R)| $): 
+			\[ f \colon \ps(\R) \to \rca, \ f = \lambda R \in \ps(\R). \{\la r, r + 1 \ra \mid r \in R\} \cup \{\la r + 1, r \ra \mid r \in R\} \cup \{\la r, r \ra \mid r \in \R\} \]
+			ראשית כל, נוכיח כי $ f $ מוגדרת היטב ובעלת טוח מתאים. יהי $ R \in \ps(R) $, ונוכיח כי $ f(R) := \sim $ יחס שקילות. תחילה נוכיח שהוא \textbf{סימטרי}: מכיווון ש־$ \{\la r , r \ra \mid r \in \R\} $ סימטרי כי הוא שווה להופכי שלו, נדע כי $ f(R) $ יחס סימטרי (שאר ההוכחה זהה למה שכבר כתבנו בסעיף (א)). נוכיח שהוא \textbf{טרנזיטיבי}; נניח $ a \sim b \land b \sim c $, ונוכיח כי $ a \sim c $. נפלג למקרים: אם $ \la a, b \ra \in \{\la r, r \ra \mid r \in \R\} $ או ש־$ \la a, b \ra \in \{\la r, r \ra \mid r \in \R\} $, אז $ a = b $, ולכן $ a \sim c \iff b \sim c $ שכבר נתון וגמרנו. בשאר המקרים, בה"כ $ \la a, b \ra \in \{\la r, r + 1 \ra \mid r \in R\} $, לכן קיים $ r \in R $ כך ש־$ b = r + 1, a = r $. אם $ \la b, c \ra $ באותה הקבוצה, אז קיים $ r_2 \in R $ כך ש־$ b = r $ כלומר $ r = r + 1 \in R \in $ וזו סתירה. לכן, במקרה הראשון $ \la b, c \ra \in \{\la r, r \ra \mid r \in \R\} $, ומשום ש־$ b = r + 1 $ אז $ c = 0 $ וסה"כ $ a \sim c \iff a \sim b $ שכבר נתון לנו, או ש־$ \la b, c \ra \in \{\la r + 1, r \ra \mid r \in R\} $ ועבור אותו ה־$ r $ יתקיים $ c = r = a $ כלומר $ a \sim c $ כי $ \la a, c \ra \in \{\la r, r \ra \mid r \in \R\} $ כדרוש. נותר להוכיח כי היחס \textbf{רפלקסיבי}: יהי $ r \in \R $, צ.ל. קיום $ r' \in \R $ כך ש־$ r \sim r' $. נבחר $ r' = r $, יתקיים $ \la r, r' \ra \in \{\la r, r \ra \mid r \in \R\} $, סה"כ $ r \sim r' $ כדרוש. 
+			
+			ניגש להוכיח ש־$ f $ חח"ע. יהיו $ R_1, R_2 \in \ps(\R) $ שונות, נוכיח כי $ S_1 := f(R_1) \neq f(R_2) =: S_2 $. משום שהקבוצות שונות, נדע בה"כ קיום $ r \in R_1 \setminus R_2 $. ידוע $ \la r, r + 1 \ra \in \{\la r, r + 1 \ra \mid r \in R_1\} $ ובהכלה $ \la r, r + 1 \ra \in f(R_1) $. נניח בשלילה $ \la r, r + 1 \ra \in f(R_2) $, ונסיק כי או ש־$ \la r, r + 1 \ra \in \{\la r + 1, r \ra \mid r \in R_2\} $ או ש־$ \la r, r + 1 \ra \in \{\la r, r \ra r \in \R\} $, בשני המקרים נגרר $ r = r + 1 $ וזו סתירה, פרט ומקרה היחיד בו $ \la r, r + 1 \ra \in \{\la r, r + 1 \ra \mid r \in R_2\} $, ומכאן $ r \in R_2 $ וגם זו סתירה. סה"כ בכל המקרים הגענו לסתירה, כלומר $ \la r + 1, r \ra \in f(R_1) \setminus f(R_2) $, לכן $ f(R_2) \nsubseteq f(R_1) $ כלומר $ f(R_1) \neq f(R_2) $ כדרוש. 
+			
+			נשים לב שבהוכחה ש־$ |\rca| \ge \taz $ הסתמכנו על הטענה ש־$ R := \R \setminus \{0\} = \taz $. היא נכונה כי $ R \subseteq \R $ ולכן $ |R| \le \taz $, ועבור הפונקציה החח"ע הבאה: 
+			\[ h \colon \R \to (\R \setminus \{0\}), \ h = \lambda r \in \R. \begin{cases}
+				r + 1 & r \ge 0 \\
+				r - 1 & r \le 0
+			\end{cases} \]
+			נקבל כי $ |R| \ge |\R| $, וסה"כ מקש"ב $ |R| = |\R| = \al $. לכן, ההוכחה תקינה. נסכם: $ |R| \ge\ \tal \land |R| \le \tal $. מקש"ב $ |R| = \tal $ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	\section*{שאלה 9}
+	יהי $ f, g \in \N \to \R $, נגדירן כ"כמעט מסכימות" אמ"מ $ \exists i \in \N. \forall j \ge i. f(j) = g(j) $. נגדיר $ R = \{\la f, g \ra \in \R^\N \times \R^\N \mid f, g \ \mathrm{almost \ agrees} \} $. 
+	\begin{enumerate}[(a)]
+		\item נוכיח כי $ R $ יחס שקילות. \begin{proof}
+			\textbf{רפלקסיביות: }יהי $ f \in \R^\N $. נוכיח $ fRf $. נבחר $ j = 0 $, יהי $ i \ge j $, ידוע $ f = f $ ולכן משוויון פונקציות $ f(i) = f(i) $ כדרוש. \textbf{סימטריות: }יהי $ f, g \in \R^\N $, ונניח $ fRg $ כלומר $ \exists j. \forall i \ge j. f(i) = g(i) $, מקמטוטיביות הזהות נסיק $ \forall i \ge j. g(i) = f(i) $ ומכאן $ gRf $ כדרוש. \textbf{טרנזיטיביות: }יהיו $ f, g, h \in \R^\N $, ונניח $ fRg \land gRh $, כלומר קיימים $ j, k \in \N $ כך ש־$ \forall i \ge j. f(i) = g(i), \ \forall i \ge k. g(i) = h(i) $, ובפרט עבור $ m := \max\{j, k\} $. מחוק קיבוץ כמתים לוגיים נקבל $ \forall i \ge m. f(i) =  g(i) = h(i) $ וסה"כ מטרזניטיביות הזהות נקבל $ fRh $ כדרוש. הוכחנו רפלקסיביות, סימטריות וטרנזיטיביות, ולכן $ R $ יחס שקילות. 
+		\end{proof}
+		\item טענה: תהי $ [f]_R \in R / \R^\N $, יתקיים $ |[f]_R| = \taz $. \begin{proof}
+			חסם תחתון $ [f]_R \subseteq \R^\N $ לכן
+			$ |[f]_R| \le |\R^\N| = \al\uaz = (2^{\az})\uaz = 2^{\az \cdot \az} = \taz $. סה"כ $ |[f]_R| \le \taz $. 
+			את החסם העליון נוכיח באמצעות מציאת פונקציה חח"ע מתאימה. 
+			\[ h \colon \R \to [f]_R, \ h = \lambda r \in \R. \lambda n \in \N. \begin{cases}
+				r & n = 0 \\
+				f(n + 1) & \other
+			\end{cases} \]
+			נוכיח שהפונקציה חח"ע ובטווח המתאים. \textbf{מוגדרת היטב: }(טווח מתאים) יהי $ r \in \R $, צ.ל. $ h(r) \in [f]_R $, כלומר $ h(r) $ ו־$ f $ כמעט מסכימות. עבורן, נבחר $ i = 1 $, יתקיים $ \forall j \ge i = 1 $ ש־$ j \neq 0 $ ולכן $ h(r)(j) = f(j) $ ישירות. \textbf{חח"ע: }יהי $ r_1, r_2 \in \R $, יתקיים $ h(r_1) \neq h(r_2) $ כי $ h(r_1)(0) = r_1 \neq r_2 = h(r_2)(0) $. \\
+			סה"כ מקש"ב $ |[f]_R| = \al $, כדרוש. 
+		\end{proof}
+		\item נוכיח אשר $ |R / \R^\N| = \al $ \begin{proof}
+			מען הנוחות, כאשר נדבר על מחלקת שקילות $ [f]_R $, נגדיר את ה־$ \mathfrak{i} $ המקסימלי כאיבר אשר יהווה את המקסימום של תמונת פונקצית הבחירה של ערך ה־$ i $ המתאים לכל זוג פונקציות כמעט מסכימות באותה מחלקת השקילות. נבנה פונקציות חח"ע משני הצדיים. 
+			\[ h \colon R / \R^\N \to \R. \ h = \lambda [f]_R \in R / \R^\N. \ f(\mathfrak{i}) \]
+			(כאשר $ \mathfrak{i} $ יבחר כ־$ \mathfrak{i} $ המקיסמלי של מחלקת השיקלות שבחרנו, שימוש נוסף באקסיומת הבחירה). נוכיח שהפונקציה \textbf{בלתי תלויה בנציג}: יהי $ [f]_R \in R / \R^\N $, נניח בשלילה $ fRg \land f(\mathfrak{i}) \neq g(\mathfrak{i}) $, סתירה כי לכן הפונקציות אינן כמעט מסכימות (המקסימום של כל ערכי ה־$ \mathfrak{i} $ בפרט גדול מהם). עתה נוכיח שהיא \textbf{חח"ע: }נניח בשלילה $ \lnot fRg \land h(f) \neq h(g) $, ומכאן שהן כמעט מסכימות [לבדוק]. סה"כ מצאנו פונקציה חח"ע. 
+			
+			נמצא פונקציה חח"ע גם בכיוון השני: 
+			\[ h_2 \colon \R \to R / \R^\N, \ h_2 = \lambda r \in \R. \{f \in \R^\N \mid \exists i \in \N. \forall j \ge i. f(j) = r \} \]
+			נוכיח שהפונקציה \textbf{מוגדרת היטב} (בעלת טווח מתאים): יהי $ r \in \R $, מכאן יהיו $ f, g \in h_2(r) $, נוכיח $ fRg $. מעקרון ההפרדה, קיים $ i \in \N $ בעבורן לכל $ j \ge i $ יתקיים $ f(j) = r = g(j) $, לכן הן כמעט מסכימות באופן שקול $ fRg $ כדרוש. ניגש להוכחה כי היא \textbf{חח"ע: }יהי $ r_1, r_2 \in \R $, שונים, נניח בשלילה $ h(r_1) = h(r_2) $, מהכלה דו־כיוונית לכל $ f \in h(r_1) \implies f \in h(r_2) $, ומשום שמחלקות שקילות אינן ריקות לפי הגדרת חלוקה (ונתון ממשפט כי קבוצת המנה היא חלוקה) אז קיים $ f \in h(r_1) $ כלשהו. מכאן, קיים $ i_f $ כלשהו ממנו $ \forall j \ge i_f. f(j)= r_1 $. באופן דומה, קיימת פונקציה $ g \in h(r_2) $ שעבורה קיים $ i_g $ כלשהו ממנו $ \forall j \ge i_g. g(j) = r_2 $. בפרט, בעבור $ j' = \max\{i_f, i_g\} $ נדע $ j' \ge i_f, g' \ge i_g $ ולכן $ f(j') = r_1 \neq r_2 = g(j') $, סתירה לשוויון פונקציות; כלומר, $ h(r_1) \neq h(r_2) $, כדרוש. 
+			
+			סה"כ הוכחנו כי $ \al \le |R / \R^\N| \le \al $ (כי $ |R| = \al $), ומקש"ב $ |R/R^\N| = \al $ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	\section*{שאלה 10}
+	נגדיר את יחס השקילות $ S $ באופן הבא: 
+	\[ \sim := S := \{\la A, B \ra \in \ps(\Z) \times \ps(\Z) \colon |A| = |B| = |A \cup B|\} \]
+	נתון כי $ S = \sim $ יחס שקילות, כלומר $ A \sim B \iff |A| = |B| = |A \cup B| $ לכל $ A, B \in \ps(\Z) $. 
+	\begin{enumerate}[(a)]
+		\item בסעיף זה נתבקשנו לשתי הוכחות שונות: 
+		\begin{enumerate}[(1)]
+			\item נוכיח ש־$ [\N]_\sim = \{Z \in \ps(\Z) \mid \nexists n \in \N. |Z| = n \} := \ac $. \begin{proof}
+				נוכיח בהכלה דו כיוונית. $ \bm{\subseteq} $\textbf{: }יהי $ B \in [\N]_\sim $, כלומר $ \N \sim B $. מכאן, $ |\N| = \az = |B| $, לכן $ B $ אינסופית, משמע $ \nexists n \in \N. |B| = n $ (לפי הגדרה). באופן שקול, $ B \in \ac $ כדרוש. $ \bm{\supseteq} $\textbf{: }יהי $ A \in \ac $, נוכיח $ A \in [\N]_\sim $ כלומר צ.ל. $ A \sim \N $. מההנחה $ \nexists n \in \N. |A| = n $, כלומר $ A $ אינסופית וסה"כ $ \az \le A $. מעקרון ההפרדה, $ A \in \ps(\Z) \implies A \subseteq \Z \implies |A| \le |\Z| \implies |A|\le \az $. סה"כ מקש"ב $ |A| = \az $, כלומר $ |A| = \az = |\N| $ וגם $ |A \cup \N| \le |A| + |\N| = \az + \az = \az = |A| $, כלומר $ |A| = |\N| = |A \cup \N| $ וסה"כ $ A \sim \N $ כדרוש. מצאנו כי $ [\N] = \ac $. 
+			\end{proof}
+		\item נוכיח ש־$ [\{2, 3\}]_\sim = \{\{2, 3\}\} $. \begin{proof}
+			נוכיח בהכלה דו כיוונית. מרפליקסיביות, $ \{2, 3\} \sim \{2, 3\} $ וסה"כ כיוון אחד מתקיים. מהכיוון השני, יהי $ A \in [\{2, 3\}]_\sim $, נניח בשלילה $ A \neq \{2, 3\} $, כלומר קיים $ \exists a \in A. a \not \in \{2, 3\} $. מההנחות $ A \sim \{2, 3\} $, כלומר $ |A| = |\{2, 3\}| = 2 $. סה"כ נקבל $ |A \cup \{2, 3\}| \ge 3 $, בסתירה לכך שמכיוון ש־$ A \sim \{2, 3\} $ אז $ |A \cup \{2, 3\}| = 2 $. 
+		\end{proof}
+		\end{enumerate}
+		\item נרצה להוכיח כי $ \sim/\ps(\Z) = \{\ac\} \cup \{\{Z\} \mid Z \in \ps(\Z) \setminus \ac\} := \bc \ \land \ |\sim / \ps\Z| = \al $. (כאשר הקבוצה $ \ac $ מוגדרת כפי הוגדרה בתת־סעיף 10(א)(1)). \begin{proof}
+			נוכיח בעזרת הכלה דו כיוונית. $ \bm{\subseteq} $\textbf{: }יהי $ [Z]_\sim \in \ \sim / \ps(\Z) $. נוכיח $ [Z]_\sim \in \bc $. נפלג למקרים: אם $ Z $ אינסופית, אז $ Z \in \ac $ ומסעיף (א)(1) נסיק $ [Z]_\sim = \ac $, וידוע $ \ac \in \bc $ וסיימנו. אם $ B $ סופית, אז קיים $ n \in \N $ כך ש־$ |Z| = n $. נרצה להוכיח כי $ [Z]_\sim = \{Z\} $; נוכיח בעזרת הכלה דו כיוונית נוספת. כיוון אחד יתקיים באופן טרוויאלי מרפליקסיביות יחס השקילות $ \sim $, ובעבור הכיוון השני, נניח בשלילה קיום $ Z' \in \ps(\Z) $ כך ש־$ Z' \sim Z $ וגם $ Z' \not \in \{Z\} $ (כלומר $ Z' \neq Z $), מכאן $ |Z'| = |Z| = n $, ומהנחת השלילה קיים $ z \in Z' \setminus Z $. מכאן, $ |Z \cup Z'| \ge n + 1 $, וזו סתירה כי $ n + 1 \neq n $ (בשוויון עוצמות) שנדרש כחלק מהשקילות. $ \bm{\supseteq} $\textbf{: }יהי $ B \in \bc $, נוכיח $ B \in \ \sim/\ps(\Z) $. נפלג למקרים. אם $ B $ אינסופית אז היא לא סינגילטון כלומר $ B = \ac $, בעבורה הוכח בסעיף (א)(1) כי היא מחלקת שקילות תקינה. אם $ B $ סופית, אז $ \exists Z \in \ps(\Z) $ כך ש־$ B = \{Z\} $ (מהגדרת איחוד עקרון ההפרדה). מעקרון ההפרדה, עלינו להוכיח קיום $ \tl Z \in \ps(\Z) $ כך ש־$ \{Z\} = \{Z' \in \Z \mid Z' \sim \tl Z\} $. נבחר $ \tl Z = Z $, ומכאן ההוכחה שקולה לשוויון הקבוצות שכבר הוכחנו בסעיף זה. סה"כ מהלכה דו כיוונית $ \sim / \ps(\Z) = \bc $ כדרוש. 
+			
+			ניגש לחלק השני בהוכחה: $ |\sim / \ps(\Z)| = \al $. ברור מעקרון ההפרדה כי $ \{\{Z\} \mid Z \in \ps(\Z) \setminus \ac\} \ge \al $, ולכן סה"כ $ |\bc| \ge \az + 1 = \al $. לכיוון השני, פונקציה חח"ע: 
+			\[ f \in \ \sim / \ps(\Z) \to \ps(\Z) \cup \{\{\N\}\}, \ f = \lambda [Z]_\sim \in \sim / \ps(\Z) \begin{cases}
+				\N & |Z| = \az \\
+				Z & \other
+			\end{cases} \]
+			יש להוכיח כי הפונקציה מוגדרת היטב וחח"ע. \textbf{ח"ע: } (בלתי תלויה בנציג): יהי $ [Z_1]_\sim, [Z_2]_\sim \in \ \sim \ \ps(\Z) $, נניח כי $ f([Z_1]_\sim) = f([Z_2]_\sim) $, ונניח בשלילה $ [Z_1]_\sim \neq [Z_2]_\sim $ (כלומר נניח בשלילה $ \lnot Z_1 \sim Z_2 $). אם $ Z $ סופית, אז מההנחות ומהפיצול למקרים, $ Z_1 = Z_2 $, נפצל את הנחת השלילה למקרים: אם $ |Z_1| \neq |Z_2| $ אז $ Z_1 \neq Z_2 $ וזו סתירה. אחרת, $ |Z_1| = |Z_2| \neq |Z_1 \cup Z_2 $, אך מהנחת השלילה $ |Z_1| = |Z_1 \cup Z_1| = |Z_1 \cup Z_2 $ וזו סה"כ סתירה לכך ש־$ \lnot Z_1 \sim Z_2 $. אם $ Z $ אינסופית, אז $ Z \in \ps(\Z) $ כלומר $ |Z| \le \az $, וגם $ \az \le Z $ (כי היא אינסופית), ומקש"ב $ Z = \az $, כלומר $ h([Z_1]_\sim) = \N $, אך אם $ h([Z_2]_\sim) = \N $ אז $ |Z_2| = \az $ כלומר $ |Z_1| = |Z| $ וגם $ \az \le |Z_1 \cup Z_2| \le \az + \az = \az $ ומקש"ב $ |Z_1| = |Z_2| = |Z_1 \cup Z_2| = \az $ כלומר $ Z_1 \sim Z_2 $ בסתירה להנחת השלילה. סה"כ הפונקציה בלתי תלויה בנציג. \textbf{טווח: }יהי $ [Z]_\sim \in \ \sim / \ps(\Z) $, אם $ Z $ סופית אז $ h([Z]_\sim = Z \in \ps(\Z) $ וגמרנו, אם לאו אז $ h([Z]_\sim) = \{\N\} $ וסיימנו. \textbf{חח"ע: }יהי $ [Z_1]_\sim, [Z_2]_\sim \in \ \sim / \ps(\Z) $, נניח $ [Z_1]_\sim \neq [Z_2]_\sim $ כלומר $ \lnot Z_1 \sim Z_2 $, ונוכיח כי $ h([Z_1]_\sim) \neq h([Z_2]_\sim) $; בין כה וכה, מרפלקסיביות $ Z_1 \neq Z_2 $. אם $ Z_1 $ סופית, אז אם $ Z_2 $ סופית $ Z_1 \neq Z_2 $ ולכן אי שוויון, אם $ Z_2 $ אינסופית אז $ Z_1 \neq \{\N\} \not\in \ps(\Z) $ וגמרנו, אם $ Z_2 $ אינסופית אז באופן דומה יתקיים אי־השוויון הרצוי. \\
+			סה"כ מקש"ב $ |\bc| = |\sim / \ps(\Z)| = \al $. 
+		\end{proof}
+	\end{enumerate}
+	\section*{שאלה 11}
+	נדרשנו רק לראות סרטון, אך לכתוב דבר. 
+\end{document}

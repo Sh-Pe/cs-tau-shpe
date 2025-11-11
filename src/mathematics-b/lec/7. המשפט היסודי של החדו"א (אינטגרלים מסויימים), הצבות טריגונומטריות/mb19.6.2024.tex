@@ -1,0 +1,394 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.95,0.95,0.95}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=4pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import]{hebrew}
+\babelfont{rm}{David CLM}
+\babelfont{sf}{David CLM}
+\babelfont{tt}{Monaspace Argon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\small\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+\DeclareMathOperator{\argmax}{argmax} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+\newcommand\tth   {\theta}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה B $\sim$ עברי נגר $\sim$ עוד אינטגרלים}
+\date{19 ליוני 2024}
+
+
+\begin{document}
+	\maketitle
+	\section{הצבות טריגונומטריות}
+	איך יודעים איזה פונקציות טריגונומטריות אנחנו רצה להציב?
+	לדוגמה, כשהוצג באינטגרל להלן זבוע שעבר: \[ \int \frac{\dx}{x^2 + a^2} \]הצבנו $x = a \tan \theta$ ועבור: 
+	\[ \int \frac{\dx}{\sqrt{a^2 -  x^2}} \]
+	הצבנו $x = a \sin \theta, a \cos \theta$
+	
+	"אמור זה שם של משפחת דגים". 
+	לדוגמה, בעבור אינטגרל מהצורה $\sqrt{a^2 - x^2}$. ידוע $|x| \le a$, כלומר כנראה נרצה להציב $x = a \sin \theta$. וכולי. נראה בטבלה: 
+	
+	\begin{align}
+		\sqrt{a^2 - x^2} && x=|x|& \le a & x = a \sin \theta,  a \tanh t \\
+		x^2 + a^2 && x &\in \R & x = a \tan \theta, a \sinh t \\
+		\sqrt{x^2 - a^2} && |x| &\ge |a| & x = a \sec \theta, \cosh t
+	\end{align}
+	
+	
+	לדוגמה, נתבונן באינטגרל: 
+	
+	\[ \int \frac{\dx}{\sqrt{x^2 + a^2}} = \csb{\begin{cases}
+			x = a \tan \theta, \ \frac{\dx}{\dtt} = \frac{a}{\cos^2\tth} \\
+			\dx = \frac{a}{\cos^2 \dtt}
+	\end{cases}} = \int \frac{\frac{a}{\cos^2 \tth}\dtt}{a \cdot \frac{1}{\cos \tth}} = \int \frac{\dtt}{\cos \theta} \]
+	התקדמנו, וזה אינטגרל שאפשר למצוא באמצעות הצבה נוספת. אבל זה עדיין לא אינטגרל פשוט. נעבור לצד האפל של הפונקציות ההיפר־טריגונומטריות. 
+	
+	\[ \int \frac{\dx}{\sqrt{x^2 + a^2}} = \csb{\begin{cases}
+			x = \sinh t \\
+			\dx = a \cosh t \dt
+	\end{cases}} \underbrace{=}_{\mathclap{\sinh^2 + 1 = \cosh^2}} \int \frac{a \cosh t \dt }{\cosh^2 t} = \int \dt = t + C = \sinh\op \cl{\frac{x}{a}} + C \]
+	
+	עוד דוגמה כי למה לא בעצם: 
+	אם האינטגרל היה היה בחילוק $x$ כנראה לא היה צורך בהצבה טריגונומטרית. אך זה לא המצב. קדימה: 
+	\begin{gather*}
+		\int \frac{\sqrt{x^2 - 4}}{x^2}\dx = \csb{\begin{cases}
+				x = 2 \cosh t \ (t \ge 0) \\
+				\dx = 2 \sinh t \dt
+		\end{cases}} = \int \frac{\sqrt{4 \cosh^2 t - 4}}{4\cosh^2 t} 2 \sinh t \dt \\
+	= \frac{\sinh^2 t}{\cosh^2 t} \dt = \cl{\int 1 - \cosh^{-2}} \dt = t + \tanh t + C = \cosh\op\frac{x}{2} - \sqrt{1 - \frac{2}{x}^2} + C
+	\end{gather*}
+כאשר התשובה הסופית נתבססת על העבודה כי $\cosh^{-2}y = 1 - \tanh^2 y \implies \tanh y = \sqrt{1 - \cosh^{-2}y}$. 
+	
+	\subsection{משפט אקראי}
+אם הפונקציה זוגית/אי־זוגית, לאינטגרל שלה יש את הזוגיות ההפוכה, עד כדי קבוע. 
+	\section{המשפט היסודי החדו"א}
+	(דומה יחסית למשפט מיוטון־לייבניץ)
+	נרצה לקשר את מושג האנטי־נגזרת לשטח תחת פונקציה. לא נעשה את זה מאוד פורמלי. 
+	
+	(ערימה של ציורים על דף)
+	נחלק ל־partioions במיקומים $a = x_0 < x_1 < \dots < x_n < x_{n + 1} = b$. נרצה למצוא את השטח של פונקציה כללית $f(x)$ בין הנקודות $a$ ל-$b$. 
+	
+	ניעזר ב\textbf{משפט לגראנג': }תהי $F$ קדומה של $f$ ($F'(x) = f(x)$)) בקטע $[c, d]$. אז קיים $c \le x \le d$ . כך ש־: 
+	\[ f(x) = \frac{F(d) - F(c)}{d - c} \]
+	כלומר, "לא ייתכן שקיים $x \in [c, d]$ על $f(x)$ כך ש-$f(x)$ יתקדם בשיפוע הממוצע" (לא פורמלית). 
+	
+	לכן, נוכל לבחור בכל קטע $x_k \le t_k \le x_{k + 1}$ שמקיים $f(t_k) = \frac{F(x_{k + 1}) - F(x_k))}{x_{k + 1} - x_k}$. כך נוכל לחשב: 
+	\[ S_{\approx} = \sum_{k = 0}^{n} (x_{k + 1} - x_k) \cdot f(t_k) = \sum_{k = }^{n}F(x_{k + 1}) - F(x_k)) = F(x_{ n + 1}) - F(x_n) + F(x_n) - \dots + -F(x_1) + F(x_1) - F(x_0) = F_b - F_a \]
+	לרגע נהיה פוליטיקאים. נתעלם מבעיות עד שהן יהיו בעיות גדולות יותר. ואז בשאיפה לאינסוף יתקיים $\lim_{n \to \inf} S_\approx = F(b) - F(a)$ ולפי חוק ביביהו זה שווה לשטח במדויק (נתעלם מבעיות). 
+	
+	סה"כ באמצעות מציאת פונקציה קדומה, הצלחנו לקרב את השטח $S$ במיקומים $a, b$. 
+	
+	נסמן: 
+	\[ S = \int_a^b f(x) \dx \seq F(b) - F(a), \quad \quad \int f(x) \dx = F(x) + C \]
+	כאשר השוויון המסומן הוא המשפט היסודי של החדו"א. 
+	
+	\textit{(וכן זה תלוי באקסיומת הבחירה, או בגרסאות יותר חלשות שלה)}
+	\subsection{הערות}
+	\begin{itemize}
+		\item שטח מסומן (עם סימן) – בשביל שטח בלי סימן נרצה לקחת את הערך המוחלט. השטח יהיה שלילי אם הגרף מתחת לציר ה־$x$. 
+		\item הסימון הבא: 
+		\[ \int^a_b f(x) \dx = - \int^b_a f(x) \dx \]
+	\end{itemize}
+	
+	ועכשיו נשמיד כליל את הפורמליות: 
+	\[ \int_a^{b + \Delta x}f(x) \dx = F(b + \Delta x) - F(a) = F(b) - F(a) + \underbrace{F(x + \Delta x) - F(b)}_{\approx \Delta x \cdot f(b)} \]
+	עכשיו עברי ינסה לשכנע אותנו שכל בליל החוסר פורמליות שלו עובד. 
+	כאשר $\argmax$ הוא הנקודה המקסימלית של הביטוי בפנים. 
+	\[ X_k = \underset{x_k \le x \le x_{k + 1}}{\argmax} f(x) \]
+	כלומר $\forall x \in [x_k, x_{k + 1}] F(X_k) \ge f(x)$. זה לכאורה המקום בו השגירה הכי גדולה. נגדיר: 
+	
+	\[ 0 \le f(X_k) - f(t_k) \le |X_k - t_k| \cdot \max_{X_k, t_k\text{$x$ בין }} \sof{f'(x)} \le (x_{k + 1} - x_k) \cdot \underbrace{\max_{a \le x \le b} \sof{f'(x)}}_M \]
+	
+	כרגע הטיעון תקף לעבור פונקציה $f$ בעלת נגזרת $f'$ חסומה על ידי $M$. 
+	
+	\[ S_\approx \cl{\{X_k\}} - S_\approx \cl{\{t_k\}} = \sumnk(x_{k + 1} - x_k)\cl{f(X_k) - f(t_k)} \le \sum_{n}^{k = 0}(x_{k + 1} - x_k)^2 \cdot M = M \sumnk (x_{k + 1} - x_k)^2 \overset{n \to \inf}{\longrightarrow} 0 \]
+	
+	לדוגמה: 
+	\[ x_k = a + \frac{b - a}{n + 1}k \implies M \sumnk (x_{k + 1})^2 = M \sumnk \cl{\frac{b - a}{n + 1}}^2 \approx \frac{1}{n} = 0 \]
+	
+	בעצם כאן בחרנו את הגבהים המקסימליים, במקום הגבהים המוזרים שבחרנו קודם. 
+	כלומר, ההפרש בין הגבהים המקסימליים (עבורם השטח יותר גדול, לכאורה) לשטח שמצאנו קודם שואף ל־0. באופן דומה, אם היינו לוקחים גבהים מינימליים (עבורם השטח יותר קטן, לכאורה), אז היינו מקבלים שההפרש הוא 0. סה"כ חסמנו את הגבול ומצאנו ש־$F(a) - F(b)$ אכן מתאר באופן טוב את שטח המשולש. 
+	
+	
+	
+	
+\end{document}

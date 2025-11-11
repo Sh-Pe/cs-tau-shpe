@@ -1,0 +1,196 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\author{שחר פרץ}
+\title{\textit{חדו''א 1א 2}}
+\begin{document}
+	\maketitle
+	
+	\subsection{מסקנות על מספרים טבעיים בתוך הממשיים}
+	בפעם שעברה דיברנו על אפיון אקסיומתי של $\R$, ובמיוחד אקסיומת השלמות שמייחדת את $\R$ באופן ספציפי. מה שניתן מהשמיים זה $\N$, השאר נבנים ידנית או אקסיומתית. 
+	
+	באופן כללי, אקסיומות שמבטיחות קיום לא קונסטרוקטיבי לכל מיני דברים, כמו אקסיומת המקבילים, אקסיומת הבחירה, וגם אקסיומת השלמות – במקרים רבים ''לא באמת נדרשות``, וההנחה שלהן מאפשרת קיום מבנים ספציפיים. 
+	
+	הנושא הבא הוא סדרות. לכן לפני כן נדבר על כמה תכונות של המספרים הממשים כת''ק בתוך $\R$. 
+	\begin{itemize}
+		\item \textbf{הארכימדיאניות של הטבעיים בממשיים: }\hfill $\forall x, y \in \R \co x > 0 \implies (\exists n \in \N \co nx > y)$\\
+		 למרות שזה נשמע אינטואיטיבי, צריך את אקסיומת השלמות בשביל זה. 
+		\begin{proof}
+			נניח בשלילה כי לכל $n \in \N$ מתקיים $nx \le y$. נסמן $A := \{nx \co n \in \N\}$. מהנחת השלילה $y$ חסם מלעיל של $A$, בפרט $x \in A$ ולכן $A \neq \varnothing$. מאקסיומת השלמות קיים חסם עליון $\ag$ ל־$A$. [טיוטה: (\rn{1}) $\forall a \in A \co a \le \ag$ וגם (\rn{2}) לכל $\eg > 0$ קיים $a \in A$ כך ש־$a \ge \ag - \eg$, אין לנו יותר מדי משתנים לעבוד איתם, אז ננסה להתעסק עם $x$]. נתבונן ב־$x$. יהי $a \in A$, אז קיים $n \in \N$ כך ש־$a = nx$. נבחין ש־$(n + 1)x \in A$ ולכן $(n + 1)x \le \ag$ כלומר $nx \le \ag - x$ ועבור $\eg = x$ מצאנו $a - \eg$ שהוא חסם עליון שקטן מממש מהחסם מלעיל $\ag$ כלומר סתירה להיות $\ag$ חסם מלעיל. לכן $A$ אינה חסומה מלעיל, כלומר קיים $n \in \N$ עבורו $nx > y$. 
+		\end{proof}
+		
+		אז, למה צריך את אקסיומת השלמות למרות שזה מתקיים גם ברציונליים? כי ברציונליים הקיום קונסטקרטיבי, והם קשורים הדוקות לטבעיים. בניגוד לקבוצה סגורה מלא כללית. 
+		\item \textbf{הסדר הטוב של הטבעיים: }לכל $A \subseteq \N$ אם קיים $A \neq \varnothing$ אז קיים איבר מינימלי ב־$A$. 
+		
+		\cola{לכל קבוצה $A \subseteq \Z$ אם $A \neq \varnothing$ וחסומה מלרע, אז קיים איבר מינימלי ב־$A$. }
+		\cola{לכל קבוצה $A \subseteq \Z$ אם $A \neq \varnothing$ וחסומה מלעיל, אז קיים איבר מקסימלי ב־$A$. }
+	\end{itemize}
+	
+	\theo{\hfil $\forall x \in \R \, \exists! k \in \Z \co k \le x < k + 1$. }
+	\begin{proof}
+		יהי $x \in \R$. נסמן $A = \{m \in \Z \co m > x\}$. ברור ש־$A \subseteq \Z$, נרצה להראות $A \neq \varnothing$. מארגימדיאניות קיים $n \in \N$ כך ש־$n > x$ ולכן $n \in A \implies A \neq \varnothing$. $A$ חסומה מלרע ע''י $x$. לכן קיים איבר מינימלי $t$ כלשהו ב־$A$. נסמן $k = t - 1$. נתבונן ב־$k$. ידוע $k < t$ ו־$k$ המינימום של $A$, כלומר $k \notin A$. מכאן $k \le x$. כמו כן $k + 1 = t \in A$ לכן $x < k + 1$. הראינו קיום, עכשיו יש להראות יחידות. 
+		
+		יהי $\ml \in \Z$. נניח $\ml \neq k$, אז $\ml < k \lor k < \ml$. 
+		\begin{itemize}
+			\item אם $\ml < k$ אז $\ml + 1 \le k$ ולכן $\ml + 1 \le x$. בפרט $x \not< \ml + 1$. 
+			\item אם $k < \ml$ אז $k + 1 \le \ml$ ולכן $x < \ml$ בפרט $\ml \not\le x$. 
+		\end{itemize}
+		סה''כ כל $\ml \neq k$ לא מקיים את הדרוש ולכן $\ml$ יחיד. 
+	\end{proof}
+	\noti{יהי $x \in \R$. אז \textit{ה}שלם \textit{ה}יחיד $k$ המקיים $k \le x < k + 1$ יסומן ב־$\floor{x}$ והוא יקרא \textit{ערך שלם תחתון}. }
+	באותו האופן ניתן להגדיר ערך שלם עליון, $\ceil{x}$. 
+	
+	\begin{Theorem}[צפיפות הממשיים]
+		יהיו $x, y \in \R$. אם $x, y$ אז קיים $z \in \R$ כך ש־$x < z < y$. 
+	\end{Theorem}
+	\begin{proof}
+		נניח $x < y$. נתבונן ב־$\frac{x + y}{2}$. נסמן $z = \frac{x + y}{2}$ ומתקיים: 
+		\[ x = \frac{2x}{2} = \frac{x + x}{2} < \frac{x + y}{2} < \frac{y + y}{2} = \frac{2y}{2} = y \]
+%		\envendproof
+	\end{proof}
+	\begin{Theorem}[צפיפות הרציונליים בממשיים]
+		נניח $x < y$. אז $y - x > 0$ ולכן מהארגימדיאניות קיים $n \in \N$ כך ש־$n(y - x) > 1$. במקרה הזה $ny > nx + 1$ ולכן זה לא מפתיע שקיים טבעי באמצע, ואכן נוכל לסמן $m = \ceil{yn} - 1$ (שימו לב שבמקרה של $yn$ טבעי, זה לא הערך השלם התחתון). אז: 
+		\[ x < y - \frac{1}{n} = \frac{ny - 1}{n} \ge \frac{\floor{ny} - 1}{n} < \frac{ny + 1 - 1}{n} = y \]
+		כמו כן $\frac{\floor{ny} - 1}{n} \in \Q$. 
+		
+		%		\envendproof
+	\end{Theorem}
+	
+	
+	בתרגול נוכיח את נכונות המשפט עבור $z \in \Q \setminus \{0\}$. 
+	
+	\section{סדרות}
+	אחת ההגדרות האינטואטיביות לסדרה היא $n$־יה סדורה, אבל זו יכולה להיות רק סופית. 
+	
+	לכן, נגדיר סדרה ממשית להיות פונקציה שתחומה $\N$ וטווחה $\R$. סדרות נסמן לרוב באותיות $a, b, c$ במקום $f, g, h$. במקום לסמן $a(n)$ בסימון פונקציות, נסמן $a_n$. 
+	
+	\defi{\textit{סדרה ממשית} היא פונקציה $a(n) \co \N \to \R$}
+	\defi{לעיתים רבות תבחינו שמסמנים סדרות באמצעות $(a_n)_{n = 1}^{\inft}$, או $\{a_n\}_{n = 1}^{\inf}$, או אפילו סתם $a_n$. }
+	\defi{בהינתן סדרה, $a_n := a(n)$}
+	
+	\defi{נאמר ש־$a_n$ חסומה/חסומה מלעיל/חסומה מלרע כאשר הקבוצה $\ang$ חסומה/חסומה מלעיל/חסומה מלרע. }
+	\defi{אם $a_n$ חסומה מלעיל, נסמן $\sup a_n := \sup_{n \in \N} a_n := \sup \ang$}
+	\defi{אם $a_n$ חסומה מלרע, נסמן $\inf a_n := \inf_{n \in \N} a_n := \inf \ang$}
+	\noti{ה\textit{סופרמום} הוא $\sup A$ והוא חסם עליון, וה\textit{אימפימום} $\inf A$ הוא החסם התחתון. }
+	\defi{סדרה $a_n$ תקרא \textit{מונוטונית עולה} (או \textit{מונוטונית עולה חלש}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n \le a_m$}
+	\defi{סדרה $a_n$ תקרא \textit{מונוטונית עולה ממש} (או \textit{מונוטונית עולה חזק}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n < a_m$}
+	\defi{סדרה $a_n$ תקרא \textit{מונוטונית יורדת} (או \textit{מונוטונית יורדת חלש}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n \ge a_m$}
+	\defi{סדרה $a_n$ תקרא \textit{מונוטונית יורדת ממש} (או \textit{מונוטונית יורדת חזק}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n > a_m$}
+	\defi{סדרה תקרא \textit{מונוטונית} כאשר היא מונוטונית עולה או מונוטונית יורדת. }
+	
+	''אני לא מאמין שעשיתי את זה. מחקתי LIFO. היה לי מרצה שהגדי ללעשות והיה מוחק עם המרפק מה שהוא כתב הרגע``
+	
+	\subsection{גבולות של סדרות}
+	\defi{תהא $\an$ סדרה. יהי $\ml \in \R$. נאמר כי $\ml$ הוא גבול של $\an$ כאשר \hfill $\forall \eg > 0.\, \exists N \in \N.\, \forall n \ge N \co \sof{a_n - \ml} < \eg$. }
+	\lem{\hfil $\forall x \in \R .\, (\forall \eg > 0 \co \sof{x} < \eg) \implies x = 0$}
+	\lem{מאי שוויון המשולש נקבל באופן מיידי: 
+	\[ \sof{x - y} \le \sof{x - z} + \sof{y - z} \]
+	(זה גם ממש כמו המשפט בגיאומטריה לפיו אורך צלע קטנה מסכום האורכי הצלעות במשולש)}
+	\theo{תהא $a_n$ סדרה. יהי $\ml \in \R$. אם $\ml$ גבול של $\an$ אז $\ml$ גבול \textit{יחיד} של $a_n$. }
+	\begin{proof}
+		נניח $\an$ מתכנסת ל־$\ml$. יהי $m \in \R$. נניח ש־$m$ גבול של $\an$. יהי $\eg > 0$. אז $\frac{\eg}{2} > 0$, ולכן קיים איזשהו $N_1 \in \N$ כך שלכל $n \ge N_1$, מתקיים $\sof{a_n - \ml} < \frac{\eg}{2}$. באופן דומה קיים $N_2 \in \N$ כך שלכל $n \ge N_2$, מתקיים $\sof{a_n - m} < \frac{\eg}{2}$. נסמן $N = \max{N_1, N_2}$. אז $N \ge N_1 \land N \ge N_2$, ומאי שוויון המשולש: 
+		\[ \sof{m - \ml} \le \sof{a_n - \ml} + \sof{a_n - m} < \frac{\eg}{2} + \frac{\eg}{2} = \eg \]
+		לכן, לפי התרגיל, $m - \ml = 0$ כלומר $m = \ml$. 
+	\end{proof}
+	\defi{נאמר כי סדרה $\an$ \textit{מתכנסת} כאשר קיים לה גבול $\ml \in \R$}
+	\defi{אם $\an$ מתכנסת וגבולה (היחיד) הוא $\ml$, נסמן $\lim_{n \to \inft} a_n = \ml$. }
+	''אבל בפיזיקה עשינו את זה עד עכשיו וזה עבד`` 
+	
+	\lem{קבוצה חסומה אמ''מ $\exists M > 0 \co \forall a \in A \co \sof{a} \le M$. }
+	\theo{תהא $\an$ סדרה. אם $\an$ מתכנסת, אז $\an$ חסומה. }
+	\begin{proof}
+		מההנחה, קיים $\ml$ כך ש־$\lim_{n \to \inft} a_n = \ml$. מהגדרת הגבול קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n - \ml} < 1$. נסמן $M = \max\{\sof{a_1}, \sof{a_2}, \dots, \sof{a_{N - 1}}, 1 + \sof{\ml}\}$. זו קבוצה סופית ולכן יש לה מקסימום. יהי $n \in \N$. 
+		\begin{itemize}
+			\item \textbf{מקרה 1: }נניח $n < N$. אז $\sof{a_n} \le M$ פחות או יותר מהגדרת מקסימום. 
+			\item \textbf{מקרה 2: }נניח $n \ge N$. אז $\sof{a_n - \ml} < 1$ ולכן $-1 < a_n - \ml < 1$. נקבל $-\sof{\ml} - 1 < a_n < \ml + 1 \le \sof{\ml} + 1$ וסה''כ נקבל $\sof{a_n} \le \sof{\ml} + 1 \le M$. 
+		\end{itemize}
+		סה''כ $\forall n \in \N \co \sof{a_n} \le M$ ולכן $a_n$ חסומה. 
+	\end{proof}
+	
+	\textbf{תרגיל: }הראו כי: 
+	\begin{itemize}
+		\item \hfil $\displaystyle\limsi \frac{1}{n} = 0$
+		\begin{proof}
+			צ.ל. שלכל $\eg > 0$ ניתן למצוא $N \in \N$ כך ש־$\forall n \ge N \co \sof{\frac{1}{n} - 0} < \eg$. אז יהי $\eg > 0$. נבחר $N = \ceil{\frac{1}{\epsi}} + 1$. יהי $n \ge N$. אז: 
+			\[ \sof{\frac{1}{n}  - 0} = \frac{1}{n} \le \frac{1}{N} = \frac{1}{\ceil{\frac{1}{\eg}} + 1} < \frac{1}{\eg\op} = \eg \]
+		\end{proof}
+		\item נגדיר $\an = (-1)^{n}$. נוכיח ש־$\an$ איננה מתכנסת. \begin{proof}
+			יהי $\ml \in \R$ כלשהו. נתבונן ב־$\eg = 1$. יהי $N \in \N$. נפרק למקרים על $\ml$. 
+			\begin{itemize}
+				\item אם $\ml \ge 0$, נתבונן ב־$n = 2N + 1$. אז $n \ge N$ וגם $\sof{a_n - \ml} = \sof{(-1)^{2N + 1} - \ml} = \sof{-1 - \ml}= \ml + 1 \ge 1$
+				\item אם $\ml < 0$, נתבונן ב־$n = 2N$. אז $n \ge N$ וגם $\sof{a_n - \ml} = \sof{(-1)^{2N} - \ml} = \sof{1 - \ml} =1 - \ml \ge 1$. 
+			\end{itemize}
+			לכן $\an$ אינה מתכנסת ל־$\ml$ ולכן אינה מתכנסת. 
+		\end{proof}
+	\end{itemize}
+	
+	מתבלבלים עם שלילה של הגדרת הגבול? נוכל להשתמש בחוקי השלילה של כמתים: 
+	\[ \lnot(\forall \eg > 0.\, \exists N \in \N,\ \forall n \ge N \co \sof{a_n - \ml} < \eg) \iff (\exists \eg > 0.\,\forall N \in \N.\,\exists n \in \N \co \sof{a_n - \ml} \ge \eg) \]
+	
+	''אין לי שום דבר נגד הוכחות בשלילה. אני תמיד נמנע מהן``. ''למה את 1?`` -- ''כי למה לא`` -- ''כי למה לא 1 זה נכון``. ''וזו ההתייחסות הנכונה להוכחות. אנחנו כותבים שירה``. ''לאחד חלקי איש יש $\frac{1}{10}$ אצבעות``. 
+	
+	\theo{תהא $\an$ סדרה. יהי $\ml \in \R$. נניח כי $\ml \neq 0$ וגם $\limasi = \ml$. אז קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n} \ge \frac{\sof{\ml}}{2}$. }
+	במילים אחרות – $a_n$ הוא bounded away from zero. באופן כללי אפשר גם להוכיח את זה עם $\frac{\sof{\ml}}{\pi}$ או כל מספר אחר במכנה. אבל הרעיון העקרי הוא, ש־$\an$ לא יכול להתקרב ל־$0$ החל מנקודה כלשהי, אם הסדרה שואפת לנקודה שאיננה אפס. 
+	
+	\begin{proof}
+		ידוע $\ml \neq 0$ ולכן $\sof{\ml} > 0$. דהיינו $\frac{\sof{\ml}}{2} > 0$. אז עבור $\eg = \frac{\sof{\ml}}{2}$ קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n - \ml} < \frac{\sof{\ml}}{2}$. נתבונן ב־$n$. יהי $n \ge N$' tz:
+		\[ \sof{a_n - \ml} < \frac{\sof{\ml}}{2} \implies -\frac{\sof{\ml}}{2} < a_n - \ml < \frac{\sof{\ml}}{2} \]
+		אפשר גם להשתמש בא''ש המשולש, אבל זה פחות אינטואיטיבי. נפרק למקרים. 
+		\begin{itemize}
+			\item נניח $\ml > 0$. אז $a_n > \ml - \frac{\sof{\ml}}{2} = \frac{\sof{\ml}}{2}$. לכן $\sof{a_n} \ge \frac{\sof{\ml}}{2}$ וסיימנו. 
+			\item נניח $\ml < 0$. נניח $\ml < 0$. ואז $\an < \ml + \frac{\sof{\ml}}{2} = - \frac{\sof{\ml}}{2} < 0$. ולכן $\sof{a_n} > \frac{\sof{\ml}}{2}$
+		\end{itemize}
+		אפשר גם להוכיח עם א''ש המשולש, זה יוצא יותר קצר, אבל good luck with that. 
+	\end{proof}
+	
+	\rmark{הערה לעצמי: לעבור על ההוכחה למעלה כשאני ערני. ותוכיח את הטענה לעיל עם א''ש המשולש. }
+	
+	''אל תגידו א''ש המשולש. תגידי לי פד''ח ואני מנשל אותך מהירושה. אנחנו לא אומרים את זה יותר בחדר הזה`` $\sim$ המרצה. 
+	
+	\subsection{אריתמטיקה של גבולות}
+	זה הקטע שבו אנחנו רואים שגבול הוא לינארי. 
+	\theo{תהאנה $\an, \bc$ סדרות. יהיו $\ml, m \in \R$ ממשיים. נניח כי $\limasi = \ml \land \limbsi = m$. אז: 
+	\begin{enumerate}
+		\item \hfil $\displaystyle \limsi (a_n + b_n) = \ml + m$
+		\item \hfil $\displaystyle \forall \ag \in \R \co \limsi (\ag a_n) = a \ml$
+		\item \hfil $\displaystyle \limsi a_n b_n = \ml \cdot m$
+		\item \hfil $\displaystyle m \neq 0 \implies (\exists N \in \N.\, \forall n \ge N\co b_n \neq 0) \land \cl{\limsi \frac{a_n}{b_n} = \frac{\ml}{m}}$
+	\end{enumerate}}
+	נוכיח אחד מהם, השאר לבית. 
+	
+	\rmark{כדי להגדיר את הגבול $\limsi \frac{a_n}{b_n}$, דבר ראשון הראינו שמנקודה מסויימת $N$ מתקיים $b_n \neq 0$. אבל מה קורה לפני $N$? זה לא כזה משנה, נוכל לצורך הנקודה לקבע את הסדרה: 
+	\[ \frac{a_n}{b_n} := \begin{cases}
+		0 & n < N \\
+		\frac{a_n}{b_n} & n \ge N
+	\end{cases} \]
+	בכל מקרה חדו''א מתעסקת במה שקורא החל מנקודה מסויימת, ולא איכפת לנו מה קורה ב־$N$ האיברים הסופיים הראשונים. }
+	
+	\begin{proof}[הוכחה עבור 3]
+		[טיוטה: $\sof{a_n b_n - \ml m} = \sof{a_n b_n - a_n m - a_n m - \ml m} \le \sof{a_n b_n - a_n m} + \sof{a_n m - \ml m} = \sof{a_n}\sof{b_n - m} + \sof{m}\sof{a_n - \ml}$ ואז נקבל $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$, ולגבול השני נבחר חסם בהתאם לגבול]
+		
+		יהי $\eg > 0$. אז $\an$ מתכנסת ולכן חסומה, כלומר קיים $k > 0$ כך שלכל $n \in \N$, מתקיים $\sof{a_n} \le k$. 
+		
+		$\an$ מתכנסת ל־$\ml$ ולכן עבור $0 < \frac{\eg}{2(\sof{m} + 1)}$ קיים $N_1 \in \N$ כל שלכל $n \ge N_1$, $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$
+		
+		נבחין ש־$\bn$  מתכנסת ל־$m$ לכן עבור $\frac{\eg}{2k} > 0$ קיים $N_2 \in \N$ כך שלכל $n \ge N_2$, $\sof{b_n - m} < \frac{\eg}{2k}$. 
+		
+		עתה נתבונן ב־$N = \max\{N_1, N_2\}$. יהי $n \ge N$. אז: 
+		\[ \sof{a_n b_n - \ml m} = \sof{a_n b_n - a_n m + a_n m - \ml m}  \le \sof{a_n b_n - a_n m} + \sof{a_n m - \ml m} = \sof{a_n}\sof{b_n - m} + \sof{m} \sof{a_n - \ml} \]
+		כיוון ש־$n \ge N_1$, $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$, ולכן $\sof{m}\sof{a_n - \ml} < \frac{\eg}{2}$. כיוון ש־$n \ge N_2$, $\sof{b_n - m} < \frac{\eg}{2k}$ ולכן $\sof{a_n}\sof{b_n - m} \le k\sof{b_n - m} < \frac{\eg}{2}$. מכאן $\sof{a_n b_n - \ml m} < \eg$ ולכן $\limsi a_n b_n = \ml m$. 
+	\end{proof}
+	
+	לבית תוכיחו את כל השאר. ע''מ הקל עליכם, אפשר להוכיח ב־4 עבור $\frac{1}{b_n}$ ואז להשתמש ב־3. 
+	
+	\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$+\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \i \ge N \co a_n > M$}
+	\defi{תהא $\an$ סדרה. אנרמ כי $\an$ שואפת ל־$-\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n < -M$}
+	
+	\theo{תהיינה $\an, \bn$ סדרות. נניח $\limasi = +\inft \land \limbsi b_n = + \inft$. אז $\limsi a_n + b_n = + \inft$}
+	\begin{proof}
+		יהי $M > 0$. קיים $N_1, N_2 \in \N$ כך ש־$\forall n \ge N_1 \co a_n > M$ וכן $\forall n \ge N_2\co b_n > M$. נתבונן ב־$N = \max\{N_1, N_2\}$. אז $a_n + b_n > M + M = 2M > M$ וסיימנו. 
+	\end{proof}
+	לבית: תעשו אותו הדבר עם כפל. לגבי חיסור וחילוק, אין תוצאה מוגדרת. 
+	
+	\ndoc
+\end{document}

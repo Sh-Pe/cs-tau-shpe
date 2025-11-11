@@ -1,0 +1,411 @@
+\documentclass[]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0.03,0.02}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	morekeywords={}
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen}\itshape,
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\tiny\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=2, 
+	morekeywords={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr},              % Add keywords here
+	keywordstyle=\color{deepblue},
+	emph={__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,as,assert,nonlocal,with,yield,self,True,False,None},          % Custom highlighting
+	emphstyle=\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\pythonstyle\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill \, \!\!\! \thesection \,\! \dotfill \she}
+{0em}
+{\MakeUppercase}
+
+% Hebrew initialzing
+\usepackage[bidi=basic, hebrew, provide=*]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelfont{rm}{David CLM}
+\babelfont{sf}{David CLM}
+\babelfont{tt}{Monaspace Argon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+\babelprovide[Alph=letters]{hebrew}
+\usepackage[shortlabels]{enumitem}
+
+% Language Shortcuts
+\newcommand\en[1] {\selectlanguage{english}#1\selectlanguage{hebrew}}
+\newcommand\sen   {\selectlanguage{english}}
+\newcommand\she   {\selectlanguage{hebrew}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\texttt{#1}}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil}
+\newcommand\ndoc  {\dotfill \\ \vfil \hfil \textbf{\textit{שחר פרץ, 2024}} \hfil \vfil}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\text{dom}}
+\newcommand\Img   {\text{Im}}
+\newcommand\range {\text{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\dx    {\,\mathrm{d}x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+\newcommand\mto       {\mapsto}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{מתמטיקה בדידה $\sim$ תרגיל בית 21 $\sim$ מספרי קטלן}
+
+\begin{document}
+	\maketitle
+	\she
+	\section{} %%1
+	\begin{enumerate}[(A)]
+		\item נרצה להוכיח קומבינטורית את הזהות הבאה: 
+		\[D_n = n! - \sum_{k = 1}^{n} \bink D_{n - k}\]
+		\begin{proof}נוכיח קומביטורית. 
+
+			\textbf{סיפור: }תמורות ללא נקודות שבת עבור מחרוזת באורך $n$. 
+			
+			\textbf{אגף שמאל: }לפי הגדרה.
+			
+			\textbf{אגף ימין: }נבחר מתוך $n$ התווים $k$ ערכים בהם בלבד לא תהיה נקודת שבת, כלומר $f(x) = x$. עבור כל השאר, יהיו $D_{n - k}$ אפשרויות. לבחירה, ייתכנו $\binom{n}{k}$ אפשרויות. מכלל החיבור, הביטוי $\sumnk \bink D_{n - k}$ יבטא את כמות האפשרויות עבור מחרוזות בהן יש מספר כלשהו $k$ של נקודות שבת בלבד; ועקרון המשלים, מקיום $n!$ זיווגים, נקבל שהאגף מתאר את מספר התמורות ללא נקודות שבת. 
+		\end{proof}
+		
+		\item נרצה להוכיח קומבינטורית את הזהות הבאה: 
+		\[ D_n = (n - 1)(D_{n - 1} + D_{n - 2}) \]
+		\begin{proof}נוכיח קומבינטורית. 
+			
+			\textbf{סיפור: }תמורות ללא נקודות שבת עבור מחרוזת באורך $n$. 
+			
+			\textbf{אגף שמאל: }לפי הגדרה.
+			
+			\textbf{אגף ימין: }נתבונן בסדרה בעלת $n$ איברים. נבחר את האיבר הראשון בה, נסמנו $a_1$. יהיו $n - 1$ אפשרויות לבחור מספר שהיא תפנה אליו (כמות האפשרויות, פחות היא עצמה), נסמנו $a_j$. אם $a_j$ מפנה אליה, אז סה"כ ידועות לנו שתי הפניות ויהיו $D_{n - 2}$ אפשרויות – כמות האפשרויות לסדר את כל השאר. אם לא, אז נתבונן בכמות האפשרויות לסדר את $n - 1$ האיברים כולל $a_j$, שהיא $D_{n - 1}$, אך על כל סידור נגדיר הרכבה ב־$j \to 1$, כי כבר ידוע ש־$j$ מופנה ע"י 1. סה"כ שני הביטויים קשורים בבחירת $j$, כלומר נקבל $(n - 1)(D_{n - 1} + D_{n - 2})$ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{} %%2
+	\textbf{שאלה: }חשבו את מספר ההילוכים מ־$(0, 0)$ ל־$(2n, 0)$ שצעדיהם הם $(+1, +1)$ או $(+1, - 1)$ בלבד, שלעולם לא עוברים מתחת לציר ה־$x$?
+	
+	\textbf{טענה: } $ \text{כמות האפשרויות} = C_n $
+	
+	\begin{proof}
+		נגדיר התאמה $(+1, +1) \mapsto +1, \ (+1, -1) \mapsto -1$. נסמן את ההילוך במיקום ה־$i$ ע"י $a_i \in \{-1, 1\}$, ונסמן $\Sigma_j =: \sum_{i = 0}^{j}a_i$. נספק כל אחת מההגבלות;
+		\begin{enumerate}
+			\item נדע, שמשום שלעולם לא נרד מתחת לציר ה־$x$, כמות הפעמים שירדנו גדולה או שווה לזו שעלינו: כלומר, הסכום חיובי סה"כ $\forall j. \Sigma_j \ge 0$
+			\item על הרצף להיגמר ב־$(2n, 0)$. הכרח הוא, שלציר ה־$x$ במיקום ה־$2n$ נגיע לאחר $2n$ צעדים בלבד, כי כל צעד באורך $1$ בהכרח. אם ערך ה־$y$ הוא $0$, כדרוש, נדרש כי $\Sigma_n = 0$.
+		\end{enumerate}
+		סה"כ, קיבלנו במדויק את התנאים של כמות האפשרויות למציאת מבנה סוגריים מאוזן, כלומר כמות האפשרויות היא $C_n$. 
+	\end{proof}
+	
+	\section{} %%3
+	נסמן $=G_n$ אוסף הסדרות הטובות $(a_i)^{2n}_{i = 1}$ מהקיימות $a_i \in \{-1, 1\} \land \sum_{i = 0}^{2n}a_i = 0$, שייקראו \textit{סדרות טובות}. 
+	\begin{enumerate}[(A)]
+		\item \textbf{שאלה: }כמה סדרות טובות יש? 
+		
+		\textbf{טענה: }$|G_n| = \binom{2n}{n}$
+		
+		\begin{proof}
+			לפני התנאי אודות שוויון הסכום ל־$0$, מן ההכרח שקיימים $n$ מספרים שיקיימו את התנאי $a_i = -1$ ו‏־$n$ מספרים שייקמו את התנאי $a_i = 1$. מתוך $2n$ המיקומים בסדרה, נבחר $n$ מיקומים לערכים עבורם $a_i = 1$, ומכאן שכל שאר $n$ המיקומים בסדרה יהיו של ערכים עבורם $a_i = -1$. סה"כ, כמות האפשרויות היא $\binom{2n}{n}$ כדרוש. 
+		\end{proof}
+		\item \textbf{שאלה: }נסמן ב־$P_n \subseteq G_n$ את הסדרות הטובות באורך $2n$ המקיימות $\sum_{i = 1}^{2k} a_i > 0 \land 1 \le k < 2n$. מצאו את $|P_n|$. 
+		
+		\textbf{טענה: }
+		\[ |P_n| = C_{n - 1} \]
+		
+		\begin{proof}
+		נוכיח קומבינטורית. 
+		
+		\textbf{סיפור: }כמה דרכים יש להגיע מ־$(0, 0)$ ל־$(2n, 1)$ בלי לדעת בציר ה־$x$ או לרדת תחתיו לאורך הדרך (פרט לנקודות ההתחלה והסיום), באמצעות הילוכים של $(+1, +1)$ ו־$(+1, -1)$?
+		
+		\textbf{אגף ימין: }ראשית כל נהיה מחוייבים בהילוך הראשון לעלות $(+1, +1)$ אחרת נרד מתחת לציר ה־$x$, ובסיום נהיה מחוייבים לעשות הילוך של $(+1, -1)$ אחרת נגיע מנקודה שנמצאת מתחת לציר ה־$x$. נשאר לתהות מה קרה על $2n - 2$ ההילוכים באמצע. תחת ההנחה שהלכנו את שני ההילוכים שהוכח כי עלינו לבצע, נרצה למצוא את כמות הדרכים ללכת מ־$(1, 1)$ ל־$(n - 1, 1)$ בלי לרדת מתחת לישר $y = 1$, כי אם נרד מתחתיו ניגע בציר ה־$x$. לאחר טרנספורמציה $x \mapsto x - 1, \ y \mapsto y - 1$ נגיע לשיקלות לשאלה כמה דרכים יש להגיע מהנקודה $(0, 0)$  לנקודה $(2n - 2, 0)$ בלי לדעת בישר $y = 0$, הלוא הוא ציר ה־$x$. זה שקול ל־$C_{n - 2}$ לפי שאלה (2). סה"כ, משום שאת המהלך הראשון והאחרון ניאלץ לבצע כמתואר, יהיו $C_{n - 1}$ אפשרויות למהלכים. 
+		
+		\textbf{אגף שמאל: }באופן דומה לשאלה 2, נתאים $a_i = 1 \mto (+1, + 1), \ a_i = -1 \mto (+1, -1)$. נספק כל הגבלה. יאסר עלינו שלכל $1 \le i < 2n$ יתקיים שסכום על האיברים שקדמו יהיה גדול ממש מ־0. באופן שקול, כמות ההילוכים מעלה גדולה ממש מכמות ההילוכים מטה. אם היא הייתה שווה אזי היינו פוגשים בישר $y = 0$, ואם היא הייתה קטנה היינו יורדים תחתיו, כלומר באופן שקול נקבל שבהכרח לא נרד מתחת לישר $y = 1$. נוסף על כך, נרצה שהסכום עד $2n$ יהיה $0$, ואכן גם כאן לאחר $2n$ הילוכים נגיע לנקודה $(2n, 0)$, כלומר ביצענו כמות שווה של הילוכים מעלה ומטה השקולים ל־$+1, 1$ הבתאמה כלומר הסכום $0$ כדרוש. 
+		\end{proof}
+		\item \textbf{שאלה: }לכל $1 \le k \le n$, נסמן ב־$Q_{n, k} \subseteq G_n$ את אוסף הסדרות הטובות $\setc{2n}$ עבורן $k$ הינו המינימלי עבורו $\sum_{i = 1}^{2k}a_i = 0$. מצאו את $|Q_{n, k}|$
+		
+		\textbf{טענה: }
+		
+		\[ |Q_{n - k}| = \binom{2n - 2k}{n - k} \cdot \cl{\frac{1}{k + 1}\binom{2k}{k} - \frac{1}{k}\binom{2k-2}{k-1}} \]
+		
+		\begin{proof}
+			כדי לפתור את השאלה, נשאל כמה אפשרויות יש ל־$S_n \subseteq G_n$ כך שלכל $j < n$ יתקיים כך ש־$\sum_{i = 1}^{2j} a_i < 0$. נמצא ש־$|S_n| = |G_n| - C_n$, כי עבור $G_n$ עולם דיון $C_n$ יהיה המשלים לפי הגדרה. עתה, נקבל ש־$P_k \uplus S_k$ הוא המשלים ל–$k$ האיברים הראשונים ב־$Q_{n, k}$ מתוך $G_k$, כי בו, מתוך מונוטוניות המספרים הטבעיים, לכל $j < k$ יתקיים $\sum_{2j}^{i} a_i \neq 0$. סה"כ כמות האפשרויות לבחירת $k$ האיברים הראשונים מתוך $Q_{n, k}$ תהיה $|G_k| - |P_k| - |S_k|$. עבור $n - k$ האיברים הנותרים, נוכל לבוחרם ללא הגבלה פרט לעבודה שבסופו של דבר סכומם יהיה $0$, כלומר יהיו $G_{n - k}$ כאלו. מכלל הכפל נקבל: 
+			\[ |Q_{n - k}| = |G_{n - k}| + |G_k| - |P_k| - |S_k| = |G_{n - k}| \cdot \big( |G_k| \underbrace{- C_{k - 1}}_{\mathclap{-|P_k|}} \underbrace{- |G_k| + C_k}_{\mathclap{|S_k|}}\big) = |G_{n - k}| \cdot (C_k - C_{k - 1}) \]
+			נציב בערך הסגור של הביטויים לעיל, ונקבל את טענתנו. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{} %%4
+	\textbf{שאלה: }חשב את מספר הסדרות $a_1, \dots a_{2017}$  כך ש־: 
+	\[ \forall i \in [2017]. a_i \in \{-1, 1\} \ \land \ \sum_{i = 1}^{2017} a_i = 7 \ \land \ \forall 1 \le j \le 2017. \sum_{i = 1}^{j}a_i > 0 \]
+	
+	\textbf{טענה: }
+	\[ \ans = C_{1004} \cdot 1006^{7} \]
+	
+	\begin{proof}
+		כדי לפתור את הבעיה הזו, ננסה ראשית כל לפתור בעיה פשוטה יותר – כמה אפשרויות יש לסדרות 	$a' := a'_1, \dots a'_{2010} \in \{-1, 1\}$ עבורן יתקיימו התנאים של $P_n$ (מסעיף 3(ב)). התשובה, תהיה $|P_n|$ לפי הגדרה, כאשר $n = \frac{2010}{2} = 1005$. נשתמש בסדרה זו כבסיס לסדרה $a_i$ – נרצה להוסיף עוד $7$ ערכי $a_i$ "באמצע" (ונסמן $i \in I$ לכל $a_i$ שנוסיף) $b_i$, אך ששני התנאים ש־$a'$ לא קיימה כמו הסדרה שאנו מנסים למצוא: $|a'| \neq 2017, \sum_{i = 1}^{2017} = 7$. מכאן, בהכרח $\forall i \in I. a_i = 1$ על מנת להגיע לסכום הדרוש (כי הסכום של $P_n$ במיקום ה־$n$ הוא $0$, לא $7$). הוספה בכל מיקום לא תפגעה בתנאי $\forall i \in [2017]. \sum_{i = 1}^{j} > 0$ כי הוספת ערכים רק תגדיל את סכום האיברים שלאחריה, והם ממילא מקיימים את התנאי הזה לפי הגדרת $P_n$. נרצה לדעת את כמות האפשרויות לסדר ערכים אלו. נטען, שזוהי $1006^{7}$. נוכיח; לכל $i \i I$, בה"כ לראשון, יהיו לכאורה $2017$ מיקומים, אך משום שהסדרות $-1, -1$ ו־$-1, -1$ הן זהות (כלומר, אין משמעות לסדר הפנימי של ה־$-1$־ים) אז מה שיקבע את השוני בין הסדרות הוא בין אלו ערכי $a_i = 1$ הם נמצאים. המספר לאפשרויות למקם דברים בין ערכי ה־$a_i$ השונים הוא $\frac{2010}{2} + 1 = 1006$, ($+1$ עבור הערך האחרון, ו־$\frac{2010}{2}$ בהתאם להגדרה של $P_n$), ואין המספר ישתנה אם נוסיף עוד $-1$, כלומר סה"כ מכלל הכפל נקבל $1006^{|I|} = 1006^{7}$ אפשרויות. מכלל הכפל סה"כ נקבל $|P_{1005}| \cdot 1006^{7}$, כך שנציב ונקבל את הדרוש לעיל. 
+	\end{proof}
+	
+	\section{} %%5
+	\begin{enumerate}[(A)]
+		\item \textbf{צ.ל.: }
+		\[ C_n = \binom{2n}{n} - \binom{2n}{n + 1} \seq \frac{1}{n + 1} \binom{2n}{n} \seq \prod_{k = 2}^{n}\frac{n + k}{k} \]
+		\begin{proof} \ \\
+			\textbf{זהות ראשונה: }נרצה להוכיח $C_n = \frac{1}{n + 1}\binom{2n}{n}$. נשתמש בהגדרת הבינום: 
+			\begin{alignat*}{9}
+		   \bm{C_n} &= \binom{2n}{n} - \binom{2n}{n + 1} &&= \frac{(2n)!}{2n!} - \frac{(2n)!}{(n + 1)!(n - 1)!} &&= \frac{(2n)!}{2n!} - \frac{(2n)!}{n! \cdot (n + 1) \cdot n! \cdot n^{-1}}  \\
+				    &= \frac{(2n)!}{2n!} - \frac{(2n)!}{2n!} \cdot \frac{n}{n + 1} &&= \frac{(2n)!}{2n!}\cl{1 - \frac{n}{n + 1}} &&= \frac{n + 1 - n}{n + 1} \cdot \frac{(2n)!}{n!(2n  - n)!} &&= \bm{\frac{1}{n + 1}\binom{2n}{n}}
+			\end{alignat*}
+			\textbf{זהות שנייה: }נרצה להוכיח $C_n = \prod_{k = 2}^{n} \frac{n + k}{k}$
+			
+			\begin{alignat*}{9}
+		   \bm{C_n} &= \frac{1}{n + 1} \cdot \binom{2n}{n} &&= (n + 1)^{-1} \cdot \frac{\prod_{k = 1}^{2n} k}{\cl{\prod_{k = 1}^{2n} k}^2} &&= (n + 1)^{-1} \frac{\prod_{k = n + 1}^{2n} k }{\prod_{k = 1}^{n}k} \\
+				  &&&= (n + 1)^{-1} \frac{\prod_{k = n + 1}^{2n} k }{\prod_{k = n + 1}^{2n} k - n} &&= (n + 1)^{-1} \prod_{k = n + 1}^{2n} \frac{k}{k - n} \\
+				  &&&= (n + 1)^{-1} \prod_{k = 1}^{n} \frac{k + n}{k} &&= \cancel{(n + 1)^{-1} \cdot \frac{n + 1}{1}} \cdot \prod_{k = 2}^{n} \frac{n + k}{k} &&= \bm{\prod_{k = 2}^{n} \frac{n + k}{k}}
+			\end{alignat*}
+			
+		\end{proof}
+		\item \textbf{צ.ל. }(קומבינטורית)\textbf{: }
+		\[ \sumnk \frac{1}{k + 1}\binom{2k}{k} \binom{2n - 2k}{n - k} = \binom{2n + 1}{n} \]
+		\begin{proof} נוכיח קומבינטורית. 
+			\textbf{סיפור: }כמה אפשרויות יש להגיע מ־$(0, 0)$ ל־$(2n + 1, -1)$, באמצעות מהלכים של ימינה־למעלה או ימינה־למטה?
+			
+			\textbf{אגף ימין: }ראשית כל, נדע $\frac{1}{k + 1} \cdot \binom{2k}{k} = C_k$ מסעיף 5(א). נגדיר את $2k$ בה ההילוך פוגש את ציר ה־$x$ ויורד מיד מתחתיו. בחירה כזו של $k \in \N$ לא תאבד מידע כי המיקום חייב להיות זוגי (כי על כל הילוך למעלה נרצה לעשות הילוך למטה). כמות הדרכים לבחור את הדרך עד $2k$, שהיא באורך $2k$, בלי לרדת תחת ציר ה־$x$ היא $C_k$ לפי סעיף שאלה 2. לאחר מכן, יוותרו $2n - 2k  + 1$ מהלכים, אך נדע שהמהלך מיד לאחר $k$ הוא ימינה־למטה לפי הבחירה שלנו, כלומר יוותרו לנו $2n - 2k$ מהלכים לבחור חופשי. משום שנרצה להגיע מנקודה בשיעור $(2k + 1, -1)$ לנקודה בשיעור $(2n + 1, -1)$, אז בהכרח כמות ההילוכים ימינה־למעלה תהיה שווה לכמות ההילוכים ימינה־מטה, כלומר נרצה לבחור מתוך $2n - 2k$ ההילוכים שנותרו את מחציתם מטה ומחציתם מעלה – לכך יהיו $\binom{2n - 2k}{n - k}$ אפשרויות. סה"כ מכלל הכפל נקבל $C_k \cdot \binom{2n - 2k}{n - k}$ אפשרויות, ומכלל החיבור לכל $0 \le k \le n $ אפשרי נקבל את הדרוש, יחדיו עם הצבה הזהות אותה הזכרנו בתחילת הפסקה. 
+			
+			\textbf{אגף שמאל: }הכרח שנרד למטה $n + 1$ פעמים ונעלה $n$, כי רק כך יתקיים שההפרש יהיה $-1$ ואכן שיעור ה־$y$ לאחר $n + 1$ מהלכים יהיה $-1$. נבחר את $n$ ההילוכים ימינה־למעלה, והשאר בהכרח יהיו ימינה־למטה. סה"כ הבחירה תהיה $\binom{2n + 1}{n}$ כדרוש. 
+		\end{proof}
+		
+	\end{enumerate}
+	
+	\section{} %%6
+	\textbf{שאלה: }מה מספר הסדרות $x_1, x_2, \dots, x_{4n}$ שבהן מתקיים: 
+	\[ \forall i \in [4n]. x_i \in \{-1, 1\}, \ \sum_{i = 1}^{2n}x_i = \sum_{i = 1}^{4n}x_i = 0, \ \forall 1 \le j < 2n. \sum_{i = 1}^{j} x_i > 0, \ \forall 2n \le j \le 4n. \sum_{i = 1}^{j}x_i \ge 0 \]
+	
+	\textbf{טענה:}
+	\[ \ans = C_n \cdot C_{n - 1} = \frac{1}{n^2 + n}\binom{2n}{n}\binom{2n - 2}{n - 1} \]
+	
+	\begin{proof}
+		לבחירת $2n$ המספרים הראשונים, נרצה שהם יקיימו במדויק את התנאים שהוצבו בסעיף 3(ב) והגדירו את $P_n$, ונקבל $|P_n| = C_{n + 1}$ אפשרויות. עבור $2n$ המספרים האחרונים, שיבורו לאחריהם, נרצה שייקמו במדויק את התנאים של מבנה סוגריים מאוזן (שזה, $C_n$). סה"כ נקבל את הדרוש מכלל הכפל בשילוב עם הצבה בביטוי הסגור ל־$C_n$ ופישוטה. 
+	\end{proof}
+	
+	\section{} %%7
+	\textbf{שאלה: }כלב ישן בבנין מקומות $-2, \dots, 50$, מתחיל לישון בקומה $0$ וכל יום בהמשך החודש (31 ימים) נסמן ב־$s_i$ את המיקום בו הוא ישן, ונתון $\forall i \in [30]. s_{i + 1} = \{s_i - 1, s_i + 1\}$. מהו מספר הסדרות האפשרויות $(s_1, \dots s_{31})$. מהו מספר הסדרות האפשריות כך ש־$s_{31} = 6$
+	
+	\textbf{טענה: }
+	\[ \ans = \frac{C_{11}}{3} \cdot 12^{8} \]
+	\begin{proof}
+		למען הנוחות, נעבוד עם הפרשי המרחקים בין הקומות, כלומר אם הוא ירד קומה נבחר $b_n = 1$, ואם הוא ירד, $b_n = -1$. פורמלית: $b_n = s'_n - s'_{n + 1}, \ n \in [30]$, כאשר $s'_i = s_i + 1$ (כלומר $s'_i \in $). משום שידוע ש־$s'_{31} = s_{31} + 2 = 8$, אזי הוא צריך לעלות 6 קומות, כלומר $\sum_{i = 1}^{30} b_n = 8$ (נזכור כי $b_{30}$ כולל את המעבר ל־$s'_{31}$). נוסף על כך, נדע שלכל $i \in [30]$, בהכרח $0 \le s'_i \le 52$ (כי הגדלנו את מספר הקומות ב־2 בהגדרת $s'$), כלומר $0 \le \sum_{i = 1}^{i} b_n\le 52$. החסם העליון לא רלוונטי לגבינו, כי $b_n \le 1 \implies \sum_{i = 1}^{j} b_n \le 30 b_n \le 30$ בכל מקרה, כי $j \le 30$ בהנחה שהביטוי מוגדר. מתוך כל סדרה אפשרית נוציא $8$ איברים עבורם $b_n = 1$, כך שיוותרו $52 - 8 = 44$ איברים שסכומם הכולל הוא $8 - 8 = 0$ ובכל מיקום הוא גדול שווה ל־$0$. נמצא שזה כמעט שקול לקטלן, פרט לכך שנתחיל בקומה $s'_1 = 0 + 2 = 2$. בשיעור, הגדרנו זיווג של $\mapsto + 1$ \textit{תזוזה ימינה}, $\mapsto -1$ \textit{תזוזה למעלה}, כאשר המטרה היא להגיע ל־$(0.5n, 0.5n)$ (כאשר $n = 22$ לאחר שהחרגנו את $8$ התזוזות $+1$ שאנו יודעים שנרצה להוסיף בסוף מתוך $30$ הלילות) בלי לדעת בישר $y = x$. כלומר, נתחיל מהמיקום $(0, 2)$ במקום $(0, 0)$ בקטלן רגיל. נשאל, כמה אפשרויות תזוזה יש מ־$(0, 0)$ למשהו על הישר $x = 2$, כדי להבין על כמה אפשרויות ויתרנו. בשביל להגיע ל־$(2, 1)$ בלי לעבור ב־$(2, 0)$ תהיה אפשרות אחת, כדי להגיע ל־$(2, 2)$ בלי לעבור ב־$(2, 0)$ תהיה גם אפשרות אחת, ולהגיע ל־$(2, 0)$ הוא המקרי החוקי אותנו אנו בודקים, וסה"כ יש 3 אפשרויות מתוכן אחת תקינה כלומר מכלל החילוק נקבל שכמות ההילוכים התקינים היא $\frac{C_{22}}{3}$. נותר להוסיף את $8$ ההילוכים של $+ 1$ שהורדנו בהתחלה, שבאופן דומה לשאלה 4, ידרוש מאיתנו לכל אחד $\frac{22}{2} + 1 = 12$ מקומות כלומר $12^{8}$ אפשרויות. נכפיל את האפשרויות להוסיף את $8$ ההילוכים האחרונים בכמות הדרכים לעשות את כל השאר, ונקבל את הדרוש. 
+	\end{proof}
+	
+	\ndoc
+\end{document}

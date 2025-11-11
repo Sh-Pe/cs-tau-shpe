@@ -1,0 +1,613 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+\usepackage{lipsum}
+\usepackage{rotating}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools,mathdots}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Java,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={var, List, Iterable, Iterator},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\vc    {\mathcal{V}} % Vance
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\prm   {\mathrm{p}}
+\newcommand\arm   {\mathrm{a}} % x86
+\newcommand\brm   {\mathrm{b}}
+\newcommand\crm   {\mathrm{c}}
+\newcommand\drm   {\mathrm{d}}
+\newcommand\erm   {\mathrm{e}}
+\newcommand\frm   {\mathrm{f}}
+\newcommand\nrm   {\mathrm{n}}
+\newcommand\vrm   {\mathrm{v}}
+\newcommand\srm   {\mathrm{s}}
+\newcommand\rrm   {\mathrm{r}}
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{\en{, }}}
+\newcommand\defi  {\text{\en{ definition}}}
+\newcommand\defis {\text{\en{ definitions}}}
+\newcommand\given {\text{\en{given }}}
+\newcommand\case  {\text{\en{if }}}
+\newcommand\syx   {\text{\en{ syntax}}}
+\newcommand\rle   {\text{\en{ rule}}}
+\newcommand\other {\text{\en{else}}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\DeclareMathOperator\dom   {dom}
+\DeclareMathOperator\Img   {Im}
+\DeclareMathOperator\range {range}
+\DeclareMathOperator\col   {Col}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+\DeclareMathOperator{\Sp}     {span} 
+\DeclareMathOperator{\rk}     {rk}
+\DeclareMathOperator{\sgn}    {sgn} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+\newcommand\nsuminf   {\sum_{n = 0}^\inf}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Linear Algebra
+\DeclareMathOperator{\chr}    {char}
+
+\newcommand\lra       {\leftrightarrow}
+\newcommand\chrf      {\chr(\F)}
+\newcommand\F         {\mathbb{F}}
+\newcommand\co        {\colon}
+\newcommand\tmat[2]   {\cl{\begin{matrix}
+			#1
+		\end{matrix}\, \middle\vert\, \begin{matrix}
+			#2
+\end{matrix}}}
+
+\makeatletter
+\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
+\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
+\newcommand\mat[2]    {M_{#1\times#2}}
+\newcommand\tomat     {\, \dequad \longrightarrow}
+\newcommand\pms[1]    {\begin{pmatrix}
+		#1
+\end{pmatrix}}
+
+% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
+\makeatletter
+\newlength\min@xx
+\newcommand*\xxrightarrow[1]{\begingroup
+	\settowidth\min@xx{$\m@th\scriptstyle#1$}
+	\@xxrightarrow}
+\newcommand*\@xxrightarrow[2][]{
+	\sbox8{$\m@th\scriptstyle#1$}  % subscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\sbox8{$\m@th\scriptstyle#2$} % superscript
+	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
+	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
+	{\mathmakebox[\min@xx]{\scriptstyle#2}}
+	\endgroup}
+\makeatother
+
+
+% Greek Letters
+\newcommand\ag        {\alpha}
+\newcommand\bg        {\beta}
+\newcommand\cg        {\gamma}
+\newcommand\dg        {\delta}
+\newcommand\eg        {\epsi}
+\newcommand\zg        {\zeta}
+\newcommand\hg        {\eta}
+\newcommand\tg        {\theta}
+\newcommand\ig        {\iota}
+\newcommand\kg        {\keppa}
+\renewcommand\lg      {\lambda}
+\newcommand\og        {\omicron}
+\newcommand\rg        {\rho}
+\newcommand\sg        {\sigma}
+\newcommand\yg        {\usilon}
+\newcommand\wg        {\omega}
+
+\newcommand\Ag        {\Alpha}
+\newcommand\Bg        {\Beta}
+\newcommand\Cg        {\Gamma}
+\newcommand\Dg        {\Delta}
+\newcommand\Eg        {\Epsi}
+\newcommand\Zg        {\Zeta}
+\newcommand\Hg        {\Eta}
+\newcommand\Tg        {\Theta}
+\newcommand\Ig        {\Iota}
+\newcommand\Kg        {\Keppa}
+\newcommand\Lg        {\Lambda}
+\newcommand\Og        {\Omicron}
+\newcommand\Rg        {\Rho}
+\newcommand\Sg        {\Sigma}
+\newcommand\Yg        {\Usilon}
+\newcommand\Wg        {\Omega}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+\newcommand\ccb[1]    {\left \{ #1 \right \}}
+
+\newcommand\bs        {\blacksquare}
+\newcommand\dequad    {\!\!\!\!\!\!}
+\newcommand\dequadd   {\dequad\duquad}
+\newcommand\wmid      {\;\middle\vert\;}
+
+\renewcommand\phi     {\varphi}
+\newcommand\bcl[1]    {\big(#1\big)}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{\textit{הרחבות לבדידה 2}}
+\begin{document}
+	\maketitle
+	חוזרים להרצאה עם נטלי שלום. 
+	\section{\en{Generating functions}}
+	\subsection{מבוא לפונ' יוצרות}
+	בבערך חמש השנים האחרונות, לא לימדו פונ' יוצרות. אבל אבא של יהלי שאין להגיד את שמו לשווא החליט להכניס את החומר לבחינה. אין צביעת צמתים (אך יש צביעת קשתות). למרצה יש אתר עם רשימות מסודרות של החומר, והקלטות שלו. דלית העבירה לנו את זה. 
+	
+	"יש מועד ב', חברה" $\sim$ רתם
+	
+	\textbf{הגדרה. }תהי $a_0, a_1, a_2, \cdots$ סדרת מספרים (ממשית). הפונ' היוצרת המתאימה לה היא: 
+	\[ A(x) = \sum_{n = 0}^{\inf} a_nx^n \]
+	קוראים לזה פונ', וזה נראה כמו פונ', אך לא נכנסים לדברים כמו תחום הגדרה. מסתכלים על זה כמו על ביטוי פורמלי. 
+	
+	\textbf{סימון. }המקדם של $x^n$ מסומן ע"י $\underbrace{[x^n]A(x)}_{a_n}$
+	
+	\textbf{דוגמה. }עבור הסדרה $1, 1, \cdots$ הפונ' היוצרת היא $\sum_{n = 0}^\inf x^n = \frac{1}{1 - x}$ (סכום סדרה הנדסית אינסופית). תזכורת: 
+	\[ (-1 < q < 1) \quad \nsuminf q^n = \frac{1}{1 - q} \]
+	
+	\textbf{דוגמה. }עבור הסדרה $1, 0, 1, 0$ מתאימה הפונ': 
+	\[ \nsuminf 1 \cdot x^{2n} = \frac{1}{1 - x^2} \]
+	(נכון מהדוגמה הראשונה). 
+	
+	\subsection{פעולות על פונ' יוצרות}
+
+	\subsubsection{כפל בקבוע}
+	 אם $A(x) = \nsuminf a_nx^n$ אז: 
+		\[ \forall c \in \R \co A(cx) = \nsuminf a_n(cx)^n = \nsuminf a_nx^n \]
+		כלומר $A(cx)$ יוצרת את הסדרה $b_n = c^n a_n$. 
+	\subsubsection{חיבור}
+		 חיבור פונ' יוצרות: אם $A(x), B(x)$ פונ' יוצרות של $a_n, b_n$ בהתאמה, אז $A(x) + B(x)$ יוצרת את $(a_n + b_n)_{n = 0}^{\inf}$. 
+		
+		
+		\textbf{דוגמה. }מה הפונ' היוצרת של הסדרה $a_n = 2^n - 1$? \textbf{פתרון. }
+		\[ \sum(2^n - 1)x^n = \sum \underbrace{2^nx^n}_{(2x)^n} - \sum x^n = \frac{1}{1 - 2x} - \frac{1}{1 - x} = \frac{x}{2x^2 - 3x + 1} \]
+		
+	\subsubsection{גזירה}
+		גזירה של פונ' יוצרת: 
+		\begin{align*}
+			A(x) &= \nsuminf a_nx^n \\
+			A'(x) &= \nsuminf na_nx^{n - 1} \\
+			x(A'x) &= \nsuminf na_nx^n
+		\end{align*}
+		כלומר, הפונ' $xA'(x)$ יוצרת את $(na_n)_{n = 0}^{\inf}$
+		
+		\textbf{דוגמה. }
+		\begin{align*}
+			A(x) = \frac{1}{1 - x} &= (1 - x)\op \\
+			A'(x) &= (1 - x)^{-2} = \frac{1}{(1 -x)^{2}} \\
+			xA'(x) &= \frac{x}{1 - x} = \nsuminf nx^n
+		\end{align*}
+		את הסדרה $1, 2, 3, 4, \cdots$ יוצרת $\frac{x}{(1 - x)^{2}}$. 
+		
+		\textbf{דוגמה. }נגזור שוב, למען הכיף. 
+		\begin{align*}
+			A''(x) &= 2(1 - x)^{-3} = \frac{2}{(1 - x)^{3}} \\
+			A''(x) &\overset{(1)}{=} \nsuminf n(n - 1)x^{n - 2} \\
+			x^2A''(x) &= \nsuminf n(n - 1)x^{n} \\
+			x^2A''(x) &= \frac{2x^2}{(1 - x)^{3}} \\
+			\frac{2x^2}{(1 - x)^{3}} = \nsuminf n(n - 1)x^n \\
+			\frac{x^2}{(1 - x)^3} &= \nsuminf \binom{n}{2} x^n
+		\end{align*}
+		הערה $(1)$: גזרנו את $\sum nx^{n - 1}$ מהדוגמה הקודמת. 
+		סה"כ הפונ' היוצרת של $b_n = \binom{n}{2}$ היא $\frac{x^2}{(1 - x)^{3}}$. 
+		
+		\textit{הערה:} בגזירה הראשונה קיבלנו $\frac{n}{1}$, אפשר להמשיך לגזור, ובאופן כללי: 
+		\textbf{משפט. }
+		\[ \forall m \ge 0 \co \text{\en{generating func of }} b_n = \binom{n}{m} \, \text{\en{ is }} \frac{x^m}{(1 - x)^{m + 1}} \]
+		
+	\subsubsection{אינטגרל}
+	 אם $A(x) = \nsuminf a_nx^n$, אז: 
+		\[ \int_0^x A(t) \dt \int^x_0 \nsuminf a_nt^n \dt = \nsuminf \int_0^x a_nt^n\dt = \nsuminf a_n\cl{\frac{t^{n + 1}}{n + 1}}\Bigg\vert_0^x \!\!= \nsuminf \frac{a_n}{n + 1}x^{n + 1} = \sum_{n = 1}^{\inf} \frac{a_{n - 1}}{n}x^n \]
+		סה"כ $\int^x_0 A(t) \dt$ יוצרת את הסדרה: 
+		\[ b_n = \begin{cases}
+			\frac{a_n - 1}{n}& n \ge 1 \\
+			0 & n = 0
+		\end{cases} \]
+	\subsubsection{סדרת הסכומים החלקיים}
+		(מקרה פרטי של 6) סדרה הסכומים החלקיים: 
+		\begin{align*}
+			\frac{1}{1 - x}A(x) &= \sum x^n \sum a_nx^n \\
+			&= (1 + x + x^2 + \cdots)(a_0 + a_1x + a_2x^2 + \cdots) \\
+			&= a_0 + (a_0 + a_1)x + (a_0 + a_1 + a_2)x^2 + \cdots \\
+			&= \nsuminf \cl{\sum_{k = 0}^{n} a_k}x^{n}
+		\end{align*}
+		כלומר, סדרת הסכומים החלקיים של $a$ היא $b_n = \sum_{k = 0}^{n}a_k$, מתאימה לפונ' $\frac{1}{1 - x}A(x)$. 
+	\subsubsection{כפל}
+		מכפלה של פונ' יוצרות: נניח ש־$A(x), B(x)$ יוצרות את $a_n, b_n$ בהתאמה. 
+		\begin{align*}
+			A(x) \cdot B(x) &= \nsuminf a_nx^n \nsuminf b_nx^n \\
+			&= (a_0 + a_1x + a_2x^2 + \cdots)(b_0 + b_1x + b_2x^2 + \cdots) \\
+			&= a_0b_0 + (a_1b_1 + a_1b_0)x + (a_0 b_2 + a_1b_1 a_2b_0)x^2 \\
+			&= \sum_{n = 0}^{\inf}\underbrace{\cl{\sum_{k = 0}^{n} a_kb_{n - k}}}_{a * b}x^{n}
+		\end{align*}
+		כאשר $a * b$ קונבולוציה. 
+		\textbf{דוגמה. }מצאו את הסדרה שהפונ' $\ln(\frac{1}{1 - x})$ יוצרת. 
+		\textbf{תשובה. }נגזור. יאי. 
+		\begin{align*}
+			\cl{\ln\cl{\frac{1}{1 - x}}} &= \frac{1}{1 - x} \\
+			\cl{\ln \frac{1}{1 - x}} &= \frac{\frac{1}{(1 - x)^{2}}}{\frac{1}{1 - x}} = \frac{1}{1 - x} = (1 - x)\op
+		\end{align*}
+		וסה"כ: 
+		\[ \ln \frac{1}{1 - x} \underbrace{- \ln 1}_{ = 0} = \int_0^x \frac{1}{1 - t}\dt = \int^x_0 \nsuminf t^n\dt = \nsuminf \int^x_0 t^n\dt = \sum \frac{t^{n + 1}}{n + 1}\Bigg\vert^x_0 = \nsuminf \frac{x^{n + 1}}{n + 1} = \nsuminf \frac{x^n}{n} \]
+		סה"כ הפונ' $\ln \frac{1}{1 - x}$ יוצרת את: 
+		\[ b_n = \begin{cases}
+			\frac{1}{n} & n \ge 1 \\
+			0 & n = 0
+		\end{cases} \]
+		
+	
+	סיכום ביניים: 
+	\begin{align*}
+		A(cx) & \siff c^na_n \\
+		A(x) + B(x) & \siff a_n + b_n \\
+		xA'(x) &\siff na_n \\
+		\int^x_0 A(t) \dt& \siff \begin{cases}
+			\frac{a_{n - 1}}{n} & n \ge 1\\
+			0 & n = 0
+		\end{cases} \\
+		\frac{1}{1 - x} & \siff 1 \\
+		\frac{x^m}{(1 - x)^{m + 1}} & \siff \binom{n}{m} \\
+		\ln \frac{1}{1 - x} & \siff \begin{cases}
+			\frac{1}{n} & n \ge 1\\
+			0 & n = 0
+		\end{cases}
+	\end{align*}
+	
+	
+	\subsection{איך מחלצים סדרה מתוך פונ' יוצרת נתונה? }
+	\subsubsection{תזכורות מקורס B}
+	ניזכר במשפט טיילור (ספציפית לטור מ'קלורן)
+	\[ f(x) = \nsuminf \frac{f^{(n)}(0)}{n!}x^{n} \]
+	\textbf{דוגמה. }ידוע $e^x = \nsuminf \frac{x^n}{n!}$, לכן $e^x$ יוצרת את הסדרה $a_n = \frac{1}{n!}$. 
+	
+	\textbf{דוגמה. }נתבונן בפונ' $f(x) = (1 + x)^{\al}$ (נניח $\al \in \R$). אז: 
+	\begin{alignat*}{9}
+		f'(x) &= \ag(1 + x0^{\ag - 1}) && \implies f'(0) = \ag \\
+		f''(x) &= \ag(\ag - 1)(1 + x)^{\ag - -2} && \implies f''(0) = \ag(\ag - 1) \\
+		\vdots \\
+		f^{(n)}(x) &= \ag(\ag - 1) \cdots \big(ag - (n - 1)\big)^{\ag - n} &&\implies f^{(n)}(0) = \ag(\ag - 1) \cdots \big(\ag - (n  - 1) \big )
+	\end{alignat*}
+	
+	\subsubsection{הכללת הבינום}
+	\[ \forall x \in \R \, \forall n \in \N \co \binom{x}{n} = \frac{x(x - 1) \cdots (x - (n - 1))}{n!} \]
+	מוטיבציה: 
+	\[ \binom{m}{n} = \binom{m!}{n!(m - n)!} = \frac{m(m - 1) \cdots (m - n + 1)}{n!} \]
+	לכן: 
+	\[ (1 + x)^{\ag} = \nsuminf \binom{\ag}{n}x^n \]
+	
+	זוהי הכללה לנוסחאת הבינום של ניוטון. 
+	
+	לפני הרבה זמן הוכחנו נוסחה מפורשת לקטלן. במצגת של המרצה יש הוכחה לשקילות באמצעות פונ' יוצרות, ולכן מומלץ לקרוא גם אותה. 
+	\subsection{שימוש בפונ' יוצרות ע"מ למצוא נוסחאות נסיגה}
+	אפשר להשתמש בטכניקה הזו לכל סדרה מוגדרת רקורסיבית.
+	\textbf{דוגמה. }פיבונצ'י: 
+	\[ \begin{cases}
+		F_n = F_{n - 1} + F_{n - 2} & n \ge 2\\
+		F_0 = F_1 = 1
+	\end{cases} \]
+	תזכורות: הגדנרו את הפולינום האופייני להיות $p(x) = x^2 - c_1x - c_2$, ונעזרנו בשורשיו בשביל למצוא צורה כללית. 
+	
+	נתבונן בפונ' היוצרת של הסדרה $F_n$, נקראה $F(x)$: 
+	\begin{align*}
+		F(x) &= \nsuminf F_nx^n \\
+		&= F_0 + F_1 x + \nsuminf F_nx^n \\
+		&= 1 + x + \sum_{n = 2}^{\inf}(F_{n - 1} + F_{n - 2})x^n \\
+		&= 1 + x + \sum_{n = 2}^{\inf} F_{n - 1}x^{n} + \sum_{n = 2}^{\inf}F_{n - 2}x^n \\
+		&= 1 + x + x\underbrace{\sum_{n = 1}^{\inf}F_nx^n}_{F(x) - 1} + x^2 \underbrace{\sum_{n = 0}^{\inf}F_nx^n}_{F(x)} \\
+		&= 1 + x + x(F(x) - 1) + x^2F(x) = 1 + x \cdot F(x) + x^2 \cdot F(x)
+	\end{align*}
+	נבודד את $F(x)$ מהמשוואה: 
+	\[ xF(x) + x^2F(x) - F(x) = -1 \implies F(x)\cdot (x^2 + x - 1) = -1 \implies F(x) = - \frac{1}{x^2 + x - 1} \]
+	מצאנו את הפונ' היוצרת של פיבונאצ'י. נרצה מזה למצוא נוסחה לסדרה. עתה צריך לפרק לשברים חלקיים. ייתכן שנמצא משהו עם מרוכבים. יש גם במצגת דוגמה לפונ' יוצרת שהנוסחה הסגורה לה עם מספרים מרוכבים. 
+	\begin{align*}
+		F(x) &= \frac{1}{\sqrt 5}\cl{\frac{1}{\ag - x} + \frac{1}{\varphi - x}} \quad \quad \ag = \frac{-1 + \sqrt 5}{2} \\
+		&= \frac{1}{\sqrt 5}\cl{\frac{1}{\ag}\cdot \frac{1}{1 - \frac{x}{\ag}} - \frac{1}{\phi}\cdot \frac{1}{1 - \frac{x}{\phi}}} 
+	\end{align*}
+	כאשר $\varphi$ הצמוד של $\ag$. 
+	ידוע ש־: 
+	\[ \frac{1}{x - \ag} = \frac{1}{\ag} \cdot \frac{1}{1 - \frac{x}{\ag}} = \frac{1}{\ag}\sum_{n = 0}^{\inf}\cl{\frac{x}{\ag}}^{n} = \sum \frac{1}{\ag^{n + 1}}x^{n} \]
+	
+	באופן דומה בעבור $\frac{1}{\phi - x}$. סה"כ נשתמש בפעולות שלמדנו על חיסור פונ' יוצרות והכפלה בסקלר. נקבל: 
+	\[ F(x) = 5^{-0.5}\sum \cl{\frac{1}{\ag^{n + 1}} - \frac{1}{\phi^{n + 1}}}x^n \implies F_n = \frac{1}{\sqrt5}\cl{\frac{1}{\ag^{n + 1}} - \frac{1}{\phi^{n + 1}}} \]
+	כידוע. במצגת יש דוגמה נוספת עם מרוכבים. 
+	
+	
+	
+	\section{\en{Random thing related to spanning trees}}
+	הרחבה למשפט קיילי נמצאת גם בקורס. משפט קירכהוף (לא למתחים). 
+	
+	
+	
+	
+\end{document}

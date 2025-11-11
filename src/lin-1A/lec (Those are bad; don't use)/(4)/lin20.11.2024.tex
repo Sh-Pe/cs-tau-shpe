@@ -1,0 +1,530 @@
+%! ~~~ Packages Setup ~~~ 
+\documentclass[]{article}
+
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amsmath,amssymb,mathrsfs,amsthm,witharrows,mathtools}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
+\usepackage{cancel,bm}
+\usepackage[thinc]{esdiff}
+
+
+% tikz
+\usepackage{tikz}
+\newcommand\sqw{1}
+\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
+
+
+% code 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.35,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
+\definecolor{codeblue}{rgb}{0,0,0.5}
+\definecolor{codered}{rgb}{0.5,0.03,0.02}
+\definecolor{codegray}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{pythonstylesheet}{
+	language=Python,
+	emphstyle=\color{deepred},
+	backgroundcolor=\color{codegray},
+	keywordstyle=\color{deepblue}\bfseries\itshape,
+	numberstyle=\scriptsize\color{codenumber},
+	basicstyle=\ttfamily\footnotesize,
+	commentstyle=\color{codegreen}\itshape,
+	breakatwhitespace=false, 
+	breaklines=true, 
+	captionpos=b, 
+	keepspaces=true, 
+	numbers=left, 
+	numbersep=5pt, 
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false, 
+	tabsize=4, 
+	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
+	keywordstyle=\color{codeblue},
+	emph={object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,print,range,xrange,append,execfile,real,imag,reduce,str,repr,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,},          % Custom highlighting
+	emphstyle=\color{codered},
+	stringstyle=\color{codegreen},
+	showstringspaces=false,
+	abovecaptionskip=0pt,belowcaptionskip =0pt,
+	framextopmargin=-\topsep, 
+}
+\newcommand\pythonstyle{\lstset{pythonstylesheet}}
+\newcommand\pyl[1]     {{\lstinline!#1!}}
+\lstset{style=pythonstylesheet}
+
+\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
+\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
+\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
+\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
+	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
+
+
+% Deisgn
+\usepackage[labelfont=bf]{caption}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{multicol}
+\usepackage[skip=4pt, indent=0pt]{parskip}
+\usepackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\fontsize{15}{15}}
+{\sen \dotfill (\thesection) \she}
+{0em}
+{\MakeUppercase}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
+% Hebrew initialzing
+\usepackage[bidi=basic]{babel}
+\PassOptionsToPackage{no-math}{fontspec}
+\babelprovide[main, import, Alph=letters]{hebrew}
+\babelprovide[import]{english}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{David CLM}
+\babelfont[english]{tt}{Monaspace Xenon}
+\usepackage[shortlabels]{enumitem}
+\newlist{hebenum}{enumerate}{1}
+
+% Language Shortcuts
+\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
+\newcommand\sen   {\begin{otherlanguage}{english}}
+	\newcommand\she   {\end{otherlanguage}}
+\newcommand\del   {$ \!\! $}
+\newcommand\ttt[1]{\en{\footnotesize\texttt{#1}\normalsize}}
+
+\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
+\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center} {\textbf{\textit{שחר פרץ, 2024}} \\ \scriptsize \textit{נוצר באמצעות תוכנה חופשית בלבד}} \end{center}} \vfil	}
+
+\newcommand{\rn}[1]{
+	\textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+%! ~~~ Math shortcuts ~~~
+
+% Letters shortcuts
+\newcommand\N     {\mathbb{N}}
+\newcommand\F     {\mathbb{F}}
+\newcommand\Z     {\mathbb{Z}}
+\newcommand\R     {\mathbb{R}}
+\newcommand\Q     {\mathbb{Q}}
+\newcommand\C     {\mathbb{C}}
+
+\newcommand\ml    {\ell}
+\newcommand\mj    {\jmath}
+\newcommand\mi    {\imath}
+
+\newcommand\powerset {\mathcal{P}}
+\newcommand\ps    {\mathcal{P}}
+\newcommand\pc    {\mathcal{P}}
+\newcommand\ac    {\mathcal{A}}
+\newcommand\bc    {\mathcal{B}}
+\newcommand\cc    {\mathcal{C}}
+\newcommand\dc    {\mathcal{D}}
+\newcommand\ec    {\mathcal{E}}
+\newcommand\fc    {\mathcal{F}}
+\newcommand\nc    {\mathcal{N}}
+\newcommand\sca   {\mathcal{S}} % \sc is already definded
+\newcommand\rca   {\mathcal{R}} % \rc is already definded
+
+\newcommand\Si    {\Sigma}
+
+% Logic & sets shorcuts
+\newcommand\siff  {\longleftrightarrow}
+\newcommand\ssiff {\leftrightarrow}
+\newcommand\so    {\longrightarrow}
+\newcommand\sso   {\rightarrow}
+
+\newcommand\epsi  {\epsilon}
+\newcommand\vepsi {\varepsilon}
+\newcommand\vphi  {\varphi}
+\newcommand\Neven {\N_{\mathrm{even}}}
+\newcommand\Nodd  {\N_{\mathrm{odd }}}
+\newcommand\Zeven {\Z_{\mathrm{even}}}
+\newcommand\Zodd  {\Z_{\mathrm{odd }}}
+\newcommand\Np    {\N_+}
+
+% Text Shortcuts
+\newcommand\open  {\big(}
+\newcommand\qopen {\quad\big(}
+\newcommand\close {\big)}
+\newcommand\also  {\text{, }}
+\newcommand\defi  {\text{ definition}}
+\newcommand\defis {\text{ definitions}}
+\newcommand\given {\text{given }}
+\newcommand\case  {\text{if }}
+\newcommand\syx   {\text{ syntax}}
+\newcommand\rle   {\text{ rule}}
+\newcommand\other {\text{else}}
+\newcommand\set   {\ell et \text{ }}
+\newcommand\ans   {\mathit{Ans.}}
+
+% Set theory shortcuts
+\newcommand\ra    {\rangle}
+\newcommand\la    {\langle}
+
+\newcommand\oto   {\leftarrow}
+
+\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
+\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
+\newcommand\eQEF  {\mathscr{Q.E.F.}}
+\newcommand\jQED  {\mathscr{Q.E.D.}}
+
+\newcommand\dom   {\mathrm{dom}}
+\newcommand\Img   {\mathrm{Im}}
+\newcommand\range {\mathrm{range}}
+
+\newcommand\trio  {\triangle}
+
+\newcommand\rc    {\right\rceil}
+\newcommand\lc    {\left\lceil}
+\newcommand\rf    {\right\rfloor}
+\newcommand\lf    {\left\lfloor}
+
+\newcommand\lex   {<_{lex}}
+
+\newcommand\az    {\aleph_0}
+\newcommand\uaz   {^{\aleph_0}}
+\newcommand\al    {\aleph}
+\newcommand\ual   {^\aleph}
+\newcommand\taz   {2^{\aleph_0}}
+\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
+\newcommand\tal   {2^{\aleph}}
+\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
+\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
+
+\newcommand\n     {$n$־יה\ }
+
+% Math A&B shortcuts
+\newcommand\logn  {\log n}
+\newcommand\logx  {\log x}
+\newcommand\lnx   {\ln x}
+\newcommand\cosx  {\cos x}
+\newcommand\cost  {\cos \theta}
+\newcommand\sinx  {\sin x}
+\newcommand\sint  {\sin \theta}
+\newcommand\tanx  {\tan x}
+\newcommand\tant  {\tan \theta}
+\newcommand\sex   {\sec x}
+\newcommand\sect  {\sec^2}
+\newcommand\cotx  {\cot x}
+\newcommand\cscx  {\csc x}
+\newcommand\sinhx {\sinh x}
+\newcommand\coshx {\cosh x}
+\newcommand\tanhx {\tanh x}
+
+\newcommand\seq   {\overset{!}{=}}
+\newcommand\slh   {\overset{LH}{=}}
+\newcommand\sle   {\overset{!}{\le}}
+\newcommand\sge   {\overset{!}{\ge}}
+\newcommand\sll   {\overset{!}{<}}
+\newcommand\sgg   {\overset{!}{>}}
+
+\newcommand\h     {\hat}
+\newcommand\ve    {\vec}
+\newcommand\lv    {\overrightarrow}
+\newcommand\ol    {\overline}
+
+\newcommand\mlcm  {\mathrm{lcm}}
+
+\DeclareMathOperator{\sech}   {sech}
+\DeclareMathOperator{\csch}   {csch}
+\DeclareMathOperator{\arcsec} {arcsec}
+\DeclareMathOperator{\arccot} {arcCot}
+\DeclareMathOperator{\arccsc} {arcCsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\atant}  {atan2} 
+
+\newcommand\dx    {\,\mathrm{d}x}
+\newcommand\dt    {\,\mathrm{d}t}
+\newcommand\dtt   {\,\mathrm{d}\theta}
+\newcommand\du    {\,\mathrm{d}u}
+\newcommand\dv    {\,\mathrm{d}v}
+\newcommand\df    {\mathrm{d}f}
+\newcommand\dfdx  {\diff{f}{x}}
+\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
+
+\newcommand\nt[1] {\frac{#1}{#1}}
+
+\newcommand\limz  {\lim_{x \to 0}}
+\newcommand\limxz {\lim_{x \to x_0}}
+\newcommand\limi  {\lim_{x \to \infty}}
+\newcommand\limh  {\lim_{x \to 0}}
+\newcommand\limni {\lim_{x \to - \infty}}
+\newcommand\limpmi{\lim_{x \to \pm \infty}}
+
+\newcommand\ta    {\theta}
+\newcommand\ap    {\alpha}
+
+\renewcommand\inf {\infty}
+\newcommand  \ninf{-\inf}
+
+% Combinatorics shortcuts
+\newcommand\sumnk     {\sum_{k = 0}^{n}}
+\newcommand\sumni     {\sum_{i = 0}^{n}}
+\newcommand\sumnko    {\sum_{k = 1}^{n}}
+\newcommand\sumnio    {\sum_{i = 1}^{n}}
+\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
+\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
+
+\newcommand\bink      {\binom{n}{k}}
+\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
+\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
+
+\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
+\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
+\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
+\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
+\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
+\newcommand\capiiai   {\bigcap_{i \in I} A_i}
+
+\newcommand\xot       {x_{1, 2}}
+\newcommand\ano       {a_{n - 1}}
+\newcommand\ant       {a_{n - 2}}
+
+% Other shortcuts
+\newcommand\tl    {\tilde}
+\newcommand\op    {^{-1}}
+
+\newcommand\sof[1]    {\left | #1 \right |}
+\newcommand\cl [1]    {\left ( #1 \right )}
+\newcommand\csb[1]    {\left [ #1 \right ]}
+
+\newcommand\bs    {\blacksquare}
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{ליניארית 1א 4}
+\begin{document}
+	\maketitle
+	\section{\en{Meaning of many solutions}}
+	בשיעורים הקודמים דיברנו על שדה, מטריצות, ואז על משוואות ליניאריות. שמנו לב שכל מטריצה היא שקולה למטריצה מדורגת קאנונית. 
+	היום נתבונן במערכות משוואות בהן קבוצת הפתרונות יכולה להיראות כמו $\{(4 - 3t, t)\}$, או $\{4, x, y\}$. נוכל להסתכל על זה כקבוצה על $\R^3$, שנצייר אותה כמישור על המרחב התלת ממדי. במקרה הזה, מישור שמקביל למישור של $y, z$. 
+	ניזכר במשפט מהשיעור הקודם.
+	\textbf{משפט. }בהינתן מערכות משוואות שיותר נעלמים ממשואות אז: 
+	\begin{enumerate}
+		\item אין פתרונות, או: 
+		\item מספר הפתרונות לפחות $|\F|$. 
+	\end{enumerate}
+	
+	\begin{proof}
+		נחלק למקרים. תהי $A$ המטריצה המתאימה למערכת המשוואות. אזי קיימת $B$ שקולת שורות קאנונית ֱב־$A$ בעלת אותה מרחב פתרונות, ולכן נראה עבור $B$. אם שורה אחרונה שאיננה אפסים היא $0 \dots 1$, אז אין פתרונות (כי $0 \neq 1$). אחרת, קיימת שורה עם שני משתנים (משובך היונים – יש יותר משתנים ממשואות). כלומר, קיים משתנה חופשי. כעת, נראה $|\F|$ פתרונות. לכל $x \in \F$\ נבחן עבור המשתנה החופשי את הערך $x$ ונפתור – נוכל לפתור בכלל שכל משוואה היא מהצורה $x + \sum\alpha_ix_i = b$, סה"כ $||\F|$ פתרונות.
+		
+	\end{proof}
+	
+	\textbf{מסקנה. }בהינתן מערכת משוואות, אחד מהבאים מתקיים: 
+	\begin{enumerate}
+		\item אין פתרונות
+		\item יש בדיוק פתרון אחד
+		\item יש לפחות $|\F|$ פתרונות. 
+	\end{enumerate}
+	\begin{proof}
+		נסתכל על $A$ קאנונית שקולה. אם יש שורה $(0, 0, \dots, 1)$ $\impliedby$ אין פתרון. 
+		
+		אחרת, אם יש משתנה חופשי $\impliedby$ לפחות $|\F|$ פתרונות. 
+		
+		אחרת, אין משתנה חופשי, והמטריצה מהצורה: 
+		\[ \begin{pmatrix}
+			1 & 0 & \cdots & 0 & b_1 \\
+			0 & 1 & \cdots & 0 & b_2 \\
+			\vdots && \ddots && \vdots \\
+			0 & 0 & \cdots & 1 & b_n
+		\end{pmatrix} \]
+		והמשוואות הן $x_m = b_m$ ולכן פתרון יחיד. 
+	\end{proof}
+	
+	\textbf{הגדרה. }מערכת משוואות שכל מקדמיה החופשיים הם $0$ היא \textit{מערכת הומוגנית}. [כלומר, ערכי ה־$b$ הן $0$]
+	 
+	 \textbf{הגדרה. }הפתרון $x_1 \dots x_n = 0$ הוא \textit{הפתרון הטרוויאלי}. [למערכת משוואות הומוגנית]
+	
+	\textbf{מסקנה(ות). }
+	\begin{itemize}
+		\item למערכת הומוגנית [המורה מסמן ב"הומו'"] שבה מספר נעלמים גדול מהמשוואות, יש $|\F|$ $>$ פתרונות. 
+		\item למערכת משוואות הומו' יש רק פתרון טרוויאלי או $|\F|$ לפחות. 
+	\end{itemize}
+	
+	 \section{\en{Intro. to Vectoric Fields}}
+	 \textbf{הגדרה. }בהינתן $\F$ שדה, \textit{מרחב וקטורי} (לעיתים קרוי \textit{מרחב ליניארי}) הוא $\la V, \, a \colon V \times V \to V, \, m \colon \F \times V \to V \ra $ כאשר $a$ נקראן \textit{חיבור} ו־$m$ \textit{כפל בסקלר}, המקיים תכונות: 
+	 \begin{enumerate}
+	 	\item חילופיות חיבור 
+	 	\item אסוציאטיביות חיבור
+	 	\item קיום איבר אפס ניטרלי לחיבור (יסומן ב־$0_V$ ולפעמים בתור $0$)
+	 	\item קיום נגדי לחיבור (נסמן אותו ה־$-v$ לכל $v \in V$). 
+	 	\item דיטרבוטיביות 1: \hfill $\forall \lambda \in \F. u, v \in V \colon \lambda (u + v) = \lambda u + \lambda v$
+	 	\item דיסטרבוטיביות 2: \hfill $\forall \lambda, \mu \in \F, v \in V \colon (\lambda + \mu) \cdot v = \lambda v + \mu v$
+	 	\item אסוציאטיביות של כפל: \hfill $\forall \lambda, \mu \in \F, v \in V. (\lambda \mu)v = \lambda(uv)$
+	 	\item לאיבר יחידה: \hfill $\forall v \in V. 1 \cdot v = v$
+	 \end{enumerate}
+	 \textbf{סימון. }$\lambda v = \lambda \cdot v = m(\lambda, v)$
+	 
+	 \subsection{דוגמאות}
+	 \subsubsection{פתיחה}
+	 נסתכל על מרחב ה־$\n$־יות מעל $\F^n$. נגדיר: 
+	 \begin{align*}
+	 	g, x \in \F^n \colon \, &x + y = (x_1 + y_1, \dots, x_n + y_n) \\
+	 	& \lambda \cdot x = (\lambda x, \dots, \lambda x_N) \\
+	 	&0_r = (0 \dots 0)
+	 \end{align*}
+	 
+	 זה לא שדה כי אין הופכי. נאמר שכל $v \in V$ הוא \textit{וקטור}, ו־$c \in \F$ סקלר. 
+	 \subsubsection{דוג' 2}
+	 גם $M_{n \times n}(F)$ הוא מרחב וקטורי (הדבר הזה של המטריצות). 
+	 \subsection{הרחבות}
+	 \textbf{הגדרה. }בהינתן $w \subseteq V$, ו־$V$ מ"ו (מרחב וקטורי), אז $W$ \textit{תת מרחב וקטורי} ביחס לפעולות המושרות מ־$V$ אם: 
+	 \begin{enumerate}[(A)]
+	 	\item $0 \in W$
+	 	\item $W$ שגורה לחיבור
+	 	\item $W$ סגורה לכפל
+	 \end{enumerate}
+	 
+	 \textbf{טענה. }תת מרחב וקטורי הוא מרחב וקטורי. 
+	 
+	 ניזכר בקבוצת הפתרונות $\{(x, y, 0)\}$ שראינו קודם. או ב־$\{(x, x, 0)\}$. הם כולם תת־מרחבים וקטורים של $\R^3$. ברור כי כל אחד מהצירים הוא גם מרחב וקטורי. 
+	 
+	 \textbf{משפט. }קבוצת הפתרונות של מערכת משוואות הומוגנית היא תת מרחב וקטורי ב־$\F^n$
+	 
+	 \textit{אינטואיציה: }נתבונן המערכת הבאה: 
+	 \[ \begin{pmatrix}
+	 	a & b & 0 \\
+	 	d & c & 0
+	 \end{pmatrix} \]
+	 מרחב הפתרונות הוא $\sum x_i \alpha a_i = 0 $ לכל שורה. הוא סגור לחיבור; $ax_1 + by_1, ax_2, by_2$ נקודות $(x_1, y_1)$ וכו', נקבל $a(x_1 + x_2) + b(y_1 + y_2)$. 
+	 
+	 \subsection{המשך דוגמאות}
+	 \subsubsection{דוג' 5}
+	 תהי $A \neq 0$ קבוצה. נגדיר $Funct(a, f) = \{f \colon A \to f\}$. נסמנה ב־$T$. $T$ היא מרחב וקטורי מעל $F$ עם הפעולות: 
+	 \[ (f_1 = f_2)(a) := f_1(a) + f_2(a), \ (\lambda) f)(a) := \lambda f(a), \ 0_V(a) = 0 \]
+	 
+	 \subsubsection{דוג' 6}
+	 פולינומים במשתנה אחד היא: 
+	 $F[x] = \{a_nx^n + \cdots a_1x_1 + a_0 \mid a_i \in \F\}$. גם הוא מרחב וקטורי. 
+	 
+	 הערה לגבי פולינומים: הוא לא תת קבוצה של $Funct(F, F)$ כי $x^p - x \equiv 0 \mod p$, הוא
+	 $0_{Funct(\Z_p, \Z_p)}$
+	 
+	 (כלומר, זה לא עובד על $F$ סופי). 
+	 
+	 \textbf{טענה. }יהי $V$ מ"ו. 
+	 \begin{enumerate}
+	 	\item אם $\forall u, v, w \in V. u  + v = u + w \implies v = w$
+	 	\item איבר האפס יחיד.
+	 	\item לכל $v \in V$, נגדי יחיד, ונסמן בתור $(-v)$. 
+	 \end{enumerate}
+	 
+	 \begin{proof}[הוכחה (1).]
+	 	\[ v = v + 0 = v + w - w = u + w - w = u \]
+	 	מותר להשתמש ב־$-w$ כי קיים הופכי, גם אם לא הוכחנו עדיין יחידות. 
+	 \end{proof}
+	 
+	 \begin{proof}[הוכחה (2).]
+	 	נוכיח שאיבר האפס יחיד. יהיו $w, w'$ איברי אפס. בכלל ש־$w'$ נטירלי, ו־$w$ ניטרלי, אז:
+	 	\[ w = w + w' = w' \]
+	 \end{proof}
+	 
+	 \begin{proof}[הוכחה (3).]
+	 	יהי $V \ni v$. יהיו $m, w$ נגדיים. ידוע $m = w$ מטענה 1. 
+	 	\[ v + m = 0 = v + w \]
+	 \end{proof}
+	 
+	 \textbf{טענה. }יהי $V$ מרחב וקטורי:
+	 \begin{enumerate}
+	 	\item \hfil $\forall \lambda \in F \quad \lambda \cdot 0 v = 0_v$ \hfil 
+	 	\item \hfil $\forall v \in V \quad 0 \cdot v = 0 $\hfil 
+	 	\item \hfil $\lambda v = 0 \implies \lambda = 0 \lor v = 0_V$ \hfil
+	 	\item \hfil $\forall v \in V \quad -v = (-1)v$ \hfil
+	 \end{enumerate}
+	 \begin{proof}
+	 	\begin{enumerate}
+	 		\item יהי $\lambda \in F$. יתקיים: 
+	 		\[ (\lambda \cdot 0_V = \lambda (0_V + 0_V) = \lambda 0_v + \lambda 0_v) \implies (0 = \lambda 0_V) \]
+	 		\item \[ 0_F v = (0_F + 0_F)v = 0_Fv + 0_Fv \implies (0 = 0_Fv) \]
+	 		\item נניח $\lambda v = 0$. אם $\lambda = 0$, סיימנו. אחרת \[ v = \lambda\op \cdot \lambda 0 = \lambda\op 0 = 0 \]
+	 		\item נראה $(-1)v + v = 0$. ואכן, 
+	 		\[ -1 \cdot v + v = (-1 + 1) \cdot v = 0 \cdot v = 0 \]
+	 		מתוך דיסטריבוטיביות. 
+	 	\end{enumerate}
+	 \end{proof}
+	 
+	 \section{\en{Developing on vectoric fields}}
+	 \textbf{משפט. }יהי $V$ מ"ו מעל שדה $F$, ויהיו $U, W \subseteq V$ תמ"ו של $V$. אזי, $U \cap W$ תמ"ו, ו־$U \cup W$ תמ"ו אמ"מ $U \subseteq W \lor W \subseteq U$. 
+	 \begin{proof}\, 
+	 	\begin{enumerate}
+	 		\item נראה ש־$T:= U \cap W$ מקיים תחונות תמ"ו. ואכן $0 \in W, 0 \in U \implies 0 \in W \cap U$. בנוסף $\forall x, y \in Y. x  + y \in V \land x + y \in W \implies x + y \in W \cap U$, כי $x, y \in W, x, y \in V$
+	 		
+	 		יהי $\lambda \in F$, $x \in T$. אזי: 
+	 		\[ \lambda x \neq 0, \lambda x \in w \implies \lambda x \in U \cap W = T \]
+	 		\item מכיוון אחד. בה"כ $U \subseteq W$, אז $T:= V \cup W = W$ שהוא תמ"ו. מהכיוון השני, נניח $U \cup W$ תמ"ו. אם $U \subseteq W$, סיימנו. אחרת, $U \nsubseteq W$. אזי $\exists u \in U. u \neq w$. יהי $w \in W$. מסגירות, $u + w \in T$. נראה כי $u + w \notin W$. נניח בשלילה זאת, נקבל $u + w - w \in W$ כי $W$ סגור לחיבור. סה"כ $u \in W$, וזו סתירה. לכן, $u + w \in U$. נגרר $u + w - u \in U$, מסגירות. לכן $w \in U$ ולכן $U \subseteq W$ כדרוש. 
+	 	\end{enumerate}
+	 \end{proof}
+	 
+	 \textbf{הגדרה. }$V$ מ"ו מעל $F$. $Vת W \in V$ תמ"ו. נגדיר $U + W = \{u + w \mid u \in V, w \in W\}$, אם $\{0\} = U \cap W$, נאמר שסכום זה הוא סכום ישר ונסמן $V \oplus W$. 
+	 
+	 \textbf{משפט. }$V$ מו מעל שדה $F$, $U, W \subseteq V$ תמ"ו. נגרר $ U + W $ תמ"ו של $V$. 
+	 \begin{proof}
+	 	נדע $0 \in V  + W$ כי: 
+	 	\[ 0_V + 0_W = 0 \]
+	 	סגירות מתקיימת: קיימים $u_1, u_2 \in U$ ו־$w_1, w_2 \in W$ מתאימים כך ש־:
+	 	\[ \forall x, y \in U + W. x = u_1 + w_1, y = u_2 + w_2 \implies x + y = \underbrace{(u_1 + u_2)}_{\in U} + \underbrace{(w_1 + w_2)}_{\in W} \]
+	 	
+	 	וגם: 
+	 	\[ \exists u '\in U, w' \in W \quad x + y = u' + w' \]סגורות לסלקר: 
+	 	\[ \lambda \in F, u + w = x \in U + w \implies \lambda x = \lambda (u + w) = \underbrace{\lambda u}_{\in U} + \underbrace{\lambda w}_{\in W} \]
+	 \end{proof}
+	 
+	 \textbf{טענה. }$V$ מ"ו מעל $F$, $U, W \subseteq V$. אזי $V + W$ סכום ישר אמ"מ כל וקטור בסכום ניתן להגדיר בצורה יחידה ע"י וקטור מ־$U$ ווקטור מ־$W$. 
+	 
+	 \begin{proof}\, 
+		\begin{enumerate}
+			\item [$\implies$] יהי $v \in V + W$. נניח $u' + w ' = v, \ u + w = v$ כך ש־$u', u \in U, \ w, w' \in U$. מההנחה, 
+			\[ u' + w' = v = u + w \implies U \ni u - u' = w - w' \in W \]				לכן: 
+				\[ u - u' = w - w' \in W \cap U = \{0\} \]
+				ולכן $u = u', \ w = w'$. 
+				
+			\item [$\impliedby$] יהי $x \in U \cap W$, נוכיח $x = 0$. נשים לב: 
+			\begin{align*}
+				x = x + 0, \ x \in U, & \ 0 \in W \\
+				x = 0 + x, \ x \in W, & \ 0 \in U
+			\end{align*}
+			
+			מהיחידות נובע ש־$x = 0 \land 0 = x \implies x = 0$. 
+		\end{enumerate}
+	\end{proof}
+	
+	\section{\en{Base and dimenssion}}
+	\textbf{הגדרה. }$\Z \ni S \ge 0$, וקטורים $v_1 \dots v_s \in V$  וסקלרים $\lambda_1 \dots \lambda_s \in \F$. \textit{הצירוף הליניארי} של $v_1 \dots v_s$ עם המקדמים $\lambda_1 \dots \lambda_s$ וה הוקטור: 
+	\[ \sum_{i = 0}^{s}\lambda_iv_i = \lambda_1v_1 + \cdots + \lambda_sv_s \]
+	אם $\lambda_i = 0$ לכל $1 \le i \le s$ אז זהו \textit{צירוף טרוויאלי}. אם $s = 0$ הצירוף הוא $0$. 
+	
+	\textbf{הגדרה. }יהי $B = (v_1 \dots v_s) \in V^s$. $V$ מ"ו. אז $B$ \textit{בסיס} אם לכל $v \in V$ קיים ויחיד צירוף ליניארי מהוקטורים ב־$B$. כלומר: 
+	\[ \exists! \lambda _1 \dots \lambda_s \in F \colon v = \sum x_i\lambda_i \]
+	אפשר גם להגדיר למרחבים אינסופיים. נראה הרחבה כזו בהמשך הקורס. 
+	
+	\textbf{הגדרה. }$e_i \in F^n$ מוגדר להיות $e_i \equiv (0, \dots 1, \dots 0)$ כאשר $1$ רק בקורדינאטה ה־$i$. נאמר ש־$\{e_1 \dots e_n\}$ הוא \textit{הבסיס הסטנדרטי}. 
+	
+	\textbf{משפט. }$V$ מ"ו מעל שדה $F$ ו־$V$ בסיס, אם יש לו בסיס $B$. אם $B_1, B_2$ בסיסים, אז $|B_1| = |B_2|$. 
+	
+	\textbf{הגדרה. }בעבור $V$ מ"ו עם בסיס $B$, $\mathrm{dim}V := |B|$ (מוגדר היטב מהמשפט). בשיעור הבא נוכיח את המשפט. 
+\end{document}
