@@ -135,17 +135,18 @@
 	במילים אחרות – $a_n$ הוא bounded away from zero. באופן כללי אפשר גם להוכיח את זה עם $\frac{\sof{\ml}}{\pi}$ או כל מספר אחר במכנה. אבל הרעיון העקרי הוא, ש־$\an$ לא יכול להתקרב ל־$0$ החל מנקודה כלשהי, אם הסדרה שואפת לנקודה שאיננה אפס. 
 	
 	\begin{proof}
-		ידוע $\ml \neq 0$ ולכן $\sof{\ml} > 0$. דהיינו $\frac{\sof{\ml}}{2} > 0$. אז עבור $\eg = \frac{\sof{\ml}}{2}$ קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n - \ml} < \frac{\sof{\ml}}{2}$. נתבונן ב־$n$. יהי $n \ge N$' tz:
+		ידוע $\ml \neq 0$ ולכן $\sof{\ml} > 0$. דהיינו $\frac{\sof{\ml}}{2} > 0$. אז עבור $\eg = \frac{\sof{\ml}}{2}$ קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n - \ml} < \frac{\sof{\ml}}{2}$. נתבונן ב־$n$. יהי $n \ge N$, אז:
 		\[ \sof{a_n - \ml} < \frac{\sof{\ml}}{2} \implies -\frac{\sof{\ml}}{2} < a_n - \ml < \frac{\sof{\ml}}{2} \]
 		אפשר גם להשתמש בא''ש המשולש, אבל זה פחות אינטואיטיבי. נפרק למקרים. 
 		\begin{itemize}
 			\item נניח $\ml > 0$. אז $a_n > \ml - \frac{\sof{\ml}}{2} = \frac{\sof{\ml}}{2}$. לכן $\sof{a_n} \ge \frac{\sof{\ml}}{2}$ וסיימנו. 
-			\item נניח $\ml < 0$. נניח $\ml < 0$. ואז $\an < \ml + \frac{\sof{\ml}}{2} = - \frac{\sof{\ml}}{2} < 0$. ולכן $\sof{a_n} > \frac{\sof{\ml}}{2}$
+			\item נניח $\ml < 0$. אז $a_n < \ml + \frac{\sof{\ml}}{2} = - \frac{\sof{\ml}}{2} < 0$. ולכן $\sof{a_n} > \frac{\sof{\ml}}{2}$
 		\end{itemize}
-		אפשר גם להוכיח עם א''ש המשולש, זה יוצא יותר קצר, אבל good luck with that. 
 	\end{proof}
 	
-	\rmark{הערה לעצמי: לעבור על ההוכחה למעלה כשאני ערני. ותוכיח את הטענה לעיל עם א''ש המשולש. }
+איך מוכיחים זאת עם א''ש המשולש? באמצעות הטריק הבא: 
+	\[ \sof \ml - \sof{a_n - \ml} \overset{(1)}{=} \sof{\sof \ml - \sof{a_n - \ml}} \overset{(2)}{\le} \sof{\ml - (a_n - \ml)} = \sof{a_n} < \frac{\sof \ml}{2} \]
+	כאשר $(1)$ נכון כי החל מנקודה כלשהי $a_n - \ml < \ml$ (עבור $\epsi = \ml$) ו־$(2)$ נכון מא''ש המשולש ההפוך. 
 	
 	''אל תגידו א''ש המשולש. תגידי לי פד''ח ואני מנשל אותך מהירושה. אנחנו לא אומרים את זה יותר בחדר הזה`` $\sim$ המרצה. 
 	
@@ -158,7 +159,6 @@
 		\item \hfil $\displaystyle \limsi a_n b_n = \ml \cdot m$
 		\item \hfil $\displaystyle m \neq 0 \implies (\exists N \in \N.\, \forall n \ge N\co b_n \neq 0) \land \cl{\limsi \frac{a_n}{b_n} = \frac{\ml}{m}}$
 	\end{enumerate}}
-	נוכיח אחד מהם, השאר לבית. 
 	
 	\rmark{כדי להגדיר את הגבול $\limsi \frac{a_n}{b_n}$, דבר ראשון הראינו שמנקודה מסויימת $N$ מתקיים $b_n \neq 0$. אבל מה קורה לפני $N$? זה לא כזה משנה, נוכל לצורך הנקודה לקבע את הסדרה: 
 	\[ \frac{a_n}{b_n} := \begin{cases}
@@ -167,24 +167,46 @@
 	\end{cases} \]
 	בכל מקרה חדו''א מתעסקת במה שקורא החל מנקודה מסויימת, ולא איכפת לנו מה קורה ב־$N$ האיברים הסופיים הראשונים. }
 	
-	\begin{proof}[הוכחה עבור 3]
-		[טיוטה: $\sof{a_n b_n - \ml m} = \sof{a_n b_n - a_n m - a_n m - \ml m} \le \sof{a_n b_n - a_n m} + \sof{a_n m - \ml m} = \sof{a_n}\sof{b_n - m} + \sof{m}\sof{a_n - \ml}$ ואז נקבל $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$, ולגבול השני נבחר חסם בהתאם לגבול]
-		
-		יהי $\eg > 0$. אז $\an$ מתכנסת ולכן חסומה, כלומר קיים $k > 0$ כך שלכל $n \in \N$, מתקיים $\sof{a_n} \le k$. 
-		
-		$\an$ מתכנסת ל־$\ml$ ולכן עבור $0 < \frac{\eg}{2(\sof{m} + 1)}$ קיים $N_1 \in \N$ כל שלכל $n \ge N_1$, $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$
-		
-		נבחין ש־$\bn$  מתכנסת ל־$m$ לכן עבור $\frac{\eg}{2k} > 0$ קיים $N_2 \in \N$ כך שלכל $n \ge N_2$, $\sof{b_n - m} < \frac{\eg}{2k}$. 
-		
-		עתה נתבונן ב־$N = \max\{N_1, N_2\}$. יהי $n \ge N$. אז: 
-		\[ \sof{a_n b_n - \ml m} = \sof{a_n b_n - a_n m + a_n m - \ml m}  \le \sof{a_n b_n - a_n m} + \sof{a_n m - \ml m} = \sof{a_n}\sof{b_n - m} + \sof{m} \sof{a_n - \ml} \]
-		כיוון ש־$n \ge N_1$, $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$, ולכן $\sof{m}\sof{a_n - \ml} < \frac{\eg}{2}$. כיוון ש־$n \ge N_2$, $\sof{b_n - m} < \frac{\eg}{2k}$ ולכן $\sof{a_n}\sof{b_n - m} \le k\sof{b_n - m} < \frac{\eg}{2}$. מכאן $\sof{a_n b_n - \ml m} < \eg$ ולכן $\limsi a_n b_n = \ml m$. 
-	\end{proof}
-	
-	לבית תוכיחו את כל השאר. ע''מ הקל עליכם, אפשר להוכיח ב־4 עבור $\frac{1}{b_n}$ ואז להשתמש ב־3. 
+	\begin{enumerate}
+		\item \begin{proof}[הוכחה שלי]
+			נוכיח אדטיביות. יהיו $\an, \bn$ סדרות עם גבול $\limasi = \ml, \limbsi = m$. נראה ש־$\limsi a_n + b_n = \ml + m$. יהי $\eg > 0$. מהגדרת הגבול ידוע שקיימים $N_1, N_2$ טבעיים שהחל מהם $\forall n \ge N_1 \co a_n - \ml < \frac{\epsi}{2}$ וכן $\forall n \ge N_2 \co b_n - m < \frac{\epsi}{2}$. בפרט עבור $N = \max\{N_1, N_2\}$ מתקיים: 
+			\[ \forall n \ge N \co (a_n + b_n) - (\ml + m) = \underbrace{(a_n - \ml)}_{< \frac{\eg}{2}} + \underbrace{(b_n - m)}_{< \frac{\eg}{2}} < 2 \cdot \frac{\eg}{2} = \eg \]
+			סה''כ מצאנו $N$ שהחל ממנו $(a_n + b_n) - (\ml + m) < \epsi$, ומהגדרת הגבול $\limsi a_n + b_n = \ml + m$ כדרוש. 
+		\end{proof}
+		\item \begin{proof}[הוכחה שלי]
+			תהי $\an$ סדרה עם גבול $\limasi = \ml$. נוכיח $\limsi \ag a_n = \ag \ml$. יהי $\eg > 0$. מהגדרת הגבול ומהנתון, קיים $N\in \N$ כך ש־$\forall n \ge N \co a_n - \ml < \frac{\eg}{\ag}$. 
+			\[ \ag a_n - \ag\ml = \ag(\underbrace{a_n - \ml}_{< \epsi}) < \ag \cdot \frac{\eg}{\ag} = \eg \]
+			סה''כ מהגדרת הגבול $\limasi = \ag \ml$ כדרוש. 
+		\end{proof}
+		\item \begin{proof}\,\![טיוטה: $\sof{a_n b_n - \ml m} = \sof{a_n b_n - a_n m + a_n m - \ml m} \le \sof{a_n b_n - a_n m} + \sof{a_n m - \ml m} = \sof{a_n}\sof{b_n - m} + \sof{m}\sof{a_n - \ml}$ ואז נקבל $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$, ולגבול השני נבחר חסם בהתאם לגבול]
+			
+			יהי $\eg > 0$. אז $\an$ מתכנסת ולכן חסומה, כלומר קיים $k > 0$ כך שלכל $n \in \N$, מתקיים $\sof{a_n} \le k$. 
+			
+			$\an$ מתכנסת ל־$\ml$ ולכן עבור $0 < \frac{\eg}{2(\sof{m} + 1)}$ קיים $N_1 \in \N$ כל שלכל $n \ge N_1$, $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$
+			
+			נבחין ש־$\bn$  מתכנסת ל־$m$ לכן עבור $\frac{\eg}{2k} > 0$ קיים $N_2 \in \N$ כך שלכל $n \ge N_2$, $\sof{b_n - m} < \frac{\eg}{2k}$. 
+			
+			עתה נתבונן ב־$N = \max\{N_1, N_2\}$. יהי $n \ge N$. אז: 
+			\[ \sof{a_n b_n - \ml m} = \sof{a_n b_n - a_n m + a_n m - \ml m}  \le \sof{a_n b_n - a_n m} + \sof{a_n m - \ml m} = \sof{a_n}\sof{b_n - m} + \sof{m} \sof{a_n - \ml} \]
+			כיוון ש־$n \ge N_1$, $\sof{a_n - \ml} < \frac{\eg}{2(\sof{m} + 1)}$, ולכן $\sof{m}\sof{a_n - \ml} < \frac{\eg}{2}$. כיוון ש־$n \ge N_2$, $\sof{b_n - m} < \frac{\eg}{2k}$ ולכן $\sof{a_n}\sof{b_n - m} \le k\sof{b_n - m} < \frac{\eg}{2}$. מכאן $\sof{a_n b_n - \ml m} < \eg$ ולכן $\limsi a_n b_n = \ml m$. 
+		\end{proof}
+		\item \begin{proof}[הוכחה שלי]
+			יהיו $\an, \bn$ סדרות. נניח $\limasi = \ml, \limbsi = m$, וכן $m \neq 0$. נוכיח שהחל מאיזושהי נקודה $N_0$ מתקיים $\forall n \ge N \co b_n \neq 0$, וגם ש־$\limsi \frac{a_n}{b_n} = \frac{\ml}{m}$. 
+			
+			ראשית כל, נוכיח שקיים $N_0$ שממנו $\forall n \ge N_0 \co b_n \neq 0$. נניח בשלילה שלא כך, ונוכיח שבעבור $\eg = \frac{\sof m}{2}$ מתקיים שלכל $N \in \N$ קיים $n \in \N$ כך ש־$\sof{b_n - m}  \not < \eg$. למעשה, נוכל להראות זאת כמעט במיידי: מהנחת השלילה, קיים $n \in \N$ כך ש־$b_n = 0$, ושם אכן: 
+			\[ \sof{b_n - m} = \sof{0 - m} = \sof m > \eg = \frac{\sof m}{2} \quad \bot \]
+			וסתירה להגדרת הגבול ולכך ש־$\limbsi = m$. 
+			
+			עתה, נוכיח $\limsi \frac{1}{b_n} = \frac{1}{m}$. יהי $\eg > 0$. נבחין שהסדרה $\frac{1}{b_n}$ מוגדרת רק לאחר ה־$N_0$ שהוכחנו את קיומו קודם לכן, ולכן נקבע את $b_{n < N_0} = 0$ (אסימפטוטית זה לא משנה בכל מקרה). בגלל ש־$\limbsi = m$, בהכרח החל מנקודה $N_1$ כלשהי מתקיים ממשפט שהראינו ש־$b_n > \frac{m}{2}$. נוסף על כך, החל מ־$N_2$ כלשהי $\sof{b_n - m} < \frac{2\eg}{m^2}$. בפרט, עבור $N = \max\{N_0, N_1, N_2\}$: 
+			
+			אכן מתקיים לכל $n \ge N$: (נבחין שהביטוי מוגדר לכל $n \ge N_0$ ובפרט לכל $n \ge N$): 
+			\[ \sof{\frac{1}{b_n} - \frac{1}{m}} = \frac{\sof{b_n - m}}{\sof{b_nm}} \overset{n \ge N_1}{<} \frac{\sof{b_n - m}}{0.5m^2} \overset{n \ge N_2}{<} \frac{2\eg \cdot \frac{1}{m^2}}{0.5m^2} = \eg \]
+			כדרוש. עתה, מ־3, שהוכח ללא תלות בסעיף זה, נקבל ישירות ש־$\limsi \frac{a_n}{b_n} = \frac{\ml}{m}$, כנדרש, וסיימנו. 
+		\end{proof}
+	\end{enumerate}
 	
 	\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$+\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \i \ge N \co a_n > M$}
-	\defi{תהא $\an$ סדרה. אנרמ כי $\an$ שואפת ל־$-\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n < -M$}
+	\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$-\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n < -M$}
 	
 	\theo{תהיינה $\an, \bn$ סדרות. נניח $\limasi = +\inft \land \limbsi b_n = + \inft$. אז $\limsi a_n + b_n = + \inft$}
 	\begin{proof}
