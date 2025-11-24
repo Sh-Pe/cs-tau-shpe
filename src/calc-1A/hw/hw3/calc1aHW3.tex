@@ -1,0 +1,232 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+
+\newcommand\toinf    {\rrr{n \to \inft}}
+\newcommand\climsi   {\lim_{\mathclap{n \to \infty}}}
+
+\author{שחר פרץ}
+\title{חדו''א 1א $\sim$ \textit{תרגיל בית 3}}
+\begin{document}
+	\maketitle
+	\section{}
+	נוכיח לפי הגדרת הגבול את הגבולות הבאים: 
+	\begin{enumerate}[(A)]
+		\item טענה: 
+		\[ \limsi \frac{n^{2} - n + 2}{3n^{2} + 2n - 4} = \frac{1}{3} \]
+		\begin{proof}
+			יהי $\eg > 0$. לכל $n \ge 2$ מתקיים $3n^3 + 2n - 4 > 3n^2 > 0$ (נחסר אגפים ונקבל שקילות ל־$2n - 4 \ge 0$ ששקול ל־$n \ge 2$)  ובאופן דומה לכל $n \ge 2$ מתקיים $n - 2> 0$, ו־$6n - 12 > 0$, ו־$5n -10 > 0$. בהרצאה הראינו שלגבול מהצורה $\limsi \frac{a}{n} \to 0$ ולכן קיים $N_1$ עבורו $\forall n \ge N_1 \co \frac{10}{9n} < \eg$. נבחר $N = \max\{N_1, 2\}$. נקבל: 
+			
+			\[ \sof{\frac{n^{2} - n + 2}{3n^{2} + 2n - 4} - \frac{1}{3}} = ​\frac{5\sof{n - 2}}{3\sof{3n^2+2n - 4}}​ \overset{n \ge 2}{=} \frac{5n - 10}{9n^2 + 6n - 12} \overset{n \ge 2}{<} \frac{5n - 10}{9n^2} \overset{n \ge 2}{<} \frac{10n}{9n^2} = \frac{10}{9n} \overset{n \ge N_1}{<} \eg \]
+			וסיימנו. 
+		\end{proof}
+		\item טענה: 
+		\[ \limsi \frac{1}{n} \neq 1 \]
+		\begin{proof}
+			נבחר $\eg = 0.5$. נוכיח שלכל $N \in \N$ קיים $n \in \N$ כך ש־$\sof{\frac{1}{n} - 1} > \eg$. ואכן, יהי $N \in \N$, ואז עבור $n = N + 4$ מתקיים $n \ge 4$ כלומר: 
+			\[ \sof{\frac{1}{n} - 1} = 1 - \frac{1}{n} \ge 1 - \frac{1}{4} = 0.75 > 0.5 \]
+			וסיימנו. 
+		\end{proof}
+		\item טענה: 
+		\[ \limsi \underbrace{\sqrt{n^2 + \cos n} - n}_{a_n} = 0 \]
+		\begin{proof}
+			נוכיח לפי הגדרת הגבול את הטענה לעיל. יהי $\eg > 0$. צ.ל. $\sof{a_n} < \eg$ לכל $n \ge N$ עבור $N \in \N$ כלשהו שנבחר. נבחר $N = \max\ccb{\frac{1 - \eg^2}{\pm2\eg}}$. נבחין ש־: 
+			\[ n > \frac{-1 - \eg^2}{\pm2\eg} \implies \pm2n\eg > -1 - \eg^2 \implies n^2 - 1 < n^2 \pm 2 n\eg + \eg^2 \implies \sqrt{n^2 \pm 1} < \eg + n \]
+			ואז מתקיים: 
+			\begin{gather*}
+				-a_n = - \sqrt{n^2 + \cos n} - n \le -\sqrt{n^2 - 1} - n < \eg \\a_n = \sqrt{n^2 + \cos n} - n \le \sqrt{n^2 + 1} - n < \eg
+			\end{gather*}
+			כנדרש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהי $A \subseteq \R^{n}$ קבוצה חסומה מלעיל שאינה ריקה. נוכיח קיום סדרה $(a_n)_{n = 1}^{\infty}$ כך ש־$\forall a \in A \co a_n \in A$, וכן $\limsi a_n = \sup A$. 
+	
+	\begin{proof}
+		אם $A$ ריקה, אז היא איננה חסומה, וסתירה, ולכן קיים בה איבר $x \in A$ כלשהו. אם $A$ בעלת מקסימום, אז נבחר $a_i = \max A$ סדרה קבוע ב־$\max A$ ולכן שואפת ל־$\max A = \sup A$ וסיימנו. אחרת, מאקסיומת החסם העליון, בגלל ש־$A$ חסומה מלעיל קיים לה סופרמום $\sup A$. נגדיר את אוסף הקטעים הפתוחים חיתוך $A$ כך ש־$n \mapsto A \cap (\sup A - \frac{1}{n}, \sup A)$ לכל $n \in A$. נסמן פונקציה זו ב־$F \co \N \to \ps(A)$. נבחין שהם לא ריקים שכן מהגדרת $\sup A$, עבור $\eg = \frac{1}{n}$ בהכרח $\exists b \in A \co \sup A > b > \sup A - \eg > a$. 
+		
+		הגדרנו $F \co \N \to F(A)$ כלשהי, ולכן קיימת $f \co \N \to A$ פונקציית בחירה ביחס ל־$F$, כך ש־$\forall a \in A \co f(a) \in F(A)$ (מאקסיומת הבחירה הרציפה). נסמן את פונקציית הבחירה $f$ בסדרה $a_n = f(n)$. 
+		
+		עתה נראה ש־$\limsi a_i = \sup A$. יהי $\eg > 0$. הוכחנו $\limsi \frac{1}{n} = 0$ ולכן קיים $N$ עבורו $\forall n \ge N \co \sof{\frac{1}{n}} < \eg$. נתבונן ב־$f(n)$, ונבחין שהוא מקיים: 
+		\[ f(n) \in F(n) \implies \sup A - \frac{1}{n} < f(n) < \sup A < \sup A + \frac{1}{n} \implies \forall n \ge N \co \sof {\sup A - a_n}  = \sof{\sup A - f(n)} < \sof{\frac{1}{n}} < \eg \]
+		כלומר מהגדרה $a_n \to \sup A$. משום ש־: 
+		\[ a_n = f(n) \in F(n) = A \cap \cl{\sup A - \frac{1}{n}, \ \sup A} \subseteq A \]
+		אז $\forall n \in \N \co a_n \in A$. סה''כ מצאנו $a_n$ מתאימה, וסיימנו. 
+	\end{proof}
+	
+	\section{}
+	
+	נוכיח שלכל $q \in Q$ קיימת $a_n$ כך ש־$\forall i \in [n] \co a_i \in \Q$ וקיימת $b_n$ כך ש־$\forall i \in [n] \co b_n \in \R \setminus \Q$, כך ש־$a_n, b_n \to q$. 
+	\begin{proof}
+		נגדיר את שתי הקבוצות הבאות: 
+		\[ A_q = \{p < q \mid p \in \Q\} \quad B_q = \{p < q \mid p \in \R \setminus \Q\} \]
+		צפיפות הרציונלים והאי־רציונליים בממשיים, $A_q, B_q$ אינן ריקות. 
+		
+		נראה ש־$q = \sup A_q = \sup B_q$. אכן $q$ חסם מלעיל מהגדרה, וסופרמום משום שלכל $\eg > 0$ מתקיים $\exists p \in \Q \co q - \eg < p < q$ ואכן $\exists p \in \R \setminus \Q \co q - \eg < p < q$, בגלל הצפיפות של הרציונליים והאי־רציונליים. מכאן ש־$p = \sup A_q = \sup B_q$. עתה ניעזר בתרגיל 2 שהוכח ללא תלות בסעיף זה. נקבל קיום $a_n$ כך ש־$a_i \in A_q$ ובפרט $a_i \in \Q$ כך ש־$a_n \to \sup A_q = q$ ובאופן דומה $\exists b_n$ כך ש־$b_i \in B_q$ ובפרט $b_i \in \R\setminus \Q$ כך ש־$b_n \to \sup B_q = q$ וסה''כ מצאנו $b_n, a_n$ מתאימות וסיימנו. 
+	\end{proof}
+	
+	\section{}
+	נניח כי $a_n \to a, b_n \to b$ מתכנסות, כאשר $a, b$ גבולות במובן הרחב. 
+	\begin{enumerate}[(A)]
+		\item נניח $a = \pm \infty$ ו־$b$ סופי או $\pm\infty$. נוכיח $a_n + b_n \to \pm\infty$\begin{proof}
+			נפצל לשתי הוכחות. 
+			\begin{itemize}
+				\item נניח $b$ גבול סופי. מכאן שקיים $N_1$ עבורו $\forall n \ge N_1 \co \sof{b_i - b} < 1$ ובפרט $\forall n \ge N-1 \co b_i > \mp(1 + b)$. יהי $M \in \R$. נוכיח ש־$a_i + b_i > n > N$ לכל $n \ge N$ בעבור $N$ שנבחר. בגלל ש־$\limsi a_i = \pm\infty$ אזי קיים $N_2$ כך ש־$a_i > \pm (M + 1 + b)$ לכל $i \ge N_2$. סה''כ בעבור $N = \max\{N_1, N_2\}$ נקבל: 
+				\[ \forall n \ge N\co a_i + b_i \overset{n \ge N_2}{=} \pm(M + 1 + b) + b_i \overset{n \ge N_1}{>} \pm M \]
+				
+				כדרוש. 
+				%TODO: check the above proof
+				\item עתה נניח ש־$b \to \pm \infty$. יהי $M > 0$. ידוע קיום $N_1, N_2$ כך ש־$\forall i \ge N_1 \co a_i \ge \pm M \land \forall i \ge N_2 \co b_i \ge \pm M$. בפרט בעבור $N = \max\{N_1, N_2\}$ מתקיים $\forall i \ge N \co a_i + b_i > \pm 2M > \pm M$. וסיימנו. 
+			\end{itemize}\envendproof
+		\end{proof}
+		\item עתה נתעסק במקרה בו $a = \pm \infty$ ו־$b > 0 \lor b = \infty$. נראהש־$a_n b_n \to \pm \infty$. \begin{proof}
+			\begin{itemize}
+				\item אם $b = \infty$, אז קיים $N_1$ כך שלכל $i \ge N_1$ מתקיים $b_i > 1$ (ישירות מהגדרה). 
+				יהי $M \in \R$. בגלל ש־$\limsi a_i = \pm\infty$, ידוע קיום $N_2$ כך ש־$a_i > \pm(M$, ואז: 
+				\[ \forall n \ge N:= \max\{N_1, N_2\} \co a_i b_i > \pm M b_i > \pm M \]
+				כדרוש. 
+				\item אחרת $b > 0$ ולכן ממשפט, קיים $N_1$ שהחל ממנו $\forall i \ge N_1 \co b_i > \frac{b}{2}$ כלומר $ $
+				
+				יהי $M \in \R$. בגלל ש־$\limsi a_i = \pm\infty$, ידוע קיום $N_2$ כך ש־$a_i > \pm\cl{\frac{2M}{b}}$, ואז: 
+				\[ \forall i \in N:= \max\{N_1, N_2\}\co a_i b_i > \pm \frac{2M}{b} \cdot \frac{2}{b} = \pm M \]
+				וסיימנו. 
+			\end{itemize}\envendproof
+		\end{proof}
+		\item מסעיף ב' נובע באופן מיידי מאריתמטיקה של גבולות, שאם $b < 0 \lor b = -\infty$ אז $a_nb_n \to \mp\infty$ שכן: 
+		\[ a_i \overbrace{\cl{-b_i}}^{\mathclap{(-b)\to \sof{b} \lor (-b)\to +\infty}} \rrr{\text{סעיף ב'}} \pm \infty \overset{\text{אריתמטיקה של גבולות}}{\implies} a_i b_i \to \mp\infty \]
+		
+		\item סעיף זה מחולק לשני חלקים: \begin{enumerate}[1.]
+			\item אם $a = b = \pm \infty$, נוכיח ש־$a_nb_n \to +\infty$. \begin{proof}
+				יהי $M \in \R$. נגדיר $M' = \max\{M, 1\}$ ונבחין ש־$M'^2 > M$ (אם $M<1$ אז $M'^2 = 1 > M^2$ אחרת $M'^2 = M^2 > M$). ידוע קיום $N_1, N_2 \in \N$ כך ש־: 
+				\[ \forall i \ge N_1 \co a_i > \pm M' \quad \forall i\ge N_2 \co a_i > \pm M' \]
+				עבור $N = \max\{N_1, N_2\}$ נקבל: 
+				\[ \forall i \ge N \co a_i b_i > (\pm M')^{2} = \smash{\overbrace{(\pm 1)^{2}}^{1}M'^2} = M'^2 > M \]
+				ומהגדרה $a_nb_n \to \infty$ וסיימנו. 
+			\end{proof}
+			\item אם $a = \pm\infty, b = \mp \infty$, אז מאריתמטיקה של גבולות נקבל: 
+			\[ \smash{a_i \overbrace{\cl{-b_i}}^{\mathclap{(-b)\to \sof{b} \lor (-b)\to +\infty}} \rrr{\text{חלק 1}} \infty \overset{\text{אריתמטיקה של גבולות}}{\implies} a_i b_i \to -\infty} \]
+			וסיימנו. 
+		\end{enumerate}
+	\end{enumerate}
+	
+	\textit{הערה: }רק עכשיו ראיתי את ההוראה להוכיח רק מקרה אחד מכל סעיף. מאוחר מדי. 
+	
+	\section{}
+	תהי $a_n$ סדרה של מספרים אי־שליליים כלומר $a_n \ge 0$ המתכנסת לגבול $a \ge 0$. נוכיח ש־$\sqrt{a_n} \to \sqrt a$. 
+	
+	
+	\begin{proof}
+		מהיות $a_n \to a$ בהכרח קיים $N$ החל ממנו $\forall n \ge N \co \sof{\sqrt a_n - a} < \eg \sqrt a$. נקבל: 
+		\[ \sof{\sqrt {a_n} - \sqrt a} \cdot \sof{\sqrt {a_n} + \sqrt a} = \sof{{a_n} - a} \implies \forall n \ge N \co \sof{\sqrt {a_n} - \sqrt a} = \frac{\sof{\sqrt a_n - a}}{\sof{\sqrt {a_n} + \sqrt a}} < \frac{\sof{\sqrt a_n  - a}}{{\sof{\sqrt a}}} < \frac{\eg \sqrt a}{\sqrt a} = \eg \]
+		וסיימנו. נבחין שהשתמשנו בכך ש־$a \ge 0$, וכן ששום דבר לא מוגדר היטב אם $a_n \not \ge 0$ (כלומר, אכן השתמשנו בנתונים). 
+	\end{proof}
+	
+	\section{}
+	נחשב בעזרת משפט הסנוויץ את הגבולות הבאים: 
+	\begin{enumerate}[(A)]
+		\item ידוע ש־$\forall i \in [n] \co \frac{i}{n + i} \le \frac{n}{2n}$. אזי: 
+		\[ 0 \le \underbrace{\frac{n!}{(n + 1) \cdots (2n)}}_{S(n)} = \frac{\prod_{i = 1}^{n}i}{\prod_{i = 1}^{n}(n + i)} = \prod_{i = 1}^{n}\frac{i}{(n + i)} \le \prod_{i = 1}^{n}\frac{n}{2n} = \frac{1}{2^{n}} \]
+		
+		ומשום שגבול הסדרה הקבועה $\limsi 0 = 0$ והראינו ש־$\frac{1}{2^{n}} \to 0$ גם כן, אז ממשפט הסנדוויץ' $\limsi S(n) = 0$ וסיימנו. 
+		\item ידוע $-1 \le \sin x \le 1$. לכן: 
+		\[ \frac{\sumnio i \sin (i)}{n^3} \le \frac{\sumnio i \cdot 1}{n^3} =  \frac{\frac{n(n - 1)}{2}}{n^3} \toinf \limsi \frac{n^2 - n}{2n^3} = \limsi \frac{\frac{n^2}{n^2} - \frac{n}{n^2}}{\frac{2n^3}{n^2}} \seq \limsi \frac{0}{2n} = 0 \]
+		מהכיוון השני: 
+		\[ \frac{\sumnio i \sin (i)}{n^3} \ge \frac{\sumnio -i}{n^3} = \frac{\frac{-n(n - 1)}{2}}{n^3} = \frac{n - n^2}{2n^3} = \frac{\frac{n}{n^2} - \frac{n^2}{n^2}}{\frac{2n^3}{n^2}} \toinf \limsi \frac{0}{2n} = 0 \]
+		סה''כ בהכרח הגבול הוא $0$ וסיימנו. 
+		\item יהיו $a > b > 0$ ממשיים. 
+		\[ a \cdot \sqrt[n]{1 - \frac{b^{n}}{a^{n}}} = \sqrt[n]{a^{n}\cl{1 - \cl{\frac{b}{a}}^{n}}}= \sqrt[n]{a^n - b^n} <  \sqrt[n]{a^n} \toinf a = a \]
+		נותר להוכיח ש־$a \cdot \sqrt[n]{1 - \frac{b^{n}}{a^{n}}} \to 1$. בגלל ש־$a > b$ אז $\frac{a}{b} < 1$ כלומר $\limsi \frac{b^{n}}{a^{n}} = 0$. נקבל ש־: 
+		\[ \limsi \cl{a \cdot {\sqrt[n]{1 - \frac{b^{n}}{a^{n}}}}} = a \cdot \sqrt[n]{1 - \limsi \frac{b^{n}}{a^{n}}} = a\sqrt[n]{1} = a \]
+		סה''כ ממשפט הסנדוויץ' קיבלנו את הדרוש. 
+		\item 
+		\[ 0=  \frac{0}{\infty} = \frac{\lim \frac{1}{n}}{\limsi n + \frac{1}{n}} \leftarrow \frac{n}{n^2 + 1} \le \cl{\frac{1}{n^2 + 1} + \cdots + \frac{1}{n^2 + n}} \le  \frac{n}{n^2 + n} \rightarrow \frac{\lim \frac{n}{n}}{\limsi n + \frac{1}{n}} = \frac{1}{\infty} = 0 \]
+		סנדוויץ' וסיימנו. 
+	\end{enumerate}
+	
+	\section{}
+	יהי $a \in \R$ ויהיו $\{a_n\}, \{b_n\}$ סדרות כך ש־$a_n, b_n \in \Z$. נסמן $c_n = a_n \ag + b_n$ ונניח ש־$c_n \to 0$ וגם $\sof{c_n} > 0$ (כלומר $c_n \neq 0$). נוכיח $\ag \in \R \setminus \Q$. 
+	\begin{proof}
+		נניח בשלילה ש־$\ag \in \Q$, ומכאן שקיימים $n \in \Z, m \in \N$ כך ש־$\ag = \frac{n}{m}$. נבחר $\eg = \frac{1}{2m}$. ידוע שקיים $N \in \N$ עבורו לכל $n \ge N$	ובפרט עבור $n \ge \N$ כלשהו שנבחר, נקבל מהגדרת הגבול: 
+		\[ \begin{WithArrows}[format=rcl]
+			0 &\ < \sof{a_n \cdot \ag + b_n} &\ < \eg = \frac{1}{2m} \Arrow{ידוע $m \ge 0$ ולכן נוכל להכפיל בו}\\
+			0 \cdot m = 0 &\ < \underbrace{\sof{n \cdot a_n + m \cdot b_n}}_{z} &\ < \frac{1}{2} = \frac{1}{2\cancel{m}}\cdot \cancel{m}
+		\end{WithArrows} \]
+		נבחין ש־$n \cdot a_n + m \cdot b_n \in \Z$ מסגירות החוג שלמים לחיבור וכפל. סה''כ מצאנו שלם $z \in \Z$ המקיים $0 < z < 0.5$, וזו סתירה. 
+	\end{proof}
+	
+	\section{}
+	יהי $\bg \ge 0$ ויהי $s \in (0, 1)$. נוכיח כי הסדרה הבאה מתכנסת: 
+	\[ a_n = \sumnko \cl{\frac{n}{k}}^{\bg}s^{n - k} \quad \limsi a_n = \frac{1}{1 - s} \]
+	
+		
+		\begin{proof}
+			הראינו ש־$\limsup, \liminf$ מוגדרים היטב. ניעזר בווריאציה על משפט הסנדוויץ' (ולכן נעשה זאת לפי הגדרה) שיש גבול חלקי יחיד. מכיוון אחד (טרוויאלי) בגלל ש־$\cl{\frac{n}{k}}^{\bg} \ge 1$ (כי $k < n$) נקבל: 
+		\[ \sum_{k = 0}^{n - 1} s^{k} = \sumnko s^{n - k} \le \underbrace{\sumnko \cl{\frac{n}{k}}^{\bg}s^{n - k}}_{S(n)} \]
+		
+		מצאנו חסם תחתון לסדרה, ולכן הוא חוסם מלמטה את $\limsup_{n \to \inft} S(n)$. קיבלנו: 
+		\[ \limsup_{n \to \inft} S(n) \ge \limsi \sum_{k = 0}^{n - 1}s^{k} = \frac{1}{s - 1} \]
+		
+		מכיוון שני, אינטואיטיבית, הביטוי $\cl{\frac{n}{k}}^{\bg}$ נותן יותר משמעותית משקל לערכים הראשונים, שגדולים יותר בכל מקרה, ולכן מה שבא אחרי נקודה מסויימת לא משפיע על התנהגות הגבול. ננסח את זה פורמלית. 
+		
+		לכל $c > 1$ מתקיים $\frac{n}{n - k} \le 1 < \sqrt[\bg]{c}$ (כי $k < n$ ושבר של מספר במספר קטן ממנו קטן מ־$1$, ושורש של מספר גדול מ־$1$ גדול מ־$1$ גם הוא). מכאן: 
+		\[ n - k \ge \frac{n}{\sqrt[\beta]{c}} \implies -k \ge \frac{n}{\sqrt[\beta]{c}} - n = n \cl{\frac{1 - \sqrt[\beta]{c}}{\sqrt[\beta]{c}}} \implies k \le \underbrace{\cl{\frac{\sqrt[\beta]{c}- 1}{\sqrt[\beta]{c}}}}_{N_c}n \]
+		בגלל ש־$k \le N_c \cdot n$, נקבל: 
+		\[ \forall k \le N_c \cdot n \co \cl{\frac{n}{n - k}}^{\beta} \le \cl{\frac{n}{n - Cn}}^{\beta} = \cl{\frac{n\sqrt[\bg]{c}}{\cancel{n\sqrt[\bg]{c} - n\sqrt[\bg]{c}} + n}}^{\bg} = \cl{\sqrt[\bg]{c}}^{\bg} = c \]
+		כלומר, לכל $n > N_c$, נוכל לפצל את סדר הסכימה ולהפוך את סדר הסכימה באופן הבא: 
+		\[ \sumnko \cl{\frac{n}{k}}^{\bg}\!\!s^{k} = \sum_{k = 0}^{n - 1}\cl{\frac{n}{k}}^{\bg}\!\!s^{k} = \sum_{k = 0}^{\floor{N}}\underbrace{\cl{\frac{n}{k}}^{\bg}\!\!}_{\le c}s^{k} + \sum_{\mathclap{k = \ceil{N_c} + 1}}^{n - 1}\overbrace{\cl{\frac{n}{k}}^{\bg}}^{\le n}\!\!s^{k} \le  \sum_{k = 0}^{\floor{N_c}}(c \cdot s^{k}) + \overbrace{\sum_{\mathclap{k = \ceil{N} + 1}}^{n - 1}\cl{n\cdot s^{k}}}^{P(n)} \le c\cdot \frac{s^{n} - 1}{s - 1} + P(n) \]
+		כאשר $P(n) \to 0$ כלשהי. הא''ש האחרון נכון כי דבר ראשון: 
+		\[ \sum_{k = 0}^{\floor{N_c}}(c \cdot s^{k}) = c\cdot \frac{s^{\floor{N_c}} - 1}{s - 1} \le c\cdot \frac{s^{n} - 1}{s - 1} \]
+		ודבר שני $P(n) \le n \cdot \frac{s^{n} -1}{s - 1}$ וממבחן השורש נקבל ש‏־$\sqrt[n]{\xi n s^{n}} = \sqrt[n]{\xi n} \cdot s$ ומשום ש־$s < 1$ ו־$\xi$ איזשהו קבוע שאפשר לבטא אלגברית אבל הוא לא משנה בכלל כי $\sqrt[n]{n} \to 0$, אז קיבלנו גבול קטן מ־$s < 1$ כלומר $P(n) \to 0$. 
+		
+		לחסם עליון קיבלנו מאריתמטיקה של גבולות: 
+		\[ \forall c > 1 \co \limsup_{n \to \infty} S(n) \le \lim_{\mathclap{n \to \inft}} c\cdot \frac{s^{n} - 1}{s - 1} + P(n) = c\lim_{\mathclap{n \to \inft}} \cl{\frac{s^{n} - 1}{s - 1}} + \lim_{\mathclap{n \to \inft}} P(n) = c \cdot \frac{1}{1 - s} + 0 \]
+		וממשפט שהוכחנו בגלל ש־$\forall c > 1 \co \limsup S(n) \le c \cdot \frac{1}{1 - s}$, בהכרח $\limsup S(n) \le \frac{1}{1 - s}$. 
+		
+		סה''כ בשעה טובה: 
+		\[ \frac{1}{1 - s} \le \limsup_{n \to \inft} S(n) \le \limsup_{n \to \infty} S(n) \le \frac{1}{1 - s} \]
+		כלומר $\limsup S(n) = \frac{1}{1 -s} = \liminf S(n)$ ומכאן שיש גבול חלקי יחיד ל־$S(n)$, כלומר היא מתכנסת לאותו הגבול, ונוכל לסכם:
+		\[ \sum_{k = 0}^{\infty} \cl{\frac{n}{k}}^{\bg}\!\!s^{n - k} = \limsi \sumnko \cl{\frac{n}{k}}^{\bg}\!\!s^{n - k} = \lim_{\mathclap{n \to \inft}} S(n) = \frac{1}{1 - s} \]
+		כדרוש. 
+		\end{proof}
+		
+	
+	\section{}
+	נוכיח את משפט צ'זארו לממוצעים משוקללים. תהי $x_n \to x$ סדרה וכן $\lg_n > 0$ סדרה כך ש־$\sumnko \lg_k \to \infty$. נוכיח ש־: 
+	\[ \frac{\sum_{k = 1}^{n}\lg_k x_k}{\sumnko \lg_k} \rrr{n \to \inft} x \]
+	יהיה ממש מצחיק להוכיח את זה עם משפט שטולץ כי זו הוכחה מעגלית. נעשה כאן הוכחה נורמלית: 
+	
+	\begin{proof}
+	ידוע שהסדרה $a_n$ מתכנסת, לכן $a \in \R$. 
+		\begin{itemize}
+			\item אם $a = 0$: יהי $\eg > 0$. בגלל ש־$a_i \to x$ מהגדרת הגבול קיים $\exists N_1 \in \N.\, \forall n \ge N_1 \co \sof{a_n} < \frac{\eg}{2}$. נבחין ש־$\sof{a_1 + \cdots + a_{N_1}} =: s$ קבוע, ובגלל ש־$\lg_k \to \inft$ אז $\frac{s}{\lg_k} \to 0$ (אריתמטיקה של גבולות אינסופיים) דהיינו מהגדרת הגבול קיים $N_2$ עבורו $\forall n \ge N_2 \co \frac{s}{\sumnko \lg_k} < \frac{\eg}{2}$. נסמן $N = \max\{N_1, N_2\}$ ונקבל: 
+			\[ -\eg < 0 < \frac{\sumnko \lg_k a_k}{\sumnko \lg_k} = {\frac{\sum_{k = 1}^{N_1}a_i\lg_k}{\sumnko \lg_k}} + \overbrace{\frac{\sum_{k = N_1 + 1}^{n}\lg_k a_k}{\sumnko \lg_k}}^{< \sum_{k = N_1 + 1}^{n}\lg_k a_n} < \frac{\eg}{2} + \frac{\sum_{k = N_1 + 1}^{n}\lg_ka_k}{\sumnko \lg_k} \le \frac{\eg}{2} + \overbrace{\frac{a_n\cancel{\sumnko \lg_k}}{\cancel{\sumnko \lg_k}}}^{< \frac{\eg}{2}} < +\eg \]				כלומר מהגדרת ערך מוחלט קיבלנו $\sof{\frac{\sumnko \lg_k a_k}{\sumnko \lg_k}} < \eg$ וסיימנו. 
+			\item אם $a \neq 0$, נתבונן בסדרה $b_n = a_n - a$. מאריתמטיקה של גבולות $\limsi b_n = \limsi a_n - \limsi a = a - a = 0$. לכן המקרה הקודם מתקיים בעבורה. ואכן: 
+			\[ \frac{\sumnko \lg_k a_k}{\sumnko \lg_k} - a = \frac{\sumnko \cl{\lg_k a_k} - a\sumnko \lg_k}{\sumnko \lg_k} = \frac{\sumnko \lg_k (a_k - a)}{\sumnko \lg_k} = \frac{\sumnko \lg_k b_k}{\sumnko \lg_k} \toinf 0 \]				ומאריתמטיקה של גבולות, סיימנו. 
+		\end{itemize}\envendproof
+	\end{proof}
+	נשאל את עצמנו האם הטענה מחזיקה עבור $\lg_n$ שאינן מקיימות $\sumnko \lg_k = \infty$. נבחין שלא – עבור $a_i = 1$ נקבל $a_n \to 1$ (שכן הסדרה קבועה), ונתבונן בסדרת המשקלים $\lg_k = \frac{1}{k^2}$. עבור $\lg_k = 0.5^{k}$ ו־$a_n = 0.5^{k}$ נקבך: 
+	\[ a_n \to \frac{0.5}{1 - 0.5} = 1 \quad \frac{\sumnko 0.5^{k}0.5^{k}}{\sumnko 0.5^{k}} = \frac{\sumnko 0.25^{k}}{\sumnko 0.5^{k}} \toinf \frac{\frac{0.25}{1 - 0.25}}{0.5} = \frac{2}{3} \neq 1 \]
+	וסיימנו. 
+
+	\section{}
+	נפריך את היות סדרה חיובית השואפת ל־$0$ מונוטונית ממקום מסויים. נתבונן בסדרה הבאה: 
+	\[ a_n = \begin{cases}
+		\frac{1}{n} & n \in \Neven \\
+		\frac{1}{n - 2} & n \in \Nodd
+	\end{cases} \]
+	נבחין ש־$a_{2n} = \frac{1}{n} \to 0$ ו־$a_{2n + 1} = \frac{1}{n - 2} \to 0$ ולכן ממשפט הכיסוי $a_n \to 0$. נניח בשלילה שהיא מונוטונית החל מ־$N \in \N$ כלשהו. 
+	\begin{itemize}
+		\item קיים $\Neven \ni n \ge N$. נבחין ש־: 
+		\[ a_n = \frac{1}{n} < \frac{1}{n - 1} = \frac{1}{(n + 1) - 2} = a_{n + 1} \]
+		כלומר, הכיוון שלה הוא מונוטוני עולה בהכרח. 
+		\item קיים $\Nodd \ni n \ge N$. נבחין ש־: 
+		\[ a_n = \frac{1}{n - 2} > \frac{1}{n - 1} = a_{n + 1} \]
+		כלומר, הכיוון שלה הוא מונוטוני יורד בהכרח. 
+	\end{itemize}
+	סה''כ, $a_n$ מונוטונית עולה חזק ומונוטונית יורדת חזק לכל $n \ge \N$, וזו סתירה, כלומר לא קיים $N$ כזה. 
+	
+	סה''כ הפרכנו את המשפט. 
+	
+	\ndoc
+\end{document}

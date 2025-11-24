@@ -2467,16 +2467,17 @@
 	
 	\begin{proof}נפרק לרצף גרירות
 		\begin{enumerate}
-			\item[$1 \to 2$] אם $T^* = T\op$ אז מהגדרה $TT^* = I$ ומהיות הופכית יחידה משני הצדדים $TT^* = T*^T = I$. 
+			\item[$1 \to 2$] אם $T^* = T\op$ אז מהגדרה $TT^* = I$ ומהיות הופכית יחידה משני הצדדים $TT^* = T^*T = I$. 
 			\item[$2 \to 3$] \hfil $T^* = T\op \implies \mut{Tv}{Tu} = \mut{v}{T^*Tu} = \mut{v}{u}$
 			\item[$3 \to 4$] נאמר ש־$(v_1 \dots v_n)$ א''נ. צ.ל. $(Tv_i)_{i = 1}^{n}$ א''נ. לשם כך נצטרך להוכיח את שני התנאים – החלק של האורתו והחלק של הנורמלי. בשביל שניהם מספיק להוכיח ש־: 
 			$\mut{Tv_i}{Tv_j} = \mut{v_i}{v_j}  = \dg_{ij}$
 			\item[$4 \to 5$]טרוויאלי
 			\item[$5 \to 6$]יהי $(v_1 \dots v_n)$ בסיס א''נ כך ש־$(Tv_1 \dots Tv_n)$ א''נ. אז: 
-			\begin{align*}
-				v = \sumni \ag_i v_i \implies &\norm{v}^2 = \mut{\sumni \ag_i v_i}{\sumni \ag_i v_i} = \sumni |\ag_i|^2 \\
-				&\norm{Tv}^2 = \mut{T\cl{\sumni \ag_i v_i}}{T\cl{\sumni \ag_i v_i}} = \mut{\sumni \ag_i T(v_i)}{\sumni \ag_i T(v_i)} = \sum |\ag_i|^2
-			\end{align*}
+			\[ \begin{WithArrows}[format=crl]
+				v = \sumnio \ag_i v_i \implies &\norm{v}^2 &\,= \mut{\sumnio \ag_i v_i}{\sumnio \ag_i v_i} = \sumnio |\ag_i|^2 \cdot \smash{\overbrace{(v_i, v_i)}^{1}} \\
+				&\norm{Tv}^2 &\,= \mut{T\cl{\sumnio \ag_i v_i}}{T\cl{\sumnio \ag_i v_i}} = \mut{\sumnio \ag_i T(v_i)}{\sumnio \ag_i T(v_i)} \\ &&= \sumnio |\ag_i|^2\cdot \smash{\underbrace{(Tv_i, Tv_i)}_{1}}
+			\end{WithArrows} \]
+			מטרנזטיביות והוצאת שורש נקבל $\norm v = \norm{Tv}$ כדרוש. 
 			\item[$5 \to 1$]מניחים $\forall v \in V \co \norm{Tv} = \norm{v}$. ידועות השקילויות הבאות: 
 			\[ T^* = T\op \iff T^*T = I \iff T^*T - I = 0 \]
 			בעבר ראינו את הטענה הבאה: נניח ש־$S$ צמודה לעצמה וכן ש־$\forall v \co \mut{Sv}{v} = 0$, אז $S = 0$. במקרה הזה: 

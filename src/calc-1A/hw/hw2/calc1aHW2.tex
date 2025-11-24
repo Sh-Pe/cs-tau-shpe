@@ -5,6 +5,7 @@
 
 \author{שחר פרץ}
 \title{\textit{חדו''א 1א} $\sim$ תרגיל בית 2}
+\date{18 בנובמבר 2025}
 \begin{document}
 	\maketitle
 	\section{}
@@ -109,13 +110,39 @@
 	נגדיר את הקבוצה: 
 	\[ A = \ccb{\ceil{\sqrt n} - \sqrt n \co n \in \N} \]
 	כאשר $\ceil x := \min\{n \in \Z \mid x \le n\}$. 
-	נוכיח ש־$\sup A = 1, \inf A = 0$. \begin{proof}לכל $x \in \R$ מתקיים: 
+	נוכיח ש־$\sup A = 1, \inf A = 0$. 
+	\begin{proof}
+		נראה ש־$\sup A = 1, \min A = \inf A = 0$, אך $\max A$ אינו מוגדר. 
+		לכל $x \in \R$ מתקיים: 
 		\[ 0 \le x - x \le \ceil x - x \le x + 1 - x = 1 \]
 		וזאת כי בין $x$ לבין $x + 1$ בהכרח קיים מספר טבעי (הוכח בכיתה). נסמן ב־$\tl x$ את $\ceil x - x$. 
 		\begin{itemize}
-			\item \textbf{אינפימום: }מהא''ש לעיל בהכרח $0$ חסם תחתון. יהי $\eg > 0$. נראה ש־$\exists x \in A \co x \le 0 + \eg$. אז עבור המספר 
-			\[  \]
-		\end{itemize}
+			\item \textbf{אינפימום ומינימום: }מהא''ש לעיל בהכרח $0$ חסם תחתון. יתרה מכך, $0 \in A$ שכן עבור $n = 0$ מתקבל $\ceil{\sqrt 0} - \sqrt 0 = 0$. מהגדרה $0 = \min A$ כלומר $\sup A = \min A = 0$. 
+			\item \textbf{סופרמום: }נוכיח ש־$1$ סופרמום. הוא חסם עליון מהא''ש לעיל. נראה שהוא הדוק. יהי $\eg > 0$. נוכיח קיום $a \in A$ כך ש־$a > 1 - \eg$. 
+			
+			\begin{itemize}
+				\item אם $\eg \le 1$, אז נפעל עלי מהשמיים שאם נבחר $k > \max\ccb{2 \cdot \ceil{\frac{2 + 2 \eg - \eg^2}{2\eg - 2}}, 1}$ ואז $n = k^2 - 1$ (שבהכרח טבעי, כי $k$ טבעי) אז $a = \ceil{\sqrt{n}} - \sqrt n$ יעבוד. 
+				
+				לכל $n$ מהצורה $n = k^{2} - 1$ עבור $k \in \N$ מתקיים $\ceil{\sqrt n} = k = \sqrt{n + 1}$. נדרוש 
+				\[ 0 \le \ceil{\sqrt n} - \sqrt n = \ceil{\sqrt{k^2 - 1}} - \sqrt{k^2 - 1} = k - \sqrt{k^2 - 1} \overset{!}{>} 1 - \eg \iff k + \eg - 1 > \sqrt{k^2 + 1} \]
+				בגלל ההנחה $\eg < 1$ (במקרים אחרים נטפל בנפרד), נשמור על שקילות לביטוי לעיל אם נעלה בריבוע את שני האגפים, כי הם גדולים מ־$0$. מכאן שהא''ש לעיל שקול לרצף האי־שוויונות הבאים: 
+				\[ \begin{WithArrows}
+					k^2 + \eg^2 - 1 + 2 k \eg - 2k - 2 \eg &> k^2 + 1 \Arrow[jump=2, ll]{נוסיף \sen $-k^2 - \eg^2+ 2 \eg + 1$ \she לשני האגפים} \\
+					\eg^2 - 2 \eg - 1 + k(2 \eg - 2) &> 1 \\
+					k(2 \eg - 2) &> 2 + 2 \eg - \eg^2 \\
+					k &> \frac{2 + 2 \eg - \eg^2}{2 \eg - 2}
+				\end{WithArrows} \]
+				החלוקה בסוף חוקית כי $2\eg - 2 > 0$ מההנחה $\eg < 1$. למעשה מבחירת $k$, כאן הראינו שקילות לא''ש לעיל, וסיימנו. 
+				\item אם $\eg > 1$, אז $1 - \eg < 0$ ואז כל $a \in A$ יעבוד כי בהכרח $a > 0$, ו־$A$ לא ריקה (לדוגמה בעבור המינימום שהראינו את קיומו). 
+			\end{itemize}
+			
+			
+			
+			סה''כ מצאנו $a$ מתאים. כלומר $1$ אכן סופרמום. 
+			\item \textbf{מקסימום: }נניח בשלילה קיום מקסימום. בגלל ש־$1 = \sup A$, אז $\max A = \sup A = 1$ ואז $1 \in A$. מכאן ש־: 
+			\[ \exists n \in \N\co \ceil{\sqrt n} - \sqrt n = 1 \implies \ceil {\sqrt n} = \sqrt n + 1 \]
+			אבל לכל $x \in \R$ קיים $k \in \N$ כך ש־$x < k < x + 1$. בפרט עבור $x = \sqrt n$, ואז $\sqrt n < k < \sqrt n + 1 = \ceil{\sqrt n}$ וזו סתירה להגדרת $\ceil{\cdot}$. 
+		\end{itemize}\envendproof
 	\end{proof}
 	
 	\section{}
@@ -155,18 +182,103 @@
 	\end{enumerate}
 	
 	\section{}
-	נוכיח שלכל $x, y \in \R$, אם $x > 1$ אז קיים $n \in \N$ כך ש־$x^{n} > y$. מכאן נוכיח ש־$\limsi x^{n} = +\inft$. נראה גם שלכל $x < -1$ הסדרה חסרת גבולות. 
+	נוכיח שלכל $x, y \in \R$, אם $x > 1$ אז קיים $n \in \N$ כך ש־$x^{n} = y$. מכאן נוכיח ש־$\limsi x^{n} = +\inft$. נראה גם שלכל $x < -1$ הסדרה חסרת גבולות. 
 	\subsection{קיום שורש $n$־י}
 	\begin{proof}
-		יהי $x \in \R_{\ge 0}$ ממשי אי־שלילי. נתבונן בקבוצה $A = \{a \in \R \co a^n < x\}$. נוכיח שהיא חסומה מלעיל: לכל $a \in A$, נפרק למקרים: 
+		נוכיח באינדוקציה מלאה על $n$. עבור $n = 1$ מתקיים בפשוטות ש־$x^{1} = x$ לכל $x \in \R$, וזהו הבסיס. עתה נפנה להוכיח את הצעד: יהי $x \in \R_{\ge 0}$ ממשי אי־שלילי, ונראה קיום שורש $n$־י (כאשר מהנחת האינדוקציה קיים שורש של $n- k$ לכל $k \in [n]$), כלומר יהי $n \in \N_{\ge 2}$ ונראה ש־$\sqrt[n]{x}$ אכן קיים. נתבונן בקבוצה $A = \{a \in \R \co a^n < x\}$. נוכיח שהיא חסומה מלעיל: לכל $a \in A$, נפרק למקרים: 
 		\begin{itemize}
 			\item אם $a > 1$ אז $a < a^{n} = x$ וסה''כ $\max\{x, 1\}$ חסם מלעיל. 
 			\item אם $a < 1$ אז $\max\{x, 1\}$ עדיין חסם מלעיל. 
 		\end{itemize}
-		אז הדבר הזה באמת חסום מלמעלה. לכן קיים סופרמום, הוא $\sup A$. נראה ש־$(\sup A)^n = x$. נפריד למקרים. 
+		אז הדבר הזה באמת חסום מלמעלה. לכן קיים סופרמום, הוא $\sup A$. 
+		
+		נראה ש־$(\sup A)^n = x$. נפריד למקרים. 
 		\begin{itemize}
-			\item אם $\sup A < x$ אז $\sup A \in A$ מהגדרה, ואז $A$ בעלת מקסימום. אבל אוקי להוכיח שאין לזה מקסימום עומד להיות קשה
+			\item אם בשלילה $(\sup A)^{n} < x$. נסמן $m = \sup A$. נבחין ש־$m \in A$ מהגדרה. בעבור: 
+			\[ \dg = \frac{1}{2} \min \Bigg\{1, \underbrace{\frac{x - m^n}{\sum_{i = 1}^{n - 1}\binom{n}{i}m^i}}_{S}\Bigg\} \]
+			מתקיים ש־: 
+			\[ (m + \dg)^{n} = \sumni \binom{n}{i}m^{n - i}\dg^{i} \overset{\dg < 1}{<} m^{n} + \dg \cdot \sum_{i = 1}^{n}\binom{n}{i}m^{i} \overset{\dg < S}{<} \frac{x - m^n}{\cancel{\sum_{i = 1}^{n - 1}\binom{n}{i}m^i}} \cdot \cancel{\sum_{i = 1}^{n - 1}\binom{n}{i}m^i} + m^{n} = x \,\cancel{-\, m^{n} + m^{n}} = x \]
+			סה''כ $(x + \dg)^{n} < x$. בגלל ש־$x > m^{n}$ אז $x - m^{n} > 0$ ומכאן ש־$S$ חיובי, כלומר $\dg > 0$. סה''כ $m + \dg > m$. בגלל ש־$(x + \dg)^{n} < x$ אז $m + \dg \in A$, וסה''כ בהכרח $m$ אינו מקסימום, למרות היותו סופרמום בקבוצה, וסתירה. 
+			\item אם בשלילה $(\sup A)^{n} > x$. נסמן $m = \sup A$. לכן $m^{n} - x > 0$ ולכן: 
+			\[ \dg = \frac{1}{2}\min\cl{\{m\} \cup \ccb{\sqrt[n - k]{\frac{m^{n} - x}{\binom{n}{k}m^{k}n}}\co k \in [n]}} \]
+			מקיים $\dg > 0$. נבחין שהשורש $\sqrt[n - k]{\dots}$ קיים מהנחת האינדוקציה. מתקיים ש־: 
+			\[ (m - \dg)^{n} = \sumnk m^{k}(-\dg)^{n - k} > m^{n} - \sum_{\mathclap{k \in \Nodd \setminus \{0\}}}^{n}\quad\binom{n}{k}m^{k}\dg^{n - k} \overset{(1)}{>} m^{n} - c\cl{\frac{m^{n} - x}{n}} \overset{(2)}{>} \cancel{m^{n} - m^{n}} + x = x \]
+			בעבור הנימוקים הבאים: 
+			\begin{itemize}
+				\item א''ש $(1)$ נכון בעבור $c$ הוא מספר הטבעיים האי־זוגיים בין $1$ ל־$n$ (כמות האיברים בסכום), שכן לכל איבר בסכום מתקיים: 
+				\[ - \binom{n}{k}m^{k}\dg^{n - k} > -\binom{n}{k}m^{k}\cl{\sqrt[n - k]{\frac{m^{n} - x}{\binom{n}{k}m^{k}n}}}^{n- k} \dequad \dequad \ = - \cancel{\binom{m}{k} \cdot m^{k} \cdot \frac{1}{\binom{m}{k}m^{k}}} \cdot \frac{m^{n} - x}{n} = \frac{m^{n} - x}{n} \]
+				\item א''ש $(2)$ נכון כי מספר האיברים האי־זוגיים בין $1$ ל־$n$ קטן ממש מ־$n$. 
+			\end{itemize}
+			משום ש־$\dg > m$ אז $(\dg - m) > 0$. סה''כ מצאנו $\dg$ כך ש־$(m - \dg)^{n} > x$, כלומר $\sup A - \dg \notin A$. מהגדרת הסופרמום, קיים $\ag \in A$ כך ש־$\ag > m - \dg$, אבל אז קיים $\eg > 0$ כך ש־$\ag = m - \dg + \eg$ ו־: 
+			\[ \ag^{n} = (m - \dg + \eg)^{n} > (m - \dg)^{n} > x \]
+			כלומר $\ag^{n} \notin A$ וזו סתירה. 
 		\end{itemize}
+		סה''כ $(\sup A)^{n} \not < x \land (\sup A)^{n} \not > x$. בהכרח $(\sup A)^{n} = x$ וסיימנו. 
+	\end{proof}
+	\subsection{כאשר הטור הגיאומטריה מתבדר}
+	נוכיח שלכל $x > 1$ מתקיים $\limsi x^{n}  = +\infty$. \begin{proof}
+		יהי $M > 0$. נוכיח קיום $N \in \N$ כך ש־$\forall n > N \co x^{n} > M$. נתבונן ב־$N = \ceil{\frac{M - 1}{x - 1}}$. אז: 
+		\[ N > \frac{M - 1}{x - 1} \implies M < N(x - 1) + 1 \overset{(1)}{<} (1 + x - 1)^{N} < x^{N} \]
+		הא''ש $(1)$ נכון מא''ש ברנולי (וכי $x > 1$ כלומר $x - 1 > 0$). הסדרה $x^{n}$ מונוטונית עולה כי $x > 0$ כלומר $x^{n} < x^{n} \cdot x = x^{n + 1}$. לכן, לכל $n \ge N$ מתקיים $x^{N} < x^{n}$. מטרנזטיביות, $M < x^{n}$ לכל $n \ge N$ וסיימנו. 
+	\end{proof}
+	
+	\subsection{כאשר טור גיאומטרי חסר גבול}
+	נוכיח שלכל $x < -1$ מתקיים ש־$\limsi x^{n}$ לא מוגדר. \begin{proof} לשם כך, נצטרך להוכיח שני דברים: שהטור לא מתבדר, והטור לא מתכנס. 
+		בעבור $a_n = x^{n}$, ידוע שתת־הסדרה $a_{2n}$ מקיימת $a_{2n} = x^{2n} = (-\sof x)^{2n} = {\sof x}^{2n}$ ומ־$8.2$ היא מתבדרת ל־$+\infty$. באופן דומה הסדרה $-a_{2n + 1}$ מתבדרת ל־$+\infty$, ולכן $a_{2n + 1}$ מתבדרת ל־$-\infty$. מהגדרת גבול חלקי מתבדר, לכל $M \in \R$, ולכל $N \in \N$, קיים $n \ge \N$ כך ש־$x^{n} = a_n > M$ וקיים $m \in \N$ כך ש־$x^{n} = a_n < M$ (כי גבול חלקי אחד הולך ל־$+\inft$ ושני ל־$-\inft$). (הערה: הנתון $x < -1$ בא לידי ביטוי כאן, כאשר אנחנו משתמשים בשוויון $x = -\sof x$ שנכון רק אם $x < 0$ וכן בהתבדרות $\sof x^{2n}$ שנכונה בהנחה ש־$\sof x > 1$). 
+		\begin{itemize}
+			\item ראשית נוכיח ש־$\limsi x^{n} \neq \pm\infty$. נניח בשלילה ש־$\an$ מתבדר. יהי $M > 0$, אז קיים $N$ כך שלכל $n \ge N$ מתקיים $a_n > \pm M$, אך הראינו קיום $n \ge N$ כך ש־$a_n < \pm M$, וזו סתירה. מכאן ש־$\limasi = \limsi x^{n} \neq \pm\inft$. 
+			\item עתה נראה ש־$\forall \ml \in \R \co \limsi x^{n} \neq \ml$, כלומר ש־$\an$ מתכנסת ל־$\ml$. נניח בשלילה קיום $\ml \in \R$ כך ש־$\limasi = \ml$. מכאן שלכל $\eg > 0$ ובפרט עבור $\eg = 1$ מתקיים שהחל מ־$N \in \N$ כלשהו, $\forall n \ge N \co \sof{x^{n} - \ml} < 1$. נפריד למקרים. 
+			\begin{itemize}
+				\item אם $x^{n}  - 1> 0$ אז ידוע שבעבור אותו ה־$N$ קיים $n > N$ כך ש־$x^{n} > 1 + \ml$ (עבור $M = 1 + \ml$) כי $a_{2n}$ ת''ס מתבדרת ל־$+\infty$. 
+				\item אם $x^{n}  - 1 < 0$ אז ידוע שבעבור אותו ה־$N$ קיים $n > N$ כך ש־$x^{n} < 1 + \ml$ (עבור $M = 1 + \ml$) כי $a_{2n + 1}$ ת''ס מתבדרת ל־$-\infty$. 
+			\end{itemize}
+			בהתאם להגדרת ערך מוחלט, בעבור אותו ה־$n$ מתקיים $\sof{a_n - \ml} > 1$ וזו סתירה. 
+		\end{itemize}
+		מכאן שהסדרה לא מתכנסת לשום איבר, ולא מתבדרת ל־$\pm\inft$. סה''כ $\limsi x^{n}$ אינו מוגדר בעבור $x < -1$. 
+	\end{proof}
+	
+	\section{}
+	טענה: $\{\sin n \mid n \in \N\}$ צפוף ב־$[0, 1]$. 
+	
+	\textbf{הנחות: }
+	\begin{itemize}
+		\item $\pi \in \R \setminus \Q$, שנתון שאלה. 
+		\item ש־$\sin x$ מונוטוני עולה ב־$[-\pi, \pi]$. 
+		\item $\sin x$ מחוזרי במחזור של $2\pi$. 
+	\end{itemize}
+	יש צורך להניח את שתי ההנחות השניות, כי לא הגדרנו את $\sin x$. בהינתן $r \in \R\setminus \Q$, נגדיר את הקבוצות הבאות: 
+	\[ A_r = \ccb{n \bmod r \mid n \in \N} \quad B_r = \ccb{\ccb{\frac{n}{r}} \mid n \in \N} \quad \cl{\ccb{x} := x - \floor x, \ n \bmod r = n - \floor{\frac{n}{r}}\cdot r} \]
+	\textbf{למה 1. }$B_{r}$ צפופה ב־$[0, 1]$. \begin{proof}
+		מצפיפות הרציונליים ב־$\R$ בהכרח קיים $\Q \ni q \in [0, \eg)$. בה''כ $q = \frac{n}{m}$ עבור $n, m \in \N$ כלשהם ואז $q > \frac{n}{m} > \frac{1}{m} = s$ (כלומר, $s$ שבר מצרי). 
+		
+		נתבונן בקבוצה הבאה: 
+		\[ \ccb{\ccb{\frac{0}{r}}, \ccb{\frac{1}{r}}, \ccb{\frac{2}{r}} \dots \ccb{\frac{m + 1}{r}}} = C_{/r} \]
+		\textit{הערה: }$\ccb{x}$ הוא למעשה החלק השברי, או $x\bmod 1$. 
+		שכוללת $m + 1$ איברים בקטע $[0, 1]$. האיברים שונים, שכן אם לא כן, אז נקבל $\ccb{\frac{a}{r}} = \ccb{\frac{b}{r}}$ ואז: 
+		\[ 0 = \ccb{\frac{a - b}{r}} \implies \frac{a - b}{r} = n \in \N \implies r = \frac{a - b}{n} \]
+		אך $a, b \in \N$ וכן $n \in \N$ ומכאן ש־$r$ רציונלי וזו סתירה. נבחין שיש $m$ קטעים מהצורה $[\frac{k - 1}{m}, \frac{k}{m}) \mapsto k \in [m]$ (עד לכדי הקטע האחרון שיהיה סינגלטון $1$). מעקרון שובך היונים, יש לנו $m + 1$ קטעים ו־$m + 2$ מספרים שונים ב־$C_{/r}$, אזי קיימים שני מספרים $\ag, \bg \in C_{/r}$ שנמצאים באותו הקטע. קיימים $a, b \in \N$ כך ש־$\ag =: \ccb{\frac{a}{r}}, \bg =: \ccb{\frac{b}{r}}$ מהגדרת $C_{/r}$, בה''כ $a > b$, ואז: 
+		\[ \left [\frac{k - 1}{m}, \frac{k}{m}\right) \ni \ag - \bg = \underbrace{\ccb{\frac{a - b}{r}}}_{\cg} < \sof{\frac{k - 1}{m} - \frac{k}{m}} = \frac{1}{m} \]
+		מכאן שלכל $m \in \N$ יש $\cg \in B_r$ כך ש־$\cg < \frac{1}{m}$ קטן ככל רצוננו. 
+		
+		נפנה להוכיח את הצפיפות. יהיו $x < y \in [0, 1]$. נסמן $\Dg = x - y$. מהגבול $\limsi \frac{1}{n} = 0$ נוכל לבחור $\frac{1}{m}$ קטן כרצוננו ובפרט נוכל לבחור $\frac{1}{m} < \Dg$. ואז קיים $\cg$ כך ש־$\cg < \frac{1}{m} < \Dg$ ו־$\cg \in B_r$. מארכימדיאניות קיים $k \in \N$ כך ש־$\cg k > x$, והמינימלי מבינהם יסומן $k_0$ (קיים מינימום כי הסדר על המממשיים סדר טוב). בהכרח $\cg k_0 < y$ כי אחרת $k' = k_0 - 1$ מקיים: 
+		\[ (x - y)k' < \cg k' < x < \cg k_0 \implies (x - y)k_0 - x < (x - y)k_0 - (x - y) = \Dg k' < \cg k' \implies \cg k_0 > \cg k' > x \]
+		וזו סתירה למינימליות של $k_0$. סה''כ קיבלנו: 
+		\[ x < k_0 \cg < y \]
+		כאן נצטרך את העובדה ש־$x, y \in [0, 1]$: מסיבה זו, $k_0 \cg \in [0, 1]$, ומכאן ש־$k_0 \cg \in B_r$ והוכחנו את הצפיפות (לכל $p \in B_r$ ו־$z \in \Z$, אם $pz \in [0, 1]$ אז $pz \in B_r$). 
+	\end{proof}
+	
+	\textbf{למה 2. }$A_r$ צפופה ב־$[0, r]$. \begin{proof}
+		מלמה $1$, $B_{r}$ צפופה ב־$[0, 1]$ מלמה 1. מהגדרה $B_{r\op} = \{\frac{n}{r} \in \N\}$. יהיו $x, y \in [0, r]$. אז $\frac{x}{r}, \frac{y}{r} \in [0, 1]$ ואז קיים $c \in B_{r}$ כך ש־$x < c < y$. מתקיים: 
+		\[ \exists n \in \N \co c = \frac{n}{r} \implies \frac{x}{r} < \ccb{\frac{n}{r}} < \frac{y}{r} \implies x < \underbrace{\ccb{\frac{n}{r}} \cdot r}_{B} < y \]
+		מתקיים ש־$B =\frac{n}{r}r - \floor{\frac{n}{r}}r = n - \floor{\frac{n}{r}} r$ וסה''כ מהגדרה $B = n \bmod r$ כלומר $B \in A_r$ וסיימנו. 
+	\end{proof}
+	
+	נפנה להוכחת המשפט. 
+	\begin{proof}
+		יהיו $a < b \in [-1, 1]$. 
+		המונוטוניות החזקה ב־$[-\pi, \pi]$ קיימת $\arcsin$ הופכית לצמצום $\sin$ על $[-\pi, \pi]$. ואז נדרוש $a < \sin n < b$ ששקול לכך ש־:
+		\[ \sin(\arcsin a) < \sin n < \sin (\arcsin b) \overset{\text{מונוטונית עולה ומחזוריות}}{\iff} \arcsin a + 2\pi k_1 < n + 2\pi k_2 < \arcsin b + 2 \pi k_3 \]
+		נתבונן ב־$A_{2\pi}$ שצפופה ב־$[0, 2\pi]$ מלמה 2. בה''כ $a, b \in [0, 2\pi]$ (עד לכדי הוספת $2\pi$). מהצפיפות קיים $c \in A_{2\pi}$ כך ש־$a < c < b$ ומהגדרתה $c = n - \ceil{\frac{n}{2\pi}} \cdot 2\pi$. עבור $k_2 = -\ceil{\frac{n}{2\pi}}$, קיבלנו את הנדרש. 
 	\end{proof}
 	
 	\ndoc

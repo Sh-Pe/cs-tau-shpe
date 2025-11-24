@@ -1,0 +1,196 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\limssi {\limsup_{n \to \inft}}
+\newcommand\limisi {\liminf_{n \to \inft}}
+\newcommand\anc    {\an\!\!}
+
+\author{שחר פרץ}
+\title{\textit{חדו''א 1א 4}}
+\begin{document}
+	\maketitle
+	
+	יש לנו שתי תכונות עבור תכונות של סדרות. תהא $\an$ סדרה, אז: 
+	\begin{itemize}
+		\item הרעיון: לכל אינדקס שנבחר, יש עוד אינסוף מעליו שמקיימים את התכונה. 
+		\defi{נאמר כי תכונה היא \textit{שכיחה} בסדרה כאשר אינסוף מאיברי הסדרה מקיימים את התכונה. (באנגלית: infinitely often). }
+		\item הרעיון: החל מנקודה מסויימת, כל איברי הסדרה מקיימים את הדרוש. 
+		\defi{נאמר שתכונה קוראת \textit{כמעט תמיד} כאשר כל איברי הסדרה, פרט למספר סופי, מקיימים את התכונה. (באנגלית: almost everywhere)}. \envendproof
+	\end{itemize}
+	ואז, נקבל כמו בשבוע שעבר את שתי הטענות הבאות: 
+	\begin{itemize}
+		\item יהי $\ml \in \R$ הוא גבול של $\an$ אמ''מ לכל $\eg > 0$, מתקיים $\sof{a_n - \ml} < \eg$ כמעט תמיד. 
+		\item יהי $\ml \in \R$ הוא גבול חלקי של $\an$ אמ''מ לכל $\eg > 0$ מתקיים $\sof{a_n - \ml} < \eg$ שכיחה. 
+	\end{itemize}
+	
+	השקילויות האלו נכונות רק בגלל שהסדרות שלנו בדידות. נזכור שראינו בשבוע שעבר ש־$\ml$ גבול חלקי של $\an$ אם ורק אם לכל $\eg > 0$ ולכל $N \in \N$ קיים $n \ge N$ כך ש־$\sof{a_n - \ml} < \eg$. 
+	
+	\noti{תהא $\an$ סדרה. את אוסף הגבולות החלקיים של $\an$ נסמן $\hat P(\an)$. }
+	\noti{תהא $\an$ סדרה. את אוסף הגבולות החלקיים הסופיים (כלומר לא $\pm \inft$) של $\an$ נסמן $P(\an)$. }
+	יש כאן קצת abuse of notation כאשר אנו מתייחסים ל־$\pm \inft$ כאובייקטים. 
+	
+	בעזרת הסימונים הללו נקבל ניסוח שקול של משפט בולצאנו־ווייראשטראס (לכל סדרה חסומה יש ת''ס מתכנסת): 
+	\cola{לכל $\an$ סדרה, $\hat P(\an) \neq \varnothing$. }
+	
+	\theo{תהא $\an$ סדרה, חסומה. תהא $\bn$ סדרה, המקיימת:
+		\begin{enumerate}
+			\item $\forall n \in \N$ ש־$b_n \in P(\an)$
+			\item $b_n$ מתכנסת ל־$\ml$
+	\end{enumerate}
+	אז $\ml \in P(\an)$. }
+	
+	\begin{proof}
+		יהי $\eg > 0$. יהי $N \in \N$. ידוע $\limbsi = \ml$ לכן קיים $N_1 \in \N$ החל ממנו $\forall n \ge N_1 \co \sof{b_n - \ml} < \frac{\eg}{2}$. אז $b_{N_1} \in P$, לכן קיים $n \ge N$ כך ש־$\sof{a_n - b_{N_1}} < \frac{\eg}{2}$. מא''ש המשולש: 
+		\[ \sof{a_n - \ml} \le \sof{a_n - b_{N_1}} + \sof{b_{N_1} - \ml} < \frac{\eg}{2} \cdot 2 = \eg \]
+	\end{proof}
+	
+	\theo{תהא $\an$ חסומה. אז ל־$P$ יש מקסימום ומינימום. }
+	\rmark{הסופרמום של $\an$ הוא לא הסופרמום של $P$. לדוגמה עבור $\an = \frac{1}{n}$ אז $1 = \sup \an$ למרות ש־$P(\an) = \{0\}$. }\begin{proof}
+		ראינו ש־$\an$ חסומה לכן $P$ חסומה. מבולצאנו־וויראשטראס, $P \neq \varnothing$. לכן ל־$P$ יש סופרמום ואינפימום. נסמן $\ag = \sup P, \bg = \inf P$. יהי $\eg > 0$. ידוע שקיים $\ml \in P$ כך ש־$\ml > \ag - \frac{\eg}{2}$. כמו כן $\ml \le \ag < \ag + \frac{\eg}{2}$. סה''כ $\sof{\ml - \ag} < \frac{\eg}{2}$. יהי $N \in \N$. אז קיים $n \ge N$ כך ש־$\sof{a_n - \ml} < \frac{\eg}{2}$. מא''ש המשולש: 
+		\[ \sof{a_n - \ml} < \sof{a_n - \ml} + \sof{\ml - \ag} < \frac{\eg}{2} \cdot 2 = \eg \]
+		מכאן ש־$\ag$ גבול חלקי של $\an$ ולכן $\ag \in P$, כלומר $\ag = \max P$. 
+		
+		באופן דומה (תרגיל לבית) אפשר להראות ש־$\bg = \min P$. 
+	\end{proof}
+	
+	מכאן, אפשר להראות את הטענה הבאה (זהו \textit{אינו} משפט בקורס): 
+	\theo{תהא $\varnothing \neq A \subseteq \R$. אם $A$ חסומה מלעיל, אז קיימת סדרה $\an\co \N \to A$ כך ש־$\limasi = \sup A$. }\begin{proof}
+		נסמן $\ag = \sup A$. ידוע שלכל $n \in \N$ קיים $a_n \in A$ כך ש־: 
+		\[ \ag - \frac{1}{n} < a_n \le \ag < \ag + \frac{1}{n} \]
+		(מהגדרת סופרמום). נקבל ש־$\limasi = \ag$. (הערה: $\an$ למעשה פונקציית בחירה, וצריך כאן את אקסיומת הבחירה הרציפה). 
+	\end{proof}
+	
+	\noti{תהי $\an$ סדרה. נסמן ב־$\limssi a_n$ את הגבול החלקי הגדול ביותר של $\an$. בעברית, הוא יקרא \textit{גבול עליון. }}
+	\noti{תהי $\an$ סדרה. נסמן ב־$\limisi a_n$ את הגבול החלקי הקטן ביותר של $\an$. בעברית, הוא יקרא \textit{גבו לתחתון}. }
+	\rmark{אם $\an$ אינה חסומה מלעיל, $\limssi a_n = \infty$ ואם $\an$ אינה חסומה מלרע אז $\limisi a_n = -\infty$. בשביל להראות את זה צריך עוד קצת טענות. }
+	
+	\theo{תהא $\an$ חסומה מלעיל. בהינתן $\ml \in \R$ הגבול העליון של $\an$ אמ''מ לכל $\eg > 0$ מתקיים:
+	\begin{enumerate}
+		\item $a_n < \ml + \eg$ כמעט תמיד. 
+		\item $a_n > \ml - \eg$ שכיח. 
+	\end{enumerate}}
+	
+	\begin{proof}\,
+		\begin{itemize}
+			\item[$\impliedby$]נניח ש־$\ml$ הגבול העליון של $\an$. יהי $\eg > 0$. נניח בשלילה כי לכל $N \in \N$ קיים $n \ge N$ כך ש־$a_n \ge \ml + \eg$. נבנה ת''ס באופן הבא: 
+			\[ \begin{cases}
+				n_1 = \min\{n \in \N \mid a_n \ge \ml + \eg\} \\
+				n_{k + 1} = \min \smash{\underbrace{\{n > n_k \mid a_n \ge \ml + \eg\}}_{\neq \varnothing}}
+			\end{cases} \]
+			
+			הסדרה לעיל אכן איננה ריקה בגלל הנתון. אז $a_{n_k}$ ת''ס של $\an$ שכל איבריה בקטע $[\ml + \eg, + \infty)$ כת''ס של $\an$ היא חסומה, ולכן יש לה ת''ס מתכנסת לגבול של $m \in \R$. $m$ גבול חלקי של $\an$ עצמה (ת''ס של ת''ס היא ת''ס) ומקיים $m \ge \ml + \eg > \ml$ (כי $a_{n_k}$ חסומה ב־$\ml + \eg$) בסתירה לכך ש־$\ml$ גבול עליון. 
+			
+			לכן קיים $N \in \N$ כך שלכל $n \ge N$, מתקיים $a_n < \ml + \eg$. מכאן ש־$\an < \ml + \eg$ כמעט תמיד. 
+			
+			עתה נראה ש־$a_n > \ml - \eg$ שכיחה. יהי $N \in \N$. ידוע $\ml$ גבול חלקי של $\an$ לכן קיים $n \ge N$ כך ש־$\sof{a_n - \ml} < \eg$. לכן $a_n > \ml - \eg$ (עם קצת מנניפולציות אלגבריות). 
+			\item[$\implies$]נניח (1) $a_n < \ml + \eg$ (2)כמעט תמיד ו־ $\an > \ml - \eg$ שכיחה. יהי $\eg > 0$. מ־(1) קיים $N_1 \in \N$ כך ש־$\forall n \ge N_1 \co a_n < \ml + \eg$. יהי $N \in \N$. מ־(2) קיים $n \ge \max{N, N_1}$ כך ש־$a_n > \ml - \eg$. אז $n \ge N_1$ לכן $a_n < \ml + \eg$ ומכאן $\sof{a_n - \ml} < \eg$ לכן $\ml \in P$. 
+			
+		נראה שהוא העליון. יהי $m \in P$. נניח בשלילה $m > \ml$. נסמן $\eg = \frac{m - \ml}{2}$. מכיוון ש־$m \in P$ לכן $\sof{a_n - m} < \eg$ שכיח, כלומר אינסוף מאיברי הסדרה גדולים מ־$\ml - \eg$. לכן $a_n < \ml + \eg$ לא כמעט תמיד, בסתירה. מכאן ש־$m \le \ml$ ולכן $\ml = \limsup a_n$. 
+		\end{itemize}\envendproof
+	\end{proof}
+	\rmark{אפשר לבצע הוכחה סימטרית עם $\liminf$. }
+	\rmark{אם גם (1) וגם (2) מתקיימות כמעט תמיד, נקבל מיד את הגדרת הגבול. }
+	
+	\theo{תהא $\an$ סדרה חסומה. אז לכל $\eg > 0$ כמעט תמיד: 
+	\[ \liminf a_n - \eg < a_n < \limsup a_n + \eg \]}
+	בעצם, יש את הקטע הפתוח: 
+	\[ (\liminf a_n - \eg, \limsup a_n + \eg) \]
+	וכל איברי הסדרה פרט לכמות סופית של מספרים נמצאים בו. 
+	
+	\noti{בהינתן $F \co \N \to \R \cup \{\pm \infty\}$ כלשהי: 
+		\[ \inf_n F(n) = \inf \{F(n) \mid n \in \N\} \quad \sup_n F(n) = \sup \{F(n) \mid n \in \N\} \]}
+	
+	תרגיל: תהא $\an$ סדרה חסומה. אז: 
+	\[ \limssi a_n = \inf_n \sup_{k \ge n}a_k \]
+	\begin{proof}
+		נגדיר $S_n = \sup_{k \ge n} a_k = \sup\{a_k \mid k \ge n\}$. 
+		
+		יהיו $n, m$ ונניח $n > m$. אז: 
+		\[ \{a_k \mid k \ge n\} \subseteq \{a_k \mid k \ge m\} \]
+		לכן (תרגיל): 
+		\[ S_n =\sup\{a_k \mid k \ge n\} \le \sup \{a_k \mid k \ge m\} = S_m \]
+		לכן $S_n$ מונוטונית יורדת ולכן מתכנסת ל־$\inf S_n$. נסמן $S = \inf S_n$. יהי $\ml$ גבול חלקי של $\an$. אז קיימת ת''ס $a_{m_k}$ של $\an$ המקיימת $\lim_{k \to \inft} a_{n_k} = \ml$. לכל $k \in \N$ מתקיים $a_{n_k} \le S_{n_k}$ לפי הגדרת חסם עליון. כמו כן $\lim_{k \to \inft} S_{n_k} = S$ מקיים $\ml \le S$. לכן $\lg := \limsup {n \to \infty} a_n \le S$. 
+		
+		יהי $\eg > 0$. אז $a_n < \lg + \eg$ כמעט תמיד. קיים $N \in \N$ כך ש־$\forall n \ge N \co a_n < \lg + \eg$. לכן $\forall n \ge N \co S_n \le \lg + \eg$. לכן $S \le \lg + \eg$ כלומר $S \le \lg$ (יש כאן למה: $(\forall \eg > 0 \co \ag \le \bg + \eg) \implies \ag \le \bg$). מכאן $S = \lg$. 
+	\end{proof}
+	
+	''טרוויאלי זה היבריס``. 
+	
+	\section*{סדרות קושי}
+	''הוא היה כומר, ואת כל הטענות שלו הוא גנב מתלמידים שלו. המון תלמידים מיוחסים לו``. 
+	
+	\defi{תהא $\an$ סדרה. נאמר ש־$\an$ סדרת קושי, כאשר: 
+		\[ \forall \eg > 0 .\, \exists N \in \N .\, \forall n, m \ge N \co \sof{a_n - a_m} <\eg  \]}
+	הטענה המרכזית שנראה על סדרות קושי, היא שסדרה מתכנסת אמ''מ היא סדרת קושי. 
+	
+	יש כאן נקודה נחמדה. אנחנו לא באמת צריכים לעבוד ערך מוחלט. יש לנו רק שלוש תכונות שמעניינות אותנו: 
+	\begin{enumerate}
+		\item \textbf{אי־שליליות ולא מנוונת: }לכל $x, y \in \R \co \sof{x - y} \ge 0$ ו־$\sof{x - y} = 0$ אמ''מ $x = y$. 
+		\item \textbf{סימטריות: }$\forall x, y \in \R \co \sof{x - y} = \sof{y - x}$
+		\item \textbf{א''ש המשולש: }$\forall x, y \in \R \co \sof{x - z} \le \sof{x - y} + \sof{y - z}$
+	\end{enumerate}
+	פונקציה $d \co A^2 \to \R$ נקראת \textit{מטריקה} אם היא מקיימת את שלושת התכונות לעיל. מרחב מטרי נקרא \textit{שלם} אם כל סדרת קושי מתכנסת בו. באיזשהו הבט, צריך משהו בסגנון $\R$ (אקסיומת השלמות) או דברים דומים לו כדי שהמרחב המטרי יהיה שלם. ההגדרה של סדרת קושי מאוד תועיל לנו (בקורסים אחרים) כאשר לא בהכרח ברור מזה המושג של גבול. 
+	
+	\theo{תהא $\an$ סדרה. אז $\an$ מתכנסת אמ''מ $\an$ סדרת קושי. }\begin{proof}\,
+		\begin{itemize}
+			\item[$\implies$]נניח ש־$\an$ מתכנסת. אז קיים $\ml \in \R\co \limasi = \ml$. יהי $\eg > 0$. קיים $N \in \N$ כך ש־$\forall n \ge N \co \sof{a_n - \ml} < \frac{\eg}{2}$. נתבונן ב־$N$. יהי $n, m \ge N$: 
+			\[ \sof{a_n - a_m} \le \sof{a_n - \ml} + \sof{\ml - a_m} < \frac{\eg}{2} + \frac{\eg}{2} = \eg \]
+			(הכיוון הזה נכון בכל מרחב מטרי. היינו צריכים את תכונות המטריקה בלבד, ולא היינו צריכים את אקסיומת השלמות)
+			\item[$\impliedby$]נניח $\an$ סדרת קושי. קיים $N \in \N$ כך ש־$\forall n, m \ge N \co \sof{a_n - a_m} < 1$. נתבונן ב־$M = \max\{\sof{a_1}, \sof{a_2}, \dots \sof{a_{N - 1}}, \sof{a_N} + 1\}$. יהי $n \in \N$. אם $n \ge N$ אז $\sof{a_n} \le M$. אחרת $\sof{a_n - a_N} < 1$ ולכן $\sof{a_n} < \sof{a_N} + 1 < M$. מכאן ש־$\an$ חסומה. לפי בולצאנו־ווייראשטראס (פוף! הנחנו את אקסיומת השלמות) ל־$\anc$ יש ת''ס $a_{n_k}$ המתכנסת לגבול $\ml \in \R$. 
+			
+			עתה, אקסיומת השלמות הפילה לנו גבול $\ml$ מהשמיים, ומכאן נוכל להמשיך לעבוד לפי הגדרה. יהי $\eg > 0$. אז קיים $K_1$ ש־$\forall k \ge K_1 \co \sof{a_{n_k}} < \frac{\eg}{2}$ וכן קיים $N_1$ כך ש־$\forall n, m \ge N_1 \co \sof{a_n - a_m} < \frac{\eg}{2}$. קיים $K_2$ כך שלכל $k \ge K_2$, $n_k > N_1$ (כי $n_k$ סדרת טבעיים מונוטונית עולה ממש). נתבונן ב־$N = \max\{n_{K_1}, n_{K_2}\}$. יהי $n \ge N$. קיים $k \in \N$ כך ש־$n_k > n$. ואז: 
+			\[ \sof{a_n - \ml} \le \sof{a_n - a_{n_k}} + \sof{a_{n_k} - \ml} < \frac{\eg}{2} + \frac{\eg}{2} = \eg \]
+		\end{itemize}\envendproof
+	\end{proof}
+	
+	\subsection*{חזקות ממשיות}
+	\theo{תהא $a_n$ סדרת רציונליים המתכנסת ל־$0$. אז $\forall x > 0 \co \limsi x^{a_n} = 1$. }\begin{proof}\,
+		\begin{itemize}
+			\item נוכיח למקרה $x > 1$. ראינו בתרגול ש־$\limsi x^{\pm n\op} = \limsi \sqrt[n]{x} = 1$. יהי $\eg > 0$. קיים $P \in \N$ כך ש־$1 - \eg < x^{-\frac{1}{P}} < 1 < x^{\frac{1}{P}} < 1 + \eg$. קיים $N \in \N$ כך שלכל $n \ge N$, $\sof{a_n} \le \frac{1}{P}$. אזי $-\frac{1}{P} < a_n < \frac{1}{P}$. ממונוטוניות החזקה (שלא הוכחנו אבל ניחא) $1 - \eg < x^{-P\op} < x^{a_n} < x^{P\op} < 1 + \eg$. 
+			\item אם $x = 1$ זה טרוויאלי ואם $x < 1$ אז מאריתמטיקה של גבולות סיימנו. 
+		\end{itemize}
+	\end{proof}
+	
+	\theo{תהא $\an$ סדרת רציונלים מתכנסת. אז לכל $x \ge 0$ הסדרה $x^{\an}$ מתכנסת. }\begin{proof}
+		יהי $\eg > 0$. $\an$ מתכנסת ולכן היא חסומה. מכאן ש־$x^{\an}$ חסומה. כלומר קיים $M > 0$ כך שלכל $n \in \N$ מתקיים $\sof{x^{a_n}} \le M$. קיים $p \in \N$ כך ש־:
+		\[ 1 - \frac{\eg}{M + 1} < x^{- \frac{1}{O}} < 1 < x^{\frac{1}{P}} < 1 + \frac{\eg}{M + 1} \]
+		$\an$ מתכנסת ולכן סדרת קושי. קיים $N \in \N$ כך ש־$\forall n, m \ge N \co \sof{a_n - a_m} < \frac{1}{P}$ ומחוקי חזקות $\sof{x^{a_n} - x^{a_m}} = \sof{x^{a_m}}\sof{x^{a_n - a_m} - 1} \le M \cdot \frac{\eg}{M + 1} < \eg$. 
+	\end{proof}
+	
+	\theo{בהינתן $\an, \bn$ סדרות רציונליים שתיהן מתכנסות לאותו הגבול, אז $\limsi x^{a_n} = \limsi x^{b_n}$. }
+	ההוכחה לבית. מהמשפט האחרון יש לנו אי־תלות בבחירת נציג. אפשר גם להראות שזהו אכן יחס שקילות (בפרט קיימת סדרת רציונליים השואפת ל־$\ag$, לכל $\ag \in \R$). לכן נוכל להגדיר: 
+	\defi{יהי $\ag \in \R$ ו־$x> 0$. נגדיר $x^{\ag} := \limsi x^{a_n}$ כאשר $\an$ סדרת רציונליים המתכנסת ל־$\ag$. }
+	
+	\theo{תהא $\an$ סדרה (לא בהכרח סדרת רציונליים) ויהי $x > 0$. יהי $\ag \in \R$. אז $\limsi a_n = a$ אמ''מ $\limsi x^{a_n} = x^{a}$. }
+	
+	\theo{חזקות ממשיות מקיימות חוקי חזקות. }
+	
+	\subsection*{עקרון הרווחים המקוננים של קנטור}
+	תהאנה $\an, \bn$ סדרות. נניח כי:
+	\begin{enumerate}
+		\item \hfil $\forall n \in \co a_n < a_{n + 1} < b_{n + 1} < b_n$
+		\item \hfil $\limsi b_n - a_n = 0$
+	\end{enumerate}
+	אז: 
+	\[ \exists c \in \R \co \bigcup_{n = 1}^{\infty}[a_n, b_n] = \{c\} \]
+	\begin{proof}
+		ידוע $\an$ מונוטונית עולה וחסומה מלעיל (ע''י $b_1$). לכן $\an$ מתכנסת. נסמן את גבולה $c$. מאריתמטיקה של גבולות: 
+		\[ \limsi a_n + (b_n - a_n) = c \]
+		לכן $\limbsi = c$. ידוע $\an$ עולה ו־$\bn$ יורדת ולכן לכל $n \in \N$, מתקיים $a_n \le c \le b_n$, כלומר $c \in [a_n, b_n]$ ומכאן $c \in \bigcup_{n = 1}^{\infty} [a_n, b_n]$. יהי $d \in \R$. נניח $d \in \bigcup_{n =1}^{\inft} [a_nm b_n]$. יהי $\eg > 0$. קיים $n \in \N$ כך ש־$b_n - a_n < \eg$. $c, d \in [a_n, b_n]$ אזי $\sof{c - d} < b_n - a_n < \eg$ לכן $c = d$. 
+	\end{proof}
+	גם כאן – ההוכחה נראית תמימה, אבל איפשהו באמצע מתחבא משפט וויראשטראס הראשון, שאומר שכל סדרה מונוטונית חסומה היא בעלת גבול. למעשה, עקרון הרווחים המקוננים של קנטור שקול לאקסיומת השלמות! בבית, מאוד מומלץ להוכיח את הכיוון ההפוך. תרגיל מעניין אחר הוא להוכיח את בולצאנו־וייראשטראס באמצעות עקרון הרווחים המקוננים במקום אקסיומת השלמות. 
+	
+	
+	\subsection*{לגוריתמים}
+	\theo{לכל $a, b > 0$, אם $a \neq 1$ אז קיים ויחיד $x \in \R$ כך ש־$a^{x} = b$. }\begin{proof}
+		נוכיח למקרה $a >1$. הוכחנו בבית ש־$\{a^{k} \mid k \in \N\}$ אינה חסומה. לכן קיים $k \in \N$ כך ש־$a^{k} > b$. מעקרון הסדר הטוב בטבעיים, קיים $k \in \N$ כך ש־$a^{k - 1} \le b < a^{k}$. נגדיר $x_1 = k - 1, y_1 = k$. נסמן $c = \frac{x_n + y_n}{2}$. אם $a^{x_n} \le b < a^{c}$ נגדיר $x_{n + 1} = x_n, y_{n + 1} = c$. אחרת נגדיר $x_{n + 1}= c, y_{n + 1} = y_n$ (המרצה מבצע חיפוש בינארי). ממשפט הרקורסיה $x_n$ קיימת. בשלב ה־$n + 1$ נקבל ש־$b \in [a^{x_n}, a^{y_n}]$ וגם $y_n - x_n = \frac{1}{2^{n - 1}}$. אז לכל $n \in \N$ מתקיים $x_n \le x_{n + 1} \le y_{n + 1} \le y_n$ וכן $\limsi y_n - x_n = 0$. לכן קיים $x \in \R$ כך ש־$\bigcup^{\infty}_{n = 1} [x_n, y_n] = \{x\}$. אז $\limsi y_n = \limsi x_n = x$ לכן $\limsi a^{x_n} = \limsi a^{y_n} = a^{x}$. כמו כן $\bigcup_{n = 1}^{\infty} [x^{a_n}, a^{y_n}] = \{b\}$ (לבית). לכן $b$ כזה קיים. 
+		
+		היחידות נובעת ממונוטוניות החזקה. 
+	\end{proof}
+	
+	
+	
+	\ndoc
+\end{document}

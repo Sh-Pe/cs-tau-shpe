@@ -1,0 +1,261 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\sumkinf {\sum_{k = 1}^{\inft}}
+\newcommand\sumninf {\sum_{n = 1}^{\inft}}
+\newcommand\sumiinf {\sum_{i = 1}^{\inft}}
+
+\author{שחר פרץ}
+\title{\textit{חדו''א 1א 5}}
+\begin{document}
+	\maketitle
+	
+	\subsection*{טורים}
+	כל סדרה ניתנת לייצוג כטור. זו דרך אחרת להציג סדרות. 
+	
+	\defi{תהא $\an$ סדרה. נגדיר את סדרת הסכומים החלקיים של $\an$ להיות: 
+	\[ \forall n \in \N \co S_n = \sumnko a_k \]}
+	
+	\textbf{הבחנה: }כל סדרה היא סדרת סכומים חלקיים של איזושהי סדרה. \begin{proof}
+		תהי $\an$ סדרה, נגדיר את: 
+		\[ \begin{cases}
+			b_1 = a_1 \\
+			b_{n + 1} = a_{n + 1} - a_n
+		\end{cases} \]
+		נקבל שהסכום הטלסקופי: 
+		\[ \sumnko b_k = a_n \]
+	\end{proof}
+	אז למעשה אין שום דבר חשוב בסכום עצמו. מה שחשוב זה הקשר בין הסדרה עצמה לבין סדרת הסכומים החלקיים שלה. 
+	
+	\noti{תהא $\an$ סדרה. תהי ב־$S_n$ את סדרת הסכומים החלקיים של $\an$. אז אם $S_n$ מתכנסת לגבול $\ml \in \R$ נאמר כי הטור $\sum_{k = 1}^{\inft} a_k$ מתכנס, ונסמן: 
+	\[ \sum_{k = 1}^{\inft} a_k = \ml \]}
+	הבחנה חשובה: הסימון הזה של $\sumninf$ משמש אותנו להגיד שהטור לא מתכנס, כלומר נאמר ''$\sumninf$ לא מתכנס`` גם אם $\sumninf$ לא קיים. זאת בניגוד לגבולות, שם אנחנו לא ממש יכולים לכתוב ''$\limsi$ לא קיים`` (שכן $\limsi$ לא ביטוי מוגדר). 
+	
+	\begin{itemize}
+		\item \textbf{דוגמה: }יהי $1 \neq q \in \R$ ונגדיר $a_n = q^{n - 1}$ לכל $n\in \N^{+}$. נסמן ב־$S_n$ את סדרת הסכומים החלקיים. אז: 
+		\begin{itemize}
+			\item \hfil $\displaystyle \forall n \in \N^{+} \co S_n = \frac{1 - q^{n}}{1 - q}$
+			
+			לכן הטור מתכנס אמ''מ $\sof{q} < 1$ (הוכחנו את זה בתרגיל הבית) ואז: 
+			\item \hfil $\displaystyle \sumninf q^{n - 1} = \frac{1}{q - 1}$
+		\end{itemize}
+		\item \textbf{דוגמה 2: }נגדיר $\forall n \in \N \co a_n := \frac{1}{n(n + 1)}$, ונסמן ב־$S_n$ את סדרת הסכומים החלקיים המתאימה ל־$\an$. 
+		
+		נבחין שממכנה משותף: 
+		\[ \forall n \in \N \co \frac{1}{n(n + 1) = \frac{1}{n}} - \frac{1}{n + 1} \]
+		ואז (סכום טלסקופי): 
+		\[ S_n = \sumkinf \cl{\frac{1}{k} - \frac{1}{k + 1}} = 1 - \frac{1}{n + 1} \]
+		לכן $\sumkinf a_k$ מתכנסת וכן $\sumkinf a_k = 1$. 
+		
+		מכאן אפשר להוכיח ש־$\sumninf \frac{1}{n^2}$ מתכנס (עשינו את זה גם בתרגול). 
+	\end{itemize}
+	אלו פחות או יותר הדוגמאות היחידות (גיאומטרי וטלסקופי) שנראה בקורס הזה לגבי משהו שאשכרה מתכנס. בד''כ נרצה לדעת האם טור מסויים הוא מתכנס או לא. כשיהיו לנו אינטגרלים (בחדו''א 2א) יהיה לנו קצת יותר כוח להוכיח טורים. אבל כמו הרבה דברים בחדו''א, גם זה לא תמיד יספיק. 
+	
+	\subsubsection*{קריטריון קושי להתכנסות טורים}
+	תהא $\an$ סדרה. אז הטור $\sumninf a_n$ מתכנס אמ''מ: 
+	\[ \forall \eg > 0.\, \exists n \in \N.\, \forall N \le n \le m \co \underbrace{\sof{\sum_{k = m}^{n} a_k}}_{\sof{S_n -S_{m + 1}}} < \eg \]
+	זה לא מעניין בכלל. זה פשוט קריטריון קושי לסדרות, אבל על סדרת הסכומים החלקיים. 
+	
+	\cola{תהא $\an$ סדרה. אז אם $\sumninf a_n$ מתכנס, אז $\limsi a_n = 0$. }
+	\rmark{הצד השני לא מתקיים, לדוגמה עבור $a_n = \frac{1}{n}$ מתקיים ש־$\sumninf \frac{1}{n} \approx \ln n \to \inft$ למרות ש־$n\op \to 0$. } 
+	
+	בדומה לגבולות של סדרות, שינוי של מספר סופי של איברים (בסדרה המקורית) אולי ישנה את הגבול (כי סוכמים אותם), אבל לא עומד לשנות את ההתכנסות. 
+	
+	\theo{הטור הוא לינארי, כלומר יהיו $\sumninf a_n, \sumninf b_n$ טורים מתכנסים. אז: 
+	\[ \sumninf \cl{a_n \pm b_n} = \sumninf a_n + \sumninf b_n \quad \quad \sumninf \ag a_n = \ag \sumninf a_n \]מתכנסים. }
+	זה נובע ישירות מאריתמטיקה של גבולות, על סדרת הסוכמים החלקיים. 
+	
+	\subsubsection*{התכנסות בהחלט}
+	כאן יש אשכרה הגדרה חדשה. 
+	\defi{תהא $\an$ סדרה. נאמר כי הטור $\sumninf a_n$ \textit{מתכנס בהחלט} כאשר $\sumninf \sof{a_n}$ מתכנס. }
+	\theo{אם טור מתכנס בהחלט, אז הוא בפרט מתכנס. }
+	אין לנו שום דבר חכם להגיד על הקשר בין הגבולות של שניהם. עם ננסה להוכיח עם סנדוויץ' (תנסו), נכשל במהרה. יש כאן צורך בקסם, שיפילו לנו גבול מהשמיים, וזה בדיוק מה שאקסיומת השלמות מספקת לנו. ספציפית, נשתמש בקריטריון קושי שתלוי בה. 
+	\begin{proof}
+		תהא $\an$ סדרה, ונניח ש־$\sumninf a_n$ מתכנס בהחלט. מקריטריון קושי, קיים $N \in \N$ כך ש־: 
+		\[ \forall n \ge m \ge N \co \sof{\sum_{k = m}^{n}\sof{a_k}}<\eg \]
+		נתבונן ב־$N$. יהי $n \ge m \ge N$. מא''ש המשולש המוכלל: 
+		\[ \sof{\sum_{k = m}^{n} a_k} \le \sum_{k = m}^{n} \sof{a_k} = \sof{\sum_{k = m}^{n} \sof{a_k}} < \eg \]
+		סה''כ מקריטריון קושי לטורים גם $\sumninf a_n$ מתכנס. 
+	\end{proof}
+	
+	\subsubsection*{טורים אי־שליליים}
+	יש פרק שלם בטורים שעוסק בטורים שומרי סימן (איבריהם גדולים ממש מאפס או קטנים ממש מאפס. לצורך הנוחות מתעסק במקרה הראשון). יש לזה שתי סיבות: 
+	\begin{itemize}
+		\item בגלל הנושא של התכנסות בהחלט. 
+		\item זה מקרה נפוץ שקורה הרבה בעולם האמיתי. 
+		\item יש משפטים מועילים על זה. 
+	\end{itemize}
+	בהרבה מהמקרים נדרוש אי־שליליות בכל $\N$ גם אם זה נכון רק החל מ־$\N$ מסויים. 
+	
+	''אפס הוא חיובי יחסית``
+	
+	\theo{תהא $\an$ סדרה, ונניח ש־$\forall n \in \N \co a_n \ge 0$. אז $\sumninf a_n$ אמ''מ סדרת הסכומים החלקיים חסומה. }
+	(זה דורש את אקסיומת השלמות) אין כאן אשכרה הוכחה. אם $a_n \ge 0$ אז סדרת הסכומים החלקיים מונוטונית עולה, וממשפט (וויראשטראס 1) כל הסיפור הזה מתכנס אמ''מ סדרת הסכומים החלקיים חסומה. 
+	
+	נתעסק קצת בקריטריוני השוואה. 
+	\begin{enumerate}
+		\item תהיינה $a_n, b_n$ סדרות אי־שליליות. נניח כי $\forall n \in \N \co a_n \le b_n$ (למעשה, לא צריך לכל $\N$, מספיק כמעט תמיד. ההוכחה קצת שונה אבל כמעט תמיד יותר חזק). אז אם $\sumninf b_n$ מתכנס אז $\sumninf a_n$ מתכנס. 
+		\begin{proof}
+			נניח ש־$\sumninf b_n$ מתכנס ל־$\ml$. ידוע $b_n$ מונוטונית ולכן מתכנסת לסופרמום שלה, ונסיק: 
+			\[ \sumnko a_k < \sumnko b_k \le \ml \]
+			לכן $\sumninf a_n$ מונוטונית עולה וחסומה ולכן מתכנסת (יש כאן שימוש באקסיומת השלמות). 
+		\end{proof}
+		\item נניח $\forall n \in \N\co b_n > 0$ (חיובית ממש!) ונניח $\limsi \frac{a_n}{b_n} \to \ml$ וכמו כן $\ml > 0$. אז $\sumninf a_n$ מתכנס אמ''מ $\sumninf b_n$ מתכנס. \begin{proof}
+			נוכיח רק כיוון אחד, והכיוון השני יגרר מאריתמטיקה של גבולות (נהפוך את $\frac{a_n}{b_n}$ וזה חוקי כי $a_n$ ממקום מסויים לא נוגע ב־$0$ כי $\ml \neq 0$). קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים: 
+			\[ \frac{a_n}{b_n} < \frac{3\ml}{2\ml} \]
+			(הראינו שזה נכון באופן כללי לכל מספר שגדול מ-$\ml$ + הנחנו אי־שליליות). כלומר לכל $n \ge \N$, מתקיים $a_n < \frac{3\ml}{2\ml}b_n$. מקריטריון ההשוואה הראשון $\sumninf b_n$ מתכנס, ומאריתמטיקה $\sumninf \frac{3\ml}{2}b_n$ מתכנס. 
+		\end{proof}
+		\item \textbf{מבחן השורש: }תהא $\an$ סדרה אי־שלילית. נניח כי קיים $q \in (0, 1)$ כך ש־$\forall n \in \N \co \sqrt[n]{a_n} \le q$. אז $\sumninf a_n$ מתכנס. 
+		\begin{proof}
+			לכל $n \in \N$ נבחין ש־$a_n \le q^{n}$, וממבחן השוואה עם הטור הגיאומטרי (שמתכנס) סיימנו. 
+		\end{proof}
+		\item \textbf{מבחן השורש הגבולי: }תהא $\an$ סדרה אי־שלילית. נניח ש־$\exists q \in [0, 1) \co \limsup_{n \to \inft} \sqrt[n]{q_n} < q$ אז $\sumninf a_n$ מתכנס. 
+		\rmark{זה משפט קצת יותר חזק מהקודם. }
+		\rmark{לשני מבחני השורש כיוון אחר – אם $q < 1$ אז הטור מתבדר. }
+		\begin{proof}ידוע $q < 1$ אז $\sqrt[n]{a_n} < \limsup_{n \to \inft} \sqrt[n]{a_n} + \frac{1 - q}{2}$ כמעט תמיד. לכן $\sqrt[n]{a_n} < \frac{1 + q}{2}$ כמעט תמיד. אזי $a_n < \cl{\frac{1 + q}{2}}^{n}$ כמעט תמיד, ידוע $\frac{1 + q}{2} < 1$ (כי $q < 1$, וכזה ממוצע משהו) כלומר $\sumninf \cl{\frac{1 + q}{n}}^{n}$ מתכנס ומהקריטריון הראשון $\sumninf a_n$ מתכנס. 
+		\end{proof}
+		\item \textbf{מבחן המנה: }נניח $a_n > 0$ (כמעט תמיד) ויהי $q \in (0, 1)$, ונניח $\frac{a_{n + 1}}{a_n} \le q$ (כמעט תמיד) אז $\sumninf a_n$ מתכנס. 
+		\begin{proof}
+			השורה התחתונה של ההוכחה היא: 
+			\[ a_{n + 1} = \frac{a_{n + 1}}{a_n} \cdot \frac{a_n}{a_{n - 1}} \cdots \frac{a_2}{a_1}a_1 \le q^{n} \cdot a_1 \]
+			ואז מבחן ההשוואה. 
+		\end{proof}
+		\item \textbf{מבחן המנה הגבולי: }יהי $\an > 0$. נסמן $\ml = \limsup_{n \to \inft} \frac{a_{n + 1}}{a_n}$ ו־$m = \liminf{n \to \inft} \frac{a_{n + 1}}{a_n}$ אז אם $\ml < 1$ אז $\sumninf a_n$ מתכנס, ואם $m > 1$ אז $\sumninf a_n$ מתבדר. \begin{proof}
+			לבית. 
+		\end{proof}
+	\end{enumerate}
+	
+	\textbf{דוגמה: }האם הטור $\sumkinf \frac{k^{\frac{k}{2}}}{k!}$ מתכנס? נסמן ב־$a_n = \frac{n^{\frac{n}{2}}}{n!}$. אז: 
+	\[ \frac{a_{n + 1}}{a_n} = \frac{\frac{(n + 1)^{\frac{n + 1}{2}}}{(n + 1)!}}{\frac{n^{\frac{n}{2}}}{n!}} = \frac{(n + 1)^{\frac{n + 1}{2}}n!}{n^{\frac{n}{2}}(n + 1)!} = \frac{(n + 1)^{\frac{n - 1}{2}}}{n^{\frac{n}{2}}} = \sqrt{\frac{(n + 1)^{n - 1}}{n^{n}}} = \sqrt{\cl{\frac{n + 1}{n}}^{n} \cdot \frac{1}{n + 1}} \to \sqrt{e \cdot 0} = 0 \]
+	לכן $\limsup \frac{a_{n + 1}}{a_n} = 0 < 1$. ממשפט המנה הגבולי נקבל שזה מתכנס. 
+	
+	\subsubsection*{קירוב סטרלינג}
+	קירוב סטרלינג אומר ש־: 
+	\[ \limsi \frac{n!}{\cl{\frac{n}{e}}^{n}\sqrt{e \pi n}} = 1 \]
+	אינטואיטבית, זה אומר ש־$n$ עצרת בגבול מתנהג כמו החזקה $\cl{\frac{n}{e}}^{n} \cdot \sqrt{2\pi n}$. לא נוכיח אותו – המרצה לא מודע לאף הוכחה שמשתמשת בכלים שלמדנו. 
+	
+	עתה נפתור את התתרגיל ממקודם, של $\sumkinf \frac{k^{\frac{k}{2}}}{k!}$, באמצעות קירוב סטירלינג ומבחן השורש הגבולי. נגדיר $b_n = \frac{n^{\frac{n}{2}}}{\cl{\frac{n}{e}}^{n}\sqrt{2\pi n}}$. נקבל: 
+	\[ \sqrt[n]{b_n} = \frac{\sqrt n}{\frac{n}{e} \cdot \underbrace{(2 \pi n)^{\frac{1}{2n}}}_{1}} \to 0 \]
+	כמו כן לפי סטרלינג: 
+	\[ \limsi \frac{\frac{n^{n/2}}{n!}}{\frac{n^{n/2}}{\cl{\frac{n}{e}}^{n}\sqrt{2 \pi n}}} = \limsi \frac{\cl{\frac{n}{e}}^{n}\sqrt{2 \pi n}}{n!} = 1 \]
+	לכן לפי משפט ההשוואה הגבולי $\sumninf \frac{n^{n/2}}{n!}$ מתכנס. 
+	
+	למעשה יש עוד מבחן לטורים אי־שליליים שלא הזכרנו. 
+	\begin{enumerate}
+		\skipitems{8}
+		\item תהא $\an$ סדרה מונוטונית יורדת ואי־שלילית אז $\sumninf a_n$ מתכנסת אמ''מ $\sumninf 2^{n}a_{2n}$ מתכנסת. 
+		\begin{proof}
+			\begin{itemize}
+				\item[$\implies$]נניח שהטור מתכנס. יהי $n \in \N$.
+				\[ \sumnko 2^{k}a_{2k} = 2 \cdot \sumnko 2^{k - 1}a_{2k} = 2 \cdot \sumnko \sum_{\ml = 1}^{2^{k} - 1}a_{2k} = 2 \cdot \sumnko \sum_{\ml = 1}^{2^{k - 1}}a_{2^{k - 1} + \ml} = 2 \sum_{k = 2}^{2^{n}} a_k \le 2 \sumninf a_n \]
+				וכזה מהמבחן הראשון סיימנו שוב. 
+				\item[$\impliedby$]נניח ש־$\sumninf 2^{n}a_{2n}$ מתכנס. נוכיח ש־$\sumninf a_n$ מתכנס. 
+				\[ \sumnko \le \sum_{k = 1}^{2^{n}}a_k = \sum_{k = 1}^{2^{n}} \sum_{\ml = 0}^{2^{k -1} -1}a_{2^{k} + \ml} \le \sumnko 2^{k - 1}a_{2^{k - 1}} \le \sum_{k = 0}^{\inft} 2^{k}a_{2k} \]
+				כאן, נחליף באיבר הראשון. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	אז למה אנחנו צריכים את מבחן העיבוי? 
+	\begin{itemize}
+		\item עבור $\ag \le 1$ הראינו ש־$\frac{1}{n^{\ag}} \ge \frac{1}{n}$ ולכן $\sum \frac{1}{n^{\ag}}$ מתבדר. 
+		\item עבור $\ag \ge 2$ הראינו ש־$\frac{1}{n^{\ag}} \le \frac{1}{n^{2}}$ ולכן $\sum \frac{1}{n^{\ag}}$ מתכנס. 
+	\end{itemize}
+	מה לגבי כל מה שבין 1 ל־2? 
+	\theo{הטור $\sumninf \frac{1}{n^{\ag}}$ מתכנס אמ''מ $\ag > 1$. }\begin{proof}
+		יהי $\ag > 0$. אז $\frac{1}{n^{\ag}}$ מונוטונית יורדת וחיובית. נסמן $a_n = \frac{1}{n^{\ag}}$. אז: 
+		\[ b_n = 2^{n}a_{2n} = \frac{2^{n}}{n^{\ag n}} = 2^{n(1 - \ag)} = (2^{1 - \ag})^{n} \]
+		נבחין ש־$b_n$ גיאומטרי. הוא מתכנס אמ''מ $2^{1 - \ag} \in (0, 1)$, שמתקיים אמ''מ $\ag > 1$. עוד ידוע ש־$b_n$ מתכנס אמ''מ $a_n$ מתכנס ממבחן העיבוי, וסה''כ $a_n$ מתכנס אמ''מ $\ag > 1$. 
+	\end{proof}
+	
+	נעשה עוד תרגיל ,אולי קצת פחות מועיל. 
+	
+	\exe{האם $\sumninf \frac{1}{n\ln n}$ מתכנס? (בסיס הלוגוריתם לא משנה)}\begin{proof}
+		נגדיר $a_n = \frac{1}{n \ln n}$. ניעזר במבחן העיבוי: 
+		\[ 2^{n}a_{2n} = 2^{n} \cdot \frac{1}{2^{n}\ln (2^{n})} = (n \ln 2)\op \to \inf \]
+		לכן גם $\sum 2^{n}a_{2n}$ מתבדר לכן $\sum a_n$ מתבדר. 
+	\end{proof}
+	
+	\subsubsection*{טורים משני סימן}
+	כל מה שאמרנו על שומרי סימן נכון על מי ששומר סימן כמעט תמיד. כלומר אלו שלא נופלים לקטגוריה הזו, הטורים משני הסימן, מחליפים סימן באופן שכיח. הטורים הראשונים שנדבר עליהם הם כאלו שלא רק משנים סימן באופן שכיח, אלא ממש כל מעבר. 
+	
+	\begin{Theorem}[משפט לייבניץ]
+		תהא $\an$ סדרה חיובית ומונוטונית יורדת שגבולה $0$. אז: 
+		\[ \sumninf (-1)^{n}a_n \]
+		מתכנס. 
+	\end{Theorem}
+	התובנה החשובה בהוכחה היא שאפשר לדעת את המרחק מהגבול, בכל נקודה בסכום, גם אם קשה לחשב אותו. ''אבל המבחנים לא עובדים לי. [תשובה: ]אויויוי``. 
+	
+	אנחנו לא יודעים מה הגבול, אנחנו לא רוצים לדעת מה הגבול, המבחנים עובדים רק לדברים משמרי סימן... נשארנו עם כושי. 
+	\begin{proof}
+		יהי $\eg > 0$. קיים $N \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n} < \eg$. נתבונן ב־$N$. יהיו $n \ge m \ge N$. השטיק יהיה שהזוגות $(a_{k} - a_{k - 1}) < 0$. 
+		\begin{itemize}
+			\item אם $n- m$ זוגי נקבל: 
+			\begin{align*}
+				&a_m - a_{m + 1} + a_{m + 2} - a_{m + 3} + \cdots + a_n \\ = &a_m + (a_{m + 2} - a_{m + 1}) + (a_{m + 1} - a_{m + 3}) + \cdots + (a_n - a_{n - 1}) < a_m < \eg
+			\end{align*}
+			מצד שני: 
+			\begin{align*}
+				&a_m - a_{m + 1} + a_{m + 2} - a_{m + 3} + \cdots + a_n \\ 
+				= &(a_m - a_{m + 1}) + (a_{m + 2} - a_{m + 3}) + \cdots + (a_{n - 2} - a_{n - 1}) + a_1 \ge a_n > 0 > - \eg
+			\end{align*}
+			לכן: 
+			\[ \sof{\sum_{k = m}^{n}(-1)^{k}a_k} = \sof{\sum_{k = m}^{n}(-1)^{k - m}a_k} < \eg \]
+			\item אם $n - m$ אי־זוגי נקבל הוכחה דומה. 
+		\end{itemize}
+	\end{proof}
+	מההוכחה, ניתן להסיק: 
+	\[ \ml := \sumninf (-1)^{n}a_n \quad \quad \implies \forall n \in \N \co \sof{\ml - \sumnko (-1)^{n}a_n} \le a_{n + 1} \]
+	מכאן, ש־$\sumninf \frac{(-1)^{n}}{n}$ מתכנס, ולא בהחלט. על טור כזה, אומרים שהוא \textit{מתכנס בתנאי}. 
+	
+	למזלנו, ליאור הכין למעננו עוד קריטריונים מרתקים לשיעור, והם הכללה של קריטריון לייבניץ. האחד קריטריון דיריכלה והשני אבל. 
+	
+	\subsubsection*{קריטריון דיריכלה}
+	תהאנה $\an, \bn$ סדרות. נניח כי: 
+	\begin{enumerate}
+		\item $\bn$ מונוטונית (יורדת) וגבולה $0$. 
+		\item סדרת הסכומים החלקיים המתאימה ל־$\an$ חסומה (אבל לא בהכרח מתכנסת). 
+	\end{enumerate}
+	אז $\sumninf a_n b_n$ מתכנס. 
+	
+	לבית – יש להוכיח שקריטריון אבל נובע מקריטריון דיריכלה. 
+	
+	\subsubsection{קירטריון דיריכלה}
+	תהאנה $\an, \bn$ סדרות. נניח כי: 
+	\begin{enumerate}
+		\item $\bn$ מונוטונית (יורדת) (אבל לא בהכרח גבול $0$). 
+		\item אז $\sumninf a_n$ חסומה. 
+	\end{enumerate}
+אז $\sumninf a_n b_n$ מתכנס. 
+	
+	\begin{proof}
+		לכל $n \in \N$ נסמן $A_n = \sumnko a_k$. ידוע $\exists M > 0 .\, \forall n \in \N \co \sof{A_n} \le M$ (כי היא חסומה). בגלל ש־$\bn$ שואפת ל־0 אז $\exists N \in \N.\, \forall n \ge N \co \sof{b_n} < \frac{\eg}{2M}$. יהיו $n \ge m \ge N$. אז:
+		\begin{multline*}
+			\sum_{n = m}^{k} a_k b_k = \sum_{k = m}^{n}(A_k - A_{k - 1})b_k = \sum_{k = m}^{n}A_k b_k - \sum_{k =m}^{n}A_{k - 1}b_k = \sum_{k = m}^{n}A_k b_k - \sum_{k = m - 1}^{n - 1}A_k b_{k + 1} \\
+			= A_n b_n + \sum_{k = m}^{n - 1}A_k b_k - \sum_{k = m}^{n - 1}A_k b_{k + 1} - A_{m - 1}b_m = \sum_{k = m}^{n - 1}\cl{A_k(b_k - b_{k + 1})} + A_nb_n - A_{m - 1}b_m
+		\end{multline*}
+		לכן (ניעזר בזה ש־$\bn$ מונוטונית יורדת): 
+		\begin{multline*}
+			\sof{\sum_{k = m}^{n}a_kb_k} \le \sof{\sum_{k = m}^{n - 1}A_k(b_k - b_{k + 1})} + \sof{A_nb_n} + \sof{A_{m - 1}b_m} \le \sum_{k = m}^{n} \cl{\sof {A_k}(b_k - b_{k + 1})} + \sof{A_nb_n} + \sof{A_{m - 1}b_m} \\
+			\le M(b_m - b_{n + 1}) + Mb_n + Mb_m < 2 \cdot M \frac{\eg}{2M} = \eg
+		\end{multline*}
+		לסכום הזה קוראים סכום אבל. אולי קוראים לזה דיריכלה אבל אבל הראשון שעשה את זה. 
+	\end{proof}
+	
+	\exe{האם הטור $\sumninf \frac{\sin n}{n}$ מתכנס בהחלט, בתנאי, או מתבדר? }
+	רמז שאפשר להוכיח באינדוקציה: 
+	\[ \sumnko \sin(\ag + \bg k) = \frac{\sin \cl{\frac{b \bg}{2} \sin \cl{\ag + \frac{(n - 1)}{2}\bg}}}{\sin \cl{\frac{\bg}{2}}} \]
+	נסמן $a_n = \sin n$ ו־$b_n = \frac{1}{מ}$. אפשר לדעת ש־$b_n$ מונוטונית יורדת שגבולה 0, ו־: 
+	\[ \sof{\sumnko a_k} \le \text{משהו שהמרצה לא בטוח לגביו} \le \frac{1}{\sin \frac{1}{2}} \]
+	''יש כאן איזו טעות בנוסחה. בתרגיל בית תקבלו את זה כמו שצריך``. 
+	ואז זה זה מתכנס לפי דיריכלה. יש כאן שאלה, האם זה מתכנס בהחלט? 
+	\[ \sof{\frac{\sin n}{n}} = \frac{\sof{\sin n}}{n} \ge \frac{\sin  ^2 n}{n} = \frac{1 - \cos 2n}{2} = \underbrace{\frac{1}{2n}}_{\text{מתבדר (בסכום)}} - \underbrace{\frac{\cos 2n}{2n}}_{\text{מתכנס מדיריכלה}} \]
+	מאריתמטיקה של גבולות, סיימנו. 
+	
+	
+	
+	
+	\ndoc
+\end{document}
