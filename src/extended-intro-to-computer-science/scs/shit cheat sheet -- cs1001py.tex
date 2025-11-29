@@ -320,7 +320,7 @@
 
 \title{\vspace{-0.8cm}Extended Intro. To Computer Science -- Shit Cheat Sheet}
 \author{\textbf{\textit{Shahar Perets $\sim$ 2024}}}
-\date{\normalsize Made using free software, but not by Stallman's definitions}
+\date{}
 
 \begin{document}
 	\setlength{\abovedisplayskip}{0pt}
@@ -515,6 +515,38 @@ def gcd(a, b):
 			\item Each one sends the computed number to each other
 			\item Compute $ f(a)^b = f(b)^a $ (according to some random theorm in the math section) 
 		\end{enumerate}
+		\subsection{Numerical Analysis}
+		\subsubsection*{Derivative/Integral of a Function}
+		\begin{lstlisting}
+def derivative(f, x:float, h=10**(-10)):
+	return (f(x+h)-f(x))/h
+\end{lstlisting}
+		\begin{lstlisting}
+def integral(f, a:float, b:float, h=10**(-10)):
+	return sum([f(x) for x in range(a,b,h)])/h
+\end{lstlisting}
+		\subsubsection{Finding Function Root Using Bisection Method}
+		\begin{lstlisting}
+def find_root(f, a:float, b:float, epsilon=10**(-10)):
+	mid = (a+b)/2
+	fmid = f(mid)
+	if abs(fmid) <= epsilon:
+		return mid
+	if fmid >= 0:
+		return find_root(f,mid,b,epsilon)
+	else:
+		return find_root(f,a,mid,epsilon)
+\end{lstlisting}
+		Note: this function only works if $f(a)\ge 0$ and $f(b)\le 0$.
+		\subsubsection{Approximating $\pi$}
+		We know $\pi = \frac{4}{1+\frac{1^2}{3+\frac{2^2}{5+\frac{3^2}{\dots}}}}$, so:
+		\begin{lstlisting}
+def approx_pi(itters=10):
+	def rec(n):
+		if n > itters: return 1
+		return (2*n+1 + (n+1)**2)/rec(n+1)
+	return 4/rec(0)
+\end{lstlisting}
 	\end{multicols}
 	
 	
@@ -545,7 +577,6 @@ def gcd(a, b):
 		For $ m $-sized hash table the hash function would be \texttt{hash(n) \% m}. For each hash value assinged a list, which contains all of the elements with the same hash value. On avg. $ \alpha = \tfrac{m}{n} $ ($ \alpha $ called the \textbf{load factor}). The \texttt{dict} keys and \texttt{set} build-in classes uses $ n $-sized hash table, means $ O(\tfrac{n}{n}) = O(1) $ on avg., worst case $ O(n) $ (happens when every key is hashed to the same value).
 		\definecolor{deepred}{rgb}{0.5,0.03,0.02}
 		
-		\columnbreak
 		\subsection{Generators}
 		\subsubsection{Creation}
 		\begin{lstlisting}
@@ -583,7 +614,6 @@ Traceback [...] StopIteration\end{lstlisting}
 		
 	\end{multicols}
 	
-	\pagebreak
 	\section{\fortitle{Text Compression}}
 	\begin{multicols}{2}
 		
@@ -629,8 +659,8 @@ for offset in range(1, min(p, W) + 1):
 			k, m = match_len, offset
 	return m, k	\end{lstlisting}
 		
-		
-		
+	
+	
 	\end{multicols}
 	
 	\dotfill
