@@ -307,6 +307,12 @@ TSWLatexianTemp*
 # kate cache (KDE text editor)
 *.kate-swp
 
-## file managers
+# texstudio
+*.recover.bak~
+
+# other
+*.bak
+
+## file managers:
 # dolphin
 *.directory

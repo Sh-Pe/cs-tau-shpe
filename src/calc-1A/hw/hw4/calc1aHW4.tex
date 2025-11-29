@@ -1,0 +1,287 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+
+
+\DeclareMathOperator\RSM {RSM}
+\DeclareMathOperator\QM  {QM}
+\DeclareMathOperator\AM  {AM}
+\DeclareMathOperator\GM  {GM}
+\DeclareMathOperator\HM  {HM}
+
+\usepackage{accents}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\author{שחר פרץ}
+\title{חדו''א 1א $\sim$ \textit{תרגיל בית 4}}
+\begin{document}
+	\maketitle
+	\section{}
+	נחשב את הגבולות הבאים: 
+	\begin{enumerate}[(A)]
+		\item יהיו $a_0 \dots a_k \ge 0$ כלשהם. נמצא את הגבול:
+		\[ \climsi \sqrt[n]{a_kn^{k} + a_{k - 1}n^{k - 1} + \cdots a_1 n + a_0} \]
+		ניעזר במשפט הסנדוויץ': 
+		\[ 0 \le \sqrt[n]{a_kn^{k} + a_{k - 1}n^{k - 1} + \cdots a_1 n + a_0} \le \sqrt[n]{n \cdot a_kn^{k}} \]
+		נבחין שהחסם העליון שואף ל־$0$: 
+		\[ \climsi \sqrt[n]{n \cdot a_k \cdot n^{k}} = \limsi \sqrt[n]{n^{k + 1}} \cdot \limsi \sqrt[n]{a_k} = 0 \cdot 0 = 0 \]
+		וכמובן שגם הגבול התחתון. מכאן שהגבול הוא $0$. 
+		\item נחשב את הגבול: 
+		\[ \limsi \underbrace{\frac{1}{\sqrt n} \cdot \sumnko\cl{\frac{1}{\sqrt k}}}_{c_n} \]
+		
+		ראשית כל, נחשב את הגבול: 
+		\begin{multline*}
+			\climsi {n + 1 - \sqrt{n^2 + n}} = \climsi n + 1 - \sqrt{n^2 + n} \cdot \frac{n + 1 + \sqrt{n^2 + n}}{n + 1 + \sqrt{n^2 + n}} = \climsi \frac{(n + 1)^{2} - (n^2 + n)}{n + 1 + \sqrt{n^2 + n}} = \limsi \frac{n + 1}{n + 1 + \sqrt{n^2 + n}} \\
+			= \limsi \frac{1 + \frac{1}{n}}{1 + \frac{1}{n} + \sqrt{1 + \frac{1}{n^2}}} = \frac{\limsi 1 + \frac{1}{n}}{\limsi(1 + \frac{1}{n}) + \sqrt{\limsi 1 + \frac{1}{n^2}}} = \frac{1}{1 + 1} = \frac{1}{2}
+		\end{multline*}
+		
+		נגדיר את הסדרות הבאות: 
+		\[ a_n = \sumnko \frac{1}{\sqrt k} \quad b_n = \frac{1}{\sqrt n} \quad \implies \quad c_n = \frac{a_n}{b_n} \]
+		
+		ואז, נחשב את הגבול הבא, תוך היעזרות בגבול שחשבנו בהתחלה: 
+		\[ \frac{a_{n + 1} - a_n}{b_{n + 1} - b_n} = \frac{\sum_{k = 1}^{n+ 1}\frac{1}{\sqrt k} - \sumnko \frac{1}{\sqrt k}}{\sqrt{n + 1} - \sqrt n} = \frac{\frac{1}{\sqrt{n + 1}}}{\sqrt{n + 1} - \sqrt n} = \frac{1}{n + 1 - (\sqrt{n^2 + n})} = \frac{1}{0.5} = 2 \]
+		משום שהגבול קיים, ממשפט צ'זארו $\limsi c_n = \limsi \frac{a_n}{b_n} = \limsi \frac{a_{n + 1} - a_n}{b_{n + 1} -b_n} = 2$ כלומר $\limsi c_n = 2$ וסיימנו. 
+		\item יהי $k \in \N$. נחשב את הגבול הבא: 
+		\[ \climsi \frac{\sum_{i = 0}^{n}\frac{(k + i)!}{i!}}{n^{k + 1}} \]
+		
+		\[ \frac{ \sum_{i = 0}^{n + 1}\frac{(k + i)!}{i!} - \sum_{i = 0}^{n}\frac{(k + i)!}{i!}}{(n + 1)^{k + 1} - n^{k + 1}} = \frac{\frac{(k + n + 1)!}{(n + 1)!}}{(n + 1)^{k + 1} - n^{k + 1}} = \frac{(n + 1) \cdots (n + k + 1)}{\cl{(n + 1)^{k + 1} - n^{k + 1}}} \]
+		
+		אמור להתכנס ל־$\frac{1}{k + 1}$
+		\[  \]
+		
+	\end{enumerate}
+	
+	\section{}
+	יהיו $0 < b_1 < a_1$ כאשר $a_{n+ 1} = \frac{a_{n} + b_n}{2}$ ו־$b_{n  +1} = \frac{2a_nb_n}{a_n + b_n}$. נוכיח ששתיהן מתכנסות סימולטנית ל־$\sqrt{a_1b_1}$. 
+	
+	\begin{proof}
+		נבחין ש־: 
+		\[ a_{n + 1} = \AM(a_n, b_n) \quad b_{n + 1} = \HM(a_n, b_n) \]
+		ומשום שבהינתן $x < y$ מתקיים $x < \HM(x, y) < \AM(x, y) < y$, באינדוקציה על הבסיס $0 < b_1 < a_1$ נקבל: 
+		\[ 0 < b_n < b_{n + 1} < a_{n + 1} < a_n < a_1 \]
+		נבחין ש־$a_n$ מונוטונית יורדת חסומה ע''י $0$ ולכן מתכנסת. נבחין ש־$b_n$ מונוטונית עולה חסומה ע''י $a_1$ ולכן מתכנסת. סה''כ שתיהן מתכנסות, וממשפט בגלל ש־$a_n > b_n$, לאותו הגבול. 
+		
+		נניח שהן מתכנסות לערך $\ml$ כלשהו. בגלל ש־$\bn$ מונוטונית עולה ו־$\an$ מונוטונית יורדת, נקבל $a_n > \ml > b_n$. יהי $\eg > 0$. בעבור $\frac{1}{2}\eg$ מהגדרת הגבול, קיים $N  \in \N$ עבורו לכל $n > N$ מתקיים: 
+		\[ \begin{cases}
+			a_n - \ml = \sof{a_n - \ml} < \frac{1}{2}\eg \\
+			\ml - b_n = \sof{b_n - \ml} < \frac{1}{2}\eg
+		\end{cases} \dequad\ \implies a_n \cancel{- \ml + \ml} + b_n = \frac{1}{2}\eg + \frac{1}{2}\eg = \eg \]
+		מא''ש הממוצעים: 
+		\[ \AM - \HM = \underbrace{(\AM - \GM)}_{\ge 0} + \underbrace{(\GM - \HM)}_{\ge 0} > \AM - \GM, \ \GM - \HM \]
+		בפרט: 
+		\[ \eg > \sof{a_n - b_n} = \sof{\AM(a_{n + 1}, b_{n + 1}) - \HM(a_{n + 1}, b_{n + 1})} > \sof{\AM(a_{n + 1}, b_{n + 1}) - \GM(a_{n + 1}, b_{n + 1})} \overset{(1)}{>} \sof{a_{n + 1} - \GM(a_1, b_1)} \]
+		כאשר $(1)$ מתקיים כי באינדוקציה $\GM(a_{> 1}, b_{> 1}) < \GM\cl{a_1, b_1}$ שכן $a_{n + 1} > a_n > b_n > b_{n + 1}$ ואז נקבל את הצעד: 
+		\[ \sof{a_{n + 1}, b_{n  + 1}} > \sof{a_n, b_{n + 1}} > \sof{a_n, b_n} > \sof{a_1, b_1} \]
+		ו־$\GM$ משמר גודל. 
+		
+		סה''כ $a_n, b_n$ מתכנסות שתיהן לאותו הגבול $\ml = \GM(a_1, b_1) = \sqrt{a_1, b_1}$. 
+	\end{proof}
+	
+	
+	\section{}
+	נפריך ע''י דוגמה נגדית את הטענות הבאות: 
+	\begin{enumerate}[(A)]
+		\item תהי $\an$ סדרה. נניח $\limsi \frac{a_1 + \cdots + a_n}{n} = L$, אז $\limsi a_n = L$. \begin{proof}[הפרכה]
+			נגדיר $(-1)^{n} = a_n$. נבחין שהטור ש־$\an$ יוצרת הוא $\sumni a_n = \dg_{\Neven}(n)$ כאשר: 
+			\[ \dg_{\Neven}(n) = \begin{cases}
+				0 & n \in \Nodd \\
+				1 & n \in \Neven
+			\end{cases} \quad 0 \le g(n) \le 1 \]
+			ואז נקבל: 
+			\[ 0 \le \frac{g(n)}{n} \le \frac{1}{n} \to 0 \]
+			כלומר $\climsi \frac{\sumni (-1)^{n}}{n} = 0$. עם זאת, $\an$ חסרת גבול (הוכחנו זאת). 
+		\end{proof}
+		\item יהיו $x_n, y_n$ סדרות כאשר $y_n$ עולה ממש ושואפת ל־$+\infty$, וכן $\limsi \frac{x_n}{y_n} = \ml$, אז $\limsi \frac{x_{n + 1} - x_n}{y_{n + 1} -y_n}$. 
+		
+		נבחר $y_n = n$ ו־$x_n = (-1)^{n}$. נקבל: 
+		\[ \limsi \frac{x_{n + 1} - x_n}{y_{n + 1} - y_n} = \climsi \frac{(-1)^{n} - (-1)^{n + 1}}{n + 1 - n} = \climsi\frac{2(-1)^{n}}{1} = 2\limsi (-1)^{n} \]
+		שלא קיים. עם זאת: 
+		\[ 0 \leftarrow -\frac{1}{n} \le \frac{(-1)^{n}}{n} \le \frac{1}{n} \to 0 \]
+		כלומר $\frac{x_n}{y_n} = \frac{(-1)^{n}}{n} \to 0$, ומכאן ש־$\limsi \frac{x_{n + 1} - x_n}{y_{n + 1} - y_n} \to 0$, וזו סתירה. 
+	\end{enumerate}
+	
+	\section{}
+	תהי $\an$ סדרה מתכנסת, כך שלכל $n \in \N$ מתקיים $a_n \neq 0$ ונניח $a_n \to 0$. נוכיח ש־: 
+	\[ \climsi \cl{1 + a_n}^{\frac{1}{a_n}} = e \]
+	\begin{proof}
+		\textbf{למה. }מתקיים ש־: 
+		\[ c_n = \cl{1 - \frac{1}{n}}^{-n} \dequad\!\!\to e \]
+		ראשית, נוכיח ש־$a_n$ מונוטונית יורדת: 
+		\[ 1 - \frac{1}{n} < 1 - \frac{1}{n + 1} \implies \cl{1 - \frac{1}{n}}^{n} < \cl{1 - \frac{1}{n + 1}}^{n} < \cl{1 - \frac{1}{n + 1}}^{n + 1} \dequad \implies a_n = \cl{1 - \frac{1}{n}}^{-n} > \cl{1 - \frac{1}{n + 1}}^{-(n + 1)} \dequad\dequad = a_{n + 1} \]
+		עתה נראה שהיא חסומה ע''י $b_n = \cl{1 + \frac{1}{n}}^{n}$: 
+		\[ b_n = \cl{1 + \frac{1}{n}}^{n} \ \ \dequad > \cl{1 - \frac{1}{n}}^{n} \overset{(1)}{>} \cl{1 - \frac{1}{n}}^{-n} = c_n \]
+		כאשר $(1)$ נכון כי $1 - \frac{1}{n}$. עוד נבחין ש־: 
+		\[ \begin{WithArrows}
+			b_n < c_n &\iff \cl{1 + \frac{1}{n}}^{n} < \frac{1}{\cl{1 - \frac{1}{n}}^{n}} \\
+			&\iff \cl{1^2 - \frac{1}{n^2}}^{n} \!\!< 1 \\
+			&\iff 1 - \frac{1}{n^2} < 1 \iff \top
+		\end{WithArrows} \]
+		כלומר אכן מתקיים $c_{n} < c_{n + 1} < b_{n + 1} < b_n$. ממשפט $c_n, b_n$ מתכנסים סימולטנית. משום ש־$b_n \to e$, אז $c_n \to e$, וסיימנו את הוכחת הלמה. 
+		
+		עתה נפנה להוכיח את המשפט. תהי $\an$ סדרה כך ש־$a_n \!\!\to 0$ ו־$a_n \neq 0$. נוכיח שהיא מתכנסת ל־$e$. יהי $\eg > 0$. מהתכנסות $c_n \to e$ בהכרח קיים $N_1 \in \N$ כך ש־$\sof{c_n - e} < \eg$. באופן דומה מהתכנסות $b_n \to e$ בהכרח קיים $N_2$ עבורו $\forall n \ge N_2 \co \sof{b_n - e} < \eg$. 
+		 מהתכנסות $\an$ קיים $N_3 \in \N$ כך ש־$\forall n \ge N_3 \co \sof{a_n} < \frac{1}{n}$. אזי, לכל $n \ge N_3$: 
+		\begin{itemize}
+			\item אם $a_n > 0$ אז: 
+			\[ a_n < \frac{1}{n} \implies -\eg < 0 < \sof{(1 + a_n)^{\frac{1}{a_n}} \!\!- e} < \sof{\cl{1 + \frac{1}{n}}^{n} \!\!- e} = \sof{b_n - \eg}< \eg \]
+			\item אם $a_n < 0$ אז: 
+			\[ a_n < -\frac{1}{n} \implies \eg < 0 < \sof{(1 + a_n)^{\frac{1}{a_n}} - e} < \sof{\cl{1 - \frac{1}{n}}^{-n} \dequad - e} = \sof{c_n - \eg} < -\eg \]
+		\end{itemize}
+		כלומר בהכרח $\sof{a_n - e} < \eg$ וסיימנו. 
+	\end{proof}
+	
+	\section{}
+	נקבע האם $\sin n$ מתכנסת.
+	\begin{proof}[לא. אפילו לא קרובה להתכנס]
+		נניח בשלילה ש־$a_n = \sin n$ מתכנסת ל־$\ml$. נסמן את תמונתה ב־$A$. ממשפט בהרצאה, בסביבה נקובה $(\ml - \eg, \ml + \eg)$ יש כמות אין־סופית מאיברי הסדרה, ומחוץ ממנה, יש כמות סופית. ידוע:
+		\[ -1 \le \sin n \le \ml \le \sin n \le 1 \]
+		כלומר $\ml \in [-1, 1]$. נסמן $A' = A \cap (\R \setminus [-1 + 0.5, 1 - 0.5]) = A \cap [-0.5, 0.5]$. בעבור $\eg = 0.5$ נקבל ש־$\sof{A'} < \az$. משום שיש בקבוצה כמות סופית של איברים, יש לה מינימום $m_1$, וגם ב־$A' \setminus \{m_1\}$ יש מינימום $m_2$. מצפיפות $A$ ב־$[-1, 1]$ שהוכחנו בשיעורי הבית הקודמים, וכן משום ש־$m_1, m_2 \in [-1, 1] \trio [-0.5, 0.5]$ (חיתוך סימטרי), בהכרח קיים $m' \in (m_1, m_2) \cap A$ כלשהו. נפריד למקרים. 
+		\begin{enumerate}[A.]
+			\item אם $m_1, m_2 \in [-1, -0.5)$ או $m_1, m_2 \in (1, 0.5]$ אז $m' \in A'$ כלומר $m_2$ לא מינימלי ב־$A' \setminus \{m_1\}$  וסתירה. 
+			\item אם $m_1 \in [-1, -0.5)$ ו־$m_2 \in (0.5, 1]$ (המקרה ההפוך לא אפשרי כי $m_1 < m_2$) אז נגדיר $m_2 := -0.5$ וקיים $m' \in (m_1, m_2) \cap A$ מהצפיפות וסתירה כמו במקרה א'. 
+		\end{enumerate}
+		סה''כ הגענו לסתירה בכל המקרים (הצפיפות גררה שלא יכולים להיות כמות סופית/בדידה של איברים מחוץ לסביבה). 
+	\end{proof}
+	
+	\section{}
+	
+	תהי $\an$ סדרה. נניח ש־$a_{n + 1} - a_n \to 0$. נוכיח ש־: 
+	\[ \ps(\an) = \csb{\liminf a_n, \limsup a_n} \]
+	\begin{proof}
+		נניח ש־$\an$ חסומה, אחרת $\ps(\an)$ לא מוגדר אלא במובן הרחב. 
+
+	נסמן ב־$i := \liminf a_n$	 וב־$s := \limsup a_n$. יהי $a \in \csb{\liminf a_n, \limsup a_n}$. נוכיח ש־$a$ גבול חלקי. יהיו $\eg > 0, N_1 \in \N$ ונוכיח קיום $n > N_1$ כך ש־$\sof{a_n - a} < \eg$. נגדיר $\eg_{i} = \frac{\sof{a - i}}{2}$ ו־$\eg_{s} := \frac{s - a}{2}$. נבחין ש־$\eg_{s}, \eg_{i} > 0$. מהנתון $a_{n + 1} - a_n \to 0$, קיים $N_1 \in \N$ כך ש־$\forall n \ge N_1 \co \sof{a_{n + 1} - a_n} < \eg$. נסמן $N = \max\{N_1, N_2\}$. מהגדרת גבול חלקי, קיים $n_1 \ge N$ כך ש־$\sof{a_{n_1} -i} < \eg_{i}$. באופן דומה קיים $n_2 \ge \max\{N, n_1\}$ כך ש־$\sof{a_{n_2} - s}  < \eg_{s}$. סה''כ: 
+	\[ a_{n_1} \!< i + \eg_{i} = i + \frac{i + a}{2} \le a \le s + \frac{s + a}{2} = s + \eg_{s} < a_{n_2} \]
+	כלומר רצף האינדקסים $n_1 \dots n_2$ איפשהו כולל מעבר $n \in [n_1, n_2] \cap \N$ כך ש־$a_n \le a \le a_{n + 1}$ (אפשר להראות את זה באינדוקציה, כי רצף האינדקסים סופי). אחרי שנעביר אגפים נקבל: 
+	\[ \sof{a_n - a} = a - a_n < a_{n + 1} - a_n = \sof{a_{n + 1} - a_n} < \eg \]
+	כי $n \ge n_1 > N_2$. סה''כ הוכחנו את הדרוש. 
+	\end{proof}
+	
+	\section{}
+	נמצא סדרה $\an$ כך ש־$a_{n + 1} - a_n \to 0$ וכן $\ps(a_n) = [0, 1]$. נוכיח ש־$a_n = 2\sof{\ccb{\sqrt n} - 0.5}$ כאשר $\ccb{x}$ הערך השברי של $x$ (הוא $\ccb{x} = x - \floor{x}$). 
+	\begin{proof}
+		קל לראות ש־$0 \le a_n \le 1$ (נטו מתחומי ההגדרה של הפונקציות). בשיעורי בית קודמים הוכחנו ש־$\ccb{\sqrt x}$ בעלת איפימום $0$, 
+	\end{proof}
+	
+	\section{}
+	תהי $a_n$ סדרה חיובית כך ש־$\frac{a_{n +1}}{a_n} \toinf 1$. נמצא דוגמה לפונקציה המקיימת כל אחת מהתוכנות הבאות: 
+	\begin{itemize}
+		\item \textbf{התכנסות ל־$\bm{0}$: }עבור $a_n = \frac{1}{n}$ מתקיים $a_n \to 0$ וגם: 
+		\[ \frac{a_{n + 1}}{a_n} = \frac{\frac{1}{n + 1}}{\frac{1}{n}} = \frac{n}{n + 1} \toinf 1 \]
+		\item \textbf{התכנסות ל־$\bm{1}$: }עבור $a_n = \frac{1}{n} + 1$ מתקיים $a_n \to 1$ וגם: 
+		\[ \climsi \frac{a_{n + 1}}{a_n} = \climsi \frac{\frac{1}{n + 1} + 1}{\frac{1}{n} + 1} = \lim\frac{\frac{n + 2}{n + 1}}{\frac{n + 1}{n}} = \lim\frac{n^2 + 2n}{n^2 + 2n + 1} = \lim\frac{1 + \frac{2}{n}}{1 + \frac{2}{n} + \frac{1}{n^2}} = 1 \]
+		\item \textbf{התבדרות ל־$+\infty$: }עבור $a_n = n$ מתקיים $a_n \toinf +\infty $ ו־: 
+		\[ \climsi \frac{a_{n + 1}}{a_n} = \climsi \frac{n + 1}{n} = \climsi \frac{\frac{1}{n} + 1}{1} = 1 \]
+		\item \textbf{אי התכנסות במובן הרחב: }נגדיר את הסדרה: 
+		\[ a_n = \begin{cases}
+			n & n \in \Neven \\
+			\frac{1}{n} & n \in \Nodd
+		\end{cases} \]
+		נבחין ש־$\frac{a_{n + 1}}{a_n}$ ניתן לכיסוי ע''י שתי ת''סים, האחת $\frac{n}{n + 1}$ והשנייה $\frac{n + 1}{n}$, ושתיהן שואפות ל־$1$, כלומר ממשפט הכיסוי $\frac{a_{n + 1}}{a_n} \to 1$. עם זאת, $a_n$ מכיל גבול חלקי $\frac{1}{2n + 1}$ וגבול חלקי $2n$, האחד שואף ל־$0$ והשני ל־$+\infty$, כלומר $\an$ בעל שני גבולות חלקיים שונים במובן הרחב ולכן לא מתכנס. 
+	\end{itemize}
+	
+	\section{}
+	נגדיר $a_n = \sqrt n - \floor{\sqrt n}$. נוכיח ש־$\ps(\an) = [0, 1]$. 
+	\begin{proof}
+		באחד מתרגילי הבית הקודמים הראינו 
+	\end{proof}
+	
+	\section{}
+	נוכיח את משפט בולצאנו־וויראשטראס תוך שימוש בעקרון הרווחים המקוננים של קנטור, ללא שימוש באקסיומת השלמות. 
+	
+	\begin{proof}
+		בכל קונטקסט בו המושגים מוגדרים, נסמן $\pi_1(c_n) =: b_0$ ו־$\pi_2(c_n) =: a_0$. תהי $\an$ סדרה חסומה. בפרט $-M < a_n < M$ עבור $M$ כלשהו. אם $\Img \an$ סופי, אז ת''ס קבועה קיימת בה בהכרח וסיימנו. אחרת, נגדיר את הסדרה הבאה: 
+		\[ c_n \co \N \to A \times B \quad \begin{cases}
+			c_1 = \la-M, M\ra \\
+			c_{n + 1} = \begin{cases}
+				\ctb{b_0, \frac{b_0 + a_0}{2}} & \case \sof{\csb{b_0, \frac{b_0 + a_0}{2}} \cap A} \ge \az \\
+				\ctb{\frac{b_0 + a_0}{2}, a_0} & \case \sof{\csb{\frac{b_0 + a_0}{2}, a_0} \cap A} \ge \az
+			\end{cases}
+		\end{cases} \]
+		הסדרה מוגדרת היטב, כי: 
+		\begin{itemize}
+			\item משפט הרקורסיה. 
+			\item משובך יונים, כאשר נחצה קבוצה $B$ אינסופית ל־$B = C \oplus D$, אז $C$ או $D$ כוללים אינסוף איברים. בפרט על $A$ ובאינדוקציה אחד משני התנאים מתקיים. 
+		\end{itemize}
+		עתה נגדיר את הסדרות: 
+		\[ b_n \co \N \to \R \quad b_n = \pi_1 \circ c_n \quad a_n \co \N \to \R \quad a_n = \pi-2 \circ c_n \]
+		מהגדרת $c_n$ מתקיים ש־$a_n \le a_{n + 1} \le b_{ n+ 1} \le b_n$. יהי $\eg > 0$. ידוע קיום $N \in \N$ עבורו $\frac{M}{2^{n - 1}} < \eg$ (כן. צריך בשביל זה ארכימדיאניות. בדקתי, גם בויקיפדיה מופיעה אותה ההוכחה. גם בהרצאה אמרתם לנו להוכיח עם אריה במדבר. זה לא עובד, צריך ארכימדיאניות). בגלל שכל פעם אנו חוצים את הקטעים פי $2$, נקבל ש־$b_n - a_n = \frac{M}{2^{n - 1}}$. מכאן ש־: 
+		\[ \sof{a_n - b_n} = {\frac{M}{2^{n - 1}}} < \eg \]
+		כלומר $\limsi a_n-b_n = 0$, ועכשיו ניתן להפעיל את עקרון הרווחים המקוננים ולקבל ש־$\bigcap_{n = 1}^{\infty} [b_n, a_n] = \{c\}$. נבחין ש־$\an, \bn \to c$ כי לכל $\eg > 0$ נוכל לבחור $N$ כך ש־$\sof{a_n - b_n} < \eg$, ו־$c \in [b_n, a_n]$ כלומר $\sof{a_n - c} < \eg \land \sof{b_n - c} < \eg$ וסה''כ $\an, \bn \to c$ כדרוש. 		נגדיר $p(b, a) = A \cap [b, a]$ ואז נקבל שהפונקציה $F = p \circ c_n$ (עם תמונה שלא כוללת קבוצות ריקות, מהגדרת $c_n$) בעלת פונקציית בחירה $f \co \N \to \R$ היא סדרה בשם $d_n$, ואז נקבל ש־$a_n \le d_n \le b_n$ וממשפט הסדוויץ' $d_n \to c$. מהגדרת $p$ בהכרח $d_n \in A$ ומהגדרת $c_n$ היא בהכרח משמרת סדר ביחס ל־$\an$, כלומר $d_n$ ת''ס מתכנסת של $\an$ וסיימנו. 
+		
+	\end{proof}
+	
+	\section{}
+	נראה כי הטענות הבאות שקולות: 
+	\begin{enumerate}
+		\item אקסיומת השלמות. 
+		\item כל סדרת קושי מתכנסת. 
+		\item עקרון הרווחים המקוננים. 
+	\end{enumerate}
+	
+	\subsection*{\hfil $\bm{1 \to 2}$}
+	הוכח בהרצאה. 
+	\subsection*{\hfil $\bm{2 \to 3}$}
+	יהי $(\R, + , \cdot, <)$ שדה סדור מלא כלשהו (שסתם בחרתי לסמן ב־$\R$). נניח שביחס לנורמה $\sof{\cdot}$ כל סדרת קושי מתכנסת. נראה שעקרון הרווחים המקוננים מתקיים. 
+	\begin{proof}
+		תהי $\an$ סדרה עולה ו־$\bn$ סדרה יורדת, כך ש־$b_n > a_n$. נניח שהגבול $\limsi a_n - b_n = 0$. נגדיר $A_i = [a_i, b_i]$ שמההנחות שלנו בהכרח לא ריק. מונוטוניות הסדרות, $A_{i + 1} \subseteq A_i$. נבחין ש־$A_i \co \N \to \ps(\R)$ היא פונקציה, ולכן קיימת לה פונקציית בחירה $c_i \co \N \to \R$. עוד נבחין ש־$c_i$ סדרה. נראה ש־$c_i$ קושי. יהי $\eg > 0$. בגלל ש־$\limsi a_i - b_i = 0$, קיים $N \in \N$ כך ש־$\forall n \ge N \co b_i - a_i = \sof{a_i - b_i} < \eg$. יהי $n \ge N$ ו־$k \ge 0$. נבחין שמהגדרת $A_n$ ו־$A_{n + k}$: 
+		\[ a_n \le c_n \le b_n \quad a_n \le a_{n + k} \le c_{n + k} \le b_{n + k} \le b_n \quad \implies \quad c_n, c_{n + k} \in [a_{n}, b_{n}] = A_n \]
+		משום ש־$\sof{a_n - b_n} \le \eg$, נקבל שהמרחק בין כל שני איברים ב־$A_n$ קטן גם הוא מ־$\eg$ ובפרט $\sof{c_n - c_{n + k}} \le \eg$. סה''כ $\cn$ קושי. הנחנו שכל סדרת קושי מתכנסת, אזי בפרט $c_n$ מתכנסת לערך $c$ כלשהו, ונסמן $c_n \to c$. נראה ש־$\bigcap_{n}^{\infty}A_n = \{c\}$: 
+		
+		\begin{itemize}
+			\item[$\subseteq$]יהי $d \in \bigcap_{n = 1}^{\infty} A_i$. יהי $\eg > 0$. בגלל ש־$\limsi a_n - b_n = 0$, קיים $N$ עבורו $\forall n \ge N \co \sof{a_n - b_n} \le \eg$. נבחין ש־$d \in A_N$, וכן $c_N \in A_N$, כלומר $\sof{c_n - d} \le \eg$ (שני איברים בקטע סגור שקצוותיו במרחק קטן מ־$\eg$). מכאן ש־$\limsi c_n - d = 0$ מהגדרת הגבול. משום שהגבול של $c_n$ קיים והוא $c$, מתקיים מאריתמטיקת גבולות: 
+			\[ \climsi d = \climsi c_n + d - c_n = \climsi (c_n) + \climsi (d - c_n) = c - 0 = c \]
+			כלומר $d$ סדרה קבועה ששואפת ל־$c$, ומכאן ש־$\forall \eg > 0 \co \sof{d - c} \le \eg$, כלומר $d = c$ (משפט שהוכחנו ללא תלות באקסיומת השלמות). 
+			\item[$\supseteq$]יהי $i \in \N$. נבחין שהחל מ־$N = i$ מתקיים $\forall i \ge N \co a_i \le a_n \le c_n \le b_n \le b_i$ כלומר $c_n$ חסומה בין $a_i$ לבין $b_i$ החל ממקום מסוים, ולכן $c = \limsi c_n \in [a_i, b_i] = A_i$. מהגדרת חיתוך מוכלל $c \in \bigcap_{n = 1}^{\infty}A_n$ כנדרש. 
+		\end{itemize}
+		סה''כ הראינו הכלה דו־כיוונית, כלומר $\exists c \in \R\co \bigcup_{n = 1}^{\infty} [a_n, b_n] = \{c\}$, כדרוש. 
+	\end{proof}
+	
+	\subsection*{\hfil $\bm{3 \to 1}$}
+	יהי $(\R, + , \cdot, <)$ שדה סדור מלא כלשהו (שסתם ממש באקראי מסיבה שלא קשורה לכלום בחרתי לסמן ב־$\R$). נניח שביחס לנורמה $\sof{\cdot}$ עקרון הרווחים המקוננים מתקיים. נראה ש־$\R$ הוא שדה (למעשה, \textit{ה}שדה עד לכדי איזומורפיזם) שמתקיים את אקסיומת החסם העליון. 
+	\begin{proof}
+		תהי $A$ קבוצה חסומה מלעיל. נסמן ב־$B$ את קבוצת החסמים מלעיל של $A$. 
+		
+		\textbf{למה. }בהינתן $a \in A, \ b \in B$, לכל $\eg > 0$, קיימים $a' \in A,\ b' \in B$ כך ש־$[a', b'] \subseteq [a, b]$ וגם $\sof{a' - b'} = b' - a' < \eg$. \begin{proof}[הוכחת הלמה]
+			נניח בשלילה שלא קיימת קבוצה מתאימה. מכאן, שקיים $\eg$ כך ש־$\forall a< a' \in A,b>  b' \in B \co b' - a' \ge \eg$. נתבונן בקבוצה $[a', b'] \in [a, b]$ כך ש־$b' - a' < 2 \eg$ (אם לא קיימת כזו, נגדיר את $\eg$ להיות $2\eg$ באינדוקציה) ואז $c = \frac{a + b}{2}$ מקיים $c \in [a', b']$, אם $c \notin B$ אז קיים $a'' > c$ ואז $[a'', b']$ מקיים $b' - a'' < \eg$ וסתירה, אחרת $c \in B$ ואז $[a', c]$ מקיים $c - a' < \eg$ וסתירה. 
+		\end{proof}
+		צריך להפוך את הרווחים המדוברים לבדידים בשביל להשתמש בעקרון הרווחים המקוננים, ובשביל זה צריך קיום סדרה חיובית שואפת לאפס. בממשיים זה נגרר מארכימדיאניות שתלויה באקסיומת השלמות. זה לא עובד בשדה סדור מלא כללי. אז או שאני טיפש ויש הוכחה שלא צריכה קיום של סדרה כזו, או שמי שבנה את התרגיל לא הוכיח את כולו ועשה ובנה אותו לפי אינטואיציה של מרחבים מטריים. לפי ויקיפדיה הטענה הזו \textit{שקולה} לבונלצאנו־וויראשטראס, משפט שאיננו שקול לאקסיומת החסם העליון. אזי אחרי הפסקה הארוכה אני פשוט אפיל מהשמיים $p_n$ כלשהי כך ש־$p_n > 0$ וגם $p_n \to 0$. 
+		
+		מהלמה, ומהגדרת התכנסות של $p_n$, נבחין שלכל $a, b \in A \times B$ קיים $z_{a, b} \in \N$ כלשהו כך ש־$\sof{a - b} \le p_n$, ומכאן ש־$[a, b - p_n]$ לא ריקה לכל $n \ge z_{a, b}$. 
+		
+		נגדיר את הפונקציה: 
+		\[ F \co (A \times B) \times \N \to \ps(A \times B) \quad F((a, b), n) = \ccb{(a', b') \in A \times B \co a'\in A \ \land \ b' \in B \ \land [a', b'] \subseteq [a, b - p_{\max(n, z_{a, b})}]} \]
+		מהגדרת $z_{a, b}$ ומקסימום, נבחין שתמונת $F$ לא מכילה קבוצות ריקות אף פעם, לכן קיימת לה פונקציית בחירה $f \co (A \times B) \times \N \to A \times B$ כלשהי. בהינתן $c_1 = (a, b)$ כאשר $a \in A, b \in B$ כלשהם (כי $B$ לא ריקה מההנחה ש־$A$ חסומה)	פונקציית הבחירה משרה את הנסיגה הבאה: 
+		\[ c_n \co \N \to A \times B \quad \begin{cases}
+			c_1 = (a, b) \\
+			c_n = f(c_1, n)
+		\end{cases} \]
+		היא מוגדרת היטב ממשפט הרקורסיה. $c_n$ בתורה משרה את הסדרות: 
+		\[ b_n \co \N \to B \quad b_n = \pi_2 \circ c_n \quad a_n \co \N \to A \quad a_n = \pi_1 \circ c_n \]
+		מהיות הרווחים $[a_n, b_n]$ מקוננים מהגדרתם, $b_n$ מונוטונית יורדת ו־$a_n$ מונוטונית עולה. בגלל ש־$B$ קבוצת החסמים מלעיל של $A$, בהכרח $a_n < b_n$. עוד נבחין ש־$a_n, b_n \in [a_n, b_n] \subseteq [a_{n + 1} + p_n, b_{n + 1} - p_n]$ (עד לכדי $z_{a, b}$ שגם הוא מונוטוני עולה חזק, כמו $n$) כלומר $\sof{a_n - b_n} \le p_n \le \eg$ החל מ־$N$ מסויים לכל $n > N$ ואז $\limsi a_n - b_n = 0$. מעקרון הרווחים המקוננים $\exists!c \in \R \co \bigcap [a_n, b_n] = \{c\}$. נפצל למקרים. 
+		\begin{itemize}
+			\item אם $c \in A$, אז $c$ חסם מלעיל של $A$, ולכן הוא מקסימום של $A$ ובפרט סופרמום וסיימנו. 
+			\item אם $c \in B$, ונניח בשלילה קיום $B \ni b < c$, אזי עבור $\eg$ קטן דיו קיים $i \in \N$ כך ש־$[a_i, b] \supseteq [a_i, b_i]$ אזי $c \notin \bigcap [a_n, b_n]$ וזו סתירה. מכאן ש־$c$ חסם עליון מינימלי ובפרט סופרמום. 
+		\end{itemize}
+		סה''כ הראינו קיום סופרמום בכל קבוצה $A$ חסומה מלעיל, כלומר אקסיומת החסם העליון מתקיימת. 
+	\end{proof}
+	
+	\section{}
+	נמצא סדרה $\an$ בעלת יותר משני גבולות חלקיים המקיימת $a_n \cdot a_{n + 1} \to 1$. 
+	
+	נסמן את הסדרה שמצאנו בשאלה 7 ב־$\cn$. נגדיר $\bn = \cn + 2$. החל ממקום $N_1$ מסויים, $c_n > 1$, משום שקול הגבולות החלקיים של $\bn$ הם $[2, 3]$. מכאן שלכל $n \ge N_1$ מתקיים $\frac{a}{b_n} < a$. יהי $\eg > 0$, ובגלל ש־$b_{n + 1} - b_n \to 0$ (זה נשמר תחת הזחה ב־$2$ מאריתמטיקת גבולות), החל מ־$N_2$ מסוים מתקיים בהכרח $\sof{b_{n + 1} - b_n} < \eg$. נקבל ש־: 
+	\[ 1 - \eg < 1 - \frac{\eg}{b_n} = \frac{b_n - \eg}{b_n} < \frac{b_{n + 1}}{b_n} < \frac{b_n + \eg}{b_n} = 1 + \frac{\eg}{b_n} < 1 + \eg \]
+	ומכאן ש־$\frac{b_{n + 1}}{b_n}$ מתכנסת. 
+	
+	נתבונן בסדרה: 
+	\[ a_n = \begin{cases}
+		b_n & n \in \Neven \\
+		\frac{1}{b_n} & n \in \Nodd
+	\end{cases} \]
+	נבחין של־$\an \cdot a_{n + 1}$ יש שתי סדרות שמכסות אותה, $\frac{b_{n}}{b_{n + 1}}$ שמאריתמטיקה של גבולות שואפת ל־$1$, וכן $\frac{b_{n + 1}}{b_n}$ שהראינו ששואפת ל־$1$. סה''כ $a_n \cdot a_{n + 1} \to 1$ כי כל הגבולות החלקיים של הסדרות שמכסות אותה הם $1$. 
+	
+	נתבונן בת''סים $b_{2n}$ ו־$\frac{1}{b_{2n + 1}}$. נבחין ש־$b_{2n}$ ו־$b_{2n + 1}$ מכסים את $b_n$, ולה יש אינסוף גבולות חלקיים, ומשובך יונים ל־$b_{2n + 1}$ או $b_{2n}$ יש אינסוף גבולות חלקיים. אם זה $b_{2n}$ אז ל־$a_n$ יש אינסוף גבולות חלקיים וסיימנו, ואם זה $b_{2n + 1}$ אז $[\frac{1}{2}, \frac{1}{3}]$ אינסוף גבולות חלקיים (מאריתמטיקה) וסיימנו גם. 
+	
+	סה''כ מצאנו $\an$ סדרה עם אינסוף גבולות חלקיים (ובפרט יותר מ־$2$) המקיימת $a_n \cdot a_{n + 1} \to 1$. 
+	
+	\ndoc
+\end{document}
