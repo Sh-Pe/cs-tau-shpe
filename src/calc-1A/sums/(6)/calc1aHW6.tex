@@ -1,0 +1,158 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\sumnoinf {\sum_{n = 0}^{\infty}}
+
+\author{שחר פרץ}
+\title{\textit{חדו''א 1א 6}}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }ליאור קמה
+	
+	בהרצאה הזו נדבר עוד על טורים. 
+	
+	\exe{בדקו את התכנסות הטור $\sumninf \sin(\pi \sqrt{n^2 + 1})$}\begin{proof}[תשובה]
+		הטריק הוא להבין ש־$\sin(\pi \sqrt{n^2 + 1}) = (-1)^{n}\sin(\pi(\sqrt{n^2 + 1} - \pi n))$, לכל $n\in \N$. נוסף על כך מכפל בצמוד, $\frac{1}{\sqrt{n^2 + 1} + n} = \sqrt{n^2 + 1} - n$. כלומר: 
+		\[ \sumninf \sin(\pi \sqrt{n^2 + 1}) = \sumninf (-1)^{n}\sin\cl{\frac{\pi}{\sqrt{n^2 + 1} + n}} \]
+		עוד נבחין ש־$\forall n \in \N \co 0 \le \frac{\pi}{\sqrt{n^2 + 1 } + n} \le \frac{\pi}{2}$ וגם מונוטוני יורד, כלומר $\sin \frac{\pi}{\sqrt{n^2 + 1} + n}$ מונוטוני יורד. מכך ש־$\forall x \ge 0\co \sin x \le x$ נובע ש־$0 \le \sin \cl{\frac{\pi}{\sqrt{n^2 + 1} + n}} \le \frac{\pi}{\sqrt{n^2 + 1} + n} \to 0$ ולפי סונדווייץ' $\sin \frac{\pi}{\sqrt{n^2 + 1} + n} \to 0$. לכן לפי קריטריון לייבניץ $\sum (-1)^{n}\sin(\pi(\sqrt{n^2 + 1} + n))$. 
+	\end{proof}
+	
+	\exe{תהא $\an$ סדרה חיובית. נניח כי $\sumninf a_n$ מתכנס. נסמן ב־$S_n$ את סדרת הסכומים החלקיים של $\an$. נראה כי $\sumninf (-1)^{n} \frac{S_n}{n}$ מתכנס. }\begin{proof}
+		הבעיה היא שלייבניץ לא עובד כאן, כי $\frac{S_n}{n}$ לא בהכרח מונוטונית. לכל $n \in \N$ נגדיר $T_n = \sumnko (-1)^{k}S_k$. נטען שלכל $n \in \N$ קיימת קבוצה $I \subseteq [n]$ כך ש־$T_n = (-1)^{n}\sum_{i \in I} a_i$ (דרך לחסוך פירוק למקרים של זוגי/אי־זוגי). נוכיח את הטענה באינדוקציה. 
+	\begin{itemize}
+		\item עבור $n = 1$ ניקח $I = \{1\}$ ונקבל $T_1 = -S_1 = -a_1 = (-1)^{1}\sum_{i \in I}a_i$. 
+		\item יהי $n \in \N$. נניח קיום $I \in \ps([n])$ כך ש־$T_n = (-1)^{n}\sum_{i \in I}a_i$. נגדיר $\hat I = [n] \setminus I$. נקבל: 
+		\[ T_{n + 1} = T_n + (-1)^{n + 1}S_{n + 1} = (-1)^{n}\sum_{i \in I}a_i + (-1)^{n + 1}\sum_{i = 1}^{n + 1}a_i = (-1)^{n}\sum_{i \in I}(\cancel{a_i - a_i}) + (-1)^{n + 1}\sum_{i \in \hat I} a_i = (-1)^{n + 1}\sum_{i \in \hat I}a_i \]
+		וסיימנו את האינדוקציה. 
+	\end{itemize}
+	מכאן שלכל $n \in \N$ נקבל $\sof{T_n} \le \sumnio a_i = S_n$. ידוע $S_n$ מתכנסת ולכן חסומה. $\frac{1}{n}$ מונוטונית יורדת ח־$0$ ולכן לפי קיטריון דיריכלה $\sumninf (-1)^{n}\frac{S_n}{n}$ מתכנס. 
+	\end{proof}
+	
+	שאלה: ומה קורה אם $\an$ לא בהכרח חיובית? נגדיר לכל $2 \le n \in \N$ ש־: 
+	\[ S_n = \frac{(-1)^{n}}{\ln n} \]
+	לכל $n \in \N$ נגדיר $a_n = S_n - S_{n + 1}$. אז $S_n$ סדרת הסכומים החלקיים של $\an$. אז $S_n \to 0$ ולכן $\sumninf a_n$ מתכנס. אבל, $\sumninf (-1)^{n} \frac{S_n}{n} = \sumninf \frac{1}{n \ln n}$ מתבדר (כפי שהוכחנו בעבר). 
+	\subsection*{אסוציאטיביות}
+	לעשות אסוציאטיביות של סכום זה כמו לבחור תת־סדרה של סדרת הסכומים החלקיים, ואז לסכום אותה (תחשבו על זה קצת). 
+	בניסוח של המרצה, תהא $a_n$ סדרה, ונסמן ב־$S_n$ את סדרת הסכומים החלקיים שלה. אז קיבוץ איברים בסכום פירושו הסתכלות על ת''ס של $S_n$. כלומר, נגדיר סדרה עולה של טבעיים $n_1 < n_2 < \cdots$ כך ש־$S_{n_j} = \sum_{\ml = 1}^{j}\sum_{k = n_{\ml - 1}}^{n_\ml} n_k$ והיינו רוצים ש־$S_{n_j}$. 
+	
+	טענה: תהא $\an$ סדרה, נניח כי הטור $\sumninf$ מתכנס, אז לכל השמה של סוגריים על הסכום, הטור החדש מתכנס. \begin{proof}
+		נסמן ב־$S_n$ את סדרת הסכומים החלקיים של $\an$. לכל השמה של סוגריים, סדרת הסכומים החלקיים המתאימה היא ת''ס של $S_n$ ולכן מתכנסת, לאותו הגבול של $S_n$. 
+	\end{proof}
+	
+	הכיוון השני לא נכון – זה שהצלנו לפצל לסוגריים ושדברים יתכנסו, לא אומר שאנחנו מתכנס בעצמנו (יידרש מאיתנו להתכנס מתחתחילה). לדוגמה עבור $a_n = (-1)^{n}$ יש לנו: 
+	\[ (-1 + 1) + (-1 + 1) + \cdots = -1 + 1 -1 + 1 \cdots = -1 + (1 - 1) + (1 - 1) + (1 - 1) + \cdots = -1 \]
+	עם זאת, לכל $\an$ סדרה, ונניח כי קיימת השמה של סוגריים שבה: 
+	\begin{itemize}
+		\item הטור המתאים מתכנס
+		\item בתוך כל סוגריים, כל האיברים בעלי אותו הסימן
+	\end{itemize}
+	
+	\begin{proof}
+		השמת הסוגריים מגדירה ת''ס של סדרת הסכומים החלקיים $S_n$. קיים $\ml \in \R$ כך ש־$\lim_{k \to \infty} S_{n_k} = \ml$. יהי $\eg > 0$. קיים $K \in \N$ כך שלכל $k \ge K$ מתקיים $\sof{S_{n_k} - \ml} < \eg$. נתבונן ב־$N = n_K$. יהי $n \ge N$. ידוע $\lim_{t \to \infty} n_T = \infty$ ולכן קיים $t \in \N$ כך ש־$n_t \le n < n_{t + 1}$. ידוע $n \ge n_k$ לכן $t \ge K$. מכאן $\sof{S_{n_t} - \ml} < \eg$ וגם $\sof{S_{n_{t + 1}} - \ml} < \eg$. בהכרח $S_{n_{t + 1}}  - S_{n_t} = \sum_{j = n_t}^{n_t + 1}a_j$, ומההנחה זה סכום של איברים שווי סימן. בה''כ נניח שכולם חיוביים. אז: 
+		\[ \ml - \eg < S_{n_t} \le S_{n_t} + a_{n_t} + \cdots a_n \le S_{n_{t}} + a_{n_t + 1} + \cdots + a){n_{t + 1}} = S_{n_{t + 1}} < \ml + \eg \]
+		סה''כ נקבל $\sof{S_n - \ml} < \eg$. לכן $S_n \to \ml$. 
+	\end{proof}
+	
+	\subsection*{קומטטיביות}
+	אז איך ננסח במקרה של טור אינסופי קומטטיביות? באמצעות זיווגים/תמורות. תהא $\an$ סדרה ותהא $\sg \co \N_+ \to \N_+$ תמורה. אז $a_{\sg(n)}$ תקרא \textit{תמורה של $\an$}. 
+	
+	\theo{תהא $\an$ סדרה מתכנסת. אז לכל $\sg \co \N_+ \to \N_+$, אז $\hat \ps(a_{\sg(n)}) = \hat\ps(a_n)$. }
+	\rmark{סדרות זה סקאם. הסדר הוא סתם שטיק איטואיטיבי שלא באמת צריך. ההוכחה פשוטה, כי יש להן את אותה התמונה. }
+	
+	ומה לגבי טורים (כלומר תמורות של איברי הטור)? האם הטור של $\an$ ו־$a_{\sg(n)}$ מתכנסים לאותו הגבול? התשובה היא לא. ננסה להגדיר דוגמה קונקרטית. נגדיר $a_n = \frac{(-1)^{n}}{n}$, ונסמן $S_n = \sumninf a_n$. נגדיר: 
+	\[ \sg \co \N_+ \to \N_+ \quad \sg(n) = \begin{cases}
+		4 \cdot \frac{n}{3} &  n \equiv 0 \\
+		2 \cdot \frac{n + 2}{3} - 1 & n \equiv 1 \\
+		4 \cdot \frac{n + 1}{3} - 2 & n \equiv 2
+	\end{cases}\dequad \mod 3 \]
+	לדוגמה: 
+	\begin{gather*}
+		1 \mapsto 1 \quad 2 \mapsto 3 \quad 7 \mapsto 5 \quad 10 \mapsto 7 \\
+		2 \mapsto 2 \quad 5 \mapsto 6 \quad 8 \mapsto 10 \quad 11 \mapsto 14 \\
+		3 \mapsto 4 \quad 6 \mapsto 8 \quad 12 \mapsto 12 \quad 15 \mapsto 16
+	\end{gather*}
+	\lem{$\sg \co \N_+ \to \N_+$ תמורה}\begin{proof}
+		לבית
+	\end{proof}
+	נסמן $\hat S_n = \sumnko a_{\sg(k)}$. נקבל: 
+	\begin{align*}
+		S_{3n} &= \sum_{k = 1}^{3n}a_{\sg(k)} \\
+		&= \sum_{\ml = 1}^{n}a_{3\ml - 2} + a_{3\ml - 1} + a_{3\ml - 1} \\
+		&= \sum_{i = 1}^{n}(-1)^{2\ml - 1} \cdot \frac{1}{2\ml - 1} + (-1)^{4\ml - 2} \cdot \frac{1}{4\ml - 2} + (-1)^{4\ml} \cdot \frac{1}{4\ml} \\
+		&= \sum_{\ml = 1}^{n} \frac{-1}{2\ml - 1} + \frac{1}{4\ml - 2} + \frac{1}{4\ml} \\
+		&= \frac{1}{2}\sum_{\ml =1}^{n}\frac{-1}{2\ml - 1} + \frac{1}{2\ml} = \frac{1}{2}S_{2n} \to \frac{1}{2}S
+	\end{align*}
+	משום ש־$S \neq 0$ כבר הקיום של גבול חלקי שהולך ל־$\frac{1}{2}S$ מספיק לנו כדי לדעת ששתי הסדרות מתכנסות למקומות שונים. יתרה מכך, אפשר להראות שהוא מתכנס ל־$\frac{1}{2}S$ כי $\hat S_{3n + 1} = \hat S_{3n} + a_{\sg(3n + 1)}$ וכנ''ל עבור $\hat S_{3n + 2}$, ומאריתמטיקה של גבולות ובגלל ש־$a_n \to 0$ (וכן הגבולות החלקיים) וממשפט הכיסוי $\hat S$ מתכנסת ל־$\frac{1}{2}S$. ממש מצאנו סדרה שהתמורה שלה מתכנסת למקום אחר. 
+	
+	(הסיבה ש־$S$ לא מתכנס ל־$0$, כי הוא תמיד מתחת ל־$0$, ולכן הוא bound away מ־$0$. עם זאת הוא בהכרח מתכנס מלייבניץ)
+	
+	טוב, אז קומטטיביות לא עובד. ננסה למצוא תנאים שבהם זה עובד. 
+	\theo{תהא $\an$ חיובית. נניח ש־$\sumninf a_n$ מתכנס. אז כל תמורה של הגבול מתכנסת לאותו הגבול. }\begin{proof}
+		תהא $\sg \co \N_+ \to \N_+$ תמורה. נסמן $\sumninf a_n = \ml$. יהי $n \in \N$. נסמן $N = \max \Img \sg$. נקבל: 
+		\[ \sumnko a_{\sg(k)} \le \sum_{k = 1}^{N} a_k \le \ml \]
+		מכאן ש־$\sumninf a_{\sg(n)}$ מתכנס, וכמו כן $\sumninf a_n \le \ml$ (כי סדרת הסכומים החלקיים של $a_{\sg(n)}$ מונוטונית עולה וחסומה ב־$\ml$). עכשיו אפשר לדבר על ערך ההתכנסות של התמורה ולסמן $\sumninf a_{\sg(n)} = m$. מכיוון ש־$\sg\op$ תמורה, נובע (אותו הטיעון כמו קודם, אבל הפוך): 
+		\[ \ml \le \sumninf a_n \le m \]
+		לכן $m \le \ml$ וגם $\ml \le m$ ומכאן $\ml = m$. 
+	\end{proof}
+	
+	\theo{תהא $\an$ סדרה. נניח כי $\sumninf a_n$ מתכנס בהחלט. אז לכל תמורה $\sg$ של $a_n$, הטור המתאים מתכנס לאותו הסכום. }
+	זה תרגיל לבית. 
+	\begin{Theorem}[משפט רימן]
+		תהא $\an$ סדרה. נניח כי הטור $\sumninf a_n$ מתכנס בתנאי. אז לכל $-\infty \le \ag \le \bg \le + \infty$ (במובן הרחב) קיימת תמורה $\sg \co \N_+ \to \N_+$ כך ש־$S_n$ סדרת הסכומים החלקיים של $a_{\sg(n)}$, מקיימת: 
+		\[ \liminf S_n = \ag \quad \limsup S_n = \bg \]
+		
+		צימרמן למה יש לך swastika במחברת. 
+	\end{Theorem}
+	\begin{proof}
+		תהא $\an$ סדרה. 	נגדיר שתי סדרות: 
+		\[ p_n = \begin{cases}
+			a_n & a_n \ge 0 \\
+			0 & \other
+		\end{cases} \quad q_n = \begin{cases}
+			-a_n & a_n < 0 \\
+			- & \other
+		\end{cases} \]
+		הם נקראים החלק החיובי והשלילי של $\an$. לכל $n \in \N$ מתקיים $a_n = p_n - q_n$ ו־$\sof{a_n} = p_n + q_n$. די קל להראות ש־$\sumninf a_n$ מתכנס בהחלט אמ''מ $\sumninf p_n$ ו־$\sumninf q_n$  מתכנסות, כאשר צד אחד טרוויאלי מאריתמטיקה. מהצד השני, אם $\sumninf \sof{a_n}$ מתכנס, אז $\sumninf p_n + q_n$ מתכנס, וממשפט $\sumninf a_n$ מתכנס ולכן $\sumninf p_n - q_n$ מתכנס, ואז $\sumninf p_n, q_n$ שניהם מתכנסים מאריתמטיקה. 
+		
+		עתה, תהא $\an$ סדרה. נניח ש־$\sumninf a_n$ מתכנס בתנאי. אז $\sumninf p_n = +\infty$ וכן $\sumninf q_n = +\infty$ (מאי־התכנסות בהחלט) וגם $\limsi p_n = \limsi q_n = 0$ (מהתכנסות $a_n$). 
+		
+		נראה את קווי ההוכחה למשפט רימן. לא נוכיח אותו עד הסוף. במקרה ש־$\ag \le \bg$ מספרים (ולא במובן הרחב), אז קיים $n_1$ כך ש־$\sum_{i = 1}^{n_1} p_n > \bg$, ו־$n_1$ מינימלי כזה (מהסדר הטוב בטבעיים). את האיברים $p_1, \dots p_{n_1}$ נכניס לתחילת הסדרה. באופן דומה הסכום של $\sumninf q_n =   \infty$, ולכן קיים $n_2 \in \N$ כך ש־$\sum_{i = 1}^{n_1} - \sum_{n = 1}^{m_1}q_1 < \ag$. נמשיך את התמורה ע''י $q_1 \dots q_{m_1}$. ``בשלב הרקורסיה'' יש לנו רישא של $a_{\sg(1)} \dots a_{\sg(n_1)}, a_{\sg(n_1 + 1)} \dots a_{\sg(n_1 + m_1)}, \dots a_{\sg(n_{k + 1})} \dots a_{\sg(n_k + 1) + 1} \dots a_{\sg(n_{k + 1} + m_{k + 1})}$. כמו בבסיס, $\sum_{n - n_{k + 1}+1}^{\infty}p_n = \infty$ לכן קיים $n_{k + 2}$ מינימלי כך ש־: 
+		\[ \sum_{n = 1}^{\mathclap{n_{k + 1} + m_{k + 1}}} a_{\sg(n_{k + 1} + m_{k + 1})} + \sum_{\mathclap{n = n_{k + 1} + 1}}^{n_{k + 2}} p_n > \bg \]
+		ובאופן דומה קיים $m_{k + 2}$ מינימלי כך שכל הסיפור מלמעלה פחות $\sum_{n = m_{k + 1} + 1}^{m_{ k + 2}} q_n$ קטן מ־$\ag$. 
+		
+		התמורה שתתקבל תעבוד. 
+	\end{proof}
+	
+	\section*{טורי חזקות}
+	טור חֲזַקוֹת הוא הטור הפורמלי $\sum_{n = 0}^{\infty} a_nx^{n}$. השאלה היא איזה $x$־ים אני יכול להציב כך שהחרא יתכנס. זה טור חזקות סביב $0$, באופן כללי טור חזקות סביב $a \in \R$ הוא הסכום הפורמלי $\sum_{n = 0}^{\infty} a_n(x - r)^{n}$. 
+	
+	''אי אפשר שווא נח על הח''ת ולכן יש חטף פתח. מי הביא את הסגול?``. 
+	
+	''בנפרד זה חַזקות, בסומך זה חֵזקות. אבל פה זה סומך, לא נסמך``
+	
+	(פורמלי = מה שמגדיר אותו זה המקדמים, לא הפונקציה. כמו בלינארית)
+	
+	\theo{תהא $\an$ סדרה. יהי $x_0 \in \R$, ונניח כי $\sum_{n =0}^{\infty}a_n(x_0 -a)^{n}$ מתכנס. אז לכל $x \in \R$ אם $\sof{x - a} < \sof{x_0 - a}$ אז $\sum_{n = 0}^{\infty}a_n(x - a)^{n}$ מתכנס. }
+	
+	\begin{proof}
+		יהי $x \in \R$. ניח $\sof{x - a} < \sof{x_0 - a}$. ואז $\sumnoinf a_n(x_0 - a)^{n}$ מתכנס ולכן $\limsi a_0(x_0 - a)^{n} = 0$. בפרט היא חסומה ע''י $M$. נקבל: 
+		\[ \sumnoinf \sof{a_n(x - a)^{n}} = \sumnoinf \sof{a_n(x_0 - a)}\sof{\frac{x - a}{x_0 - a}} \le M \sumnoinf \sof{\frac{x - a}{x_0 - a}}^{n} \]
+		הטור מימין הוא טור גיאומטרי עם מנה קטנה מ־$1$ ולכן מתכנס. לכן $\sumnoinf a_n(x - a)^{n}$ מתכנס בהחלט ובפרט מתכנס. 
+	\end{proof}
+	
+	\begin{Theorem}[משפט אבל]
+		תהא $\an$ סדרה ויהי $a \in \R$. קיים מספר יחיד $R \ge 0$ כך ש־
+		\begin{enumerate}
+			\item \hfil $\displaystyle \forall x \in (a - R, a + R) \co \sumnoinf a_n(x - a)^{n} \ \text{\en{converges}}$
+			\item \hfil $\displaystyle x \notin [a - R, a + R] \co \sumnoinf a_n(x - a)^{n}  \ \text{מתבדר}$
+		\end{enumerate}
+		החלק הזה נקרא \textit{רדיוס ההתכנסות} של הטור, והתחום נקרא \textit{תחום ההתכנסות}. 
+	\end{Theorem}
+	
+	
+	
+	
+	\ndoc
+\end{document}
