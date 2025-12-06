@@ -1,4 +1,4 @@
-\RequirePackage{amsmath,bm,amsfonts}
+\RequirePackage{amsmath,bm,amsfonts,accents}
 
 % Letters shortcuts
 	\newcommand \N         {\mathbb{N}}
@@ -7,6 +7,7 @@
 	\newcommand \Q         {\mathbb{Q}}
 	\newcommand \C         {\mathbb{C}}
 	\newcommand \K         {\mathbb{K}}
+	\newcommand \PP        {\mathbb{P}}
 	
 	\newcommand \ml        {\ell}
 	\newcommand \mj        {\jmath}
@@ -327,9 +328,19 @@
 	\newcommand \limasi      {\lim_{n \to \inft} a_n}
 	\newcommand \limbsi      {\lim_{n \to \inft} b_n}
 
-	\newcommand \sumkinf {\sum_{k = 1}^{\inft}}
-	\newcommand \sumninf {\sum_{n = 1}^{\inft}}
-	\newcommand \sumiinf {\sum_{i = 1}^{\inft}}
+	\newcommand \sumkinf      {\sum_{k = 1}^{\inft}}
+	\newcommand \sumninf      {\sum_{n = 1}^{\inft}}
+	\newcommand \sumiinf      {\sum_{i = 1}^{\inft}}
 
-	\newcommand \toinf    {\rrr{n \to \inft}}
-	\newcommand \climsi   {\lim_{\mathclap{n \to \infty}}}
+	\newcommand \toinf        {\rrr{n \to \inft}}
+	\newcommand \climsi       {\lim_{\mathclap{n \to \infty}}}
+
+
+	\DeclareMathOperator \RSM {RSM}
+	\DeclareMathOperator \QM  {QM}
+	\DeclareMathOperator \AM  {AM}
+	\DeclareMathOperator \GM  {GM}
+	\DeclareMathOperator \HM  {HM}
+
+	\newcommand \ubar[1]      {\underaccent{\bar}{#1}}
+	\newcommand \hps          {\hat \ps}

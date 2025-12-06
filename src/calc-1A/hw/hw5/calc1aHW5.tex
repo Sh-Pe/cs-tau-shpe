@@ -1,0 +1,269 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+
+\newcommand\midmath[1] {\hfil $\displaystyle #1 $}
+\newcommand\ank   {{a_{n_k}}}
+\newcommand\anj   {{a_{n_j}}}
+\newcommand\bnk   {{b_{n_k}}}
+\let\disty\displaystyle
+
+\author{שחר פרץ}
+\title{חדו''א 1א $\sim$ \textit{תרגיל בית 5}}
+\begin{document}
+	\maketitle
+	\section{}
+	נמצא את כל הגבולות החלקיים של הסדרות הבאות: 
+	\begin{enumerate}[(A)]
+		\item \midmath{\sqrt[n]{4^2 + 2^{n}}}
+		
+		נקבל מסנדוויץ': 
+		\[ 2 = 2^{\frac{n}{n}} = \sqrt[n]{2^{n}} \le \sqrt[n]{4^{2} + 2^{n}} \overset{x > 4}{\le} \sqrt[n]{2 \cdot 2^{n}} = \sqrt[n]{2} \cdot 2^{\frac{n}{n}} = 2 \cdot \sqrt[n]{2} \to 2 \cdot 1 = 2 \]
+		ש־$\sqrt[n]{16 + 2^{n}} \to 2$ ובפרט הגבול החלקי הוא $2$ ויחיד. 
+		\item \midmath{\frac{n - 1}{n + 1}\sin\cl{\frac{\pi n}{3}}}
+		
+		נבחין ש־: 
+		\[ \sin\cl{\frac{\pi}{3}n} = \begin{cases}
+			\sin 0 & n \equiv 0 \\
+			\sin 1 & n \equiv 1 \\
+			\sin 2 & n \equiv 2
+		\end{cases} \bmod 3 \]
+		עוד נבחין ש־: 
+		\[ \limsi \frac{n - 1}{n + 1} = \limsi \frac{1 - \frac{1}{n}}{1 + \frac{1}{n}} = \frac{1}{1} = 1 \]
+		ולכן: 
+		\[ i \in \{0, 1, 2\} \co a_{3n + i} = \frac{3n - 1}{3n + 1} \cdot \underbrace{\sin (3n + i)}_{\sin i} \toinf 1 \cdot \sin i = \sin i \]
+		ממשפט הכיסוי, משום ש־${3n}, {3n + 1}, {3n + 2}$ מכסים את $\N$, נקבל שהגבולות החלקיים היחידים הם $\sin 0, \sin 1, \sin 2$. 
+		
+		\item \midmath{\frac{(1-(-1)^{n})2^{n} + 1}{2^{n} + 3}}
+		
+		נבחין ש־: 
+		\[ (1 - (-1)^{n}) = \begin{cases}
+			0 & n \in \Neven \\
+			2 & n \in \Nodd
+		\end{cases} = 2I_{\Nodd} \]
+		כאשר $I_{X}$ האינדיקטור על הקבוצה $X$. 
+		עוד נבחין ש־: 
+		\[ \limsi \frac{2^{n} + 1}{2^{n} + 3} = \limsi \frac{1 + \frac{1}{2^{n}}}{1 + \frac{3}{2n}} = \frac{1}{1} = 1 \]
+		סה''כ: 
+		\[ i \in \{0, 1\}\co a_{2n + i} = \frac{2^{2n} + 1}{2^{2n} + 3}(1 - (-1)^{2n + i}) \toinf 1 \cdot 2I_{\Nodd} = 2I_{\Nodd} \]
+		סה''כ נקבל ש־$a_{2n} \to 0, a_{2n + 1} \to 2$. בגלל ש־$2n, 2n + 1$ מכסים את $\N$ סה''כ הגבולות החלקיים היחידים הם $0, 2$
+	\end{enumerate}
+	
+	\section{}
+	תהי $\an$ סדרה המקיימת $\hps (\an) = \{-1, 3\}$. נגדיר סדרה חדשה $b_n = \sof{a_n - 1}$. נוכיח ש־$\displaystyle{\smash{\climsi b_n = 2}}$. 
+	
+	\begin{proof}
+		למה: כל ת''ס $\ank$ מתכנסת של $\an$ מקיימת $\sof{\ank - 1} \to 2$. יהי $a_{n_k}$ תת־סדרה של $\an$ כך ש־$\limsi \ank = -1$. נראה ש־$\limsi \sof{\ank - 1} = 2$. זה נובע ישירות מאריתמטיקה של גבולות וממשפטים שהוכחנו בכיתה (אם $\limsi c_n = \ml$ אז $\limsi \sof{c_n} = \sof{\ml}$). באופן דומה בעבור $\ank$ ת''ס של $\an$ כך ש־$\limsi \ank = 3$, נקבל ש־$\limsi \sof{\ank - 1} = 2$ מאריתמטיקה של גבולות. סה''כ, תהי $\ank$ ת''ס מתכנסת של $\an$, אז בהכרח $\ank \to -1 \lor \ank \to 3$ מהנתון $\hps(\an) = \{-1, 3\}$, ואת שני המקרים האלו כיסו והוכחנו שעבורם $\sof{\ank - 1} \to 2$. 
+		
+		עתה נפנה להראות הכלה דו־כיוונית. 
+		\begin{itemize}
+			\item יהי $m \in \hps(\bn)$. מכאן שקיימת $\bnk \to m$ ת''ס מתכנסת של $\bn$. נתבונן ב־$\ank$, אז קיימת לה ת''ס מתכנסת $\ank_j \to \ml$ כלשהי. אזי $\bnk_j = \sof{\ank_j - 1}$ בהכרח מכנסת ל־$2$, מהלמה. סה''כ $\hps(b_n) = 2$. 
+			\item תהי $\ank \to -1$ ת''ס של $\an$ שבהכרח קיימת מהנתון $\hps(\an) = \{-1, 3\}$. דהיינו $\bnk = \sof{\ank - 1} \to 2$ מהלמה, כלומר $2$ אכן גבול חלקי של $\bn$, ומכאן ש־$\{2\} \in \hps{\bn}$
+		\end{itemize}
+		סה''כ הראינו ש־$\hps{\bn} = \{2\}$ כלומר $\displaystyle{\smash{\climsi b_n = 2}}$. כדרוש. 
+	\end{proof}
+	\section{}
+	\begin{enumerate}[(A)]
+		\item תהי $M \subseteq \R$ קבוצה סופית ולא ריקה. נמצא $\an$ כך ש־$\ps(\an) = M$. 
+		\begin{proof}[בנייה]
+			נסמן $s = \sof{M} - 1$. 	משום ש־$M$ קבוצה סופית, אז $<_\R$ סדר טוב עליה, ולכן נוכל למספר את $M$ לפי $M_0, M_2 \dots M_s$ כך ש־$M_i < M_j \iff i < j$. נגדיר את הסדרה הבאה: 
+			\[ a_n = M_{n \bmod s} \]
+			נבחין שהיא מוגדרת היטב שכן $\bmod s \in [n]$. עוד נבחין, ש־$\ank\!\!$ עבור $n_k = i + k \cdot s$ היא ת''ס קבועה ב־$M_i$ לכל $i \in [n]$, ומכאן ש־$M_i \in \ps(\an)$. כלומר, $M \subseteq \ps(\an)$. יהי $x \in \ps(\an)$, ונניח בשלילה $x \notin M$, אזי משום ש־$M$ סופית אז $\min\{\sof{M_i - x} \mid i \in [n] \}$ מוגדר היטב ואז ה־$i$ עבורו המרחק $\sof{M_i -x}$ מינימלי יבחר. נבחין שעבורו $M_i < x < M_{i + 1}$ או ש־$M_{i  - 1} < x < M_i$. יהי נבחר $\eg = \frac{M_i - x}{2}$, נבחר $N = 1$, ועתה נראה שלכל $n \ge N$ בהכרח $\sof{a_n - x} > \eg$. נניח בשלילה ש־$\sof{a_n - x} \le \eg$, אז סתירה למינימליות של $M_i$ וסיימנו. מכאן ש־$x$ איננו גבול וקיבלנו סתירה גם כאן. כלומר $\ps(\an) \subseteq M$, סה''כ הראינו הכלה דו־כיוונית. 
+			
+		\end{proof}
+		\item תהי $x_n$ סדרה. נבנה סדרה $\bn$ כך ש־$\Img x_n$ גבולות חלקיים שלה. 
+		\begin{proof}[בנייה]
+			ניעזר בבנייה דומה לזו של הסעיף הקודם: 
+			\[ a_n \]
+		\end{proof}
+	\end{enumerate}
+	\section{}
+	נפריך את הטענה הבאה: אם $\an$ סדרה כך שלכל $\N \ni p > 1$ הת''ס $(a_{kp})_{k = 1}^{\inft}$ מתכנסת, אז $\an$ מתכנסת. 
+	\begin{proof}[הפרכה]
+		נסמן ב־$\PP$ את קבוצת הראשוניים. נתבונן באינדיקטור $I_n$ ביחס ל־$\PP$, הוא סדרה ממשית. נבחין שלכל $\N \ni p > 1$ מתקיים ש־$a_{pk}$ מתחלק ב־$p$ וב־$k$ וב־$1$, לכל $k > 1$, דהיינו $pk$ איננו ראשוני, ומכאן שהסדרה בהכרח קבועה ב־$0$ לכל $k > 1$, דהיינו $a_{pk} \to 0$. נניח בשלילה שהטענה נכונה, ומכאן ש־$a_{pk}$ מתכנסת. אזי בסביבה $(-0.5, 0.5)$ יש כמות אינסופית של מספרים ומחוץ אליה כמות סופית של מספרים. מהגדרת האינדיקטור, יש כמות סופית של ראשוניים, וסתירה. 
+	\end{proof}
+	
+	\section{}
+	תהי $\an$ סדרה חיובית כך ש־$\disty \climsi a_na_{n + 1} = 1$. נוכיח שאם $L> 0$ גבול חלקי של $\an$ אז $\frac{1}{L}$ גבול חלקי גם הוא. 
+	
+	\begin{proof}
+		נוכיח לפי הגדרה. יהי $\eg > 0$. יהי $N \in \N$. מהיות $L$ גבול חלקי, קיים $n \in \N$ כך ש־$\sof{a_n - L} < \eg$. אזי ידוע קיום $N_1$ כך שלכל $n \ge N_1$ מתקיים $\sof{a_n \cdot a_{n + 1} - 1} < \eg a_n - \eg$. 
+		\[ \sof{a_na_{n + 1} - 1} < \eg a_n - \eg \implies a_{n + 1} <\frac{(\eg a_n - \eg) \pm 1}{a_{n + 1}} \]
+		לבינתיים, נטפל במקרה בו $L > 1$: 
+		\[ \sof{a_{n + 1} - \frac{1}{L}} < \sof{\frac{(\eg a_n - \eg) \pm 1}{a_n} - \frac{1}{L}} = \frac{(\eg a_n - \eg) L + \sof{L - a_n}}{a_n L} \overset{L > 1}{<} \frac{\eg a_n - \eg + \sof{L - a_n}}{a_nL} < \frac{\eg a_n \cancel{- \eg + \eg}}{L a_n} = \frac{\eg}{L} < \eg \]
+		כנדרש. כדי להשמיד את הערכים המוחלטים השתמשנו בחיוביות. במקרה ו־$L < 1$, נסמן $m = \frac{1}{L}$, ואז $m$ גבול חלקי ש־$\frac{1}{\an}$, כלומר $\frac{1}{m}$ גבול חלקי של $\frac{1}{\an}$, וסה''כ $m$ גבול חלקי של $\an$ כלומר $\frac{1}{L}$ גבול חלקי של $\an$ וסיימנו (זאת מאריתמטיקת גבולות). 
+		
+		% TODO: to improve the last part
+	\end{proof}
+	
+	\section{}
+	נוכיח ונפריך טענות על סדרות כלליות. 
+	\begin{enumerate}[(A)]
+		\item אם סדרה חסומה כמעט תמיד, אז היא חסומה. \begin{proof}[הפרכה]
+			נתבונן בסדרה הבאה: 
+			\[ a_n = \begin{cases}
+				0 & n \in \Neven \\
+				n & n \in \Nodd
+			\end{cases} \]
+			נבחין שלכל $N$, עבור $2N > N$ בהכרח $a_{2N} = 0 < 1$, כלומר $1$ חוסם את $a_n$ כמעט תמיד. עם זאת, יש לה ת''ס $a_{2n + 1} = 2n + 1 \to \infty$, משמע היא איננה חסומה, וזו סתירה. 
+		\end{proof}
+		\item אם סדרה חסומה באופן שכיח, היא חסומה. \begin{proof}
+			נוכיח. תהי $\an$ סדרה שנניח שהיא חסומה ע''י $M$ באופן שכיח. אזי קיים $N \in \N$ כך ש־$\forall n \ge N \co a_n < M$. נבחין שהקבוצה $[N]$ סופית. לכן, המקסימום הבא מוגדר היטב: 
+			\[ \tl M = \max(\{a_{n} \mid n \in [N]\} \uplus \{M\}) = \max\{a_{1}, a_2, \dots a_{N}, M\} \]
+			נוכיח שהוא חסם עליון. יהי $n \in \N$. 
+			\begin{itemize}
+				\item אם $n < N$, אז מהגדרת מקסימום $a_n \le \tl M$. 
+				\item אם $n > N$, אז מהגדרת מקסימום ומהנתון $a_n \le M \le \tl M$. 
+			\end{itemize}
+			סה''כ כיסינו את כל המקרים וסיימנו. 
+		\end{proof}
+		\item אם סדרה עולה באופן שכיח אז היא מתכנסת במובן הרחב. \begin{proof}[הפרכה]
+			ניעזר באותה הסדרה שהשתמשנו בה בסעיף (א): 
+			\[ a_n = \begin{cases}
+				(-1)^{\frac{n}{2}} & n \in \Neven \\
+				\frac{n - 1}{2} & n \in \Nodd
+			\end{cases} \]
+			יש לה צ''ס הוא $a_{2n} = (-1)^{n}$ שראינו מתכנס בשום מובן, ומכאן שאיננה מתכנסת. עם זאת, הת''ס $a_{2n + 1} = n$ מונוטוני עולה, ומהגדרת ת''ס מתקבל ש־$\an$ עולה באופן שכיח. סתירה. 
+		\end{proof}
+		\item נוכיח שאם סדרה עולה כמעט תמיד אז היא מתכנסת במובן הרחב. \begin{proof}
+			נפרק למקרים. 
+			\begin{itemize}
+				\item אם $\an$ חסומה, אז ממשפט וויראשטראס הראשון היא מתכנסת ל־$\sup \Img \an$ וסיימנו. 
+				\item אם $\an$ איננה חסומה, לכל $M \in \R$ קיים $n \in \N$ כך ש־$\sof{a_n} > M$. בפרט עבור $M = 0$ נקבל קיום $N_1 \in \N$ כך ש־$a_{N_1} > 0$. סה''כ לכל $M \in \R$ נוכל לבחור $N_2$ כך ש־$\sof{a_{N_2}} > M$ וכן $N = \max\{N_1, N_2\}$ יקיים ממונוטוניות ש־$a_{N_2} > a_{N_1} > 0$ כלומר $a_{N_2} = \sof{a_{N_2}}$ ואז ממונוטוניות שוב $\forall n \ge N_2 \co a_{n} \ge a_{N_2} > M$ וסיימנו מהגדרת שאיפה לאינסוף. 
+			\end{itemize}
+		\end{proof}
+		\item נראה שאם סדרה היא מתכנסת אז היא מונוטונית כמעט תמיד. \begin{proof}
+			למעשה הראינו בכיתה ש־(1) כל סדרה מתכנסת היא חסומה (כי יש אינסוף איברים בסביבה כלשהי סביב הגבול, וכמות סופית מחוץ לה, ואז אפשר לקחת את המקסימום) ו־(2) לכל סדרה חסומה יש ת''ס מונוטונית (זה היה שלב בהוכחה של בולצאנו־וויראשטראס), וזה מהגדרה מסיים את ההוכחה מהגדרת ת''ס. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהי $\an$ סדרה של איברים חיוביים כך ש־$\limsup a_n \cdot \limsup \frac{1}{a_n} = 1$. נוכיח ש־$\an$ מתכנסת. 
+	
+	\begin{proof}
+		נוכיח מהיות $\limsup, \liminf$ מקסימום ומינימום בקבוצת הגבולות החלקיים, ש־$\limsup \frac{1}{a_n} = \frac{1}{\liminf a_n}$. נסמן $\limsup \frac{1}{a_n} = s$. נבחין שקיימת $\frac{1}{\ank}$ ת''ס של $\frac{1}{\an}$ כך ש־$\frac{1}{\ank} \to s$ בהכרח, ושזה הגבול המקסימלי, כלומר לכל $\frac{1}{\anj}$ מתקיים $\limsi \frac{1}{\anj} \ge \limsi \frac{1}{\ank}$. מאריתמטיקה של גבולות נקבל $\limsi \anj > \limsi \ank$, ומשום ש־$\ank \!\!\to \frac{1}{\lim \frac{1}{\ank}} = \frac{1}{s}$ אזי $\frac{1}{s}$ גבול עליון של $\an$. סה''כ קיבלנו: 
+		\[ \limsup a_n = \frac{1}{s} = \frac{1}{\limsi \frac{1}{\ank}} = \frac{1}{\liminf a_n} \]
+		מכאן, נקבל: 
+		\[ 1 = \limsup a_n \cdot \limsup \frac{1}{a_n} = \frac{\limsup a_n}{\liminf a_n} \implies \liminf a_n = \limsup a_n \]
+		כלומר הקבוצה $\ps(\an)$ חסומה בין שני איברים שווים, ומהיותה לא ריקה, בהכרח יש בה איבר אחד. מכאן שיש גבול חלקי יחיד, כלומר $\an$ מתכנסת אליו, וסיימנו. 
+	\end{proof}
+
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נוכיח שסדרה $\an$ איננה חסומה מלעיל אמ''מ $\limsup a_n = \infty$. \begin{proof}נראה גרירה דו־כיוונית. 
+			\begin{itemize}
+				\item[$\implies$] נניח $\limsup a_n = \infty$. משום ש־$\limsup$ הוא בפרט מקסימלי (ולא רק סופרמום) כמו שהוכחנו בהרצאה, אזי קיים גבול חלקי $a_{n_k} \to \infty$. בפרט, בעבור $M > 0$ כלשהו, בהכרח קיים $k \in \N$ כך ש־$\sof{\ank} = \ank > M$, כלומר עבור $j= n_k$ מתקיים $\sof{a_j} > M$, כלומר הראינו את השלילה של $\an$ חסום מלעיל. 
+				\item[$\impliedby$]נניח $\an$ איננה חסומה מלעיל, ונראה ש־$\limsup a_n = \infty$. נגדיר את הפונקציה הבאה: 
+				\[ F \co \N \to \ps\cl{\Img \an} \quad F(n) = \{a_k \in \Img a_n \co a_k > n\} \]
+				נבחין שהקבוצות בתמונתה אינן ריקות, ישירות מהיות $\an$ איננה חסומה מלעיל (נקבל שלכל $M \in \R$ קיים $k$ כך ש־$a_k > M$, ובפרט עבור $m = n$ לכל $n  \in \N$ נקבל ש־$\exists a_k \in \Img a_n \land a_k > n$ כלומר $a_k \in f(n)$). מכאן שקיימת ל־$F$ פונקציית בחירה $f \co \N \to \Img \an$ כלשהי. נבחין ש־$f$ פרמוטציה על ת''ס של $\ank$ כלשהי (כך ש־$\Img \ank = \Img f$, כי $\Img f \subseteq \Img \an$). נבחין שידוע ש־$f \to \infty$ שכן $f > n \to \infty$ ואז משפט הפיצה, והראינו בהרצאה שפרמוטציה לא משנה שאיפה לאינסוף, כלומר $\ank \to \infty$ גם כן. סה''כ מצאנו ת''ס של $\an$ כך ש־$\ank \to \infty$ דהיינו $\infty \ge \limsup \an \ge \infty$ כלומר $\limsup \an = \infty$. 
+			\end{itemize}\envendproof
+		\end{proof}
+		\item מצאתי שני תנאים, אני לא סגור מי מהם אתם רוצים אז אוכיח את שניהם. אף אחד מהתנאים לא פועל במובן הרחב, בשביל זה צריך לפרק למקרים. 
+		\begin{align}
+			&L = \liminf a_n = \inf \ps (\an) \\
+			\iff &(\forall \eg > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n - \eg < L \land a_n \ge L) \\
+			\iff &\big((\exists N \in \N .\, \forall n \ge N \co a_n \ge L) \land (\forall N \in \N .\, \exists n \ge N \co a_n \le L)\big)
+		\end{align}
+	\end{enumerate}
+	
+	\section{}
+	נוכיח את קריטריון אבל להתכנסות טורים. נוכל להשתמש בקריטריון דיריכלה להתכנסות טורים. 
+	\begin{proof}
+		יהיו $\an, \bn$ סדרות. נניח ש־$\an$ מתכנסת ל־$\ml$ ומונוטונית, ונניח ש־$\sum b_n$ מתכנס. ראשית כל, נתעסק במקרה בו $\ml = 0$. במקרה זה $\an$ סדרה מונוטונית שמתכנסת ל־$0$. נפצל למקרים. 
+		\begin{itemize}
+			\item אם $a_1 = 0$ אז בהכרח $a_n = 0$ קבועה ו־$\sumninf b_na_n = \sumninf 0 = 0$ וסיימנו. 
+			\item אם $a_1 > 0$, אז נניח בשלילה שהיא מונוטונית עולה ואז $a_n > a_1 > 0$, כלומר עבור $\eg = \frac{1}{2}a_1$ נקבל סתירה לקיום $N \in \N$ כך שלכל $n \ge N$ מתקיים $a_n > a_1 = \sof{a_1 - 0} > \frac{\eg}{2}$. 
+			
+			סה''כ $\an$ מונוטונית חיובית יורדת ל־$0$, ומהיות $\sumninf b_n$ מתכנס, הסדרה $\bn$ בפרט חסומה, וסה''כ סיימנו מקריטריון דיריכלה. 
+			
+			\item אם $a_1 < 0$, אז נניח בשלילה שהיא מונוטונית יורדת ואז $a_n < a_1 < 0$, כלומר עבור $\eg = \frac{1}{2}a_1$ נקבל סתירה לקיום $N \in \N$ כך שלכל $n \ge N$ מתקיים $-a_n > -a_1 = \sof{a_1 - 0} > \frac{\eg}{2}$. 
+			
+			סה''כ $\an$ מונוטונית שלילית עולה ל־$0$. נגדיר $a'_n = -a_n$ מתקבל ש־$a'_n$ מונוטונית חיובית יורדת ל־$0$, ומהיות $\sumninf b_n$ מתכנס, הסדרה $\bn$ בפרט חסומה, ואז $\sumninf a'_n b_n$ מתכנס ל־$\ml$ כלשהו מקריטריון דיריכלה, כלומר הטור $\sumninf a_n b_n = -\sumninf a'_nb_n = -\ml$ מוגדר היטב וסיימנו. 
+		\end{itemize}
+		
+		עתה נתעסק במקרה הכללי בו לא בהכרח $\ml = 0$. נוכל להגדיר את $c_n = a_n - \ml$, ונקבל מאריתמטיקה ש־$c_n \to 0$. אז, $\sum c_n b_n$ מתכנס מהטענה הקודמת, ונסמן את האיבר אליו הוא מתכנס ב־$q$. ידוע ש־$\sumninf b_n$ מתכנס, ואת האיבר אליו הוא מתכנס נסמן ב־$p$. נקבל: 
+		\[ \sumninf a_nb_n = \sumninf (a_n - \ml)b_n + \ml b_n \seq \sumninf \cl{(a_n - \ml)b_n} + \sumninf \ml\cl{b_n} = \sumninf c_nb_n + \ml\sumninf b_n = q + \ml p \in \R \]
+		(כאשר השוויון $\seq$ נכון רק כי האגף הימני מוגדר היטב)
+	\end{proof}
+	
+	\section{}
+	נוכיח שלכל $\ag, \bg \in \R$ ולכל $n \in \N$, אם $\sin\cl{\frac{\bg}{2}} \neq 0$ אז מתקיים: 
+	\[ \sumnk \sin\cl{\ag + \bg k} = \frac{\sin \cl{\frac{(n + 1)\bg}{2}}\sin\cl{\ag + \frac{n\bg}{2}}}{\sin\cl{\frac{\bg}{2}}} \]
+	\begin{proof}
+%		ראשית כל, נמצא את $\sin(n \bg)$ ואת $\cos(b \bg)$. טענה: 
+%		\[ \sumnko \sin k \ag = \frac{\cos \frac{1}{2}\ag - \cos\cl{\cl{n + \frac{1}{2}}\ag}}{2\sin\cl{\frac{1}{2}\ag}} \]
+		נוכיח באינדוקציה: 
+		\[ \sumnk \sin(k \ta) = \frac{\cos\cl{\frac{\ta}{2}} - \cos\cl{\cl{n + \frac{1}{2}}\ta}}{2 \sin\cl{\frac{\ta}{2}}} \]
+		עתה, נוכיח באינדוקציה: 
+		\[ \sumnk \cos(k \ta) = \frac{\sin\cl{\frac{\ta}{2}} + \sin\cl{\cl{n + \frac{1}{2}}\ta}}{2 \sin\cl{\frac{\ta}{2}}} \]
+		\begin{itemize}
+			\item \textbf{בסיס: }
+		\end{itemize}
+		סה''כ, קיבלנו: 
+		\begin{multline*}
+			\sumnk \sin(\ag + \bg k) = \sin \ag \cdot \sumnk \cos(\bg k) + \cos \bg \cdot \sumnk \sin(\ag k) \\ = 
+			  \frac{
+				\cos \ag \cl{\cos\cl{\frac{\bg}{2}} - \cos\cl{\cl{n + \frac{1}{2}}\bg}}
+			}{2 \sin\cl{\frac{\bg}{2}}}
+			+ \frac{
+				\sin \bg \cl{\sin\cl{\frac{\ag}{2}} + \sin\cl{\cl{n + \frac{1}{2}}\ag}}
+			}{2 \sin\cl{\frac{\ag}{2}}} \\
+			= -\frac{\cos \ag \cdot {\sin\cl{(n + 1)\bg}\sin\cl{n\bg}}}{\sin\cl{\frac{\bg}{2}}} + \frac{\sin \bg \cdot \cos\cl{(n + 1)\ag}\sin\cl{n\ag}}{\sin\cl{\frac{\ag}{2}}}
+		\end{multline*}
+		
+		לשדחיגכךלחדשגכ ךעדיף לוותר
+		
+%		\begin{itemize}
+%			\item \textbf{בסיס: }עבור $n = 0$, נקבל: 
+%			\[ \sum_{k = 0}^{0}\sin(\ag + k \bg) = \sin (\ag + 0 \bg) = \frac{\cancel{\sin\cl{\frac{0 + 1}{2}\bg}} \cdot \sin\cl{\ag + \frac{0 \cdot \bg}{2}}}{\cancel{\sin\cl{\frac{\bg}{2}}}} \]
+%			\item \textbf{צעד: }נפרק את הביטוי הבא בנפרד: 
+%			נניח באינדוקציה נכונות על $n$, ונוכיח בעבור $n + 1$. נקבל ש־: 
+%			\begin{multline*}
+%				\sum_{k = 0}^{n + 1}\sin(\ag + k\bg) = \sin(\ag + (n + 1)\bg) + \sumnko \sin(\ag + k \bg) = \frac{\sin(\ag + (n + 1)\bg)\sin{\frac{\bg}{2}}}{\sin\cl{\frac{\bg}{2}}} + \frac{\sin \cl{\frac{(n + 1)\bg}{2}}\sin\cl{\ag + \frac{n\bg}{2}}}{\sin\cl{\frac{\bg}{2}}} \\
+%				\frac{
+%						\cl{\sin\cl{\frac{(n + 1)\bg}{2}}\cos\cl{\frac{\bg}{2}} + \cos\cl{\frac{n + 1)\bg}{2}}\sin\cl{\frac{\bg}{2}}}
+%						\cdot \cl{\sin \cl{\ag + \frac{n\bg}{2}}\cos\cl{\frac{\bg}{2}}
+%						 + \cos\cl{\ag + \frac{n\bg}{2} }\sin\cl{\frac{\bg}{2}}}
+%					}{\sin\cl{\frac{\bg}{2}}}
+%			\end{multline*}
+%		\end{itemize}
+		
+		
+%		\begin{itemize}
+%			\item בסיס $n = 1$, ואכן מתקיים: 
+%			\[ \sin(\ag) = \frac{\cos\cl{\frac{1}{2}\ag} - \cos{1.5\ag}}{2\sin\cl{\frac{1}{2}\ag}} = \frac{\cos 0.5\ag - (\cos (0.5\ag) \cos \ag - \sin(0.5\ag) \sin \ag)}{2\sin(0.5\ag)}  = \cos(0.5\ag)(1 - \cos \ag) + \frac{1}{2}\sin \ag \]
+%			\[ = \sqrt{\frac{(1 + \cos \ag)(1 - \cos \ag)^2}{2}} = \sqrt{\frac{1 - \cos \ag^2}{2}} \]
+%			נדאג לזה אחכ
+%			\item צעד: 
+%			נבחין ש־:  
+%			\[ \cos((n + 0.5)\ag) - \cos n \ag \cos 0.5\ag = \sin n \ag \sin 0.5\ag \]
+%			\[ \sum_{i = 1}^{n + 1}\sin (k\ag) = \sin n\ag +  \sum_{n = 1}^{n} \sin k \ag = \frac{2\sin (n \ag) (\sin \frac{1}{2}\ag) + \cos \frac{1}{2}\ag - \cos\cl{\cl{n + \frac{1}{2}}\ag}}{2 \sin\cl{\frac{1}{2}\ag}} \]
+%		\end{itemize}
+%		מכאן, באמצעות 
+%		\[ \sumnko \cos n \ag = \frac{-\sin \frac{1}{2}\ag + \sin\cl{\cl{n + \frac{1}{2}}\ag}}{2\sin\cl{\frac{1}{2}\ag}} \]
+	\end{proof}
+	
+	\section{}
+	נוכיח או נפריך את התכנסות הסדרות הבאות באמצעות קריטריון קושי. 
+	\begin{enumerate}[(A)]
+		\item נפריך את התכנסות $a_n = (-1)^{n}$. \begin{proof}
+			עבור $1 = \eg > 0$, ויהי $N \in \N$, אזי עבור $n = N + 1, m = N$ מתקיים: 
+			\[ \sof{a_n - a_m} = \sof{(-1)^{N} - (-1)^{N + 1}} = \sof{1 - (-1)} = 2 > 1 = \eg \]
+			וזו סתירה לקריטריון קושי. סה''כ הראינו את הטענה ההפוכה לקיטריון קושי. 
+		\end{proof}
+		\item נפריך את התכנסות $a_n = n + \frac{(-1)^{n}}{n}$. \begin{proof}
+			עבור $1 = \eg > 0$, ויהי $N \in \N$, נסמן ב־$N'$ את ה־זוגי מבין $N, N + 1$, ואז עבור $n = N'$ ו־$m = N' + 4$, מתקיים: 
+			\[ 1 = \eg > \sof{a_n - a_m} = \sof{N' + 4 + \frac{(-1)^{N' + 4}}{N' + 4} - N' + \frac{(-1)^{N}}{N'}} = \sof{4 + \frac{1}{N'} - \frac{1}{N' + 4}} > 4 \]
+			כלומר $1 > 4$, וסתירה. סה''כ הראינו את הטענה ההפוכה לקיטריון קושי. 
+		\end{proof}
+		\item נוכיח את התכנסות $a_n = \frac{n + 1}{4n^{2} + 3}$. \begin{proof}לכל $n$: 
+			\[ \frac{n}{4n^{2} + 3} - \frac{n + 1}{4(n + 1)^{2} + 3} = \frac{4n^{3} + 8n^{2} + 7n - 4n^{3} - 3n - 4n^{2} - 3}{16n^{4} + 32n^{3} + 10n^{2} + 24n + 21}
+			= \frac{4n^{2} + 4n - 3}{16n^{4} + 32n^{3} + 10n^{2} + 24n + 21} > 0 \]
+			כלומר, זוהי מונוטונית יורדת עם הפרשים הולכים וקטנים. ידוע שקיים $N_1$ כך ש־$32n^{3} + 10n^{2} + 24n + 21 < n^{4}$ לכל $n \ge N_1$. גם קיים $N_2$ כך ש־$\forall n \ge N_2 \co 4n^2 + 4n - 3< 4n^2$. אז עבור $N = \max\ccb{\sqrt{\frac{4}{17}\eg}, N_1, N_2}$, נקבל, לכל $n \in \N$ ו־$k > 0$ ממונוטוניות: 
+			\[ \sof{a_{n + k} - a_n} = a_n - a_{n + k} > a_n - a_{n + 1} = \frac{4n^{2} + 4n - 3}{16n^{4} + 32n^{3} + 10n^{2} + 24n + 21} > \frac{4n^{2} + 4n - 3}{17n^{4}} > \frac{4n^{2}}{17n^{4}} = \frac{4}{17n^{2}} > \frac{4}{17 \cdot \frac{4}{17}\eg} = \eg \]
+			סה''כ מקריטריון קושי הסדרה מתכנסת. 
+		\end{proof}
+	\end{enumerate}
+	
+	\ndoc
+\end{document}
