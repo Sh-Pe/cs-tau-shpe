@@ -1,0 +1,256 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\og {\omega}
+
+\author{שחר פרץ}
+\title{\textit{חדו''א 1א 7}}
+\begin{document}
+	\maketitle
+	\textbf{תזכורת: משפט אבל}
+	
+	תהא $\an$ סדרה ויהי $a \in \R$. אז קיים ויחיד $R \in [0, +\inft]$ כך שלכל $x \in \R$: 
+	\begin{enumerate}
+		\item אם $\sof{x - a} < R$ אז $\sumninf a_n(x - a)^{n}$ מתכנס בהחלט. 
+		\item אם $\sof{x - a} > R$ אז $\sumninf a_n(x - a)^{n}$ מתבדר. 
+	\end{enumerate}
+	
+	\textbf{תזכורת: קריטריון אבל}
+	
+	יהיו $\an, \bn$ סדרות. נניח $\sumninf a_n$ מתכנס ו־$b_n$ מונוטונית יורדת ומתכנסת. אז $\sumninf a_nb_n$ מתכנס. 
+	
+	אבל לא נותן דרך למצוא את ה־$R$ הזה. בשביל זה יש את המשפט הבא, שהוא יותר קונסטרקטיבי. 
+	
+	\subsubsection*{משפט קושי־הדמרד}
+	\theo{תהא $\an$ סדרה ויהי $a \in \R$. נסמן $\og = \limsup \sqrt[n]{\sof{a_n}}$. אז: 
+		\begin{itemize}
+			\item אם $\og = 0$, אז $R = + \infty$. 
+			\item אם $\og = + \infty$, אז $R = 0$. 
+			\item אחרת $R = \frac{1}{\og}$. 
+	\end{itemize}}
+	(זה ה־$R$ היחיד מאבל)
+	
+	\begin{proof}
+		\begin{itemize}
+			\item נניח ש־$\og = 0$. יהי $x \in \R$. אז: 
+			\[ \limsup \sqrt[n]{\sof{a_n(x - a)^{n}}} = \limsup \sqrt[n]{a_n}\sof{x - a} = 0\sof{x - a} = 0 \]
+			לפי מבחן השורש, הטור $\sumninf a_n(x - a)^{n}$ מתכנס בהחלט ובפרט מתכנס. 
+			\item נניח ש־$\og = +\infty$. יהי $x \in \R$, ונניח $x \neq a$. אז באופן דומה: 
+			\[ \limsup \sqrt[n]{\sof{a_n}\sof{x - a}^{n}} = + \infty \]
+			ולכן הטור מתבדר. [ידוע רק שטור הערכים המוחלטים מתבדר, כלומר הטור לכאורה יכול להתכנס אבל לא בהחלט. בטורי חזקות נובע שגם הטור הרגיל מתבדר. צ.ל. בבית שבטורי חזקות התכנסות גוררת התכנסות בהחלט]
+			\item נניח $\og \in (0, + \infty)$. יהי $x \in \R$. נניח $\sof{x - a} < \frac{1}{\og}$. אז מנימוקים דומים: 
+			\[ \limsup \sqrt[n]{\sof{a_n}\sof{x - a}^{n}} < 1 \]
+			ולכן הטור $\sumninf a_n(x - a)^{n}$ מתכנס. אם $\sof{x - a} > R$ הטור מתבדר. 
+		\end{itemize}
+	\end{proof}
+	
+	[למי שעשה בדידה 2] כל הנושא של פונקציות יוצרות – זה בדיוק טורי חזקות. הרי $f \co \R \to \R$ יוצרת את $\an$ כאשר:
+	\[ \exists \dg > 0.\, \forall x \in \R \co \sof{x} < \dg \implies \sumninf a_nx^{n} = f(x) \]
+	
+	
+	\section*{לנטוש את הבדידות}
+	עתה נתחיל לדבר על פונקציות במשתנה רציף. קודם לכן – נעסוק קצת בטופולוגיה. 
+	\subsection*{קצת טופולוגיה}
+	\defi{יהי $x \in \R$. לכל $\eg > 0$, הקטע $(x - \eg, x + \eg)$, יקרה \textit{סביבת $\eg$ של $x$}. }
+	
+	\rmark{נבחין ש־$(x - \eg, x + \eg) = \{y \in \R \mid \sof{x - y} < \eg\}$. קוראים לזה כדור פתוח. זה פשוט המקרה החד־ממדי של כדורים. }
+	
+	\defi{יהי $x \in \R$ ותהא $U \subseteq \R$, ויהי $x \in U$. אז $U$ תקרא \textit{סיבה של $x$} אם קיים $\eg > 0$ עבורו $U$ מכילה סביבת $\eg$ של $x$. }
+	
+	\defi{קבוצה $U$ תקרא \textit{פתוחה} כאשר היא סביבה של כל אחת מהנקודות שלה. }
+	
+	לדוגמה, $(0, 1)$ הוא קבוצה פתוחה. 
+	\begin{proof}
+		יהי $x \in (0, 1)$. נסמן $\eg = \min\{x, 1 - x\}$. נתבונן ב־$\eg$, ידוע $x > 0 \land x < 1$ כלומר $\eg > 0$. עוד נבחין: 
+		\[ x + \eg \le x + 1 - x  = 1 \]
+		לכן $(x - \eg, x + \eg) \subseteq (0, 1)$. 
+	\end{proof}
+	דוגמה אחרת היא ש־$[0, 1)$ קבוצה לא פתוחה. 
+	\begin{proof}
+		נתבונן ב־$0$. יהי $\eg > 0$. נתבונן ב־$-\frac{\eg}{2}$. אז: 
+		\[ (-\eg, \eg) \ni - \frac{\eg}{2} \notin [0, 1) \]
+		סתירה לפתיחות. 
+	\end{proof}
+	
+	למעשה, קבוצת כל הסביבות (\textit{הטופולוגיה של $\R$}) נוצרת ע''י איחוד וחיתוך של כדורים פתוחים (\textit{הבסיס לטופולוגיה}). זו קבוצה סגורה לאיחוד וחיתוך. 
+	
+	\defi{$A \subseteq \R$ תקרא \textit{סגורה} כאשר $\bar A$ פתוחה (עולם דיון $\R$). }
+	
+	\theo{$A$ סגורה אם היא סגורה סדרתית. }
+	\begin{proof}
+		\begin{itemize}
+			\item[$\implies$]נניח $A$ קבוצה. תהא $\an$ סדרה מתכנסת. נניח $\forall n \in \N \co a_n \in A$. נסמן $\limsi a_n = \ml$. נניח בשלילה $\ml \in \bar A$. אז קיים $\eg > 0$ כך ש־$(\ml - \eg, \ml + \eg) \subseteq \bar A$ (כי $\bar A$ פתוחה). קיים $n \in \N$ כך שלכל $n \ge N$ מתקיים $\sof{a_n - \ml} < \eg$. בפרט $a_N \in (\ml - \eg, \ml + \eg) \subseteq \bar A$ בסתירה לכך ש־$a_N \in A$ ולכן $\ml \in A$. 
+			\item[$\impliedby$]נניח ש־$A$ סגורה סדרתית. יהי $x \in \bar A$. נניח בשלילה שלכל $\eg > 0$, מתקיים $(x - \eg, x + \eg) \nsubseteq \bar A$. לכל $n \in \N$, קיים $(x - \frac{1}{n}, x + \frac{1}{n}) \cap \bar A$ (זה מתקיים בפרט עבור $\eg = \frac{1}{n}$). לכל $n \in \N$, $a_n \in A$ וכן $\limsi a_n = x$. $A$ סגורה סדרתית, לכן $x \in A$ בסתירה. [למי שלא שם לב, בשביל הטיעון הזה צריך גם ארכימדיאניות שתלויה באקסיומת השלמות וגם את אקסיומת הבחירה]. 
+		\end{itemize}\envendproof
+	\end{proof}
+	
+	\defi{תהא $A \subseteq \R$. אז $x \in \R$ תקרא \textit{נקודת־סגור} של $A$, כאשר $\forall \eg > 0 \co (x- \eg, x + \eg) \cap A \neq \varnothing$ (כלומר כל סביבה של $x$ מכילה איבר מ־$A$)}
+	לדוגמה, $1$ נקודת סגור של $[0, 1)$. 
+	\begin{proof}
+		יהי $\eg > 0$. נסמן $r = \min \{\eg, 1\}$. נתבונן ב־$1 - \frac{r}{2}$. אז $1 \le 1$ לכן $1 - \frac{r}{2} \ge \frac{1}{2}$. כמו כן $r \ge 0$ לכן $1 - \frac{r}{2} < 1$. מכאן ש־$1 - \frac{r}{2} \in [0, 1)$. כמו כן: 
+		\[ 1 - \eg < 1 - \frac{r}{2} < 1 < 1 + \eg \implies 1 - \frac{r}{2} \in [0, 1) \cap (1 - \eg, 1 + \eg) \]
+		כנדרש. 
+	\end{proof}
+	
+	\theo{$A$ סגורה אמ''מ כל נקודת סגור של $A$ נמצאת ב־$A$. }
+	\begin{proof}
+		\begin{itemize}
+			\item[$\impliedby$]נניח $A$ סגורה. תהא $x$ נקודת סגור של $A$. נניח בשלילה ש־$x \in \bar A$. $\bar A$ פתותחה לכן $\exists \eg > 0 \co (x - \eg, x + \eg) \subseteq \bar A$, כלומר $(x - \eg, x +\eg) \cap A = \varnothing$ בסתירה. לכן $x \in A$. 
+			\item[$\implies$]תהא $x \in \bar A$. מההנחה, $x$ אינה נקודת סגור של $A$. אז קיים $\eg > 0$ כך ש־$(x - \eg, x + \eg) \cap A = \varnothing$, דהיינו $(x - \eg, x +\eg) \subseteq \bar A$. לכן $\bar A$ פתוחה, כלומר $A$ סגורה. 
+		\end{itemize}\envendproof
+	\end{proof}
+	\defi{$A \subseteq \R$ תקרא \textit{קומפקטית} כאשר $A$ סגורה וחסומה. }
+	\theo{$A \subseteq \R$ קומפקטית אמ''מ לכל סדרה $\an$, אם לכל $n \in \N$, ל־$a_n$ יש ת''ס מתכנסת שגבולה ב־$\an$. }
+	
+	\defi{יהי $x \in \R$ ותהא $U$ סביבה של $x$. אז $U \setminus \{x\}$ נקראת \textit{סביבה נקובה} של $x$. }
+	
+	\defi{תהא $U \subseteq \R$. $x \in \R$ תקרא \textit{נקודת הצטברות} של $A$ כאשר לכל סביבה \textbf{נקובה} $U$ של $x$, מתקיים $U \cap A \neq \varnothing$. }
+	אינטואיטיבית, אפשר להתקרב בסביבות נקובות כמה שבא לנו ל־$x$, אבל אסור לנו לגעת בו. 
+	
+	בקורס שאנו למדנו, כמעט אך ורק נעבוד עם קטעים, ולא עם קבוצות פתוחות כלליות. זה לא בחומר של הקורס. 
+	
+	אם נגדיר $U \subseteq \R$ סביבה של $+\infty$, כאשר קיים $a > 0$ כך ש־$[a, +\infty)$, ו־$U$ סביבה של $-\infty$ כאשר קיים $a > 0$ כך ש־$(-\inft, -a] \subseteq U$, אז לכל $\ml \in \R \cup \{\pm\inft\}$, נקבל שסדרה $\an$ \textit{שואפת ל־$\ml$} כאשר לכל סביבה $U$ של $\ml$, קיים $N \in \N$ כך ש־$a_n \in U$. 
+	
+	חומר קריאה: Stephen Willard $\sim$ General Topology
+	
+	
+	\subsubsection{מבוא – פונקציות של משתנה ממשי}
+	\noti{בכל קונטקסט בפרק זה, $f \co A \to \R$ עבור $A \subseteq \R$ כלשהו. }
+	\defi{\textit{התמונה של $f$} היא $\Img f := \{x \in \R\mid \exists a \in A \co f(a) = x\}$}
+	\defi{\textit{התחום של $f$} הוא $\dom f = A$. }
+	ניתן להגדיר מנה, כפל, מכפלה, חיבור, חיסור, כפל בקבוע של פונקציות, וכו'. 
+	\defi{$f$ תקרא \textit{חסומה} כאשר $\Img f$ חסומה. }
+	\defi{$f$ תקרא \textit{מונוטונית עולה} כאשר $\forall x \le y \in A \co f(x) \le f(y)$}
+	בדומה לסדרות, נגדיר \textit{עולה ממש}, \textit{יורדת} ו\textit{יורדת ממש}. 
+	
+	\exe{תהא $A \subseteq \R$ ותהאנה $f, g \co A \to \R$ חסומות. אז $f + g$ חסומה ומתקיים: 
+	\[ \inf f + \inf g \le \inf (f + g) \le \sup (f + g) \le \sup f + \sup g  \]}
+	
+	\begin{proof}
+		לכל $x \in A$, מתקיים $f(x) \le \sup f \land g(x) \le \sup g$. לכן $f(n) + g(n) \le \sup f + \sup g$ ומכאן $\sup f + \sup g$ חסם מלעיל של $f + g$, ובפרט $\sup(f + g) \le \sup f + \sup g$ (כי הסופרמום הוא חסם מלעיל מינימלי). האינפימום בדומה, והשוויון האמצעי ידוע על קבוצות. והשטיק של החסימה זו בדיחה שהמרצה לא טרח להוכיח. 
+	\end{proof}
+	
+	השוויונות לא הדוקים. לדוגמה $f(x) = \sinx , g(x) = -\sinx$, אז $\sup f + \sup g = 2$ בזמן ש־$\sup (f + g) = 0$. 
+	
+	\subsubsection*{גבולות של פונקציות}
+	\defi{תהא $f \co A \subseteq \R \to \R$, ותהא $x_0 \in \R$ נקודת הצטברות של $A$, ויהי $\ml \in \R$. נאמר כי $\ml$ הוא גבול של $f$ ב־$x_0$ כאשר: 
+	\[ \forall \eg > 0 .\, \exists \dg > 0 .\, \forall x\in A \co 0 < \sof{x - x_0} < \dg \implies \sof{f(x) - \ml} < \eg \]}
+	
+	זה לא עובד במובן הרחב. למעשה נצטרך לקחת כל קומבינציה של $\ml, x_0$ כאשר אחד באינסוף, אחד ממשי, והאחד במינוס אינסוף, וזה יגרור אותנו ל־9 הגדרות. 
+	
+	לקבוצת הטבעיים של נקודת הצטברות אחת, היא $+\infty$. למעשה סדרות זה מקרה פרטי כאשר $A = \N$. 
+	
+	למה דווקא נקודות הצטברות? כי ככה אנחנו לא מגדירים דברים עבור ``קפיצות'' ודברים מוזרים כאלו. נגיד עבור $\{2\} \cup [0, 1]$, לא נתעסק עם $2$, למרות שהיא נקודת סגור. 
+	
+	\textbf{דוגמה. }נגדיר $f \co \R\to \R$ ע''י: 
+	\[ f(x) = \begin{cases}
+		x^{2} & x \neq 2 \\
+		8 & x = 2
+	\end{cases} \]
+	הוכיחו כי $4$ הוא גבול של $f$ ב־$2$. 
+	\begin{proof}
+		יהי $\eg > 0$. נחפש $\dg$ בטיוטה. [טיוטה: בסוף נרצה ש־$\sof{x^2 - 4} < \eg$. נגרר $\sof{x - 2}\sof{x + 2} < \eg$. נרצה $\sof{x - 2}\sof{x + 2} < \dg < \eg$. נבחר $\dg < 1$ (כלומר ניקח מינימום בסוף), אז ידוע $2 - \dg < x < 2 + \dg$ כלומר $4 - \dg < x + 2 < 4 + \dg$. ואז $\sof{x + 2} < 5$. נסכם] נתבונן ב־$\dg - \min \{1, \frac{\eg}{5}\}$. יהי $x \in \R$. נניח $0 < \sof{x - 2} < \dg$. אז $x \neq 2$ ולכן $f(x) - x^{2}$. נקבל: 
+		\[ \sof{f(x) - 4} = \sof{x^2 - 4} = \sof{x - 2}\sof{x + 2} < \sof{x + 2} \dg \]
+		ידוע $1 \le 2 - \dg < x < 2 + \dg \le 3$ לכן $0 < x + 2 \le 5$. מכאן $\sof{x + 2} \dg \le 5 \cdot \frac{\eg}{5} = \eg$ לכן $\sof{f(x) - 4}$. 
+	\end{proof}
+	
+	\theo{תהא $f \co A \subseteq \R\to \R$, ותהא $x_0 \in \R$ נקודות הצטברות של $A$. יהיו $\ml, m \in \R$. אם $\ml$ גבול של $f$ ב־$x_0$ וגם $m$ גבול של $f$ ב־$x_0$ אז $\ml = m$. }
+	
+	
+	לבית: להשלים 8 הגדרות נוספות. 
+	
+	\textbf{דוגמה: }פונקציית דיריכלה. חשובה בעיקר בגלל שהיא דוגמה נגדית ממש כיפית. 
+	\[ D \co \R\to \R \quad D(x) = \begin{cases}
+		1 & x \in \Q \\
+		0 & \other
+	\end{cases} \]
+	[למי שעשה בדידה] זה האינדיקטור של $\Q$ ב־$\R$. 
+	
+	\theo{לכל $x_0 \in \R$, אין ל־$D$ גבול ב־$x_0$. }
+	\begin{proof}
+		נתבונן ב־$\eg = \frac{1}{2}$. יהי $\dg > 0$. בקטע $(x_0, x_0 + \dg)$, יש מספר רציונלי $x$ ומספר אי־רציונלי $y$. אז: 
+		\[ 1 = \sof{D(x) - D(y)} \le \sof{D(x) - \ml} + \sof{D(y) - \ml} \le 0.5 \]
+		לכן $\sof{D(x) - \ml} \ge 0.5$ או ש־$\sof{D(y) - \ml} \ge 0.5$, כלומר $\ml$ אינו גבול של $D$ ב־$x_0$.  
+	\end{proof}
+	
+	\exe{נגדיר $f \co \R\to \R$ ע''י $f(x) = xD$ לכל $x \in \R$. כאשר $D$ פונקציית דיאיכלה. הראו כי ל־$f$ יש גבול ב־$x_0$ אמ''מ $x_0 = 0$}
+	\begin{proof}\,
+		\begin{itemize}
+			\item[$\implies$]נניח $x_0 = 0$. יהי $\eg > 0$. נתבונן ב־$\dg = \eg$. יהי $x \in \R$. נניח $0 < \sof{x - 0} < \dg$. ידוע $\sof{D(x)} \le 1$ לכן $\sof{f(x) - 0} = \sof{xD(x)} = \sof{x}\sof{D(x)} < \dg \cdot 1 = \eg$. לכן $\lim_{x \to 0} f(x) = 0$. 
+			\item[$\impliedby$]נניח $x_0 \neq 0$. יהי $\ml \in \R$. נתבונן ב־$\eg = \frac{\sof{x_0}}{2}$. $x_0 \neq 0$ לכן $\eg > 0$. יהי $\dg > 0$. ב־$(x_0, x_0 + \dg)$ יש $x$ רציונלי ו־$y$ אי־רציונלי.  
+			\[ \sof{x} = \sof{f(y) - f(x)} \le \sof{f(y) - \ml} + \sof{f(x) - \ml} \]
+			בקטע $(x_0 - \dg, x_0)$ יש $a$ רציונלי ו־$b$ אי־רציונלי. אז: 
+			\[ \sof{a} = \sof{f(b) - f(a)} \le \sof{f(b) - \ml} + \sof{f(a) - \ml} \]
+			מתקיים ש־$\max\{\sof a, \sof x\} \ge \sof {x_0}$ ולכן: 
+			\[ \max\{\sof(f(a) - \ml), \sof{f(b) - \ml}, \sof{f(a) - \ml}, \sof{f(y) - \ml}\} \ge \frac{\sof {x_0}}{2} \]
+			ולכן $\ml$ אינו גבול של $f$ ב־$x_0$. 
+		\end{itemize}\envendproof
+	\end{proof}
+	
+	אם צריך דוגמה נגדית יותר עדינה מדיריכלה הדי כיאוטית, הכירו את פונקציית רימן. 
+	\defi{פונקציית רימן $R \co \R\to \R$ מוגדרת ע''י: 
+	\[ R(x) = \begin{cases}
+		\frac{1}{n_x} & x \in \Q \\
+		0 & \other
+	\end{cases} \]
+	כאשר $m_x, n_x$ הפירוק היחיד של $x \in \Q $ כך ש־$x = \frac{m}{n}$ וגם $\gcd(m, n) = 1$. 
+	}
+	\theo{לכל $x_0 \in \R$, מתקיים $\lim_{x \to x_0} R(x) = 0$. }\begin{proof}
+		יהי $x_0 \in \R$. ללא הגבלת הכלליות $x_0 \in [0, 1]$ (בשאר התחומים היא מתנהגת אותו הדבר). יהי $\eg > 0$. אז קיים $N \in\N$ כך ש־$\frac{1}{N} < \eg$. נבחין ש־: 
+		\[ \ccb{x \in [0, 1] \setminus \{x_0\} \mid R(x) \ge \frac{1}{n}} \subseteq \underbrace{\ccb{\frac{m}{n} \mid n \in \N^{+}, m \in \Z, m \le n \le N}}_{A} \]
+		(בקבוצה מימין לא דרשנו שהשברים יהיו מצומצמים). הקבוצה $A$ סופית! כן נוכל לסמן $\dg = \min\{\sof{x_0 - x} \co  \in A\}$, והמינימום אכן יהיה קיים. אז $\dg > 0$. נתבונן ב־$\dg$. יהי $x \in [0, 1]$, נניח $0 < \sof{x - x_0} < \dg$. אז $x \notin A$ ולכן $\sof{R(x) - 0} < \frac{1}{N} = \eg$. לכן $\lim_{x \to x_0} R(x) = 0$. 
+	\end{proof}
+	
+	\theo{תהא $f \co A \subseteq \R\to \R$, ותהא $x_0 \in \R$ נקודת הצטברות של $A$. נניח כי עבור כל סדרה $\an$ המקיימת: 
+	\begin{enumerate}
+		\item $\Img \an \subseteq A$
+		\item $\forall n \in \N \co a_n \neq x_0$
+		\item $\limsi a_n = x_0$
+	\end{enumerate}
+	את $f(\an)$ מתכנסת, אז קיים $\ml \in \R$ כך שלכל סדרה $\an$ המקיימת את 1-3, $\limsi f(a_n) = \ml$. }
+	
+	''קרני משהו מטריד אותך\en{?}`` ''בעיקר תרגיל בית 5. אבל כבר ביקשתי הארכה ל־3 ו־4 אז לא נעים לי``. 
+	
+	כלומר – אם כל הסדרות שמקיימות את 1-3 מתכנסות לאנשהו, אז כולן מתכנסות לאותו הגבול. 
+	
+	''נקבובית כזו``. ''סדרה נקובה\en{!}``. 
+	
+	\begin{proof}
+		תהאנה $\an, \bn$ סדרות המקיימות את 1-3. מההנחה $f(\an)$ מתכנסת, ונסמן את גבולה ב־$\ml$. באופן דומה $f(\bn) =: m$. נגדיר סדרה: 
+		\[ c_n = \begin{cases}
+			a_{\frac{n}{2}} & n \in \Neven \\
+			b_{\frac{n - 1}{2}} & n \in \Nodd
+		\end{cases} \]
+		נבחין ש־$c_n$ מקיימת את 1-3. לכן $f(c_n)$ מתכנסת, ממשפט הכיסוי $\ps(c_n) = \{\ml, m\}$, והיא מתכנסת, כלומר $m = \ml$. 
+	\end{proof}
+	
+	\subsubsection*{קיטריון היינה}
+	$\ra$ ערימה של אנשים הוגים ''היינה`` במבטא גרמני מזויף כבד $\la$
+	
+	\theo{תהא $f \co A \subseteq \R \to \R$. תהא $x_0 \in \R$ נקודת הצטברות של $A$. ל־$f$ יש גבול ב־$x_0$ אמ''מ לכל סדרה $\an$, אם $\an$ מקיימת את 1-3 מהטענה הקודמת, $f(\an)$ מתכנסת. }
+	
+	מה זה אומר? גם עבור פונקציות במשתנה רציף, הסדרות מגלמות בתוכן את מה שאנחנו צריכים כדי להגדיר ולעבוד עם גבולות. המשפט הראשון אומר לנו שכל הסיפור הזה לא תלוי בנציג, מה שמאפשר לנו לטעון שהגבול הזה יחיד. 
+	\begin{proof}
+		\begin{itemize}
+			\item[$\impliedby$]נניח של־$f$ יש גבול ב־$x_0$, ונסמנו $\ml$. תהא $\an$ סדרה. נניח כי: (1) $\forall n \in\N \co a_n \in A$ (2) $\forall n \in \N \co a_n \neq x_0$ (3) $\limsi a_n = x_0$. יהי $\eg > 0$. קיים $\dg > 0$ כך ש־$\forall x \in A \co \sof{x - x_0} \in (0, \dg) \implies \sof{f(x) - \ml} < \eg$. לכן קיים $N \in \N$, כך שלכל $n \ge N$, $\sof{a_n- x_0} < \dg$. נתבונן ב־$N$ הזה. יהי $n \ge N$. אז $a_m \in A$ וגם $a_m \neq x_0$. ידוע $0 < \sof{a_n - x_0} < \dg$ לכן $\sof{f(a_n) - \ml} < \eg$ סיימנו. 
+			\item[$\implies$]נניח כי לכל סדרה $\an$ המקיימת 1-3, אז $f(\an)$ מתכנסת. מהטענה הקודמת, קיים $\ml \in \R$ כך שכל הסדרות המצחיקות האלו מקיימות $f(\an) \to \ml$. נניח בשלילה שהגבול $\lim_{x \to x_0}f(x_0) \neq \ml$. אז קיים $\eg > 0$ כך שלכל $\dg > 0$ קיים $x \in A$ כך ש־$0 < \sof{x -x_0} < \dg$, וגם $\sof{f(n) - \ml}\ge \eg$. לכל $n \in \N$ קיים $a_n \in A$ כך ש־$\sof{a_n - x_0} \in (0, \frac{1}{n})$ וגם $\sof{f(a_n) - \ml} \ge \eg$. לכל $n \in \N$, מתקיים $a_n \in A \land a_n \neq a_0$. כמו כן $\limsi a_n = x_0$. אבל $\forall n \in \N\co \sof{f(a_n) - \ml}\ge \eg$. לכן $\limsi f(\an) \neq \ml$ וסתירה. 
+		\end{itemize}\envendproof
+	\end{proof}
+	
+	\rmark{זה עובד גם במובן הרחב. המרצה לא טרח להוכיח. }
+	
+	זו דרך נוחה להראות שלפונקציה \textit{אין} גבול בנקודה. 
+	\exe{נגדיר $f \co \R\setminus \{0\} \to \R$ ע''י $f(x) = \frac{1}{x}$. אז ל־$f$ אין גבול ב־$0$. }\begin{proof}
+		נגדיר: 
+		\[ a_n = \frac{(-1)^{n}}{n} \]
+		אז לכל $n \in \N$, $a_n \in \R\setminus \{0\}$. עוד נבחין ש־$a_n \neq 0$ ו־$\limsi a_n= 0$. אבל, $f(a_n) = (-1)^{n} \cdot n$, וזו סדרה חסרת גבולות, אפילו במובן הרחב. 
+	\end{proof}
+	
+	\exe{נגדיר $f \co \R\setminus \{0\}\to \R$ ע''י $f(x) = \sin \frac{1}{x}$. ל־$f$ אין גבול ב־$0$}\begin{proof}
+		נגדיר $a_n = \frac{1}{\pi n}$. נגדיר $b_n = \frac{1}{\pi n + \frac{\pi}{2}}$. הן מקיימות את 1-3. נבחין ש־$f(a_n) =0 \land f(b_n) = (-1)^{n}$ וזה סתירה. 
+	\end{proof}
+	
+	
+\end{document}

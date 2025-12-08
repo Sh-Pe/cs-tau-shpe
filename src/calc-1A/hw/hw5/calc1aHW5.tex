@@ -2,11 +2,7 @@
 \usepackage{../../../../tex/packages/hebrewSupport}
 \usepackage{../../../../tex/packages/mathShortcuts}
 
-\newcommand\midmath[1] {\hfil $\displaystyle #1 $}
-\newcommand\ank   {{a_{n_k}}}
-\newcommand\anj   {{a_{n_j}}}
-\newcommand\bnk   {{b_{n_k}}}
-\let\disty\displaystyle
+\date{5 בדצמבר 2025}
 
 \author{שחר פרץ}
 \title{חדו''א 1א $\sim$ \textit{תרגיל בית 5}}
@@ -164,12 +160,28 @@
 				נבחין שהקבוצות בתמונתה אינן ריקות, ישירות מהיות $\an$ איננה חסומה מלעיל (נקבל שלכל $M \in \R$ קיים $k$ כך ש־$a_k > M$, ובפרט עבור $m = n$ לכל $n  \in \N$ נקבל ש־$\exists a_k \in \Img a_n \land a_k > n$ כלומר $a_k \in f(n)$). מכאן שקיימת ל־$F$ פונקציית בחירה $f \co \N \to \Img \an$ כלשהי. נבחין ש־$f$ פרמוטציה על ת''ס של $\ank$ כלשהי (כך ש־$\Img \ank = \Img f$, כי $\Img f \subseteq \Img \an$). נבחין שידוע ש־$f \to \infty$ שכן $f > n \to \infty$ ואז משפט הפיצה, והראינו בהרצאה שפרמוטציה לא משנה שאיפה לאינסוף, כלומר $\ank \to \infty$ גם כן. סה''כ מצאנו ת''ס של $\an$ כך ש־$\ank \to \infty$ דהיינו $\infty \ge \limsup \an \ge \infty$ כלומר $\limsup \an = \infty$. 
 			\end{itemize}\envendproof
 		\end{proof}
-		\item מצאתי שני תנאים, אני לא סגור מי מהם אתם רוצים אז אוכיח את שניהם. אף אחד מהתנאים לא פועל במובן הרחב, בשביל זה צריך לפרק למקרים. 
-		\begin{align}
+		\item אני מניח שאתם רוצים את התנאי הזה כי אפשר לנסח עוד תנאים: 
+		\begin{align*}
 			&L = \liminf a_n = \inf \ps (\an) \\
-			\iff &(\forall \eg > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n - \eg < L \land a_n \ge L) \\
-			\iff &\big((\exists N \in \N .\, \forall n \ge N \co a_n \ge L) \land (\forall N \in \N .\, \exists n \ge N \co a_n \le L)\big)
-		\end{align}
+			\iff &\forall \eg > 0.\,(\forall N \in \N .\, \exists n \in \N \co a_n < L + \eg) \land (\exists N \in \N .\, \forall n \ge N .\, a_n > L - \eg)
+		\end{align*}
+		\begin{proof}
+			נראה גרירה דו־כיוונית. 
+			\begin{itemize}
+				\item[$\implies$]נניח $L$ גבול תחתון. יהי $\eg > 0$. נוכיח שכמעט תמיד $a_n > L - \eg$, ושבאופן שכיח $a_n < L + \eg$. 
+				\begin{itemize}
+					\item נניח בשלילה שבאופן שכיח $a_n < L - \eg$, אז קיימת קבוצה אינסופית $A \subseteq \Img \an$ כך ש־$a \in A$ מקיים $a < L - \eg$. מאקסיומת הבחירה או משהו כזה אפשר להגדיר ממנה ת''ס כך ש־$\ank$ מקיימת $\Img \ank \subseteq A$. מבולצאנו וויראשטראס קיימת לה ת''ס $\ank_j$ מתכנסת, והיא מקיימת $\ank_j \to \ml \le L - \eg$, כלומר $\ml < L$ גבול תחתון וסתירה. 
+					\item נראה שבאופן שכיח $a_n < L + \eg$. ידוע ש־$L$ גבול תחתון, ובפרט קיימת $\ank \to L$ (הוכחנו בהרצאה). נבחין ש־$\sof{\Img \ank \cap (L - \eg, L + \eg)} \ge \az$ וכן $(L - \eg, L + \eg) \subseteq [-\infty, L + \eg)$ כלומר $\Img \an \cap [-\infty, L + \eg)$ וסיימנו. 
+				\end{itemize}
+				\item[$\impliedby$]עתה נניח שלכל $\eg > 0$ באופן שכיח $a_n < L + \eg$ וכמעט תמיד $a_n > L - \eg$, ונראה ש־$L$ גבול תחתון. מההגבלה השנייה, לכל $\ank$ ת''ס מתקיים כמעט תמיד $\ank > L - \eg$ לכל $\eg > 0$, כלומר $\lim_{k \to \infty} \ank \ge L$ (הוכחנו בהרצאה) ומכאן שכל גבול חלקי גדול מ־$L$, כלומר היא חסם מלרע לקבוצת הגבולות החלקיים. נותר להראות שהוא מקסימלי. ידוע שבאופן שכיח $a_n < L + \eg$, לכל $\eg > 0$. נתבונן ברצף הקבוצות המקוננות הבא: 
+				\[ F(n) = \Img \an \cap \cl{L + \frac{1}{n} , L - \frac{1}{n}} \quad F(n + 1) \subseteq F(n) \quad F \co \N \to 2^{A} \]
+				מההנחה כל אחת מהקבוצות הללו כוללת אינסוף איברים, ובפרט אינה סופית, ולכן קיימת פונקציית בחירה $a_{\sg(n_k)}$. לפי הגדרה הסדרה הזו שואפת ל־$L$. פרמוטציה לא משנה כלומר $\lim_{k \to \infty}a_{\sg(n_k)} = \lim_{k \to \infty}\ank$, ומכאן שמצאנו ת''ס $\ank \!\!\to L$. דהיינו $L \in \hps(\an)$, כלומר $L$ לא רק חסם מלרע, אלא חסם מלרע ששייך לקבוצה – כלומר מינימום – ומינימום הוא אינפימום, וסה''כ $L = \inf(\hps(\an)) = \liminf(\an)$ כנדרש. 
+			\end{itemize}\envendproof
+%			\begin{itemize}
+%				\item[$\implies$]נניח $L$ גבול תחתון של $\an$, נראה שכמעט תמיד $a_n \ge L$ וגם לכל $\eg > 0$ כמעט תמיד $a_n - \eg < L$. ידוע ש־$L$ גבול חלקי מינימלי ובפרט קיימת $\ank \to L$. תהי $\anj \to \ml$ ת''ס מתכנסת. בגלל ש־$L \le \ml$ אז כמעט תמיד, $a_n \ge \ml$. יהי $\eg > 0$, נראה שכמעט תמיד $a_n - \eg < L$. 
+%				\item[$\impliedby$]אז $L$ חסם מלעיל של סדרת הגבולות החלקיים כי כל $\ank$ קטן מ־$L$ פרט למספר סופי של איברים. הוא בפרט איפימום, כי נעביר אגפים ונקבל שלכל $\ml \in \R$ קיימת	 $\anj\to \ml$ שמקיימת $\anj < L + \eg$ פרט למספר סופי של $j$־ים, ואז $\ml = \limsi \anj < L + \eg$, וסה''כ מהגדרת איפימום $L$ האינפימום של סדרת הגבולות החלקיים. מהגדרה $L = \liminf \an$. 
+%			\end{itemize}
+		\end{proof}
 	\end{enumerate}
 	
 	\section{}
@@ -195,29 +207,39 @@
 	\section{}
 	נוכיח שלכל $\ag, \bg \in \R$ ולכל $n \in \N$, אם $\sin\cl{\frac{\bg}{2}} \neq 0$ אז מתקיים: 
 	\[ \sumnk \sin\cl{\ag + \bg k} = \frac{\sin \cl{\frac{(n + 1)\bg}{2}}\sin\cl{\ag + \frac{n\bg}{2}}}{\sin\cl{\frac{\bg}{2}}} \]
-	\begin{proof}
+	\begin{proof}\npage
+		\[ \begin{WithArrows}[format=lrl]
+			&\frac{\sin \cl{\frac{(n + 1)\bg}{2}}\sin\cl{\ag + \frac{n\bg}{2}}}{\sin\cl{\frac{\bg}{2}}}  &\seq \sumnk \sin\cl{\ag + \bg k} \Arrow[ll]{$\cdot \sin\cl{\frac{\bg}{2}}$} \\
+			\iff & \sin \cl{\frac{(n + 1)\bg}{2}}\sin\cl{\ag + \frac{n\bg}{2}} &\seq \sumnk \sin\cl{\frac{\bg}{2}} \cdot \sin\cl{\ag + \bg k} \Arrow[up]{$\sin(x)\sin(y) = \frac{1}{2}\cl{\cos(x - y) - \cos(x + y)}$} \\
+			&&= \frac{1}{2}\sumnk \cos\cl{\ag + \bg \cl{k - \frac{1}{2}}} - \cos\cl{\ag + \bg \cl{k +\frac{1}{2}}} \Arrow[down]{טור טלסקופי} \\
+			&&=\frac{1}{2}\cl{\cos\cl{\ag - \frac{\bg}{2}} - \cos\cl{\ag + \bg n + \frac{\bg}{2}}} \Arrow[xoffset=-8.7cm, tikz={bend right, '}]{$\cosx - \cos y = -2\sin\cl{\frac{x + y}{2}}\sin\cl{\frac{x - y}{2}}$}\\
+			&&=-\frac{1}{\cancel{2}}\cdot \cancel{2}\cl{\sin\cl{\frac{2 \ag + \bg n}{2}}\sin\cl{\frac{-(n + 1)\bg}{2}}} \Arrow[xoffset=-8.7cm, tikz={bend right, '}]{כי $\sin$ אי־זוגית} \\
+			&&=\sin\cl{\frac{(n + 1)\bg}{2}}\sin\cl{\ag + \frac{n \bg}{2}} \quad \top
+		\end{WithArrows} \]
+		הסימון $\seq$ אמור לציין שוויון שקול לטענה שצ.ל. (זה סימון של המרצה למתמטיקה B שאני חושב שהוא די נוח לפעמים). \envendproof
+%		don't look at anything below
 %		ראשית כל, נמצא את $\sin(n \bg)$ ואת $\cos(b \bg)$. טענה: 
 %		\[ \sumnko \sin k \ag = \frac{\cos \frac{1}{2}\ag - \cos\cl{\cl{n + \frac{1}{2}}\ag}}{2\sin\cl{\frac{1}{2}\ag}} \]
-		נוכיח באינדוקציה: 
-		\[ \sumnk \sin(k \ta) = \frac{\cos\cl{\frac{\ta}{2}} - \cos\cl{\cl{n + \frac{1}{2}}\ta}}{2 \sin\cl{\frac{\ta}{2}}} \]
-		עתה, נוכיח באינדוקציה: 
-		\[ \sumnk \cos(k \ta) = \frac{\sin\cl{\frac{\ta}{2}} + \sin\cl{\cl{n + \frac{1}{2}}\ta}}{2 \sin\cl{\frac{\ta}{2}}} \]
-		\begin{itemize}
-			\item \textbf{בסיס: }
-		\end{itemize}
-		סה''כ, קיבלנו: 
-		\begin{multline*}
-			\sumnk \sin(\ag + \bg k) = \sin \ag \cdot \sumnk \cos(\bg k) + \cos \bg \cdot \sumnk \sin(\ag k) \\ = 
-			  \frac{
-				\cos \ag \cl{\cos\cl{\frac{\bg}{2}} - \cos\cl{\cl{n + \frac{1}{2}}\bg}}
-			}{2 \sin\cl{\frac{\bg}{2}}}
-			+ \frac{
-				\sin \bg \cl{\sin\cl{\frac{\ag}{2}} + \sin\cl{\cl{n + \frac{1}{2}}\ag}}
-			}{2 \sin\cl{\frac{\ag}{2}}} \\
-			= -\frac{\cos \ag \cdot {\sin\cl{(n + 1)\bg}\sin\cl{n\bg}}}{\sin\cl{\frac{\bg}{2}}} + \frac{\sin \bg \cdot \cos\cl{(n + 1)\ag}\sin\cl{n\ag}}{\sin\cl{\frac{\ag}{2}}}
-		\end{multline*}
-		
-		לשדחיגכךלחדשגכ ךעדיף לוותר
+%		נוכיח באינדוקציה: 
+%		\[ \sumnk \sin(k \ta) = \frac{\cos\cl{\frac{\ta}{2}} - \cos\cl{\cl{n + \frac{1}{2}}\ta}}{2 \sin\cl{\frac{\ta}{2}}} \]
+%		עתה, נוכיח באינדוקציה: 
+%		\[ \sumnk \cos(k \ta) = \frac{\sin\cl{\frac{\ta}{2}} + \sin\cl{\cl{n + \frac{1}{2}}\ta}}{2 \sin\cl{\frac{\ta}{2}}} \]
+%		\begin{itemize}
+%			\item \textbf{בסיס: }
+%		\end{itemize}
+%		סה''כ, קיבלנו: 
+%		\begin{multline*}
+%			\sumnk \sin(\ag + \bg k) = \sin \ag \cdot \sumnk \cos(\bg k) + \cos \bg \cdot \sumnk \sin(\ag k) \\ = 
+%			  \frac{
+%				\cos \ag \cl{\cos\cl{\frac{\bg}{2}} - \cos\cl{\cl{n + \frac{1}{2}}\bg}}
+%			}{2 \sin\cl{\frac{\bg}{2}}}
+%			+ \frac{
+%				\sin \bg \cl{\sin\cl{\frac{\ag}{2}} + \sin\cl{\cl{n + \frac{1}{2}}\ag}}
+%			}{2 \sin\cl{\frac{\ag}{2}}} \\
+%			= -\frac{\cos \ag \cdot {\sin\cl{(n + 1)\bg}\sin\cl{n\bg}}}{\sin\cl{\frac{\bg}{2}}} + \frac{\sin \bg \cdot \cos\cl{(n + 1)\ag}\sin\cl{n\ag}}{\sin\cl{\frac{\ag}{2}}}
+%		\end{multline*}
+%		
+%		לשדחיגכךלחדשגכ ךעדיף לוותר
 		
 %		\begin{itemize}
 %			\item \textbf{בסיס: }עבור $n = 0$, נקבל: 
