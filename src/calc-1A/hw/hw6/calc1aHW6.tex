@@ -1,0 +1,225 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+
+\newcommand\snn {\sqrt[n]{n}}
+
+\author{שחר פרץ}
+\title{חדו''א 1א $\sim$ \textit{תרגיל בית 6}}
+\begin{document}
+	\maketitle
+	\section{}
+	נשלים את הוכחת משפט ההשוואה הגבולי. יהי $a_n, b_n$ סדרות חיובית, ונניח שקיים הגבול $\limsi \frac{a_n}{b_n}  = \ml$. 
+	\begin{enumerate}[(A)]
+		\item נראה שאם $\ml = 0$, אז $\sumninf b_n < \inft \implies \sumninf a_n < \inft$. \begin{proof}
+			נניח $\sumninf b_n < \infty$, כלומר $\sumninf b_n = m \in \R$ מתכנס. נוכיח את התכנסות $\sumninf a_n$ לפי הגדרה. יהי $\eg > 0$. החל מ־$N_1$ כלשהו, מתקיים: 
+			\[ \forall n \ge N_1 \co \sof{\frac{a_n}{b_n}} < \eg \implies \sof{a_n} < \sqrt {\eg} \sof{b_n} \implies a_n < \sqrt \eg b_n \]
+			יכולנו להפתר מהערך המוחלט, כי הסדרות חיוביות. לכן ממבחן ההשוואה הרגיל, אם $\sumninf b_n$ מתכנס, אז $\sumninf$ מתכנסת. 
+		\end{proof}
+		\item נראה שאם $\ml = \infty$, אז $\sumninf b_n < \inft \impliedby \sumninf a_n < \inft$. \begin{proof}
+			(אין מה להשתמש באריתמטיקה כי קשה לטפל כך במקרה בו $\an \to 0$). נקבל שלכל $M \in \R$ המ''מ $\frac{a_n}{b_n} > M$, כלומר $a_n > Mb_n$. ממשפט ההשוואה הרגיל אם $\sumninf a_n$ מתכנס, אז $\sumninf b_n$ מתכנס, וסיימנו. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נתון שהטור החיובי $\sumninf a_n$ מתכנס. נוכיח שגם $\sumninf 2\cl{a_n}^{3}$ מתכנס. 
+	\begin{proof}
+		משום ש־$\sumninf a_n$ מתכנס, אז $a_n \to 0$, כלומר החל מ־$N$ כלשהו, $a_n <1$. מכאן שלכל $n \ge N$ נקבל $(a_n)^{3} < a_n$. דהיינו: 
+		\[ \forall n \ge N \co \sumninf 2\cl{a_n}^{3} < \sumninf 2\cl{a_n} = 2 \sumninf a_n \]
+		ממשפט ההשוואה הראשון, קיבלנו ש־$\sumninf 2(a_n)^{3}$ מתכנס. 
+	\end{proof}
+	
+	\section{}
+	נקבע האם הטורים הבאים מתכנסים או מתבדרים. 
+	\begin{enumerate}[(A)]
+		\item נוכיח שהטור הבא מתכנס: 
+		\[ \sumninf (\sqrt[n]{n} - 1)^{n} \]
+		התחלתי משאלה 9, וכבר הראיתי שהטור ב־9ה מתכנס בהחלט, כלומר שהטור הזה מתכנס. זה ממש אותו הסעיף. 
+		\item נקבע מתי הטור הבא מתכנס: 
+		\[ \sumninf \cl{\sqrt[3]{n + 1} - \sqrt[3]{n - 1}}^{\ag} \quad \ag \in \R \]
+		\begin{proof}
+			נפשט את הביטוי: 
+			\begin{multline*}
+				\cl{\sqrt[3]{n + 1} - \sqrt[3]{n - 1}}^{\ag} \!\!\!= \cl{\sqrt{3}{n + 1} - \sqrt[3]{n - 1}}^{\ag} \!\! \cdot \cl{\frac{(n + 1)^{\frac{2}{3}} + \sqrt[3]{n^{2} - 1} + (n - 1)^{\frac{2}{3}}}
+					{(n + 1)^{\frac{2}{3}} + \sqrt[3]{n^{2} - 1} + (n - 1)^{\frac{2}{3}}}}^{\ag} \ \dequad
+					= \frac{\overbrace{\cl{n + 1 - (n - 1)}^{\ag}}^{2^{\ag}}}{\cl{(n + 1)^{\frac{2}{3}} + \sqrt[3]{n^{2} - 1} + (n - 1)^{\frac{2}{3}}}^{\ag}}
+			\end{multline*}
+			ניעזר במבחן ההשוואה עם הטור $\sumninf \frac{1}{n^{\bg}}$. נבחין אחרי כן מי הוא ה־$\bg$ שאנו מחפשים. 
+			\[ \climsi \frac{{2^{\ag}}}{\cl{(n + 1)^{\frac{2}{3}} + \sqrt[3]{n^{2} - 1} + (n - 1)^{\frac{2}{3}}}^{\ag}}n^{\bg} = 
+			\climsi \frac{2^{\ag}n^{-\frac{2}{3}\ag}n^{\bg}}{\cl{(1 + \frac{1}{n})^{\frac{2}{3}} + \sqrt[3]{1 - \frac{1}{n^{2}}} + (1 - \frac{1}{n})^{\frac{2}{3}}}^{\ag}} = \limsi \cl{\frac{2}{3}}^{\ag}\!\!\!n^{\bg - \frac{2}{3}\ag} = \cdots \]
+			עבור $\bg = \frac{2}{3}\ag$ נקבל: 
+			\[ \cdots = \cl{\frac{2}{3}}^{\ag}\!\!\! \limsi n^{\frac{2}{3}\ag - \frac{2}{3}\ag} = \cl{\frac{2}{3}}^{\ag} \in \R \]
+			סה''כ מצאנו ממשפט הגבול החלקי, שהטור מתכנס אמ''מ $\sumninf \frac{1}{n^{\frac{2}{3}\ag}}$ מתכנס. ממשפט שהראינו בכיתה, ההתכנסות מתקיימות אמ''מ $\frac{2}{3} \ag > 1$, כלומר $\ag > 1.5$. סה''כ הטור מתכנס אמ''מ $\ag > 1.5$.  
+		\end{proof}
+		\item נבין מתי הטור הבא מתכנס: 
+		\[ \sumninf \cl{\frac{\ag n}{n + 1}}^{n} \quad \ag \in \R \]
+		\begin{proof}
+			ניעזר במבחן השורש: 
+			\[ \limsi \sqrt[n]{\cl{\frac{\ag n}{n + 1}}^{n}} = \limsi \frac{\ag n}{n + 1} = \ag \limsi \frac{n}{n + 1} = \ag \]
+			כלומר, אם $\ag > 1$ הטור לא מתכנס, ואם $\ag < 1$ הטור מתכנס. ננסה להבין מה מתרחש כאשר $\ag = 1$. נבחין ש־: 
+			\[ \limsi \cl{\frac{n}{n + 1}}^{n} \!\!\!= \limsi \cl{\cl{\frac{n + 1}{n}}^{n}}\op = \cl{\limsi \cl{1 + \frac{1}{n}}^{n}}\op = \frac{1}{e} \]
+			כלומר, במקרה ש־$\ag =1$, הסדרה שיוצרת את הטור אפילו לא שואפת ל־$0$, תנאי הכרחי להתכנסות הטור. סה''כ הטור מתכנס אמ''מ $\ag < 1$. 
+		\end{proof}
+		\item ננסה להבין את הטור הבא מתכנס: 
+		\[ S_n = \sum_{n = 1}^{N} \cl{\frac{n^{2} - 1}{n^{2} + n + 1}}^{n^{2}} \dequad= \sum_{n = 1}^{N} \cl{1 - \frac{n}{n^{2} + n + 1}}^{n^{2}} \dequad= \sum_{n = 1}^{N} \cl{1 - \frac{1}{n + 1 + \frac{1}{n}}}^{n^{2}} \dequad < \sum_{n = 1}^{N} \cl{1 - \frac{1}{n}}^{n^{2}} \dequad \ \overset{(1)}{<} \sum_{n = 1}^{N} \cl{\frac{1}{e}}^{n} = \sum_{i = 1}^{N}\frac{1}{e^{n}} \]
+		השוויון $(1)$ נכון שכן $\cl{1 - \frac{1}{n}}^{n}$ סדרה מונוטונית עולה שמתכנסת ל־$\frac{1}{e}$, ומכאן שהמ''מ $\frac{1}{e}$ חוסם אותה מלמעלה. סה''כ $S_n$ חסום ע''י סדרה מתכנסת (טור גיאומטרי) ומכאן ש־$S_n$ מתכנס. 
+		\item ננסה להבין מתי הטור הבא מתכנס: 
+		\[ \sumninf \frac{\sqrt[m]{n!}}{\sqrt[k]{(2n)!}} \quad m, k \in \N \]
+		\begin{proof}
+			נתקוף באמצעות מבחן המנה. 
+			\[ \frac{a_{n + 1}}{a_n} = \frac{\frac{\sqrt[m]{(n + 1)!}}{\sqrt[k]{(2n + 2)!}}}{\frac{\sqrt[m]{n!}}{\sqrt[k]{(2n)!}}} = \frac{\sqrt[m]{(n + 1)!}\sqrt[k]{(2n)!}}{\sqrt[m]{n!}\sqrt[k]{(2n + 2)!}} = \sqrt[m]{\frac{\cancel{1 \cdots n} \cdot (n + 1)}{\cancel{1 \cdots n}}} \cdot \sqrt[k]{\frac{\cancel{1 \cdots 2n}}{\cancel{1 \cdots 2n} \cdot (2n + 1) \cdot (2n + 2)}} = {\frac{\sqrt[m]{n + 1}}{\sqrt[k]{(2n + 1)(2n + 2)}}} \]
+			נבחין ש־$(2n + 1)(2n + 2) = 4n^{2} + 6n + 2$. ננסה עתה לחשב את הגבול:
+			\[ \limsi \frac{a_{n + 1}}{a_n} = \limsi \frac{\sqrt[m]{(n + 1)}}{\sqrt[k]{4n^{2} + 6n + 2}} = \limsi \sqrt[k]{\frac{\cl{n^{\frac{1}{k}} + \frac{1}{n^{k/m}}}^{\frac{k}{m}}}{{4n + 6 + \frac{1}{n}}}} = 4\sqrt[k]{\limsi \frac{n^{\frac{1}{m}}}{n}} = 4 \climsi n^{\frac{1 - \frac{1}{m}}{k}} \]
+			נבחין שהגבול לעולם לא יתכנס ל־$1$. יש שתי אפשרויות: 
+			\begin{itemize}
+				\item אם $\frac{1 - \frac{1}{m}}{k} < 1$ אז הגבול מתכנס ל־$0$, ואז ממשפט המנה הגבולי, הטור מתכנס. 
+				\item אם $\frac{1 - \frac{1}{m}}{k} > 1$ אז הגבול מתכנס ל־$+\infty$, ואז ממשפט המנה הגבולי, הטור אינו מתכנס. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item יהיו $\sumninf a_n$ ו־$\sumninf b_n$ טורים חיוביים. נניח המ''מ $\frac{a_{n + 1}}{a_n} \le \frac{b_{n + 1}}{b_n}$. נוכיח שאם $\sumninf b_n$ מתכנס, אז $\sumninf a_n$ מתכנס. 
+		\begin{proof}
+			מתקיים באינדוקציה: 
+			\begin{alignat*}{9}				
+				\frac{a_{n + 1}}{a_n} &&\,=: x_n \quad\quad && a_n &&\,= x_na_{n - 1} &&\,= \cdots &&\,= a_1\prod_{i = 1}^{n}x_i \\
+				\frac{b_{n + 1}}{b_n} &&\,=: y_n \quad\quad && b_n &&\,= y_nb_{n - 1} &&\,= \cdots &&\,= b_1\prod_{i = 1}^{n}y_i
+			\end{alignat*}
+			נתון למעשה $x_i \le y_i$ לכל $i \in [n]$. נניח $\sumninf b_n$ מתכנס ל־$\ml$. מכאן ש־: 
+			\[ \sumninf a_n = \sumninf \cl{a_1\prod_{i = 1}^{n}x_i} = a_1\sumninf \prod_{i = 1}^{n}x_i \le a_1 \sumninf \prod_{i = 1}^{n}y_i = \frac{a_1}{b_1} \cdot b_1\cl{\sumninf \prod_{i = 1}^{n}y_i} = \frac{a_1}{b_1}\cl{\sumninf b_1\prod_{i = 1}^{n}y_i} = \frac{a_1}{b_1}\ml \]
+			סה''כ $\sumninf a_n$ חסום מלמעלה בטור שמתכנס, ולכן (ממשפט ההשוואה הראשון, שכן נתון ששני הטורים שלנו חיוביים) מתכנס גם הוא. 
+		\end{proof}
+		\item נוכיח ש־$\sumninf \frac{n^{n - 2}}{e^{n}n!}$ מתכנס. \begin{proof}
+			נבחין ש־: 
+			\[ \sumninf \frac{n^{n -2}}{\cl{\frac{n}{e}}^{n}e^{n}} = \sumninf \frac{n^{n - 2}}{n^{n}} = \sumninf \frac{1}{n^{2}} \]
+			שמתכנס. ידוע קירוב סטרלינג, כלומר $\limsi \frac{n!}{\cl{\frac{n}{e}}^{n}\sqrt{e \pi n}} = 1$. מכאן ש־: 
+			\[ \limsi \frac{\frac{n^{n - 2}}{e^{n}\cl{\frac{e}{n}}^{n}}}{\frac{n^{n - 2}}{e^{n}n!}}\limsi \frac{n!}{\cl{\frac{e}{n}}^{n}} = \limsi {\frac{n!}{\cl{\frac{n}{e}}^{n}\sqrt{\pi n e}}} \sqrt{\pi n e} = 1 \cdot \infty = \infty  \]
+			סה''כ ממשפט ההשוואה הגבולי, סיימנו. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $\sumninf a_n$ טור חיובי מתכנס. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\sumninf \sqrt{a_na_{n + 1}}$ מתכנס. 
+		\begin{proof}
+			ממשפט $a_n \to 0$. לכן ממבחן המנה של דלאמבר, בהכרח $\frac{a_{n + 1}}{a_n} \toinf \ml \le 1$. נפעיל את מבחן ההשוואה הגבולי על הטור $\sumninf a_n$. 
+			\[ \frac{\sqrt{a_na_{n + 1}}}{a_n} = \sqrt{\frac{a_na_{n + 1}}{a_n^{2}}} = \sqrt{\frac{a_{n + 1}}{a_n}} \toinf \sqrt{\ml} \ge 0 \]
+			משום ש־$\sqrt{\ml} \in \R$, אז בהכרח $\sumninf \sqrt{a_na_{n + 1}}$ מתכנס אם $\sumninf a_n$ מתכנס. ידוע $\sumninf a_n$ מתכנס, סה''כ $\sumninf \sqrt{a_na_{n + 1}}$ מתכנס כנדרש. 
+		\end{proof}
+		\item נראה שהכיוון ההפוך למשפט לעיל לא נכון באופן כללי. \begin{proof}
+			ננסה ''לתקוף`` את השאלה לעיל כך שהיחס בין איברי $\an$ שואף ל־$0$. נתבונן בסדרה הבאה: 
+			\[ a_n = \begin{cases}
+				\frac{1}{n} & n \in \Neven \\
+				\frac{1}{n^{2}} & \other
+			\end{cases} \]
+			נבחין ש־: 
+			\[ S_n = \sum_{i = 1}^{N}a_n \ge \sum_{i \in \Neven}^{N}\frac{1}{n} = 0.5\sum_{i = 1}^{0.5N}\frac{1}{n} \toinf + \infty \]
+			כלומר ממשפט ההשוואה הראשון $S_n$ איננה מתכנסת. עם זאת: 
+			\[ S'_n = \sum_{i = 1}^{N} \sqrt{a_na_{n + 1}} = \sum_{i = 1}^{N} \sqrt{\frac{1}{n} \cdot \frac{1}{(n + 1)^{2}}} \le \sum_{i = 1}^{N} \sqrt{\frac{1}{n^{3}}} = \sum_{i = 1}^{N} \frac{1}{n^{1.5}} \]
+			ממשפט $\sumninf \frac{1}{n^{1.5}}$ מתכנס. לכן ממשפט ההשוואה $S'_n$ מתכנס. סה''כ מצאנו דוגמה נגדית. 
+		\end{proof}
+		\item עתה נתון $\an$ מונוטונית. נראה את הכיוון ההפוך. \begin{proof}
+			משום ש־$\an \to 0$ וחיובית, בפרט $\an$ מונוטונית יורדת בהכרח. לכן: 
+			\[ a_n \ge a_{n + 1} \implies \sqrt{a_na_{n + 1}} \ge \sqrt{a_{n + 1}^{2}} = a_{n + 1} \implies \sum_{i = 1}^{N} \sqrt{a_na_{n + 1}} \ge \sum_{i = 1}^{N} a_{n + 1} \]
+			משום ש־$\sumninf \sqrt{a_na_{n + 1}}$ מתכנס, אזי $\sumninf a_{n + 1}$ מתכנס. מכאן ש־$\sumninf a_n$ מתכנס גם הוא (שתי הסדרות נבדלות בחיבור קבוע $a_1$). סה''כ $\sumninf a_n$ מתכנס כנדרש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נחשב את סכום הטור $\sumninf \frac{1}{n(n + 1)(n + 2)}$. 
+	\begin{proof}
+		נסמן את סדרת הסכומים החלקיים ב־$S_n$. נבחין ש־: 
+		\[ \frac{1}{n(n + 1)(n + 2)} = \frac{1}{2n} - \frac{1}{n + 1} + \frac{1}{n + 2} = \frac{1}{2}\cl{\frac{1}{n} - \frac{1}{n + 1}} + \frac{1}{2}\cl{\frac{1}{n + 2} - \frac{1}{n + 1}} \]
+		נחשב כל אחד מהטורים הבאים בנפרד: 
+		\[ S^{1}_n = \sumnio \cl{\frac{1}{n} - \frac{1}{n + 1}} = \sumnio \frac{1}{n} - \sum_{i = 2}^{n + 1} \frac{1}{n} = \frac{1}{1} - \frac{1}{n + 1} \]
+		\[ S^{2}_n = \sumnio \cl{\frac{1}{n + 2} - \frac{1}{n + 1}} = \sum_{i = 2}^{n + 1} \frac{1}{n + 1} - \sumnio \frac{1}{n + 1} = \frac{1}{n + 2} - \frac{1}{2} \]
+		וסה''כ נקבל: 
+		\[ S_n = \sumnio \frac{1}{n(n + 1)(n + 2)} = \frac{1}{2}\cl{S^{1}_n + S^{2}_n} = \frac{1}{2}\cl{1 - \frac{1}{2} + \frac{1}{n + 2} - \frac{1}{n + 1}} \toinf \frac{1}{4} \]
+		כלומר הטור שואף ל־$\frac{1}{4}$. 
+	\end{proof}
+	
+	\section{}
+	נקבע האם הטור הבא מתכנס או מתבדר: 
+	\[ \sum_{i = 3}^{\infty} \frac{(\log \log n)^{\ag}}{n \logn} \]
+	\begin{proof}
+		נבצע את מבחן העיבוי פעמיים: 
+		\[ \sum_{i = 3}^{\infty} \frac{(\log \log n)^{\ag}}{n \logn} = \sumninf \frac{(\log \log n)^{\ag}}{n \logn} = \sumninf \cancel{2^{n}}\frac{\cl{\log \log 2^{n}}^{\ag}}{\cancel{2^{n}} \log 2^{n}} = \sumninf \frac{\cl{\log n}^{\ag}}{n} = \sumninf \cancel{2^{n}}\frac{\log^{\ag} 2^{n}}{\cancel{2^{n}}} = \sumninf n^{\ag} \toinf \infty \]
+		סה''כ הטור מתבדר. 
+	\end{proof}
+	
+	\section{}
+	נמצא דוגמה לסדרות $\an, \bn$ כך ש־$\sumninf a_n = \sumninf b_n = \infty$ כך $\sumninf \min(a_n, b_n) < \infty$. 
+	\begin{proof}
+		נגדיר את הסדרות הבאות: 
+		\[ a_n = I_{\Nodd} = \begin{cases}
+			0 & n \in \Neven \\
+			1 & n \in \Nodd
+		\end{cases} \quad b_n = I_{\Neven} = \begin{cases}
+			1 & n \in \Neven \\
+			0 & n \in \Neven
+		\end{cases} \]
+		נבחין ש־: 
+		\[ \sumninf a_n = \sumninf a_{2n + 1} = \sumninf 1 \toinf \infty \ \reflectbox{$\toinf$} \ \sumninf 1 = \sumninf b_{2n} = \sumninf b_n \]
+		אך: 
+		\[ \sumninf \min\{a_n, b_n\} = \sumninf \min\{0, 1\} = \sumninf 0 = 0 < \infty \]
+		וסיימנו. 
+	\end{proof}
+	
+	\section{}
+	נחקור את הטורים הבאים (נקבע לכל טור האם הוא מתכנס בהחלט, או מתבדר): 
+	\begin{enumerate}[(A)]
+		\item נתבונן בטור הבא, בעבור $a > 0$: 
+		\[ \sumninf \frac{(-1)^{n}}{n^{a}\ln n} \]
+		\begin{proof}[הוכחת התכנסות]
+			נבחין ש־$n^{a}$ וכן $\ln n$ מונוטוניות עולות וחיוביות שתיהן, כלומר $\ln n \cdot n^{a}$ מונוטונית עולה. מכאן ש־$\frac{1}{n^{a}\ln n}$ מונוטונית יורדת, וממשפט לייבניץ, הטור מתכנס. נבדוק מתאי הוא מתכנס בהחלט. מכיוון אחד: 
+			\[ \sumninf \frac{1}{n^{a}\ln n} < 2 \sumninf \frac{1}{n^{a}} \]
+			כלומר ממשפט ההשוואה הגבולי, $\sumninf \frac{1}{n^{a} \ln n}$ מתכנס במקרה בו $a > 1$. אחרת, $a \le 1$: 
+			\[ \sumninf \frac{1}{n^{a} \ln n} < \sumninf 2^{n}\frac{1}{2^{na} \ln 2^{n}} = \ln 2 \sumninf \frac{1}{2^{n(a - 1)}n} = \ln 2 \sumninf \frac{2^{n(1 - a)}}{n} \overset{a \le 1}{<} \ln 2 \sumninf \frac{1}{n} \toinf \infty \]
+			כלומר, ממשפט ההשוואה וממבחן העיבוי, במקרה זה הטור לא מתכנס בהחלט. 
+		\end{proof}
+		\item נתבונן בטור הבא, בעבור $a \in \R$: 
+		\[ \sumninf \frac{n^{n}}{a^{n^{2}}} \]
+		\begin{proof}[הפרכת התכנסות]
+			ניעזר במבחן השורש. נבחין ש־: 
+			\[ \sqrt[n]{\frac{n^{n}}{a^{n^{2}}}} = \frac{\sqrt[n]{n^{n}}}{\sqrt[n]{a^{n^{2}}}} = \frac{n}{a^{n}} \]
+			לכל $a > 1$ הביטוי ישאף ל־$0$ ולכן הטור לא יתכנס, ולכל $a \le 1$ הביטוי ישאף ל־$\infty$ ולכן הטור יתכנס. הטור חיובי ולכן התכנסות שקולה להתכנסות בהחלט. 
+		\end{proof}
+		\item נתבונן בטור הבא: 
+		\[ \sumninf \frac{(-1)^{\floor{\frac{n}{3}}}}{n} \]
+		\begin{proof}[הוכחת התבדרות]
+			נסמן ב־$\an$ את הסדרה שיוצרת את הטור, וב־$S_n$ את סדרת הגבולות החלקיים. נבחין ש־: 
+			\[ a_n = \begin{cases}
+				-\frac{1}{n} & n \equiv 0 \\
+				\frac{1}{n} & n \equiv 1 \\
+				\frac{1}{n} & n \equiv 2 
+			\end{cases}\bmod 3 \]
+			יהי $N$ מתחלק בשלוש. נבצע מניפולציות על הסכום:
+			\begin{multline*}
+				S_N = \sum_{n = 1}^{N} a_n = \sum_{n = 3k}^{N} \cl{\frac{1}{n + 1} + \frac{1}{n + 2} - \frac{1}{n}} = -1 + \sum_{n = 3k + 1}^{N} \cl{\frac{1}{n} + \frac{1}{n + 1} - \frac{1}{n + 2}} \\
+				\overset{\frac{1}{n + 2} < \frac{1}{n + 1}}{>} -1 + \sum_{3k + 1}^{N} \cl{\frac{1}{n} + \cancel{\frac{1}{n + 1} - \frac{1}{n + 1}}} \toinf -1 + \infty = + \infty
+			\end{multline*}
+			כלומר, ל־$S_N$ יש גבול חלקי הוא $S_{3N}$ שחסום מלמטה ע''י סדרה ששואפת לאינסוף, וממשפט הפיצה $S_{3N} \to \inft$. מכאן שגם $S_N$ איננה מתכנסת. בפרט הוא אינו מתכנס בהחלט. 
+		\end{proof}
+		\item נתבונן בטור הבא: 
+		\[ \sumninf (-1)^{n}\cl{\!\sqrt[n]{n} - 1}^{n} \]
+		\begin{proof}[הפרכת התכנסות]
+			נוכיח שהטור מתכנס בהחלט. נבחין ש־: 
+			\[ 0 < \sqrt[n]{n} - 1 \le 0.5 \]
+			(כי $\sqrt[n]{n}$ מונוטוני יורד החל מ־$n = 2$, וכן $\sqrt[2]{2} < 1.5$). מכאן ש־: 
+			\[ \sumninf (\!\sqrt[n]{n} - 1)^{n} < \sumninf 0.5^{n} = 2 \]
+			כלומר $\sumninf (\!\sqrt[n]{n} - 1)^{n}$ מתכנס. בגלל ש־$\sof{(-1)^{n}} = 1$, אז הטור מתכנס בהחלט. 
+		\end{proof}
+		\item נתבונן בטור הבא: 
+		\[ \sumninf \frac{(-1)^{\floor{\frac{n}{2}}}}{n^{2}} \]
+		\begin{proof}[הוכחת התכנסות]
+			נבחין ש־$\floor{\frac{n}{2}}$ מספר שלם, כלומר $\sof{(-1)^{\floor{\frac{n}{2}}}} = 1$. מכאן ש־: 
+			\[ \sumninf \sof{\frac{(-1)^{\floor{\frac{n}{2}}}}{n^{2}}} = \sumninf \frac{1}{n^{2}} \]
+			בגלל ש־$\sumninf \frac{1}{n^{2}}$ מתכנס, אזי הטור כולו מתכנס בהחלט ובפרט מתכנס. 
+		\end{proof}
+	\end{enumerate}
+	
+	
+\end{document}
