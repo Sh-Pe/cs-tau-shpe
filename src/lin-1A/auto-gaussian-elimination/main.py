@@ -2,6 +2,7 @@ import sys
 from fractions import Fraction
 from typing import TypeVar, Any
 from pprint import pprint
+from math import *
 
 import numpy
 import numpy as np

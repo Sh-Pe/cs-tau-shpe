@@ -1,12 +1,319 @@
-\documentclass[]{../../../../tex/classes/styledArticle}
+\documentclass[]{../../../../tex/classes/homework}
 \usepackage{../../../../tex/packages/hebrewSupport}
 \usepackage{../../../../tex/packages/mathShortcuts}
-\usepackage{../../../../tex/packages/theoremsSupport}
 
-\author{\en{Shahar Perets}}
-\title{\en{\LaTeX \,preamble}}
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\RequirePackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={Document by Shahar Perets},
+	%	pdfpagemode=FullScreen,
+}
+
+
+\newcommand\anpowers  {\sum_{i = 1}^{\inft} a_n(x - x_0)}
+\newcommand\bnpowers  {\sum_{i = 1}^{\inft} a_n(x - x_0)}
+
+\author{שחר פרץ}
+\title{חדו''א 1א $\sim$ תרגיל בית 7}
 \begin{document}
 	\maketitle
+	\subsection*{הערה לבודק}
+	בתרגיל בית זה הטענה $f(A) = x$ שקולה לכך ש־$\forall a \in A \co f(a) = x$. זה מקצר כתיבה בחלק מהתרגילים. 
 	
+	\section{}
+	יהי $\anpowers$ טור חזקות, ונניח את קיום הגבול $\limsi \sof{\frac{a_{n + 1}}{a_n}} = \ml$. נוכיח שרדיוס ההתכנסות נתון ע''י $R = \frac{1}{\ml}$ (במובן הרחב). \begin{proof}
+		ראינו את משפט דאלמבר: אם $a_n$ חיובית, ו־$\limsi {\frac{a_{n + 1}}{a_n}} \to \ml$, אז $\limsi \sqrt[n]{a_n} = \ml$. אך לא ידוע ש־$\an$ חיובית, ולכן ניאלץ להוכיח את המשפט במובן רחב יותר. תהי $\an$ חיובית ונניח $\limsi \sof{\frac{a_{n + 1}}{a_n}} \to \ml$. נראה $\limsi \sqrt[n]{a_n} \to \ml$, לפי הגדרה (ההוכחה המקורית של א''ש הממוצעים לא עובדת פה). יהי $\eg > 0$. 
+		מהתכנסות $\sof{\frac{a_n}{a_{n - 1}}} \toinf \ml$, נסיק:
+		\[ \sof{\frac{a_{n}}{a_{n - 1}} - \ml} < \dg \implies \ml - \dg < \sof{\frac{a_n}{a_{n - 1}}}< \ml + \eg \implies (L - \eg)\sof{a_{n - 1}} < \sof{a_n} < (L + \eg)\sof{a_{n - 1}} \]
+		
+		באינדוקציה נקבל: 
+		\[ \sof{a_1} (\ml - \eg)^{n} < \sof{a_n} < (\ml + \eg)^{n}\sof{a_1} \implies (\ml - \eg)^{n} < \sof{\frac{a_n}{a_1}} < (\ml + \eg)^{n} \implies \sof{\sqrt[n]{\sof{\frac{a_n}{a_1}}} - \ml} < \eg \]
+		כלומר, מהגדרה $\sqrt[n]{\sof{\frac{a_n}{a_1}}} \toinf \ml$. נבחין ש־: 
+		\[ \sqrt[n]{\sof{\frac{a_n}{a_1}}} = \frac{\sqrt[n]{a_n}}{\sqrt[n]{a_1}} \toinf \ml = \frac{\limsi \sqrt[n]{a_n}}{1} \implies \sqrt[n]{a_n} = \ml \]
+		משום ש־$\limsi \sqrt[n]{a_n} = \ml$, מכאן שבפרט $\limsup_{n \to \inft} \sqrt[n]{a_n}$ גבול חלקי של $\sqrt[n]{a_n}$ ולכן שואף ל־$\ml$. עתה, ניעזר במשפט קושי־הדמרד; נקבל שרדיוס ההתכנסות של הטור $\anpowers$ נתון ע''י $R = \frac{1}{\limsup \sqrt[n]{a_n}} = \frac{1}{\ml}$ כנדרש. 
+		
+		במובן הרחב, אם $\ml = \infty$ אז $a_n \to \pm \infty$ ומכאן שהמ''מ סימנה קבועה, ובה''כ היא חיובית (אחרת נוכל להחליף סימן בתוצאה מאריתמטיקה של גבולות). במקרה זה נוכל להשתמש במשפט הד'מרד כמו שהוא (הוכחנו אותו במובן הרחב בעבור $\an$ חיובית), ונקבל $R = 0$. אם $\ml = 0$, ההוכחה לעיל בדבר התכנסות $\limsi \sqrt[n]{a_n} \to 0$ תקיפה, ומשפט קושי־הד'מרד עובד גם הוא במובן הרחב, וכאן נקבל $R = \infty$. 
+	\end{proof}
+	
+	\section{}
+	נמצא את תחום ההתכנסות (רדיוס ההתכנסות וההתכנסות בנקודות הקצה) של הטורים הבאים: 
+	\begin{enumerate}[A.]
+		\item נתבונן בטור הבא: 
+		\[ \sumninf \frac{2^{n}}{n!}x^{n} \]
+		מצאנו בשאלה 6א שרדיוס התכנסותו הוא $R = \infty$. אף טור חיובי לא מתכנס בעבור $x \to \pm\infty$, ומכאן שתחום ההתכנסות של הטור לעיל הוא $\R$. 
+		
+		\item נתבונן בטור הבא: 
+		\[ \sumninf (2 + (-1)^{n})^{n}(x - 1)^{n} \]
+		מצאנו בשאלה 6ב שרדיוס התכנסותו הוא $R = \frac{1}{3}$. נבדוק מה קורה בקצוות הרדיוס. לצורך הנוחות, נתייחס לטור לעיל כאל טור סביב $x^{n}$, ואז נזיח את התחום ב־$1$ חזרה. 
+		\[ \begin{cases}
+			\displaystyle \sum_{i =1}^{N}(2 + (-1)^{n})\frac{1}{3^{n}} = \sum_{i =1}^{N}\cl{3^{2i} \cdot \frac{1}{3^{2i}}} + \sum_{i =1}^{N} \cl{2^{2i + 1} \cdot \frac{1}{3^{2i + 1}}} > \frac{1}{2}N
+			& x = \frac{1}{3} \\
+			\displaystyle \sum_{i =1}^{N}(2 + (-1)^{n})\frac{1}{(-3)^{n}} = \sum_{i = 1}^{N}\cl{3^{2i} \cdot \frac{1}{3^{2i}}} - \sum_{i =1}^{N} \cl{2^{2i + 1} \cdot \frac{1}{3^{2i + 1}}} < \frac{1}{2}N - \cl{\frac{2}{3}}^{n - n\bmod 2} & x = -\frac{1}{3}
+		\end{cases} \]
+		דהיינו הטור מתבדר בכל מקרה, כי פעם אחת הוא חסום מלמטה ע''י טור שמתבדר לאינסוף ($x = \frac{1}{3}$) ופעם אחרת חסום מלמעלה ע''י טור שמתבדר ל־$-\infty$ ($x = -\frac{1}{3}$). סה''כ רדיוס ההתכנסות $(-\frac{1}{3}, \frac{1}{3})$ ולאחר הזחה נקבל $(1 - \frac{1}{3}, 1 + \frac{1}{3})$. 
+		\item נתבונן בטור הבא: 
+		\[ \sumninf 2^{n}x^{n^{2}} \]
+		מצאנו בשאלה 6ג שרדיוס התכנסותו הוא $R = \frac{1}{2}$. נבדוק מה קורה בקצוות הרדיוס. נבחין ש־: 
+		\[ 0< \sum_{i =1}^{N}2^{n}\cl{\frac{1}{2}}^{n^{2}} \dequad\le \sum_{i = 1}^{N}2^{\frac{1}{2}n^{2}}\cl{\frac{1}{2}}^{n^{2}} \dequad= \sum_{i= 1}^{N}\frac{1}{(\sqrt 2)^{n}} \]
+		כלומר עבור $x = \frac{1}{2}$ הטור חסום ע''י שני טורים מתכנסים, ומכאן שגם הוא מתכנס. אך עבור $R = -\frac{1}{2}$, בגלל שריבוע של מספר הוא זוגי אמ''מ שורשו זוגי, נקבל ש־: 
+		\[ \sum_{i = 1}^{N}2^{n}\cl{-\frac{1}{2}}^{n^{2}}\dequad = \sum_{i = 1}^{N}(-1)^{n}2^{n}\cl{\frac{1}{2}}^{n^{2}} \]
+		ממשפט לייבניץ, משום ש־$2^{n}\cdot{\frac{1}{2^{n}}}$ קבועה ולכן $\frac{2^{n}}{2^{n^{2}}}$ מונוטונית יורדת, מתקיים שהטור לעיל מתכנס. סה''כ $[-\frac{1}{2}, \frac{1}{2}]$ הוא תחום ההתכנסות של הטור. 
+		\item נתבונן בטור הבא: 
+		\[ \sumninf \frac{(-1)^{n}}{\sqrt n}(x + 1)^{2n + 1} \]
+		נבחין שבהינתן: 
+		\[ a_n = \begin{cases}
+			f(n) & P(n) \\
+			0 & \text{\sen other \she}
+		\end{cases} \]
+		כאשר $P$ טענה שמתקיימת באופן שכיח, נסמנה $n \in \PP$, בהכרח ל־$\sqrt[n]{n}$ שמחולקת ע''י $\PP$ ו־$\N \setminus \PP$ יש שני גבולות חלקיים בלבד, הם $\sqrt[n]{a_{\PP}}$ ו־$0$, מתוכם $\limsup \sqrt[n]{\sof{a_n}} = \limsi \sqrt[n]{a_{\PP}}$ (בהנחה ש־$a_{\PP}$ מתכנס). בפרט בעבור: 
+		\[ a_n = \begin{cases}
+			(-1)^{n}\sqrt{n} & n \in \Nodd \\
+			0 & \text{\sen other \she}
+		\end{cases} \]
+		נמצא את רדיוס התכנסותו: 
+		\[ \limsup a_n = \limsup \sqrt[n]{\sof{(-1)^{n}\sqrt{n}}} = \limsup \sqrt[n^{2}]{n} = \limsup \sqrt[n]{1} = 1 \]
+		כלומר $R = \frac{1}{1} = R$. משום ש־: 
+		\[ \sumninf \frac{(-1)^{n}}{\sqrt{n}}(x)^{2n + 1} = \sumninf \frac{1}{\sqrt{2n + 1}}x^{n} \]
+		לא מתכנס בעבור $x = \pm 1$ (כי $\sumninf \frac{1}{\sqrt{n}}$ מתבדר), בהכרח רדיוס ההתכנסות הוא $(-2, 0)$. 
+	\end{enumerate}
+	
+	\section{}
+	נוכיח ונפריך את הטענות הבאות: 
+	\begin{enumerate}[(A)]
+		\item יהיו $\sumninf a_n$ ו־$\sumninf b_n$ טורים, ונניח כי $\limsi \frac{a_n}{b_n} = 1$. נוכיח שהטורים מתכנסים ומתבדרים ביחד. \begin{proof}
+			מקרה פרטי של משפט ההשוואה הגבולי ($L = 1$). לכן הטענה נכונה. 
+		\end{proof}
+		\item תהי $\an$ סדרה כך ש־$\limsi a_n = 0$. אז הטורים $\sumninf (a_n + a_{n + 1})$ ו־$\sumninf a_n$ מתכנסים ומתבדרים יחדיו. \begin{proof}
+			\begin{itemize}
+				\item[$\implies$]נניח $\sumninf a_n$ מתכנס ונוכיח ש־$\sumninf (a_n + a_{n + 1})$ מתכנס. 
+				\[ \sum_{i = 1}^{N} (a_n + a_{n + 1}) = \sum_{i = 1}^{N} a_n + \sum_{i= 1}^{N}a_{n + 1} \]
+				משום ש־$\sum_{i =1}^{N}a_{n + 1} = \sum_{i = 1}^{N}a_n$  הם מתכנסים ומתבדרים יחדיו (נבדלים בחיבור קבוע) ומכאן ש־$\sum_{i = 1}^{N}a_n + a_{n + 1}$ הוא סכום של שני טורים מתכנסים. סכום של שני טורים מתכנסים הוא טור מתכנס בעצמו וסיימנו. 
+				\item[$\impliedby$]נניח $\sumninf (a_{n} + a_{n + 1})$ מתכנס ונראה ש־$\sumninf a_{n}$ מתכנס. נבחין ש־: 
+				\[ \sum_{i = 1}^{N}\cl{a_{n} + a_{n + 1}} = -a_1 + a_{n + 1} + 2\sum_{i =1}^{N}a_{n} \le -a_1 + 3\sum_{i = 1}^{N} \]
+				ממשפט ההשוואה ואריתמטיקת טורים סיימנו. 
+			\end{itemize}
+		\end{proof}
+		\item תהי $\an$ סדרה חיובית כך ש־$\limsi a_n = 0$. אז הטור $\sumninf (-1)^{n}a_n$ מתכנס. \begin{proof}[הפרכה]
+			נקבע: 
+			\[ a_n = (-1)^{n + 1}\frac{1}{n} \]
+			נבחין ש־: 
+			\[ 0 \reflectbox{$\toinf$} -\frac{1}{n} = -\sof{a_n} < a_n < \sof{a_n} = \frac{1}{n} \toinf 0 \]
+			ולכן $a_n$ מתכנסת ממשפט הסנדוויץ'. עם זאת: 
+			\[ \sumninf (-1)^{n}a_n = \sumninf \cancel{(-1)^{n}(-1)^{n + 1}}\frac{1}{n} = \sumninf \frac{1}{n} = \infty \]
+			וזו סתירה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נקבע אם הטורים הבאים מתכנסים בהחלט, בתנאי או מתבדרים: 
+	\begin{enumerate}[(A)]
+		\item נתבונן בטור: 
+		\[ \sumninf (-1)^{n}\cl{1 - \frac{1}{\sqrt{n}}}^{n\sqrt{n}} \]
+		\begin{proof}[התכנסות בהחלט]
+			נבחין ש־$\sqrt{n} > 1$ לכל $n$ גדול מספיק, ולכן $1 - \frac{1}{\sqrt{x}}$ חיובי. חזקה של מספר חיובי היא חיובית. ניעזר במבחן השורש על הטור $\sumninf \cl{1 - \frac{1}{\sqrt{n}}}^{n\sqrt{n}}$ (חוקי שכן הטור חיובי) ונקבל: 
+			\[ \sqrt[n]{\cl{1 - \frac{1}{\sqrt{n}}}^{n\sqrt{n}}} \dequad = \cl{1 - \frac{1}{\sqrt{n}}}^{\sqrt{n}} \dequad \toinf \frac{1}{e} \]
+			משום ש־$\sqrt{n}$ מונוטונית עולה חיובית, ממשפט שהוכחנו בתרגיל בית הביטוי לעיל שואף ל־$\frac{1}{e}$. משום ש־$\frac{1}{e} \in [0, 1)$ ממבחן השורש קיבלנו התכנסות בהחלט ובפרט הטור לעיל מתכנס. 
+		\end{proof}
+		\item נתבונן בטור: 
+		\[ \sum_{i= 2}^{\inft}\cl{\frac{(-1)^{n}}{n}\cl{\sum_{i = 1}^{n}\frac{i}{2^{i}}}} \]
+		\begin{proof}[התכנסות]
+			נסמן $a_n := \frac{i}{2^{i}}$. נתחיל מלנתח את $\an$. ננסה להראות ש־$\sumninf a_n$ מתכנס. זהו טור חיובי גדול מחצי (שכן $a_1 = \frac{1}{2}$). נפעיל עליה את מבחן השורש: 
+			\[ \limsi \sqrt[n]{\frac{n}{2^{n}}} = \limsi \frac{\sqrt[n]{n}}{\sqrt[n]{2^{n}}} \toinf \frac{1}{2} < 1 \]
+			כאשר את השוויון $\sqrt[n]{n} \toinf 1$ הוכחנו בתרגול, ו־$\sqrt[n]{2^{n}} = 2$ קבוע לא $0$. ממבחן השורש $\sumninf a_n$ מתכנס, נסמן את הערך אליו הוא מתכנס ב־$\ml$. משום ש־$a_n$ חיובית אז $\sumninf a_n$ מונוטוני עולה, כלומר $\sum_{i = 1}^{N}a_n < \sumninf a_n = \ml$. סה''כ נקבל: 
+			\[ \sum_{i = 2}^{N}\cl{\frac{(-1)^{n}}{n}\cl{\sum_{i = 1}^{n}\frac{i}{2^{i}}}} < \sum_{i= 2}^{N}\cl{(-1)^{n}\frac{\ml}{m}} \]
+			ממשפט לייבניץ, בגלל ש־$\frac{\ml}{m}$ מונוטוני יורד, אז הטור מתכנס. סה''כ ממבחן ההשוואה הראשון הטור כולו מתכנס. נראה שהוא לא מתכנס בהחלט. 
+			\[ \infty \ \reflectbox{$\toinf$}\sum_{i = 2}^{N}\cl{\frac{0.5}{n}} < \sum_{i= 1}^{N}\frac{\cl{\sum_{i = 1}^{n}\frac{i}{2^{i}}}}{n} = \sum_{i = 2}^{N}\cl{\sof{\frac{(-1)^{n}}{n}\cl{\sum_{i = 1}^{n}\frac{i}{2^{i}}}}} \]
+			
+			ממשפט ההשוואה הגבולי האיטלקי (נוסח משפט הפיצה) נקבל שהטור לעיל איננו מתכנס. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $p \in \N$. לכל $n\in \N$ נחלק את $n$ ב־$p$ עם שארית לפי $n = qp_n + r_n$ כאשר $r_n \in [0, p) \cap \N$ ו־$q_n \in \N$. נגדיר: 
+	\[ a_n = \begin{cases}
+		1 & q_n \in \Nodd \\
+		-1 & q_n \in \Neven
+	\end{cases} = (-1)^{q_n} \]
+		נוכיח ש־$\sumninf \frac{a_n}{n}$ מתכנס. 
+		\begin{proof}
+			נגדיר $K_i = (\N \cap [ip, ip + 1)) \cdot p$. נבחין ש־$\biguplus_{i = 0}^{\infty} K_i = \N$. נבחין ש־$q_{K_i} = i$ שכן לכל $n \in K_i$ מתקיים $a = ip + r$ כאשר $r \in [0, p) \cap \N$ ואז מיחידות חלוקה עם שארית בתחום אוקלידי, ומהגדרת $q_n$, בהכרח $q_n = i$ כנדרש. סה''כ (עד לכדי abuse of notion שאני עושה חופשי) $a_{K_i} = (-1)^{q_n} = (-1)^{i}$ סימן קבוע לכל $a_{K_i}$. לכן, ממשפט, הקיבוץ הבא משמר התכנסות: 
+			\[ \sum_{i = 1}^{\infty}\frac{a_n}{n} = \sum_{i =1}^{\inft} \sum_{k = 0}^{p - 1}\frac{a_{pi + k}}{n} = \sum_{i = 1}^{\inft}(-1)^{i}\sum_{k = 0}^{p - 1}\frac{1}{i} = (p - 1)\sum_{i= 1}^{\infty}\frac{(-1)^{i}}{i} \]
+			ממשפט לייבניץ $\sum_{i = n}^{\infty}\frac{(-1)^{n}}{n}$ מתכנס לאנשהו. מאריתמטיקת גבולות גם $\sumninf \frac{a_n}{n}$ מתכנס. 
+		\end{proof}
+	
+	\section{}
+	נמצא את רדיוס ההתכנסות של הטורים הבאים: 
+	\begin{enumerate}[(A)]
+		\item נתבונן בטור: 
+		\[ \sumninf \frac{2^{n}}{n!}x^{n} \]
+		נמצא את רדיוס ההתכנסות שלו. ניעזר במשפט ד'לאמבר. 
+		\[ \frac{\frac{2^{n + 1}}{(n + 1)!}}{\frac{2^{n}}{n!}} = \frac{2^{n + 1}n!}{2^{n}(n + 1)!} = \frac{2^{n + 1}}{2^{n}} \cdot \frac{n!}{(n + 1)!} = 2 \cdot \frac{1}{(n + 1)} \toinf 0 \]
+		לכן ממשפט ד'לאמבר משום שהגבול לעיל קיים, אז $\sqrt[n]{\frac{2^{n}}{n!}} \toinf 0$. מכאן שרדיוס ההתכנסות הוא $R = \frac{1}{0} = \infty$ (קושי־הדמרד עובד במובן הרחב). 
+		\item נתבונן בטור: 
+		\[ \sumninf (2 + (-1)^{n})^{n}x^{n} \]
+		אזי רדיוס ההתכנסות ממשפט קושי־הדמרד הוא: 
+		\[ R = \limsup \sqrt[n]{\cl{2 + (-1)^{n}}^{n}} = \limsup 2 + (-1)^{n} = 2 + \limsup (-1)^{n} = 3 \]
+		סה''כ רדיוס ההתכנסות הוא $R = \frac{1}{3}$. 
+		\item נתבונן בטור: 
+		\[ \sumninf 2^{n}x^{n^{2}} \]
+		נבחין שהסדרה היוצרת היא: 
+		\[ a_n = \begin{cases}
+			2^{n} & \exists k \in \N\co k^{2} = n \\
+			0 & \text{\en{other}}
+		\end{cases} \]
+		נבחין ש־$a_{n^{2}} = 2^{n}$ גבול חלקי ראשון, והמשלים לה נסמנו $a_{\ol{n^{2}}} = 0$ גבול חלקי שני. ממשפט הפריסה, הגבולות החלקיים של סדרות אלו אילו כל הגבולות החלקיים של הסדרה. כנ''ל על $\sqrt[n]{a_n}$, ומכאן ש־: 
+		\[ R = \limsup a_n = \climsi \sqrt[n]{a_{n^{2}}} = \climsi \sqrt[n]{2^{n}} = 2 \]
+		סה''כ רדיוס התכנסות $R = \frac{1}{2}$. 
+	\end{enumerate}
+	
+	\section{}
+	נמצא את כל ה־$x \neq \pm 1$ עבורם הטור $\sumninf \frac{x^{n}}{1 - x^{n}}$ מתכנס. קושי הדמרד קצת לא עובד כי הגבול לא ממש מוגדר עבור $\sof{x} > 1$. 
+	\begin{proof}
+		נוכיח שהטור מתכנס לכל $\sof{x} < 1$. נבחין שעבור $\sof{x} > 1$ מתקיים: 
+		\[ \frac{x^{n}}{1 - x^{n}} = \frac{\frac{x^{n}}{x^{n}}}{\frac{1 - x^{n}}{x^{n}}} = \frac{1}{\frac{1}{x^{n}} - 1} \toinf \frac{1}{-1} = -1 \]
+		גבול שאינו שואף ל־$0$, ובפרט הטור אינו מתכנס. עבור $\sof x < 1$: 
+		\[ \sum_{i = 1}^{N} \frac{x^{n}}{1 - x^{n}} = \sum_{i = 1}^{N} \frac{1}{\frac{1}{x^{n}} - 1} < \sum_{i = 1}^{N} \frac{1}{\frac{1}{x^{n}} - \frac{0.5}{x^{n}}} = \sum_{i = 1}^{N} 2x^{n} \]
+		כאשר הא''ש נכון המ''מ שכן $\frac{0.5}{x^{n}} \to\inft$ כאשר $\sof{x} < 1$. באותו המקרה גם הטור לעיל מתכנס וסה''כ הכל מתכנס ממבחן ההשוואה הראשון. 
+	\end{proof}
+	
+	\section{}
+	תהי $f \co [-a, a] \to \R$ פונקציה. נוכיח קיום $f_1$ זוגית ו־$f_2$ אי־דוגית \textit{יחידות} כך ש־$f = f_1 + f_2$. 
+	\begin{proof}
+		\begin{itemize}
+			\item \textbf{קיום: }נגדיר:
+			\[ f_1 = \frac{f(x) - f(-x)}{2} \quad f_2 = \frac{f(x) - f(-x)}{2} \quad f_1, f_2 \co [-a, a] \to \R \]
+			בגלל שהתחום של $f$ הוא $[a-, a]$ הפונקציות $f_1, f_2$ מוגדרות היטב. נבחין ש־: 
+			\begin{gather*}
+				f_1(-x) = \frac{f(-x) + f((-1)^{2}x)}{2} = \frac{f(x) - f(-x)}{2} = f_1(x) \\
+				f_2(-x) = \frac{f(-x) - f((-1)^{2}x)}{2} = - \frac{f(x) - f(-x)}{2} = -f_2(x)
+			\end{gather*}
+			מכאן ש־$f_1$ זוגית ו־$f_2$ אי־זוגית. עוד נבחין ש־: 
+			\[ (f_1 + f_2)(x) = \frac{f(x) + f(-x)}{2} - \frac{f(x) - f(-x)}{2} = \frac{f(x) + f(x) + \cancel{f(-x) - f(-x)}}{2} = \frac{\cancel 2 f(x)}{\cancel 2} = f(x) \]
+			כנדרש. 
+			\item \textbf{יחידות: }תהי $f \co \R\to \R$, ונניח קיום $(f_1, f_2)$ ו־$(g_1, g_2)$ זוגית ואי־זוגית בהתאמה כך ש־$f_1 + f_2 = f \land g_1 + g_2 = g$. מכאן ְש־: 
+			\[ \begin{WithArrows}[format=rrl]
+				f = h_1 + h_2 \land f = g_1 + g_2 \implies &g_1 + g_2 &\ = f_1 + f_2 \\
+				\implies &g_1 + g_2 &\ = f_1 + f_2 \\
+				\implies &g_1 - f_1 &\ = f_2 - g_2 =: h
+			\end{WithArrows} \]
+			ידוע ש־$f_1$ ו־$g_1$ אי־זוגיות וכן חיבור/חיבור של פונקציות אי־זוגיות הוא אי־זוגי (הוכחה: $(f_1 - g_1)(x) = f_1(x) - g_1(x) = -f_1(-x) + g_1(-x) = -(f_1 - g_1)(-x)$). באופן דומה $f_2, g_2$ זוגיות ולכן חיבורן/חיסורן זוגי גם הוא (הוכחה: $(f_2 - g_2)(x) = f_2(x) - g_2(x) = f_2(-x) - g_2(-x) = (f_2 - g_2)(-x)$). סה''כ $h$ פונקציה זוגית ואי־זוגית, כלומר לכל $x \in [-a, a]$ בהכרח $-x \in [-a, a]$ ואז $h(x)$ מוגדרת ונקבל $h(x) = -h(-x) = -h(x)$. דהיינו $h$ קבועה ב־$0$ בכל תחום הגדרתה וסה''כ $g_1 - f_1 = 0 = f_2 - g_2$. נחבר אגפים ונקבל $g_1 = f_1 \land g_2 = f_2$ כלומר מהמשפט היסודי של זוגות סדורים $(f_1, f_2) = (g_1, g_2)$ וסיימנו. 
+		\end{itemize}
+		
+		
+	\end{proof}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נתבונן בפונקציית דיריכלה, האינדיקטור של $\Q$ ב־$\R$. נוכיח שהיא פונקציה מחזורית ללא מחזור מינימלי. 
+		\begin{proof}
+			יהי $q \in \Q$. נוכיח ש־$q$ מחזור של $D(x)$. יהי $x \in \R$. נפרק למקרים. נסמן $q = \frac{a}{b}$ כאשר $a, b \in \Z$. 
+			\begin{itemize}
+				\item אם $x \in \R\setminus \Q$ אז $x + q \in \R\setminus \Q$ (נניח בשלילה שלא כן, אז $x + q = \frac{m}{n}$ ואז $x = \frac{mb - an}{mb} \in \Q$ וסתירה). אז $D(x) = 0 = D(x + q)$. 
+				\item אם $x \in \Q$, אז $x+ q \in \Q$ (שכן $x = \frac{m}{n}$ ואז $x + q = \frac{mb + an}{mb} \in \Q$ וסיימנו). אז $D(x) = 1 = D(x + q)$. 
+			\end{itemize}
+			סה''כ כל מספר רציונלי הוא מחזור של $D$, בפרט $D$ מחזורית בעבור המחזור $q = 1$, ואין לה מחזור מינימלי כי לא קיים מינימום לרציונליים (וגם לרציונליים החיוביים, במקרה ולא מגדירים מחזור שלילי). 
+		\end{proof}
+		\item תהי $f \co \R \to \R$ כך שבכל נקודה $a \in \R$ קיים הגבול $\lim_{x \to a} f(x)$ ולכל $n \in \N$ מתקיים ש־$\frac{1}{n}$ מחזור של $f$. אז $f$ קבועה. 
+		\begin{proof}
+			תהי $f \in \R\to \R$ ונניח ש־$\frac{1}{n}$ מחזור והגבול שלה בכל נקודה מוגדר. ראשית כל נוכיח שלכל $r \in \R$ ולכל $q \in \Q$ מתקיים $f(r + q) = f(r)$. נבחין ש־$q = \frac{m}{n}$ עבור $m \in \Z, n \in \N$ כלשהם. מהגדרת מחזור $f(r) = f\cl{r + \frac{1}{n}} = f\cl{r + \frac{2}{n}} = \cdots = f\cl{r + \frac{m}{n}}$ באינדוקציה על $m$. מכאן ש־$f(r + q) = f\cl{r + \frac{m}{n}} = f(r)$. 
+			
+			עתה יהי $r \in \R\setminus\Q$. נוכיח $f(r) = c$, כאשר $c = f(0)$ (מהטענה הקודמת $f(q) = c$ לכל $q \in \Q$). ראשית נוכיח ש־$\lim_{x \to r}f(x) = c$: נתבונן בסדרת רציונליים ששואפת ל־$r$ שבהכרח קיימת ממשפט, נסמנה $a_n$, ונבחין ש־$a_n \neq r$ כי רציונלי איננו אי־רציונלי, ואז בהכרח $\limsi f(a_n) = \limsi c = c$ וממשפט היינה $c = \lim_{x \to a}f(x)$ (מהיות הגבול קיים, מהיינה, כל הסדרות ששואפות ל־$r$ מקיימות ש־$f(a_n)$ שואף לגבול, ומצאנו לאן אחת מהן שואפת – דהיינו גם כל השאר שואפות לשם). 
+			
+			עתה נראה ש־$f(r) = \lim_{x \to r}f(r) =: \ml$ לכל $r \in \R$. נניח בשלילה שקיים $r$ כך שלא כן מתקיים. נסמן $f(r) = \ag$ ו־$f(0) = \ml$. נבחר $\eg = \sof{\ml - \ag}$. תהי $\dg > 0$. ידוע קיום $0 < q < \dg$ מצפיפות, ונבחין ש־$0 < \sof{r - (r + q)} < \dg$ כלומר $x = r + q$ נמצא בסביבת ה־$\dg$ הנקובה של $r$. 
+%			עוד ידוע קיום $r < y < r + \dg$ כאשר $y$ רציונלי מצפיפות הרציונליים גם כן. נבחין שגם $y$ בסביבת ה־$\dg$ הנקובה של $r$. אך: 
+%			\[ f(x) = f(r) = \ag \quad f(y) = f(0) = \bg \]
+			אך: 
+			\[ f(x) = f(r + q) = f(r) = \ag \implies \sof{f(x) - \ml} < \eg \implies \sof{\ag - \ml} < \sof{\ag - \ml} \quad \bot \]
+			סתירה וסיימנו. מכאן שאותה נקודה $r$ לא קיימת ובכל נקודה $r \in \R$ מתקיים $f(r) = \lim_{x \to r} f(r)$ כלומר הפונקציה רציפה. הראינו שהגבול בכל נקודה קבוע וערכו $f(0)$, סה''כ ישירות מרציפות $f(r) = f(0)$ לכל $r \in \R$ כלומר הפונקציה קבועה ב־$f(0)$ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נמצא את הגבולות הבאים: 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\lim_{x \to 3}x^{2} = 9$ לפי היינה ולפי קושי. 
+		\begin{proof}[היינה]
+			תהי $x_n \to 3$ כך ש־$x_n \neq 3$ סדרת מספרים. נקבל: 
+			\[ \lim_{\mathclap{x \to \infty}}f(x_n) = \lim_{\mathclap{x \to \inft}}x_n^{2} = \cl{\lim_{{x \to \inft}} x_n}^{2} = 3^{2} = 9 \]
+			לכל $x_n$ שמקיימת את התנאים המתאימים. מהיינה $\lim_{x \to 3}f(x) = 3$. 
+		\end{proof}
+		\begin{proof}[קושי]
+			יהי $\eg > 0$. נבחר $\dg > 0$ כך שבסביבת $\dg$ נקובה של $3$ בהכרח $\sof{f(x) - 9} < 0$. ידוע $0 < \sof{x - 3} < \dg$. לכן בפרט מהגדרת ערך מוחלט $x - 3 < \dg \land x + 3 < \dg$. עבור $\dg = \sqrt{\eg}$ נקבל: 
+			
+			\[ \sof{f(x) - 9} = \sof{x^{2} - 9} = \sof{x - 3}\sof{x + 3} < \dg^{2} = \eg \]
+			כדרוש מקושי, וסיימנו. 
+		\end{proof}
+		\item נוכיח ש־$\lim_{x \to 1}\frac{x^{2} - 4x + 3}{x^{2} - 3x + 2}$ אינו מוגדר לפי היינה ולפי קושי. \begin{proof}[היינה]
+			נתבונן בסדרה ששואפת ל־$1$ ולא עוברת דרכו $x_n$ שקיימת ממשפט. נקבל: 
+			\[ \limsi \cl{f(x_n) - 2} = \limsi \frac{x_n^{2} - 4x_n + 3}{x_n^{2} - 3x_n + 2} - 2 = \limsi \frac{-(x_n - 1)^{2}}{(x_n - 1)(x_n - 2)} = \limsi \frac{1-x_n}{x_n - 2} = \frac{\limsi 1 - x_n}{\limsi x_n - 2} = \frac{0}{-1} = 0 \]
+			זאת כי $\limsi x_n = 1$. 
+			מאריתמטיקת גבולות: 
+			\[ \limsi f(x) = \limsi \cl{f(x) - 2} + \limsi 2 = 0 + 2 = 2 \]
+			לכן לפי היינה הגבול שואף ל־$2$ כדרוש. 
+		\end{proof}
+		\begin{proof}[קושי]
+			יהי $\eg > 0$. נתבונן ב־$0 < \sof{x - 1} < \dg$ עבור $\dg = \min\{2, 2\eg\}$. דהיינו $x - 1 > 2$ כלומר $x - 2 > 1$. נקבל: 
+			\[ \sof{\frac{x^{2} - 4x + 3}{x^{2} - 3x + 2} - 2} = \sof{\frac{-x^{2}+2x-1}{x^{2} - 3x + 2}} = \sof{\frac{-(x - 1)^{2}}{(x - 1)(x - 2)}} = \sof{\frac{x - 1}{x - 2}} < \frac{\dg}{1} = \eg \]
+			סה''כ סיימנו לפי קושי. 
+		\end{proof}
+		\item נוכיח שהגבול הבא לא קיים: $\lim_{x \to 0}\sin\cl{\frac{2\pi}{x}}$. 
+		\begin{proof}
+			ידוע: 
+			\[ \begin{cases}
+				\disty \sinx = 1 \iff x = \frac{\pi}{2} + 2\pi k \iff \frac{1}{x} = \frac{2}{4 \pi k + \pi} \iff \frac{2\pi}{x} = \frac{1}{2k + 0.5} \\
+				\disty \sinx = 0 \iff x = 2 \pi k \iff \frac{1}{x} = \frac{1}{2 \pi k} \iff \frac{2\pi}{x} = \frac{1}{2k}
+			\end{cases} \]
+			מכאן ש־: 
+			\[ f(x) = \sin\cl{\frac{2 \pi }{x}} \quad f(x) = 0 \iff x = \frac{1}{2k} \land f(x) = 1 \iff x = \frac{1}{2k + 0.5} \]
+			נתבונן בסדרה $x_n = \frac{1}{2n + 0.5}$ ובסדרה $y_n = \frac{1}{2n}$. נבחין ש־$x_n, y_n \neq 0$ וכן $x_n, y_n \to 0$. ונקבל: 
+			\begin{gather*}
+				\limsi f(x_n) = \limsi f\cl{\frac{1}{2k + 0.5}} = \limsi 1 = 1 \\
+				\limsi f(y_n) = \limsi f\cl{\frac{1}{2k}} = \limsi 0 = 0
+			\end{gather*}
+			סה''כ משום שלא כל הסדרות $a_n$ השואפות ל־$0$ ולא מגיעות אליו, מקיימות ש־$\limsi f(a_n)$ מתכנסות לאותו המקום (כי $x_n, y_n$ מתכנסות למקומות שונים) סה''כ לפי היינה הגבול $\limsi \cl{\frac{2\pi }{x}}$ אינו מוגדר. 
+		\end{proof}
+		\item נוכיח שהגבול $\lim_{x \to 0} \frac{x}{\sof{x}}$ לא קיים. \begin{proof}
+			ידוע שהקבוצה $\{x \in \R \mid x < 0\} =: \R_-$ והקבוצה $\{x \in \R \mid x> 0\} =: \R_+$ מקיימות: 
+			\[ f(a) = \frac{a}{\sof{a}} = \sgn a \cdot \frac{\sof a}{\sof a} = \sgn a \implies f(\R_-) = -1 \land f(\R_+) = 1 \]
+			ומכאן ש־: 
+			\[ \lim_{\mathclap{x \to 0^{-}}} f(x) = \lim_{\mathclap{x \to 0^{-}}} -1 = -1 \land \lim_{\mathclap{x \to 0^{+}}} f(x) = \lim_{\mathclap{x \to 0^{+}}} 1 = 1 \]
+			כלומר ל־$f(x)$ גבול עליון ותחתון שונים ב־$0$, ומכאן שהיא אינה מתכנסת בנקודה זו (משפט). 
+		\end{proof}
+	\end{enumerate}
+	\section{}
+	תהא $f$ המוגדרת בסביבה מנוקבת של $a \in \R$ (נקודת הצטברות), ונניח $\lim_{x \to a}\cl{f(x) + \frac{1}{\sof{f(x)}}} = 0$. נוכיח ש־$\lim_{x \to a} f(x) = -1$. 
+	\begin{proof}
+%		נוכיח דבר ראשון קיום סביבת $\dg$ נקובה של $0$ שבה $\sof{f(x)}$ חסום ב־$e$. נניח בשלילה שלא קיימת סביבה כזו. אזי בעבור כל $e$ לכל $\dg > 0$ קיים $0 < \sof x < \dg$ כך ש־$\sof{f(x)} > e$. בפרט בעבור $\eg = 1$ נקבל שלכל $\dg$ 
+%		\[ -2 < -\sof{f(x)} < f(x) < f(x) + \frac{1}{\sof{f(x)}} < \sof{f(x)} + \frac{1}{\sof{f(x)}} < 2 +  \]
+%		
+%		יהי $\eg > 0$. ידוע שקיים $\dg \in \R$ כך שלכל $0 < \sof{x - a} < \dg$ מתקיים $\sof{f(x) + \frac{1}{\sof{f(x)}}} < \eg$, כלומר: 
+%		\[ -\eg - \frac{1}{\sof{f(x)}} < f(x) < \eg - \frac{1}{\sof{f(x)}} \implies -\eg \sof{f(x)} - 1 < f^{2}(x) < \eg \sof{f(x)} - 1 \implies \sof{\sof{f(x)}f(x) + 1} < \eg \sof{f(x)} \]
+%		\[ \sof{f(x) + 1} = \sof{f(x)\sof{f(x)} + \sof{f(x)}} \le \sof{\sof{f(x)}f(x) + 1} + \sof{\sof{f(x)} + 1} \]
+
+		נפרק למקרים: 
+		\begin{itemize}
+			\item אם $\lim_{x \to a} f(x)$ קיימת, אז מאריתמטיקת גבולות נקבל: 
+			\[ \lim_{x \to a}\cl{f(x) + \frac{1}{\sof{f(x)}}} - \lim_{x \to a}{\frac{1}{\sof{f(x)}}} = \lim_{x \to a} \frac{1}{\sof{f(x)}} \quad \quad \lim_{x \to a}f(x) = 0 - \lim_{x \to a}\frac{1}{\sof{f(x)}} \]
+			אם $\lim_{x \to a}\frac{1}{\sof{f(x)}} = 0$ אז $\lim_{x \to a}\sof{f(x)} = \infty$ ומכאן או ש־$\lim_{x \to a}f(x)$ אינו קיים וסתירה, או ש־$\lim_{x \to a}f(x) = \infty$ ואז $\lim_{x \to a}f(x) + \frac{1}{\sof{f(x)}} \ge \infty$ וסתירה. מפה לשם $\lim_{x \to a} \frac{1}{\sof{f(x)}} \neq 0$ ולכן $\lim_{x \to a}f(x) < 0$. משום שהראינו ש־$\lim_{x \to a} {\frac{1}{\sof{f(x)}}}$ קיימת, ו־$\lim_{x \to a} f(x) < 0$, נוכל להסיק: 
+			\[ \lim_{\mathclap{x \to a}}f(x) = -\frac{1}{\lim_{x \to a}\sof{f(x)}} \implies \lim_{x \to a}f(x) \sof{\lim_{x \to a}f(x)} = -1 \]
+			מכאן: 
+			\[ \sgn \cl{\lim_{x \to a} f(x)} = -1 \land \cl{\lim_{x \to a} f(x)}^{2} = 1 \implies \sof{\lim_{x \to a} f(x)} = 1 \]
+			דהיינו $\lim_{x \to a} f(x) = -1$ וסיימנו. 
+			\item אם $\lim_{x \to a}$ אינו קיים, נראה סתירה. מהיינה קיימים $x_n, y_n \to a$ כך ש־$x_n, y_n \neq a$ וכן $m =: \limsi f(x_n) \neq \limsi f(y_n) =: \ml$ (בהכרח קיים גבול חלקי שמתכנס לאנשהו מ־BW, ובהכרח הוא אינו יחיד, ומכאן שקיימים שניים). מנימוקים זהים למקרה לעיל $\ml, m \neq 0$ והגבול $\limsi \frac{1}{f(x_n)}$ ו־$\limsi \frac{1}{f(y_n)}$ קיימים. נבחין שמהיינה: 
+			\[ m + \frac{1}{m} = \climsi\cl{f(x_n) + \frac{1}{\sof{f(x_n)}}} = 0 = \climsi \cl{f(y_n) + \frac{1}{\sof{f(y_n)}}} = \ml + \frac{1}{\ml} \]
+			מכאן ש־$m = \ml$. סתירה. 
+		\end{itemize}
+		
+	\end{proof}
+	
+	
+	
+	\ndoc
 	
 \end{document}
