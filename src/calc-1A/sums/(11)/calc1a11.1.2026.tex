@@ -1,0 +1,158 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\author{שחר פרץ}
+\title{\textit{חדו''א 1א 11}}
+\begin{document}
+	\maketitle
+	לא הייתי בהרצאה אז השלמתי מצילומי לוח של נגה. אז לא יהיה את כל הראנט הרגיל בעפ שאני מעתיק לסיכום. 
+	
+	\subsubsection*{המשך נגזרות ולופיטל}
+	
+	\begin{Theorem}[משפט דרבו]
+		תהא $f \co (a, b) \to \R$ גזירה ב־$(a, b)$. אז $f' \co (a, b) \to \R$ מקיימת את תכונת דרבו. 
+	\end{Theorem}\begin{proof}
+		יהיו $a < x_0 < y_0 < b \in \R$ ויהי $\lg \in (f'(y_0), f'(x_0)) \uplus (f'(x_0), f'(y_0))$. נוכיח תחילה בעבור $\lg = 0$. בה''כ $f'(x_0) < 0 < f'(y_0)$. ידוע $f$ רציפה ב־$[x_0, y_0]$ (ממשפט) ולכן לפי וויראשטראס מקבלת מינימום בקטע, דהיינו $\exists c \in [x_0, y_0] \co \forall x \in [x_0, y_0] \co x(c) \le f(x)$. מהגדרת נגזרת (המטרה היא להראות באופן טרחני ש־$c$ לא מינימום קיצון, אלא מינימום מקומי): 
+		\[ 0 > f'(x_0) = \limxz \frac{f(x) - f(x_0)}{x - x_0} = \lim_{x \to x_0^{+}} \frac{f(x) - f(x_)}{x - x_0} \] 
+		כלומר קיים $\dg > 0$, כל שלכל $x_0 < x < x_0 + \dg$ מתקיים: 
+		\[ \sof{\frac{f(x) - f(x_0)}{x - x_0} - f'(x_0)} < \sof{f'(x_0)} \]
+		בפרט: 
+		\[ \frac{f\cl{x_0 + \frac{\dg}{2}} - f(x_0)}{x + \frac{\dg}{2} - x_0} < f'(x_0) + \sof{f'(x_0)} = 0 \]
+		(חוקי כי $0 < \frac{\dg}{2} < \dg$) כלומר נובע $f(x_0 + \frac{\dg}{2}) < f(x_0)$ ולכן $c \neq x_0$. באופן דומה $c \neq y_0$. מכאן $c \in (x_0, y_0)$ וממשפט פרמה $f'(c) = 0$. 
+		
+		המקרה בו $\lg \neq 0$ נובע באופן טרוויאלי ע''י הזזה אנכית של הפונקציה וחזרה למקרה בו $\lg = 0$. המרצה עושה את זה פורמלית אבל אין לי הרבה זמן עד ההרצאה ואני צריך להשלים הכל. 
+	\end{proof}
+	
+	\begin{Theorem}[משפט קושי]
+		יאי עוד משפט קושי. תהאנה $f, g \co [a, b] \to \R$ ונניח כי שתיהן רציפות ב־$[a, b]$, שתיהן גזירות ב־$(a, b)$, ולכל $x \in (a, b)$, מתקיים $g'(x) \neq 0$. אז $g(b) \neq g(a)$ וגם קיימת $c \in (a, b)$ כך ש־$\frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{f'(c)}$. \begin{proof}
+			לפי רול מכיוון ש־$g$ רציפה ב־$[a, b]$ וגזירה ב־$(a, b)$, וגם $g'(x) \neq 0$ לכל $x \in (a, b)$, נובע ש־$g(b) \neq g(a)$. 
+			
+			עתה נגדיר: 
+			\[ g \co [a, b] \to \R\quad h(x) = f(x)- f(a) - \frac{f(b) - f(a)}{g(b) - g(a)}(g(x)- g(a)) \]
+			אז $h$ רציפה ב־$[a, b]$ וגזירה ב־$(a, b)$ שכן היא צירוף לינארי של פונקציות גזירות ורציפות. נבחין ש־$h(a) = 0 = h(b)$. לכן ממשפט רול קיימת $c \in (a, b)$ כך ש־$h'(c) = 0$. לפי כללי גזירה: 
+			\[ h'(c) = f'(c) - \frac{f(b) - f(a)}{g(b) - g(c)} \cdot g'(c) \]
+			ומכאן
+			\[ \frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{g'(c)} \]
+			כנדרש. כמובן שממש לא עשינו אינטגרל וסתם הפלצנו את $h$ משום מקום. 
+		\end{proof}
+	\end{Theorem}
+	
+	\exe{יהיו $a < b \in \R$ ותהא $f \co (a, b) \to \R$ גזירה. נניח ש־$\lim_{x \to a^{+}}f(x) = \lim_{x \to b^{-}} f(x) = +\infty$. הראו כי $f'$ על $\R$. }\begin{proof}
+		יהי $\lg \in \R$. מתקיים $\lim_{x \to b^{-}} f(x) = \infty$ ולכן קיים $\dg > 0$ כך ש־: 
+		\[ \forall x \in (b - \dg, b) \co f(x) > \sof{f\cl{\frac{a + b}{2}}} + \sof{\lg}(b - a) \]
+		אינטואיטיבית $\lg$ צריך ליפול בין $b - \frac{\dg}{2}$ לבין $\frac{a + b}{2}$, ולכן הדרישה לעיל. ממנה נסיק בפרט: 
+		\[ f\cl{b - \frac{\dg}{2}} - f\cl{\frac{a + b}{2}} > (b - a) \lg \]
+		נחלק אגפים ונקבל: 
+		\[ \frac{f\cl{b -\frac{\dg}{2}} - f\cl{\frac{a + b}{2}}}{b - \frac{\dg}{2} - \frac{a + b}{2}} > \frac{f\cl{b -\frac{\dg}{2}} - f\cl{\frac{a + b}{2}}}{b- a} > \lg \]
+		בקטע $[\frac{a + b}{2}, b - \frac{\dg}{2}]$ $f$ מקיימת את תנאי משפט לגראנג' ולכן קיימת $c$ בקטע המדובר כך ש־: 
+		\[ f'(c) = \frac{f\cl{b - \frac{\dg}{2}} - f\cl{\frac{a +b}{2}}}{b - \frac{\dg}{2} - \frac{a + b}{2}} > \lg \]
+		באופן דומה קיימת $d \in (a, b)$ כך ש־$f'(d) < \lg$ (אותו הדבר הפוך), ואז ממשפט דרבו ישנה $\ag \in (a, b)$ כך ש־$f'(\ag) = \lg$. לכן $f'$ על $\R$. 
+	\end{proof}
+	
+	\begin{Theorem}[משפט לופיטל 1]
+		תהאנה $f, g \co T \setminus \{a\} \to \R$. נניח ש־$a$ נקודת הצטברות של $I \setminus \{a\}$. עוד נניח ש־$f, g$ רציפות ב־$I \setminus \{a\}$ וכן $f, g$ גזירות ב־$I \setminus \{a\}$. נניח ש־$\lim_{x \to a} f(x) = \lim_{x \to a} g(x) = 0$ (במקרים האחרים אפשר פשוט להשתמש בכללי גבולות כרגיל), וכן קיים הגבול $\lim_{x \to a} \frac{f'(x)}{g'(x)}  = \ml$. תחת כל התנאים הללו $\lim_{x \to a}\frac{f(x)}{g(x)} = \ml$ (כאשר $a$ ו־$\ml$ מוגדרים במובן הרחב). 
+	\end{Theorem}
+	
+	\rmark{לופיטל גנב את המשפט ממישהו אחר בלה בלה בלה}
+	
+	\begin{proof}
+		בהרצאה נוכיח רק את המקרה בו $a \in I$ ו־$\ml \in \R$ (באופן כללי, צריך לפצל ל־4 מקרים, בהתאם להיותם של $a, \ml$ מוגדרים במובן הרחב או לאו). בה''כ $f, g$ מוגדרות ב־$a$ ומתקיים $f(a) = g(a) = 0$ (פורמלית, נגדיר $\tl f, \tl g$ חדשות שמוגדרות ב־$a$). נוכיח $\lim_{x \to a^{-}} \frac{f(x)}{g(x)} = \ml$, והגבול מימין באופן דומה. יהי $\eg > 0$. קיים $\dg > 0$ כך שלכל $a - \dg < x < a$ מתקיים $\sof{\frac{f'(x)}{g'(x)} - \ml} < \eg$. נתבונן ב־$\dg$. יהי $a - \dg < x < a$. בקטע $[x, a]$ מתקיימים תנאי משפט קושי: $f, g$ רציפות, גזירות, ו־$\forall \ag \in (x, a) \co g'(\ag) \neq 0$. מכאן קיימת $a - \dg < x < c < a$ כך ש־$frac{f(x)}{g(x)} = \frac{f(a) - f(x)}{g(a) - g(x)} = \frac{f'(c)}{g'(c)} $, וסה''כ:
+		\[ \sof{\frac{f(x)}{g(x)} - \ml} = \sof{\frac{f'(c)}{g'(x)} - \ml} < \eg \]
+		וסיימנו את הוכחת הגבול לפי הגדרה. 
+	\end{proof}
+	
+	\begin{Lemma}[הלמה של שטולץ]
+		תהאנה $\an, \bn$ סדרות ונניח ש־$\bn$ מונוטונית ממש ו־$b_n \to +\infty$. אם קיים וסופי $\limsi \frac{a_{n + 1} - a_n}{b_{n + 1} - b_n}$ אז קיים וסופי $\limsi \frac{a_n}{b_n}$ וגבולותיהם שווים (לופיטל 2 בדיד). 
+	\end{Lemma}
+	\begin{Theorem}[משפט לופיטל 2]
+		תהאנה $f, g \co I \setminus \{a\} \to \R$ כאשר $I$ קטע ו־$a$ נקודת הצטברות. נניח ש־$f, g$ גזירות ב־$I \setminus \{a\}$ ו־$\forall x \in I \setminus \{a\} \co g'(x) \neq 0$. עוד נניח $\lim_{x \to a}\sof{g(x)} \to \infty$ (המקרה היחיד שבאמת מעניין אותנו זה כשגם $f$ שואף לאינסוף בנקודה) וקיים $\lim_{x \to a} \frac{f'(x)}{g'(x)} = \ml$. אז $\lim_{x \to a}\frac{f(x)}{g(x)}$ קיים וערכו $\ml$. 
+	\end{Theorem}
+	\begin{proof}
+		נוכיח ש־$\lim_{x \to a^{+}} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}$, והכיוון השני באופן דומה. גם כאן, נתעסק רק במקרה בו $a$ סופי והגבול סופי (של חלוקת הנגזרות), ועקרונית צריך לפרק למקרים. תהא $x_n$ סדרה המקיימת $x_n < x_{n + 1} \in I \setminus \{a\}$ וכן גבולה $\limsi x_n = a$. לכל $x \in I \setminus \{a\}$, מתקיים $g'(x) \neq 0$ ולכן מדרבו $g'$ דומת סימן בקטע. ללא הגבלת הכלליות, $g'(x) > 0$ (במובן הרחב) ולכן היא מונוטונית עולה ומתקיים $\lim_{x \to a}g(x) = \infty$. נסיק ש־$g(x_n)$ סדרה מונוטונית עולה ממש וגבולה $+\infty$. יהי $n \in \N$. בקטע $[x_n, x_{n + 1}]$ הפונקציות $f, g$ מקיימות את תנאי משפט קושי. לכן קיים $z_n \in (x_n, x_{n + 1})$ כך ש־: 
+		\[ \frac{f(x_{n + 1} - f(x_n))}{g(x_{n + 1} - g(x_n))} = \frac{g'(z_n)}{g'(z_n)} \]
+		ומסנדוויץ', בהכרח $\limsi z_n = a$. כמו כן לכל $n \in \N$ בהכרח $z_n \neq a$. לפי היינה 
+		$\limsi \frac{f(x_{n + 1}) - f(x_n)}{g(x_{n + 1} - g(x_n))}  = \limsi \frac{f'(z_n)}{g'(z_n)} = \ml$
+		לפי הלמה של שטולץ קיבלנו $\limsi \frac{f(x_n)}{g(x_n)} = \ml$ ומהיינה קיבלנו את הדרוש. 
+	\end{proof}
+	
+	\exe{נמצא את הגבול הבא: 
+	\[ \limz \frac{\cosx - 1}{x^{2}} \]
+	
+	נגדיר $f, g \co \R \setminus\{0\} \to \R$ ע''י $f(x) = \cosx - 1$ ו־$g(x) = x^{2}$. שתיהן רציפות וגזירות ב־$\R\setminus\{0\}$ וב־$0$ גבולן $0$. מלופיטל:
+	\[ \limz \frac{\cosx - 1}{x^{2}} \slh \limz \frac{f'(x)}{g'(x)} = \limz \frac{-\sinx}{2x} = -\frac{1}{2} \]
+	סימנו את השוויון שנובע מלופיטל ב־$\slh$ כדי להבהיר שהוא נכון בתנאי שהגבול מימין אכן מוגדר (אחרת – אי אפשר להגיד שום דבר על הגבול לפי לופיטל!). 
+	}
+	\exe{נמצא את הגבול הבא: 
+	\[ \limz (\cosx)^{\frac{1}{\tan^2x}} \]} \begin{proof}[פתרון]
+		נגדיר $f(x) = e^{\frac{\ln \cosx }{\tan^2 x}}$ לכל $x \in (-1, 1) \setminus \{0\}$. נבחין ש־$\limz \ln \cosx = 0 $ וכן $\limz \tan^2 x = 0$ מרציפות וכן שתיהן גזירות, וערכן $(\ln\cosx )' = \frac{-\sinx}{\cosx}$ וכן $(\tan^2x) = \frac{2 \tanx}{\cosx} \neq 0$. הגבול של החלוקה קיים וערכו: 
+		\[ \limz \frac{(\ln\cosx)'}{(\tan^2)x'} = \limz \frac{-\cancel{\tanx}}{2\cancel{\tanx} \cdot \frac{1}{\cos^2 x}} = \frac{-1}{2} \]
+		מהרציפות. סה''כ מלופיטל $\limz \frac{\ln\cosx}{\tan^2x} = -\frac{1}{2}$ ולכן $\limz f(x) = e^{-0.5}$ וסיימנו. 
+	\end{proof}
+	
+	\exe{נתבונן בגבול הבא: 
+	\[ \limz \frac{\sinx - x}{x^{3}} \]
+	מלופיטל: 
+	\[ \limz \frac{\sinx - x}{x^{3}} = \csb{\frac{0}{0}} \slh \limz \frac{\cosx - 1}{3x^{2}} = -\frac{1}{6} \]
+	מהגבול הקודם (כלומר תיאורטית היינו צריכים להפעיל לופיטל פעמיים)
+	}
+	
+	\section{נגזרות מסדר גבוה ופולינום טיילור}
+	\defi{תהא $f \co I \to \R$ ויהי $x_0 \in \R$. ניתן להגדיר רקורסיבית את $f^{(n + 1)}(x_0) := (f^{(n)}(x_0))'$ כאשר $f^{(0)} = f$ בסיס. נבחין שלשם כך נדרוש ש־$f^{(n)}$ מוגדרת בסביבה של $x_0$. }
+	\noti{לעיתים $f^{(n)}$ תסומן גם ב־$\frac{\dd^{n} f}{\dd x^{n}}(x_0)$. }
+	\textbf{דוגמה: }נבחין שהפונקציה $f(x) = x^{m}$ עבור $m \in \N^{+}$ קבוע מתקיים: 
+	\[ f^{(n)}(x) = \begin{cases}
+		\frac{m!}{(m - n)!}x^{m - n} & n \le m \\
+		0 & \other
+	\end{cases} \]
+	באופן דומה: 
+	\begin{gather*}
+		f(x) = \sinx \quad \quad f^{(n)}(x) = \sin\cl{x + \frac{\pi n}{2}} \\
+		f(x) = \cosx \quad \quad f^{(n)}(x) = \cos\cl{x + \frac{\pi n}{2}} \\
+		f(x) = e^{x} \quad \quad f^{(n)}(x) = e^{x}
+	\end{gather*}
+	
+	\defi{תהא $f \co I \to \R$ וכן $x_0 \in I$. יהי $n \in \N$. נניח ש־$f$ גזירה $n$ פעמים ב־$x_0$. נגדיר את \textit{פולינום הטיילור של $f$ מסדר $n$ סביב $x_0$} ע''י: 
+	\[ T_n(x) := \sum_{i = 0}^{n}\frac{f^{(i)}(x_0)}{i!}(x - x_0)^{i} \]
+	ואת השארית להיות: 
+	\[ R_n(x) := f(x) - T_n(x) \]
+	}
+	\lem{
+	\begin{enumerate}
+		\item $T_n$ גזירה מכל סדר
+		\item $R_n$ גזירה $n$ פעמים ב־$x_0$
+		\item לכל $i \in [n] \cup \{0\}$ בהכרח $R_n(x_0) = 0$ וכן $T_n(x_0) = f^{(n)}(x_0)$
+	\end{enumerate}
+	}
+	
+	\theo{מתקיים: 
+	\[ \limxz \frac{R_n(x)}{(x - x_0)^{n}} = 0 \]}
+	
+	\cola{תהא $f \co I \to \R$ ותהא $x_0 \in I$. יהי $n \in \N$ ונניח ש־$f$ גזירה $n$ פעמים ב־$x_0$. אז קיימת $\wg \co I \to \R$ המקיימת $\wg(x_0) = 0$ ו־$\wg$ רציפה בנקודה $x_0$, וגם: 
+	\[ R_n(x) = \wg(x)(x - x_0)^{n} \]}\begin{proof}
+		ההוכחה בעיקרה נשארה לבית, אבל $\wg$ מוגדרת ע''י: 
+		\[ \wg(x) = \begin{cases}
+			\frac{R_n(x)}{(x - x_0)^{n}} & x \neq x_0 \\
+			0 & \other
+		\end{cases} \]
+		ואנחנו אמורים והמשיך מכאן/ 
+	\end{proof}
+	
+	\lem{בהינתן $f, g \co A \to \R$ וכן $x_0$ נקודת הצטברות של $A$, אם $\limxz f(x) = \ml > 0$ וגם $\limxz g(x) = m$ אז מתקיים $\limxz (f(x))^{g(x)} = \ml^{m}$. }
+	
+	\exe{נגדיר $f(x) = \ln(1 + x)$ בתחום $(-1, \infty)$. אז לכל $n \in \N$ מתקיים: 
+	\[ f^{(n)}(x) = (-1)^{n}\frac{(n - 1)!}{(1 + x)^{n}} \]}
+	\exe{נחשב את הגבול שראינו בתחילת ההרצאה, הוא $\frac{\ln\cosx}{\tan^{2}x}$ סביב $0$, לא באמצעות לופיטל אלא באמצעות טיילור. }\begin{proof}[פתרון]
+		\[ \frac{\ln\cosx}{\tan^{2}x} = \underbrace{\cos^{2}x}_{\to 1} \cdot \underbrace{\frac{x^{2}}{\sin^{2}x}}_{\to 1} + \underbrace{\frac{\cosx - 1}{x^{2}}}_{\to-\frac{1}{2}} \cdot \underbrace{\frac{\ln(1 + (\cosx - 1))}{\cosx - 1}}_{\to 1} + \cdots \]
+		כנראה מה שמחברים בסוף זניח כי משהו משהו $\wg$ משהו משהו $R_n$ ואני מקווה שירחיבו יותר בתרגול. 
+	\end{proof}
+	
+	\exe{נחשב את הגבול שראינו בתחילת ההרצאה, הוא $\frac{\ln\cosx}{\tan^{2}x}$ סביב $0$, לא באמצעות לופיטל ולא באמצעות טיילור אלא באמצעות כלים אלמטריים שכבר ראינו לפני ההרצאה. }\begin{proof}[פתרון]
+		\[ (\cosx)^{\tan^{-2}x} = \underbrace{\cl{\cl{1 + \cosx - 1}^{\frac{1}{\cosx - 1}}}^{\overbrace{\frac{\cosx - 1}{\tan^{2}x}}^{\to -\frac{1}{2}}}\dequad\dequad\dequad\dequad}_{\to e} \quad\quad\quad\quad\!\!= e^{-0.5} \]
+	\end{proof}
+	
+	
+	
+	
+\end{document}
