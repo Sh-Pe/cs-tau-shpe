@@ -1,0 +1,119 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+
+\usepackage[colorlinks]{hyperref}
+\definecolor{mgreen}{RGB}{25, 160, 50}
+\definecolor{mblue}{RGB}{30, 60, 200}
+\RequirePackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=mgreen,
+	linkcolor=black,
+	urlcolor=mblue,
+	pdftitle={Document by Shahar Perets},
+	%	pdfpagemode=FullScreen,
+}
+
+
+\newcommand\anpowers  {\sum_{i = 1}^{\inft} a_n(x - x_0)}
+\newcommand\bnpowers  {\sum_{i = 1}^{\inft} a_n(x - x_0)}
+\newcommand\limzp{\limin{0^{+}\!}\ }
+\newcommand\iitem{\skipitems{1}\item}
+
+
+\author{שחר פרץ}
+\title{חדו''א 1א $\sim$ תרגיל בית 9}
+\begin{document}
+	\maketitle
+	\section{}
+	נתבונן בפונקציה הבאה עבור $\ag, \bg \in \N$ כלשהם: 
+	\[ f(x) = \begin{cases}
+		x^{\bg}\sin\cl{\frac{1}{x^{\ag}}} & x \neq 0 \\ 
+		0 & \other
+	\end{cases} \]
+	נמצא עבור אילו $\ag, \bg$ הפונקציה רציפה, גזירה, גזירה ברציפות, או גזירה פעמיים ב־$0$. \begin{proof}
+		\begin{itemize}
+			\item \textbf{רציפה: }לכל $\bg \in \N_+$. נוכיח:
+			\[ 0 = \climz x^{\bg} \cdot (-1) < \underbrace{\climz x^{\bg}\sin\cl{\frac{1}{x^{\ag}}}}_{\limz f(x)} < \climz x^{\bg} \cdot 1 = 0 \]
+			\item \textbf{גזירה: }לכל $\bg \in \N_{\ge 2}$. 
+			\begin{itemize}
+				\item $\bg = 1$ לא גזיר: נתבונן ב־$\eg = \frac{1}{2}$. יהי $\eg > 0$. בסביבת $\dg$ נקובה של $0$ נוכל לבחור נוכל לבחור $y = \sqrt[\ag]{\frac{2}{k\pi}}, x = \sqrt[\ag]{\frac{1}{2k\pi}}$ ומארכימדיאניות קיים $k$ גדול דיו כך ש־$x, y$ בסביבה. ואז: 
+				\[ \sof{\frac{f(x) - f(0)}{x - 0} - \frac{f(y) - f(0)}{y - 0}} = \sof{\frac{\can x\sin\cl{\frac{1}{x^{\ag}}}}{\can x} - \frac{\can x\sin\cl{\frac{1}{y^{\ag}}}}{\can x}} = \sof{\sin\cl{\frac{\pi k}{2}} - \sin\cl{\pi k}} = \sof{1 - 0} = 1 > \frac{1}{2} = \eg \]
+				סתירה לקריטריון קושי. 
+				\item $\bg \ge 2$ גזיר:
+				\[ \climz \frac{f(x) - f(0)}{x - 0} = \climz \frac{x^{2}\sin\cl{\frac{1}{x^{\ag}}}}{x} = \climz x\sin\cl{\frac{1}{x^{\ag}}} = 0 \]
+				כאשר השוויון האחרון נובע מרציפות שכבר הוכחנו. 
+			\end{itemize}
+			\item \textbf{גזירה ברציפות: }לכל $\bg \in \N_{\ge 2}$, שכן הנגזרת ב־$f'(0) = 0$ הוכחנו, ומחוקי גזירה לכל $x \neq 0$:
+			\[ f'(x) = \bg x^{\bg - 1}\sin\cl{\frac{1}{x^{\ag}}} - \ag \cos\cl{\frac{1}{x^{\ag}}}x^{\bg - \ag - 1} \]
+			נוכל להפעיל את אותם הנימוקים לרציפות שהראינו קודם לכן כאשר המעריכים יהיו לפחות $1$. כלומר – נדרוש $\bg - \ag - 1 \ge 1$ וגם $\bg - 1 \ge 1$. סה''כ $\bg \ge 2 \land \ag \le \bg - 2$. 
+			\item \textbf{גזירה פעמיים: }נשאף לגזור את הפונקציה הרציפה שקיבלנו לעיל. נדרוש $\bg > \ag + 1 \land \ag > 2$. זאת כי זה שקול לכך ש־$\bg - 1 \in \N_{\ge 2} \land \bg - \ag - 1 \in \N_{2}$, תנאי הכרחי ומספיק להיות הפונקציה לעיל גזירה ב־$0$ בעבור הוכחה דומה להוכחה הקודמת של גזירות. 
+		\end{itemize}\envendproof
+	\end{proof}
+	
+	\section{}
+	תהי $f \co \R \to \R$ גזירה. נוכיח מספר טענות. 
+	\begin{enumerate}[(A)]
+		\item נניח $f$ מחזורית על מחזור $T$. נוכיח $f'$ מחזורית עם מחזור $T$. \begin{proof}
+			נוכיח לפי הגדרה. יהי $k \in \Z$. ממחזוריות $\forall x \in \R \co f(x) = f(x + kT)$. לכן: 
+			\[ f'(x_0) = \climxz \frac{f(x_0) - f(x)}{x_0 - x} = \climxz \frac{f(x_0 + kT) - f(x + kT)}{x_0 + kT - (x + kT)} = \lim_{\mathclap{x \to x_0 + kT}} \ \frac{f(x_0 + kT) - f(x)}{(x_0 + kT) - x} = f'(x_0 + kT) \]
+			(אין מניעה להחליף משתנה בגבול, זה כמו הרכבה, ו־$f$ גזירה ולכן רציפה ב־$x_0$ כלומר מותר להרכיב). סה''כ מהגדרה $f'$ בעלת מחזור $T$. 
+		\end{proof}
+		\item אם $f$ זוגית אז $f'$ אי־זוגית. \begin{proof}
+			נוכיח לפי הגדרה. יהי $x_0 \in \R$. 
+			\[ f'(x_0) = \climxz \frac{f(x_0) - f(x)}{x_0 - x} = \climxz \frac{f(-x_0) - f(-x)}{x_0 - x} \seq \lim_{\mathclap{x \to -x_0}} \frac{f(-x_0) - f(x)}{x_0 + x} = -\lim_{\mathclap{x \to -x_0}} \frac{f(-x_0) - f(x)}{(-x_0) - x} = -f'(-x_0) \]
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נוכיח את הטענה הבאה: 
+	\[ (x^{n}\log x)^{(n)} = n!\cl{\logx + \sum_{i = 1}^{n}\frac{1}{i}} \]
+	\begin{proof}
+		נוכיח באינדוקציה על $n \in \N_0$. 
+		\begin{itemize}
+			\item \textbf{בסיס: }עבור $n = 0$ נקבל שהסכום ריק כלומר $0!x^{0}\log(x + 0) = \logx = (x^{0}\logx)^{(0)}$ כנדרש. 
+			\item \textbf{צעד: }
+			\[ \cl{x^{n + 1}\logx}^{(n + 1)} = \cl{(x^{n + 1}\log x)^{(n)}}' \]
+			\[ \frac{n!}{x} \]
+		\end{itemize}
+	\end{proof}
+	
+	\section{}
+	נפריך את הטענה הבאה: אם $f \co (a, b) \to \R$ גזירה, אז $f'$ רציפה ב־$(a, b)$. 
+	\begin{proof}[הפרכה]
+		נתבונן בדוגמה הנגדית הבאה: $f(x) = x^{2}\sin\cl{\frac{1}{x}}$ המוגדרת להיות $f(0) = 0$ בתחום $(-1, 1)$. היא גזירה ב־$0$ ולא רציפה בו מנימוקים שהועלו בשאלה 1, וכן גזירה ורציפה ב־$\R\setminus \{0\}$ מהרכבת אלמנטריות. 
+	\end{proof}
+	
+	\section{}
+	נוכיח של־$x = \cosx$ יש פתרון ממשי אחד בדיוק. 
+	\begin{proof}
+		נגדיר את הפונקציה $f(x) = x-\cosx$. 
+		\begin{itemize}
+			\item \textbf{קיום: }נוכיח ש־$f(x)$ מתאפסת איפשהו. אפשר לחשב ולמצוא $f(0) = -1$ וכן $f(\frac{\pi}{2}) = \frac{\pi}{2}$. סה''כ משום ש־$f$ רציפה (חיבור אלמנטריות) ממשפט ערך הביניים קיים $x$ כך ש־$f(x) = 0$. 
+			\item \textbf{יחידות: }נראה ש־$f(x)$ מונוטונית עולה. נגזור ונקבל $f'(x) = 1 - \sinx$. משום ש־$\sinx \in [-1, 1]$ בהכרח $1 - \sinx \in [0, 2]$ דהיינו $f'(x) \ge 0$. סה''כ $f$ עולה. היא גם עולה חזק שכן יש הנגזרת מתאפסת רק ב־$\az$ נקודות. סה''כ אם $f(x) = f(y) = 0$ אז $x = y$ כדרוש. 
+		\end{itemize}
+	\end{proof}
+	
+	\section{}
+	נתונה $f \co [-1, 1] \to \R$ כלשהי. נוכיח ונפריך מספר טענות: 
+	\begin{enumerate}[(A)]
+		\item נניח $\sof{f(x)} \le \sof{\tanx}$ עבור כל $x \in [-1, 1]$ כלשהו. אז $f$ גזירה ב־$0$. \begin{proof}[הפרכה]
+			נתבונן ב־$f(x) = \sof{x}$. ראשית כל, נוכיח $x < \tanx$ לכל $x \in \cl{0, \frac{\pi}{2}}$. נתבונן בפונקציה $f(x) = x - \tanx$ ונוכיח שהיא שלילית בתחום המדובר. היא מונוטונית יורדת שכן $f' = 1 - \sec^2x$ ומשום שב־$\cl{1, \frac{\pi}{2}}$ מתקיים $\cosx \in (0, 1)$ אז $\sex = \frac{1}{\cosx} \in (1, \infty)$ וסה''כ $\sec^2x > 1$ ומכאן $f'(x) = 1 - \sec^2x < 0$. סה''כ $f$ יורדת בתחום, וכשנציב נקבל $f(x) = 0$ (כי $\sex = 1$ ב־$x = 0$) וסה''כ באותו התחום $f(x) < 0$ (מתחילה ב־$0$ ויורדת משם). מכאן $x - \tanx < 0$ כלומר $x < \tanx$ לכל $x \in (0, \frac{\pi}{2})$. נסיק שלכל $x$ בסביבת $\frac{\pi}{2}$ נקובה של $0$ מתקיים $\sof x < \sof{\tanx}$. ספציפית עבור $x =0$ נציב ונקבל שוויון. נגדיר $g(x) =\sof x$. משום ש־$\frac{\pi}{2} > 1$ נקבל $\forall x \in [-1, 1] \co \sof{g(x)} \le \sof{\tanx}$. עם זאת, הוכחנו בהרצאה ש־$\sof x$ לא גזירה ב־$0$, וסיימנו. 
+		\end{proof}
+		\item נניח $\sof{f(x)} \le \sof{1 - \cosx}$ עבור כל $x \in [-1, 1]$. אז $f$ גזירה ב־$0$. \begin{proof}[הוכחה]
+%			משום ש־$\sof{f(x)} \le \sof{1 - \cosx}$ ו־$1 - \cosx$ חיובית ושואפת ל־$0$, נקבל מהגדרת שאיפה שלכל $\eg$ קיימת סביבת $\dg$ של $0$ בה $\sof{f(x)} \le \sof{1 - \cosx} < \eg$ כלומר $- \eg < f(x) < \eg$. לכן $f(x) \rrr{x \to 0} 0$. 
+			אפשר לדעת ש־$f(0) = 0$ כי אחרת $0 < \sof{f(x)} < 0$ וסתירה. נראה שהגבול קיים ע''י כך שנמצא את ערכו (ספויילר: $0$)
+			\[ f'(x) = \climz \frac{f(x) - f(0)}{x - 0} = \climz \frac{f(x)}{x} + \smash{\underbrace{\climz \frac{f(0)}{x}}_{0}} = \cdots \]
+			נטפל בגבול שנשאר בנפרד. ניעזר בכך ש־$\cosx \in (-1, 1)$ כלומר $\cos^2x < \sof{\cosx}$
+			\[ \sof{\frac{f(x)}{x}} < \frac{\sof{1 - \cosx}}{\sof{x}} < \frac{1 - \cosx^{2}x}{\sof x} = \frac{\sin^{2}x}{x} \rrr{x \to 0} \cl{\limz \frac{\sinx}{x}} \cdot \limz\cl{\sinx} = 1 \cdot 0 = 0 \]
+			סה''כ ממשפט הסנדוויץ', בגלל ש־$\frac{f(x)}{x}$ חסום משני צידיו בגבול השואף ל־$0$ (משני צידיו כי ביצענו את החישובים לעיל בערך מוחלט), נקבל ש־$\frac{f(x)}{x} \to 0$. נחזור אל הנגזרת בהתחלה, קיבלנו: 
+			\[ \cdots = 0 + 0 = 0 \]
+			כלומר $f'(0)$ מוגדר וערכו $0$. 
+		\end{proof}
+	\end{enumerate}
+	
+	
+	\ndoc
+	
+\end{document}

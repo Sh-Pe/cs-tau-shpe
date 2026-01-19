@@ -40,7 +40,7 @@
 	\newcommand \urm       {\bm{\mathrm{u}}}
 	\newcommand \srm       {\bm{\mathrm{s}}}
 	\newcommand \rrm       {\bm{\mathrm{r}}}
-	
+
 	\newcommand \Si        {\Sigma}
 	
 % Logic & sets shorcuts
@@ -138,6 +138,7 @@
 	\newcommand \seq       {\overset{!}{=}}
 	\newcommand \slh       {\overset{\mathrm{LH}}{=}}
 	\newcommand \eqdef     {\overset{\mathrm{def}}{=}}
+	\newcommand \sind      {\overset{\text{ה.א.}}{=}}
 	\newcommand \sle       {\overset{!}{\le}}
 	\newcommand \sge       {\overset{!}{\ge}}
 	\newcommand \sll       {\overset{!}{<}}
@@ -156,11 +157,18 @@
 	\newcommand \nt[1]     {\frac{#1}{#1}}
 	
 	\newcommand \limz      {\lim_{x \to 0}}
+	\newcommand \climz     {\lim_{\mathclap{x \to 0}}}
 	\newcommand \limxz     {\lim_{x \to x_0}}
+	\newcommand \climxz    {\lim_{\mathclap{x \to x_0}}}
 	\newcommand \limi      {\lim_{x \to \infty}}
-	\newcommand \limh      {\lim_{x \to 0}}
+	\newcommand \climi     {\lim_{\mathclap{x \to \infty}}}
+	\newcommand \limh      {\lim_{h \to 0}}
+	\newcommand \climh     {\lim_{\mathclap{h \to 0}}}
 	\newcommand \limni     {\lim_{x \to - \infty}}
+	\newcommand \climni    {\lim_{\mathclap{x \to - \infty}}}
 	\newcommand \limpmi    {\lim_{x \to \pm \infty}}
+	\newcommand \climpmi    {\lim_{\mathclap{x \to \pm \infty}}}
+	\newcommand \limin[1]  {\lim_{\mathclap{x \to #1}}}
 	
 	\newcommand \ta        {\theta}
 	\newcommand \ap        {\alpha}
@@ -338,6 +346,7 @@
 	\let        \tl        \tilde
 	\newcommand \op        {^{-1}}
 	\let        \co        \colon
+	\let        \can       \cancel
 
 	\newcommand \sof[1]    {\left | #1 \right |}
 	\newcommand \cl [1]    {\left ( #1 \right )}
