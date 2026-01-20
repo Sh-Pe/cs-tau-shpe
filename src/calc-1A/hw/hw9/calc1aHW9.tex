@@ -74,8 +74,13 @@
 		\begin{itemize}
 			\item \textbf{בסיס: }עבור $n = 0$ נקבל שהסכום ריק כלומר $0!x^{0}\log(x + 0) = \logx = (x^{0}\logx)^{(0)}$ כנדרש. 
 			\item \textbf{צעד: }
-			\[ \cl{x^{n + 1}\logx}^{(n + 1)} = \cl{(x^{n + 1}\log x)^{(n)}}' \]
-			\[ \frac{n!}{x} \]
+			\[ \begin{WithArrows}
+				\cl{x^{n + 1}\logx}^{(n + 1)} &= \cl{(x^{n + 1}\log x)'}^{(n)} = \cl{(n + 1)x^{n}\logx + \frac{x^{n + 1}}{x}}^{(n)} \\
+				&= (n + 1)(x^{n}\logx)^{(n)} + \cl{x^{n}}^{(n)} \Arrow[ll]{ה.א. } \\
+				&= (n + 1)n! \cdot \cl{\logx + \sumnio \frac{1}{i}} + n! \Arrow[ll]{$\frac{1}{n + 1}(n +1)! = n!$}\\
+				&= (n + 1)!\cl{\logx + \sum_{i = 1}^{n+1} \frac{1}{i}}
+			\end{WithArrows} \]
+			
 		\end{itemize}
 	\end{proof}
 	
