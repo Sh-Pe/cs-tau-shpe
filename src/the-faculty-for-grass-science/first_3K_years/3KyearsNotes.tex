@@ -1,558 +1,22 @@
-%! ~~~ Packages Setup ~~~ 
-\documentclass[]{article}
-\usepackage{lipsum}
-\usepackage{rotating}
-
-
-% Math packages
-\usepackage[usenames]{color}
-\usepackage{forest}
-\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots,centernot}
-\usepackage{amsmath}
-\WithArrowsOptions{displaystyle}
-\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts. 
-\usepackage{cancel,bm}
-\usepackage[thinc]{esdiff}
-
-
-% tikz
-\usepackage{tikz}
-\usetikzlibrary{graphs}
-\newcommand\sqw{1}
-\newcommand\squ[4][1]{\fill[#4] (#2*\sqw,#3*\sqw) rectangle +(#1*\sqw,#1*\sqw);}
-
-
-% code 
-\usepackage{algorithm2e}
-\usepackage{listings}
-\usepackage{xcolor}
-
-\definecolor{codegreen}{rgb}{0,0.35,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codenumber}{rgb}{0.1,0.3,0.5}
-\definecolor{codeblue}{rgb}{0,0,0.5}
-\definecolor{codered}{rgb}{0.5,0.03,0.02}
-\definecolor{codegray}{rgb}{0.96,0.96,0.96}
-
-\lstdefinestyle{pythonstylesheet}{
-	language=Java,
-	emphstyle=\color{deepred},
-	backgroundcolor=\color{codegray},
-	keywordstyle=\color{deepblue}\bfseries\itshape,
-	numberstyle=\scriptsize\color{codenumber},
-	basicstyle=\ttfamily\footnotesize,
-	commentstyle=\color{codegreen}\itshape,
-	breakatwhitespace=false, 
-	breaklines=true, 
-	captionpos=b, 
-	keepspaces=true, 
-	numbers=left, 
-	numbersep=5pt, 
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false, 
-	tabsize=4, 
-	morekeywords={as,assert,nonlocal,with,yield,self,True,False,None,AssertionError,ValueError,in,else},              % Add keywords here
-	keywordstyle=\color{codeblue},
-	emph={var, List, Iterable, Iterator},          % Custom highlighting
-	emphstyle=\color{codered},
-	stringstyle=\color{codegreen},
-	showstringspaces=false,
-	abovecaptionskip=0pt,belowcaptionskip =0pt,
-	framextopmargin=-\topsep, 
-}
-\newcommand\pythonstyle{\lstset{pythonstylesheet}}
-\newcommand\pyl[1]     {{\lstinline!#1!}}
-\lstset{style=pythonstylesheet}
-
-\usepackage[style=1,skipbelow=\topskip,skipabove=\topskip,framemethod=TikZ]{mdframed}
-\definecolor{bggray}{rgb}{0.85, 0.85, 0.85}
-\mdfsetup{leftmargin=0pt,rightmargin=0pt,innerleftmargin=15pt,backgroundcolor=codegray,middlelinewidth=0.5pt,skipabove=5pt,skipbelow=0pt,middlelinecolor=black,roundcorner=5}
-\BeforeBeginEnvironment{lstlisting}{\begin{mdframed}\vspace{-0.4em}}
-	\AfterEndEnvironment{lstlisting}{\vspace{-0.8em}\end{mdframed}}
-
-
-% Design
-\usepackage[labelfont=bf]{caption}
-\usepackage[margin=0.6in]{geometry}
-\usepackage{multicol}
-\usepackage[skip=4pt, indent=0pt]{parskip}
-\usepackage[normalem]{ulem}
-\forestset{default}
-\renewcommand\labelitemi{$\bullet$}
-\usepackage{titlesec}
-\titleformat{\section}[block]
-{\fontsize{15}{15}}
-{\sen \dotfill (\thesection)\dotfill\she}
-{0em}
-{\MakeUppercase}
-\usepackage{graphicx}
-\graphicspath{ {./} }
-
-\usepackage[colorlinks]{hyperref}
-\definecolor{mgreen}{RGB}{25, 160, 50}
-\definecolor{mblue}{RGB}{30, 60, 200}
-\usepackage{hyperref}
-\hypersetup{
-	colorlinks=true,
-	citecolor=mgreen,
-	linkcolor=black,
-	urlcolor=mblue,
-	pdftitle={Document by Shahar Perets},
-	%	pdfpagemode=FullScreen,
-}
-\usepackage{yfonts}
-\def\gothstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\gothfamily#1}}}
-	\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
-\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
-	\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
-
-
-
-% Hebrew initialzing
-\usepackage[bidi=basic]{babel}
-\PassOptionsToPackage{no-math}{fontspec}
-\babelprovide[main, import, Alph=letters]{hebrew}
-\babelprovide[import]{english}
-\babelfont[hebrew]{rm}{David CLM}
-\babelfont[hebrew]{sf}{David CLM}
-%\babelfont[english]{tt}{Monaspace Xenon}
-\usepackage[shortlabels]{enumitem}
-\newlist{hebenum}{enumerate}{1}
-
-% Language Shortcuts
-\newcommand\en[1] {\begin{otherlanguage}{english}#1\end{otherlanguage}}
-\newcommand\he[1] {\she#1\sen}
-\newcommand\sen   {\begin{otherlanguage}{english}}
-	\newcommand\she   {\end{otherlanguage}}
-\newcommand\del   {$ \!\! $}
-
-\newcommand\npage {\vfil {\hfil \textbf{\textit{המשך בעמוד הבא}}} \hfil \vfil \pagebreak}
-\newcommand\ndoc  {\dotfill \\ \vfil {\begin{center}
-			{\textbf{\textit{שחר פרץ, 2025}} \\
-				\scriptsize \textit{קומפל ב־}\en{\LaTeX}\,\textit{ ונוצר באמצעות תוכנה חופשית בלבד}}
-	\end{center}} \vfil	}
-
-\newcommand{\rn}[1]{
-	\textup{\uppercase\expandafter{\romannumeral#1}}
-}
-
-\makeatletter
-\newcommand{\skipitems}[1]{
-	\addtocounter{\@enumctr}{#1}
-}
-\makeatother
-
-%! ~~~ Math shortcuts ~~~
-
-% Letters shortcuts
-\newcommand\N     {\mathbb{N}}
-\newcommand\Z     {\mathbb{Z}}
-\newcommand\R     {\mathbb{R}}
-\newcommand\Q     {\mathbb{Q}}
-\newcommand\C     {\mathbb{C}}
-\newcommand\One   {\mathit{1}}
-
-\newcommand\ml    {\ell}
-\newcommand\mj    {\jmath}
-\newcommand\mi    {\imath}
-
-\newcommand\powerset {\mathcal{P}}
-\newcommand\ps    {\mathcal{P}}
-\newcommand\pc    {\mathcal{P}}
-\newcommand\ac    {\mathcal{A}}
-\newcommand\bc    {\mathcal{B}}
-\newcommand\cc    {\mathcal{C}}
-\newcommand\dc    {\mathcal{D}}
-\newcommand\ec    {\mathcal{E}}
-\newcommand\fc    {\mathcal{F}}
-\newcommand\nc    {\mathcal{N}}
-\newcommand\vc    {\mathcal{V}} % Vance
-\newcommand\sca   {\mathcal{S}} % \sc is already definded
-\newcommand\rca   {\mathcal{R}} % \rc is already definded
-\newcommand\zc    {\mathcal{Z}}
-
-\newcommand\prm   {\mathrm{p}}
-\newcommand\arm   {\mathrm{a}} % x86
-\newcommand\brm   {\mathrm{b}}
-\newcommand\crm   {\mathrm{c}}
-\newcommand\drm   {\mathrm{d}}
-\newcommand\erm   {\mathrm{e}}
-\newcommand\frm   {\mathrm{f}}
-\newcommand\nrm   {\mathrm{n}}
-\newcommand\vrm   {\mathrm{v}}
-\newcommand\srm   {\mathrm{s}}
-\newcommand\rrm   {\mathrm{r}}
-
-\newcommand\Si    {\Sigma}
-
-% Logic & sets shorcuts
-\newcommand\siff  {\longleftrightarrow}
-\newcommand\ssiff {\leftrightarrow}
-\newcommand\so    {\longrightarrow}
-\newcommand\sso   {\rightarrow}
-
-\newcommand\epsi  {\epsilon}
-\newcommand\vepsi {\varepsilon}
-\newcommand\vphi  {\varphi}
-\newcommand\Neven {\N_{\mathrm{even}}}
-\newcommand\Nodd  {\N_{\mathrm{odd }}}
-\newcommand\Zeven {\Z_{\mathrm{even}}}
-\newcommand\Zodd  {\Z_{\mathrm{odd }}}
-\newcommand\Np    {\N_+}
-
-% Text Shortcuts
-\newcommand\open  {\big(}
-\newcommand\qopen {\quad\big(}
-\newcommand\close {\big)}
-\newcommand\also  {\mathrm{, }}
-\newcommand\defis {\mathrm{ definitions}}
-\newcommand\given {\mathrm{given }}
-\newcommand\case  {\mathrm{if }}
-\newcommand\syx   {\mathrm{ syntax}}
-\newcommand\rle   {\mathrm{ rule}}
-\newcommand\other {\mathrm{else}}
-\newcommand\set   {\ell et \text{ }}
-\newcommand\ans   {\mathscr{A}\!\mathit{nswer}}
-
-% Set theory shortcuts
-\newcommand\ra    {\rangle}
-\newcommand\la    {\langle}
-
-\newcommand\oto   {\leftarrow}
-
-\newcommand\QED   {\quad\quad\mathscr{Q.E.D.}\;\;\blacksquare}
-\newcommand\QEF   {\quad\quad\mathscr{Q.E.F.}}
-\newcommand\eQED  {\mathscr{Q.E.D.}\;\;\blacksquare}
-\newcommand\eQEF  {\mathscr{Q.E.F.}}
-\newcommand\jQED  {\mathscr{Q.E.D.}}
-
-\DeclareMathOperator\dom   {dom}
-\DeclareMathOperator\Img   {Im}
-\DeclareMathOperator\range {range}
-
-\newcommand\trio  {\triangle}
-
-\newcommand\rc    {\right\rceil}
-\newcommand\lc    {\left\lceil}
-\newcommand\rf    {\right\rfloor}
-\newcommand\lf    {\left\lfloor}
-\newcommand\ceil  [1] {\lc #1 \rc}
-\newcommand\floor [1] {\lf #1 \rf}
-
-\newcommand\lex   {<_{lex}}
-
-\newcommand\az    {\aleph_0}
-\newcommand\uaz   {^{\aleph_0}}
-\newcommand\al    {\aleph}
-\newcommand\ual   {^\aleph}
-\newcommand\taz   {2^{\aleph_0}}
-\newcommand\utaz  { ^{\left (2^{\aleph_0} \right )}}
-\newcommand\tal   {2^{\aleph}}
-\newcommand\utal  { ^{\left (2^{\aleph} \right )}}
-\newcommand\ttaz  {2^{\left (2^{\aleph_0}\right )}}
-
-\newcommand\n     {$n$־יה\ }
-
-% Math A&B shortcuts
-\newcommand\logn  {\log n}
-\newcommand\logx  {\log x}
-\newcommand\lnx   {\ln x}
-\newcommand\cosx  {\cos x}
-\newcommand\sinx  {\sin x}
-\newcommand\sint  {\sin \theta}
-\newcommand\tanx  {\tan x}
-\newcommand\tant  {\tan \theta}
-\newcommand\sex   {\sec x}
-\newcommand\sect  {\sec^2}
-\newcommand\cotx  {\cot x}
-\newcommand\cscx  {\csc x}
-\newcommand\sinhx {\sinh x}
-\newcommand\coshx {\cosh x}
-\newcommand\tanhx {\tanh x}
-
-\newcommand\seq   {\overset{!}{=}}
-\newcommand\slh   {\overset{LH}{=}}
-\newcommand\sle   {\overset{!}{\le}}
-\newcommand\sge   {\overset{!}{\ge}}
-\newcommand\sll   {\overset{!}{<}}
-\newcommand\sgg   {\overset{!}{>}}
-
-\newcommand\h     {\hat}
-\newcommand\ve    {\vec}
-\newcommand\lv    {\overrightarrow}
-\newcommand\ol    {\overline}
-
-\newcommand\mlcm  {\mathrm{lcm}}
-
-\DeclareMathOperator{\sech}   {sech}
-\DeclareMathOperator{\csch}   {csch}
-\DeclareMathOperator{\arcsec} {arcsec}
-\DeclareMathOperator{\arccot} {arcCot}
-\DeclareMathOperator{\arccsc} {arcCsc}
-\DeclareMathOperator{\arccosh}{arccosh}
-\DeclareMathOperator{\arcsinh}{arcsinh}
-\DeclareMathOperator{\arctanh}{arctanh}
-\DeclareMathOperator{\arcsech}{arcsech}
-\DeclareMathOperator{\arccsch}{arccsch}
-\DeclareMathOperator{\arccoth}{arccoth}
-\DeclareMathOperator{\atant}  {atan2} 
-\DeclareMathOperator{\Sp}     {span} 
-\DeclareMathOperator{\sgn}    {sgn} 
-\DeclareMathOperator{\row}    {Row} 
-\DeclareMathOperator{\adj}    {adj} 
-\DeclareMathOperator{\rk}     {rank} 
-\DeclareMathOperator{\col}    {Col} 
-\DeclareMathOperator{\tr}     {tr}
-
-\newcommand\dx    {\,\mathrm{d}x}
-\newcommand\dt    {\,\mathrm{d}t}
-\newcommand\dtt   {\,\mathrm{d}\theta}
-\newcommand\du    {\,\mathrm{d}u}
-\newcommand\dv    {\,\mathrm{d}v}
-\newcommand\df    {\mathrm{d}f}
-\newcommand\dfdx  {\diff{f}{x}}
-\newcommand\dit   {\limhz \frac{f(x + h) - f(x)}{h}}
-
-\newcommand\nt[1] {\frac{#1}{#1}}
-
-\newcommand\limz  {\lim_{x \to 0}}
-\newcommand\limxz {\lim_{x \to x_0}}
-\newcommand\limi  {\lim_{x \to \infty}}
-\newcommand\limh  {\lim_{x \to 0}}
-\newcommand\limni {\lim_{x \to - \infty}}
-\newcommand\limpmi{\lim_{x \to \pm \infty}}
-
-\newcommand\ta    {\theta}
-\newcommand\ap    {\alpha}
-
-\renewcommand\inf {\infty}
-\newcommand  \ninf{-\inf}
-
-% Combinatorics shortcuts
-\newcommand\sumnk     {\sum_{k = 0}^{n}}
-\newcommand\sumni     {\sum_{i = 0}^{n}}
-\newcommand\sumnko    {\sum_{k = 1}^{n}}
-\newcommand\sumnio    {\sum_{i = 1}^{n}}
-\newcommand\sumai     {\sum_{i = 1}^{n} A_i}
-\newcommand\nsum[2]   {\reflectbox{\displaystyle\sum_{\reflectbox{\scriptsize$#1$}}^{\reflectbox{\scriptsize$#2$}}}}
-
-\newcommand\bink      {\binom{n}{k}}
-\newcommand\setn      {\{a_i\}^{2n}_{i = 1}}
-\newcommand\setc[1]   {\{a_i\}^{#1}_{i = 1}}
-
-\newcommand\cupain    {\bigcup_{i = 1}^{n} A_i}
-\newcommand\cupai[1]  {\bigcup_{i = 1}^{#1} A_i}
-\newcommand\cupiiai   {\bigcup_{i \in I} A_i}
-\newcommand\capain    {\bigcap_{i = 1}^{n} A_i}
-\newcommand\capai[1]  {\bigcap_{i = 1}^{#1} A_i}
-\newcommand\capiiai   {\bigcap_{i \in I} A_i}
-
-\newcommand\xot       {x_{1, 2}}
-\newcommand\ano       {a_{n - 1}}
-\newcommand\ant       {a_{n - 2}}
-
-% Linear Algebra
-\DeclareMathOperator{\chr}     {char}
-\DeclareMathOperator{\diag}    {diag}
-\DeclareMathOperator{\Hom}     {Hom}
-\DeclareMathOperator{\Sym}     {Sym}
-\DeclareMathOperator{\Asym}    {ASym}
-
-\newcommand\lra       {\leftrightarrow}
-\newcommand\chrf      {\chr(\F)}
-\newcommand\F         {\mathbb{F}}
-\newcommand\co        {\colon}
-\newcommand\tmat[2]   {\cl{\begin{matrix}
-			#1
-		\end{matrix}\, \middle\vert\, \begin{matrix}
-			#2
-\end{matrix}}}
-
-\makeatletter
-\newcommand\rrr[1]    {\xxrightarrow{1}{#1}}
-\newcommand\rrt[2]    {\xxrightarrow{1}[#2]{#1}}
-\newcommand\mat[2]    {M_{#1\times#2}}
-\newcommand\gmat      {\mat{m}{n}(\F)}
-\newcommand\tomat     {\, \dequad \longrightarrow}
-\newcommand\pms[1]    {\begin{pmatrix}
-		#1
-\end{pmatrix}}
-
-\newcommand\norm[1]   {\left \vert \left \vert #1 \right \vert \right \vert}
-\newcommand\snorm     {\left \vert \left \vert \cdot \right \vert \right \vert}
-\newcommand\smut      {\left \la \cdot \mid \cdot \right \ra}
-\newcommand\mut[2]    {\left \la #1 \,\middle\vert\, #2 \right \ra}
-
-% someone's code from the internet: https://tex.stackexchange.com/questions/27545/custom-length-arrows-text-over-and-under
-\makeatletter
-\newlength\min@xx
-\newcommand*\xxrightarrow[1]{\begingroup
-	\settowidth\min@xx{$\m@th\scriptstyle#1$}
-	\@xxrightarrow}
-\newcommand*\@xxrightarrow[2][]{
-	\sbox8{$\m@th\scriptstyle#1$}  % subscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\sbox8{$\m@th\scriptstyle#2$} % superscript
-	\ifdim\wd8>\min@xx \min@xx=\wd8 \fi
-	\xrightarrow[{\mathmakebox[\min@xx]{\scriptstyle#1}}]
-	{\mathmakebox[\min@xx]{\scriptstyle#2}}
-	\endgroup}
-\makeatother
-
-
-% Greek Letters
-\newcommand\ag        {\alpha}
-\newcommand\bg        {\beta}
-\newcommand\cg        {\gamma}
-\newcommand\dg        {\delta}
-\newcommand\eg        {\epsi}
-\newcommand\zg        {\zeta}
-\newcommand\hg        {\eta}
-\newcommand\tg        {\theta}
-\newcommand\ig        {\iota}
-\newcommand\kg        {\keppa}
-\renewcommand\lg      {\lambda}
-\newcommand\og        {\omicron}
-\newcommand\rg        {\rho}
-\newcommand\sg        {\sigma}
-\newcommand\yg        {\usilon}
-\newcommand\wg        {\omega}
-
-\newcommand\Ag        {\Alpha}
-\newcommand\Bg        {\Beta}
-\newcommand\Cg        {\Gamma}
-\newcommand\Dg        {\Delta}
-\newcommand\Eg        {\Epsi}
-\newcommand\Zg        {\Zeta}
-\newcommand\Hg        {\Eta}
-\newcommand\Tg        {\Theta}
-\newcommand\Ig        {\Iota}
-\newcommand\Kg        {\Keppa}
-\newcommand\Lg        {\Lambda}
-\newcommand\Og        {\Omicron}
-\newcommand\Rg        {\Rho}
-\newcommand\Sg        {\Sigma}
-\newcommand\Yg        {\Usilon}
-\newcommand\Wg        {\Omega}
-
-% Other shortcuts
-\newcommand\tl    {\tilde}
-\newcommand\op    {^{-1}}
-
-\newcommand\sof[1]    {\left | #1 \right |}
-\newcommand\cl [1]    {\left ( #1 \right )}
-\newcommand\csb[1]    {\left [ #1 \right ]}
-\newcommand\ccb[1]    {\left \{ #1 \right \}}
-
-\newcommand\bs        {\blacksquare}
-\newcommand\dequad    {\!\!\!\!\!\!}
-\newcommand\dequadd   {\dequad\duquad}
-
-\renewcommand\phi     {\varphi}
-
-\newtheorem{Theorem}{משפט}
-\theoremstyle{definition}
-\newtheorem{definition}{הגדרה}
-\newtheorem{Lemma}{למה}
-\newtheorem{Remark}{הערה}
-\newtheorem{Notion}{סימון}
-
-
-\newcommand\theo  [1] {\begin{Theorem}#1\end{Theorem}}
-\newcommand\defi  [1] {\begin{definition}#1\end{definition}}
-\newcommand\rmark [1] {\begin{Remark}#1\end{Remark}}
-\newcommand\lem   [1] {\begin{Lemma}#1\end{Lemma}}
-\newcommand\noti  [1] {\begin{Notion}#1\end{Notion}}
-
-% DS
-\newcommand\limsi     {\limsup_{n \to \inf}}
-\newcommand\limfi     {\liminf_{n \to \inf}}
-
-\DeclareMathOperator\amort   {amort}
-\DeclareMathOperator\worst   {worst}
-\DeclareMathOperator\type    {type}
-\DeclareMathOperator\cost    {cost}
-\DeclareMathOperator\tim     {time}
-
-\newcommand\dsList{
-	\sFunc{List}
-	\sFunc{Retrieve}
-	\SetKwFunction{RetrieveFirst}{Retrieve-First}
-	\SetKwFunction{RetrieveLast}{Retrieve-Last}
-	\sFunc{Delete}
-	\SetKwFunction{DeleteFirst}{Delete-First}
-	\SetKwFunction{DeleteLast}{Delete-Last}
-	\sFunc{Insert}
-	\SetKwFunction{InsertFirst}{Insert-First}
-	\SetKwFunction{InsertLast}{Insert-Last}
-	\sFunc{Shift}
-	\sFunc{Length}
-	\sFunc{Concat}
-	\sFunc{Plant}
-	\sFunc{Split}
-}
-\newcommand\dsQueue{
-	\sFunc{Queue}
-	\sFunc{Enqueue}
-	\sFunc{Head}
-	\sFunc{Dequeue}
-}
-\newcommand\dsStack{
-	\sFunc{Stack}
-	\sFunc{Push}
-	\sFunc{Top}
-	\sFunc{Pop}
-}
-\newcommand\dsVector{
-	\sFunc{Vector}
-	\sFunc{Get}
-	\sFunc{Set}
-}
-\newcommand\dsGraph{
-	\sFunc{Graph}
-	\sFunc{Edge}
-	\SetKwFunction{AddEdge}{Add-Edge}
-	\SetKwFunction{RemoveEdge}{Remove-Edge}
-	\sFunc{InDeg} \sFunc{OutDeg}
-}
-\newcommand\importDs{
-	\dsList
-	\dsQueue\texttt{}
-	\dsStack
-	\dsVector
-	\dsGraph
-	\SetKwProg{Fn}{function}{ is}{end}
-	\SetKwData{error}{\color{codered}error}
-	\SetKwInOut{Input}{input}
-	\SetKwInOut{Output}{output}
-	\SetKwRepeat{Do}{do}{while}
-	\SetKwData{Null}{\color{codegreen}null}
-	\SetKwData{True}{\color{codeblue}true}
-	\SetKwData{False}{\color{codeblue}false}
-}
-
-
-% Algorithems
-\newcommand\sFunc [1] {\SetKwFunction{#1}{#1}}
-\newcommand\sData [1] {\SetKwData{#1}{#1}}
-\newcommand\sIO   [1] {\SetKwInOut{#1}{#1}}
-\newcommand\ttt   [1] {\sen \texttt{#1} \she\,}
-\newcommand\io    [2] {\Input{#1}\Output{#2}\BlankLine}
+\documentclass[]{../../../tex/classes/styledArticle}
+\usepackage{../../../tex/packages/hebrewSupport}
+\usepackage{../../../tex/packages/theoremsSupport}
 
 %! ~~~ Document ~~~
 
 \author{שחר פרץ}
-\title{הערות לשאר רוח}
+\title{סיכום תולדות האנושות, שלושת אלפים השנים הראשונות}
 \begin{document}
 	\maketitle
+	
+	\section{שבוע 1}
 	\defi{תרבות מוגדרת ע''י: 
 	\begin{itemize}
 		\item עיור
 		\item אוריינות – יכולות קריאה וכתיבה
 		\item בנייה מונומנטלית – בניית משרדים, משרדי ממשלה, וכו'
 	\end{itemize}}
-	\theo{המפיינים לעיל החלו לפני כ־5K שנים. }
+	\theo{המאפיינים לעיל החלו לפני כ־5K שנים. }
 	מאפייני התרבות: 
 	\begin{itemize}
 		\item מאפיין גיאוגרפי
@@ -583,8 +47,445 @@
 		\item הבלדה אודות גיבורים מימים עברו: בלדה שנכתבה ב־1500 לפנה''ס. מדבר העובדה שגם שליטים מימי קדם מצאו את מותם כגולם, ושואל באופן עקיף את השאלה, אם גיבורים מימי עבר לא הצליחו לברוח מהמוות – איך אתה תוכל? לפי היצירה אין דבר בעולם בעל ערך, בגלל קוצר החיים ונצחיות מהמוות. מכאן שיש להנות מהחיים בטרם יסתיימו. באופן דומה מקהלת. 
 	\end{itemize}
 	
+	\section{שבוע 2 – כתב}
+	\subsection{מצרים}
+	מאפיין של תרבויות קדומות הוא שהן נכחדו כמעט לחלוטין או כמעט לחלוטין, עריהן ננטשו, בירותיהן נהרסו, שפתן מתה, וכתבן נשכח. זכרון לתרבויות אלו נשמר ע''י התנ''ך ועודות לכתבי היסטוריונים של העת העתיקה (שכתבו ביוונית ובלטינית). טקסטים אלו הם בגדר פרשנות. 
+	
+	האמפריה הפרסית שלטה במצרים בין 332 עד 525 (לפנהס). לאחר מכן אלכסנדר הגדול היווני הנאור כבש אותה (332 לפנהס) ולאחריו היא נשלטה ע''י בית תלמי (30 לספירה עד 310 לפנהס). לבסוף הגיעה האמפריה הרומית ותרבותה נזנחה עד המאה החמישית לספירה. 
+	
+	הורודוטוס שנחשב לאבי ההיסטוריה ביקר במצרים במאה החמישית לפנה''ס, וכתביו משמשים עד היום כמקור היסטורי. באופן דומה מנתו (במאה השלישית לפנה''ס) כתב על מצרים. כתביו של מנטו ששרדו נחשבים אמינים ביותר. גם אובסליקים שהרומאים גנבו משמשים כעדויות היסטוריות. 
+	
+	שיטת הכתב ההירוגליפי (הירו=מקודש, גליף=כתב) היא מאפיין של התרבות המצרית. השם כתב חרטומים שאול מהמקרא. הומצא בערך ב־3K לפנה''ס באותה העת שכתב היתדות הומצא. הכתב המצרי נשכח ופוענח במאה ה־19. הכתובת המאוחרת יותר היא מ־349 לספירה. כאשר נפסק הישמוש בכתב, הגיעה תרבותה המצרית לסופה. 
+	
+	ה''קצרנות`` של ההירוגלפים גרויה כתב היראטי. הכתב הדמוטי מופיע על אבן הרוזטה יחד עם הכתב המצרי הרגיל. הכתב המראוטי שימש את ממלכת הנובים בסודן. 
+	
+	שפה המצרית מכונה ספה ניילוטית (מלשון נילוס). השפה כנראה הייתה נפוצה לפני המצאת הכתב (פרוטו־היסטוריות). היא שייכת לספו החמו־שמיות/אפרו־אסייתיות, והיא מתה בעת הקדומה. ממשיכתה היא השפה הקופטית, שמשמשת את הכנסייה הקופטית. 
+	
+	הכתב המצרי נכתב מימין לשמאל, שכן ביד שמאל פרסו את הפפירוס. משמאל לימין היה מקובל לכתוב באלמנטיים עיצוביים כדוגמת כתיב על דלתות. כיוון הכתיבה מוכתב ע''י היכוון אליו מביטות הדמויות. ישנם כאלף בקירוב במערכת הסימנים. ישנם כמה מאות סימנים פופולאריים. זאת בניגוד לסינית שדורשת לדעת כמה אלפי סימנים כדי להבין סינית בסיסית, ועשרות אלפים בשביל אוריינות ברמה האקדמית. 
+	
+	הכתב התפתח במצריים באופן חלקי מציורים. מתוך מטרה להגביל את כמות הסימנים, משתמשים בצורות שונות. לדוגמה, סימנים קונקרטיים שומשו הן לשמות מקומות, אלים, שמות פרטיים, רגשות, ופעלים. עקרון זה נראה עקרון הרבוס (Rebus). 
+	
+	העקרון האקרופוני הוא מקרה פרטי של עקרון הרבוס, בו בוחרים צליל תו שמתאים לצליל אחד, ומהם מרכיבים א''ב (לדוגמה, אהל לא', בית לב', וכו'). בחרו 26 סימנים כדי להרכיב את הא''ב מצרים. פרט לא''ב במצרי ישנם 80 סימנים פונטיים שהם דו־עיצוריים (לדוגמה nb) ו־90 סימנים תלת עיצוריים. לא ברור כיצד בוטאו הסימנים במצרית קדומה, ומוסיפים e במרחק המדורני לנוחות.
+	
+	הסימן למים סימן נוזלים שונים, הסימן של שמש סימן קטגוריות של זמן ואור יום, וכן סימנים דומים שמתארים קטגוריות נוספות. סימנים אלו קרויים classifiers, או סימנים מגדירים, שמטרתם להקטין את דו־המשמעות, זאת באופן דומה לשיטת הניקוד. 
+	
+	כמו בעברית, אין סימנים מיוחדים לתנועות. אין חלופה לניקוד (כי מגדיר מציין שדה סמנטי). 
+	
+	מדוע היה צורך לשמר את מערכת הכתב המסובכת לאחר שהתחילו להשתמש ב־26 הסימנים? באופן דומה לכך שאנו משתמשים באותיות עבריות מוזרות ולא בלטיניות פשוטות, בשל המסורת התרבותית ארוכת השנים. באופן דומה סין המודרנית משתמשת בכתב מסובך וסבוך, ולא רק בכתב הא''ב הלטיני. כך מי שחי ב־500 לפנה''ס יכול היה להבין מה שנכתב ב־3K לפנה''ס. 
+	
+	נתייחס לכמה חיבורים בולטים שהשפיעו על המלומדים שניסו לפענח את הכתב המצרי הקדום טרם המאה ה־19: 
+	\begin{itemize}
+		\item הקורפוס הרמטיקום, שנכתב במאות הראשונות לספירה ונועד לתאר את תמצית הפילוסופיה המצרית. משום שלמרות ששאף להיות עתיק בהרבה, הוא נכתב ביוונית תחת השפעה נוצרית ומציג תמונה מעוות של מצרים ,כארץ של מיסטיקה. 
+		\item ההירוגליפיקה, מקור אחר, נכתבה במאה הרביעית לספיקה ע''י הורפולו (הורוס + אפולו, אל מצרי + אל יווני). לטענתו הכתב המצרי הוא כתב סימבולי שמסתיר בחובו רעיונות נסתרים, אותם יש לפענח. בחיבור נתנו פירושים סימובליים לסימנים שלא קשורים למציאות. 
+	\end{itemize}
+	
+	השינוי בהבנת הכתב המצרי סבב סביב נפוליאון, ומי שפיענח את הכתב – שמפוליון. ב־1789 נפוליאון כבש את מצרים. למסע היה גם צד תרבותי ומדעי, לדוגמה כדי לגנוב הכל ללובר. הכל נאסף לכדי פרסום שפורסם בין 1809 ל־1929 בלמעלה מחמישים כרכים, כל אחד בגודל מטר על שמונים סנטימטר. כל אלו כללו תיאורים מדוייקים של הממצאים במצריים, בפרט ממצאים בוטנים, מפות, ציורים, טקסטים הכתובים בכתב ההירוגליפי, ועוד. ההעתק של משלחת נפוליאון שימש חוקים מאוחר יותר. ב־1799 חייליו של נופוליאון מצאו את אבן הרוזטה, שחשיבותה הובנה מיד. 
+	
+	אבן הרוזטה הינה אסטלה (טקסט עם מסר מלכותי) מ־196 לפנה''ס (בית תלמי הכיווני). הטקסט מתאר את ניצחונותיו של המלך. על גביה מופיעים שלושה כתבים, ביוונית עתיקה, דמוטית, והירוגליפית. היוונית העתיקה שהשתמרה אפשרה לקרוא את יתר הטקסט. 
+	
+	בשינוי עלילה מפתיע שאף אחד לא היה מעלה על דעתו, את כל מה שהצרפתים גנבו ממצריים, הבריטים גנבו מהצרפתים ודחפו ל־British Museum. 
+	
+	שמפליון, no one צרפתי מהמעמד הבורגני, ביקר בביתו של גנרל ממצריים וראה את השלל המצרי שנליקח. כבר מגיל צעיר הוא שלט במגוון שפות, ולימד את עצמו עברית ופרסית. הוא לימד את עצמו קופטית (שפת הכנסייה של הקהילה הקופטית במצדיים) שהניח נכונה שמשמרת בתוכה מצרית עתיקה, מה שעזר לו להבין את הכתב ההדמוטי ממנו התפתחה הקופטית. 
+	
+	לשמפוליון היה יריב במרדף אחרי הפיענוח, הוא המעדכן האנרלי תומאס יאנג. הוא נרדף בשל תמיכתו בנופליאון ולא הייתה לו גישה ישירה לאבן הרוזטה. 
+	
+	את שמות המלכים כתבו במה שקרוי קרטוש – מעין שרוך שמקיף את שמות המלכים. שמיפליון הצליב את שמות המלכים מאבן הרוזטה עם שמות של מלכים אחרים מבית תלמי, ובאובסליקים שהגיעו לאירופה. לדוגמה בשם פתולמיאוס וקליאופטרה יש צלילים משותפים. בית תלמי כתב את שמות מלכיהם באופן פונטי, אך המצרים השתמשו גם בסימנים לוגוגרפים מה שאפשר לשמפוליון להיעזר בידע שלו בקופטית. ב־1822 בכריז שמופליון שהוא פיענח את הכתב ופרסם חיבור ב־1824. הוא מת בגיל 41. אחיו סיים לערוך את ספר הדקדוק. 
+	
+	דוגמה: הסימן המייצג את השמש. בקופטית השמש מתחילה ב־re. ואכן שמש מסמנת re/ra. 
+	
+	\subsection{מסופוטמיה}
+	בניגוד למצרים, במסופוטמיה לא היו מקדשים, אובסליקים ופירמידות מעוטרים בכתב. המבחנים היו עשויים לבני בוץ, וכן גם האומנות והכתיבה. כל אילו טבעו בחול ונהרסו כליל. ישנו תיעוד יווני ורומי למקומות כגון הגנים התלויים אליהם אין סימוכין ארכיאולוגיים. זאת בניגוד לחומות בבל להם נמצאו ממצאים במאה ה־20, נוסף על התיעוד היווני. ברוסוס במאה ה־3 לפנהס כתב את היסטוריית בבל בספר שגם הוא אבד ברובו. ככל הנראה מבני הזיגורט (מעין פרימידות לאכסון תבואה) כנראה מהווים את ההשראה לסיפור מגדר בבל). 
+	
+	כתב היתדות הומצא בדרום מסופוטמיה ב־3500 לפנה''ס. הוא הכתב הקדום ביותר הידוע לנו. הוא הוחלף ע''י כתב הא''ב ב־500 לפנה''ס. הוא היה הכתב הנפוץ ביותר בשיא תפוצתו. כתבו בו שומרית, חתית, אכדית, חורית, עילמית ופרסית עתיקה, פרט לשומרית ואכדית (השפות אליו הוא תוכנן במקור). 
+	
+	שאלה – האם הוא המקור לכל שיטות הכתיבה? זה לא המצב. לדוגמה, הכתב המצרי ההירוגליפי כנראה פותח בנפרד. כנ''ל לגבי הכתב הסיני. כמו כן כתב המאיה שבאותה התקופה אמריקה הייתה מבודדת. 
+	
+	בהתחלה הכתב היתדי שימש לשפה השומרית. היא שפה מבודדת – לדוגמה העברית, ערבית וארמית הן כולם שפות שמיות שמקורן משותף. השומרית היא שפה נכחדת ובערך ב־2000 לפנה''ס הושמדה. היא שמרה על מקומה בקרב תרבויות המזרח הקדום גם לאחר שאיש לא דיבר בה באופן דומה ללטינית, משום שהייתה השפה הכתובה הראשונה. לאחר השומרית נכתבה האכדית השמית בכתב יתדות. היא שפה מתה מאז 200 לפנה''ס. לאחר מות האכדית רק ב־1857 פיענחו את כתב היתדות. 
+	
+	במקור הכתב נכתב מלמעלה למטה ומימין לשמאל, ולאחר מכן רובו נכתב משמאל לימין. הוא נכתב על לוחות חימר שיובשו בשמש או נשרפו. מה שנשרף לחלוטין כמעט ולא ניתן לכליון, בניגוד לפיפרוס (שרק במקרים של יובש קיצוני הם נשמרו). 
+	
+	הכתב היתדי שינה את אופייו הצורני – הפיקטוגרפים (אובייקטים וציורים) הופשטו עד לכדי המעבר לסימנים אחרים. הכתב ההירוגליפי המצרי שימר על עצמו. 
+	
+	כמו במצרית, משתמשים באידאוגרמה – ייצוג חפץ מהעולם המציאותי. כנ''ל לגבי סימנים מגדירים (שנכתבו לפני המילה, ולא בסופה כמו בהירוגליפית). כל סימן גם יכל להיקרא פונטית. כתב היתדות הוא כתב הרבה יותר פונטית, לכן לכאורה יש 700 סימנים אך בפועל צריך 150 סימנים. 
+	
+	הראשון שחקר את הכתב היה פאול אמיל בוטה, דיפלומט שבא לאמפרייה העותמנית. הוא קיבל 1־1843 רישיון לחפור באתר שנראה מעשה ידי אדם, ואכן תוך מטרים ספורים הגיעו לממצאים מהאימפרייה האשורית. אפשר למצוא אותם בלובר. אנגלי כלשהו בשם לייארד החליט גם הוא לחפור שבשמו המודרני נקרא נימרוד. הממצאים הסעירו את המקומיים ועובדיו עד לכדי כך שרשיונו לחפור הופסק לעת כלשהי. ביאה לבחור בריטי הוא לקח הכל הביתה באמצעות כסף של אמו (הוא היה טחון). המוזיאון הבריטי עשה פרצוף אבל בסוף גנב הכל. לא לדאוג ללייארד, שעשה המון כסף דרך ספר שכתב על האיזור. ואז הוא השתמש בכסף כדי לחפור עוד והמוזיאון הבריטי גנב הכל. לייארד נחשב לאחד מאבות הארכיאולוגיה וגרם לאשור ולכתב היתדות להיות על סדר היום והעיתונות האנגלית. 
+	
+	אבן הרוזטה של כתב היתדות נמצאה באיזור איראן, היא הודאה של מלך לאלוהים, שנראה כאילו הפך את המקום ללא־נגיש במכוון. הטקסט כתוב שם בפרסית עתיקה, עילמית, ואכדית, בכתב יתדות. הכתובת נחקרה ע''י משלחת שנשלחה ב־1761 אך רק במאה ה־19 פוענחה באופן חלקי ע''י איזה גרמני אקראי. לייארד שלח העתקים לכומר בשם הינקס שתוך יישום שיטות שמופליון הצליח להבין את הכתב היתדי. בחור אחר בשם רולינסון לקח את התהילה. ב־1857 הוכחה מדעית שהכתב פוצח. 
 	
 	
+	\section{שבוע 3 – העיור במסופוטמיה}
+	כזכור, עיור, אירוייאוננות ובנייה מונומנטלית הם מאפייני התרבות. בשלב הראשון נבחין מחברה שתלויה במשאבי הטבע, לכזו שמקיימת חקלאות וביות. לאחר מכן היא מנצלת את המשאבים האנושיים ומקבצת קבוצות גדולות וכן משתמשת בכלים. התקופה בה אנחנו רואים זאת קורה לראשונה בהיסטוריה היא תקופה אורוכ 4, בעיר שומר. רק ב־3500 לפנה''ס ניתן למצוא חקלאות שלא תלויה בגשמים, ומשתמשת בתעלות, סכרים וכו' כדי להציף תעלות ולהגדיל ייבולים רבים יותר. כך ניתן היה לגדל יותר יבול על אותו השטח המעובד. הגידולים אפשרו ליישוב לגדול – אם בעבר גודל היישוב היה נתון ע''י כמות האוכל המצוי בו, והדור החדש נאלץ לעזוב, במסופוטמיה לא היה כך. גדלו דגנים, חיטה ושעורה, מהם ייצרו לחם ובירה. מעזים וכבשים ספקו חלב, ואף מעט בשר. העלייה בתוצרת החקלאית דרשה ליצור כלי אגירה, ולכן דרישה לעבודות ספציפיות בעלי ידע טכנולוגי – כדרים. כנ''ל לגבי אבן וברונזה. נוצרו רבעים שונים לבני מקצועות שונים. 
+	
+	הליכודיות סביב בית האב, התערערה כאשר נדרשו אנשים שונים ומגוונים למקצועות שונים. היה צורך באלים שייצגו את הקולקטיב. המקדש הפך להיות המוקד של האמונה, המרכז האדמינסטרטיבי, מחסן התבואה, ושם התקבצו הפקידים שנהלו את חיי הדת ואת הכלכלה של העיר, והיו בעלי ידע קרוא וכתוב. הוא היה בנוי כולו מלבני בוץ, בצורת הר, והיה גדול במיוחד. שמו הזיקורת. בתוכו שכנה צלמית האלוהות. רק לאחר שהערים התחברו נוצר הפנטיאון המסופוטמי. לדוגמה, איננה/אישתר הייתה האלה בשומר שנחשבה לבעלת העיר. 
+	
+	הערים בשלב מסויים דרשה הגנה. אנשי אורוכ בנו חומה בקוטר של 10 קילומטר. מסופוטמיה התברכה בחומר רב. טיט היה מעורבב בקש אותו יצקו למלבן, שהתייבש בשמש עד שהתקשה (לא היה צורך לשרופו). גילגמש לכאורה דרש את בניית חומת העיר אורוכ. 
+	
+	העיור באורוכ התרחש לאחר הביות והמהפכה החקלאית (8K לפנה''ס). 
+	
+	משום שיש עדויות לגבי ראשית התפתחותו של כתב היתדות, משתמשים בפיתוח הכתב במסופוטמיה כמודל להתפתחות כתב בצורה עצמאית במקומות אחרים (לדוגמה מצרים), ובאופן יותר כללי כמודל להתפתחות טכנולוגית. 
+	
+	להלן שלוש הנחות \textbf{שגויות} בנוגע להתפתחות הכתב:
+	\begin{itemize}
+		\item זוהי המצאה טבעית, הכרחית, שנועד לתעד שפה מדוברת. 
+		\item הוא תוצאה של אדם מסויים, שקיבל מוזה לגבי כתיבה. 
+		\item הכתב החל מפיקטוגרפים/פיקטורמות ועבר תהליך פונטי עד שכל ציור ייצג באופן פונטי צליל. 
+	\end{itemize}
+	אף אחד מהנחות הייסוד הללו איננה נכונה באופן מלא. 
+	
+	השלבים הראשונים של המצאת הכתב נוצרו תוך שימוש בצ'יפים/אסימונים שהיוו את שיטת הרישום של האדם הניאוליטי. מפרקים אותם לצ'יפים פשוטים ומורכבים. כל צ'יפ ייצג חפץ קונקרטי, ולפיכך כל צ'יפ הוא בודד. הביעו כמות ע''י ריבוי של צ'יפים. הם שימשו כדי לתעד יחסי חליפין ומעידים על יכולת מסויימת של הפשטה. יש מאות סוגי צ'יפים המדגימים צורת רישום מפותחת. 
+	
+	צעד נוסף לקראת המצאת הכתב הוא הכנסת הצ'יפים לתוך מעטפות חימר. אלו נקראות בולות. באתרים נמצאו 130 מעטפות (מתוכן 80 חתומות, ותוכנן לא נבדק) בתרבות אורוכ. ישנן בידנו גם מעטפות שמורות וצילומי MRI כדי לקרוא את פנים המעטפות. על גבי המעטפה הייתה טביעת חותם, וצוירו עליהן הצ'יפים עצמם. 
+	
+	ייתכן והסימנים על המעטפות הוטבעו באמצעות הצ'יפ, העצבאות, או קנה. בכך שהטביעו את תוכן המשלוח היה ניתן לאמת את תוכנה למה שנמצא על גביה. בשלב הבא שלחו מעטפות ריקות, הן פשוט לוח חימר חלק ואחיר בגודלו, עליהן הטביעו את הצ'יפים עצמם. הייצוג התלת ממדי של הצ'יפ הפך לדו ממדי. לכן מקורו של הכתב אינו במקורות פיקטוגרפי, אלא פלסטי. הכתב גם איננו המצאה של אינדבידואל, אלא תהליך שעבר שלבים. ב־3000 לפנה''ס נעלמו הצ'יפים. יש בידנו כ־5400 לוחות באורוכ. מהם אפשר לראות כיצד אורוכ הפכה לעיר ענקית. כל הכתובות הן אדמינסטרטיביות – אין בהן ספרות, נרטיב היסטורי, כתיבה דתית, מכתבים או אגרות ברכה. בתוך 5K התעודות מופיעים 1.2K סימנים. גם הם יכולים לסמן גם דברים קונקטיים וגם סימון סימבולי. היה ניתן לשלב סימנים יחדיו. 
+	
+	מכאן שהכתב לא נועד לתיעוד שפה מדוברת. הוא נוצר כשיטת רישום או נוטציה. באופן דומה הכתב לא נחת על אף אדם באופן מידי, והתפתח לאורך זמן. הכתב לא הומצא למסור שפה, כדי למסור מידע אחר. 
+	
+	ישנן שתי שיטות ספירה – האחת בבסיס 60 (לספירת אנשים, מוצרי חלב, טקסטיל, דגים וכו') ושיטת 2x60 מה שזה לא יהיה בשביל מוצרים יחודיים (תבואה, דגים טריים, גבינה). 
+	
+	התהליך לא לחלוטין ברור, אבל שיטת הכתיבה עברה באמצעות עקרון הרבוס בשביל להעביר גם צלילים. ב־3K לפנה''ס אפשר לזהות בוודאות את השומרית. 
+	
+	\section{סיפורי הבריאה}
+	כיצד הסבירו לעצמם אנשים כך העולם נראה? מי יצר אותם ואת היקום? מה תחילתנו, למה אנו חייבים למות וכו'? הסיפור של בריאת העולם בבראשית הוא מיתולוגי – הוא בזמן לא ברור, בעולם לא עולם, והדמות האלוהית היא אבסטרקטית. 
+	
+	גם המיתוסים במסופוטמיה מתרחשים הרחק, בראשית הזמן, לפני קיום העולם, השמש, הירח ואף האלים. בין הסיפורים של המזרח הקדום לבין אלו של המקרא, יש זיקה תוכנית חזקה. במזרח הקדום ישנם שני חיבורים מרכזיים בולטים – הנומה אליש, הוא סיפור הבריאה הבבלי, ואתרחסיס – הסיפור אודות ''נח הבבלי``. הראשון כתוב באכדית והיא היצירה הדתית־מיתולוגית הארוכה ביותר שיש בידנו מהמזרח הקדום. ההערכה היא לחיבורה סביב האלף הראשון לפנה''ס. 
+	
+	\subsection{האנומה אליש}
+	
+	האנומה אליש נקראת על שם מילות הפתיחה שלה, משמעותן ''כאשר למעלה``. נוכל להתייחס אליה גם כאל ''מיתוס הבריאה הבבלי``. 
+	
+	''כאשר למעלה, השמים לא היו, והארץ מתחת לא נבראה, היה היחיד והיחיד אפסו, הוא אביהם ומולידת. ותיאמת, האלה הקדמונית, אשר ילדה את כל כולם. שני אלה ערבבו את מימהם יחדיו, לפני שהתהווה המישור, לפני שערוגת הקנים נוצרה, עוד לפני שאל אחד נברא או נוצר, עוד לפני שהגורלות נקבעו. ``
+	
+	מבחינת היש – אין. אומנם לא כאוס, תהו ובהו, אך עדיין אין קיום או מילה. באופן דומה לתנ''ך, לדברים אין שם, ולכן אין משמעות לקיומם. תיאמת=מים מלחוים, אבזו=מים תת קרקעיים מתוקים. המיתולוגיה משקפת את המציאות המסופוטמית: הנהרות המתוקים מתערבבים עם המפרץ הפרסי. מהערבוב נוצרים האלים הראוניים, הטיטיאנים. תיאמת הוא הייסוד הנקבי (המים המלחוים) ואבזו הזכרי (המתוקים). ערבובם יוצר את אנשר, אל האופק, וכישר, אל היבשה והשאול. האחרונים מולידים את אנו, אל השמיים, ואאה אל החוכמה. 
+	
+	הדור החדש של האלים שעשו אפסו ותיאמה, מדברים. הדיבור של האלים הצעירים מסוכן לאלים הבוגרים, תיאמת ואפזו, שאינם מעוניינים באקטיביזם. מימיה של תיאמת מתערבבים עכב חוסר השקט ולכן אבזו רוצה להשמיד את אשר יצר, ובתגובה האלים הצעירים הורגים את אבזו. תיאמת מחליטה לנקום, ומי שהושיע את העלים היה מרדוך, האל המושיע. רעשו מעיר שוב את האלים הטיטאנים ומייצרת מפלצות איומות עם רעל. היא בוחרת בקינגו, אל ותיק מראשית הבריאה, להיות לבעלה ולשר הצבא. מרדוך מביס את תיאמת בתנאי שיהפוך לראש מועצת האלים. באמצעות תחבולות הוא מביס את תיאמת ומפלצותיה. 
+	
+	בבראשית אין מאבק בין אלים למפלצות, אך יש רמזים למאבק כזה. לדוגמה, ''ואלוהים מלכי מקדם, פועל ישועות בקרב הארץ; אתה פוררת בעזך ים ושברת ראשי תנינים על המים; אתה ריצצת ראשי לוויתן [...]`` (מתוך תהילים. יש לציין שבבראשית אלוהים בורא תנינים גדולים). ישנם עוד אשכורים בישעיהו לכך שאלוהים הרג תנינים ולויתנים. יש בתנ''ך שרידים למיתולוגיה עתיקה בהם אלוהים הרג מפלצות בים, כמו שתיאמת מתה. 
+	
+	תיאמת היא החומר החי ממנו מרדוך יוצר את העולם. היא הגאיה. מתוכה נוצרו החיים. על עמוד שדרתה הוא מבסס את כיפת השמים. הוא בורא את השמש והירח בדיוק מהסיבות בגינן אלוהים בורא את השמש והירח. מרדוך בורא את הפרת והחידל, ומעטינה יוצר את הערים, כדוגמת בבל מרכז העולם. הוא נמלך להיות מלך העולם. הוא אף בורא את האדם. 
+	
+	\subsection{אתרחסיס (לא נח)}
+	הסיפור מתחיל בבריאת האדם. בתקופה שטרם בריאת האדם, ''האלים היו כבני אדם. עמלו בעמל ונשאו בעול. עבודת האלים הייתה רבה מאוד[...]``. האלים הבכירים, האנונכי, אלצו את הצעירים, האיגיגי, לעבוד. הם חפרו את הפרת והחידל, בארות, מעיינות, וכל זאת בשביל מזון לאלים הגדולים. 
+	
+	האלים הגדולים החליטו למרוד בדרישה לבטל את עבדותם. המרד האלים נכשל אך המציאו את האדם כדי לפתור את הבעיה. האדם נוצר כדי לעבוד את האדמה, כמו בתנ''ך. 
+	
+	בלת־ילי, גבירת האלים, ואה החכם והאל הממציא. הם הורגים את האל שהנהיג את המורדים, ווה, ובשרו ודמו מערבבים בטיט וחומר. ממנו עצבו שבעה זכרים ושבע נקבות. יש כאן ערבוב בין טיט לאל. גם בבראשית, האדם נוצר בצלם אלוהים בסיפור אחד, ומן האדמה בסיפור אחר. ''נעשה אדם בצלמנו כדמותנו``. 
+	
+	אחרי שנבראו האנשים הם התחילו לבנות מקדשים, ותעלות השקיה, בשביל מזונם להם ושובע לאלים. ''ברעש בני האדם נסערו לאלים...``. אנליל אבי האלים לא מצליח לישון ומחליט להשמיד את כולם במבול נוראי. מנגד לסיפור הבריאה בני האלוהים ''יודעים`` את בנות האדם ומאלו נולדים הנפילים והענקים, וה' לא מרוצה. הוא קוצב את חיי האדם ב־120 שנה ואז מחליט להשמיד את האדם במבול. 
+	
+	\section{שיעור 5 – מצריים}
+	מצרים חיה סביב נהר הנילוס. רק באיזור הדלתא השטוח אפשר לקיים חקלאות באמצעות תעלות הצפה. על כן החלק הצפוני של קהיר/מוף, הקרוי ''מצריים התחתונה``, מופרד מ''מצריים העליונה`` (האיזור הדרומי). מצריים התחתונה/איזור הדלתא מרושת בתעלות טבעיות ומעשה ידי אדם. צומח בו הפפירוס וגדלים עופות כמו ברווזים. במצריים העליונה הנהר לא מתפצל, ובאיזורים קטנים ניתן לקיים חקלאות. 
+	
+	יש לציין שמצריים הקדומה מגיעה עד לנילוס בסודן (נוביה). 
+	
+	בין צידי הנהר ישנו המדבר – בצד המזרחי המדבר המזרחי, ומהצד המערבי המדבר הלובי. המדבר מייצג את המוות – ואף קוברים את מתיהם במדבר המערבי, שנחשב לארץ המתים. זאת בניגוד למסופוטמים שקברו את מתיהם במדבר. הים התיכון והמדבריות בידד אותה מפני פולשים, מה שהופך אותה לתרבות אינסולרית – מבודדת משאר העולם, כמו אי. באופן דומה, יפן ואנגליה ששונות מהותית מהמדינות סביבן. 
+	
+	המצרים היו ערים לכך שיש תרבויות שונות במקומות אחרים, ותפסו עצמם כמשתפים את חייהם עם אלי מצרים. האלים לא גרים מחוץ למצריים ומכאן שאזורים אלו נחשבים ככאוטים, ללא תרבות ומוסר. הכאוס מיוצג ע''י נחשב האפופיס, שנלחם במע'את שמייצגת את הסדר הקוסמי. תפקיד מהלך המצרי והאלים הוא למגר ולהדוף את מה שמגיע למזרח ומערב. 
+	
+	למה מחלקים את מצריים לתחתונה והעליונה, הפוך לצפון ודרום? שכן הנילוס זורם מדרום לצפון. מרבית הנהרות זורמים הפוך באפריקה. 
+	
+	המילה מצרים היא מילה שמית וגזרה מ.צ.ר. / מיצר, מסמן גבול. שמה באכדית ובערבית דומה. השם Egypte הוא שיבוש של השם Hikuptah, שמשמעו ''נשמת האל פתח``. המקדש שת האל פתח שכן בממפי''ס. מכאן שהפת''ח שוכן בקורסי מבוא מתמטי לפיזיקאים. 
+	
+	מצריים התהוותה בסביבת 4K-5K, בראשית החקלאות. 
+	
+	החלוקה התרבותית למצריים התחתונה והעליונה הייתה מוקדמת. במצריים התחתונה התפתחה תרבות מאאדי, ע''ש האתר מאדדי. אתר אופייני נוסף הוא אתר בותו. בין הממצאים של תרבות מאאדי הם כלי אגירה, המונחים ליד קברות. הקרמיקה שלהם הייתה לא אסטתית וללא איתורים. בניגוד לכך, במצריים העליונה התפתחה תרבות נקאדה וכלי החרסינה שלהם מעוצבים אחרת. בנקאדה הכלים היו יותר מורכבים טופולוגית, היא הייתה חלקה, והיו עליהם עיטורים גיאומטרים. מכאן שהיא תרבות יותר יציבה כלכלית ועשירה – יש שכבה חברתית עמידה שצורכת כדים, ויש אנשים שיש להם זמן להכין כלים אלו. לצד הקרמיקה אפשר למצואמסרקי שנהב, כדים מאבן רהט, ביצי יען, ופלטות שחיקה האופייניות לתרבות נקאדה. 
+	
+	 פלטת השחיקה היא חפץ שטוח עשוי אבן, המשולב או עשוי בצורת חיה. בצדה הקדמי ישנו שקע המוקף בשרוף שמיועד לכתישת מחצב הכחל ששימש את המצרים כחומר איפור. השרוך שהקיף את השקע נועד למנוע מהחומר לברוח. הפלטות שנמצאו בקברים הן חפצי מנחה שלא באמת שמשו לאיפור, אלא רק כדי להעיד על מעמדו הכלכלי של הנקבר. 
+	 
+	 נתבונן בציור קיר בקבר 100 באתר ההירוקונפוליס. ישנה סצנה נרטיבית (דינמיקה/התרחשות) על נהר. היא נטורליסטית. בצד ימין ישנו אדם אשר מתגושש עם שתי חיות גדולות. מטרתה היא לייצג באופן סימבולי את כוחו של משהו, כנראה ראש היישוב. במקום אחר יש איש המכה באלה שורה של אנשים כפותים, כנראה הוצאה להורג. 
+	 
+	 פלטת שחיקה המכונה פלטת ההרים, היא פלטה שהשתמרה באופן חלקי. בצדה האחרוי מספר משלבים, העליון מייצג צאן והתחתון עצים. בצדה האחר מספר ריבועים, ובכל ריבוע חיה ממין שונה. הריבועים הם עיר מבוצרת, וניתן להבין שהחיה מייצגת את האל או החיה של העיר. בחלק העליון מופיע בז, שמזוהה עם האל חור/הורוס, האל החשוב במצריים (מקורו במצריים העליונה). בידו הוא אוחז מכרשה. הפירוש: החיה האוחזת במחרשה משעבדת תחתה את העיר. ישנן עוד חיות המחזיקות מחרשות. סה''כ – מלכים מתרבות נקאדה המשתלטים על תרבות מאאדי. 
+	 
+	 נתבונן בעיר אבידוס במצרים העליונה. העיר הזו היא הנקרופוליס (עיר המתים) של מלכי מצרים הראשונים. נתבונן בקבר המכונה קבר U-j שנמצא בחפירות ארכיאולוגיות. נראה כאילו הוא בנוי כמספר חדרים הנבנו מתחת לאדמה, המחקים את ביתו של המלך, כדי לשמש את ביתו של המת. החדרים מלאים בכדים עם מנחות למת. יש בהן מספר רב של תגיות שונות, עם חורים שכנראה שומשו כדי לחבר אותם לחפצים אחרים. התגיות כוללות סצנות פשוטות וסטטיות: בע''ח או מבנים עם בע''ח. חלק מהתגיות כוללות מספרים בלבד. 
+	 
+	 היות שהתגיות היו קשורות לחפצים שונים, ההנחה היא שהן סימנו בעלות. הן מבשרות את בואו של הכתב למצרים, על־אף שהסימנים לגביהם אינם דומים להירוגליפים. הן משויכות לשנת -3300 עד -3000. התקופה הזו היא התקופה הקדם שושלתית. יתכן והן קשורות לכתב שפותח ב־-3400 לפנה''ס בתקופת אורוכ4. 
+	 
+	 \subsection{פלטת השחיקה של נערמר}
+	הוא המלך הראשון שחבש על ראשו את שני הכתרים של מצריים – של מצרים העליונה ושל מצריים התחתונה. אבל, תהליך איחוד מצריים היה תהליך ארוך ולא ממוקד – הוא התחיל עוד לפני נערמר כאשר תרבות מאאדי הוחלפה ע''י נקאדה באיזור הדלתא, לפני נערמר. 
+	
+	פלטת השחיקה של נערמר נמצאה גם היא בהירקנפוליס. בחלקה הקדמי היא כוללת את החלל המעגלי שנוער כדי לערבב איפור. בצדה האחורי מוצג המלך לוחם באויביו. שמו נכתב באמצעות שני הירוגליפים – שילוב של שפמנון עם עלי (שילובם עם רובוס יוצר את שמו). המלך מחזיק אלא גדולה, ובסצנה זו עם כתר מצריים העליונה הלבן, והוא מכה באדם ערום (שהופשט לצורך השפלתו), מכאן יש להסיק שהמוכה הוא ממצריים התחתונה. מצויירים עליה פיפירוס ממצריים התחתונה, מעליהם הבז (הורוס) המחזיק מוט שבאמצעותו אפשר לשלוט בבהמות – הכנעת האוייבים במצריים התחתונה. וכו'. 
+	
+	בהתבסס על כך שעל הפלטה מתואר כיבוש עיר מבוצרת, וישנם ממצאים אריכאולוגיים בתקופה זו לערים מבוצרות בעיקר בכנען, יש לשער שהוא אף כבש ערים בכנען. 
+	
+	
+	\section{מצרים האימפריאלית}
+	המאע'ת הוא מושג מצרי עתיק המדבר על אמת, סדר, איזון, הרמוניה, חוק ומוסר. הוא מיוצג בהירוגלפים וביצירות אומנות, והיא לעיתים מתוארת כאישה עם נוצת יען. הפרעונים נחשבו לאחראים למעאת על פני כדו''א. לאחר המוות היה טקס שקילת לב בו נשקל ליבו של הנפטר. האנטיתזה של המע'את היא האיספת, שמייצגת כאוס, ואי סדר. 
+	
+	המאע'ת מיוצג ע''י נוצת יען כי: 
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item סמל קלילות
+			\item שקילת הלב (הלב היה צריך להיות יותר קל מהנוצה)
+			\item טוהר ואמת (הנוצה לבנה)
+			\item סדר טבעי (הנוצה היא אובייקט טבעי)
+			\item ממש נפוצות
+			\item מקצוע קדוש (ספרות)
+		\end{itemize}
+	\end{multicols}
+	בנוצה הייתה גם כלי הכתיבה של הפקיד המצרי. הסופרים היו אנשים חשובים, שומרי רשומות, מנהלים, ומתעדים. כליהם היו סמל חוכמה. 
+	
+	שימור המאע'ת מבתטאת באיקונוגרפיה המצרית והיא מסמנת את שימור מצרים מאוחדת. לדוגמה: ציור של האל חפי (אל הנילוס) קושר את חבצלת המים (סמל מצרים העליונה) לצמח הפפירוס (מצריים התחתונה). נחבת היא נשרה שמייצגת את מצריים העליונה וד'ת היא קוברה המייצגת את התחתונה. למצרים היו שני כתרים – הכתר הלבן של מצריים העליונה, והכתר האדום של מצריים התחתונה. שילובם נקרא הכתר הכפול. חג הסד הוא חג בו המלך מדמה באופן סימבולי את איחודה של מצרים. 
+	
+	
+	\subsubsection*{פירמידות}
+	הערים הראשונות של המצרים היו מקודשות להורוס. בפרט הירוקונפוליס ואדפו במצרים העליונה. הוא נחשב הבן של אל השמש (רע/רה), קשר בין השמיים לארץ. המלך מגלם את מצרים ונחשב גם הוא בנו של רה. כאשר המלך מת הוא מצטרף לעולם המתים של האלים. 
+	
+	אחרי כמה פרמידות עקומות, המצרים הצליחו לבנות בגיזה פירמידות לא עקומות. בפרט הפירמידה של חופו, ''הגדולה``, בה שני חדרי קבורה מרכזיים למלך ולמלכתו. חדרים יותר קטנים למקום הקבורה של נשות המלך המשניות, וכן דוברות מלכותיות. 
+	
+	בהתחלה מטרתן הייתה להגביה את קברו של המלך מעל אלו שסובבים אותו. 
+	
+	האובסליקים המצריים היו בראשם עם פירדמיה קטנה מחוסה זהב שמטרתה הייתה לקלוט את קרני השמש הראשונות. משום שהם היו גבוהים יותר ומחזירים אור, הם אפשרו למצרים לראות את אור השמש לפני שהם ראו אותו. אותו הרעיון בפירמידות אבל גדול יותר. 
+	
+	לא בני ישראל בנו את הפירמידות אלא המצרים עצמם. הם הגיעו מרחבי מצרים כדי לעבוד במה שראו כפרויקט לאומי. הם עבדו בזה בקיץ, כאשר החקלאות פחות פרחה. המדינה ספיקה מזון ובגדים. 
+	
+	הפסיקו לבנות פירמידות כי היה קל לשדוד אותן וכי המחיר הכלכלי היה רב. גם קברי מלכים שלא נבנו בפירמידות נשדדו, פרט לקברו של תותאנחאמון. 
+	
+	\section{זום}
+	
+	\section{חוק וצדק}
+	חמורבי היה מלך בבל ממוצא אמורי. הוא מלך 42 שנה במאה ה־18 לפנה''ס, והיה המלך השישי בתקופת השושלת הראשונה של בבל לאחר סוף הממלכה השומרית (שנפלה ב־1595 לפנה''ס, הרבה לאחר מותו). בהתחלה הוא היה מלך אחד מבין כל מלכי מסופוטמיה וסוריה. הוא כרת בריתות וניהל את עירו תוך ניהול וביצור ממלכה מצומצמת בעיר בבל. הוא הצליח להרחיב את תחום שלטונו בסדרת מלחמות, שכבשה את כל מסופוטמיה. האל של העיר – מרדוק – שהיה אל זוטר של העיר בבל בלבד, הפך להיות ראש הפנתאון לאחר שבבל הפכה להיות העיר החשובה במסופוטמיה. 
+	
+	בבל שוכנת על נהר הפרת בלב הגיאוגרפי של מסופוטמיה. היא יושבת על אחד מצירי התחבורה של מסופוטמיה, כי היא יושבת על המקום הקרוב ביותר בן החידקל לפרת. בשל שליטתה על צירים אלו היא צברה כוח כלכלי. כך הוא ניצל אותה כנקודת יציאה אסטרטגית ליציאה למלחמה. בשנת ה־30 לשלטון הוא כובש את העיר בלרסה, בזכות שיתוף פעולה עם זימרי־לים בממארי במעלה הפרת. ואז הוא כובש את מארי. הוא הרס את כל מארי, טעות אסטרטגית שרואים רק בסוף ימי שושלת הראשונה של בבל. 
+	
+	ממלכת מארי מנעה כניסת גורמים זרים מממלכת ימחד ממערב למסופוטמיה. שנים רבות לאחר מותו, הצבא החיטי יתקדם דרך הפרת אל בבל ויוביל לסוף שלטון בבל. 
+	
+	חמורבי הפך להיות הקיסר של מסופוטמיה והוא טען שזה באמצעות מרדוק. ישנה זהות לאומית כאן – שפה משותפת (אכדית), היסטוריה משותפת, ואל משותף (מרדוק). ב־1000 הראשון לפנה''ס הזהות הזו תעמוד מול הזהות האשורית, שם אשור הוא האל הלאומי. 
+	
+	עיקר פרסומו נבע ממערכת החוקים שלו, חוקי חמורבי. הם מתוארים במצבה שהיא אחת מהמוכרות במסופוטמיה. גובהה שני מטרים והיא עשויה מאבן דיוריט (שיובאה מרחוק). המצבה משום מה התגלתה בעיר שושן באיראן ולא בבבל (שבעיראק) שנהלו הצרפתים. הלובר גנבו אותה. היא מחולקת לחלק אייקונגרפי עליו דמות חמורבי בתנוחת תפילה אל מול אל השמש. ממקורות נוספים נוכל להבחין שהוא אל הצדק, שבלילה נמצא בשאול ומעביר משפטים. האל נותן לחמורבי סרגל וחבל למדידה, שני סמלים שמסמלים שהזכות לשלוט בארץ היא מהאלים, בתנאי שהמלך ימלא את תפקידו כשופט צדק. 
+	
+	המצבה כתובה בשפה האקדית בניב הבבלית הקדומה, בכתב היתדות. החוקים ממוסגרים בפרלוג ואפילוג. הפרולוג הוא שיר הודיה של חמורבי לאלים, ואומר שהאל מרדוק הורה את חמורבי להנחות את העם אמת וצדק. החוקים במצבה הם הייצוג הכתוב של הצו האלוהי. ולמה החוקים? ''כדי לספק הגנה לעני ולאלמנה, כדי שהחזק לא יפגע בעליון``, וכו'. 
+	
+	באפילוג הוא כותב שהוא הציב את המצבה בעיר בבל. חמורבי כתב את המצבה לקראת סוף שלטונו ודורש שהחוקים הללו ימשכו ע''י כל המלכים בעתיד, ללא שינויים. המצבה מסתיימת בדברי נאצה כלפי מי שיפר את מה שכתוב במצבה. 
+	
+	על המצבה 250 חוקים. 20 לגניבה, 24 למחסר, 67 דיני ישות, 20 לתקיפה וגרימת נזק, ו־61 לתשלום ופיצוי. אין אף חוק דתי אחד. הם מנוסחים בצורה של אם־אז (חוק קאזואיסטי) ולא עשה ואל תעשה (חוק אפודיקטי). החוקים כולם נפתח במילה שומא, שמשמעותה שמא. 
+	
+	החוקים מתייחסים לשלושה מעמדות מרכזיים: 
+	\begin{itemize}
+		\item הawilum, האיש בעל המעמד החופשי. 
+		\item הmuskenum, אדם שנקלע לחובות ומשועבד על שישלמם. 
+		\item וה־wardum, העבד או ה־wardum (שפחה). 
+	\end{itemize}
+	העבד לרוב גם הוא היה אדם שנפל לחובות כבדים ועל מנת לפרוע אותם נכנס לסטטוס של עבדות. מעמדו הוא הנמוך בחברה. מעמד העבדות לא היה לנצח והם יצאו לחופשי בצווים מלכותיים שנקראו misarum. 
+	
+	דוגמה לחוקים: 
+	\begin{itemize}
+		\item חוק 3: אם איש (awulum) נתן עדות שקר במשפט והוא אינו מסוגל לגבות את דבריו, ואם משודבר במשפט רצח, דינו הוצאה להורג. 
+		\item חוק 6: אם איש גונב את רכוש הארמון/מקדש, האיש יוצא להורג, וכן האיש שבידיו הסחורה הגנובה. 
+		\item חוק 16: אם איש נותן מחסה לעבד אם אמה (wardumqamtum) שברחו והם רכוש הארמון/אדם, והוא לא מביא את העבד לכרוז העיר, הוא יוצא להורג. 
+		\item אם איש תופס עבד או אמה שברחו ומביא אותם לאדונם, הבעלים יעניק לו שני שקלים של כסף. 
+		\item אם פורצת שריפה ואדם שבא לעזור גונב מהמבית, הוא יזק לאותה האש. 
+		\item אם עלת פודנק בו מתגודדים פושעים הקושרים קשר, אינה לוכדת אותם, היא תוצא להורג. 
+		\item אם אופא מבצע ניתוח בעזרת סכין מנתחין והוא גורם לו למות או לפתוח את הראש, תקטע ידו.
+		\item אם רופא מבצע את הניתוח האמור בעבד והעבד מת, הוא יביא חלופה שוות ערך. 
+		\item חוק 196: אם אדם עיוור את עיניו של אחר, יעבור את עיניו, ואם שבר עצם של אחר, ישברו את עצמו. 
+		\item אם אדם יעוור את עיניו של עבד, או ישבור את עצמו, ישלם 60 שקלים של כסף. 
+	\end{itemize}
+	בחלק מהחוקים מממשים מידה כנגד מידה, עין תחת עין שן תחת שן. 
+	
+	חמורבי קיים ממלכה רחבת ידיים ורצה להכיל חוק אחד על כל נתינה. המטרה: קודיפיקציה לחוקים המסרותיים ולהשליט התנהלות משפטית. במקום שיהיו עברות בין אדם לאדם, שיהיו עבירות פדרליות. המדיה מחויבות לתבוע ביצוע ולתת עונש אחיד. משמעות: המדיה מתערבת בחיי הפרט, היא זו שמטילה קנסות, מוציאה להורג, וקביעת עונשים פיזיים. אין הסכמים, אין שיקול דעת של אדם פרטי. שופטים שממנה המלך קובעים. 
+	
+	קשה לדעת כיצד ואיך נוסחו החוקים, כי אף אחד לא כתב פרוטוקולים משפטיים. אך בזמני חמורבי על פי כתבים בינו לבין אחרים, הוא היה מעורב במשפטים רבים למרות שהיו שופטים במדינה. זו הייתה זכותו של כל אדם חופשי לפנות אליו. דוגמה: מכתב המספר על ילד שנחטף ונמצא בעיר אחרת. חמורבי מורה להביא את החוטפים לבבל. הלך פסק כנראה לפי חוק 14, מי שחטף ילד דינו מיטה. דוגמה אחרת הוא מצב שבו חמורבי מורה להחזיר שפחה ובנותיה. 
+	
+	ישנן עדויות נוספות לחוקי חמורבי, שכנראה התפשטו בעולם. כולם על לוחות חומר בכתב יתדות. דוגמה אחת היא העתק שנמצא בספריה של מלך אשורי במאה ה־7 לפנה''ס, כ־1K שנים לאחר חוקי חמורבי. מכאן, שחוקי חמורבי הועתקו במשך שנים, אף שכנראה אף אחד לא השתמשו בהם. כנראה שגם חוקי חמורבי שומשו כחומר הלימוד ב־edubba, בית ספר לכתב היתדות, באותה המידה שאנשים לומדים לקרוא באמצעות התנ''ך. דוגמה נוספת: בתל־חצור מצפון הארץ, שקיימה קשרים עם כל המזרח הקדום, שם נמצא שבר שאומנם הוא קטן אך בבירור נלקח בנוסח חוקי חמורבי (שומא...), אך עם שינויים קלים. 
+	
+	עם גילוי חוקי חמורבי ואף חוקים אחרים מהמזרח הקדום ניכר הקשר לחוקים המצויים בספר שמות, אך גם בין ספר דברים לחוקי הבבלים. יש שלושה תסריטים לקשר: 
+	\begin{itemize}
+		\item הקשר הוא טיפולוגי בלבד: כולם לדוגמה עוסקים ברצח, ואך זה הגיוני שינוסחו בצורה דומה. 
+		\item הקשר הוא גנטי או הכרחי, כלומר חוקי המזרח הקדום השפיעו באופן ישיר על החוק המקראי. 
+		\item יש לחוק המקראי ולחוקי המזרח הקדום אב קדמון משותף, שיש להניח שהיה מקור אוראלי (בע''פ). 
+	\end{itemize}
+	חוקים כמו ''אם מישהו רוצח אז הוא יומת`` מאוד הגיוניים עם המקור הראשון. זאת לעומת חוקים מפורטים כמו אלו של נישואי ייבום שממש מתארים מי ישא למי את מי במקרה שבעלה של אלמנה מת. דוגמה אחרת היא החוק בשמות, חוק אשנונה וחוקי חמורבי שכולם מדברים משום מה על שור שנגח בעבד. אין למחקר פתרון מספק לגבי מה קדם למה. בכל מקרה יש להכיר בחשיבות חוקי המזרח הקדום שהיוו אחת מהישגי האנושות ב־3K שנותיה הראשונות. 
+	
+	\section{האימפריה האשורית}
+	האימפריה הניאו־אשורית הייתה מהמאה ה־9 עד ה־7 לפנה''ס. נבין מה היא עשתה בעיקר באמצעות התבליטים שלהם. 
+	הצבא האשורי נועד להגשים את רצונם של המלך האשורי, והוא אמור לרצות את רצונו של האל אשור, בדמות כלכל השמש המכונף שלכאורה רוצה להרחיב את ארצו. נבחין במספר מלכים עיקריים: אשורנציפל, בנו שלמנסר השלישי, תלדת פלסר ג', סרגון, בנחריב, אסרחדון, ושאורבניפל. 
+	
+	למשרתים לא היה שיער פנים. דוגמה לציור של המלך טרואמן שהתמרד כנגד המלך האשורי, וראשו מונח על עץ ליד. לגנים האשוריים הובאו צמחים מרחבי האימפריה, והוא נמצא בנינווה, מרכז האימפריה האשורית. 
+	
+	האיזורים תחת הכיבוש האשורי נדרשו לספק לנינווה האימפריה את כל צרכה. הם סיפקו מחצבים, זהב, מתכות, עץ, אבנים יקרות, עץ נוי, פרי, בקר, כוח אדם וחיות אקזוטיות. האשורים עשו טרנספר הן בשביל לנצל אותם ככוח אדם ולהשתמש בהם כלוחמים. הגולים בנו את ערי הענק האשורים. 
+	
+	המלך סנחריב בנה מוביל מים מצפון לנוונה (איזור בוויאן) בארך 100km, במטרה לספק מים לחקלאות האשורית. 
+	
+	דרכי המסחר שהקימו האשורים אפשרו להניע את צבא אשור. רשת הדרכים שהסתעפה לכל עבר כדי להעביר דברים לאשור. 
+	
+	אשורנציפל יצא מדי שנה לקרב ע''מ להרחיב את האימפריה. 
+	
+	הצבא האשורי התקדם בסקאלה אדירה, קשתים, מכונות מלחמה, וכו'. שיירות הגולים היו יוצאות לכיוון ארץ אשור. בערך 2M גולים עשו טרנספר והתיישבו בבריה האשורית והאיזור. המלך המקומי באיזור שנכבש היה נכבש אמונים לאשור. 
+	
+	\subsection{ישראל}
+	האושרים יצאו מספר פעמים נגד ישראל ויהודה. אחאב היה בעל ברית של ממלכות באיזור סוריה. ב־853 לפנה''ס אחאב ביחד עם הממלכות לידו לקרב נגד האשורים, והצליחו לבלום אותם תקופה. בכתובת אשורית נטען כי היו 10K מרכבות לאחאב, אך כנראה היו לו לא יותר מ־1K. מספר שנים לאחר מכן, מלך ישראל יהוא נשבע לשלמנסר האשורי. תגלת פילסר השלישי כבש את כל צפון סוריה וצפון ישראל. הם עשו חלוקה למחוזות ומושלים, שהחליפו את השליטים המקומיים. 
+	
+	בזמנו של תגלת פילסר החלו גם ההגלויות ההמוניות לצפון מסופוטמיה וערי אשור. מנחם מלך ישראל העלה מס לאשורים. משום שישראל סירבה להכנע לחלוטין, לבסוף סרגון אחרי תגלת פילסר כבש את שומרון והגלה את תושביה, בגלל שהמלך הושיע סירב לשלם מס. כאן החלה גלות עשרת השבטים. 
+	
+	סרגון בנה מצודה בגורסבאד. סרגון נהרג מתישהו באופן מפתיע בקרב, וסנחריב תפש את השלטון. הוא יצא למסע נקמה נגד יהודה (נגד חזקיהו). סמחריב לא הצליח לכבוש את ירושלים, אך כבש בערך את כל שאר הסביבה – את לכיש הוא קרב והחריב. 
+	
+	\subsection{קאבום}
+	בזמנם של סנחריב ואסרחדון אשור הגיעה לשיא גודלה. היא אף כבשה את מצרים. היא נצלה את השטחים שהיא כבשה כאשר כמעט הכל עבר למרכז – נינווה. אחרון המלכים הגדולים הוא אשורבניפל. הוא כבר לא יצא למסעות המלחמה ושלח את מפקדיו לעשות דברים. בימיו של אשורבניפל היא הגיעה לשיא מבחינה אומנותית, בארמון המלך היו אוסף טקסטים, והגיעה להישגים במדע וספרות. הכל היה מרוכז אצל מלך אשור. 
+	
+	לא ברור למה היא נפלה, אך מה שכן ברור הוא שתהליך זה היה פתאומי ביותר. 
+	\begin{itemize}
+		\item תיאוריה: בצורת ארוכה. אין עדויות. 
+		\item תיאוריה: בכלל חוסר יצירות בחסר המלך. לא בהכרח זה. 
+		\item תיאוריה: לא נותר מה למסור לבירה האשורית. המון כוחות היו תחת כיבוש אשורי ונוצלו באופן מתמיד, כמעט לא נשאר בהם דבר. כוחות כבושים התאחדו יחדיו ועשו בלגן (לדוגמה, הבבלים). 
+	\end{itemize}
+	
+	האימפריה הניאו־בבלית החליפה את האימפריה האשורית. היא רק החליפה את השם, ואת מרכז השליטה. 
+	
+	\section{ראשית האלפאבית}
+	בוואדי אל־חול נמצאו בעבר אלפי כתובות וגרפי הכתובות בכתב ההירוגחיפי המצרי. פרופ' ג'ון דרנל גילה כתובות שהיו כתובות בכתב אלפאביתי, לא מצרי, באותו המקום. הן היו דומות לכתובות מחצי האי סיני, שבאותה העת חשבו אותם לכתב האלפאבית הקדום ביותר – הפרוטו־כנעני / הינאי (16-18K לפנה''ס). 
+	
+	הגדרת א''ב: מערכת כתב המשתמשת במספר המינימלי של סימים כדי למסור שפה מדוברת. בד''כ 25-30 צלילים בודדים (לא הברות). אלו נקראים פונמות. לכל פונמה סימן בודד. 
+	
+	ראינו שבמערכת הכתב המצרית כבר הייתה תת־מערכת א''ב. אך הוא היה מורכב יותר, כולל סימנים לוגוגרמים (מילים שלמות) או כאלו המייצגים שניים-שלושה עיצורים (לדוגמה: הסימן לבית יכול להציג גם את העיצורים pr). הכתב היתדתי והמצרי תמיד שמרו על הסימנים הלולוגרמים, מתוך שמרנות. לסימנים הייתה ממש משמעות דתית. 
+	
+	הכתב הא''ב הוא תוצר של הכתב ההירוגליפי המצרי. לא מפתיע שלראשונה שהממצאים הראשונים במצרים. סביר להניח שהסימנים המצריים אומצו ע''י אדם דובר שפה אחרת, שהשתמש בו כדי להשתמש בו לשפתו שלו (הכנענית כנראה). זה היה תהליך מהיר. 
+	
+	משום שהסימנים במצריים חסרות כל משמעות בשפה המצרית, ניתן להניח כי השפה אליה שומש הכתב הייתה שפה שמית (כנענית) כלשהי. האדם הזה לקח רק את הסימנים. 
+	
+	ואכן – pr הפך להיות ב', מים (n) הפך להיות m, וכו'. התנועות לא מיוצגות בא''ב הקדום. היוונים הוסיפו מאוחר יותר את התנועות. 
+	
+	מאיפה הסדר של הא''ב? היו שני סדרים. 
+	\begin{itemize}
+		\item המקובל, א ב ג ד
+		\item החלופי, ה ל ח מ
+	\end{itemize}
+	
+	לא ברור באיזו שפה הכתובת שמצא דרנל כתובות. לא ברור גם כיוון הקריאה. 
+	
+	בחצאי האי סיני שם מכלול כתובות שמצא פיטרי, נמצאו כתובות שנקראות היום הכתובות הפרוטו־כנעניות. החל מ־1500 לפנה''ס הכתב החל לנדוד צפונה לאורך כנען. הוא הפך להיות מופשט וקיבלנו את הא''ב הכנעני. 
+	
+	ישנה כתובת מלכיש שאף אחד לא יודע מה כתוב בה. 
+	
+	abecedarium – מכלול אותיות המופיעות לפי הסדר. כתובת עזבת צרטה היא דוגמה לכזה. 
+	
+	כתיבה כחריש השור משמעה שכל שואה בסדר הפוך. 
+	
+	כתובת קאייפה היא הכתובת הארוכה ביותר שמצאו בכתב כנעני, אך לאף אחד אין מושג מה כתוב גם בה, או אפילו מה כיוון הכתיבה. 
+	
+	אוסטרקון=שבר כלי שהחליטו לכתוב עליו. 
+	
+	בעיר אוגרית, נעשה שימוש בא''ב במאות ה־13 וה־12. באוגרית דיברו אוגריתית שהיא שפה שמית השייכת לשפות הכנעניות. היא נכתבה על לוח חומר/טין וכתבו עליה את כתב היתדות, וזה למעשה א''ב כנעני שכתוב בפונט של כתב יתדות. כיוון הכתיבה משמאל לימין. הוא התפשט מחוץ לעיר אוגרית באופן מוגבל. יש 30 אותיות, ו־3 אותיות נוספות שהוסיפו לאוגרית. הוא הארוך ביותר מבין הא''ב השמיים. סדר האותיות באוגרית הוא הסדר הסטנדרטי (נמצא לוחית חומר עם אותיות הא''ב בשורה) אך ניתן למצוא גם בסדר ה ל ח מ (שהיה מוכר גם בכנען). 
+	
+	מתוך הא''ב הכנעני התפתח הכתב העברי הקדום (שלא קשור לעברי המודרני), הכתב הפינקי והכתב הארמי. כתבו אותם בעיקר על פפירוסים, שמן הסתם מרביתם לא שרדו. הקונבנציה בכתיבת תעתיקים היא לשמור על הסימנים המפרידים בין המילים, אם יש כאלו, והם נעים בין . : ו־|. בסוגריים מרובעים מופיעים השלמה של המחקר המודרני. ישנם גם תעתיקי יד של חוקרים (שאינם העתקים, הם פשוט כתיבה על דף של הכתובת עצמה). 
+	
+	בכתובת לוח גזר (אבן עשויה גיר) מצויים החודשים בכתב עברי קדום. מצבת מישע היא הארוכה ביותר בכתב זה, והשפה הכתובה בה היא המואבית. (9-10 לפנה''ס שניהם)
+	
+	בשומרון מצאו אוסטרקונים עליהם כתב עברי קדום. אלו תעודות מנהליות קצרות להעברת סחורות בין השבטים. 
+	
+	הא''ב העברי הקדום לבסוף נזנח והוחלף ע''י הכתב הארמי שהיה נפוץ יותר. ממנו צמח הכתב העברי המודרני. 
+	
+	מגילות ים המלח כתובות בכתב ארמי, אך השם יהוה כתוב בכתב עברי קדום. קהילת השומרונים והספרות היומיומית שלהם משתמשת בכתב הזה עד היום. 
+	
+	בתחילת האלף הראשון לפנה''ס הפיניקים התחילו להיות דבר, בעיקר סוחרים בים. בולטים מפינקיה עצמה שני ערונות קבורה. ממש לא ברור ממתי הם, האם מ־1K לפנה''ס או 9 לספירה. ביחס אליה אפשר להבין מתי הכתב הפיניקי התחיל להיות נפוץ. 
+	
+	כתובת אזתיוודה היא כתובת בכתב פיניקי. היא דו לשונית, אחת בא''ב פיניקי, והשני בכתב ההירוגליפי האנטולי (כתב לוגו־סילבי, כמו היתדות) ששומש לכתובות מלכותיות ע''י החיתים, והיא מהווה את אבן הרוזטה לכתב ההירוגליפי האנטולי. משהו משהו תודה לאל הסער. כתובת זו וכתובת דן מתוארכות ל־8 לפנה''ס. 
+	
+	הכתב הארמי תוהד בסוריה מה־8-9 לפנה''ס. התפשט מזרחה ודרומה. שימש בתחילה לשפה הארמית. בהדרגה עמים אחרים עשו בו שימוש, וכן בשפה. הייתה לארמית השפעה על האכדית, ולאחר מכן על הפרסית והערבית. הארמית הפכה מתישהו לשפה הבין־לאומית של אדן הים התיכון המזרחי, והחליפה את האכדית וכתב היתדות (עד הכיבוש הערבי). התלמוד הבבלי נכתב בארמית. באימפריה האשורית מתישהו הארמית החליפה את היתדות בתור הכתב האדימינסטרטיבי, לכל הפחות בחלקה המערבי של האימפריה. השימוש בארמית נמשך לתוך ימי האימפריה הפרסית (על־אף השימוש בכתב יתדות נמשך בתוך מרכז מסופוטמיה). איפשהו באלף הראשון לפנה''ס הפסיקו לדבר אכדית. 
+	
+	כתובת תל פחרייה היא הכתובת המונומנטלית הקדומה ביותר שאנו מכירים והיא מ־9 לפנה''ס. אתר תל פחריה (מערבית לנינווה). היא מופיעה על פסל, עם גרסה אחת הכתובה בכתב יתדות שפה אכדית, והשנייה בכתב ארמי שפה ארמי. כתובת הלל לאל הדד, ומסתיימת בקללה נגד מי שיהרוס את הפסל. 
+	
+	מימיה של האימפריה הפרסית (5 לפנה''ס) מצאו במצריים כתובת על פפירוסים, קלף ואוסטרקונים שהשתמרו בגלל היובש. הם ברובם מסמכים משפטיים אך מלמדים על חייה האמונה של הקהילה (לדוגמה, חוזה נישואין). רוב הכתובת בארמית על אף שחלקן כתובות בכתבים שונים כמו היראטית, דמוטית, יוונית, לטינית, וקופטית. 
+	
+	סה''כ הכתבים נפוצו באלף הראשון לפנה''ס, בעת שקבוצות אתניות חדשות צצו כאשר הממלכות הגדולות נסוגו (מה שהתרחש בתקופת הברונזה, 1.2K לפנה''ס). באופן לא מכוון הארמית הפכה להיות הכתב האדמינסטרטיבי של שלוש האימפריות האחרונות של המזרח הקדום – האשורית, הנאו בבלית והפרסית. 
+	
+	הפיניקים הם סוחרים שהפליגו בספינות, והפיצו את הא''ב ליוונים ואח''כ לאיטלקיים. דרכם הגיע הא''ב לאיטליה. היוונים אמצו את הכתב הפיניקי, ועשו בו שינויים: הם שינו את הקריאה של חלק מהאותיות (אלף ל־a, ה' מ־he ל־e, ח' ל־e אבל מוזר, וע' ל־o, י' ל־i וו' ל־u). הם גם פתחו את $\phi, \chi, \psi, \omega$ (אניח שהקורא לומד מתמטיקה ויודע לקרוא יוונית שוטפת). הם שימרו את השמות של האותיות השמיות. מסופר שהגיבור קדמוס (כשמו כן הוא, הוא הגיע מקדם, מפיניקיה, ממזרח) והביא את האותיות ליוונים אחרי שנלחם בדרקון או משהו. תרגום ה־70 כתוב בו. 
+	
+	הכתב היווני הפך להיות הכתב הקירילי, שפותח בבולגריה ע''י קיריל ועוד בחור. הוא משמש את השפות הסלאביות, וכן עוד כמה שפות בגלל ברה''מ. האטרוסטקים אמצו את הכתב הקירילי וזה הפך להיות הכתב הרומי / לטיני. הוא היה הכתב של המנהלה של האימפריה הרומית. הוולגטה, התנ''ך בתרגום ללטיני, היה לספר הכי פופולארי באירופה. הכתבים בצפון אירופה התחילו מהא''ב הרוני, שיצא מהא''ב הלטיני, ושומשו בסקנדינביה וסקוטלנד. 
+	
+	סה''כ כל הכתבים הא''ב הגיעו מאותו המקור. אומנם הוא התחיל עוד ב־1800 לפנה''ס, אך בתקופת הברונזה כתב היתדות והכתב ההירוגלפי, והשפה האכדית, היו הרשמיים. רק בסוף הברוזנה כאשר ממלכת חתי נפלה, הממלכות בתקופת הברזל יכלו לאמץ איזה כתב שהן רצו – הפיניקי, הארמי, העברי, המאבי, ומאוחר יותר הנבטי והערבי. יש לציין שהכתב הלולוגרפי לא האט את הפיתוח הטכנולוגי של מי שהשתמש בו. לראיה: מערכת הכתב הסיני נפרדת לחלוטין, והיא לא א''בתית. 
+	
+	
+	
+	\section{אחנתון ומבוא לאמונה}
+	דוגמה (Dogma)=מכלול עיקרי האמונה
+	\subsection{פולתאיזם}
+	הגדרת דת פוליתאיסטית: [פולי=הרבה, תאיזם=אלוהות]
+	\begin{enumerate}
+		\item חסרת זמן, אין התחלה באיזה אירוע היסטורי. 
+		\item איננה דת שנגלית לאדם, לדוגמה באמצעות נביאים וכיו''ב. 
+		\item היא אינקורפטיבית, כלומר מכלילה. אינה דוחה אלוהות ממערכות אלוהות אחרות, אדרבה, היא פשוט מקבלת אותם אליה. 
+		\item במזרח הקדום, היא איננה טאנסדנטית, כלומר לא על־טבעית. היא אימננטית. האלוהות אינה חיצונית לטבע, ואף לעיתים מזוהה עם מקום יישוב מסוים. 
+	\end{enumerate}
+	יש לה שני מאפיינים: 
+	\begin{enumerate}
+		\item יש לה פנתאון – מסגרת כלשהי (לרוב משפחתית) שמאגדת עקימת אלים. 
+		\item היא משתנה כי היא יכולה לעשות סינקרטיזם, היכולת למרגג אלוהים לאל אחד. 
+	\end{enumerate}
+	\subsection{מונותאיזם}
+	\begin{enumerate}
+		\item קשורה בזמן היסטורי (אסלאם) או היסטורי מיתי (יהדות/נצרות), יש לה נקודה התחלה שבה היא מחליפה או מתחרה באחרת. 
+		\item יש נביא המתגלה, לדוגמה מוחמד, משה, אברהם, ישו. 
+		\item בעלת אלמנטיים אסכטולוגיים: יש אחרית ימים, ישועה, תיקון, תחייה מחדש או משהו כזה. 
+		\item אקסלוסיבית, דוחה אמונות אחרות ובוודאי אלים אחרים. 
+		\item יש לה דוגמה או ספר חוקים, שהגיעו דרך איזה נביא. 
+		\item הדת המונותאיסטית יכולה להתקיים ללא מקום פולחן, מקדש, או איזור גיאוגרפי ספציפי. אומנם יש זיקה למקומות קדושים או לטריטוריה אך הם אינם מהווים הכרח לקיום הדת – האלוהות לא מתגוררת במקום אחד (לדוגמה קודש הקודשים שם האלוהים בהחלט מתגורר אבל הוא בהחלט לא מתגורר). 
+	\end{enumerate}
+	\subsection{אחנתון}
+	אחנאתן היה המלך המונוטאיסטי הראשון בהיסטוריה והוא חיי ב־14 לפנה''ס. במשך שנים מצרים נשלטה ע''י אסייתיים מכנען הנקראים החיקסוס. מלכי שושלת הי''ח (ה־18) הצליחו לגרש אותם ולהחזיר את מצריים לקדמותה, כאחת ממעצמות המזרח התיכון הקדום. בימי אחנתון מצריים שלטה מכנען עד סודאן. אחנתון הוא הבן של אמנחותפ ג', אחד מהמלכים החשובים באיזור, לאחר ששינה את שמו מאמנחותפ ד'. פירוש השם אחנתון החדש, הוא המקודש לאל אתן (או כהן). אתן האל של גלגל החמה. 
+	
+	הבירה החדשה נקראת אחת־אתן (אל עמרנה), והיא מחליפה את נו־אמון (תבאי). המקדשים החדשים שנבנים הפולחן מתבצע אל מול השמש החשופה – הוא אל מול האל אתן, גלגל החמה עצמה. יש נסיון לבטל את שאר האלים ושמם נמחק מהמצבות. 
+	
+	באומנות המצרים מקובל שכאשר המלך סוגד לאלים הוא מופיע לבד, אז זה מופיע עם משפחתו בסגנון ציור אחר לחלוטין. יש כאן התרחקות מהמסכמות הנוקשות של האמנות המצרית. קשה להגיד את זה נטורליזם, ריאליזם, או משהו כזה. יש להם פתאום אוזניים גדולים, סנטרים מאורכים, וכו'. לא ברור מה הם ניסו להשיג. 
+	
+	נפרתיתי אשתו ממש דומה לו בציורים, לא ברור למה. 
+	
+	כאשר אחנתון מת זכרו נמחק מאדמת מצרים, ארון קדושתו לא נמצא, עירו נזנחה, והוא נמחק מרשימות המלכים המצריים. 
+	
+	נתבונן בהמנון לאתן (שיר הלל) שנמצא על גבי קברו של אי (משהו אחרי תותאנחאמון) בנקרופוליס של אחתאתן היא אל־אמרנה. ההמנון מהלל את אתן, מציג אותו כבורא האדם, הנילוס, ומצרים, וטוען שהוא זה שמאפשר של שלטון אחנתון ונפרתיתי. 
+	
+	קשה להבין מה היו יסודות האמונה של אחנתון וכמה היא שונה מהמערכת הדתית של מצרים. לפני ימיו של אנחתון מצרים נפלה לשושלת זרה, וייתכן שהוא שאל את עצמו האם האלים לא הגנו על מצרים. ייתכן והוא מגיב לאמונות של מעצמות שכנות (לדוגמה, מרדוך של השושלת הבבלית, או אל הסער של ששולת חתי). 
+	
+	יש חוקים שטוענים שהוא ניסה למנוע התחזקות של האל אמון המצרי. 
+	
+	אחנתון לא הנהיג מהפכה דתית. רק הוא ומשפחתו סגדו, שאר העם עשה מה שבא לו. 
+	
+	עוד לפני אחנתון התגבש רעיון המוניזם במצרים, אל יחיד שהוא מקור כל הבריאה (לדוגמה המיתולוגיה לש האל אמון), וכן ביטול המיתולוגיה. 
+	
+	מאפיין אייקונוגפי של מערכות מונותאיסטיות הוא חוסר ייצוג אייקוני של האל. זה לפעמים גם קורה במערכות פולתיאסטיות. כך גם עם השמש עם שתי ידיים קטנות של אחנתון. 
+	
+	סה''כ: 
+	\begin{itemize}
+		\item דת אינקרופורטיבית – מכילה
+		\item יוצא מתוך המערכת הקיימת ומציב עקרון אקסקלוסיביות
+		\item סוגד לאל אחד ומקיים פולחן לאל אחד
+		\item מייצג אלטרנטיבה למערכת הקיימת
+		\item מונותאיסטי
+	\end{itemize}
+	
+	פרויד חושב שמשה ראה את אחנתון וזה בתורו התחיל לגבש אמונה מונותאיסטית. אין עדויות היסטוריות לזה. 
+	
+	\section{נבונאיד וראשית האמונה בישראל}
+	נבונאיד הוא מלך בבל האחרון והמלך המסופוטמי העצמאי האחרון. משמעו אל נבו המהולל. הוא קידם את פולחן האל סין, אל הירח, על חשבון האל מרדוך. נבונאיד לא ביטל או מחק אלים אחרון כמו אחנתון, אלא קידש אל אחד מעל השאר – זה לא מונותאיזם וזה לא פוליתאיזם, אלא משהו באמצע שקוראים לו הנותאיזם – האמונה באל מרזי אחר לצד אלהויות פחותות. 
+	
+	נבונאיד עלה לשלטון אחרי הפיכת חצר, ואדד־גופי אמו הגיעה מעיר שבו הפולחן לסין היה חזק. היא השאירה כתובת (שבבירור נכתבה אחרי מותה) בה היא מתארת את אמונתה שסין יציל את בבל מכל רע. 
+	
+	עוד לפני נבונאיד היו מי שניסו לקדם אל אחד מעל האלים האחרות. אפילו מרדוך בעצמו התחיל כאל שולי – נבוכדנצר א' החזיר את פסל מרדוך הראשון לבבל, אחרי שהוא נחטף ע''י אוייבי בבל ב־1100 לפנה''ס. יש הטוענים שזה מה שהוביל לכתיבת האנומה אליש. האל אנליל שעמד לפני כן בראש הפנתיאון נדחק הצידה. באופן דומה האל אשור התחיל כסתם האל של האל אשור, והפך לאל הלאומי של כל ממלכת אשור. כל זה, זו תוצאה של הנותאיזם. 
+	
+	נבונאיד המשיך במגמת ההנותיאסטית. 
+	
+	יש לציין שבאלף השני האליםי היו אלים של ערים ואיזורים גיאוגרפיים, ורק באלף השני האלים הפכו להיות מייצגים של קבוצות אתניות – בעל בפיניקיה, קוס באדום, כמוש במואב, וסין בחרן. 
+	
+	שלטון סין הסתיים במהרה אחרי שכורש מלך פרס צר על העיר, וכורש טוען שהוא זה שהיה אחראי לחידוש פולחן מרדוך. הוא גם זה שאפשר לחדש את הפולחן בבית המקדש. 
+	
+	באופן כללי, קורש לא היה יוצא דופן. הרבה מלכים היו סובלניים כלפי אמונות שונות משלהם. אומנם אהורא מזדא היה האל שקורש האמין בו, אך הוא לא כפה את פולחנו על אחרים. 
+	
+	ע''פ כתובות מסויימות, כנראה אלוהים היה האל האיזורי כאן. הוא היה האל של ישראל, והיו עוד אלים במרחב הגיאוגרפי. היו אנחנו חושבים שאלוהים הוא אל יחיד בתוך מערכת מונותאיסטית. בפועל, זה לא כך. יש בתנ''ך שרידים של מיתולוגיה של אלוהים נלחם בחיות ים כמו באלומה אליש, ואף נלחם בבעל או בזאוס. במצודה של המאה ה־8 לפנה''ס, כתוב שלה' יש בת זוג בשם אשרתה, והוא מוכר כאלוהות מקומית של שומרון. 
+	
+	\section{האפוס גילגמש}
+	האפוס הזה עוסק במלך אורוכ. הוא מדבר על תקופה מיתולוגית בה האנשים חיו לצד האלים, ואורוכ הייתה העיר המובילה. למלך אורוכ קראו גילגמס (ובילגמש בשומרית). אין עדות לגבי קיומו ההיסטורית. לתפיסת המסופוטמיים, הוא מלך אחר המבול באורוכ. הוא מופיע הרשימת המלכים השומרית. 
+	
+	בבלדה לגיבורים מימי עבר, גילגמש מתואר כמו גיבור אגדי. סביב דמותו היו אגדות שסופרו בשומרית. בסביבות 2000 לפנה''ס החלו להעלות אותם על הכתב בשומרית. האכדים ערכו את הכל לסיפור אחד בודד, והוא שונה מהותית מהגרסאות בשומרית. יש לו תמה מרכזית: גילגמש יוצא למסעות לפיאור שמו, ומשנכשל, למצוא את חיי הנצח. 
+	
+	האופוס נפתח בפניה לקורא: מי ראה מעמקים, יסודות הארץ? [מי ] חכם בבל? הציפייה היא שהקורא יודע מי הוא גילגמש. גילגמש גילה את הסוד לפני המבול בו האנשים והאלים חיו יחדיו ושנות האדם לא היו מוגבלות. לפי הסיפורים היה לו קשר עם אישתר, אלת האהבה, שנלחם בחומבבה המפלצת. גילגמש עושה דיקטטורה נוראית, והאנשים תחתיו פונים לאלים. אלו בוראים את אנכידו, ייצור פרא שמתרועע עם החיות ואמור להיות עזר כנגד גילגמש. קוראים לזונה בשם שמחת, שאנכידו שכב איתה 6 ימים ולילות. לאחר כן כל בהמות השדה ברחו ממנו, אך הוא קיבל הבנה ותבונה. הוא מבין מה היא הבושה ומשתמש בבגדים (מזכיר משהו?). זכרו שהסיפור נטוע בחברה פטריארכלית שלא מסוגלת לקבל אישה שמקיימת יחסי מין שלא עם בעלה, ומכאן זונה. הזונה מסמלת את התרבות העירונית. היא זו שמאכילה את אנכידו בלחם ובירה, אותם לא הכיר. 
+	
+	אנכידו מגיע לאורוכ ונלחם בגילגמש בדו קרב, בסופו גילגמש מנצח ואלו הופכים להיות חברים. גילגמש נלחם בחומבבה לפאר את עצמו. גילגמש ואנכידו נצליחים להרוג את חומבבה. במסעם חזרה הם פוגשים את אישתר אלת האהבה. גילגמש יודע שאת כל אהובהה היא הרגה ולכן היא שולחת נגדו איזשהו שור שמימי שהם מביסים. 
+	
+	אנכידו חולם חלום בו האלים דנים אותו למוות כי הרג את חומבבה שומר היערות, ואז הוא מת. גילגמש פתאום קולט כמה הוא אהב את אנכידו. גילגמש מבין שהחיים אינם נצחיים ולכן הוא מחפש את הנצח. הוא מחפש את אתראחסיס, גיבור המבול, היחיד שזכה לחיי הנצח. סידורי (מישהי אקראית בפונדק דרכים) מסבירה לגילגמש שהמאבק אבוד. אתרחסיס/אונפישתי מספר לגילגמש איך הוא השיג את חיי הנצח. האחרון עונה לו שהוא צריך לא לישון שבוע כדי לזכות בחיי הנצח. ואז גילגמש נרדם. אונפישתי אומר לו שהוא צריך לצלול ולהשיג צמח מוזר, שגילגמש אכן הצליח להשיג אך זה נגנב ממנו ע''י הנחש. 
+	
+	יש כאן סיפור אתיולוגי – כיצד הנחיש משיל ממנו את עורו שוב ושוב (ולכאורה חיי לאין קיץ)? גילגמש חוזר לאורוכ ומבין שמסעותיו לשווא. 
+	
+	בסוף גילגמש חוזר על המילים מתחילת היצירה. 
+	
+	היצירה הייתה חלק מתוכנית הלימודים של הסופר הצעיר בתוכנית הלימודים. כנראה שגם בני משפחת המלוכה הכירו אותו, באופן דומה לסיפוריו של המלך ארתור שילדי האצולה באירופה למדו עליהם. 
 	
 	
 	
