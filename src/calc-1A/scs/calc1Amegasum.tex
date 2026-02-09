@@ -1,0 +1,554 @@
+%! ~~~ Packages Setup ~~~
+\documentclass[]{../../../tex/classes/styledArticle}
+\usepackage{../../../tex/packages/hebrewSupport}
+\usepackage{../../../tex/packages/mathShortcuts}
+\usepackage{../../../tex/packages/theoremsSupport}
+
+\newcommand\sumnoinf {\sum_{n = 0}^{\infty}}
+\newcommand\limssi  {\limsup_{n \to \inft}}
+\newcommand\limisi  {\liminf_{n \to \inft}}
+\newcommand\anc     {\an\!\!}
+\newcommand\og      {\omega}
+\newcommand\df      {\dd f}
+\newcommand\tfl     {\lim_{\mathclap{x \to x_0}}}
+\newcommand \limcsi {\limsi c_n}
+\newcommand\limxo   {\lim_{x \to x_0}}
+\newcommand\lxo     {$x_0 \in \R$ נקודת הצטברות של $A$}
+\newcommand\gf      {$f \co A \subseteq \R\to \R$\ }
+
+
+%! ~~~ Document ~~~
+
+\author{שחר פרץ}
+\title{נוסחאות, משפטים והגדרות לחדו''א 1א}
+\date{26 לאוקטובר 2025}
+\begin{document}
+	\maketitle
+	\begin{multicols}{2}
+		\defi{$\F$ נקרא \textit{שדה} אם יש לו פעולות $+ \co \R \times \R \to \R$ ו־$\cdot \,\co \R \times \R \to \R$, המקיימות: 
+			\begin{enumerate}
+				\item קומטטיביות: \hfill $\forall x, y \in \R \co x + y = y + x$
+				\item אסוציאטיביות: \hfill $\forall x, y, z \in \R\co x + (y + z) = (x + y) + z$
+				\item קיום איבר 0 (יחידת חיבור): \hfill $\exists 0 \in \R\co \forall x \in \R x + 0 = x$
+				\item קיום נגדי (הופכי לחיבור): \hfill $\forall x \in \R \co \exists y \in \R\co x + y = 0$
+				\item קומוטטיביות: \hfill $\forall x, y \in \R\co x\cdot y = y \cdot x$
+				\item אסוציאטיביות: \hfill $\forall x, y, z, \in \R\co (xy)z = x(yz)$
+				\item קיום ניטרלי לחיבור (קיום יחידה בכפל): \hfill $x \cdot 1 = x$
+				\item קיום הופכי בכפל: \hfill $\forall x \in \R\setminus\{0\}\co \exists y \in \R\co xy = 1$
+				\item דיסטרבוטיביות: $\forall x, y, z \in \R\co x(y + z) = xy + xz$
+		\end{enumerate}}
+		\theo{לכל $x, y, z \in \R \co (x + y = z + y) \implies x = z$}
+		\cola{לכל $x \in \R$ קיים $y \in \R$ \textit{יחיד} כך ש־$x+  y = 0$. }
+		\noti{יהי $x \in \R$. את \textit{ה}מספר $y$ המקיים $x+ y = 0$ נכנה \textit{הנגדי} של $x$ ונסמן $-x$. }
+		\theo{לכל $x, y, z \in \R$, אם $xy = zy \land y \neq 0$ אז $x = z$. }
+		
+		\cola{לכל $x \in \R\setminus\{0\}$ קיים $y \in \R \setminus \{0\}$ יחיד, כך ש־$xy = 1$. }
+		\noti{יהי $x \in \R\setminus \{0\}$, את המספר המקיים $y \neq 0 \land xy = 1$ נכנה \textit{ההופכי} של $x$ ונסמן $x\op$. }
+		\theo{לכל $x \in \R$ מתקיים $x \cdot 0 = 0$. }
+		\theo{$\forall x \in \R\co (-1) \cdot x = -x$. }
+		
+		\defi{$\F$ נקרא \textit{שדה סגור מלא} אם הוא שדה $(\F, +, \cdot, <)$ כאשר $<$ מקיים: 
+			\begin{enumerate}
+				\item אנטי־סימטריות חזקה: \hfill $\forall x, y \in \R \co x < y \implies x \not< y$
+				\item טרנזטיביות: \hfill $\forall x, y, z \in \R \co (x < y \land y < z) \implies x < z$
+				\item מליאות: \hfill $\forall x, y \in \R \co x < y \lor x = y \lor y < x$
+				\item אדטיביות: \hfill $\forall x, y, z \in \R \co x < y \implies x + z < y+ z$
+				\item ססקווי־כפליות: \hfill $\forall x, y, z \!\in\! \R\co \!(x < y \land 0 < z) \!\!\implies\!\! xz < yz$
+		\end{enumerate}}
+		
+		\theo{יהיו $x, y \in \R$. אם $x < y$ אז $-y < -x$. }
+		\theo{לכל $x, y, z, w \in \R$, אם $x < y \land z < w$ אז $x + z < y +w$. }
+		\defi{תהא $A \subset \R$. יהי $\ag \in \R$. נאמר ש־$\ag$ \textit{חסם מלעיל} של $A$ אם לכל $a \in A$ מתקיים $a \le \ag$. }
+		\defi{תהא $A \subseteq \R$. יהי $\ag \in \R$. נאמר ש־$\ag$ \textit{חסם מלרע} של $A$ אם לכל $a \in A$ מתקיים $\ag \le a$. }
+		\defi{$A$ תקרא \textit{חסומה מלעיל} כאשר קיים לה חסם מלעיל. }
+		\defi{$A$ תקרא \textit{חסומה מלרע} אם קיים לה חסם מלרע. }
+		\defi{$A$ תקרא \textit{חסומה} אם היא חסומה מלעיל ומלרע. }
+		\defi{$\ag$ ייקרא \textit{חסם עליון} (סופרמום) כאשר:
+			\begin{enumerate}
+				\item $\ag$ חסם מלעיל, כלומר $\forall a \in A \co a \le \ag$
+				\item החסימה הדוקה, כלומר $\forall \eg > 0\,\exists a \in A \co a > \ag - \epsi$
+		\end{enumerate}}
+		\theo{תהא $A \subseteq \R$. אם יש ל־$A$ חסם עליון, יש לה חסם עליון יחיד. }
+		
+		\noti{תהר $A \subseteq \R$ קבוצה חסומה מלעיל. נסמן את החסם העליון של $A$ ב־$\sup A$. }
+		
+		\noti{חסם תחתון יקרא \textit{אינפימום} ויסומן ב־$\inf A$. }
+		\defi{שדה $\F$ יקרא $\R$ (ממשיים) אם הוא מקיים את \textit{אקסיומת השלמות} (או \textit{אקסיומת החסם העליון}): לכל $A \subseteq \R$. אם $A \neq \varnothing$ וגם $A$ חסומה מלעיל, אז ל־$A$ קיים חסם עליון.}
+		\lem{לכל $x \in \Q$, $x^2 \neq 2$. }
+		\lem{יהיו $x, y \in \R$, אם $x > 0 \land y > 0 \land x^2 < y^2$ אז $x < y$. }
+		\theo{$(\Q, \cdot, +, <)$ אינה מקיימת את אקסיומת השלמות. }
+		\theo{לכל $x \in \R$, אם $x > 0$ אז קיים $y \in \R$ \textit{יחיד} כך ש־$y > 0$ וגם $y^2 = x$. }
+		\theo{לכל $x \in \R$, ולכל $n \in \N_+$, אם $x > 0$ אז קיים $y \in \R$ יחיד כך ש־$y > 0$ וגם $y^n = x$. }
+		\noti{נסמן את ה־$y$ היחיד שמקיים את המשפט לעיל ב־$\sqrt[n]{x}$. }
+		\begin{Theorem}[הארכימדיאניות של הטבעיים בממשיים]
+			\hfil $\forall x, y \in \R \co x > 0 \implies (\exists n \in \N \co nx > y)$
+		\end{Theorem}
+		\begin{Theorem}[הסדר הטוב של הטבעיים בממשיים]
+			לכל $A \subseteq \N$ אם קיים $A \neq \varnothing$ אז קיים איבר מינימלי ב־$A$.
+		\end{Theorem}
+		\cola{לכל קבוצה $A \subseteq \Z$ אם $A \neq \varnothing$ וחסומה מלרע, אז קיים איבר מינימלי ב־$A$. }
+		\cola{לכל קבוצה $A \subseteq \Z$ אם $A \neq \varnothing$ וחסומה מלעיל, אז קיים איבר מקסימלי ב־$A$. }
+		\theo{\hfil $\forall x \in \R \, \exists! k \in \Z \co k \le x < k + 1$. }
+		\noti{יהי $x \in \R$. אז \textit{ה}שלם \textit{ה}יחיד $k$ המקיים $k \le x < k + 1$ יסומן ב־$\floor{x}$ והוא יקרא \textit{ערך שלם תחתון}. }
+		\begin{Theorem}[צפיפות הממשיים]
+			יהיו $x, y \in \R$. אם $x, y$ אז קיים $z \in \R$ כך ש־$x < z < y$.
+		\end{Theorem}	
+		\begin{Theorem}[צפיפות הרציונליים בממשיים]
+			נניח $x < y$. אז $y - x > 0$ ולכן מהארגימדיאניות קיים $n \in \N$ כך ש־$n(y - x) > 1$. במקרה הזה $ny > nx + 1$ ולכן זה לא מפתיע שקיים טבעי באמצע, ואכן נוכל לסמן $m = \ceil{yn} - 1$ (שימו לב שבמקרה של $yn$ טבעי, זה לא הערך השלם התחתון). אז:
+			\[ x < y - \frac{1}{n} = \frac{ny - 1}{n} \ge \frac{\floor{ny} - 1}{n} < \frac{ny + 1 - 1}{n} = y \]
+			כמו כן $\frac{\floor{ny} - 1}{n} \in \Q$.
+		\end{Theorem}
+		
+		
+		\defi{\textit{סדרה ממשית} היא פונקציה $a(n) \co \N \to \R$. }
+		\defi{לעיתים רבות תבחינו שמסמנים סדרות באמצעות $(a_n)_{n = 1}^{\inft}$, או $\{a_n\}_{n = 1}^{\inft}$, או אפילו סתם $a_n$. }
+		\defi{בהינתן סדרה, $a_n := a(n)$}
+		
+		\defi{נאמר ש־$a_n$ חסומה/חסומה מלעיל/חסומה מלרע כאשר הקבוצה $\ang$ חסומה/חסומה מלעיל/חסומה מלרע. }
+		\defi{אם $a_n$ חסומה מלעיל, נסמן $\sup a_n := \sup_{n \in \N} a_n := \sup \ang$}
+		\defi{אם $a_n$ חסומה מלרע, נסמן $\inf a_n := \inf_{n \in \N} a_n := \inf \ang$}
+		\noti{ה\textit{סופרמום} הוא $\sup A$ והוא חסם עליון, וה\textit{אימפימום} $\inf A$ הוא החסם התחתון. }
+		\defi{סדרה $a_n$ תקרא \textit{מונוטונית עולה} (או \textit{מונוטונית עולה חלש}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n \le a_m$}
+		\defi{סדרה $a_n$ תקרא \textit{מונוטונית עולה ממש} (או \textit{מונוטונית עולה חזק}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n < a_m$}
+		\defi{סדרה $a_n$ תקרא \textit{מונוטונית יורדת} (או \textit{מונוטונית יורדת חלש}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n \ge a_m$}
+		\defi{סדרה $a_n$ תקרא \textit{מונוטונית יורדת ממש} (או \textit{מונוטונית יורדת חזק}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n > a_m$}
+		\defi{סדרה תקרא \textit{מונוטונית} כאשר היא מונוטונית עולה או מונוטונית יורדת. }
+		\defi{תהא $\an$ סדרה. יהי $\ml \in \R$. נאמר כי $\ml$ הוא גבול של $\an$ כאשר \hfill $\forall \eg > 0.\, \exists N \in \N.\, \forall n \ge N \co \sof{a_n - \ml} < \eg$. }
+		\lem{\hfil $\forall x \in \R .\, (\forall \eg > 0 \co \sof{x} < \eg) \implies x = 0$}
+		\lem{מאי שוויון המשולש נקבל באופן מיידי:
+			\[ \sof{x - y} \le \sof{x - z} + \sof{y - z} \]}
+		\theo{תהא $a_n$ סדרה. יהי $\ml \in \R$. אם $\ml$ גבול של $\an$ אז $\ml$ גבול \textit{יחיד} של $a_n$. }
+		
+		\defi{נאמר כי סדרה $\an$ \textit{מתכנסת} כאשר קיים לה גבול $\ml \in \R$}
+		\defi{אם $\an$ מתכנסת וגבולה (היחיד) הוא $\ml$, נסמן $\lim_{n \to \inft} a_n = \ml$. }
+		''אבל בפיזיקה עשינו את זה עד עכשיו וזה עבד``
+		
+		\lem{קבוצה חסומה אמ''מ $\exists M > 0 \co \forall a \in A \co \sof{a} \le M$. }
+		\theo{תהא $\an$ סדרה. אם $\an$ מתכנסת, אז $\an$ חסומה. }
+		\theo{תהאנה $\an, \bc$ סדרות. יהיו $\ml, m \in \R$ ממשיים. נניח כי $\limasi = \ml \land \limbsi = m$. אז:
+			\begin{enumerate}
+				\item \hfil $\displaystyle \limsi (a_n + b_n) = \ml + m$
+				\item \hfil $\displaystyle \forall \ag \in \R \co \limsi (\ag a_n) = a \ml$
+				\item \hfil $\displaystyle \limsi a_n b_n = \ml \cdot m$
+				\item \hfil $\displaystyle m \neq 0 \implies (\exists N \in \N.\, \forall n \ge N\co b_n \neq 0) \land \cl{\limsi \frac{a_n}{b_n} = \frac{\ml}{m}}$
+		\end{enumerate}}
+		\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$+\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n > M$}
+		\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$-\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n < -M$}
+		\theo{תהיינה $\an, \bn$ סדרות. נניח $\limasi = +\inft \land \limbsi b_n = + \inft$. אז $\limsi a_n + b_n = + \inft$}
+		
+		\theo{תהא $\an$ סדרה, יהי $\ml \in \R$. אם $\limasi = \ml$ אז $\limsi \sof{a_n} = \sof \ml$. }
+		\begin{Theorem}
+			תהאנה $\an, \bn, \cn$ סדרות. נניח כי־:
+			\begin{enumerate}
+				\item \hfil $\exists N \in \N .\,\forall n \ge N \co a_n \le c_n \le b_n$
+				\item \hfil $\displaystyle \limasi = \ml  = \limbsi$
+			\end{enumerate}
+			אז $\limsi c_n = \ml$
+		\end{Theorem}
+		\theo{תהנא $\an, \bn$ סדרות. יהיו $\ml, m \in \R$. נניח כי:
+			\begin{enumerate}[(1)]
+				\item לכל $n \in \N$, מתקיים $\an < \bn$. (\textit{הערה: }מספיק גם אם החל מ־$N$ כלשהו התנאי הזה מתקיים)
+				\item מתקיים $\limasi = \ml$
+				\item מתקיים $\limbsi = m$
+		\end{enumerate}}
+		\begin{Theorem}[משפט ויירשטראס הראשון]
+			תהא $\an$ סדרה. אם $\an$ מונוטונית וחסומה, אז $\an$ מתכנסת.
+		\end{Theorem}
+		
+		\defi{סדרה $\an$ תקרא \textit{בעלת גבול במובן הרחב} אם $(\exists \ml \in \R\co \limasi = \ml) \lor \limasi = \pm \infty$. }
+		\theo{בהינתן סדרה מונוטונית לא חסומה, היא שואפת ל־$\pm \inft$. }
+		\cola{תהי $\an$ מונוטונית. אז ל־$\an$ יש גבול במובן הרחב. }
+		
+		
+		\theo{נגדיר $a_n = \cl{a + \frac{1}{n}}^{n}$ לכל $n \in \N$, ו־$b_n = \sumnk \frac{1}{k!}$ לכל $n \in \N$. אז:
+			\begin{enumerate}
+				\item $\an$ חסומה, מונוטונית עולה וחסומה ב־$3$.
+				\item $\bn$ חסומה, ומונוטונית עולה.
+				\item $\forall n \in \N \co a_n \le b_n$
+				\item $\forall n \in \N.\, \exists k > n \co b_n \le a_{n + k}$
+		\end{enumerate}}
+		\defi{נסמן:
+			\[e := \limsi \cl{1 + \frac{1}{n}}^{n} \dequad\ = \limsi \sumnk \frac{1}{k!}\]}
+		
+		\defi{תהי פונקציה $n_k \co \N \to \N$ סדרה עולה ממש של טבעיים, ותהא $\an$ סדרה. אז הסדרה $a_{(n_k)}$ נקראת \textit{תת־סדרה של} $\an$. פורמלית, זוהי הרכבה $a_n \circ n_k$. }
+		\defi{$\ml$ יקרא \textit{גבול חלקי} של $\ml$ כאשר קיימת ת''ס של $\an$ המתכנסת ל־$\ml$. }
+		\defi{$\pm\infty$ יקרא גבול חלקי של $\an$, כאשר קיימת ת''ס השואפת ל־$\pm\infty$. }
+		\begin{Theorem}[משפט הרקורסיה]
+			תהא $f \in \N \times \R \to \R$. יהי איזשהו $a \in \R$. אז קיימת סדרה יחידה $\an$ המקיימת:
+			\[ \begin{cases}
+				a_0 = a \\
+				\forall n \in \N \co a_{n + 1} = f(n, a_{n})
+			\end{cases} \]
+		\end{Theorem}
+		\begin{Theorem}[משפט בוצלנו־וייראסטראס]
+			לכל סדרה חסומה, יש ת''ס מתכנסת.
+		\end{Theorem}
+		\lem{תהא $\an$ סדרה. נניח של־$\an$ אין איבר מסקימלי. אז יש לה תת סדרה מונוטונית עולה ממש. }
+		\lem{תהא $\an$ סדרה שבה אינסוף איברים שונים. אם ל־$\an$ אין ת''ס מונוטונית עולה ממש, אז יש לה ת''ס מונוטונית יורדת ממש. }
+		\theo{$\forall \eg > 0 .\, \forall N \in \N.\, \exists n \ge N \co \sof{a_n - \ag} < \eg$ אמ''מ לקבוצה יש גבול חלקי ב־$\ag$. }
+		\cola{לכל סדרה יש גבול חלקי במובן הרחב. }
+		\theo{סדרה מתכנסת אמ''מ יש לה גבול חלקי יחיד. }
+		\theo{תהא $\an$ סדרה חסומה ויהי $\ml \in \R$. נניח כי כל ת''ס \textit{מתכנסת} של $a_n$ מתכנסת ל־$\ml$. אז $\limasi = \ml$. }
+		\noti{תהא $\an$ סדרה. את אוסף הגבולות החלקיים של $\an$ נסמן $\hat P(\an)$. }
+		\noti{תהא $\an$ סדרה. את אוסף הגבולות החלקיים הסופיים (כלומר לא $\pm \inft$) של $\an$ נסמן $P(\an)$. }
+		\cola{לכל $\an$ סדרה, $\hat P(\an) \neq \varnothing$. }
+		\theo{תהא $\an$ סדרה, חסומה. תהא $\bn$ סדרה, המקיימת:
+			\begin{enumerate}
+				\item $\forall n \in \N$ ש־$b_n \in P(\an)$
+				\item $b_n$ מתכנסת ל־$\ml$
+			\end{enumerate}
+			אז $\ml \in P(\an)$. }
+		\theo{תהא $\an$ חסומה. אז ל־$P$ יש מקסימום ומינימום. }
+		\theo{תהא $\varnothing \neq A \subseteq \R$. אם $A$ חסומה מלעיל, אז קיימת סדרה $\an\co \N \to A$ כך ש־$\limasi = \sup A$. }
+		
+		\noti{תהי $\an$ סדרה. נסמן ב־$\limssi a_n$ את הגבול החלקי הגדול ביותר של $\an$. בעברית, הוא יקרא \textit{גבול עליון. }}
+		\noti{תהי $\an$ סדרה. נסמן ב־$\limisi a_n$ את הגבול החלקי הקטן ביותר של $\an$. בעברית, הוא יקרא \textit{גבו לתחתון}. }
+		\theo{תהא $\an$ חסומה מלעיל. בהינתן $\ml \in \R$ הגבול העליון של $\an$ אמ''מ לכל $\eg > 0$ מתקיים:
+			\begin{enumerate}
+				\item $a_n < \ml + \eg$ כמעט תמיד.
+				\item $a_n > \ml - \eg$ שכיח.
+		\end{enumerate}}
+		\theo{תהא $\an$ סדרה חסומה. אז לכל $\eg > 0$ כמעט תמיד:
+			\[ \liminf a_n - \eg < a_n < \limsup a_n + \eg \]}
+		\noti{בהינתן $F \co \N \to \R \cup \{\pm \infty\}$ כלשהי:
+			\[ \inf_n F(n) = \inf \{F(n) \mid n \in \N\} \quad \sup_n F(n) = \sup \{F(n) \mid n \in \N\} \]}
+		
+		\defi{תהא $\an$ סדרה. נאמר ש־$\an$ סדרת קושי, כאשר:
+			\[ \forall \eg > 0 .\, \exists N \in \N .\, \forall n, m \ge N \co \sof{a_n - a_m} <\eg  \]}
+		\defi{פונקציה $N \co X\times X \to \R$ נקראת \textit{נורמה} אם: 
+			\begin{enumerate}
+				\item \textbf{אי־שליליות ולא מנוונת: }לכל $x, y \in \R \co N(x, y) \ge 0$ ו־$N(x, y) = 0$ אמ''מ $x = y$.
+				\item \textbf{סימטריות: }$\forall x, y \in \R \co N(x, y) = N(y, x)$
+				\item \textbf{א''ש המשולש: }$\forall x, y \in \R \co N(x, z) \le N(x, y) + N(y, z)$
+		\end{enumerate}}
+		\theo{תהא $\an$ סדרה. אז $\an$ מתכנסת אמ''מ $\an$ סדרת קושי. }
+		\theo{תהא $a_n$ סדרת רציונליים המתכנסת ל־$0$. אז $\forall x > 0 \co \limsi x^{a_n} = 1$. }
+		\theo{תהא $\an$ סדרת רציונלים מתכנסת. אז לכל $x \ge 0$ הסדרה $x^{\an}$ מתכנסת. }
+		\theo{בהינתן $\an, \bn$ סדרות רציונליים שתיהן מתכנסות לאותו הגבול, אז $\limsi x^{a_n} = \limsi x^{b_n}$. }
+		ההוכחה לבית. מהמשפט האחרון יש לנו אי־תלות בבחירת נציג. אפשר גם להראות שזהו אכן יחס שקילות (בפרט קיימת סדרת רציונליים השואפת ל־$\ag$, לכל $\ag \in \R$). לכן נוכל להגדיר:
+		\defi{יהי $\ag \in \R$ ו־$x> 0$. נגדיר $x^{\ag} := \limsi x^{a_n}$ כאשר $\an$ סדרת רציונליים המתכנסת ל־$\ag$. }
+		\theo{תהא $\an$ סדרה (לא בהכרח סדרת רציונליים) ויהי $x > 0$. יהי $\ag \in \R$. אז $\limsi a_n = a$ אמ''מ $\limsi x^{a_n} = x^{a}$. }
+		\theo{חזקות ממשיות מקיימות חוקי חזקות. }
+		\begin{Theorem}[עקרון הרווחים המקוננים של קנטור]
+			תהאנה $\an, \bn$ סדרות. נניח כי:
+			\begin{enumerate}
+				\item \hfil $\forall n \in \co a_n < a_{n + 1} < b_{n + 1} < b_n$
+				\item \hfil $\limsi b_n - a_n = 0$
+			\end{enumerate}
+			אז:
+			\[ \exists c \in \R \co \bigcap_{n = 1}^{\infty}[a_n, b_n] = \{c\} \]
+		\end{Theorem}
+		
+		\theo{לכל $a, b > 0$, אם $a \neq 1$ אז קיים ויחיד $x \in \R$ כך ש־$a^{x} = b$. }
+		\defi{תהא $\an$ סדרה. נגדיר את סדרת הסכומים החלקיים של $\an$ להיות:
+			\[ \forall n \in \N \co S_n = \sumnko a_k \]}
+		\noti{תהא $\an$ סדרה. תהי ב־$S_n$ את סדרת הסכומים החלקיים של $\an$. אז אם $S_n$ מתכנסת לגבול $\ml \in \R$ נאמר כי הטור $\sum_{k = 1}^{\inft} a_k$ מתכנס, ונסמן:
+			\[ \sum_{k = 1}^{\inft} a_k = \ml \]}
+		\begin{Theorem}[קריטריון קושי להתכנסות טורים]
+			תהא $\an$ סדרה. אז הטור $\sumninf a_n$ מתכנס אמ''מ:
+			\[ \forall \eg > 0.\, \exists n \in \N.\, \forall N \le n \le m \co {\sof{\sum_{k = m}^{n} a_k}} < \eg \]
+		\end{Theorem}
+		\cola{תהא $\an$ סדרה. אז אם $\sumninf a_n$ מתכנס, אז $\limsi a_n = 0$. }
+		\theo{הטור הוא לינארי, כלומר יהיו $\sumninf a_n, \sumninf b_n$ טורים מתכנסים. אז:
+			\[ \sumninf \cl{a_n \pm b_n} = \sumninf a_n + \sumninf b_n \quad \quad \sumninf \ag a_n = \ag \sumninf a_n \]מתכנסים. }
+		\defi{תהא $\an$ סדרה. נאמר כי הטור $\sumninf a_n$ \textit{מתכנס בהחלט} כאשר $\sumninf \sof{a_n}$ מתכנס. }
+		\theo{אם טור מתכנס בהחלט, אז הוא בפרט מתכנס. }
+		\theo{תהא $\an$ סדרה, ונניח ש־$\forall n \in \N \co a_n \ge 0$. אז $\sumninf a_n$ אמ''מ סדרת הסכומים החלקיים חסומה. }
+		\begin{Theorem}[קריטריוני השוואה להתכנסות טורים]
+			content
+		\end{Theorem}
+		\begin{enumerate}
+			\item \textbf{מבחן ההשוואה הראשון: }תהיינה $a_n, b_n$ סדרות אי־שליליות. נניח כי כמעט תמיד $a_n \le b_n$. אז אם $\sumninf b_n$ מתכנס אז $\sumninf a_n$ מתכנס.		
+			\item \textbf{מבחן ההשוואה הגבולי: }נניח $\forall n \in \N\co b_n > 0$ (חיובית ממש!) ונניח $\limsi \frac{a_n}{b_n} \to \ml$ וכמו כן $\ml > 0$. אז $\sumninf a_n$ מתכנס אמ''מ $\sumninf b_n$ מתכנס. 
+			\item \textbf{מבחן השורש: }תהא $\an$ סדרה אי־שלילית. נניח כי קיים $q \in (0, 1)$ כך ש־$\forall n \in \N \co \sqrt[n]{a_n} \le q$. אז $\sumninf a_n$ מתכנס.
+			\item \textbf{מבחן השורש הגבולי: }תהא $\an$ סדרה אי־שלילית. נניח ש־$\exists q \in [0, 1) \co \limsup_{n \to \inft} \sqrt[n]{q_n} < q$ אז $\sumninf a_n$ מתכנס.
+			\item \textbf{מבחן המנה: }נניח $a_n > 0$ (כמעט תמיד) ויהי $q \in (0, 1)$, ונניח $\frac{a_{n + 1}}{a_n} \le q$ (כמעט תמיד) אז $\sumninf a_n$ מתכנס.
+			\item \textbf{מבחן המנה הגבולי: }יהי $\an > 0$. נסמן $\ml = \limsup_{n \to \inft} \frac{a_{n + 1}}{a_n}$ ו־$m = \liminf{n \to \inft} \frac{a_{n + 1}}{a_n}$ אז אם $\ml < 1$ אז $\sumninf a_n$ מתכנס, ואם $m > 1$ אז $\sumninf a_n$ מתבדר. 
+			\item \textbf{מבחן העיבוי: }תהא $\an$ סדרה מונוטונית יורדת ואי־שלילית אז $\sumninf a_n$ מתכנסת אמ''מ $\sumninf 2^{n}a_{2n}$ מתכנסת.
+		\end{enumerate}
+		\begin{Theorem}[קירוב סטרלינג]
+			\[ \limsi \frac{n!}{\cl{\frac{n}{e}}^{n}\sqrt{e \pi n}} = 1 \]
+		\end{Theorem}
+		\theo{הטור $\sumninf \frac{1}{n^{\ag}}$ מתכנס אמ''מ $\ag > 1$. }
+		\begin{Theorem}[משפט לייבניץ]
+			תהא $\an$ סדרה חיובית ומונוטונית יורדת שגבולה $0$. אז:
+			\[ \sumninf (-1)^{n}a_n \]
+			מתכנס.
+		\end{Theorem}
+		\begin{Theorem}[קריטריון אבל להתכנסות]
+			תהאנה $\an, \bn$ סדרות. נניח כי:
+			\begin{enumerate}
+				\item $\bn$ מונוטונית (יורדת) (אבל לא בהכרח גבול $0$).
+				\item נניח $\sumninf a_n$ מתכנס.
+			\end{enumerate}
+			אז $\sumninf a_n b_n$ מתכנס.
+		\end{Theorem}
+		\begin{Theorem}[קריטריון דיריכלה להתכנסות]
+			תהאנה $\an, \bn$ סדרות. 
+			\begin{enumerate}
+				\item $\bn$ מונוטונית (יורדת) וגבולה $0$.
+				\item סדרת הסכומים החלקיים המתאימה ל־$\an$ חסומה (אבל לא בהכרח מתכנסת).
+			\end{enumerate}
+			אז $\sumninf a_n b_n$ מתכנס.
+		\end{Theorem}
+		
+		\theo{תהא $\an$ סדרה, נניח כי הטור $\sumninf$ מתכנס, אז לכל השמה של סוגריים על הסכום, הטור החדש מתכנס.}
+		
+		\theo{לכל $\an$ סדרה, ונניח כי קיימת השמה של סוגריים שבה:
+			\begin{itemize}
+				\item הטור המתאים מתכנס
+				\item בתוך כל סוגריים, כל האיברים בעלי אותו הסימן
+			\end{itemize}
+			השמת הסוגריים לא תשנה את הגבול. }
+		\theo{תהא $\an$ סדרה מתכנסת. אז לכל $\sg \co \N_+ \to \N_+$, אז $\hat \ps(a_{\sg(n)}) = \hat\ps(a_n)$. }
+		\theo{תהא $\an$ חיובית. נניח ש־$\sumninf a_n$ מתכנס. אז כל תמורה של הגבול מתכנסת לאותו הגבול. }
+		\theo{תהא $\an$ סדרה. נניח כי $\sumninf a_n$ מתכנס בהחלט. אז לכל תמורה $\sg$ של $a_n$, הטור המתאים מתכנס לאותו הסכום. }
+		\begin{Theorem}[משפט רימן]
+			תהא $\an$ סדרה. נניח כי הטור $\sumninf a_n$ מתכנס בתנאי. אז לכל $-\infty \le \ag \le \bg \le + \infty$ (במובן הרחב) קיימת תמורה $\sg \co \N_+ \to \N_+$ כך ש־$S_n$ סדרת הסכומים החלקיים של $a_{\sg(n)}$, מקיימת:
+			\[ \liminf S_n = \ag \quad \limsup S_n = \bg \]
+			
+			צימרמן למה יש לך swastika במחברת.
+		\end{Theorem}
+		\theo{תהא $\an$ סדרה. יהי $x_0 \in \R$, ונניח כי $\sum_{n =0}^{\infty}a_n(x_0 -a)^{n}$ מתכנס. אז לכל $x \in \R$ אם $\sof{x - a} < \sof{x_0 - a}$ אז $\sum_{n = 0}^{\infty}a_n(x - a)^{n}$ מתכנס. }
+		
+		\begin{Theorem}[משפט אבל]
+			תהא $\an$ סדרה ויהי $a \in \R$. קיים מספר יחיד $R \ge 0$ כך ש־
+			\begin{enumerate}
+				\item \hfil $\displaystyle \forall x \in (a - R, a + R) \co \sumnoinf a_n(x - a)^{n} \ \text{\en{converges}}$
+				\item \hfil $\displaystyle x \notin [a - R, a + R] \co \sumnoinf a_n(x - a)^{n}  \ \text{מתבדר}$
+			\end{enumerate}
+			החלק הזה נקרא \textit{רדיוס ההתכנסות} של הטור, והתחום נקרא \textit{תחום ההתכנסות}.
+		\end{Theorem}
+		
+		\subsubsection*{משפט קושי־הדמרד}
+		\theo{תהא $\an$ סדרה ויהי $a \in \R$. נסמן $\og = \limsup \sqrt[n]{\sof{a_n}}$. אז:
+			\begin{itemize}
+				\item אם $\og = 0$, אז $R = + \infty$.
+				\item אם $\og = + \infty$, אז $R = 0$.
+				\item אחרת $R = \frac{1}{\og}$.
+			\end{itemize}
+			(זה ה־$R$ היחיד מאבל)}
+		
+		
+		\defi{יהי $x \in \R$. לכל $\eg > 0$, הקטע $(x - \eg, x + \eg)$, יקרה \textit{סביבת $\eg$ של $x$}. }
+		\defi{יהי $x \in \R$ ותהא $U \subseteq \R$, ויהי $x \in U$. אז $U$ תקרא \textit{סיבה של $x$} אם קיים $\eg > 0$ עבורו $U$ מכילה סביבת $\eg$ של $x$. }
+		\defi{קבוצה $U$ תקרא \textit{פתוחה} כאשר היא סביבה של כל אחת מהנקודות שלה. }
+		\defi{$A \subseteq \R$ תקרא \textit{סגורה} כאשר $\bar A$ פתוחה (עולם דיון $\R$). }
+		\theo{$A$ סגורה אם היא סגורה סדרתית. }
+		\defi{תהא $A \subseteq \R$. אז $x \in \R$ תקרא \textit{נקודת־סגור} של $A$, כאשר $\forall \eg > 0 \co (x- \eg, x + \eg) \cap A \neq \varnothing$ (כלומר כל סביבה של $x$ מכילה איבר מ־$A$)}
+		\theo{$A$ סגורה אמ''מ כל נקודת סגור של $A$ נמצאת ב־$A$. }
+		\defi{$A \subseteq \R$ תקרא \textit{קומפקטית} כאשר $A$ סגורה וחסומה. }
+		\theo{$A \subseteq \R$ קומפקטית אמ''מ לכל סדרה $\an$, אם לכל $n \in \N$, ל־$a_n$ יש ת''ס מתכנסת שגבולה ב־$\an$. }
+		\defi{יהי $x \in \R$ ותהא $U$ סביבה של $x$. אז $U \setminus \{x\}$ נקראת \textit{סביבה נקובה} של $x$. }
+		\defi{תהא $U \subseteq \R$. $x \in \R$ תקרא \textit{נקודת הצטברות} של $A$ כאשר לכל סביבה \textbf{נקובה} $U$ של $x$, מתקיים $U \cap A \neq \varnothing$. }
+		
+		\defi{\textit{התמונה של $f$} היא $\Img f := \{x \in \R\mid \exists a \in A \co f(a) = x\}$}
+		\defi{\textit{התחום של $f$} הוא $\dom f = A$. }
+		ניתן להגדיר מנה, כפל, מכפלה, חיבור, חיסור, כפל בקבוע של פונקציות, וכו'.
+		\defi{$f$ תקרא \textit{חסומה} כאשר $\Img f$ חסומה. }
+		\defi{$f$ תקרא \textit{מונוטונית עולה} כאשר $\forall x \le y \in A \co f(x) \le f(y)$}
+		בדומה לסדרות, נגדיר \textit{עולה ממש}, \textit{יורדת} ו\textit{יורדת ממש}.
+		
+		\defi{תהא $f \co A \subseteq \R \to \R$, ותהא $x_0 \in \R$ נקודת הצטברות של $A$, ויהי $\ml \in \R$. נאמר כי $\ml$ הוא גבול של $f$ ב־$x_0$ כאשר:
+			\[ \forall \eg > 0 .\, \exists \dg > 0 .\, \forall x\in A \co 0 < \sof{x - x_0} < \dg \implies \sof{f(x) - \ml} < \eg \]}
+		\theo{תהא $f \co A \subseteq \R\to \R$, ותהא $x_0 \in \R$ נקודות הצטברות של $A$. יהיו $\ml, m \in \R$. אם $\ml$ גבול של $f$ ב־$x_0$ וגם $m$ גבול של $f$ ב־$x_0$ אז $\ml = m$. }
+		(יש 8 הגדרות נוספות שמרחיבות את המושג לאינסוף)
+		\theo{לכל $x_0 \in \R$, אין ל־$D$ גבול ב־$x_0$. }
+		\defi{פונקציית רימן $R \co \R\to \R$ מוגדרת ע''י:
+			\[ R(x) = \begin{cases}
+				\frac{1}{n_x} & x \in \Q \\
+				0 & \other
+			\end{cases} \]
+			כאשר $m_x, n_x$ הפירוק היחיד של $x \in \Q $ כך ש־$x = \frac{m}{n}$ וגם $\gcd(m, n) = 1$.
+		}
+		\theo{לכל $x_0 \in \R$, מתקיים $\lim_{x \to x_0} R(x) = 0$. }
+		\theo{תהא $f \co A \subseteq \R\to \R$, ותהא $x_0 \in \R$ נקודת הצטברות של $A$. נניח כי עבור כל סדרה $\an$ המקיימת:
+			\begin{enumerate}
+				\item $\Img \an \subseteq A$
+				\item $\forall n \in \N \co a_n \neq x_0$
+				\item $\limsi a_n = x_0$
+			\end{enumerate}
+			את $f(\an)$ מתכנסת, אז קיים $\ml \in \R$ כך שלכל סדרה $\an$ המקיימת את 1-3, $\limsi f(a_n) = \ml$. }
+		\theo{תהא $f \co A \subseteq \R \to \R$. תהא $x_0 \in \R$ נקודת הצטברות של $A$. ל־$f$ יש גבול ב־$x_0$ אמ''מ לכל סדרה $\an$, אם $\an$ מקיימת את 1-3 מהטענה הקודמת, $f(\an)$ מתכנסת. }
+		\theo{תהא $f \co A \subseteq \R \to \R$ ותהא $x_0 \in \R$ נקודת הצטברות של $A$. אם קיים ל־$f$ גבול סופי ב־$x_0$, קיימת סביבה נקובה של $x_0$ שבה $f$ חסומה. }
+		\theo{תהאנה $f, g \in A \subseteq \R\to \R$ ונניח כי $A$ אינה חסומה מלעיל [כלומר אינסוף הוא נקודת הצטברות]. נניח כי $g$ חסומה וכי הגבול $\lim_{x \to \inft} f(x) = -\infty$. אז $\lim_{x \to \infty} f(x) + g(x) = -\infty$. }\theo{תהאנה $f, g \co A \subseteq \R\to \R$ ותהא $x_0 \in \R$ נקודת הצטברות של $A$. נניח כי קיימת סביבה נקובה של $x_0$ שבה לכל $x$, $f(x) \le g(x)$. נניח כי $\limxo f(x) = \infty$, אז $\limxo g(x) = +\infty$. }
+		\theo{תהנה $f, g, h \co A \subseteq \R\to \R$, ותהא $x_0 \in \R$ נקודת הצטברות של $A$. נניח כי קיימת סביבה נקובה של $x_0$ שבה לכל $x$ $h(x) \le f(x) \le g(x)$. יהי $\ml \in \R$. נניח $\limxo g(x) = \limxo h(x) = \ml$. אז $\limxo f(x) = \ml$. }
+		\theo{תהאנה $f, g \co A \subseteq \R \to \R$ ותהא $x_0 \in \R$ נקודת הצטברות של $A$. יהיו $\ml, m \in \R$. נניח $\limxo f(x) = \ml \land \limxo g(x) = m$.
+			\begin{enumerate}
+				\item אם קיימת סביבה של $x_0$, כל שלכל $x$ בה $f(x) \le g(x)$ אז $\ml \le m$.
+				\item אם $\ml < m$, אז קיימת סביבה נקובה של $x_0$ שבה לכל $x$ בה $f(x) < g(x)$.
+		\end{enumerate}}
+		\theo{תהאנה $f \co A \subseteq \R\to B \subseteq \R, \ g \co B \to \R$. תהא \lxo. יהיו $y_0, \ml \in \R$. 	נניח כי:
+			\begin{enumerate}
+				\item $\limxo f(x) = y_0$
+				\item קיימת סביבה נקובה של $x_0$ שבה לכל $f(x) \neq y_0$.
+				\item $\lim_{x \to y_0} g(x) = \ml$
+			\end{enumerate}
+			אז $\limxo g \circ g(x) = \ml$.
+		}
+		\rmark{גם כאן המרצה עשה עברה – יש כאן הנחה ש־$y_0$ נקודת הצטברות של $B$. זה בסדר, כי באמצעות 1 ו־2 אפשר להראות ש־$y_0$ נקודת הצטברות של $B$ בכל מקרה. }
+		
+		\defi{תהא $f \co A \to B$ פונקציה. תהי ת''ק $C \subseteq A$. נגדיר $g \co C \to B$ על־ידי $g(x) = f(x)$ לכל $x \in B$. $g$ נקראת \textit{הצמצום של $f$ ל־$C$} ומסמנים $g = f|_C$. }
+		\theo{
+			\begin{enumerate}
+				\item תהא $A \subseteq \R$ ותהא $B \subseteq A$ ויהי $x_0 \in \R$. אם $x_0$ נקודת הצטברות של $B$ אז \lxo.
+				\item תהא $A \subseteq \R$ ותהאנה $B, C \subseteq A \setminus \{x_0\}$ כך ש־$B \cup C = A$. אם \lxo אז $x_0$ נקודת הצטברות של $B$ או ש־$x_0$ נקודת הצטברות של $C$ (ה''או`` לא בהכרח xor).
+		\end{enumerate}}
+		
+		
+		מה שנעשה עכשיו על ת''קים ספציפיים, היה אפשר לעשות על כל תת־קבוצה.
+		
+		נגדיר את הסימון הבא לסיכום הזה בלבד (הוא לא מקובל). תהא $A \subseteq \R$ ותהא $x_0 \in \R$ נקודת הצטברות של $A$. נסמן $A_{x_0^{+}} := = A \cap (x_0, +\infty)$. נגדיר את $A_{x_0^{-}} :=  = A \cap (-\infty, x_0)$.
+		
+		מהמשפט הקודם, אם $x_0$ נקודת הצטברות של $A$, אז $x_0$ נקודת הצטברות של $A_{x_0^{+}}$ וכן של $A_{x_0^{-}}$.
+		
+		\defi{תהא $f \co A \subseteq \R \to \R$ ותהא $x_0$ נקודת הצטברות של $A$. אם $x_0$ נקודת הצטברות של $\{x \in A \mid x > x_0\}$ וגם קיים הגבול של $f|_{\{x \in A \mid x > x_0\}}$ ב־$x_0$, אז נאמר של־$f$ יש גבול מימין ב־$x_0$ ונסמנו $\lim_{x \to x_0^{+}} f(x)$. }
+		\defi{תהא $f \co A \subseteq \R \to \R$ ותהא $x_0$ נקודת הצטברות של $A$. אם $x_0$ נקודת הצטברות של $\{x \in A \mid x< x_0\}$ וגם קיים הגבול של $f|_{\{x \in A \mid x< x_0\}}$ ב־$x_0$, אז נאמר של־$f$ יש גבול מימין ב־$x_0$ ונסמנו $\lim_{x \to x_0^{-}} f(x)$. }
+		\theo{תהא $f \co A \subseteq \R \to \R$ ותהא \lxo. יהי $\ml \in \R$ ונניח $\lim_{x \to x_0^{+}} f(x) = \ml$. אז אם $x_0$ נקודת הצטברות של $A_{x_0^{-}}$, אז $\lim_{x \to x_0^{-}}f(x) = \ml$. אם $x_0$ נקודת הצטברות של $A_{x_0^{+}}$, אז $\lim_{x \to x_0^{+}}f(x) = \ml$. }
+		\theo{תהא \gf ותהא \lxo. יהי $\ml \in \R$.
+			\begin{enumerate}
+				\item אם $x_0$ נקודת הצטברות של $A_{x_0^{+}}$ וכן נקודת הצטברות של $A_{x_0^{-}}$, אז $\lim_{x \to x_0^{-}} f(x) = \lim_{x \to x_0^{+}}f(x) = \ml$ גורר ש־$\limxo f(x) = \ml$.
+				
+				אחרת [כלומר $x_0$ אינה נקודת הצטברות של אחת מהקבוצות]:
+				\item אם $x_0$ נקודת הצטברות של $A_{x_0^{-}}$ אז $\lim_{x \to x_0^{-}} = \ml$ גורר $\limxo f(x) = \ml$. [כלומר, אם אני יכול להגיע ל־$x_0$ רק מהצד השלילי – זה יקבע את הגבול]
+				\item אם $x_0$ נקודת הצטברות של $A_{x_0^{+}}$ אז $\lim_{x \to x_0^{+}} = \ml$ גורר $\limxo f(x) = \ml$. [כלומר, אם אני יכול להגיע ל־$x_0$ רק מהצד החיובי – זה יקבע את הגבול]
+		\end{enumerate}}
+		\theo{תהא \gf ותהא \lxo. ל־$f$ יש גבול סופי ב־$x_0$ אמ''מ לכל $\eg > 0$, קיים $\dg > 0$, כך שלכל $x, y \in A$ אם $0 < \sof{x - x_0} < \dg$ וגם $0 < \sof{y - x_0} < \dg$ אז $\sof{f(x) - f(y)} < \eg$. }
+		\defi{תהא \gf ותהא $x_0 \in A$. נאמר ש־$f$ רציפה ב־$x_0$ אם:
+			\begin{multline}
+				\forall \eg > 0.\, \exists \dg > 0.\ \forall x \in A \co \cl{\sof{x - x_0} < \dg} \\
+				\implies \sof{f(x) - f(x_0)} < \eg
+			\end{multline}}
+		\theo{תהא \gf ותהא $x_0 \in A$. אם \lxo, אז $f$ רציפה ב־$x_0$ אמ''מ $\limxo f(x) = f(x_0)$. }
+		\defi{תהא \gf ותהא $x_0 \in \R$. נניח ש־$f$ אינה רציפה בה. אז:
+			\begin{itemize}
+				\item אם 1-2 מתקיים (מהמיון לעיל) אז $x_0$ תקרא \textit{אי־רציפות סליקה}. 
+				\item אחרת, אם רק 1 מתקיים, $x_0$ תקרא \textit{אי־רציפות מסוג ראשון}. 
+				\item אחרת, רק 2 מתקיים, ו־$x_0$ תקרא \textit{אי־רציפות מסוג שני}. 
+		\end{itemize}}
+		\theo{תהא $f \co I \to \R$ מונוטונית עולה. אז לכל $x_0 \in I$, יש ל־$f$ גבול סופי משמאל ב־$x_0$ וגם גבול סופי מימין. }
+		\begin{Theorem}[אריתמטיקה של רציפות]
+			תהאנא $f, g \co A \subseteq \R \to \R$ ותהא $x_0 \in \R$. נניח כי $f$ רציפה ב־$x_0$ וכן $g$ רציפה ב־$x_0$. אז:
+			\begin{itemize}
+				\item $f\pm g$ רציפה ב־$x_0$
+				\item $f \cdot g$ רציפה ב־$x_0$.
+				\item אם $g(x_0) \neq 0$ אז $\frac{f}{g}$ רציפה ב־$x_0‏$.
+			\end{itemize}
+		\end{Theorem}
+		\theo{תהאנה $f \co A \to B$ ו־$g \co B \to \R$, ותהא $x_0 \in A$. נניח כי $f$ רציפה ב־$x_0$ ו־$g$ רציפה ב־$f(x_0)$. אז $g \circ f$ רציפה ב־$x_0$. }
+		\theo{\hfil $\disty \lim_{x \to 0}\frac{\sinx}{x} = 1$}
+		\theo{\hfil $\disty \limz \frac{\ln(1 + x)}{x} = 1$}
+		\theo{\hfil $\disty \frac{e^{x} - 1}{x} = 1$}
+		\defi{פונקציה $f$ היא \textit{רציפה} אם היא רציפה בכל נקודה. }
+		\theo{תהא  $f \co A \to \R$. אז $f$ רציפה אמ''מ לכל קבוצה פתוחה $V \subseteq \R$ קיימת קבוצה פתוחה $U \subseteq \R$ כך ש־$f\op(V) = U \cap A$. }
+		\defi{תהא $f \co I \to \R$ כאשר $I$ קטע. נאמר כי $f$ מקיימת \textit{תכונת דרבו} כאשר לכל $a, b \in R$ כך ש־$a < b$, לכל $\lg \in \R$ בין $f(a) \le \lg \le f(b)$. קיים $c \in [a, b]$ כך ש־$f(x) = \lg$. }
+		\begin{Theorem}[משפט ערך הביניים]
+			פונקציה רציפה מקיימת את תכונת דרבו.
+		\end{Theorem}
+		\begin{Theorem}[משפט ווירשטראס (עוד אחד)]
+			תהא $f \co A \to \R$ רציפה. אם $A$ קומפקטית (סגורה וחסומה) אז $f$ חסומה ומשיגה את חסמיה (יש לה מינימום ומקסימום).
+		\end{Theorem}
+		\theo{תהא $f \co I \to \R$ המקיימת תכונת דרבו. אז ל־$f$ אין נקודות אי־רציפות סליקות או מסוג ראשון. }
+		\cola{תהא $f \co I \to \R$. אם $f$ מקיימת תכונת דרבו ומונוטונית, היא בהכרח רציפה. }
+		\defi{$f$ \textit{רציפה במידה שווה} אם לכל $\eg > 0$ קיים $\dg > 0$ כך שלכל $x, y \in A$ אם $\sof{x - y} < \dg$ אז $\sof{f(x) - f(y)} < \eg$. }
+		\theo{אם $f$ רציפה במידה שווה ב־$A$ אז $f$ רציפה ב־$A$. }
+		\theo{תהאנה $f, g \co A \to \R$. נניח כי $f$ רציפה במידה שווה ב־$A$ וגם $g$ רציפה במידה שווה ב־$A$. אז:
+			\begin{itemize}
+				\item $f\pm g$ רציהפ במידה שווה ב־$A$.
+				\item אם $f$ ו־$g$ חסומות ב־$A$, אז $fg$ רציפה במידה שווה.
+		\end{itemize}}
+		\begin{Theorem}[משפט קנטור]
+			תהא $f \co A \to \R$. אם $f$ רציפה ב־$A$ וגם $A$ קומפקטית, אז $f$ רציפה במידה שווה ב־$A$.
+		\end{Theorem}
+		\theo{יהיו $a, b \in \R\cup\{\pm\inft\}$. נניח $a < b$. יהי $a < c < b$. תהא $f\co (a, b) \to \R$ ונניח $f$ רציפה במידה שווה ב־$(a, c)$ וכן $f$ רציפה במידה שווה ב־$(c, b]$, אז $f$ רציפה במידה שווה ב־$(a, b)$. }
+		\theo{הפונקציה $\sqrt x$ רציפה במ''ש בקטע $[0, \infty)$. }
+		\theo{תהא $f \co [a, \infty) \to \R$. נניח $f$ רציפה וגם קיים וסופי $\lim_{x \to \inft}f(x)$. הראו כי $f$ רציפה במ''ש ב־$[a, \infty)$. }
+		\theo{יהי $a, b \in \R$ ונניח $a < b$. תהא $f \co (a, b) \to \R$ רציפה. אז $f$ רציפה במידה שווה ב־$(a, b)$ אמ''מ קיימים ל־$f$ הגבולות ב־$a$ וב־$b$ והסם סופיים. }
+		
+		
+		\defi{בהינתן $f \co I \to \R$, וכן $x_0 \in I$ בפנים הקטע (איננה נקודת קצה). נאמר ש־$f$ \textit{גזירה ב־$x_0$} כאשר קיים וסופי הגבול $\limxz \frac{f(x) - f(x_0)}{x - x_0}$. }
+		\noti{בהנחה שהגבול ב־$x_0$ של הפונקציה $f$ קיים, נסמן $\frac{\dd f}{\dx}(x_0)$ או $f'(x_0)$. }
+		\theo{$f$ גזירה ב־$x_0$ אמ''מ קיים וסופי:
+			\[ \lim_{h \to 0}\frac{f(x_0 + h) - f(x_0)}{h} \]}
+		\defi{תהי $f \co I \to \R$ וכן $x_0 \in I$ בפנים הקטע. $f$ תקרא \textit{דיפרנציאבילית} ב־$x_0$ כאשר קיימת העתקה לינארית $T \co \R\to \R$ המקיימת שהגבול $\limxz \frac{f(x) - f(x_0) - T(x - x_0)}{x - x_0} = 0$. }
+		\theo{תהי $f \co I \to \R$ ותהי $x_0 \in I$ בפנים הקטע. אם $f$ גזירה ב־$x_0$ אז $f$ רציפה ב־$x_0$. }
+		
+		\defi{תהא $f \co  I \to \R$ ותהא $x_0 \in I$ המקיימת $\exists \dg > 0 \co (x_0 - \dg, x_0) \subseteq I$. אז נאמר שנאמר ש־$f$ \textit{גזירה משמאל ב־$x_0$} כאשר קיים וסופי הגבול $\lim_{x \to x_0^{-}} \frac{f(x) - f(x_0)}{x - x_0}$. }
+		\defi{\textit{נגזרת מימין} מוגדרת באופן דומה}
+		\noti{נסמן את הגזירה משמאל ב־$f_-'(x_0)$ ומימין $f_+'(x_0)$. }	
+		\theo{יהיו $f, g \co I \to \R$ ותהי $x_0 \in I$ בפנים הקטע. נניח ש־$f, g$ גזירות ב־$x_0$. אז:
+			\begin{itemize}
+				\item לכל $\ag, \bg \in \R$ מתקיי ם$\ag f + \bg g$ גזירה ב־$x_0$ וכן $(\ag f + \bg g)' = \ag f'(x_0) + \bg g'(x_0)$ (הנגזרת לינארית)
+				\item מתקיים ש־$fg$ גזירה ב־$x_0$ ומתקיים ש־$(fg)'(x_0) = f'(x_0)g(x) + f(x_0)g'(x_0)$.
+				\item אם $g(x_0) \neq 0$ אז $\frac{f}{g}$ גזירה ב־$x_0$ ומתקיים:
+				\[ \cl{\frac{f}{g}}'\!\!(x_0) = \frac{f'(x_0)g(x_0) - f(x_0)g'(x_0)}{(g(x_0))^{2}} \]
+		\end{itemize}}
+		\theo{תהא $f \co I \to J$ ותהא $g \co J \to \R$. נניח $x_0 \in I$ בפנים הקטע. נניח ש־$f$ גזירה ב־$x_0$ וגם $g$ גזירה ב־$x_0$. אז $g \circ f$ גיזרה ב־$x_0$ וכן $(g \circ f)'(x_0) = g'(f(x_0))f'(x_0)$.}
+		\theo{תהא $f \co I \to J$ פונקציה חח''ע ועל, כאשר $I, J$ קטעים פתוחים (אך לא בהכרח, סתם למרצה לא בא להתעסק עם הקצוות). אז $f\op$ גזירה בכל נקודה ב־$J$ ומתקיים $\forall y \in J \co (f\op(y))(y) = \frac{1}{f'(f\op(y))}$. 
+		}
+		\begin{Theorem}[המשפט הלא אחרון של פרמה]
+			תהא $f \co I \to \R$ ותהי $x_0 \in I$ בפנים הקטע. נניח $f$ גזירה ב־$x_0$ ונניח של־$f$ יש קיצון מקומי ב־$x_0$. אז $f'(x_0) = 0$.
+		\end{Theorem}
+		\defi{ל־$f$ יש מקסימום מקומי ב־$x_0$ כאשר קיים $\dg > 0$ כך שלכל $x \in (x_0 - \dg, x_0 + \dg)$ מתקיים $f(x) \le f(x_0)$. }
+		\defi{מינימום מקומי בדומה. }
+		\begin{Theorem}[משפט רול]
+			תהא $f \co [a, b] \to \R$. נניח ש־$f$ רציפה בקטע ב־$[a, b]$ וכן גזירה ב־$(a, b)$, $f(a) = f(b)$. אז קיימת $c \in (a, b)$ שבה $f'(c) = 0$.
+		\end{Theorem}
+		\begin{Theorem}[משפט ערך הביניים של לגראנג']
+			תהי $f \co [a, b] \to \R$ ונניח $f$ רציפה ב־$[a, b]$ וכן גזירה ב־$(a, b)$. אז קיימת $c \in (a, b)$ כך ש־$f'(c) = \frac{f(b) - f(a)}{b - a}$.
+		\end{Theorem}
+		\theo{תהא $f \co I \to \R$ ונניח כי $f$ גזירה בכל $I$ וכי לכל $x \in I$ מתקבל $f'(x) = 0$. הראו כי $f$ קבועה. }
+		\theo{תהא $f \co I \to \R$ ונניח כי $f$ גזירה בכל $I$. הראו ש־$f$ עולה ב־$I$ אמ''מ $\forall x \in I \co f'(x) \ge 0$. }
+		\begin{Theorem}[משפט דרבו]
+			תהא $f \co (a, b) \to \R$ גזירה ב־$(a, b)$. אז $f' \co (a, b) \to \R$ מקיימת את תכונת דרבו.
+		\end{Theorem}
+		\begin{Theorem}[משפט קושי]
+			יאי עוד משפט קושי. תהאנה $f, g \co [a, b] \to \R$ ונניח כי שתיהן רציפות ב־$[a, b]$, שתיהן גזירות ב־$(a, b)$, ולכל $x \in (a, b)$, מתקיים $g'(x) \neq 0$. אז $g(b) \neq g(a)$ וגם קיימת $c \in (a, b)$ כך ש־$\frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{g'(c)}$. 
+		\end{Theorem}
+		\begin{Theorem}[משפט לופיטל 1]
+			תהאנה $f, g \co T \setminus \{a\} \to \R$. נניח ש־$a$ נקודת הצטברות של $I \setminus \{a\}$. עוד נניח ש־$f, g$ רציפות ב־$I \setminus \{a\}$ וכן $f, g$ גזירות ב־$I \setminus \{a\}$. נניח ש־$\lim_{x \to a} f(x) = \lim_{x \to a} g(x) = 0$ (במקרים האחרים אפשר פשוט להשתמש בכללי גבולות כרגיל), וכן קיים הגבול $\lim_{x \to a} \frac{f'(x)}{g'(x)}  = \ml$. תחת כל התנאים הללו $\lim_{x \to a}\frac{f(x)}{g(x)} = \ml$ (כאשר $a$ ו־$\ml$ מוגדרים במובן הרחב).
+		\end{Theorem}
+		
+		\begin{Lemma}[הלמה של שטולץ]
+			תהאנה $\an, \bn$ סדרות ונניח ש־$\bn$ מונוטונית ממש ו־$b_n \to +\infty$. אם קיים וסופי $\limsi \frac{a_{n + 1} - a_n}{b_{n + 1} - b_n}$ אז קיים וסופי $\limsi \frac{a_n}{b_n}$ וגבולותיהם שווים (לופיטל 2 בדיד).
+		\end{Lemma}
+		\begin{Theorem}[משפט לופיטל 2]
+			תהאנה $f, g \co I \setminus \{a\} \to \R$ כאשר $I$ קטע ו־$a$ נקודת הצטברות. נניח ש־$f, g$ גזירות ב־$I \setminus \{a\}$ ו־$\forall x \in I \setminus \{a\} \co g'(x) \neq 0$. עוד נניח $\lim_{x \to a}\sof{g(x)} \to \infty$ (המקרה היחיד שבאמת מעניין אותנו זה כשגם $f$ שואף לאינסוף בנקודה) וקיים $\lim_{x \to a} \frac{f'(x)}{g'(x)} = \ml$. אז $\lim_{x \to a}\frac{f(x)}{g(x)}$ קיים וערכו $\ml$.
+		\end{Theorem}
+		\defi{תהא $f \co I \to \R$ ויהי $x_0 \in \R$. ניתן להגדיר רקורסיבית את $f^{(n + 1)}(x_0) := (f^{(n)}(x_0))'$ כאשר $f^{(0)} = f$ בסיס. נבחין שלשם כך נדרוש ש־$f^{(n)}$ מוגדרת בסביבה של $x_0$. }
+		\noti{לעיתים $f^{(n)}$ תסומן גם ב־$\frac{\dd^{n} f}{\dd x^{n}}(x_0)$. }
+		\defi{תהא $f \co I \to \R$ וכן $x_0 \in I$. יהי $n \in \N$. נניח ש־$f$ גזירה $n$ פעמים ב־$x_0$. נגדיר את \textit{פולינום הטיילור של $f$ מסדר $n$ סביב $x_0$} ע''י:
+			\[ T_n(x) := \sum_{i = 0}^{n}\frac{f^{(i)}(x_0)}{i!}(x - x_0)^{i} \]
+			ואת השארית להיות:
+			\[ R_n(x) := f(x) - T_n(x) \]
+		}
+		\begin{enumerate}
+			\item $T_n$ גזירה מכל סדר
+			\item $R_n$ גזירה $n$ פעמים ב־$x_0$
+			\item לכל $i \in [n] \cup \{0\}$ בהכרח $R_n(x_0) = 0$ וכן $T_n(x_0) = f^{(n)}(x_0)$
+		\end{enumerate}
+		\theo{מתקיים:
+			\[ \limxz \frac{R_n(x)}{(x - x_0)^{n}} = 0 \]}
+		\cola{תהא $f \co I \to \R$ ותהא $x_0 \in I$. יהי $n \in \N$ ונניח ש־$f$ גזירה $n$ פעמים ב־$x_0$. אז קיימת $\wg \co I \to \R$ המקיימת $\wg(x_0) = 0$ ו־$\wg$ רציפה בנקודה $x_0$, וגם:
+			\[ R_n(x) = \wg(x)(x - x_0)^{n} \]}
+		\lem{בהינתן $f, g \co A \to \R$ וכן $x_0$ נקודת הצטברות של $A$, אם $\limxz f(x) = \ml > 0$ וגם $\limxz g(x) = m$ אז מתקיים $\limxz (f(x))^{g(x)} = \ml^{m}$. }
+		\theo{תהא $f(x) \co I \to \R$ גזירה פעמיים ב־$x_0 \in I$ (בפנים הקטע). נניח כי $f'(x_0) = 0$. אם $f''(x_0) > 0$ אז $x_0$ מינימום. אם $f''(x_0) < 0$ אז $x_0$ מקסימום. }
+		\theo{יהי $n \in \Nodd$. תהא $f \co I \to \R$ גזירה $n + 1$ פעמים ב־$x_0$. נניח $f^{(i)}(x_0) = 0$ וגם $f^{(n + 1)}(x_0) \neq 0$. אז אם $f^{(n + 1)}(x_0) > 0$ אז יש ל־$f$ מינימום ב־$x_0$. אם $f^{(n + 1)(x_0) < 0}$ אז יש ל־$f$ מקסימום ב־$x_0$. באותם התנאים, אם $n \in \Neven$ אז אין קיצון, יש פיתול. }
+		\theo{תהא $f \co I \to \R$ ותהא $x_0 \in I$ נקודת םפנים. נניח $f$ גזירה $n$ פעמים ב־$x_0$. נסמן ב־$T_n$ את פולינום הטיילור של $f$ מסדר $n$ סביב $x_0$. נסמן ב־$R_n$ את השארית המתאימה. אז:
+			\[ \limxz \frac{R_n(x)}{(x - x_0)^{n}} = 0 \]}
+		\noti{נגדיר את $C^{(n + 1)}(A)$ את קבוצת הפונקציות הגזירות ברציפות ב־$I$. }
+		\theo{תהא $f \co I \to \R$ ותהא $x_0 \in \R$ בפנים הקטע. נניח כי $f$ גזירה $n + 1$ פעמים בכל $I$ ונגזרותיה רציפות (כלומר $f \in C^{(n + 1)}$). לכל $x \in I$ קיים $c$  בין $x_0$ ל־$x$ כך ש־:
+			\[ R_{n}(x) = \frac{f^{(n + 1)}(c)}{(n + 1)!}(x - x_0)^{n + 1} \]}
+		\defi{מסמנים ב־$C^{\inft}(A)$ את קבוצת הפונקציות הגזירות (ובפרט רציפות) מכל סדר ב־$A$. }
+		\theo{תהא $f \in C^{\inft}(A)$. אם קיים $M > 0$ כך ש־$\forall n \in \N \forall x \in I \co \sof{f^{(n)}(x)}\le M$ (''הנגזרות חסומות באופן אחיד``), אז טור טיילור של $f$ מתכנס ל־$f$ בכל $I$. }
+		\theo{טור הטיילור של $e^{x}$ מתכנס ל־$e^{x}$ בכל נקודה, כלומר $\forall x \in \R\co e^{x} = \sum_{n = 0}^{\inft}\frac{x^{n}}{n!}$. }
+		\theo{יהי $ \le p \le n + 1$ ונתבונן בפונקציה $f \co I \to \R$ ותהא $x_0 \in I$ פנימית. יהי $n \in \N^{+}$ ונניח כי $f$ גזירה $n + 1$ פעמים ב־$I$. אז לכל $x \in I$ קיים $c$ בין $x_0$ ל־$x$ כך ש־$R_n(x) = \frac{f^{(n + 1)}(c)}{פ p \cdot n!}(x - x_0)^{p}(c - x_0)^{n + 1 - p}$. }
+					\theo{\begin{align*}
+				\sinx = f^{(n)}(x) &= \sin\cl{x + \frac{\pi n}{2}} \\
+				\cosx = f^{(n)}(x) &= \cos\cl{x + \frac{\pi n}{2}} \\
+				e^{x} = f^{(n)}(x) &= e^{x}
+		\end{align*}}
+	\end{multicols}
+
+
+\end{document}
