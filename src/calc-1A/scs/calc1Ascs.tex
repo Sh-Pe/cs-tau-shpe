@@ -24,6 +24,7 @@
 \date{26 לאוקטובר 2025}
 \begin{document}
 	\maketitle
+	\textit{הערה: }עבור סטודנטים שלא למדו מהי נקודת התכנסות, אפשר להתייחס אליה כנקודה בה הגבול מוגדר (לדוגמה, לא בקצה קטע סגור). 
 	\begin{multicols}{2}
 		\defi{$\F$ נקרא \textit{שדה} אם יש לו פעולות $+ \co \R \times \R \to \R$ ו־$\cdot \,\co \R \times \R \to \R$, המקיימות: 
 			\begin{enumerate}
@@ -80,7 +81,8 @@
 		\theo{לכל $x \in \R$, אם $x > 0$ אז קיים $y \in \R$ \textit{יחיד} כך ש־$y > 0$ וגם $y^2 = x$. }
 		\theo{לכל $x \in \R$, ולכל $n \in \N_+$, אם $x > 0$ אז קיים $y \in \R$ יחיד כך ש־$y > 0$ וגם $y^n = x$. }
 		\noti{נסמן את ה־$y$ היחיד שמקיים את המשפט לעיל ב־$\sqrt[n]{x}$. }
-		\begin{Theorem}[הארכימדיאניות של הטבעיים בממשיים]
+		\begin{Theorem}[הארכימדיאניות של הטבעיים בממשיים]\ 
+			
 			\hfil $\forall x, y \in \R \co x > 0 \implies (\exists n \in \N \co nx > y)$
 		\end{Theorem}
 		\begin{Theorem}[הסדר הטוב של הטבעיים בממשיים]
@@ -88,18 +90,14 @@
 		\end{Theorem}
 		\cola{לכל קבוצה $A \subseteq \Z$ אם $A \neq \varnothing$ וחסומה מלרע, אז קיים איבר מינימלי ב־$A$. }
 		\cola{לכל קבוצה $A \subseteq \Z$ אם $A \neq \varnothing$ וחסומה מלעיל, אז קיים איבר מקסימלי ב־$A$. }
-		\theo{\hfil $\forall x \in \R \, \exists! k \in \Z \co k \le x < k + 1$. }
+		\theo{\hfil $\forall x \in \R. \, \exists! k \in \Z \co k \le x < k + 1$}
 		\noti{יהי $x \in \R$. אז \textit{ה}שלם \textit{ה}יחיד $k$ המקיים $k \le x < k + 1$ יסומן ב־$\floor{x}$ והוא יקרא \textit{ערך שלם תחתון}. }
 		\begin{Theorem}[צפיפות הממשיים]
 			יהיו $x, y \in \R$. אם $x, y$ אז קיים $z \in \R$ כך ש־$x < z < y$.
 		\end{Theorem}	
 		\begin{Theorem}[צפיפות הרציונליים בממשיים]
-			נניח $x < y$. אז $y - x > 0$ ולכן מהארגימדיאניות קיים $n \in \N$ כך ש־$n(y - x) > 1$. במקרה הזה $ny > nx + 1$ ולכן זה לא מפתיע שקיים טבעי באמצע, ואכן נוכל לסמן $m = \ceil{yn} - 1$ (שימו לב שבמקרה של $yn$ טבעי, זה לא הערך השלם התחתון). אז:
-			\[ x < y - \frac{1}{n} = \frac{ny - 1}{n} \ge \frac{\floor{ny} - 1}{n} < \frac{ny + 1 - 1}{n} = y \]
-			כמו כן $\frac{\floor{ny} - 1}{n} \in \Q$.
+			נניח $x < y$. אז $y - x > 0$ ולכן מהארגימדיאניות קיים $n \in \N$ כך ש־$n(y - x) > 1$. 
 		\end{Theorem}
-		
-		
 		\defi{\textit{סדרה ממשית} היא פונקציה $a(n) \co \N \to \R$. }
 		\defi{לעיתים רבות תבחינו שמסמנים סדרות באמצעות $(a_n)_{n = 1}^{\inft}$, או $\{a_n\}_{n = 1}^{\inft}$, או אפילו סתם $a_n$. }
 		\defi{בהינתן סדרה, $a_n := a(n)$}
@@ -121,8 +119,6 @@
 		
 		\defi{נאמר כי סדרה $\an$ \textit{מתכנסת} כאשר קיים לה גבול $\ml \in \R$}
 		\defi{אם $\an$ מתכנסת וגבולה (היחיד) הוא $\ml$, נסמן $\lim_{n \to \inft} a_n = \ml$. }
-		''אבל בפיזיקה עשינו את זה עד עכשיו וזה עבד``
-		
 		\lem{קבוצה חסומה אמ''מ $\exists M > 0 \co \forall a \in A \co \sof{a} \le M$. }
 		\theo{תהא $\an$ סדרה. אם $\an$ מתכנסת, אז $\an$ חסומה. }
 		\theo{תהאנה $\an, \bc$ סדרות. יהיו $\ml, m \in \R$ ממשיים. נניח כי $\limasi = \ml \land \limbsi = m$. אז:
@@ -255,17 +251,16 @@
 		\theo{אם טור מתכנס בהחלט, אז הוא בפרט מתכנס. }
 		\theo{תהא $\an$ סדרה, ונניח ש־$\forall n \in \N \co a_n \ge 0$. אז $\sumninf a_n$ אמ''מ סדרת הסכומים החלקיים חסומה. }
 		\begin{Theorem}[קריטריוני השוואה להתכנסות טורים]
-			content
+			\begin{enumerate}
+				\item \textbf{מבחן ההשוואה הראשון: }תהיינה $a_n, b_n$ סדרות אי־שליליות. נניח כי כמעט תמיד $a_n \le b_n$. אז אם $\sumninf b_n$ מתכנס אז $\sumninf a_n$ מתכנס.		
+				\item \textbf{מבחן ההשוואה הגבולי: }נניח $\forall n \in \N\co b_n > 0$ (חיובית ממש!) ונניח $\limsi \frac{a_n}{b_n} \to \ml$ וכמו כן $\ml > 0$. אז $\sumninf a_n$ מתכנס אמ''מ $\sumninf b_n$ מתכנס. 
+				\item \textbf{מבחן השורש: }תהא $\an$ סדרה אי־שלילית. נניח כי קיים $q \in (0, 1)$ כך ש־$\forall n \in \N \co \sqrt[n]{a_n} \le q$. אז $\sumninf a_n$ מתכנס.
+				\item \textbf{מבחן השורש הגבולי: }תהא $\an$ סדרה אי־שלילית. נניח ש־$\exists q \in [0, 1) \co \limsup_{n \to \inft} \sqrt[n]{q_n} < q$ אז $\sumninf a_n$ מתכנס.
+				\item \textbf{מבחן המנה: }נניח $a_n > 0$ (כמעט תמיד) ויהי $q \in (0, 1)$, ונניח $\frac{a_{n + 1}}{a_n} \le q$ (כמעט תמיד) אז $\sumninf a_n$ מתכנס.
+				\item \textbf{מבחן המנה הגבולי: }יהי $\an > 0$. נסמן $\ml = \limsup_{n \to \inft} \frac{a_{n + 1}}{a_n}$ ו־$m = \liminf{n \to \inft} \frac{a_{n + 1}}{a_n}$ אז אם $\ml < 1$ אז $\sumninf a_n$ מתכנס, ואם $m > 1$ אז $\sumninf a_n$ מתבדר. 
+				\item \textbf{מבחן העיבוי: }תהא $\an$ סדרה מונוטונית יורדת ואי־שלילית אז $\sumninf a_n$ מתכנסת אמ''מ $\sumninf 2^{n}a_{2n}$ מתכנסת.
+			\end{enumerate}
 		\end{Theorem}
-		\begin{enumerate}
-			\item \textbf{מבחן ההשוואה הראשון: }תהיינה $a_n, b_n$ סדרות אי־שליליות. נניח כי כמעט תמיד $a_n \le b_n$. אז אם $\sumninf b_n$ מתכנס אז $\sumninf a_n$ מתכנס.		
-			\item \textbf{מבחן ההשוואה הגבולי: }נניח $\forall n \in \N\co b_n > 0$ (חיובית ממש!) ונניח $\limsi \frac{a_n}{b_n} \to \ml$ וכמו כן $\ml > 0$. אז $\sumninf a_n$ מתכנס אמ''מ $\sumninf b_n$ מתכנס. 
-			\item \textbf{מבחן השורש: }תהא $\an$ סדרה אי־שלילית. נניח כי קיים $q \in (0, 1)$ כך ש־$\forall n \in \N \co \sqrt[n]{a_n} \le q$. אז $\sumninf a_n$ מתכנס.
-			\item \textbf{מבחן השורש הגבולי: }תהא $\an$ סדרה אי־שלילית. נניח ש־$\exists q \in [0, 1) \co \limsup_{n \to \inft} \sqrt[n]{q_n} < q$ אז $\sumninf a_n$ מתכנס.
-			\item \textbf{מבחן המנה: }נניח $a_n > 0$ (כמעט תמיד) ויהי $q \in (0, 1)$, ונניח $\frac{a_{n + 1}}{a_n} \le q$ (כמעט תמיד) אז $\sumninf a_n$ מתכנס.
-			\item \textbf{מבחן המנה הגבולי: }יהי $\an > 0$. נסמן $\ml = \limsup_{n \to \inft} \frac{a_{n + 1}}{a_n}$ ו־$m = \liminf{n \to \inft} \frac{a_{n + 1}}{a_n}$ אז אם $\ml < 1$ אז $\sumninf a_n$ מתכנס, ואם $m > 1$ אז $\sumninf a_n$ מתבדר. 
-			\item \textbf{מבחן העיבוי: }תהא $\an$ סדרה מונוטונית יורדת ואי־שלילית אז $\sumninf a_n$ מתכנסת אמ''מ $\sumninf 2^{n}a_{2n}$ מתכנסת.
-		\end{enumerate}
 		\begin{Theorem}[קירוב סטרלינג]
 			\[ \limsi \frac{n!}{\cl{\frac{n}{e}}^{n}\sqrt{e \pi n}} = 1 \]
 		\end{Theorem}
@@ -315,7 +310,7 @@
 			תהא $\an$ סדרה ויהי $a \in \R$. קיים מספר יחיד $R \ge 0$ כך ש־
 			\begin{enumerate}
 				\item \hfil $\displaystyle \forall x \in (a - R, a + R) \co \sumnoinf a_n(x - a)^{n} \ \text{\en{converges}}$
-				\item \hfil $\displaystyle x \notin [a - R, a + R] \co \sumnoinf a_n(x - a)^{n}  \ \text{מתבדר}$
+				\item \hfil $\displaystyle x \notin [a - R, a + R] \co \sumnoinf a_n(x - a)^{n}  \ \text{\en{diverges}}$
 			\end{enumerate}
 			החלק הזה נקרא \textit{רדיוס ההתכנסות} של הטור, והתחום נקרא \textit{תחום ההתכנסות}.
 		\end{Theorem}

@@ -1111,8 +1111,8 @@
 	\end{Theorem}\begin{proof}
 		נפרק למקרים. 
 		\begin{itemize}
-			\item אם $m_T(x)$ לא מתפרק, הוא בהכרח לא קבוע אחרת $m_T(T) \neq 0$ וסתירה, לכן $m_T(x) = (x - \lg)$ לינארי כלשהו (אם לא לינארי ניתן לפרק לגורמים לינארים ואז $m_T$ מתפרק וסתירה). 
-			\item אם $m_T(x)$ מתפרק, אז נוציא גורם לינארי אחד ונקבל $m_T = g_1 \cdots g_i$ כאשר $g_i$ לינאריים, דהיינו ממשפט הפירוק הפרימרי, נניח בשלילה $g_i \neq g_j$ ומהיות $m_T$ מתוקן נקבל $\gcd(g_i, g_j) = 1$ כלומר $V = \ker \bigoplus_{i = 1}^{r}\ker g_i(T)$ ולכן $V$ פריק וסתירה. דהיינו $g_i = g_j$ וסה''כ $m_T(x)$ הוא מהצורה $m_T(x) = g_i^{r} = (x - \lg)^{r}$ כדרוש. 
+			\item אם $m_T(x)$ לא מתפרק, הוא בהכרח לא קבוע אחרת $m_T(T) \neq 0$ וסתירה, לכן $m_T(x) = (x - \lg)$ לינארי כלשהו (כי אם לא לינארי ניתן לפרק לגורמים לינארים ואז $m_T$ מתפרק וסתירה). סיימנו עבור $r = 1$. 
+			\item אם $m_T(x)$ מתפרק, אז נפרק לגורמים לינאריים (הנחנו שאנו מעל שדה סגור אלגברית) ונקבל $m_T = g_1 \cdots g_i$ כאשר $g_i$ לינאריים, דהיינו ממשפט הפירוק הפרימרי, נניח בשלילה $g_i \neq g_j$ ומהיות $m_T$ מתוקן נקבל $\gcd(g_i, g_j) = 1$ כלומר $V = \ker \bigoplus_{i = 1}^{r}\ker g_i(T)$ ולכן $V$ פריק וסתירה. דהיינו $g_i = g_j$ וסה''כ $m_T(x)$ הוא מהצורה $m_T(x) = g_i^{r} = (x - \lg)^{r}$ כדרוש. 
 		\end{itemize}
 		עתה ניגש להוכיח את החלק השני של ההוכחה (ש־$T - \lg I$ ניל' מדרגה $r$). משום ש־$m_T(x) = (x - \lg)^{r}$, אזי $0 = M_T(T) = (T - \lg I)^{r}$ ולכן $n(T - \lg I) \le r$, ומהמינימליות של $m_T$ נסיק $n(T - \lg I) = r$ כדרוש. 
 	\end{proof}
@@ -1126,11 +1126,11 @@
 	\theo{תהי $T \co V \to V$ העתקה מעל מ''ונסים, $\dim V = n$, אז קיים $\fc(T) \in [n]$ כך ש־
 		$\forall i \in \N \co \ker T^{\fc(T)} = \ker T^{\fc(T) + i} \land \Img T^{\fc(T)} = \Img T^{\fc(T) + i}$. }
 	\begin{proof}
-		מלמה $5$, בהכרח: 
+		מלמה $7$, בהכרח: 
 		\[ \ker T \subseteq \ker T^{2} \subseteq \ker T^{3} \subseteq \cdots \subseteq T^{i} \subseteq \cdots \subseteq V \]
 		נניח בשלילה שכל ההכלות עד $i = n$ חלשות, ממשפט נסיק: 
 		\[ \dim \ker T < \dim \ker T^{2} < \cdots < \dim \ker T^{i} \le n \]
-		כלומר יש $n$ מספרים טבעיים שונים בין $\ker T$ ובין $n$ (לא כולל) ולכן $\dim \ker T < 0$ וסתירה. דהיינו קיים $\fc(T)$ כך ש־$\ker T^{\fc(T)} = \ker T^{\fc(T) + 1}$ ומלמה 4 נקבל ש־$\forall i \ge \fc(T) \co \ker T^{\fc(T)}  = \ker T^{i}$. ניכר ש־$\Img T^{\fc(T)} \supseteq \Img T^{i}$ לכל $i \ge \fc(T)$, וממשפט הממדים $\dim \Img T^{\fc(T)}  = \dim \Img T^{i}$ ולכן $\forall i \ge \fc(T) \co \Img T^{\fc(T)} = \Img T^{i}$ כדרוש. 
+		כלומר יש $n$ מספרים טבעיים שונים בין $\ker T$ ובין $n$ (לא כולל) ולכן $\dim \ker T < 0$ וסתירה. דהיינו קיים $\fc(T)$ כך ש־$\ker T^{\fc(T)} = \ker T^{\fc(T) + 1}$ ומלמה $6$ נקבל ש־$\forall i \ge \fc(T) \co \ker T^{\fc(T)}  = \ker T^{i}$. ניכר ש־$\Img T^{\fc(T)} \supseteq \Img T^{i}$ לכל $i \ge \fc(T)$, וממשפט הממדים $\dim \Img T^{\fc(T)}  = \dim \Img T^{i}$ ולכן $\forall i \ge \fc(T) \co \Img T^{\fc(T)} = \Img T^{i}$ כדרוש. 
 	\end{proof}
 	\theo{בהינתן $T$ העתקה נילפוטנטית, אז $\fc(T) = n(T)$. }
 	\noti{$\fc(T)$ לעיל סימון (שמקובל אך ורק בסיכום הזה), וקרוי ה־''fitting index`` של $T$. }
