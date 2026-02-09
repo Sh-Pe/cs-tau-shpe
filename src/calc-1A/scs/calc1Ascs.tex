@@ -16,6 +16,12 @@
 \newcommand\lxo     {$x_0 \in \R$ נקודת הצטברות של $A$}
 \newcommand\gf      {$f \co A \subseteq \R\to \R$\ }
 
+\BeforeBeginEnvironment{Theorem}{\vspace{-2.5pt}}
+\BeforeBeginEnvironment{Definition}{\vspace{-2.5pt}}
+\BeforeBeginEnvironment{Collary}{\vspace{-2.5pt}}
+\BeforeBeginEnvironment{Lemma}{\vspace{-2.5pt}}
+\BeforeBeginEnvironment{Notion}{\vspace{-2.5pt}}
+
 
 %! ~~~ Document ~~~
 
@@ -101,10 +107,13 @@
 		\defi{\textit{סדרה ממשית} היא פונקציה $a(n) \co \N \to \R$. }
 		\defi{לעיתים רבות תבחינו שמסמנים סדרות באמצעות $(a_n)_{n = 1}^{\inft}$, או $\{a_n\}_{n = 1}^{\inft}$, או אפילו סתם $a_n$. }
 		\defi{בהינתן סדרה, $a_n := a(n)$}
-		
 		\defi{נאמר ש־$a_n$ חסומה/חסומה מלעיל/חסומה מלרע כאשר הקבוצה $\ang$ חסומה/חסומה מלעיל/חסומה מלרע. }
-		\defi{אם $a_n$ חסומה מלעיל, נסמן $\sup a_n := \sup_{n \in \N} a_n := \sup \ang$}
-		\defi{אם $a_n$ חסומה מלרע, נסמן $\inf a_n := \inf_{n \in \N} a_n := \inf \ang$}
+		\defi{אם $a_n$ חסומה מלעיל, נסמן:
+			
+			 $\sup a_n := \sup_{n \in \N} a_n := \sup \ang$}
+		\defi{אם $a_n$ חסומה מלרע, נסמן:
+			
+			 $\inf a_n := \inf_{n \in \N} a_n := \inf \ang$}
 		\noti{ה\textit{סופרמום} הוא $\sup A$ והוא חסם עליון, וה\textit{אימפימום} $\inf A$ הוא החסם התחתון. }
 		\defi{סדרה $a_n$ תקרא \textit{מונוטונית עולה} (או \textit{מונוטונית עולה חלש}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n \le a_m$}
 		\defi{סדרה $a_n$ תקרא \textit{מונוטונית עולה ממש} (או \textit{מונוטונית עולה חזק}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n < a_m$}
@@ -126,12 +135,11 @@
 				\item \hfil $\displaystyle \limsi (a_n + b_n) = \ml + m$
 				\item \hfil $\displaystyle \forall \ag \in \R \co \limsi (\ag a_n) = a \ml$
 				\item \hfil $\displaystyle \limsi a_n b_n = \ml \cdot m$
-				\item \hfil $\displaystyle m \neq 0 \implies (\exists N \in \N.\, \forall n \ge N\co b_n \neq 0) \land \cl{\limsi \frac{a_n}{b_n} = \frac{\ml}{m}}$
+				\item \hfil $\displaystyle m \neq 0 \implies \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad(\exists N \in \N.\, \forall n \ge N\co b_n \neq 0) \land \cl{\limsi \frac{a_n}{b_n} = \frac{\ml}{m}}$
 		\end{enumerate}}
 		\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$+\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n > M$}
 		\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$-\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n < -M$}
 		\theo{תהיינה $\an, \bn$ סדרות. נניח $\limasi = +\inft \land \limbsi b_n = + \inft$. אז $\limsi a_n + b_n = + \inft$}
-		
 		\theo{תהא $\an$ סדרה, יהי $\ml \in \R$. אם $\limasi = \ml$ אז $\limsi \sof{a_n} = \sof \ml$. }
 		\begin{Theorem}
 			תהאנה $\an, \bn, \cn$ סדרות. נניח כי־:
@@ -150,12 +158,9 @@
 		\begin{Theorem}[משפט ויירשטראס הראשון]
 			תהא $\an$ סדרה. אם $\an$ מונוטונית וחסומה, אז $\an$ מתכנסת.
 		\end{Theorem}
-		
 		\defi{סדרה $\an$ תקרא \textit{בעלת גבול במובן הרחב} אם $(\exists \ml \in \R\co \limasi = \ml) \lor \limasi = \pm \infty$. }
 		\theo{בהינתן סדרה מונוטונית לא חסומה, היא שואפת ל־$\pm \inft$. }
 		\cola{תהי $\an$ מונוטונית. אז ל־$\an$ יש גבול במובן הרחב. }
-		
-		
 		\theo{נגדיר $a_n = \cl{a + \frac{1}{n}}^{n}$ לכל $n \in \N$, ו־$b_n = \sumnk \frac{1}{k!}$ לכל $n \in \N$. אז:
 			\begin{enumerate}
 				\item $\an$ חסומה, מונוטונית עולה וחסומה ב־$3$.
@@ -471,7 +476,7 @@
 		\noti{נסמן את הגזירה משמאל ב־$f_-'(x_0)$ ומימין $f_+'(x_0)$. }	
 		\theo{יהיו $f, g \co I \to \R$ ותהי $x_0 \in I$ בפנים הקטע. נניח ש־$f, g$ גזירות ב־$x_0$. אז:
 			\begin{itemize}
-				\item לכל $\ag, \bg \in \R$ מתקיי ם$\ag f + \bg g$ גזירה ב־$x_0$ וכן $(\ag f + \bg g)' = \ag f'(x_0) + \bg g'(x_0)$ (הנגזרת לינארית)
+				\item לכל $\ag, \bg \in \R$ מתקיים $\ag f + \bg g$ גזירה ב־$x_0$ וכן $(\ag f + \bg g)' = \ag f'(x_0) + \bg g'(x_0)$ (הנגזרת לינארית)
 				\item מתקיים ש־$fg$ גזירה ב־$x_0$ ומתקיים ש־$(fg)'(x_0) = f'(x_0)g(x) + f(x_0)g'(x_0)$.
 				\item אם $g(x_0) \neq 0$ אז $\frac{f}{g}$ גזירה ב־$x_0$ ומתקיים:
 				\[ \cl{\frac{f}{g}}'\!\!(x_0) = \frac{f'(x_0)g(x_0) - f(x_0)g'(x_0)}{(g(x_0))^{2}} \]
