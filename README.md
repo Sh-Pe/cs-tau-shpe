@@ -3,7 +3,7 @@ My documents for computer science degree in Tel-Aviv University, together with O
 
 Courses has been done in Hebrew unless noted otherwise.  
 
-Folders stracture: 
+Folders structure: 
 - hw: homeworks
 - scs: Shit Cheat Sheets
 - lec: lecture notes
