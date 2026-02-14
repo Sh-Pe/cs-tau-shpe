@@ -1,0 +1,111 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+
+\renewcommand\mut[2]   {\left \la {#1, \ #2}\right \ra}
+
+\author{שחר פרץ}
+\title{אלגברה לינארית 2א $\sim$ \textit{תרגיל בית 4}}
+\begin{document}
+	\maketitle
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נמצא בסיס א''נ למרחב: 
+		\[ S = \ccb{\pms{x \\ y \\z \\ w} \in \R^{4} \co x + y = z + w} \]
+		נתחיל מלמצוא בסיס כלשהו, ונעשה עליו גרהם־שמידט. די קל לראות שהוקטורים הבאים בסיס: 
+		\[ v_1 = \pms{1 \\0 \\ 1 \\ 0} \quad v_2 = \pms{0 \\ 1 \\ 0 \\ 1} \quad v_3 = \pms{0 \\ 1 \\ 1 \\ 0} \]
+		שכן אלו $3$ וקטורים בת''ל שנמצאים ב־$S$, ו־$\dim S = 3$ בהכרח משום שהגבלנו דרגת חופש אחת (באופן שקול, וקטור מסויים קיים ב־$S$ אמ''מ הוא בקרנל של המטריצה שמתארת את המשוואה, וזו מטריצה עם משוואה אחת מעל $\R^{4}$ כלומר הקרנל מממד $3$). נבצע גרם שמידט עליהם, ננרמל תוך כדי. נתחיל מ־$u_1 = \frac{v_1}{\norm{v_1}} = (2^{-0.5}, 0, 2^{-0.5}, 0)$. נמצא ש־: 
+		\[ \tl u_2 = v_2 - v_1 \cdot \underbrace{\mut{v_1}{u_2}}_{\mathclap{2^{-0.5} \cdot 0 \cdot 2 = 0}} \cdot u_1 = v_2 \]
+		ננרמל:
+		\[ u_2 = \frac{\tl u_2}{\norm{\tl u_2}} = \frac{v_2}{\norm{v_2}} = \pms{0 \\ \frac{1}{\sqrt 2} \\ 0 \\ \frac{1}{\sqrt 2}} \]
+		עתה נמצא את הוקטור האחרון: 
+		\[ \tl u_3 = v_3 - \mut{v_3}{u_2}u_2 - \mut{v_3}{u_1}u_1 = \pms{0 \\1 \\ 1 \\ 0} - \frac{1}{\sqrt 2} \pms{\frac{1}{\sqrt 2} \\ 0 \\ \frac{1}{\sqrt 2} \\ 0} - \frac{1}{\sqrt 2}\pms{0 \\ \frac{1}{\sqrt 2} \\ 0 \\ \frac{1}{\sqrt 2}} = \pms{0 \\ 1 \\ 1 \\ 0} - \pms{0.5 \\ 0.5 \\ 0.5 \\ 0.5} = \pms{-0.5 \\ 0.5 \\ 0.5 \\ -0.5} \]
+		ננרמל: 
+		\[ u_3 = \frac{\tl u_3}{\norm{\tl u_3}} = \frac{\tl u_3}{\sqrt{0.5^{2} + (-0.5)^{2}}} = \frac{\tl u_3}{1} = \tl u_3 \]
+		סה''כ קיבלנו: 
+		\[ (u_1, u_2, u_3) = \pms{\frac{1}{\sqrt 2} \\ 0 \\ \frac{1}{\sqrt 2} \\ 0}, \ \pms{0 \\ \frac{1}{\sqrt 2} \\ 0 \\ \frac{1}{\sqrt 2}}, \ \pms{-0.5 \\ 0.5 \\ 0.5 \\ -0.5} \]
+		בסיס אורתונורמלי. 
+		\item נעזר בטענה מהתרגול כדי לחשב את ההטלה של $(1, 0, 2, 0)$ על התמ''ו הנ''ל. 
+		
+		נסמן ב־$A$ מטריצה שעמודותיה הבסיס האורתונורמלי שמצאנו לעיל. מטענה מהתרגול, $AA^T$ היא ההיטל האורתוגונלי על $\col A = S$. 
+		\[ A = \pms{\frac{1}{\sqrt 2} & 0 & -\frac{1}{2} \\ 0 & \frac{1}{\sqrt 2} & \frac{1}{2} \\ \frac{1}{\sqrt 2} & 0 & \frac{1}{2} \\ 0 & \frac{1}{\sqrt 2} & -\frac{1}{2}} \quad A^T = \pms{\frac{1}{\sqrt 2} & 0 & \frac{1}{\sqrt 2} & 0 \\ 0 & \frac{1}{\sqrt 2} & 0 & \frac{1}{\sqrt 2} \\ -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}} \]
+		ואז נקבל: 
+		\[ p_S(v) = AA^T(v) = \pms{\frac{3}{4} & -\frac{1}{4} & \frac{1}{4} & \frac{1}{4} \\ -\frac{1}{4} & \frac{3}{4} & \frac{1}{4} & \frac{1}{4} \\ \frac{1}{4} & \frac{1}{4} & \frac{3}{4} & -\frac{1}{4} \\ \frac{1}{4} & \frac{1}{4} & -\frac{1}{4} & \frac{3}{4}}(v) \]
+		ובפרט עבור $v = (1, 0, 2, 0)$ נקבל: 
+		\[ p_S(v) = \pms{\frac{5}{4} \\ \frac{1}{4} \\ \frac{5}{4} \\ -\frac{1}{4}} \]
+		וסיימנו. 
+	\end{enumerate}
+	
+	\section{}
+	נוכיח טענה מהתרגול: תהי $A \in M_n(\R)$ מטריצה ונניח שקיים בסיס אורתונורמלי של $\R^{n}$ כך ש־$Av_1 \dots Av_n$ אורתונורמלי. אז נראה ש־$\forall v \in \R^{n} \co \norm{Av} = \norm v$. 
+	\begin{proof}
+		תהי $A \in M_n(\R)$ ויהי $(v_1 \dots v_n)$ בסיס א''נ כך שגם $(Av_1 \dots Av_n)$ א''נ. יהי $v \in V$. מהיות $v_1 \dots v_n$ בסיס קיימים $\ag_1 \dots \ag_n \in \R$ כך ש־$v = \sumni \ag_i v_i$
+		אז: 
+	\[ \begin{WithArrows}[format=crl]
+		v = \sumnio \ag_i v_i \implies &\norm{v}^2 &\,= \mut{\sumnio \ag_i v_i}{\sumnio \ag_i v_i} = \sumnio |\ag_i|^2 \cdot \smash{\overbrace{(v_i, v_i)}^{1}} \\
+		&\norm{Av}^2 &\,= \mut{A\cl{\sumnio \ag_i v_i}}{A\cl{\sumnio \ag_i v_i}} = \mut{\sumnio \ag_i A(v_i)}{\sumnio \ag_i A(v_i)} = \sumnio |\ag_i|^2\cdot \smash{\underbrace{(Av_i, Av_i)}_{1}}
+	\end{WithArrows} \]
+	מטרנזטיביות והוצאת שורש נקבל $\norm v = \norm{Av}$ כדרוש. 
+	\end{proof}
+	
+	\section{}
+	נמצא את כל המטריצות האורתוגונליות האלכסוניות ב־$M_n(\R)$. 
+	
+	נבחין שבהינתן $A \in M_n(\R)$ אלכסונית, מהצורה $A = \diag(\lg_1 \dots \lg_n)$, שורות $A$ מתקבלות ע''י $[A]_i = \lg_i \cdots e_i$ (כאשר $[A]_i$ השורה ה־$i$ ב־$A$). ידוע שבמטריצה אורתונורמלית תנאי הכרחי ומספיק הוא ש־$\forall i \neq j \co [A]_i \cdot [A]_j = \dg{ij}$. 
+	
+	הטיפול ב־$i \neq j$ מתקיים בכל מטריצה אלכסונית, שכן $[A]_i \cdot [A]_j = \lg_i e_i \cdot \lg_j e_j = (\lg_i \lg_j)(e_i \cdot e_j) = 0 \cdot \lg_i \lg_j = 0$. בעבור $i = j$ נקבל: 
+	\[ 1 = [A]_i \cdot [A]_i = (\lg_i e_i) \cdot (\lg_i e_i) = (\lg_i)^{2}(e_i \cdot e_i) = \lg_i^{2} \implies \sof{\lg_i} = 1 \implies \lg_i = \pm 1 \]
+	סה''כ תנאי הכרחי ומספיק לכך ש־$A$ אלכסונית היא אורתונורמלית, הוא ש־$A = \diag\cl{\lg_1 \dots \lg_n}$ מקיימת $\lg_i = \pm 1$. כלומר, $A$ תהיה מהצורה: 
+	\[ A = \diag\cl{(-1)^{a_1}, (-1)^{a_2} \dots (-1)^{a_n}} \]
+	בעבור $a_1 \dots a_n \in \{0, 1\}$ כלשהם. 
+	
+	\section{}
+	תהי $T$ העתקה אורתונורמלית. נראה ש־$T$ הפיכה. 
+	\begin{proof}
+		מהיות $T$ אורתונורמלית, המייצגת שלה בבסיס סטנדרטי $\ec$ (ומעל ממ''פ ככלי, אותונורמלי) היא גם מטריצה אותונורמלית $[T]_\ec$ כלשהי. בתרגול ראינו שעבור מטריצה אותונורמלית $A$, מתקיים $A^TA = I$, ובפרט $[T]_\ec^T[T]_\ec = I$, כלומר $[T]_\ec$ הפיכה, וממשפט בלינארית 1א גם $T$ הפיכה, וסיימנו. 
+	\end{proof}
+	
+	\section{}
+	יהי $U \subseteq \R^{n}$ תמ''ו ותהי $p_U \co \R^{n} \to \R^{n}$ ההטלה האורתונורמלית על $U$. נניח ש־$p_U$ אותונורמלית. נראה ש־$U = \R^{n}$. 
+	\begin{proof}
+		ידוע $U \subseteq \R^{n}$, ולכן נותר להראות $\R^{n} \subseteq U$. יהי $v \in \R^{n}$. נבחין ש־$\norm v = \norm{p_U(v)}$ כי $p_U$ אורתונורמלית (תוצאה משאלה 2). מהגדרת היטל, בעבור $p_U(v) =: u$ קיים $w \in U\ort$ כך ש־$u + w = v$. נבחין ש־: 
+		\[ \norm v = \norm {p_U(v)} = \norm{v + w} = \norm v + \norm w \implies \norm w = 0 \implies w = 0 \]
+		כלומר $v = u \in U$ כלומר $v \in U$ וסה''כ $\R^{n} \subseteq U$ כנדרש. 
+	\end{proof}
+	
+	\section{}
+	תהי $T \co \R^{n} \to \R^{n}$ העתקה אורתונורמלית ויהי $U \subseteq \R^{n}$ כך ש־$T(U) \subseteq U$. נסמן $V = \R^{n}$. 
+	
+	\textit{הערה: }אין לי מושג אם הגדרנו את זה עדיין או לא, אבל לצורך שאלה זו העתקה $T$ היא $W$־שמורה אמ''מ $T(W) \subseteq W$. 
+	
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$T|_{U} \co U \to U$ הפיכה. \begin{proof}
+			הוכחנו בשאלה 4 ש־$[T]_B$ הפיכה בעבור $B$ בסיס סטנדרטי. מכאן ש־$T$ הפיכה. עתה נוכיח שהצמצום השמור מעליה הפיך גם הוא. נתבונן ב־$u_1 \dots u_k$ בסיס של $U$ (נבחין $k = \dim U$) ונרחיבו לבסיס $u_1 \dots u_k, v_{k + 1} \dots v_n$ בסיס של $V$. בגלל ש־$T$ הפיכה ידוע ש־$Tu_1 \dots Tv_n$ בסיס, ובגלל ש־$u_1 \dots u_k \in U$ בהכרח $Tu_1 \dots Tu_k \in U$. נניח בשלילה קיום $v_i$ כך ש־$Tv_i \in U$, ואז נקבל ש־$Tu_1 \dots Tu_k, Tv_i$ בסיס של $T(U) \subseteq U$ כלומר $k + 1 \le \dim T(U) \le \dim U = k$ וזו סתירה. מכאן ש־$u_1 \dots u_k$ קבוצה בת''ל מקסימלית כלומר בסיס של $T(U)$. 
+					
+			עתה, יהי $u \in U$. $u$	בהכרח נוצר ע''י קומבינציה לינארית של הבסיס $Tu_1 \dots Tu_k$ ולכן: 
+			\[ u = \sumnio \lg_i T|_Uu_i = T|_U\Bigg(\underbrace{\sumnio \lg_i u_i}_{v}\Bigg) \]
+			משום ש־$v$ קומבינציה לינארית של $u_1 \dots u_k$ אז $v \in U$. סה''כ מצאנו $v \in U$ כך ש־$T|_Uu = v$ לכל $u \in U$, כלומר $T|_U$ הפיכה. 
+		\end{proof}
+		\item נוכיח ש־$T(U\ort) = U\ort$. \begin{proof}יהי $v \in T(U\ort)$. נראה $v \in U\ort$. יהי $u \in U$. ידוע קיום $\tl u \in U\ort$ כך ש־$T(\tl u) = v$. ידוע ש־$T\op \co V \to V$ מוגדר היטב כי $T$ הפיכה (נימוקים זהים לאילו שהיו בסעיף הקודם). 
+			\[ 0 = \tl u \cdot T\op u = T\tl u \cdot T(T\op u) = v \cdot u \]
+			כלומר $\forall u \in U \co v \cdot u = 0$ וסה''כ $v \in U \ort$ וסיימנו. 
+		\end{proof}
+		\item נמצא $S \co \R^{n} \to \R^{n}$ לינארית $U$־שמורה כך ש־$S(U\ort) \nsubseteq U\ort$. \begin{proof}
+			נתבונן בהעתקה הבאה: 
+			\[ S(v) := \pms{1 &1 \\ 0 &1}v \quad S(\lg e_1) = \pms{1 & 1 \\ 0 & 1} \pms{1 \\ 0} = \pms{1 \\ 0} \]
+			כלומר $S$ היא $\Sp{e_1}$ שמורה. אך, נבחין ש־: 
+			\[ \Sp(e_1)\ort = \Sp(e_2) \quad S(e_2) = \pms{1 & 1 \\ 0 & 1}\pms{0 \\ 1} = \pms{1 \\ 1} = e_1 + e_2 \notin \Sp(e_2) \]
+			כנדרש מאיתנו. (הערה $n = 2$ והשתמשתי ב־$U$ במקום ב־$V$ שכן $V := \R^{n}$ בתחילת השאלה)
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהי $T \co \R^{n} \to \R^{n}$ אורתונורמלית. נוכיח ש־$I + \frac{1}{2}T \co \R^{n} \to \R^{n}$ הפיכה. 
+	\begin{proof}\!\!\,נסמן $S = I + \frac{1}{2}T$. יהי $v \in V$. נניח $Sv = 0$. גם ידוע ש־$\norm{Tv} = \norm v$. נקבל: 
+		\[ 0 = \norm{Sv} = \norm{Iv + \frac{1}{2}Tv} = \norm{v} + \frac{1}{2}\smash{\overbrace{\norm{Tv}}} = 1.5\norm v \implies \norm v = 0 \implies v = 0 \]
+		סה''כ $Sv = 0 \implies v = 0$ כלומר $\ker S = \{0\}$ והיא חח''ע. משום ש־$S \co \R^{n} \to \R^{n}$ מ''וים שווי־ממד, אז $S$ הפיכה, כלומר $I + \frac{1}{2}T$ הפיכה כדרוש. 
+	\end{proof}
+	
+	
+	\ndoc
+\end{document}

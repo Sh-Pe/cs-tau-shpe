@@ -1,0 +1,218 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+
+\renewcommand \mut [2]   {\left \la #1 ,\, #2 \right \ra}
+\renewcommand \smut      {\la \cdot , \, \cdot \ra }
+\newcommand   \tvemut {\pms{x_1 \\ y_1} \cdot \pms{x_2 \\ y_2}}
+
+\author{שחר פרץ}
+\title{אלגברה לינארית 2א $\sim$ תרגיל בית 5}
+\begin{document}
+	\maketitle
+	\section{}
+	יהי $U \subseteq \R^{3}$ ונניח $\dim U = 2$. תהי $T \co \R^{3} \to \R^{3}$ העתקה אורתונורמלית כך ש־$T|_U = I$. 
+	
+	\textbf{למה: }קיים בסיס $u_1, u_2, v_3$ כך ש־$T(u_1) = u_1, T(u_2) = u_2$ ו־$T(v_3) = \pm v_3$, כך ש־$u_1, u_2 \in U \land v_3 \in U\ort$. 
+	
+	\begin{proof}[הוכחת הלמה]
+		לכל $u \in U$ מתקיים $r_U(u) = u$. זאת כי $r_U(u) = p_U(u) - p_{U\ort}(u) = u  - 0 = u$ (היטל של $u \in U$ על $U\ort$ בהכרח שווה ל־$0$ כי $p_{U\ort}(u) = \sumnio \lg_i \mut{u}{v_i} = \sumnio \lg_i \cdot 0 = 0$ בעבור $v_1 \dots v_n$ בסיס של $U\ort$. )
+		
+		נתבונן בבסיס אורתונורמלי $u_2, u_1$ של $U$. אזי נתון $T(u_1) = u_1$ ו־$T(u_2) = u_2$. נרחיב אותו לבסיס אורתונורמלי $u_1, u_2, v_3$ של $\R^{3}$. בגלל ש־$T$ אורתונורמלית, אזי היא משמרת בסיס ומכאן ש־$T(u_1) \perp T(v_3) \land T(u_2) \perp T(v_3)$, דהיינו $u_1 \perp T(v_3) \land u_2 \perp T(v_3)$. סה''כ $T(v_3) \in (v_1, v_2)\ort = \Sp(v_1, v_2)\ort = U\ort$. משום ש־$U\ort$ חד־ממדי וכן $v_3 \in U\ort$, אזי $v_3$ (בגלל שאיננו וקטור האפס, מהיותו חלק מבסיס $u_1, u_2, v_3$) בהכרח בסיס ל־$U\ort$, ו־$T(v_3)$ קומבינציה לינארית של $v_3$, כלומר $T(v_3) = \lg v_3$. בגלל ש־$T$ אורתונורמלית, היא משמרת נורמה, ואז: 
+		\[ \sof \lg \norm {v_3} = \norm{\lg v_3} = \norm{T(v_3)} = \norm{v_3} \]
+		בגלל ש־$\norm{v_3} \neq 0$ נוכל לחלק בנורמה ולקבל $\sof{\lg} = 1$. סה''כ $\lg = \pm 1$. סה''כ מצאנו בסיס מתאים. 
+	\end{proof}
+	
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$T = I \lor T = r_{U}$. \begin{proof}
+			ביחס לבסיס $(u_1, u_2, v_3)$ שמצאנו בלמה שהוכחנו, נבחין שכל $v \in \R^{3}$ קומבינציה לינארית $\lg_1, \lg_2, \lg_3$ של וקטורי הבסיס הללו. יהי $v \in V$. נקבל:
+			\[ v = \lg_1 u_1 + \lg_2 u_2 + \lg_3 v_3 \quad T(v) = \lg_1 T(u_1) + \lg_2 T(u_2) + \lg_3T(u_3) = \lg_1 u_1 + \lg_2 u_2 + \lg_3 T(v_3) \]
+			נפרק למקרים. 
+			\begin{itemize}
+				\item אם $T(v_3) = v_3$ אז: 
+				\[ T(v) = \lg_1 u_1 + \lg_2 u_2 + \lg_3 v_3 = v = Iv \]
+				כלומר $T = I$ וסיימנו. 
+				\item אם $T(v_3) = -v_3$ אז מהגדרה $p_U(v_3) = \lg_1 v_1 + \lg_2 v_2$ וגם $p_{U\ort}(v_3) = \lg_3 v_3$, כי אלו שני וקטורים, אחד ב־$U$ והשני ב־$U\ort$, שחיבורם נותן את $u$. סה''כ: 
+				\[ T(v) = \lg_1 u_1 + \lg_2 u_2 - {\lg_3 v_3} = p_U(v) - p_{U\ort}(v) = r_U(v) \]
+				כלומר $T = r_U$ וסיימנו. 
+			\end{itemize}
+			סה''כ או ש־$T = I$ או ש־$T = r_U$ כדרוש. 
+		\end{proof}
+		\item נוכיח שקיים בסיס $\bc$ כך ש־$[r_U]_\bc = \diag(1, 1, -1)$. \begin{proof}
+			נטען שזהו הבסיס הסדור $(u_1, u_2, v_3) =: \bc$ שנתון לנו מהלמה (במקרה בו $T = r_u$) עובד.
+			
+			 יש לציין שבהכרח נתון בסיס כזה, שכן $(r_U)|_U = I$ כפי שהוכחנו (בפסקה הראשונה בהוכחת הלמה), התנאי היחיד על $T$, כלומר נוכל פשוט לבחור $T = r_U$ מקרה פרטי. אכן נבחין שמהגדרת ייצוג לפי בסיס, $[u_1]_\bc = e_1, \ [u_2]_{\bc} = e_2, \ [v_3]_{\bc} = e_3$. עוד נבחין שבהכרח המקרה $T(v_3) = -v_3$ הוא התקף, אחרת $I = r_U$ וזו סתירה. סה''כ: 
+			 \[ [r_U]_{\bc} = \pms{\vert & \vert & \vert \\ [Tu_1]_{\bc} & [Tu_2]_{\bc} & [Tv_3]_{\bc} \\ \vert & \vert & \vert} = \pms{\vert & \vert & \vert \\ [u_1]_{\bc} & [u_2]_{\bc} & [-u_3]_{\bc} \\ \vert & \vert & \vert} = \pms{\vert & \vert & \vert \\ e_1 & e_2 & -e_3 \\ \vert & \vert & \vert} = \pms{1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & -1} = \diag(0, 0, -1) \]\envendproof
+		\end{proof}
+	\end{enumerate}
+	
+	
+	\section{}
+	נמצא אילו מהפונקציות הבאות מכפלות אוקלידיות על $\R^{2}$. 
+	
+	\begin{enumerate}[(A)]
+		\item נתבונן בפונקציה: 
+		\[ \tvemut = x_1 + x_2 \]
+		\begin{proof}[הפרכה]
+			עבור $v = (1, 0)$ 
+			\[ -1 = -(v \cdot v) = v \cdot (-v) = 1 - 1 = 0 \]
+			סתירה. 
+		\end{proof}
+		\item נתבונן בפונקציה: 
+		\[ \tvemut = -7x_1y_2 \]
+		\begin{proof}[הפרכה]
+			נבחין שבעבור $v = (1, 1)$ מחיוביות $v\cdot v > 0$, אך: 
+			\[ v \cdot v = -7 \cdot 1 \cdot 1 = -7 < 0 \]
+			סתירה. 
+		\end{proof}
+		\item נתבונן בפונקציה: 
+		\[ \tvemut = -7x_1x_2 \]
+		\begin{proof}[הפרכה]
+			נבחין שבעבור $v = (1, 1)$ מחיוביות $v\cdot v > 0$, אך: 
+			\[ v \cdot v = -7 \cdot 1 \cdot 1 = -7 < 0 \]
+			סתירה. 
+		\end{proof}
+		\item נתבונן בפונקציה: 
+		\[ \tvemut = -7x_1^{2}x_2^{2} \]
+		\begin{proof}[הפרכה]
+			נבחין שבעבור $v = (1, 1)$ מחיוביות $v\cdot v > 0$, אך: 
+			\[ v \cdot v = -7(1)^{2}(1)^{2} = -7 \]
+			(נ.ב. זה גם לא בילינארי כי $-7 \cdot 2 = -14 \neq (2v) \cdot v = -112$). 
+		\end{proof}
+		\item נתבונן בפונקציה: 
+		\[ \tvemut = (x_1 + x_2)^{2} - (x_1 - x_2)^{2} \]
+		\begin{proof}[הפרכה]
+			נבחין שעבור $v = (1, 1)$ ו־$\lg = 2$ מתקיים: 
+			\[ 8 = 9 - 1 = (2 + 1)^{2} - (2 - 1)^{2} = (2v) \cdot v = 2 (v \cdot v) = 2 \cdot (2^{2} - 2^{2}) = 0 \]
+		\end{proof}
+	\end{enumerate}
+	
+	
+	
+	\section{}
+	יהי $V$ מ''ו מעל $\F$ ותהי $\smut \co V \times V \to \F$ מכפלה פנימית. 
+	\begin{enumerate}[(A)]
+		\item נקבע $u \in V$ כלשהו ונגדיר $T \co V \to \F$ ע''י $T(v) = \mut{v}{u}$. נראה ש־$T$ לינארית. 
+			\begin{proof}
+				יהיו $v, w \in V$ וכן $\lg \in \F$. נראה ש־$T$ לינארית. 
+				\[ T(\lg v + w) = \mut{\lg v + w}{u} = \mut{\lg v}{u} + \mut{w}{u} = \lg \mut{v}{u} + \mut{w}{u} = \lg T(v) + T(w) \]
+				כנדרש. 
+			\end{proof}
+		\item נוכיח ש־$S(v, u) = v \cdot u$ כאשר $S \co V \times V$ איננה העתקה לינארית (למעשה, היא העתקה בי־לינארית). \begin{proof}[הפרכה]
+			נתבונן ב־$V = \R$ כלומר $V \times V = \R^{2}$ עם המ''פ הסטנדרטית. נסמן $v = (1, 1)$ ו־$\lg = 2$. נניח בשלילה לינאריות, ואז: 
+			\[ 2 = 2\mut{1}{1} = \lg T(v) = T(\lg v) = \mut{(2, 2)}{(2, 2)} = 2^{2} \cdot 2 = 8 \]
+			אך $8 \neq 2$ ב־$\R$ וזו סתירה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $(v_1 \dots v_n)$ בסיס למ''ו $V$ מעל $\F$. נניח ש־$B_1, B_2 \co V \times V \to \F$ שתיהן מ''פים כך ש־$\forall i \le j \in [n] \co B(v_i, v_j) = B(v_i, v_j)$. נוכיח ש־$B_1 = B_2$. 
+	\begin{proof}
+		מסימטריה של $B_1, B_2$, בהכרח לכל $i, j \in [n]$ מתקיים $B_1(v_i, v_j) = B_2(v_i, v_j)$. יהיו $u, w \in V$ ומהיות $v_1 \dots v_n$ בסיס בהכרח קיימים $\lg_1 \dots \lg_n, \mu_1 \dots \mu_n$ כך ש־$u = \sumnio \lg_i v_i$ ו־$w = \sumnio \mu_i v_i$. נקבל, מבי־ליניאריות של $B_1, B_2$, ש־: 
+		\begin{multline*}
+			B_1(u, w) = B_1\cl{\sumnio v_i \lg_i, \ \sumnko v_k \mu_k} = \sumnio \lg_i B_1\cl{v_i, \ \sumnko \mu_k v_k} = \sumnio \sumnko \lg_i \mu_k B_1(v_i, w_i) = \sumnio \sumnko \lg_i \mu_i B_2(v_i, v_k) \\
+			= \sumnio \lg_i B_2\cl{v_i, \ \sumnko \mu_k v_k} = B_2\cl{\sumnio \lg_i v_i, \ \sumnko \mu_k v_k} = B_2(u, w)
+		\end{multline*}
+		כלומר $\forall u, w \in V \co B_1(u, w) = B_2(u, w)$ וסיימנו. 
+	\end{proof}
+	
+	\section{}
+	נשלים את התרגיל מתרגול 5: נביט ב־$\R^{4}$ עם המ''פ הסקלרית, ונגדיר: 
+	\[ v_1 = \pms{1 \\ 0 \\ 2 \\ 1} \quad v_2 = \pms{0 \\ 1 \\ -2 \\ 1} \quad V = \Sp(v_1, v_2) \subseteq \R^{4} \]
+	
+	ראשית כל, נמצא בסיס ל־$V\ort$. ידוע $(x, y, z, w) \in V\ort$ אמ''מ: 
+	\[ v_1 \cdot v = 0 \land v_2 \cdot v = 0 \to v \in \nc \pms{1 & 0 & 2 & 1 \\ 0 & 1 & -2 & 1} = \ccb{{\pms{-2w -z \\ 2w - z \\ z \\ w}} \mid z, w \in \R} = \Sp{\ccb{\pms{-2 \\ 2 \\ 0 \\ 1}, \pms{-1 \\ -1 \\ 1 \\ 0}}} =: \Sp(w_1, w_2) \]
+	סה''כ מצאנו בסיס ל־$V\ort$. נפעיל עליו גרם שמידט (בלי לנרמל, נדרשנו רק בסיס אורתוגונלי): 
+	\[ \norm{w_1} = \sqrt{(-1)^{2} + (-1)^{2} + 1^{2}} = \sqrt 3 \quad \mut{w_1}{w_2} = 2 - 2 + 0 + 0 = 0 \]
+	סה''כ $w_1, w_2$ אורתוגונליים אחד לשני בכל מקרה, ואין צורך לבצע גרם־שמידט (הוא יביא לאותה התוצאה). נסכם שהוקטורים הבאים הם בסיס אורתוגונלי של $V\ort$: 
+	\[ \pms{-2 \\ 2 \\ 0 \\1} \quad \pms{-1 \\ -1 \\ 1 \\ 0} \quad \in \quad V\ort \]
+	
+%	נעשה גרם־שמידט לבסיס $v_1, v_2$ כך שנקבל $v_1', v_2'$, ואז נמצא את המשלים האורתוגונלי של כל אחד מהוקטורים. בגלל שאנחנו ב־$\R^{4}$, אז ממשפט הממדים $\dim V^{\perp} = 2$, כלומר המשלימים האורתוגונליים של $v_1', v_2'$ גם פורשים את $V^{\perp}$. 
+%	
+%	נגדיר $u_1 = v_1$. נחפש $u_2$ כך ש־$(u_1, u_2)$ בסיס אורתוגונלי. 
+%	\begin{gather*}
+%		\norm{v_1} = \sqrt{1^2 + 2^2 + 1^2} = \sqrt{6} \quad \mut{v_1}{v_2} = 0 + 0 - 4 + 1 =-3 \\
+%		u_2 = v_2 - \frac{\mut{v_1}{v_2}}{\norm{v_1}}v_1 = \pms{0 \\ 1 \\ -2 \\ 1} - \frac{-3}{\sqrt{6}}\pms{1 \\ 0 \\ 2 \\ 1} = \pms{0.5\sqrt 6 \\ 1 \\ -\sqrt 6 - 2 \\ 1 - \frac{\sqrt 6}{2}}
+%	\end{gather*}
+%	כדי לעבוד עם מספרים יפים, נכפיל את $u_2$ פי $2\sqrt 6$, מה שלא ישנה את הפריסה או האורתוגונליות: 
+%	\[ u_2 \cdot 2 \sqrt{6} =  \]
+	
+	\section{}
+	יהי $V$ ממ''פ ויהי $v \in V$ כך ש־$\forall u \in V \co \mut{v}{u} = 0$. נוכיח ש־$v = 0$. 
+	\begin{proof}
+		בפרט ידוע $\mut{v}{v} = 0$. נניח בשלילה $v \neq 0$, ואז מאקסיומות ממ''פ נקבל $\mut{v}{v} > 0$ כלומר $0 \neq 0$ וסתירה בכל שדה. 
+	\end{proof}
+	
+	\section{}
+	תהי $A \in M_n(\R)$ מטריצה הפיכה. בהינתן $v u \in \R^{n}$ נגדיר $\mut{v}{u}_A = Av \cdot Au$, כאשר $\cdot$ המ''פ הסטנדרטית. 
+	\begin{enumerate}[(A)]
+		\item נראה ש־$\smut_A$ מ''פ אוקלידית. \begin{proof}\,
+			\begin{itemize}
+				\item נראה לינאריות ברכיב הראשון. יהיו $v, u, w \in V$ וכן $\lg \in \R$. נקבל: 
+				\[ \mut{\lg v + u}{w}_A = A(\lg v + u) \cdot Aw = (\lg Av + Au) \cdot Aw = \lg(Av \cdot Aw) + (Au \cdot Aw) = \lg\mut{v}{w}_A + \mut{u}{w}_A \]
+				כנדרש. 
+				\item נראה סימטריות. יהיו $v, u \in V$:
+				\[ \mut{v}{u}_A = Av \cdot Au = Au \cdot Av = \mut{u}{v}_A \]
+				\item נראה חיוביות. יהי $v \neq 0$. נבחין ש־$Av \neq 0$ בגלל ש־$A$ הפיכה. מכאן ש־$Av \cdot Av > 0$ כי $\cdot \co \R^{2} \to \R$ מ''פ. כלומר: 
+				\[ \mut{v}{v}_A = Av \cdot Av > 0 \]
+			כנדרש. 
+			\end{itemize}
+		\end{proof}
+		\item נתבונן ב־$A = \binom{1 \,\, -1}{0 \,\,\,\,\, 1} \in M_2(\R)$. נגדיר $v = (1, 0)$. נמצא את $v^{\perp}$ ביחס ל־$\smut_A$. 
+		\begin{proof}[מציאה]
+			יהי $u \in \Sp(v)^{\perp}$. נדרוש $\mut{v}{u}_A = 0$. כלומר:
+			\begin{gather*}
+				Av \cdot Au = 0 \iff \pms{1 & -1 \\ 0 & 1}\pms{1 \\ 0} \cdot \pms{1 & -1 \\ 0 & 1}\pms{x \\ y} = 0 \iff \pms{1 \\0 } \cdot \pms{x - y \\ y} = 0 \iff x - y = 0 \iff x = y
+			\end{gather*}
+			כלומר $u \perp v$ אמ''מ $u = (x, x)$ לכל $x \in \R$, דהיינו: 
+			\[ \Sp(v)\ort = \ccb{\pms{x \\ x} \mid x \in \R} \]
+		\end{proof}
+		\item עבור ה־$A$ מהסעיף הקודם, נמצא בסיס אורתונורמלי ל־$\R^{2}$. \begin{proof}[מציאה]
+			נעשה גרם שמידט על הבסיס הסטנדרטי $e_1, e_2$. נבחין ש־: 
+			\[ Ae_1 \cdot Ae_1 = e_1 \cdot e_1 = 1 \]
+			כלומר אין צורך לנרמל את $e_1$. נסמן $v_1 = e_1$. נקבל: 
+			\[ v_2 = e_2 - \mut{v_1}{e_2}_A \cdot v_1 = \pms{0 \\ 1} - \cl{\pms{1 & -1 \\ 0 & 1}\pms{1 \\ 0} \cdot \pms{1 & -1 \\ 0 & 1}\pms{0 \\ 1}}\pms{1 \\ 0} = \pms{0\\ 1} - \underbrace{\cl{\pms{1 \\ 0} \cdot \pms{-1 \\ 1}}}_{-1}\pms{1 \\ 0} = \pms{1 \\ 1} \]
+			נבחין ש־: 
+			\[ \mut{v_2}{v_2}_A = Av_2 \cdot Av_2 = \pms{0 \\ 1} \cdot \pms{0 \\ 1} = 1 \]
+			כלומר גם את $v_2$ אין צורך לנרמל. סה''כ $v_1 = e_1, v_2 = e_1 + e_2$ בסיס אורתונורמלי ביחס ל־$\smut_A$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $V = \{A \in M_2(\R) \mid \tr A = 0\}$ מ''ו מממד $2$ של $M_2(\R)$ (נתון בתרגיל). נמצא בסיס אורתונורמלי ל־$V$ ביחס למכפלה האוקלידית $\mut{A}{B} = \tr(A^TB)$. 
+	\begin{proof}[מציאה]
+		נבחין ש־$v_3 = \binom{1 \,\,\,\, 0\,\,}{0\,\, -1}, v_2 = \binom{0\,\,1}{0\,\,0}, v_1 = \binom{0\,\,0}{1\,\,0}$ קבוצה בת''ל מגודל $3$ של $V$ ולכן בסיס. נבצע עליה גרם־שמידט. 
+		
+		נבחין ש־$v_1^Tv_1 = \binom{1\,\,0}{0\,\,0}$ כלומר $\norm{v_1} = \sqrt{\mut{v_1}{v_1}} = \sqrt{\tr\binom{1\,\,0}{0\,\,0}} = \sqrt 1 = 1$. כלומר $v_1$  מנורמל ונוכל להגדיר $u_1 = v_1$. 
+		
+		נפנה למצוא את $u_2$. ידוע, שעד לכדי נרמול: 
+		\[ \mut{v_1}{v_2} = \tr\cl{\pms{0 & 0 \\ 1 & 0}^{T}\pms{0 & 1 \\ 0 & 0}} = \tr\cl{0} = 0 \quad 
+		u_2 = v_2 - \mut{v_1}{v_2}v_1 = v_2 \]
+		ובגלל ש־$v_2^Tv_2 = \binom{0 \,\, 0}{0\,\,1}$, מנימוקים דומים לאלו של $v_1$ נקבל ש־$\norm{v_2} = 1$ ואז נוכל להגדיר $u_2 = v_2$ כך ש־$u_1, u_2$ אורתונורמליים. נפנה למצוא את $u_3$. 
+		\[ \mut{v_2}{v_3} = \tr\cl{\pms{0 & 1 \\ 0 & 0}^{T}\pms{1 & 0 \\ 0 & -1}} = \tr\cl{\pms{0  & 0 \\ 1 & 0}} = 0 \quad \mut{v_1}{v_3} = \tr\cl{\pms{0 & 0 \\ 1 & 0}^{T}\pms{1 & 0 \\ 0 & -1}} = \tr\cl{\pms{0  & -1 \\ 0 & 0}} = 0 \]
+		\[ u_3' = v_3 - \mut{v_1}{v_3}v_1 - \mut{v_2}{v_3}v_2 = v_3 \]
+		נבדוק צורך לנרמל: 
+		\[ \mut{u_3'}{u_3'} = \tr\cl{\pms{1 & 0 \\ 0 & -1}^{T}\pms{1 & 0 \\ 0 & -1}} = \tr\cl{I} = 2 \]
+		נצטרך לנרמל: 
+		\[ u_3 = \frac{u_3'}{\norm{u_3}} = \frac{u_3'}{\sqrt{\mut{u_3'}{u_3'}}} = \frac{u_3'}{\sqrt{2}} = \pms{\sqrt 2 & 0 \\ 0 & -\sqrt 2} \]
+		סה''כ: 
+		\[ (u_1, u_2, u_3) = \pms{0 & 1 \\ 0 & 0}, \ \pms{0 & 0 \\ 1 & 0}, \ \pms{\sqrt 2 & 0 \\ 0 & -\sqrt 2} \]
+		בסיס אורתונורמלי של $V$ ביחס ל־$\smut$. 
+	\end{proof}
+	
+	\section{}
+	יהי $V$ מ''פ ו־$T \co V \to V$ העתקה לינארית. יהי $\bc = (v_1 \dots v_n)$ בסיס אורתונורמלי של $V$. נוכיח ש־: 
+	\[ \tr\cl{[T]_\bc} = \sumnio \mut{Tv_i}{v_i} \]
+	\begin{proof}
+		נבחין שהפירוק של $Tv_i$ ביחס לבסיס $v_i$, מטענה שהוכחנו בתרגיל הקודם (נוסחה כללית של היטל, שהפעם משתמשים בה על כל המרחב) הוא: 
+		\[ Tv_i = \sum_{j = 1}^{n} \mut{Tv_i}{v_j}v_j \]
+		כלומר, מהגדרת ייצוג לפי בסיס: 
+		\[ [Tv_i]_\bc = \pms{\mut{Tv_i}{v_1} \\ \vdots \\ \mut{Tv_i}{v_n}} \]
+		בפרט הקורדינאטה ה־$i$ של $[Tv_i]_\bc$, אותה נסמן ב־$([Tv_i]_\bc)_i$, היא $\mut{Tv_i}{v_i}$. אזי, קיבלנו:  
+		\[ \tr\cl{[T]_\bc} = {\sumnio ([T]_\bc)_{i, i}} = \sumnio ([T(v_i)]_\bc)_i = \sumnio \mut{Tv_i}{v_i} \]
+		כנדרש. [כאשר השוויון האמצעי מהגדרת מטריצה מייצגת]
+	\end{proof}
+	
+	
+	\ndoc
+\end{document}

@@ -1,0 +1,129 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+
+\renewcommand\mut[2] {\left \la #1, #2 \right \ra}
+
+\author{שחר פרץ}
+\title{לינארית 2א $\sim$ \textit{תרגיל בית 10}}
+\begin{document}
+	\maketitle
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\R^{4} = \Sp(e_1, e_2) \oplus \Sp(e_3) \oplus \Sp(e_4)$. \begin{proof}(תוך שימוש בסעיף ג')
+			\begin{itemize}
+				\item ראשית נוכיח $\R^{4} = \Sp(e_1, e_2) + \Sp(e_3) + \Sp(e_4)$. נבחין ש־$e_1, e_2$ בסיס של $\Sp(e_1, e_2)$, וכן $e_i$ בסיס של $\Sp(e_i)$. מכאן ש־$(e_1, e_2, e_3, e_4)$ וקטורים הלקוחים מהמרחבים $\Sp(e_1, e_2), \Sp(e_3), \Sp(e_4)$ ומשום שהם בסיס של $\R^{4}$ (הבסיס הסטנדרטי הוא בסיס) מכאן שהם פורסים את $V$, כלומר מצאנו בסיס הלקוח מהמרחבים כנדרש. 
+				\item עתה נוכיח שהם זרים. ראשית נוכיח $\Sp (e_1) \cap (\Sp(e_3, e_4) + e_2) = \{0\}$. יהי $v$ שנמצא במ''ו, ואז $v = (\ag, 0, 0, 0) = (0, \bg , 0, 0) + (0, 0, \cg, \dg)$ עבור $\ag, \bg, \cg, \dg \in \R$ כלשהם. מכאן $\ag = \bg = \cg = \dg = 0$ כלומר $v = 0$ כדרוש. באופן דומה $\Sp(e_2) \cap (\Sp(e_3, e_4) + e_3) = \{0\}$ וכן $\Sp(e_3, e_4) \cap (\Sp(e_1) + \Sp(e_2)) = \{0\}$. 
+			\end{itemize}
+			סה''כ המרחבים יוצרים את $\R^{4}$ וכן הם זרים בזוגות כלומר $\Sp(e_1) \oplus \Sp(e_2) \oplus \Sp(e_3, e_4) = \R^{4}$ כנדרש. 
+		\end{proof}
+		\item נמצא דוגמה למ''ו $V$ ותמ''וים $U_1 \dots U_k \subseteq V$ כך ש־$V = \sum U_i$ וכן $U_i \cap U_j = \{0\} \impliedby i \neq j$ על־אף ש־$V \neq \bigoplus U_i$. \begin{proof}[דוגמה]
+			נתבונן במ''ו הבא: 
+			\[ V = \R^{2} \quad U_1 = \Sp(v_1), \ U_2 = \Sp(v_2), \ U_3 = \Sp\pms{1 \\ 1} \]
+			נבחין שהמרחבים זרים בזוגות, על אף ש־$\binom{1}{1} \in \Sp(U_1, U_2) = \R^{2}$, כלומר החיתוכים הדרושים אינם זרים, והסכום איננו ישר. 
+		\end{proof}
+		\item נוכיח ש־$V = \bigoplus_{i = 1}^{k}U_i$ אמ''מ $V = \sum_{i = 1}^{k} U_i$ וכן $U_i \cap \sum_{j \neq i} U_j = \{0\}$. \begin{proof}
+			אני לא לחלוטין בטוח איך הגדירו סכום ישר בהרצאה, אני מניח שצ.ל. שרשור בסיסי $U_i$ הוא בסיס של $V$. יהי $B_i$ בסיס של $U_i$, ונגדיר $\bc = \bigcup_{i = 1}^{k} B_i$. נוכיח שתחת הנתון, $\bc$ בסיס של $V$. הוא פורש ישירות מהנתון $V = \sum_{i = 1}^{k} U_i$, ונותר להראות שהוא בת''ל. ניעזר באינדוקציה על משפט הממדים. עבור $k = 2$, נקבל בסיס $U_1 \cap U_2 = \{0\}$. משום ש־$U_1 + U_2 = V$ אז $\dim(U_1 + U_2) \le \dim V$. אך:
+			\[ n := \dim V = \dim(U_1 + U_2) = \dim U_1 + \dim U_2 + \cancel{\dim(U_1 \cap U_2)} \]
+			ממשפט סיימנו. 
+			
+			כצעד, נניח באינדוקציה על $k$ ונוכיח $k + 1$. ידוע $U_{k + 1} \cup \sum_{i = 1}^{k} U_k = \{0\}$ ולכן מה.א. נקבל: 
+			\[ n := \dim V = \dim\cl{U_{k + 1} \cup \sum_{i = 1}^{k} U_k} = \dim U_1 + \dim \sum_{i = 1}^{k}U_k \]
+			מאותם הנימוקים, בהכרח $B_{k + 1} \cup \cl{\bigcup^k_{i = 1}U_i} = \bc$ קבוצה בת''ל שכן היא פורשת עם $n$ וקטורים (ממשפט) וסיימנו. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהיו $A, B \in M_n(\F)$ כך ש־$B$ הפיכה. נוכיח ש־$AB$ ו־$BA$ אותם ע''עים. 
+	\begin{proof}\,
+		\begin{itemize}
+			\item יהי $\lg \in \F$ ע''ע של $BA$. מכאן שקיים $0 \neq v \in \F^{n}$ כך ש־$BAv = \lg v$. 
+			\begin{itemize}
+				\item אם $\lg \neq0$, בהכרח $Av \neq 0$ שכן אחרת $0 = B(0) = \lg v \neq 0$ וסתירה. במקרה זה $A(BAv) = A(\lg v) \implies (AB)Av = \lg Av$ כלומר $Av$ ו''ע לע''ע $\lg$ בעבור $AB$, וסיימנו. 
+				\item אם $\lg = 0$ אז $B(Av) = 0$, ומשום ש־$B$ הפיכה בהכרח $Av = 0$. עוד משום שהיא הפיכה, קיים $w$ כך ש־$Bw = v$, אזי $ABw = A(Bw) = Av = 0 = \lg w$ כדרוש. 
+			\end{itemize}
+			בשני המקרים הראינו ש־$\lg$ ע''ע של $AB$. 
+			\item יהי $\lg \in \F$ ע''ע של $AB$. מכאן שקיים $v \in \F^{n}$ כך ש־$ABv = \lg v$. (יש צורך לטפל במקרה זה שכן לא ידוע $A$ הפיכה). משום ש־$B$ הפיכה בהכרח $Bv \neq 0$. עוד נבחין $BA(Bv) = B(ABv) = B(\lg v) = \lg Bv$, כלומר $Bv$ ו''ע עבור ע''ע $\lg$ של $BA$ כדרוש. 
+		\end{itemize}
+		
+		סה''כ יש לנו הכלה דו־כיוונית לקבוצת הע''עים של $BA$ ושל $AB$, משמע יש להם את אותם הערכים העצמיים, כנדרש. 
+	\end{proof}
+	
+	\section{}7
+	תהא $A \in M_n(\C)$ ניל' צמודה לעצמה. נוכיח $A = 0$. \begin{proof}
+		ידוע קיום $k \in \N$ כך ש־$A^{k}  = 0$. משום ש־$A$ צמודה לעצמה, היא לכסינה אורתוגונלית. יהי $e_1 \dots e_n$ בסיס אורתוגונלי מלכסן של $A$. נסמן ב־$\lg_i$ את הע''ע של הו''ע $e_i$. נקבל ש־: 
+		\[ 0 = 0e_i = A^{k}e_i = A(A^{k - 1}e_i) = \lg_i A^{k -1}e_i = \cdots = \lg_i^{k}e_i \]
+		משום ש־$e_i \neq 0$, נסיק $\lg_i^{k} = 0$ כלומר $\lg_i = 0$. סה''כ לכל $e_i$ מתקיים $Ae_i = 0e_i = 0$, כלומר $A$ מאפסת את כל איברי הבסיס, דהיינו $A = 0$ כנדרש. 
+	\end{proof}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item תהי $H \in M_n(\C)$ מטריצה צמודה לעצמה עם $H^{k} = I$ עבור $k \ge 1$ כלשהו. נוכיח ש־$H^{2} = I$. \begin{proof}
+			משום ש־$H$ צמודה לעצמה, תחת בסיס אורתונורמלי $e_1 \dots e_n$ קיימים לה ע''עים $\lg_1 \dots \lg_n$. נבחין ש־: 
+			\[ 1v_i = Iv_i = H^{k}v_i = H(H^{k - 1}\lg_i v_i) = \cdots \lg_i^{k}v_i \implies \lg_i \]
+			מכאן ש־$\lg_i$ הוא שורש יחידה ממעלה $k$. נסיק ש־$\sof{\lg_i} = 1$. משום שתחת בסיס \textbf{אורתוגונלי}, המטריצה $H$ בעלת ע''עים מגודל $1$, נסיק שהיא אוניטרית. משום ש־$H$ צמודה לעצמה, ערכיה העצמיים ממשיים, ומכאן ש־$\lg = \pm 1$. נבחין שתחת מטריצת מעבר בסיס אוניטרית $C$ שעמודותיה $e_1 \dots e_n$, נקבל: 
+			\[ H^{2} = \cl{C^*\diag(\lg_1 \dots \lg_n)C}^{2} = C^*\diag(\lg_1 \dots \lg_n)\cancel{CC^{*}}\diag(\lg_1 \dots \lg_n)C = C^{*}\diag(\lg_1^{2} \dots \lg_n^{2})C = C^{*}C = I \]
+			שכן $\lg_i^{2} = (\pm 1)^{2} = 1$, כנדרש. 
+		\end{proof}
+		\item נוכיח שזה לא נכון באופן כללי בעבור מטריצה $H$ שאיננה צמודה לעצמה. 
+		%TODO
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נניח ש־$A \in M_n(\C)$ מקיימת $\forall v \in \C^{n}\co \mut{Av}{v} = 0$. נוכיח ש־$A = 0$. \begin{proof}
+			\[ 0 = \mut{A(u + v)}{u + v} = \mut{Au}{u + v} + \mut{Av}{u + v} = \cancel{\mut{Au}{u}} + \mut{Au}{v} + \cancel{\mut{Av}{v}} + \mut{Av}{u} = \mut{Au}{v} + \mut{Av}{u} \]
+			\[ 0 = \mut{A(u + iv)}{u + iv} = \mut{Au}{u + iv} + \mut{Aiv}{u + iv} = \cancel{\mut{Au}{u}} + \mut{Au}{iv} + \cancel{\mut{Aiv}{iv}} + \mut{Aiv}{u} = -i\mut{Au}{v} + i\mut{Av}{u} \]
+			נחלק ב־$i$ את המשוואה השניה, נקבל: 
+			\[ \begin{cases}
+				\mut{Au}{v} + \mut{Av}{u} = 0 \\
+				\mut{Av}{u} - \mut{Au}{v} = 0
+			\end{cases} \implies \cancel{\mut{Au}{v} - \mut{Au}{v}} + \mut{Av}{u} + \mut{Av}{u} = 0 \implies \mut{Av}{u} = 0 \]
+			לכל $u, v$. בפרט עבור $u = Av$ קיבלנו $\mut{Av}{Av} = 0$ דהיינו $Av = 0$ לכל $v \in V$, כלומר $A = 0$ כדרוש. 
+		\end{proof}
+		\item נוכיח שהסעיף הקודם לא נכון מעל $\R$. נתבונן במטריצה הבאה: 
+		\[ A = \pms{0 & -1 \\ 1 & 0} \quad \forall (a, b) \in \R^{2} \co \mut{A\pms{a \\ b}}{\pms{a \\ b}} = \mut{\pms{-b \\ a}}{\pms{a \\ b}} = -ba + ab = 0 \]
+		כנדרש. 
+		\item נוכיח שמעל $\R$, $A$ אנטי־סימטרית בתנאים לעיל. \begin{proof}
+			\[ 0 = \mut{A(u + v)}{u + v} = \mut{Au}{u + v} + \mut{Av}{u + v} = \cancel{\mut{Au}{u}} + \mut{Au}{v} + \cancel{\mut{Av}{v}} + \mut{Av}{u} = \mut{Au}{v} + \mut{A^{T}u}{v} \]
+			סה''כ $\mut{A^{T}u + Au}{v} = 0$. בפרט עבור $v = A^{T}u + Au$ נקבל: 
+			\[ \mut{A^{T}u + Au}{A^{T}u + Au} = 0 \implies A^{T}u + Au = 0 \implies Au = -A^{T}u \]
+			לכל $u \in \R^{n}$, כלומר $A = -A^{T}$ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהי $A \in M_n(\C)$ מטריצה. נוכיח ש־$A$ נורמאלית אמ''מ לכל $v \in \C^{n}$ מתקיים $\norm{Av} = \norm{A^{*}v}$. \begin{proof}
+		\begin{itemize}
+			\item[$\impliedby$]נניח ש־$A$ נוראמלית, כלומר $AA^* = A^*A$. נסיק ש־: 
+			\[ \norm{Av}^{2} = \mut{Av}{Av} = \mut{v}{A^*Av} = \mut{v}{AA^*v} = \mut{A^*v}{A^*v} = \norm{A^*v}^{2} \]
+			כנדרש. 
+			\item[$\implies$]מההנחה $\norm{Av} = \norm{A^*v}$ נקבל: 
+			\[ \forall v \in V \co 0 = \mut{Av}{Av} - \mut{A^*v}{A^*v} = \mut{v}{A^*Av} - \mut{v}{AA^*v} = \mut{v}{A^*Av - AA^*v} \]
+			מהסעיף הראשון של השאלה: 
+			\[ A^*A - AA^* = 0 \implies A^*A = AA^* \]
+			כלומר $A$ נוראמלית כנדרש. 
+		\end{itemize}
+	\end{proof}
+	
+	\section{}
+	תהי $A \in M_n(\C)$ משולשית עליונה ונורמאלית. נוכיח ש־$A$ אלכסונית. \begin{proof}
+		נבחין ש־$A^*$ משולשית תחתונה. מכאן ש־: 
+		\begin{gather*}
+			(AA^*)_{i, i} = \sum_{k = 1}^{n}\sum_{j = 1}^{n}A_{i, j}A^*_{j, i} = \sum_{k = 1}^{n}\sum_{j = 1}^{k}A_{i, j}A^*_{j, i} \\
+			(A^*A)_{i, i} = \sum_{k = 1}^{n}\sum_{j = 1}^{n}A^*_{i, j}A_{j, i} = \sum_{k = 1}^{n}\sum_{j = k}^{n}A^*_{i, j}A_{j, i}
+		\end{gather*}
+		מכאן נסיק ש־: 
+		\[ (AA^*)_{i, i} - (A^*A)_{i, i} = 0 \implies \sum_{k = 1}^{n}\cl{\sum_{j = 1}^{k}A_{i, j}A^*_{j, i} - \sum_{j = k}^{n}A_{i, j}A^*_{j, i}} = 0 \]
+		נבחין ש־$A_{i, j}A^*_{j, i} = A_{i, j}\overline{A_{i, j}} = \norm{A_{i, j}} \ge 0$. עבור $i = 1$ נקבל: 
+		\[ A_{1, 1}A^*_{1, 1} - \sum_{i = 1}^{n}A_{1, j}A^*_{1, j} = 0 \implies \sum_{i = 1}^{n}\norm{A_{1, j}} = 0 \]
+		סכום של מספרים גדולים מ־$0$ הוא אפס אמ''מ כולם אפס, ולכן $A_{1, j} = 0$. באינדוקציה על $i$ נקבל: 
+		\[ \underbrace{\sum_{j = 1}^{k}}_{A_{i, j}} \]
+		
+		% TODO
+	\end{proof}
+	
+	
+	\ndoc	
+\end{document}

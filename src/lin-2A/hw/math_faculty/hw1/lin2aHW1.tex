@@ -1,0 +1,147 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../../tex/packages/theoremsSupport}
+
+\author{שחר פרץ}
+\title{לינארית 2א $\sim$ \textit{תרגיל בית 1}}
+\begin{document}
+	\maketitle
+	\section{}
+	קריאת קבצי הנהלים במודל בלבד. 
+	
+	\section{}
+	עבור כל אחד מהקבוצות הבאות, נקבע אם היא תמ''ו של $\R^3$. 
+	
+	\begin{enumerate}[(A)]
+		\item \hfil $\displaystyle A:= \{(x_1, x_2, x_3) \in \R^3 \co \sqrt 2 x_1 + \pi^3 x_2 - x_3 = 0\}$
+		\begin{proof}[נוכיח ש־$A$ מ''ו]
+			נוכיח סגירות לכפל ולחיבור. יהיו $\lg_1, \lg_2 \in \R$ וכן $(x_1, x_2, x_3), (y_1, y_2, y_3) \in \R^{3}$. נסמן $x = (x_1, x_2, x_3)$ וכן $y = (y_1, y_2, y_3)$. נוכיח $\lg_1 x_1 + \lg_2 y_2  \in A$. 
+			
+			ידוע: 
+			\[ \begin{cases}
+				\sqrt 2x_1 + \pi^3 x_2 - x_3 &\dequad\,= 0 \\
+				\sqrt 2y_1 + \pi^3 y_2 - y_3 &\dequad\,= 0 
+			\end{cases} \implies \begin{cases}
+			\lg_1\sqrt 2 x_1 + \lg_1 \pi^3 x_2 - \lg_1 x_3 &\dequad\,= 0 \\
+			\lg_2\sqrt 2 y_1 + \lg_2 \pi^3 y_2 - \lg_2 y_3 &\dequad\,= 0 
+			\end{cases} \implies \sqrt \lg_1 x_1 + \lg_1 \pi^3 x_2 - \lg_1 x_3 + \sqrt \lg_2 y_1 + \lg_2 \pi^3 y_2 - \lg_2 y_3 = 0 \]
+			נצמצם ונקבל $\sqrt2(\lg_1 x_1 + \lg_2 y_1) + \pi^3(\lg_1 x_2 + \lg_2 y_2) - (\lg_1x_3 + \lg_2y_3) = 0$, ולכן, $\lg_1x + \lg_2 y = (\lg_1x_1 + \lg_2 y_1, \lg_1x_2 + \lg_2y_2, \lg_1 x_3 + \lg_2 y_3) \in A$ כדרוש. 
+		\end{proof}
+		\item \hfil $B := \{(x_1, x_2, 0) \in \R^3 \co x_1^2 - x_2 = 0\}$
+		\begin{proof}[נוכיח ש־$B$ איננו מ''ו]
+			נניח בשלילה ש־$B$ מ''ו. עבור $x = (1, 1, 0)$ מתקיים $1^1 - 1  = 0$ ולכן $x \in B$. מסגירות לכפל $2x \in B$ כלומר $2^2 - 2 = 0$. סה''כ $4 =2$ וסתירה. 
+		\end{proof}
+		\item \hfil $C := \{(x_1, x_2, x_3) \in \R^3 \co x_1 + 2x_2 + 3x_3 = 1\}$
+		\begin{proof}[נוכיח ש־$C$ איננו מ''ו]
+			עבור $(1, 0, 0) =: x$ מתקיים $1 + 2 \cdot 0 + 3 \cdot 0 = 1$ ולכן $x \in C$. נניח בשלילה ש־$C$ מ''ו, אזי מסגירות לחיבור $2x \in C$. כלומר $2 = 1$ וסתירה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהיא $f \co \C^{n} \to \C$ פונקציונל לינארי. נניח $f \neq 0$. נוכיח $\dim \ker f = n -1$. 
+	\begin{proof}
+		תהי $f$ פונקציונל לינארי מרוכב מעל $\C^{n}$. ידוע $\Img f \subseteq \C$ ולכן $\dim \Img \le 1$. נפרק למקרים: אם $\dim \Img = 0$ אזי $\Img f = \{0\}$ ואז $\forall v \in \C^{n} f(v) = 0$ כלומר $f = 0$ וסתירה. לכן $\dim \Img f = 1$ בהכרח. ממשפט הממדים, $\dim \Img f + \dim \ker f = \dim \C^{n} = n$. נציב ונקבל $1 + \dim \ker f = n$. נחסר אגפים, סה''כ $\dim \ker f = n - 1$ כדרוש. 
+	\end{proof}
+	
+	\section{}
+	יהיו $A, B \in M_n(\F)$. 
+	\begin{enumerate}[(A)]
+		\item נניח $A$ מטריצה הפיכה, נוכיח $A\op$ הפיכה. 
+		\begin{proof}
+			מההנחה, קיימת $A\op$ כך ש־$AA\op = I$. מהיות ההופכי הימני והשמאלי זהים להעתקות לינאריות (משפט שהוכח בליני1), בהכרח $A$ ההופכי של $A\op$, ולכן $A\op$ הפיכה. 
+		\end{proof}
+		\item נניח $A, B$ הפיכות. נוכיח $AB$ הפיכה. \begin{proof}
+			יהיו $A, B \in M_n(\F)$ הפיכות. כלומר $\rk A = \rk B = n$. ממשפט האפסות של סילבסטר שהוכח בלינארית 1א בסמסטר הקודם, מתקיים: 
+			\[ \rk(AB) \ge \rk A + \rk B - n = n + n - n = n \]
+			ידוע $\rk (AB) \le n$, סה''כ $n \le \rk (AB) \le n$ כלומר $\rk AB = n$ וממשפט $AB$ הפיכה כדרוש. 
+		\end{proof}
+		\item נמצא $A, B$ הפיכות כך ש־$A + B$ איננה הפיכה. 
+		\begin{proof}[דוגמה]
+			בעבור $A = I, B = -I$, מתקיים $A, B$ הפיכות, ולכן $A + B = I - I = 0$ ומטריצת האפס איננה הפיכה (כי $\rk 0 = 0 \neq n$ בהנחה שהממד איננו $0$). 
+		\end{proof}
+		\item יהי $V$ מ''ו מממד $n$ ואכן $\bc, \cc$ שני בסיסים שלו. תהי $f \co V \to V$ העתקה לינארית. נוכיח ש־$f$ הפיכה אמ''מ $[f]^{\bc}_{\cc}$ הפיכה. \begin{proof}
+			\begin{itemize}
+				\item[$\implies$] נניח $[f]^{\bc}_\cc$ הפיכה. 
+				\begin{itemize}
+					\item \textbf{חח''ע: }לכל $v \in \ker f$ מתקיים $f(v) = 0$. נפעיל את $[\cdot]_\cc$ עד שני האגפים ונקבל $[f]_\cc^{\bc}[v]_\cc = [f(v)]_\cc = [0]_\cc$ וידוע $[f]^{\bc}_\cc$ הפיכה, כלומר מרחב האפסות שלה כולל את וקטור האפס בלבד. לכן $[v]_\cc = [0]_\cc$ כלומר $v = 0$ מחח''ע $[\cdot]_\cc$ (שהוכחה בהמשך תרגיל הבית ללא תלות במשפט זה). סה''כ $\dim \ker f = 0$ כלומר היא חח''ע. 
+					\item \textbf{על: }העתקה חח''ע ממרחב לעצמו היא בהכרח על, שכן $\dim \ker f = 0$ וממשפט הממדים $\dim \Img f = n = \dim V = \mathrm{range} f$ כדרוש. 
+				\end{itemize}
+				\item[$\impliedby$] נניח $f$ איזומורפיזם ונראה ש־$[f]_\cc^{\bc}$ הפיכה. מהיותה איזומורפיזם, היא משמרת בסיס, ולכן $f(B)$ בסיס. המטריצה המייצגת $^{[f]_\cc^{\bc}} = [f(B)]_\cc$ כוללת שורות שהן בסיס שכן גם $[\cdot]_\cc$ איזומורפיזם ולכן משמרת בסיס. מהיות שורות $[f]_\cc^{\bc}$ בת''ל, ומשום שיש לה $n$ שורות ועמודות, אז $\rk [f]^{\bc}_\cc = n$ כלומר היא הפיכה כדרוש. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	
+	\section{}
+	נגדיר $f \co \R^2 \to \R[x]_{\le 2}$, כך ש־$f(a, b) = ax^2 - 2b$. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$f$ לינארית. 
+		\begin{proof}
+			יהיו $x, y \in \R^{2}$. יהיו סקלרים $\lg_1, \lg_2 \in \R$. 
+			אזי קיימים $a_1, a_2, b_1, b_2 \in \R$ כך ש־$x = (a_1, b_1)$ ו־$y = (a_2, b_2)$. מכאן: 
+			\[ f(\lg_1x + \lg_2y) = (\lg_1 a_1 + \lg_2 a_2)x^2 - 2(\lg_1 b_1 + \lg_2 b_2) = \lg_1 (a_1 x^2 - 2b_1) + \lg_2(a_2x^2 - 2b_2) = \lg_1f(x) + \lg_2 f(y) \]
+			כדרוש. 
+		\end{proof}
+		\item יהיו $\bc, \cc$ הבסיסים הסטנדרטיים של $\R^{2}, \R[x]_{\le2}$ בהתאמה. נמצא את $[f]^{\bc}_\cc$. 
+		\begin{proof}
+			\begin{align*}
+				[f(1, 0)]_\cc &= [x^2]_\cc = (0, 0, 1) \\
+				[f(0, 1)]_\cc &= [-2]_\cc = (2, 0, 0)
+			\end{align*}
+			ומהגדרה: 
+			\[ [f]^{\bc}_\cc = \pms{0 & 2 \\ 0 & 0 \\ 1 & 0} \]
+		\end{proof}
+		\item עתה נמצא את $[f]^{\bc'}_{\cc'}$ בעבור $\bc' = ((1, 0), (1, 1)), \cc = (1, 2x, x^2 - 1)$. 
+		\begin{proof}
+			\begin{align*}
+				[f(1,0)]_\cc &= [x^2]_\cc = [1 + (x^2 - 1)]_\cc = (1, 0, 1) \\
+				[f(0, 1)]_\cc &= [-2]_\cc = (-2, 0, 0)
+			\end{align*}
+			סה''כ מהגדרת מטריצה מייצגת: 
+			\[ [f]^{\bc'}_{\cc'} = \pms{1 & -2 \\ 0 & 0 \\ 1 & 0} \]
+		\end{proof}
+		\item נסמן $v = (2, 1) \in \R^{2}$. נמצא את $[v]_{\bc'}$ ואת $[f(v)]_{\cc}$ ונוודא שאכן מתקיים $[f]^{\bc'}_{\cc'}[v]_{\bc'} = [f(v)]_{\bc'}$. 
+		\begin{proof}
+			נקבל בקלות $[v]_{\bc'} = (1, 1)$, וכן $f(v) = x^2 - 2$ כלומר $[f(v)]_{\cc'} = (-1, 0, 1)$. ואכן: 
+			\[ [f]^{\bc'}_{\cc'}[v]_{\bc'} = \pms{1 & -2 \\ 0 & 0 \\ 1 & 0}\pms{1 \\ 1} = \pms{-1 \\ 0 \\ 1} = [f(v)]_{\cc'} \]
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $V$ מ''ו מעל $\F$ ונניח $\dim V = n$. יהי $\bc$ בסיס של $V$. נוכיח שהההעתקה $[\cdot]_\bc \co V \to \F^{n}$ היא איזומורפיזם. 
+	\begin{proof}\,
+		\begin{itemize}
+			\item \textbf{חח''ע: }יהיו $v \in \ker [\cdot]_\bc$. אז $[v]_\bc = 0$. מהגדרת $[\cdot]_\bc$, $v$ הוא קומבינציה לינארית של הבסיס $\bc$ בעבור הסקלרים $0, 0 \dots, 0$. אך, $v = \sumni 0 \cdot b_i = \sumni 0 = 0$ כלומר $v = 0$ וסה''כ $\ker [\cdot]_\bc = 0$ כדרוש. 
+			\item \textbf{על: }יהי $v \in \F^{n}$. נסמן $v = (\lg_1 \dots \lg_n)$ וכן $\bc = \{b_1 \dots b_n\}$. נקבל שמהגדרה $w = \sumni \lg_i b_i$ מקיים $[w]_\bc = v$ ולכן $[\cdot]_\bc$ על כדרוש. 
+		\end{itemize}
+		סה''כ היא חח''ע ועל וסיימנו. 
+	\end{proof}
+	
+	\section{}
+	יהיו $B, C$ בסיסים של $\R[x]_{\le 2}$ הנתונים ע''י: 
+	\[ B = \{1 - x,\, 2 - x,\, 1 - 3x - x^2\}, \quad C = \{1 + x^2,\, x + x^2,\, x^2\} \]
+	
+	נמצא את מטריצת המעבר $[I]^{C}_B$. 
+	\begin{proof}
+		מהגדרה: 
+		\[ I = \pms{\vert & \vert & \vert \\ [C_1]_B & [C_2]_B & [C_3]_B \\ \vert & \vert & \vert} \]
+		נמצא את הוקטורים הדרושים. 
+		\begin{gather*}
+			C_1 = 1 - x = 1 + x^2 - (x + x^2) = B_1 - B_2 \implies [C_1]_B = (1, 1, 0) \\ 
+			C_2 = 2 - x = 2(1 + x^2) - (x + x^2) - x^2 = 2B_1 - B_2 - B_3 \implies [C_2]_B = (2, -1, -1) \\
+			C_3 = 1 - 3x - x^2 = (1 + x) - 4(x+ x^2) + 3x^2 \implies [C_3]_B = (1, -4, 3)
+		\end{gather*}
+		כלומר: 
+		\[ [I]_B^C = \pms{1 & 2 & 1 \\ 1 & -1 & -4 \\ 0 & -1 & 3} \]
+	\end{proof}
+	
+	
+	\section{}
+	יהי $V$ מ''ו נוצר סופית. יהי $B$ בסיס של $V$ וכן $T \co V \to V$ לינארית. נניח ש־$A \in M_n(\F)$ מקיימת $A \sim B$. נוכיח שקיים בסיס $C$ כך ש־$A = [T]_C$. \begin{proof}
+		ידוע קיום $P \in M_n(\F)$ הפיכה כך ש־$PAP\op = [T]_B$. לכן $A = P\op [T]_BP$. ממשפט בליניארית 1א, קיים בסיס $C$ כך ש־$P = [I]^{B}_C$ (בהינתן בסיס, כל מטריצה הפיכה היא מטריצת מעבר בסיס ממנו לבסיס אחר). מכאן $P\op = [T]^{C}_B$ וסה''כ: 
+		\[ A = P\op [T]_B^B P = [I]^{C}_B [T]_B^B [T]^{B}_C = [T]^{C}_C = [T]_C \quad \top \]
+	\end{proof}
+	
+	\ndoc
+\end{document}

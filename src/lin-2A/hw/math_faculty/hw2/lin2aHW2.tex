@@ -1,0 +1,197 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../../tex/packages/theoremsSupport}
+
+\newcommand\cd {\cdot}
+\usepackage{bbm}
+
+\author{שחר פרץ}
+\title{לינארית 2א $\sim$ \textit{תרגיל בית 2}}
+\begin{document}
+	\maketitle
+	\section{}
+	נוכיח ונפריך את הטענות הבאות: 
+	\begin{enumerate}[(A)]
+		\item יהיו $v, u, w \in \R^{3}$. נניח ש־$v \cd w = u \cd w$ וכן כל הרכיבים של $w$ אינם אפס, ונוכיח שזה גורר $v = u$. \begin{proof}[הפרכה]
+			נבחר $w = \mathbbm{1}$ כאשר $\mathbbm{1} = (1, 1 \dots 1)$. אזי לכל $e_i \in \R^{3}$ ובפרט בעבור $e_1 = (1, 0, 0), e_2 = (0, 1, 0)$ מתקבל מהגדרת סכפול ש־$e_i \cdot w = e_i \cdot \mathbbm{1} = 1 \cdot 0 + 1 \cdot 0 + 1 \cdot 1 = 1$ ואז מצאנו $u = e_1, v = e_2$ כך ש־$u \cdot w = v \cdot w = 1$ למרות שכל רכיבי $w$ אינם $0$. 
+		\end{proof}
+		\item יהיו $v, u \in \R^{3}$ ונוכיח שאם $\forall w \in \R^{n} \co v \cdot w = i \cdot w$, אז $v = u$. \begin{proof}
+			יהיו $v, u$ המקיימים את התנאי הנתואר לעיל. אזי בעבור $e_1 \dots e_n \in \R^{n}$ מתקיים: 
+			\[ (u)_i = \sum_{j = 1}^{n} \csb{(u)_i \cdot \dg_{i}} = e_i \cdot u = \sum_{j = 1}^{n} \csb{(v)_i \cdot \dg_{i}} = (v)_i \]
+			כאשר $(w)_i$ האיבר ה־$i$ בוקטור $w \in \R^{n}$ כלשהו. מכאן, מהטענה המרכזית של $n$־יה סדורה, בהכרח $v = u$ כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	\section{}
+	תהי $A \in M_n(\R)$ מטריצה. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\forall u,v \in \R^{n} \co u \cdot (Av) = (A^{T}u)\cdot v$ \begin{proof}
+			יהיו $u, v \in \R^{n}$. נקבל: 
+			\[ \begin{WithArrows}
+				u \cdot (Av) &= (Av) \cdot u \Arrow[lr]{הגדרת כסלוף}\\
+				&= (Av)^{T} u \Arrow[rr]{כי לכל מטריצות $A, B$ מתקיים $(AB)^{T} = B^TA^T$}\\
+				&= (v^{T} A^{T}) u \Arrow[rr]{אסוציאטיביות כפל מטריצות}\\
+				&= v^{T} (A^{T} u) \Arrow[rl]{הגדרת סכלוף}\\
+				&= v \cdot (A^{T} u)
+			\end{WithArrows} \]
+		\end{proof}
+		\item עתה, נניח ש־$\forall v \in \R^{n} \co v \perp Av$. 
+		\begin{enumerate}
+			\item נוכיח שאם $n$ אי־זוגי, אז $A$ לא הפיכה. \begin{proof}
+				יהיו $u, w \in \R^{n}$. מתקיים: 
+				\begin{multline*}
+					0 = (u + w) \cdot (A(u + w)) = (u + w) \cdot (Au + Aw) = \cancel{u \cdot Au} + u \cdot Aw + w \cdot Au + \cancel{v \cdot Av} \\
+					= u \cdot Aw + {\underbrace{Au \cdot w}_{u \cdot A^Tw}} = u \cdot (A^Tw + Aw) = u(A^T + A)w
+				\end{multline*}
+				נבחין שעבור $u = e_j, w = e_i$ מתקיים $0 = u(A + A^T)w = e_j(A + A^T)e_i = (A + A^T)_{ij}$ (כאשר בעבור מטריצה $C$ נסמן את המקום ה־$ij$ בה ב־$(C)_{ij}$). מכאן ש־$\forall i, j \in [n] \co (A + A^T)_{ij} = 0$. סה''כ $A + A^T = 0$, כלומר $A = -A^T$ דהיינו $A$ אנטי־סימטרית. 
+				
+				קל להוכיח שכל מטריצה אנטי־סימטרית ב־$M_n(\F)$ אינה הפיכה: $\det A = \det A^T$ ומכאן $\det A = \det A^T = \det((-A^T)^T) = \det(-A) = (-1)^{n}\det A = -\det A$. חלוקה ב־$\det A$ תוביל ל־$1 = -1$ וסתירה, ולכן לא ניתן לבצע חלוקה כזו, כלומר $\det A = 0$. מכאן ש־$A$ איננה הפיכה, כדרוש. 
+			\end{proof}
+			\item נחפש $A$ המקיימת $\forall v \in \R^{n} \co Av \perp v$ שהינה הפיכה. \begin{proof}
+				עבור $A = \binom{-1 \,0}{\,0\,\,\,1}$, מטריצת הסיבוב ב־$90^{\circ}$, נקבל בבירור ש־$A$ הפיכה (שורותיה לא ת''ל) וכן כל $v \in \R^{2}$ מקיים $v = (x, y)$ עבור $x, y \in \R$ כלשהם ומכאן: 
+				\[ (Av) \cdot v = (-y, x) \cdot (x, y) = -yx + xy = -xy + xy = 0 \implies Av \perp v \]
+				וסה''כ מצאנו מטריצה המקיימת את הדרוש. 
+			\end{proof}
+		\end{enumerate}
+	\end{enumerate}
+	\section{}
+	נראה שלכל $a, b, c \in \R$ מתקיים: 
+	\[ \sof{ab + ca + bc} \le a^2 + b^2 + c^{2} \]
+	\begin{proof}
+		ניעזר בא''ש קושי־שוורץ. נגדיר את הוקטורים $x = (a, b, c), y = (c, a, b)$ מעל $\R^{3}$. אז: 
+		\[ \sof{ab + ca + bc} = \sof{ac + ab + cb} = \sof{x \cdot y} \le \norm x \norm y = \sqrt{x \cdot x}\sqrt{y \cdot y} = \sqrt{a^2 + b^2 + c^2}\sqrt{c^2 + a^2 + b^2} = a^2 + b^2 + c^2 \]
+		כדרוש. 
+		
+		\textit{הערה: }מכאן ששוויון אמ''מ $x = y$ כלומר $a = c \land b = a \land c = b$, ומטרנזטיביות זה שקול לכך ש־$a = b = c$. 
+	\end{proof}
+	\section{}
+	יהי $0 \neq v \in \R^{n}$. נוכיח שקיים $u \in \R^{n}$ יחיד המקיים את התכונות הבאות: 
+	\begin{itemize}
+		\item $v, u$ ת''ל, כלומר $\exists \ag \in \R\co v = \ag u$
+		\item $\norm v = 1$
+		\item $u \cdot v > 0$
+	\end{itemize}
+	\begin{proof}
+		נוכיח את היחידות והקיום. 
+		\begin{itemize}
+			\item \textbf{קיום: }עבור הוקטור $\tl v = \frac{v}{\norm v}$ מתקיימות שלושת התכונות. בבירור $v, \tl v$ ת''ל בעבור $\ag = \frac{1}{\norm v}$. כמו כן $\norm {\tl v} = 1$ בגלל ש־: 
+			\[ \norm{\tl v} = \norm{\frac{v}{\norm v}} = \frac{v^T}{\norm v} \cdot \frac{v}{\norm v} = \frac{v^Tv}{\sqrt{v \cdot v}^2} = \frac{v^Tv}{v^Tv} = 1 \]
+			וכן $u \cdot v > 0$ בגלל ש־: 
+			\[ v \cdot \tl v = v^T \cdot \frac{v}{\norm v} = \frac{v^Tv}{\sqrt{v^T v}} = \sqrt{v^Tv} = \norm v > 0 \]
+			כדרוש. 
+			\item \textbf{יחידות: }יהיו $v_1, v_2$ וקטורים המקיימים את שלושת התכונות לעיל. משום ששניהם תלויים לינארית ב־$u$, ניתן לבטאם כ־$v_1 = \ag u, v_2 = \bg u$ עבור $\ag, \bg \in \R$ סקלרים כלשהם. מהתכונה $\norm{v_1} = \norm{v_2} = 1$ נקבל שבעבור $v_i = \cg v$ כלשהו: 
+			\[ 1 = \norm{\cg v } = \sof \cg \norm{v} \implies \sof \cg = \frac{1}{\norm v} \]
+			ובפרט בעבור $\ag, \bg$. מהגדרת ערך מוחלט בממשיים, $\ag, \bg = \pm \frac{1}{\norm v}$. נניח בשלילה $\ag \neq \bg$, אז בה''כ $\bg = -\frac{1}{\norm v}$, כלומר: 
+			\[ v \cdot v_2 = v^T \bg v = -\frac{v^Tv}{\sqrt{v^Tv}} = - \underbrace{\sqrt{v^Tv}}_{>0} < 0 \]
+			ומכאן ש־$v_2$ לא מקיים את התכונה השלישית לעיל, וסתירה. סה''כ $\ag = \bg$, כלומר $v_1 = \ag v = \bg v = v_2$ ומטרנזטיביות $v_1 = v_2$ כדרוש מיחידות. 
+		\end{itemize}
+	\end{proof}
+	\section{}
+	נוכיח את כלל המקבילית למכפלה סקלרית שראינו בתרגול: 
+	\[ \forall u, v \in \R^{n} \co \norm{u + v}^{2} + \norm{u - v}^{2} = 2 \norm u ^2 + 2 \norm v ^2 \]
+	\begin{proof}
+		יהיו $u, v \in \R^{n}$. אזי: 
+		\begin{align*}
+			\norm{u + v}^{2} + \norm{u - v}^{2} &= (u + v) \cdot (u + v) + (u - v) \cdot (u - v) \\
+			&= \norm u^2 + 2 (u \cdot v) + \norm v^2 + \norm u^2 - 2 (u \cdot v) + \smash{\overbrace{(-v) \cdot (-v)}^{(-1)^{2} \norm v = \norm v}} \\
+			&= \norm u^2 + \norm v^2 + \cancel{2(u \cdot v) - 2(u \cdot v)} \\
+			&= \norm u^2 + \norm v^2 \quad \top
+		\end{align*}
+	\end{proof}
+	
+	\section{}
+	תהא $A \subseteq \R^{n}$ ת''ק. נוכיח מספר טענות. 
+	\begin{enumerate}[(A)]
+		\item מתקיים $0\ort = \R^{n}$ וכן $(\R^{n})\ort = \{0\}$. \begin{proof}
+			\[ 0\ort = \{v \in \R^{n} \co 0 \perp v\} = \{v \in \R^{n} \co 0 \cdot v = 0\} = \{v \in \R^{n} \mid \mathrm{T}\} = \R^{n} \]
+			כאשר $\mathrm{T}$ מייצג פסוק אמת. נוכיח בהכלה דו־כיוונית בעבור השוויון השני. 
+			\begin{itemize}
+				\item מתקיים $0 \in (\R^{n})\ort$ משום שידוע $\forall v \in \R^{n} \co v \cdot 0 = 0$ כלומר $v \perp 0$ כדרוש. 
+				\item יהי $v \in (\R^{n})\ort$. נוכיח $v = 0$. ידוע $e_1 \dots e_n \in \R^{n}$, ונסמן ב־$(v)_i$ את הקורדינאטה ה־$i$ של $v$. מהנתון, לכל $i \in [n]$ ידוע $v \perp e_i$ כלומר $0 = v \cdot e_i = (v)_i$. כל קורדינאטות $v$ הן $0$ וסיימנו. 
+			\end{itemize}
+			מההכלה הדו־כיוונית הזו, קיבלנו $(\R)^{n}  = \{0\}$ כדרוש. 
+		\end{proof}
+		\item $\Sp A \cap A\ort = \{0\}$ \begin{proof}
+			נוכיח ש־$\Sp A \cap A^\perp = 0$. יהי $v \in \Sp A \cap A^\perp$. נבחר בסיס $\bc = \{b_1 \dots b_k\}$ ל־$A$, ומכאן שקיימים $\lg_1 \dots \lg_n \in \R$ כך ש־$v = \sum_{i = 1}^{k} \lg_i b_i$, מהיות $v \in \Sp A$. עם זאת, $v \in A\ort$ גם כן, כלומר $\forall i \in [k] \co v \perp b_i$ משמע $v \cdot b_i = 0$. נסיק ש־: 
+			\[ \norm v^2 = v \cdot v = v \cdot \cl{\sum_{i = 1}^{k}\lg_i b_i} \overset{(1)}{=} \sum_{i = 1}^{k} \lg_i (v \cdot b_i) = \sum_{i = 1}^{k} \lg_i \cdot 0 = 0 \]
+			כאשר $(1)$ נובע מלינאריות ברכיב השני של הסכפול. 
+		\end{proof}
+		\item $A\ort = (\Sp A)\ort$ \begin{proof}
+			נוכיח ש־$A\ort = (\Sp A)\ort$. 
+			\begin{itemize}
+				\item[$\subseteq$]יהי $v \in A\ort$. יהי $u \in \Sp A$. נראה ש־$v \perp u$. ידוע ש־$u$ ניתן לייצוג כקומבינציה לינארית של $A =: \{a_1\}_{i = 1}^{k}$ בעבור בסקלרים $\lg_1 \dots \lg_k \in \R$, כלומר $u = \sum_{i = 1}^{k} \lg_i b_i$. כלומר: 
+				\[ \begin{WithArrows}
+					v \cdot u &= v \cdot \cl{\sum_{i = 1}^{k} \lg_i b_i} \Arrow{לינארית ברכיב השני}\\
+					&= \sum_{i = 1}^{k} \lg_i (v \cdot a_i) \Arrow[rl]{בגלל ש־$a_i \in A$ אז $a_i \perp v$ כלומר $a_i \cdot v = 0$}\\
+					&= \sum_{i = 1}^{k} \lg_i \cdot 0 \\ &= 0
+				\end{WithArrows} \]
+				\item[$\supseteq$]יהי $v \in (\Sp A)\ort$. ידוע $\forall a \in \Sp A \co v \perp a$ ובגלל ש־$A \subseteq \Sp A$ בפרט מתקיים $\forall a \in A \co v \perp A$ כלומר $v \in A\ort$ כדרוש. 
+			\end{itemize}
+			סה''כ הראינו הכלה דו־כיוונית כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	\section{}
+	נגדיר את הוקטורים: 
+	\[ v_1 = \pms{0 \\ 3 \\ 2 \\2}, \quad v_2 = \pms{1 \\ 0 \\ 2 \\ 1}, \quad v_3 = \pms{2 \\ -3 \\ 2 \\ 0}, \quad v_4 = \pms{ 1\\3 \\ 4 \\ 3} \]
+	נמצא בסיס ל־$(v_1, v_2, v_3, v_4)\ort$. יהי $v \in \R^{4}$, ונסמן $v = (x, y, z, w)$ בעבור $x, y, z, w \in \R$ כלשהם. ידוע $\forall i \in [4] \co v \cdot v_i = 0$, כלומר: 
+	\[ \begin{cases}
+		0x + 3y + 2z + 2w = 0 \\
+		1x + 0y + 2z + 1w = 0 \\
+		2x -3 y + 2z + 0w = 0 \\
+		1x + 3y + 4z + 3w = 0
+	\end{cases}\tomat \ker\pms{0 & 3 & 2 & 2 \\ 1 & 0 & 2 & 1\\ 2 & -3 & 2 & 0 \\ 1 & 3 & 4 & 3} \]
+	נדרג את המטריצה כדי למצוא את המרחב המאפס שלה. 
+	\begin{gather*}\pms{0 & 3 & 2 & 2 \\ 
+			1 & 0 & 2 & 1 \\ 
+			2 & -3 & 2 & 0 \\ 
+			1 & 3 & 4 & 3 \\ 
+		} \rrr{R_1 \siff R_4} \pms{1 & 3 & 4 & 3 \\ 
+			1 & 0 & 2 & 1 \\ 
+			2 & -3 & 2 & 0 \\ 
+			0 & 3 & 2 & 2 \\ 
+		} \rrt{R_2 \to R_2 - R_1}{R_3 \to R_3 - 2 R_1} \pms{1 & 3 & 4 & 3 \\ 
+			0 & -3 & -2 & -2 \\ 
+			0 & -9 & -6 & -6 \\ 
+			0 & 3 & 2 & 2 \\ 
+		} \rrr{R_2 \to \frac{1}{-3} \cdot R_2} \pms{1 & 3 & 4 & 3 \\ 
+			0 & 1 & \frac{2}{3} & \frac{2}{3} \\ 
+			0 & -9 & -6 & -6 \\ 
+			0 & 3 & 2 & 2 \\ 
+		} \\\rrt{R_3 \to R_3 + 9R_2}{R_4 \to R_4 - 3R_2} \pms{1 & 3 & 4 & 3 \\ 
+			0 & 1 & \frac{2}{3} & \frac{2}{3} \\ 
+			0 & 0 & 0 & 0 \\ 
+			0 & 0 & 0 & 0 \\ 
+		} \rrr{R_1 \to R_1 - 3 R_2} \pms{1 & 0 & 2 & 1 \\ 
+			0 & 1 & \frac{2}{3} & \frac{2}{3} \\ 
+			0 & 0 & 0 & 0 \\ 
+			0 & 0 & 0 & 0 \\ 
+		} \end{gather*}
+	ומכאן נסיק שעערכת המשוואות לעיל שקולה לכך ש־: 
+	\[ \begin{cases}
+		x &= -2z -w \\
+		y &= -\frac{2}{3}z - \frac{2}{3}w
+	\end{cases} \iff v \in (v_1, v_2, v_3, v_4)\ort \]
+	כלומר: 
+	\[ (v_1, v_2, v_3, v_4)\ort = \ccb{z, w \in \R \mid \pms{-2z -w \\-\frac{2}{3}z - \frac{2}{3}w \\ w \\ z}} = \Sp\ccb{\pms{-2 \\ -\frac{2}{3} \\ 1 \\ 0}, \, \pms{-1 \\ -\frac{2}{3}\\ 0 \\ 1}} =: \Sp\ccb{u_1, u_2}\]
+	כלומר, $u_1, u_2$ הבסיס המבוקש. 
+	\section{}
+	תהי $B = \{v \in \R^{n}\co \norm v = 2\}$. 
+	\begin{enumerate}[(A)]
+		\item נוכיח שאם $u, v \in B$ ת''ל אז $u = \pm v$. \begin{proof}
+			יהיו $u, v \in B$ ונניח שהם ת''ל, כלומר $\exists \ag \in \R \co u = \ag v$. מהנתון $\norm v = 2 = \norm u$ נקבל: 
+			\[ \norm v = 2 = \norm u = \norm{\ag v} = \sof {\ag} \norm v \]
+			נחלק ב־$\norm v$ את שני האגפים (חוקי, שכן $v \neq 0$ כי אם בשלילה $v = 0$ אז $\norm v = 0 \neq 2$ וסתירה) ונקבל $\sof{\ag} = 1$, כלומר $\ag = \pm1$ וסה''כ $u = \pm v$ כדרוש. 
+		\end{proof}
+		\item נוכיח ש־$\forall v \in B.\, \exists ! u \in B \co v \cdot u = 4$ \begin{proof}יהי $v \in B$, כלומר $\norm v = 2$. 
+			\begin{itemize}
+				\item \textbf{קיום: }נבחר את $u = v$. מתקיים $u \cdot v = v \cdot v = \norm v^2 = 4$ כדרוש. 
+				\item \textbf{יחידות: }יהיו $v, u \in B$. נניח $u \cdot v = 4$. ידוע $\norm v = \norm u = 2$. נוכיח $v = u$. אזי: 
+				\[ \norm{u - v}^2 = (u - v) \cdot (u - v) = \norm u^2 - 2 u \cdot v + \norm v^2 = 2^2 - 2 \cdot 4 + 2^2 = 8 - 8 = 0 \implies \norm{u - v} = 0 \]
+				לכן ממשפט $u -v =0$, כלומר $u = v$ בהכרח, משמע היחידות מובטחת. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	
+	\ndoc
+\end{document}

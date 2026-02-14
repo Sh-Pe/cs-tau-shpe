@@ -1,0 +1,124 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+
+\renewcommand\mut[2] {\left \la #1, #2 \right \ra}
+
+\author{שחר פרץ}
+\title{לינארית 2א $\sim$ \textit{תרגיל בית 11}}
+\date{14 בינואר 2026}
+\begin{document}
+	\maketitle
+	\section{}
+	נמצא את הפירוק הפולארי של המטריצות הבאות: 
+	\begin{enumerate}[(A)]
+		\item 
+		\[ A = \frac{1}{5}\pms{11 & 17 \\ -23 & 19} \]
+		נתחיל מלמצוא את $AA^*$ כדי לפרק אותה ספקטרלית. 
+		\[ AA^* = \frac{1}{25}\pms{410 & 70 \\ 70 & 890} = \frac{1}{5}\pms{82 & 14 \\ 14 & 178} \]
+		נמצא את הפולינום האופייני כדי ללכסן אורתוגונלית:
+		\[ \det(Ix - AA^*) = \detms{x - \frac{82}{5} & -\frac{14}{5} \\ -\frac{14}{5} & x - \frac{178}{5}} = \cl{x - \frac{82}{5}}\cl{x - \frac{178}{5}} - \frac{14^{2}}{5} = x^{2} - 52x + 576 = (x - 36)(x - 16) \]
+		נוציא שורש לע''עים של $AA^*$ כדי למצוא את הערכים הסינגולריים ונקבל $\sg_1 = 6, \sg_2 = 4$. נמצא את מטריצות המעבר באמצעות מציאת המ''עים של הע''עים של $AA^*$: 
+		\begin{gather*}
+			\nc\pms{\frac{82}{5} - 36 & \frac{14}{5} \\ \frac{14}{5} & \frac{178}{5} - 36} = \nc\pms{-19.6 & 2.8 \\ 2.8 & -0.4} \rrr{R_1 \to -\frac{1}{7}R_1} \nc\pms{2.8 & -0.4 \\ 2.8 & -0.4} \to \nc\pms{2.8 & -0.4 \\ 0 & 0} = \Sp\pms{2.8 \\ 0.4} = \Sp\pms{7 \\ 1} \\
+			\nc\pms{\frac{82}{5} - 16 & \frac{14}{5} \\ \frac{14}{5} & \frac{178}{5} - 16} = \nc\pms{0.4 & 2.8 \\ 2.8 & 19.6} \rrr{R_1 \to 7R_1} \pms{2.8 & 19.6 \\ 2.8 & 19.6} \to \pms{2.8 & 19.6 \\ 0 & 0} = \Sp\pms{2.8 \\ -19.6} = \Sp\pms{7 \\ -49}
+		\end{gather*}
+		שני הוקטורים בהכרח אורתוגונליים ממשפט הפירוק הספקטרלי. ננרמל אותם ונקבל: 
+		\[ Q = \pms{\disty \frac{v_1}{\norm {v_1}} & \disty \frac{v_2}{\norm{v_2}}} = \pms{\frac{7}{\sqrt{2450}} & \frac{7}{\sqrt{50}} \\ -\frac{49}{\sqrt{2450}} & \frac{1}{\sqrt{50}}} = \pms{\frac{1}{\sqrt{50}} & \frac{7}{\sqrt{50}} \\ -\frac{7}{\sqrt{50}} & \frac{1}{\sqrt{50}}} = \frac{1}{\sqrt{50}} \pms{1 & 7 \\ -7 & 1} \]
+		עתה נסמן $P = Q\diag(\sg_1, \sg_2)Q^T$. סה''כ נגדיר $U = AP\op$ כלומר $A = UP$. נחשב אותם: 
+		\[ P = Q\diag(\sg_1, \sg_2)Q^{T} = \pms{4.04 & -0.28 \\ -0.28 & 5.96} \quad P\op \approx \pms{0.248 & 0.012 \\ 0.112 & 0.168} \quad U = AP\op = \pms{2.93 & 2.99 \\ -5.49 & 2.93} \]
+		סה''כ: 
+		\[ A = UP = \ \underbrace{\!\pms{2.93 & 2.99 \\ -5.49 & 2.93}\!}_{U}\ \underbrace{\!\pms{4.04 & -0.28 \\ -0.28 & 5.96}\!}_{P}\  \]
+		\item 
+		\[ A = \pms{-1 & 3 \sqrt 3 \\ 5 \sqrt 3 & 7} \]
+		נתחיל מלמצוא את $AA^*$: 
+		\[ AA^* = \pms{28 & 16 \sqrt 3 \\ 16 \sqrt 3 & 76} \quad \det(Ix - AA^*) = (x - 28)(x - 76) - 16^{2}\sqrt{3} = (x \underbrace{- 52 - 8\sqrt{21}}_{-\ag})(x \underbrace{-52 + 8\sqrt{21}}_{-\bg}) \]
+		נמצא להנאתנו את המ''וים: 
+		\[ \nc(AA^* - \ag I) \approx \nc\pms{60.66 & 27.71 \\ 21.71 & -12.66.66} \implies V_{\ag} \approx \Sp\pms{60.66 \\ 27.71} \]
+		\[ \nc(AA^* - \bg I) \approx \nc\pms{12.66 & 27.71 \\ 27.71 & 60.66} \implies V_{\bg} \approx \Sp\pms{12.66 \\ -27.71} \]
+		ממשפט הפירוק הספקטרלי (אפשר גם לוודא ידנית ולראות שהמכפלה הפנימית יוצאת בערך $0.1115$) המ''וים העצמיים אורתוגונליים, ומכאן מטריצת המעבר: 
+		\[ Q = \pms{60.66 & 12.66 \\ -27.71 & -27.71} \rrr{\text{normalization}} \pms{0.42 & 0.91 \\ 0.91 & -0.41} \]
+		נתבונן בערכים הסינגולריים $\sg_1 = \sqrt{\ag} \approx 9.36$ וכן $\sg_2 = \sqrt{\bg} \approx 3.77$. נגדיר $P = Q\diag(\sg_1, \sg_2)Q^T$ וכן $U = AP\op$. נחשב: 
+		\[ P = \pms{3.945 & 2.54 \\ 2.54 & 8.22} \quad P\op = \pms{0.32 & -0.01 \\ -0.01 &  0.15} \quad U = AP\op = \pms{-1, & 5.12 \\ 8.6 & 7} \]
+		נסכם:
+		\[ A = \ \underbrace{\!\!\pms{-1, & 5.12 \\ 8.6 & 7}\!\!}_{U}\ \underbrace{\!\!\pms{3.945 & 2.54 \\ 2.54 & 8.22}\!\!}_{P} \ \]
+		
+	\end{enumerate}
+	
+	\section{}
+	תהי $N \in M_n(\R) \subseteq M_n(\C)$ נורמאלית, הפיכה וממשית. בהינתן לכסון אוניטרי של $N$ באמצעות מטריצת מעבר $Q$ אוניטרית וע''עים $\lg_1 \dots \lg_n$ מרוכבים, נמצא את הפירוק הפולארי של $N$. 
+	\begin{proof}
+		נגדיר $\Lg = \diag(\lg_1 \dots \lg_n)$. ידוע $N = Q^*NQ$. עבור $\lg_i$ נוכל לפרק פולארית $\lg_i = r_ie^{i\ta_i}$ עבור $\ta_i, r_i \in \R$ כלשהם. נגדיר $U = \diag(e^{i\ta_1} \dots e^{i\ta_n})$, ונבחין ש־$U$ אוניטרית. עוד נגדיר $\sof{\Lg} = \diag(\sof \lg_1 \dots \sof \lg_n)$. כפל אוניטריות מתחלף ובפרט $UQ^* = Q^*U$. מכאן: 
+		\[ N = Q^*\Lg Q = Q^*\diag(r_1e^{i \ta_1} \dots r_ne^{i\ta_n})Q = Q^* U\sof{\Lg}Q = U (Q^*\sof{\Lg}Q) \]
+		משום ש־$Q^*\sof{\Lg}Q$ מטריצה צמודה לעצמה ומוגדרת חיובית (הע''עים חיוביים), ו־$U$ אוניטרית, מצאנו את הפירוק הדרוש. 
+	\end{proof}
+	\section{}
+	תהי $A \in M_n(\R)$ הפיכה ויהי $A = UP$ פירוק פולארי. נוכיח ש־$A^{2} = U^{2}P^{2}$ פירוק פולארי של $A^{2}$ אמ''מ $A$ נורמאלית. 
+	\begin{proof}
+		\begin{itemize}
+			\item אם $A$ נוראמלית, ו־$A = UP$ פירוק פולארי, נסמן $AA^* = Q^TDQ$ וכן $P = Q^T\sqrt DQ$, והראינו בתרגול ש־$U = AP\op$. בהכרח $A^2(A^2)^* = AAA^*A^* = AA^*AA^* = Q^* D QQ^* D Q = Q^* D^2 Q$. מתקיים:
+			\[ Q^*\sqrt{D^2}Q = Q^*DQ = Q^*\sqrt D Q Q^*\sqrt D Q = (Q^* \sqrt D Q)^{2} = P^{2} \]
+			ומכאן הפירוק הפולארי $A^{2} = U'P'$ מקיים $P' = P^{2}$. עוד נבחין:
+			\[ U' = A^{2}P'\,\!\op = A^{2}(P^{2})\op = A^{2}(P\op)^{2} = (AP\op)^{2} = U^{2} \]
+			כלומר סה''כ $A^{2} = U^{2}P^{2}$. 
+			\item אם $A^{2}  = U^{2}P^{2}$ פירוק פולארי, נוכיח $A$ נוראמלית. מכיוון זה כל השוויונות לעיל נכונים, בכיוון ההפוך. 
+		\end{itemize}
+	\end{proof}
+	
+	\section{}
+	נזכר בהגדרת $A_f$. 
+	\begin{enumerate}[(A)]
+		\item יהי $B = \{v_1 \dots v_n\}$ בסיס וכן $T \co V \to V$ כך ש־$[T]_B = A_f$. נוכיח ש־$T^{i}(v_1) = v_{i + 1}$. \begin{proof}
+			ראשית נוכיח ש־$A_f^{i}e_1 = e_{i + 1}$. לשם כך, נראה ש־$A_fe_i = e_{i + 1}$. זה מתקבל ישירות מהגדרת כפל וקטור במטריצה, שכן לכל $i \neq n$ (ובשאלה הניחו $i < n$) נקבל ש־$A_fe_i$ היא השורה ה־$i$ ב־$A_f$, וערכה הוא $e_{i + 1}$. 
+			נבחין ש־: 
+			\sen \[ [T^{i}v_1]_B = [T^{i}]_B[v_1]_B = [T]_B^{i}e_1 = A_f^{i}e_1 = A_f^{i - 1}e_2 \overbrace{= \cdots =}^{\text{induction}} A_f^{0}e_{i + 1} = e_{i + 1} \implies T^{i}v_i = [e_{i + 1}]_B\op = v_{i + 1} \] \she\envendproof
+			
+			מכאן קיבלנו את הדרוש. 
+		\end{proof}
+		\item נראה ש־$f(T) = 0$. \begin{proof}
+			נסמן ב־$f^{i}$ את הפולינום $f_i := x_n + \sum_{j = i}^{n - 1}a_jx^{j - i}$ (בפרט $f^{0} = f$). באמצעות דטרמיננטה לפי השורה העליונה:
+			\begin{multline*}
+				p_{A_{f^{0}}} = \det(Ix - A_f) = \detms{x & 0 & \cdots & 0 & a_0 \\ 1 & x & \ddots & \vdots & a_1 \\ 0 & \ddots & \ddots & 0 & \vdots \\ \vdots & \ddots & 1 & x & a_{n - 2} \\ 0 & \cdots & 0 & 1 & x + a_{n - 1}}
+				= a_0 \detms{1 & x & 0 & \cdots & 0 \\ 0 & 1 & x & \ddots & \vdots \\ \vdots & \ddots & \ddots & \ddots & 0 \\ 0 & \cdots & 0 & 1 & x \\ 0 & \cdots & 0 & 0 & 1}
+				+ x\detms{x & 0 & \cdots & 0 & a_1 \\ 1 & x & \ddots & \vdots & a_2 \\ 0 & \ddots & \ddots & 0 & \vdots \\ \vdots & \ddots & 1 & x & a_{n - 2} \\ 0 & \cdots & 0 & 1 & x + a_{n - 1}}
+				\\ = a_0 + xp_{A_{f^{1}}} = a_0 + x(a_1 + p_{A_{f^{2}}}) = \cdots = a_0 + x(a_1 + x(a_2 + \cdots x(\detms{x + a_{n - 1}}))) 
+				\\ = a_0 + xa_1 + x^{2}a_2 + \cdots + x^{n - 2}a_{n - 2} + x^{n - 1}(x + a_{n -1}) = a_0 + xa_1 + \cdots + x^{n - 1}a_{n - 1} + x^{n} = f
+			\end{multline*}
+			מכאן שהפולינום האופייני של $A_f$ הוא $f$. ואז ממשפט קיילי המילטון $f(T) = f(A) = 0$ כנדרש. 
+		\end{proof}
+		\item יהי $g(x)$ פולינום וכן $\deg g < n$. נשתמש בסעיף א' כדי להראות ש־$g(T)v_1 \neq 0$ ומכאן ש־$g(T) \neq 0$. \begin{proof}
+			נסמן $g =: \sum_{i = 1}^{m}a_i$. אם $g \neq 0$ לא פולינום האפס (הנחה שלא מניחים בשאלה אבל בבירור צריך להניח אותה), אז $a_1, \dots, a_n$ סקלארים לא טרוויאלים, אזי מסעיף א': 
+			\[ g(T)v_1 = \cl{\sum_{i = 0}^{m}a_iT^{i}}v_1 = \sum_{i = 0}^{m}\cl{a_i \cdot T^{i}v_1} = \sum_{i = 0}^{m}a_iv_{i + 1} \]
+			הביטוי האחרון הוא קומבינציה לינארית לא־טרוויאלית של איברי הבסיס $v_1 \dots v_m$ ומכאן שהיא איננה $0$ (בסיס הוא בת''ל). סה''כ $f(T)v_1 \neq 0$, כלומר $v_1 \neq \ker g(T)$ וסה''כ $\ker g(T) \neq V$ כלומר $g(T) \neq 0$ כנדרש. 
+		\end{proof}
+		\textit{הערה: }מכאן ש־$f$ גם הפולינום המינימלי של $A_f$. 
+	\end{enumerate}
+	
+	\section{}
+	יהי $\F$ שדה ויהי $V$ מ''ו מעל $\F$. תהי $T \co V \to V$ ניל'. 
+	\begin{enumerate}[(A)]
+		\item תהי $I \co V \to V$ העתקת הזהות. יהי $0 \neq \ag \in \F$. נוכיח ש־$\ag I + T$ הפיכה. \begin{proof}
+			ידוע קיום $k \in \N$ כך ש־$A^{k} = 0$. נתבונן ב־$B = \frac{1}{\ag}\sum_{i = 0}^{k - 1}(-\ag)^{i}A^{i}$. נקבל: 
+			\begin{multline*}
+				(T + \ag I)B = (T + \ag I)\frac{1}{\ag}\sum_{i = 0}^{k - 1}(-\ag)^{i}T^{i} = \frac{1}{\ag}\sum_{i = 0}^{k}\cl{\ag I \cdot (-\ag)^{i}T^{i} + (-\ag)^{i +1}T^{i + 1}} \\
+				= \frac{1}{\ag}\sum_{i = 0}^{k}\cl{(-1)^{i}\ag^{i + 1}T^{i} - (-1)^{i}\ag^{i + 1}T^{i + 1}} = \frac{1}{\ag}\cl{\ag I + \cancel{\ag T^{k}}} = \cancel \ag \frac{1}{\cancel \ag}I = I
+			\end{multline*}
+			מכאן שבהכרח $A + \ag I$ הפיכה, שכן $B$ ההופכית שלה. 
+		\end{proof}
+		\item יהי $f \in \F[x]$. נוכיח ש־$f(T)$ הפיך אמ''מ $f(0) \neq 0$. 
+		\begin{proof}
+			\begin{itemize}
+				\item[$\implies$]נניח $f(0) \neq 0$ ונוכיח $f(T)$ הפיך. משום ש־$0$ אינו שורש של $f$, נסיק שקיים איבר חופשי $a_0$ כלשהו. נתבונן ב־$f(T)$, כלומר, ניתן לבטא את $f$ כ־$f = \sum_{i = 0}^{n}a_ix^{i}$ כאשר $a_0 \neq 0$. נבחין שמשום שמרחב הפונקציות הנילפוטנטיות הוא מ''ו, וכן כפל נילפוטנטיות הוא נילפוטנטי, ש־$\sum_{i = 1}^{n}a_iT^{i} =: T'$ ניל'. סה''כ $f(T) = T' + a_0I$ וכן $a_0 \neq 0$ כלומר $f(T)$ הפיכה מסעיף קודם. 
+				\item[$\impliedby$](נוכיח קונטראפוסיטיב) נניח ש־$f(0) = 0$ ונוכיח ש־$f(T)$ איננה הפיכה. במקרה זה, $f(T) = x \cdot g$ עבור $g \in \F[x]$ כלשהו, כלומר $f(T) = T \cdot g(T)$. משום ש־$T$ ניל' היא איננה הפיכה, וממשפט הדרגה $\rk f(T) \le \min\{\rk f(T), \rk T\} < n$ כלומר $f(T)$ איננה הפיכה. 
+			\end{itemize}
+		\end{proof}
+		\item נניח ש־$f(0) \neq 0$ (כלומר $f(T)$ הפיכה). נוכיח קיום $g \in \F[x]$ כך ש־$f(T)g(T) = I$. \begin{proof}
+			ניעזר בסימוני הסעיפים הקודמים. בהינתן $f \in \F[x]$ שמקדמיו $a_0 \dots a_n$. 	ידוע $f(T) = T' + a_0I$ כאשר $T'$ ניל' (מסעיף ב', בכיוון הראשון). עוד ידוע שלמטריצה מצורה זו, ההופכית ניתנת על ידי $\frac{1}{a_0}\sum_{i = 1}^{k - 1}(-a_0)^{i}T'\,\!^{i}$ (כפי שמצאנו בסעיף א'). מכאן שבעבור $g' = \sum_{i = 0}^{n}(-a_0)^{i}T'\,\!^{i}$ מתקיים $I = (T' + a_0I)g'(T') = f(T)g'(T')$. משום ש־$T'$ נתון ע''י הפולינום $h(x) = \sum_{i = 1}^{n}a_i$ (כלומר $h(T) = T'$) הגדרת $g = g' \circ h$ (פולינומים סגורים להרכבה) תותיר אותנו עם: 
+			\[ I = f(T)g'(T') = f(T)g'(h(T)) = f(T)(g' \circ h)(T) = f(T)g(T) \]
+			כנדרש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\ndoc
+	
+\end{document}

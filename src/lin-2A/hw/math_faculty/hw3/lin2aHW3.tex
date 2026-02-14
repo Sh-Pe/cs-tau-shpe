@@ -1,0 +1,212 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+
+\author{שחר פרץ}
+\title{אלגברה לינארית 2א $\sim$ \textit{תרגיל בית 3}}
+\begin{document}
+	\maketitle
+	\section{}
+	יהי $V$ מ''ו מעל $\F$, וכן $U, W \subseteq V$ תמ''וים כך ש־$V = U \oplus W$. תהי $p$ ההטלה על $U$ ביחס לפירוק $V = U \oplus W$. נוכיח ש־$\ker p = W \land \Img p = U$. 
+	\begin{proof}
+		נתבונן בהעתקת הסכום $S \co U \times W \to V$ שהוכח שהיא לינארית. עוד הראינו שמשום ש־$U \cap W = 0$ אז $S$ חח''ע בין מרחבים שווי ממד, ומכאן שהיא הפיכה, וההופכית שלה $D_{U, W}$ מוגדרת היטב ומשרה את ההיטל $p_U$ שמוגדר היטב גם הוא. 
+		
+		נפנה להוכיח את הדרוש מההיטל. יהי $w \in W$, נראה $p_U(w) = 0$. נפרק את $w$ לחלק ב־$W$ וחלק ב־$U$ (קיים ויחיד מהגדרת סכום ישר), ונקבל $w = w_w + u_w$. בהכרח $u_w = 0$ שכן $w_w, w \in W$ ומסגירות $U \ni u_w = w - w_w \in W$ ומחיתוך ריק $u_w = 0$. אז: 
+		\[ D_{U, W}(w) = (u_w, w_w) \implies p_U(w) = (\pi_1 \circ D_{U, W})(w) = u_w = 0 \implies w \in \ker p_U \]
+		כלומר $W = \ker p$ כדרוש. עתה נראה ש־$\Img p = U$. יהי $u \in U$. אז נתבונן בפירוק $u = u_u, w_u$ כך ש־$u_u \in U, w_u \in W$ כך ש־$u = S(u_u, w_u) = u_u + w_u$. מטעמים זהים לאילו לעיל $w_u = 0$ כלומר $u = u_u$. אז: 
+		\[ p_U(u) = (\pi_1 \circ D_{U, W})(u) = \pi_1(D_{U, W}(v)) =\pi_1((u_u, w_u))= u_u = u \]
+		ומכאן שמצאנו $x \in V$ כך ש־$p_U(x) = u$ (הוא $x = u$) אזי $\Img p = U$ כנדרש. 
+	\end{proof}
+	
+	\section{}
+	יהי $U = \Sp((1, 2)) \subseteq \R^{2}$. 
+	\begin{enumerate}[(A)]
+		\item נמצא ביטוי מפורש להטלה האורתוגונלית על $U$. 
+		
+		הראינו בשאלה 8 נוסחה מפורשת להטלה אורתוגונלית. במקרה הזה, נקבל שבעבור $v = (x, y) \in \R^{2}$, מתקבל: 
+		\[ p_U(v) = p_U(x, y) = (v \cdot (2, 1)) (2, 1) = (2x + y)(2, 1) = \pms{4x + 2y \\ 2x + y} \]
+		סה''כ סיימנו. 
+		\item נבחר $W \neq U\ort$ כך ש־$\R^{2} = U \oplus W$. נמצא ביטוי מפורש ל־$p_U$ ביחס לפירוק $U \oplus W$. 
+		
+		נבחר $W = \Sp(0, 1)$. ואכן מתקיים $(2, 1), (0, 1)$ לא נבדלים בכפל בקבוע, ולכן לא תלויים לינארית, אזי מגדירים בסיס ל־$\R^{2}$, כלומר $W \oplus U = \R^{2}$. עוד נבחין $(0, 1) \cdot (1, 2) = 2 \neq 0$ כלומר $(0, 1) \not\perp (1, 2)$ דהיינו $(0, 1) \notin U\ort$. 
+		
+		עתה כשמצאנו $W$ מתאים, נפנה למציאת ההיטל הלא אורתוגונלי. בהינתן וקטור $v = (x, y)$, נבחין ש־: 
+		\[ v = \pms{x \\ y} = \pms{x \cdot 1 \\ 2 \cdot x - 2 \cdot x + 1 \cdot y} = x\pms{1 \\ 2} + (-2x + y)\pms{0 \\ 1} \implies [v]_B = (x, y - 2x) \]
+		כאשר $B = ((1, 2), (0, 1))$. מאיך שהגדרנו את ההיטל, $p_W(v)$ הוא החלק של $W$ בבסיס, כלומר: 
+		\[ p_W(v) = (y - 2x)\pms{0 \\1} = \pms{0 \\ y - 2x} \]
+		כדרוש. 
+	\end{enumerate}
+	
+	\section{}
+	יהי $U \subseteq \R^{n}$ תמ''ו. נוכיח ש־$(U\ort)\ort  = U$. 
+	\begin{proof}
+		נוכיח את השוויון באמצעות הכלה אחת ושוויון ממדים. 
+		\begin{itemize}
+			\item \textbf{הכלה: }יהי $u \in U$. נראה ש־$u \in (U \ort)\ort$. ידוע $\forall v \in U \ort \co u \cdot v = 0$. מסימטריות של מכפלה סקלרית ומהגדרה $u \in (U \ort)\ort$. אזי $U \subseteq (U\ort)\ort$. ז
+			\item \textbf{שוויון ממדים: }ידוע $\dim U + \dim U\ort = \dim \R^{n} = \dim U\ort + \dim (U \ort)\ort$, כי $U \oplus U \ort = U \ort \oplus (U \ort)\ort = \R^{n}$. מכאן $\dim U = \dim (U \ort)\ort$. 
+		\end{itemize}
+		סה''כ $U, (U \ort)\ort$ שאחד מהם מוכל בשני ושווי ממד, ולכן שווים. 
+	\end{proof}
+	
+	\section{}
+	יהיו $U, W \subseteq \R^{n}$ כך ש־$\R^{n} = U \oplus W$. נוכיח ש־$\R^{n} = U \ort \oplus W \ort$. 
+	\begin{proof}
+		למה: בהינתן $U, W$ מרחבים כלשהם, $(U + W)\ort = U \ort \cap W \ort$ (למעשה מתקיים שוויון חזק).
+		\begin{itemize}
+			\item[$\subseteq$]יהי $v \in (U + W)\ort$. נתבונן ב־$u \in U$, אז $u \in U + W$ ואז $v \perp u$, כלומר $u \in U \ort$. יהי $w \in W$, אז $w \in U + W$, ואז $v \perp w$, כלומר $u \in W\ort$, אזי $u \in W\ort \cap U \ort$ וסיימנו. 
+			\item[$\supseteq$]יהי $v \in U \ort \cap W \ort$. יהי $v \in U + W$. יהי $x \in U + W$. בהכרח ניתן לפרק (אך לא בהכרח באופן יחיד) את $x$ לכדי $x = u + w, \ u \in U \land w \in W$. נקבל $x \cdot v = (u + w) \cdot v = v \cdot u + v \cdot w$. בגלל ש־$v \perp w \land v \perp u$ אז סה''כ נקבל $x \cdot v = 0$ כלומר $x \perp v$ אזי $x \in (U + W)\perp$ וסיימנו. 
+		\end{itemize}
+		הראינו את ההכלה הדו־כיוונית. נפנה להוכחת המשפט. יהיו $U, W \subseteq \R^{n}$ כך ש־$\R^{n} = U \oplus W$. 		
+		\begin{itemize}
+			\item \textbf{חיתוך ריק: }ידוע $U \cap W = 0$. נראה ש־$U \ort \cap W \ort = 0$. ידוע: 
+			\[ U \ort \cap W \ort = (U + W)\ort = (\R^{n})\ort \overset{(1)}{=} \{0\} \]
+			כאשר $(1)$ הוכח בשיעורי הבית הקודמים. 
+			\item \textbf{שוויון ממדים: }
+			\[ \begin{cases}
+				U \oplus U \ort = \R^{n} &\ \dequad\implies \dim U + \dim U \ort = \dim \R^{n} = n \implies \dim U \ort = n - \dim U \\
+				V \oplus V \ort = \R^{n} &\ \dequad\implies \dim V + \dim V\ort = \dim \R^{n} = n \implies \dim V \ort = n - \dim V \\
+				U \oplus V = \R^{n} &\ \dequad\implies \dim U + \dim V = n
+			\end{cases} \]
+			בשלב הזה כבר $U\ort \oplus V \ort$ מוגדר היטב שכן הראינו שהסכום אכן ישר. מכאן ש־: 
+			\[ \dim(U \ort \oplus V \ort) = \dim U \ort + \dim V \ort = n - \dim U + n - \dim V = 2n - \underbrace{(\dim V + \dim U)}_{n} = n = \dim \R^{n} \]
+			סה''כ מטרנזטיביות $\dim(U \ort \oplus V \ort) = \dim(\R^{n})$. 
+			\item \textbf{הכלה: }מהגדרה $U \ort, V \ort \subseteq \R^{n}$. 
+		\end{itemize}
+		סה''כ ממשפט בלינארית 1 נקבל $V = U \ort \oplus V \ort$ כדרוש. 
+	\end{proof}
+	
+	\section{}
+	נתבונן בוקטורים הבאים: 
+	\[ v_1 = \pms{1 \\2 \\ 0}, \ v_2 = \pms{0 \\ 1 \\ 1}, \ v_3 = \pms{-1 \\ -1 \\ 1} \in \R^{3} \]
+	הנתונים בקבוצה $S = (v_1, v_2, v_3)$. 
+	\begin{enumerate}[(A)]
+		\item נמצא את מטריצת הגרם של $S$, היא $G(S)$, ונבדוק האם היא הפיכה. 
+		\[ [S] = \pms{1 & 0 & -1 \\ 2 & 1 & -1 \\ 0 & 1 & 1}, \quad G(S) = [S]^{T}[S] = \pms{5 & 2 & -3 \\ 
+			2 & 2 & 0 \\ 
+			-3 & 0 & 3 \\ 
+		} \]
+		
+		\begin{gather*}\tomat \pms{5 & 2 & -3 \\ 
+				2 & 2 & 0 \\ 
+				-3 & 0 & 3 \\ 
+			} \rrr{R_1 \to \frac{1}{5}R_1} \pms{1 & \frac{2}{5} & \frac{3}{-5} \\ 
+				2 & 2 & 0 \\ 
+				-3 & 0 & 3 \\ 
+			} \rrt{R_2 \to R_2 - 2R_1}{R_3 \to R_3 + 3R_1} \pms{1 & \frac{2}{5} & \frac{3}{-5} \\ 
+				0 & \frac{6}{5} & \frac{6}{5} \\ 
+				0 & \frac{6}{5} & \frac{6}{5} \\ 
+			} \\\rrr{R_2 \to \frac{5}{6}R_2} \pms{1 & \frac{2}{5} & \frac{3}{-5} \\ 
+				0 & 1 & 1 \\ 
+				0 & \frac{6}{5} & \frac{6}{5} \\ 
+			} \rrr{R_3 \to R_3 - \frac{6}{5} R_2} \pms{1 & \frac{2}{5} & \frac{3}{-5} \\ 
+				0 & 1 & 1 \\ 
+				0 & 0 & 0 \\ 
+			} \end{gather*}
+		יש כאן שורת אפסים ומכאן ש־$G(S)$ איננה הפיכה, כלומר גם $[S]$ איננה הפיכה ו־$S$ ת''ל. 
+	
+		\item יהי $U = \Sp S$. נמצא בסיס $S'$ של $U$, וניעזר ב־$G(S')$ כדי לחשב את הפירוק האורתוגונלי של $(0, 0, 1)$ ביחס ל־$U$. 
+		
+		נתבונן ב־$[S]^{T}$ ונדרגה. זאת כי דירוג לא משנה מרחב שורות. 
+		\begin{gather*}[S]^{T} = \pms{1 & 2 & 0 \\ 
+				0 & 1 & 1 \\ 
+				-1 & -1 & 1 \\ 
+			} \rrr{R_3 \to R_3 + R_1} \pms{1 & 2 & 0 \\ 
+				0 & 1 & 1 \\ 
+				0 & 1 & 1 \\ 
+			} \rrr{R_3 \to R_3 - R_2} \pms{1 & 2 & 0 \\ 
+				0 & 1 & 1 \\ 
+				0 & 0 & 0 \\ 
+			} \rrr{R_1 \to R_1 - 2 R_2} \pms{1 & 0 & -2 \\ 
+				0 & 1 & 1 \\ 
+				0 & 0 & 0 \\ 
+			} \\ S' = \ccb{\pms{1 \\ 0 \\ -2}, \pms{0 \\ 1 \\ 1}}\end{gather*}
+		מכאן ש־$S'$ בסיס ל־$U$. עתה נחשב את $G(S')$: 
+		\[ G(S') = [S']^T[S'] = \pms{1 & 0 & -2 \\ 0 & 1 & 1}\cdot\pms{1 & 0 \\ 0 & 1 \\ -2 & 1} = \pms{5 & -2 \\ -2 & 2} \]
+		נמצא את ההופכית שלה. לאחר ביצוע אלגוריתם גאוס על דף, נקבל: 
+		\[ G(S')\op = \pms{\frac{1}{3} & \frac{1}{3} \\ \frac{1}{3} & \frac{5}{6}} = \frac{1}{6}\pms{2 & 2 \\ 2 & 5} \]
+		לפי משפט מהתרגול $[p_U(v)]_{'S} = G(S')\op [S']^{T}v$. נקבל: 
+		\[ [p_U(v)]_{S'} = G(S')\op [S']^{T}v = \frac{1}{6}\pms{2 & 2 \\ 2 & 5}\pms{1 & 0 & -2 \\ 0 & 1 & 1}v = \frac{1}{6}\pms{2 & 2 & -2 \\ 2 & 5 & 1}v \]
+		בפרט, עבור $v = (0, 0, 1)$ שהתבקשנו לחשב את ההיטל האורתוגונלי שלו על $U$ בתרגיל: 
+		\[ [p_U(v)]_{S'} = \frac{1}{6}\pms{2 & 2 & -2 \\ 2 & 5 & 1}\pms{0 \\ 0 \\ 1} = \frac{1}{6}\pms{-2 \\ 1} \implies p_U(v) = \frac{1}{6}(-2S_1 + 1S_2) = -\frac{2}{6}\pms{1 \\ 0 \\ -2} + \frac{1}{6}\pms{0 \\ 1 \\ 1} = \pms{-\frac{2}{6} \\ \frac{1}{6} \\ \frac{5}{6}} \]
+		וסיימנו. 
+		
+	\end{enumerate}
+	
+	\section{}
+	
+	יהי $V$ מ''ו מעל $\F$ ויהי $p \co V \to V$ העתקה לינארית כך ש־$p^{2} = p$. 
+	\begin{enumerate}[(A)]
+		\item נראה ש־$V = \Img p \oplus \ker p$. \begin{proof}\,
+			\begin{itemize}
+				\item \textbf{חיתוך ריק: }יהי $v \in \Img p \cap \ker p$. אז $p(v) = 0$ וכן קיים $u \in \R^{n} = \dom p$ כך ש־$p(u) = v$. מתקיים: 
+				\[ v \eqdef p(u) \overset{p^2 = p}{=} p^2(u) = p(p(u)) \overset{p(u) = v}{=} p(v) \overset{v \in \ker p}{=} 0 \]
+				כלומר $v = 0$ ואכן $\Img p \cap \ker p = \{0\}$ כדרוש. 
+				\item \textbf{שוויון ממדים: }ממשפט הממדים להעתקות של לינארית 1א ראינו ש־$\dim V = \dim \Img p + \dim \ker p$ לכל $p$ לינארית. 
+				\item \textbf{הכלה: }מהגדרה $\Img p, \ker p \subseteq V$. 
+			\end{itemize}
+			סה''כ $V = \Img p \oplus \ker p$ כדרוש. 
+		\end{proof}
+		
+		\item נראה ש־$p$ היא ההטלה על התמ''ו $\Img p$ ביחס לפירוק $V = \Img p \oplus \ker p$. \begin{proof}
+			יהי $v \in V$ ומהגדרת סכום ישר ניתן למצוא באופן יחיד $u \in \Img p, w \in \ker p$ כך ש־$v =u + w$.  
+			($S\op$ קיימת כי הסכום ישר) אז: 
+			\[ S(u, w) = v \implies D_{U, W} := S\op(v) = (u, w) \implies (\pi_1 \circ S\op) = p_U \]
+			כלומר, כדי להראות ש־$p = p_U$, נוכל להראות ש־$p = (\pi_1 \circ S\op)$. ואכן, בגלל ש־$p(w) = 0$ כי $w \in \ker p$: 
+			\[ p(p(v)) = p^2(v) = p(v) = p(u) + \underbrace{p(w)}_{\mathclap{0}} = p(u) \]
+			תחת הצמצום $p|_{\Img p}$ ההעתקה $p$ בהכרח חח''ע כי $p(\Img p) = \Img p$ (כי אחרת קיים $0 \neq v \in \Img p$ כך ש־$p(v) = 0$ ואז $v \in \Img p \cap \ker p$ וסתירה) ומכאן ש־$p(v) = u$ (מחד־חד ערכיות $p_{|\Img p}$). אז: 
+			\[ \forall v \in \R^{n} \co p(v) = u = \pi_1((u, w)) = \pi_1(S\op(v))\implies p = p_U \quad \top \]
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהיו $U, W \subseteq \R^{n}$ תמ''וים כך ש־$\R^{n} = U \oplus W$ ואכן $p \co \R^{n} \to U$ היטל על $U$ ביחס לאותו הפירוק. 
+	
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$p$ היטל אורתוגונלי אמ''מ $\forall v_1, v_2 \in \R^{n} \co p(v_1) \cdot v_2 = v_1 \cdot p(v_2)$. \begin{proof}\,
+			\begin{itemize}
+				\item[$\impliedby$] אם $p$ היטל אורתוגונלי, אז $W = U \ort$, ואז $v_1 = u_1 + w_1, v_2 = u_2, w_2$ כך ש־$u_1, u_2 \in U \land w_1, w_2 \in W$ באופן יחיד, וכן $p(v_1) = u_1, p(v_2) = u_2$. נקבל: 
+				\begin{gather*}
+					p(v_1) \cdot v_2 = u_1 \cdot(u_2 + w_2) = u_1 \cdot u_2 + \overbrace{u_1 \cdot w_2}^{0} = u_1 \cdot u_2 \\
+					v_1 \cdot p(v_2) = (u_1 + w_1) \cdot u_2 = u_1 \cdot u_2 + \underbrace{w_1 \cdot u_2}_{0} = u_1 \cdot u_2
+				\end{gather*}
+				כלומר $p(v_1) \cdot v_2 = v_1 \cdot p(v_2)$ כדרוש. 
+				\item[$\implies$]נניח ש־$\forall v_1, v_2 \in \R^{n} \co p(v_1) \cdot v_2 = v_1 \cdot p(v_2)$, ונוכיח ש־$p$ היטל אורתוגונלי. באופן דומה גם כאן נפרק $v_1 = u_1 + w_1, v_2 = u_2 + w_2$ כך ש־$u_1, u_2 \in U \land w_1, w_2 \in W$. באופן דומה:
+				\[ 	
+				u_1 \cdot u_2 + w_1 \cdot u_2  = (u_1 + w_1) \cdot u_2 = v_1 \cdot p(v_2) = p(v_1) \cdot v_2 = u_1 \cdot(u_2 + w_2) = u_1 \cdot u_2 + u_1 \cdot w_2
+				 \]
+				 נחסר אגפים ונקבל $w_1 \cdot u_2 = u_1 \cdot w_2$ לכל $v_1, v_2$ כלשהם. בהינתן $w_3 = 2w_2$ ו־$v_3 = v_2 + w_3$, נקבל את השוויון $w_1 \cdot u_2 = u_1 \cdot w_3$. מטרנזטיביות:
+				\[ 2(u_1 \cdot w_2) = u_1 \cdot (2w_2) = u_1 \cdot w_3 = u_1 \cdot w_2 \]
+				נניח בשלילה $u_1 \cdot w_2 \neq 0$ אז נחלק אגפים ונקבל $2 = 1$ וסתירה. לכן בהכרח, לכל $v_1, v_2 \in \R^{n}$ כלשהם, ה־$u_1, u_2, w_1, w_2$ שהם משרים מקיימים $u_1 \cdot w_2 = u_2 \cdot w_1 = 0$. 
+				
+				נפנה להוכחת הטענה ש־$p$ היטל אורתוגונלי ישירות. למעשה צ.ל. $W = U \ort$. ואכן, יהי $w \in W$ ו־$u \in U$, עבור $v = u + w$ מתקיים $u \cdot w = 0$ שכן $v$ משרה $u_1 = u_2 = u, w_1 = w_2 = w$, וסיימנו. 
+			\end{itemize}\envendproof
+		\end{proof}
+		\item עתה נראה שאם $p$ היטל אורתוגונלי, אז $\forall u \in U,\, \forall v \in \R^{n} \co u \cdot v = u \cdot p(v)$. \begin{proof}
+			ידוע $p(u) = u$ שכן $u \in U$ ו־$p$ היטל על $U$. מהיותה היטל אורתוגונלי, המשפט מהסעיף הקודם תקף, ואז: 
+			\[ u \cdot v = p(u) \cdot v = u \cdot p(v) \]
+			כנדרש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהי $u_1 \dots u_k \subset \R^{n}$ סדרה אורתונורמלית ואכן $U = \Sp(u_1 \dots u_k)$ תמ''ו. 
+	\begin{enumerate}[(A)]
+		\item יהי $v \in \R^{n}$, נגדיר $u = \sumik (v \cdot u_i)u_i$. נוכיח ש־$\forall m \in [k] \co u_m \perp v -u$. \begin{proof}
+			נבחין ש־$u_i \cdot u_j = \dg_{ij}$ כי מהיות $u_1 \dots u_k$ אורתונורמלי, אם $i \neq j$ אז $u_i \perp u_j$, אחרת $i = j$ ואז $u_i \cdot u_j = \norm{u_i}^{2} = 1$. נתחיל מלהתבונן במכפלה $u_m \cdot u$: 
+			\[ u_m \cdot u = {u_m \cdot \sumiko (v \cdot u_i)u_i} = \sumiko u_m \cdot ((v \cdot u_i) u_i) = \sumiko (v \cdot u_i) \cdot \underbrace{(u_i \cdot u_m)}_{\dg_{im}} \overset{(1)}{=} (v \cdot u_m) \]
+			כאשר השוויון $(1)$ נכון, כי $\dg_{im} = 1$ אמ''מ $i = m$, אחרת $\dg_{im} = 0$, ולכן כל האיברים בסכום שאינם $m$ יתבטלו. 
+			
+			נתבונן בכפל $u_m \cdot (v - u)$: 
+			\[ u_m \cdot (v - u) = u_m \cdot v - u_m \cdot u = u_m \cdot v - u_m \cdot v = 0 \]
+			כלומר $u_m \perp (v - u)$ כדרוש. 
+		\end{proof}
+		\item נסיק כי ההטלה האורתונורמלית על $U$ נתונה ע''י $p_U(v) = \sumiko (v \cdot u_i)u_i$. \begin{proof}
+			בגלל ש־$u_1 \dots u_k$ בסיס אורתונורמלי ל־$U$, אז $U\ort = (u_1 \dots u_k)\ort$ (טענה משיעורי הבית הקודמים). הראינו ש־$v - u \in (u_1 \dots u_k)\ort = U\ort$. נסמן $w = v - u$, ואז נבחין ש־$u \in U \land w \in U\ort$, וגם $v = v - u + u = w + u$! כלומר, לפי הגדרה, $p_U(v) = u$ לכל $v \in V$, אזי, מהגדרת $u$: 
+			\[ \forall v \in V \co p_U(v) = \sumiko (v \cdot u_i)u_i \]
+			כדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	
+	\ndoc
+\end{document}
