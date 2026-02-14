@@ -143,7 +143,7 @@
 			\begin{enumerate}
 				\item \hfil $\displaystyle \limsi (a_n + b_n) = \ml + m$
 				\item \hfil $\displaystyle \forall \ag \in \R \co \limsi (\ag a_n) = a \ml$
-				\item \hfil $\displaystyle \limsi a_n b_n = \ml \cdot m$
+				\item \hfil $\displaystyle \climsi a_n b_n = \ml \cdot m$
 				\item \hfil $\displaystyle m \neq 0 \implies \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad(\exists N \in \N.\, \forall n \ge N\co b_n \neq 0) \land \cl{\limsi \frac{a_n}{b_n} = \frac{\ml}{m}}$
 		\end{enumerate}}
 		\defi{תהא $\an$ סדרה. נאמר כי $\an$ שואפת ל־$+\inft$ כאשר: \hfill $\forall M > 0.\, \exists N \in \N.\, \forall n \ge N \co a_n > M$}
@@ -151,14 +151,14 @@
 		\theo{תהיינה $\an, \bn$ סדרות. נניח $\limasi = +\inft \land \limbsi b_n = + \inft$. אז $\limsi a_n + b_n = + \inft$}
 		\theo{תהא $\an$ סדרה, יהי $\ml \in \R$. אם $\limasi = \ml$ אז $\limsi \sof{a_n} = \sof \ml$. }
 		\begin{Theorem}
-			תהאנה $\an, \bn, \cn$ סדרות. נניח כי־:
+			תהאנה $\an, \bn, \cn$ סדרות. נניח:
 			\begin{enumerate}
 				\item \hfil $\exists N \in \N .\,\forall n \ge N \co a_n \le c_n \le b_n$
 				\item \hfil $\displaystyle \limasi = \ml  = \limbsi$
 			\end{enumerate}
 			אז $\limsi c_n = \ml$
 		\end{Theorem}
-		\theo{תהנא $\an, \bn$ סדרות. יהיו $\ml, m \in \R$. נניח כי:
+		\theo{תהנא $\an, \bn$ סדרות. יהיו $\ml, m \in \R$. נניח:
 			\begin{enumerate}[(1)]
 				\item לכל $n \in \N$, מתקיים $\an < \bn$. (\textit{הערה: }מספיק גם אם החל מ־$N$ כלשהו התנאי הזה מתקיים)
 				\item מתקיים $\limasi = \ml$
@@ -296,10 +296,18 @@
 			מתכנס.
 		\end{Theorem}
 		\begin{Theorem}[קריטריון אבל להתכנסות]
-			תהאנה $\an, \bn$ סדרות. נניח כי:
+			תהאנה $\an, \bn$ סדרות. נניח:
 			\begin{enumerate}
-				\item $\bn$ מונוטונית (יורדת) (אבל לא בהכרח גבול $0$).
+				\item $\bn$ מונוטונית וחסומה (אבל לא בהכרח מתכנסת ל־$0$).
 				\item נניח $\sumninf a_n$ מתכנס.
+			\end{enumerate}
+			אז $\sumninf a_n b_n$ מתכנס.
+		\end{Theorem}
+		\begin{Theorem}[קריטריון דיריכלה להתכנסות]
+			תהאנה $\an, \bn$ סדרות. נניח:
+			\begin{enumerate}
+				\item $\bn$ מונוטונית וגבולה $0$.
+				\item סדרת הסכומים החלקיים המתאימה ל־$\an$ חסומה (אבל לא בהכרח מתכנסת).
 			\end{enumerate}
 			אז $\sumninf a_n b_n$ מתכנס.
 		\end{Theorem}
@@ -311,15 +319,6 @@
 		\begin{align*}
 			\sumnko k = \binom{n}{2} && \sumnko k^{2} = \frac{n(n + 1)(2n + 1)}{6}
 		\end{align*}}
-		\begin{Theorem}[קריטריון דיריכלה להתכנסות]
-			תהאנה $\an, \bn$ סדרות. 
-			\begin{enumerate}
-				\item $\bn$ מונוטונית (יורדת) וגבולה $0$.
-				\item סדרת הסכומים החלקיים המתאימה ל־$\an$ חסומה (אבל לא בהכרח מתכנסת).
-			\end{enumerate}
-			אז $\sumninf a_n b_n$ מתכנס.
-		\end{Theorem}
-		
 		\theo{תהא $\an$ סדרה, נניח כי הטור $\sumninf$ מתכנס, אז לכל השמה של סוגריים על הסכום, הטור החדש מתכנס.}
 		
 		\theo{לכל $\an$ סדרה, ונניח כי קיימת השמה של סוגריים שבה:
@@ -329,7 +328,6 @@
 			\end{itemize}
 			השמת הסוגריים לא תשנה את הגבול. }
 		\theo{תהא $\an$ סדרה מתכנסת. אז לכל $\sg \co \N_+ \to \N_+$, אז $\hat \ps(a_{\sg(n)}) = \hat\ps(a_n)$. }
-		\theo{תהא $\an$ חיובית. נניח ש־$\sumninf a_n$ מתכנס. אז כל תמורה של הגבול מתכנסת לאותו הגבול. }
 		\theo{תהא $\an$ סדרה. נניח כי $\sumninf a_n$ מתכנס בהחלט. אז לכל תמורה $\sg$ של $a_n$, הטור המתאים מתכנס לאותו הסכום. }
 		\begin{Theorem}[משפט רימן]
 			תהא $\an$ סדרה. נניח כי הטור $\sumninf a_n$ מתכנס בתנאי. אז לכל $-\infty \le \ag \le \bg \le + \infty$ (במובן הרחב) קיימת תמורה $\sg \co \N_+ \to \N_+$ כך ש־$S_n$ סדרת הסכומים החלקיים של $a_{\sg(n)}$, מקיימת:
@@ -403,7 +401,7 @@
 				\item אם קיימת סביבה של $x_0$, כל שלכל $x$ בה $f(x) \le g(x)$ אז $\ml \le m$.
 				\item אם $\ml < m$, אז קיימת סביבה נקובה של $x_0$ שבה לכל $x$ בה $f(x) < g(x)$.
 		\end{enumerate}}
-		\theo{תהאנה $f \co A \subseteq \R\to B \subseteq \R, \ g \co B \to \R$. תהא \lxo. יהיו $y_0, \ml \in \R$. 	נניח כי:
+		\theo{תהאנה $f \co A \subseteq \R\to B \subseteq \R, \ g \co B \to \R$. תהא \lxo. יהיו $y_0, \ml \in \R$. 	נניח:
 			\begin{enumerate}
 				\item $\limxo f(x) = y_0$
 				\item קיימת סביבה נקובה של $x_0$ שבה לכל $f(x) \neq y_0$.
@@ -492,7 +490,7 @@
 		
 		
 		\defi{בהינתן $f \co I \to \R$, וכן $x_0 \in I$ בפנים הקטע (איננה נקודת קצה). נאמר ש־$f$ \textit{גזירה ב־$x_0$} כאשר קיים וסופי הגבול $\limxz \frac{f(x) - f(x_0)}{x - x_0}$. }
-		\noti{בהנחה שהגבול ב־$x_0$ של הפונקציה $f$ קיים, נסמן $\frac{\dd f}{\dx}(x_0)$ או $f'(x_0)$. }
+		\noti{בהנחה שהגבול לעיל ב־$x_0$ של הפונקציה $f$ קיים, נסמן $\frac{\dd f}{\dx}(x_0)$ או $f'(x_0)$. }
 		\theo{$f$ גזירה ב־$x_0$ אמ''מ קיים וסופי:
 			\[ \lim_{h \to 0}\frac{f(x_0 + h) - f(x_0)}{h} \]}
 		\defi{תהי $f \co I \to \R$ וכן $x_0 \in I$ בפנים הקטע. $f$ תקרא \textit{דיפרנציאבילית} ב־$x_0$ כאשר קיימת העתקה לינארית $T \co \R\to \R$ המקיימת שהגבול $\limxz \frac{f(x) - f(x_0) - T(x - x_0)}{x - x_0} = 0$. }
@@ -500,7 +498,7 @@
 		\theo{תהי $f \co I \to \R$ ותהי $x_0 \in I$ בפנים הקטע. אם $f$ גזירה ב־$x_0$ אז $f$ רציפה ב־$x_0$. }
 		
 		\defi{תהא $f \co  I \to \R$ ותהא $x_0 \in I$ המקיימת $\exists \dg > 0 \co (x_0 - \dg, x_0) \subseteq I$. אז נאמר שנאמר ש־$f$ \textit{גזירה משמאל ב־$x_0$} כאשר קיים וסופי הגבול $\lim_{x \to x_0^{-}} \frac{f(x) - f(x_0)}{x - x_0}$. }
-		\defi{\textit{נגזרת מימין} מוגדרת באופן דומה}
+		\defi{\textit{נגזרת/גזירה מימין} מוגדרת באופן דומה. }
 		\noti{נסמן את הגזירה משמאל ב־$f_-'(x_0)$ ומימין $f_+'(x_0)$. }	
 		\theo{יהיו $f, g \co I \to \R$ ותהי $x_0 \in I$ בפנים הקטע. נניח ש־$f, g$ גזירות ב־$x_0$. אז:
 			\begin{itemize}
@@ -552,16 +550,20 @@
 		\end{enumerate}
 		\theo{מתקיים:
 			\[ \limxz \frac{R_n(x)}{(x - x_0)^{n}} = 0 \]}
-		\cola{תהא $f \co I \to \R$ ותהא $x_0 \in I$. יהי $n \in \N$ ונניח ש־$f$ גזירה $n$ פעמים ב־$x_0$. אז קיימת $\wg \co I \to \R$ המקיימת $\wg(x_0) = 0$ ו־$\wg$ רציפה בנקודה $x_0$, וגם:
-			\[ R_n(x) = \wg(x)(x - x_0)^{n} \]}
+		\begin{Collary}[שארית בצורת פאנו]
+			תהא $f \co I \to \R$ ותהא $x_0 \in I$. יהי $n \in \N$ ונניח ש־$f$ גזירה $n$ פעמים ב־$x_0$. אז קיימת $\wg \co I \to \R$ המקיימת $\wg(x_0) = 0$ ו־$\wg$ רציפה בנקודה $x_0$, וגם:
+			\[ R_n(x) = \wg(x)(x - x_0)^{n} \]
+		\end{Collary}
 		\lem{בהינתן $f, g \co A \to \R$ וכן $x_0$ נקודת הצטברות של $A$, אם $\limxz f(x) = \ml > 0$ וגם $\limxz g(x) = m$ אז מתקיים $\limxz (f(x))^{g(x)} = \ml^{m}$. }
 		\theo{תהא $f(x) \co I \to \R$ גזירה פעמיים ב־$x_0 \in I$ (בפנים הקטע). נניח כי $f'(x_0) = 0$. אם $f''(x_0) > 0$ אז $x_0$ מינימום. אם $f''(x_0) < 0$ אז $x_0$ מקסימום. }
 		\theo{יהי $n \in \Nodd$. תהא $f \co I \to \R$ גזירה $n + 1$ פעמים ב־$x_0$. נניח $f^{(i)}(x_0) = 0$ וגם $f^{(n + 1)}(x_0) \neq 0$. אז אם $f^{(n + 1)}(x_0) > 0$ אז יש ל־$f$ מינימום ב־$x_0$. אם $f^{(n + 1)(x_0) < 0}$ אז יש ל־$f$ מקסימום ב־$x_0$. באותם התנאים, אם $n \in \Neven$ אז אין קיצון, יש פיתול. }
 		\theo{תהא $f \co I \to \R$ ותהא $x_0 \in I$ נקודת םפנים. נניח $f$ גזירה $n$ פעמים ב־$x_0$. נסמן ב־$T_n$ את פולינום הטיילור של $f$ מסדר $n$ סביב $x_0$. נסמן ב־$R_n$ את השארית המתאימה. אז:
 			\[ \limxz \frac{R_n(x)}{(x - x_0)^{n}} = 0 \]}
 		\noti{נגדיר את $C^{(n + 1)}(A)$ את קבוצת הפונקציות הגזירות ברציפות ב־$I$. }
-		\theo{תהא $f \co I \to \R$ ותהא $x_0 \in \R$ בפנים הקטע. נניח כי $f$ גזירה $n + 1$ פעמים בכל $I$ ונגזרותיה רציפות (כלומר $f \in C^{(n + 1)}$). לכל $x \in I$ קיים $c$  בין $x_0$ ל־$x$ כך ש־:
-			\[ R_{n}(x) = \frac{f^{(n + 1)}(c)}{(n + 1)!}(x - x_0)^{n + 1} \]}
+		\begin{Theorem}[שארית לפי לגראנג']
+			תהא $f \co I \to \R$ ותהא $x_0 \in \R$ בפנים הקטע. נניח כי $f$ גזירה $n + 1$ פעמים בכל $I$ ונגזרותיה רציפות (כלומר $f \in C^{(n + 1)}$). לכל $x \in I$ קיים $c$  בין $x_0$ ל־$x$ כך ש־:
+			\[ R_{n}(x) = \frac{f^{(n + 1)}(c)}{(n + 1)!}(x - x_0)^{n + 1} \]
+		\end{Theorem}
 		\defi{מסמנים ב־$C^{\inft}(A)$ את קבוצת הפונקציות הגזירות (ובפרט רציפות) מכל סדר ב־$A$. }
 		\theo{תהא $f \in C^{\inft}(A)$. אם קיים $M > 0$ כך ש־$\forall n \in \N \forall x \in I \co \sof{f^{(n)}(x)}\le M$ (''הנגזרות חסומות באופן אחיד``), אז טור טיילור של $f$ מתכנס ל־$f$ בכל $I$. }
 		\theo{יהי $ \le p \le n + 1$ ונתבונן בפונקציה $f \co I \to \R$ ותהא $x_0 \in I$ פנימית. יהי $n \in \N^{+}$ ונניח כי $f$ גזירה $n + 1$ פעמים ב־$I$. אז לכל $x \in I$ קיים $c$ בין $x_0$ ל־$x$ כך ש־$R_n(x) = \frac{f^{(n + 1)}(c)}{פ p \cdot n!}(x - x_0)^{p}(c - x_0)^{n + 1 - p}$. }
@@ -574,7 +576,8 @@
 			\sinx &= \sum_{n = 0}^{\inft}(-1)^{n}\frac{x^{2n + 1}}{(2n + 1)!} \\
 			\cosx &= \sum_{n = 0}^{\inft}(-1)^{n}\frac{x^{2n}}{(2n)!} \\
 			e^{x} &= \sum_{n = 0}^{\inft}\frac{x^{n}}{n!} \\
-			e^{-x} &= \sum_{n = 0}^{\inft}\frac{(-1)^{n}x^{n}}{n!}
+			e^{-x} &= \sum_{n = 0}^{\inft}\frac{(-1)^{n}x^{n}}{n!} \\
+			\dequad\dequad\dequad\dequad\!\forall x \in (-1, 1] \co \ln(1 + x) &= \frac{(-1)^{n - 1}x^{n}}{n}
 		\end{align*}}
 	\end{multicols}
 

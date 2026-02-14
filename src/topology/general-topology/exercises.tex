@@ -1,0 +1,68 @@
+\documentclass[]{../../../tex/classes/styledArticle}
+%\usepackage{../../../tex/packages/hebrewSupport}
+\usepackage{../../../tex/packages/mathShortcuts}
+
+\RequirePackage[usenames]{color}
+\RequirePackage{amsthm}
+\RequirePackage{xcolor}
+
+\definecolor{myblue}      {rgb} {0.2,0.35,0.7}
+\definecolor{mygreen}     {rgb} {0.15,0.65,0.35}
+\definecolor{myyellow}    {rgb} {0.0,0.4,0.5}
+\definecolor{mycyan}      {rgb} {0.05,0.65,0.6}
+\definecolor{myred}       {rgb} {0.05,0.1,0.75}
+\definecolor{mymagenta}   {rgb} {0.1,0.7,0.1}
+
+\theoremstyle{definition}
+\newtheorem {Theorem}     {\color{myblue}Theorem}
+\newtheorem {Definition}  {\color{mygreen}Definiton}
+\newtheorem {Lemma}       {\color{myyellow}Lemma}
+\newtheorem {Remark}      {\color{mycyan}Remark}
+\newtheorem {Notion}      {\color{myred}Notion}
+\newtheorem {Collary}     {\color{mymagenta}Collary}
+\newtheorem {Exercise}    {\normalcolor Exercise}
+
+\newcommand \cola  [1]    {\begin{Collary}#1\end{Collary}}
+\newcommand \theo  [1]    {\begin{Theorem}#1\end{Theorem}}
+\newcommand \defi  [1]    {\begin{Definition}#1\end{Definition}}
+\newcommand \rmark [1]    {\begin{Remark}#1\end{Remark}}
+\newcommand \lem   [1]    {\begin{Lemma}#1\end{Lemma}}
+\newcommand \noti  [1]    {\begin{Notion}#1\end{Notion}}
+\newcommand \exe   [1]    {\begin{Exercise}#1\end{Exercise}}
+\newcommand \exec  [1]    {\begin{Exercise}[נפוץ]#1\end{Exercise}}
+\newcommand \exeh  [1]    {\begin{Exercise}[קשה]#1\end{Exercise}}
+
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Fr}{Fr}
+\newcommand\intr {^{\circ}}
+
+\newcommand\scr {\mathscr}
+\newcommand\mcal{\mathcal}
+\newcommand\FF  {\scr F}
+
+\author{Shahar Perets}
+\title{Exercises in topology from the book ``General Topology''}
+\begin{document}
+	\maketitle
+	
+	\section{Introduction}
+	Doctor Lior Kama recommended me this book. It has exercises that I should probably do assuming I want to learn something. I I'll probably have to write proofs in English at some point and I figured it might be a great choice to start with it now. Assuming for some reason you're reading this exact same book, you may find those solutions useful (even though I'm not going to solve all of the questions). My packages doesn't really support English really well so i ducttaped something. 
+	
+	\section{Topological Spaces}
+	\subsection{Fundamental concepts}
+	\defi{The \textit{Colsure} of $E$ in $X$ is defined as: 
+	\[ \bar E := \Cl_X(E) := \bigcap \{K \subseteq X \mid K \text{\ is closed} \land E \subseteq K\} \]}
+	\defi{The \textit{Interior} of $G$ in $X$ is defined as: 
+	\[ E\intr := \Int_X(E) := \bigcup \{G \subseteq X \mid K \text{\ is open} \land G \subseteq K\} \]}
+	\defi{The \textit{Frontier} of $E$ in $X$ is defined as: 
+	\[ \Fr_X = \bar E \cap \ol{E^{X}} \]}
+	\theo{$G$ is open iff $G\intr = G$, and $E$ is closed iff $E = \bar E$}
+	\defi{$E$ is \textit{regularly open} iff $E = (\bar E)\intr$, and \textit{regularly closed} if $E = \ol{E \intr}$}
+	\theo{The partial order $\subseteq$ over the family of typologies over $X$, is a complemented lattice. }
+	\exe{}
+	
+	
+	
+	
+\end{document}
