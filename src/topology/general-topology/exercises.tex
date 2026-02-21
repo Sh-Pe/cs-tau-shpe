@@ -1,66 +1,284 @@
-\documentclass[]{../../../tex/classes/styledArticle}
-%\usepackage{../../../tex/packages/hebrewSupport}
+\documentclass[a4paper]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{xcolor}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots,centernot}
+\usepackage{amsmath}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts.
+\RequirePackage{cancel,bm}
+
+% Design
+\RequirePackage[labelfont=bf]{caption}
+\RequirePackage[margin=0.6in]{geometry}
+\RequirePackage{multicol}
+\RequirePackage[skip=4pt, indent=0pt]{parskip}
+\RequirePackage[normalem]{ulem}
+\forestset{default}
+%\renewcommand\labelitemi{$\bullet$}
+\RequirePackage{titlesec}
+\titleformat{\section}[block]
+	{\huge}
+	{\dotfill (\textbf{\thesection})\dotfill}
+	{0em}
+	{}
+
 \usepackage{../../../tex/packages/mathShortcuts}
 
-\RequirePackage[usenames]{color}
-\RequirePackage{amsthm}
-\RequirePackage{xcolor}
+%\definecolor{myblue}      {rgb} {0.2,0.35,0.7}
+%\definecolor{mygreen}     {rgb} {0.15,0.65,0.35}
+%\definecolor{myyellow}    {rgb} {0.0,0.4,0.5}
+%\definecolor{mycyan}      {rgb} {0.05,0.65,0.6}
+%\definecolor{myred}       {rgb} {0.05,0.1,0.75}
+%\definecolor{mymagenta}   {rgb} {0.1,0.7,0.1}
+%
+%\theoremstyle{definition}
+%\newtheorem {Theorem}     {\color{myblue}Theorem}
+%\newtheorem {Definition}  {\color{mygreen}Definiton}
+%\newtheorem {Lemma}       {\color{myyellow}Lemma}
+%\newtheorem {Remark}      {\color{mycyan}Remark}
+%\newtheorem {Notion}      {\color{myred}Notion}
+%\newtheorem {Collary}     {\color{mymagenta}Collary}
+%\newtheorem {Exercise}    {\normalcolor Exercise}
+%
+%\newcommand \cola  [1]    {\begin{Collary}#1\end{Collary}}
+%\newcommand \theo  [1]    {\begin{Theorem}#1\end{Theorem}}
+%\newcommand \defi  [1]    {\begin{Definition}#1\end{Definition}}
+%\newcommand \rmark [1]    {\begin{Remark}#1\end{Remark}}
+%\newcommand \lem   [1]    {\begin{Lemma}#1\end{Lemma}}
+%\newcommand \noti  [1]    {\begin{Notion}#1\end{Notion}}
+%\newcommand \exe   [1]    {\begin{Exercise}#1\end{Exercise}}
 
-\definecolor{myblue}      {rgb} {0.2,0.35,0.7}
-\definecolor{mygreen}     {rgb} {0.15,0.65,0.35}
-\definecolor{myyellow}    {rgb} {0.0,0.4,0.5}
-\definecolor{mycyan}      {rgb} {0.05,0.65,0.6}
-\definecolor{myred}       {rgb} {0.05,0.1,0.75}
-\definecolor{mymagenta}   {rgb} {0.1,0.7,0.1}
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
 
-\theoremstyle{definition}
-\newtheorem {Theorem}     {\color{myblue}Theorem}
-\newtheorem {Definition}  {\color{mygreen}Definiton}
-\newtheorem {Lemma}       {\color{myyellow}Lemma}
-\newtheorem {Remark}      {\color{mycyan}Remark}
-\newtheorem {Notion}      {\color{myred}Notion}
-\newtheorem {Collary}     {\color{mymagenta}Collary}
-\newtheorem {Exercise}    {\normalcolor Exercise}
-
-\newcommand \cola  [1]    {\begin{Collary}#1\end{Collary}}
-\newcommand \theo  [1]    {\begin{Theorem}#1\end{Theorem}}
-\newcommand \defi  [1]    {\begin{Definition}#1\end{Definition}}
-\newcommand \rmark [1]    {\begin{Remark}#1\end{Remark}}
-\newcommand \lem   [1]    {\begin{Lemma}#1\end{Lemma}}
-\newcommand \noti  [1]    {\begin{Notion}#1\end{Notion}}
-\newcommand \exe   [1]    {\begin{Exercise}#1\end{Exercise}}
-\newcommand \exec  [1]    {\begin{Exercise}[נפוץ]#1\end{Exercise}}
-\newcommand \exeh  [1]    {\begin{Exercise}[קשה]#1\end{Exercise}}
+\newcommand \middleText[1] {\vfil {\hfil {#1}} \hfil \vfil \newpage}
+\newcommand \envendproof{\vspace{-17pt}}
+\newcommand \mathenvendproof{\par\vspace{-24pt}}
 
 \DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\Int}{Int}
 \DeclareMathOperator{\Fr}{Fr}
 \newcommand\intr {^{\circ}}
 
-\newcommand\scr {\mathscr}
-\newcommand\mcal{\mathcal}
-\newcommand\FF  {\scr F}
 
 \author{Shahar Perets}
-\title{Exercises in topology from the book ``General Topology''}
+\title{Partial Solutions {\Large to} Exercises From {\Large the book} ``General Topology'' by Stephen Willard}
 \begin{document}
 	\maketitle
 	
-	\section{Introduction}
-	Doctor Lior Kama recommended me this book. It has exercises that I should probably do assuming I want to learn something. I I'll probably have to write proofs in English at some point and I figured it might be a great choice to start with it now. Assuming for some reason you're reading this exact same book, you may find those solutions useful (even though I'm not going to solve all of the questions). My packages doesn't really support English really well so i ducttaped something. 
+	\section*{Intro}
+	Dr. Lior Kama recommended me this book. It has exercises that I should probably do assuming I want to learn something. I I'll probably have to write proofs in English at some point and I figured it might be a great choice to start with it now. Assuming for some reason you're reading this exact same book, you may find those solutions useful (even though I'm not going to solve all of the questions). My packages doesn't really support English really well so i ducttaped something. 
 	
-	\section{Topological Spaces}
-	\subsection{Fundamental concepts}
-	\defi{The \textit{Colsure} of $E$ in $X$ is defined as: 
-	\[ \bar E := \Cl_X(E) := \bigcap \{K \subseteq X \mid K \text{\ is closed} \land E \subseteq K\} \]}
-	\defi{The \textit{Interior} of $G$ in $X$ is defined as: 
-	\[ E\intr := \Int_X(E) := \bigcup \{G \subseteq X \mid K \text{\ is open} \land G \subseteq K\} \]}
-	\defi{The \textit{Frontier} of $E$ in $X$ is defined as: 
-	\[ \Fr_X = \bar E \cap \ol{E^{X}} \]}
-	\theo{$G$ is open iff $G\intr = G$, and $E$ is closed iff $E = \bar E$}
-	\defi{$E$ is \textit{regularly open} iff $E = (\bar E)\intr$, and \textit{regularly closed} if $E = \ol{E \intr}$}
-	\theo{The partial order $\subseteq$ over the family of typologies over $X$, is a complemented lattice. }
-	\exe{}
+	Oh and the book appears to be from the 60s so some definitions may be a bit outdated or smth. 
+	
+%	\section{Topological Spaces}
+%	\subsection{Fundamental concepts}
+%	\defi{The \textit{Colsure} of $E$ in $X$ is defined as: 
+%	\[ \bar E := \Cl_X(E) := \bigcap \{K \subseteq X \mid K \text{\ is closed} \land E \subseteq K\} \]}
+%	\defi{The \textit{Interior} of $G$ in $X$ is defined as: 
+%	\[ E\intr := \Int_X(E) := \bigcup \{G \subseteq X \mid K \text{\ is open} \land G \subseteq K\} \]}
+%	\defi{The \textit{Frontier} of $E$ in $X$ is defined as: 
+%	\[ \Fr_X = \bar E \cap \ol{E^{X}} \]}
+%	\theo{$G$ is open iff $G\intr = G$, and $E$ is closed iff $E = \bar E$}
+%	\defi{$E$ is \textit{regularly open} iff $E = (\bar E)\intr$, and \textit{regularly closed} if $E = \ol{E \intr}$}
+%	\theo{The partial order $\subseteq$ over the family of typologies over $X$, is a complemented lattice. }
+%	
+	\section{}
+	Basic set theory -- I've done a course about it I think it's enough
+	\section{}
+	Metric spaces: idc it's trivial
+	\section{}
+
+	\subsection*{3A}
+	\begin{enumerate}
+		\item let $\FF$  be the collection of all closed, bounded sets in $\R$. Prove $\FF' := \FF \cup \{\R\}$  is a family of closed sets. \begin{proof}
+			trivially, $\varnothing, \R \in \FF'$. Let $A \subseteq \FF'$ be a group of closed sets, WOLOG $\R \notin A$. Since $A$ contains closed sets, $\bigcap A \in \FF$. Same goes for union. 
+%			(elementary proof: assume $\bigcap A$ is either not bounded (immediate contradiction: $a \in A$ has a bound, and $\bigcap A \subseteq a$ hence $\bigcap A$ bounded by the same bound), nor not close (contradiction too: if there's a $x \in \R\setminus A$ such that no nhood around $x$ exists without colliding with $A$, ))
+		\end{proof}
+		\item let $A \subseteq X$, prove $\XX = \{B \in \ps(X) \mid A \subseteq B\} \cup \{\varnothing\}$ is a topology. 
+		\begin{proof}
+			Proof by definition. 
+			\begin{itemize}
+				\item Immediately $\varnothing, A \subseteq X \in \XX$. 
+				\item Let $\bc \in \ps(X)$. We'll prove that $\bigcup \bc \in \XX$. Clearly $\bigcup \bc \in \ps(X)$. We'll prove $A \subseteq B$. Since $\forall B \in \bc$ we know $A \subseteq B$ by definition, we get that $A \subseteq \bigcup \bc$. Hence $\bigcup \bc \in \XX$ by definition. 
+				\item Let $B_1 \dots B_n \in \XX$ be a finite number of sets. We'll prove $\bigcap B_i \in \XX$. From similar arguments $A \subseteq \bigcap B_i$ and we finished. 
+			\end{itemize}
+			Question: how does interior and closure looks like? Assuming $A \subseteq B \in \XX$, we get $\Int B = B$ since $B$ is an open set. Similarly $\Cl B = A$ since each closed $C \subseteq B$ has the property that $\ol{C}$ is open, hence $\ol{C} \in \XX$ meaning $A \subseteq \ol C$. Also $A \subseteq B$, so the intersection of all closed sets will be $A \cup B$. 
+			
+			For general $B \in \ps(X)$, we notice $B \setminus A$ is the maximal in $B$ (under that partial order $\subseteq$) that satisfies $A \subseteq \ol{B \setminus A}$. We deduce: 
+			\begin{align*}
+				\Int B = B \setminus A && \Cl B = A \cup B && \Fr B = A
+			\end{align*}
+			We'll notice that for $A = \varnothing$ we get the discrete topology, and for $A = X$ we get the trivial topology. 
+		\end{proof}
+	\end{enumerate}
+	
+	\subsection*{3B}
+%	Theorem: each closed subset of $\R^{2}$ is a frontier os some set in $\R^{2}$. \begin{proof}
+		I'll proof for $\R$ because I'm lazy but it generalized easily. Let a $A \subseteq \R$ be a closed set. Denote $A'$ some different dense group in $R \setminus A$, such as $(R \setminus A) \cap \Q =: A'$. If $B \subseteq A'$ is closed, and for some $a \in B$ we need to demonstrate $a \in A$. If $a \notin A$ then $a \in R \setminus A$ 
+		
+		We notice that $A \subseteq (\R \setminus A')$ and $A \subseteq \Cl A'$ 
+%	\end{proof}
+
+	\subsection*{3H $\sim$ $F_\sg$ and $G_\dg$}
+	A subset of a topological space $X$ is a $G_\dg$ iff it's a countable itersection of open sets, and an $F_\sg$ if it's a countable union of closed sets. 
+	\begin{enumerate}
+		\item The complement of a $G_\dg$ is an $F_\sg$ and vise versa. 
+		\begin{proof}
+			We'll proof one side, the other one is trivial from duality. Let $G \subset X$ be some $G_\dg$. We'll proof $\ol{G_\dg}$ is a $F_\sg$. Denote $(G_i)_{i = 1}^{\inft}$ be open sets such as $\cup G_i = A$ (exists be definition). From De-Morgan we get: 
+			\[ \ol{G} = \ol{\bigcup G_i} = \bigcap \ol{G_i} =: \bigcap F_i \]
+			Since $G_i$ is open, then $F_i := \ol{G_i}$ is closed. Hence $\ol{G} = \bigcap F_i$ is a finite intersection of closed sets, then $\ol{G}$ is a $F_\dg$ as interned. 
+		\end{proof}
+		\item An $F_\sg$ can be written as a union of countable $F_1 \subset F_2 \subset F_3 \subset \cdots$ of closed sets. 
+		
+		\item A closed set in a metric space if a $G_\dg$. \begin{proof}
+			Suppose $A$ is some closed set in a metric space $(X, \rho)$. For the sake of simplicity I'll assume it's complement is an open disk (and not a union of open disk: but it's enough to look at the base of the topology). So $\ol A = U(x, \eg)$. Look at the closed set $U_n = [x, \frac{1}{n}]$: we notice that $\bigcap U_n = U(x, \eg)$. Hence $\ol A$ is an $F_\sg$, meaning $A$ is a $G_\dg$. 
+			
+			The general case can be deduce by taking apart $A$ to be a finite union of simple closed subsets (whom complement is an open disk) which is doable since the closed disks form a base for the family of closed sets in a metric space. 
+		\end{proof}
+		\item $\Q$ is $F_\sg$ in $\R$. \begin{proof}
+			Since $\{r\}$ is closed for each $r \in \R$, and $\sof{\Q} = \az$, we won (because then we could jusk take the union of the singletons of each element $q \in \Q$). 
+			
+			Note that $\{r\}$ is closed because for each $a \in \R\setminus \{r\} = \ol{\{r\}}$, we get from density that exists such $b \in \R$ that (WOLOG) $r < b < a$, and then for $\dg = a - b$ we get that $(a - \dg, a + \dg)$ is an open disk (and in fact an open set) in $\R \setminus \{r\}$, so $\R\setminus \{r\}$ is open. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	\subsection*{4A $\sim$ the Sorgenfrey line}
+	\begin{enumerate}
+		\item Verify that the sets $[x, z)$ for some $z > x$ form a bhood base at $x$ for a topology. 
+		\begin{proof}
+			Denote by $\BB_x := \{[x, z) \mid z \in \R_{> x}\}$. 
+			We'll proof via the converse of \textit{V}-a to \textit{V}-c. 
+			\begin{enumerate}
+				\item[\textit{V}-a]By definition, for all $x$ we know $x \in [x, z)$. 
+				\item[\textit{V}-b]Let $V_1, V_2 \in \BB_x$. Hence exists $\R \ni z_1 > z_2$ (WOLOG) such that $V_1 = [x, z_1), V_2 = [x, z_2)$. We get that $V_1 \supset V_2$ hence $V_1 \cap V_2 = V_1$. Finally $\BB_x \ni V_3 := V_1 = V_1 \cap V_2$ as intended. 
+				\item[\textit{V}-c]Let $V \in \BB_x$. Choose $V_0 = V$. We need to proof that for each $y \in V_0$ there is some $W \in \BB_y$ with $W \subset V$. Denote $V = [x, z_x)$ then we can choose $W = [y, z_x)$ and we notice $[y, z_x) \in \BB_y$ by definition, and because $y \in V_0 = V$, we get $x \le y < z_x$ so $W = [y, z_x) \subseteq [x, z_x) = V_0$ as intended. 
+			\end{enumerate}
+			By Theorem 4.5 we get that the Sorgenfrey line form a topology over $\R$, denoted as $\tau$, whom its open sets are $A \in \ps(X)$ iff $A$ contains some $V \in \BB_x$ for all $x \in A$. 
+		\end{proof}
+		\item Which intervals on the real line are open sets in the Sorgenfrey topology? 
+		\begin{proof}
+			We'll define $(\R, \tau)$ a topological space as defined above. Since $\BB_x$ is a nhood base of the topology that it forms, each open set $A$ is an (in/finite) union of some $B$ from the base ($\bc = \bigcup_{x \in X} \BB_x$). It clearly follows (technically from compactness) that the open sets are a finite union of bounded $[x, z)$ and unbounded $[x, \infty)$, $[\inft, z)$ and $\R$. 
+		\end{proof}
+		\item Describe the closure from each of the following subsets: $\Q, A = \ccb{\frac{1}{n} \mid n \in \N}, \Z$. \begin{proof}
+			We'll prove $\Cl \Q= \R$. Let $x \in \R$, then each basic nhood (in $\BB_x$) of $x$ meets $\Q$, which is true since $\Q$ is dense in $\R$, hence $x \in \Cl \Q$. From the other side clearly $\Cl \Q\subset \R$. So $\Cl \Q = \R$. 
+			
+			We'll continue to prove $\Cl A = A \cup \{0\}$. If $x \in A \cup \{0\}$, then each nhood $[x, z)$ if $x = 0$ immediately intersects $A$ at infinite amount of points, and if $x \in A$ then $A \ni x \in [x, z)$ so $[x, z)$ meets $A$. From the other side if $x \in \Cl A$ then each nhood intersects $A$, but if $x \notin A \cup \{0\}$ the set $A$ is discrete so for small enough nhoods from archmedianity we get a contradiction. 
+			
+			By similar manners $\Cl \Z = \Z$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\subsection*{4F $\sim$ Function Spaces}
+	Consider $\R^{I}$ where $I = [0, 1]$. 
+	\begin{enumerate}
+		\item For each $f \in \R^{I}$, and $F$ a finite subset of $I$, we define $U(f, F, \dg) = \{g \in \R^{I} \mid \forall x \in F \co \sof{g(x) - f(x)} < \dg\}$. Show that $U(f, F, \dg)$ (shorten to $\BB_f = \{U(f, F, \dg) \mid \dg > 0, F \subset I \land \sof{F} \in \N\}$) form a nhood base at $f$. 
+		\begin{proof}
+			\begin{itemize}
+				\item[\textit{V}-a] Since $\sof{f(x) - f(x)} = 0 < \dg$ for each $\dg$, we get that $f \in \BB_f$. 
+				\item[\textit{V}-b] Let $V_1, V_2 \in \BB_f$. $V_1, V_2$ are assigned to some $\dg_1, \dg_2, \ F_1, F_2$, and let $\dg = \min\{\dg_1, \dg_2\}, F = F_1 \cap F_2$. Then $\BB_f \ni V_3 = U(f, F, \dg)$ is a nhood base that satisfies $V_3 \subset V_1 \cap V_2$. 
+				\item[\textit{V}-c] Suppose some $V \in \BB_x$ with $\dg > 0$. For $V_0 = U(f, F, \frac{\dg}{2})$, from the triangle inequality we get that for each $g \in V_0$ the nhood $W = U(g, F, \frac{\dg}{2})$ has the property that for all $h \in W$ and $x\in F$:
+				\[ \underbrace{\sof{h(x) - g(x)} < \frac{\dg}{2}}_{f \in W = U(g, F, \frac{\dg}{2})} \land \underbrace{\sof{g(x) - f(x)} < \frac{\dg}{2}}_{g \in V = U(f, F, \frac{\dg}{2})} \therefore \sof{h(x) - f(x)} < \dg \implies h \in V \]
+				So $W \subset V$. 
+			\end{itemize}
+			Hence $\BB_f$ is a nhood base at $f$. 
+		\end{proof}
+		\item Prove $\Cl \{f\} = \{f\}$. \begin{proof}
+			Since each nhood of $f$ contains $f$ by definition, $\{f\} \subset \Cl \{f\}$. Ad absurdum there is some $f \neq g \in \Cl\{f\}$, ergo $f(x) \neq g(x)$ for some $x \in I$. Hence $\sof{f(x) - g(x)} > \dg$ for some $\dg > 0$ at that very same $x$ where $f, g$ don't agree. Thus for the set $F = \{x\}$ we get that $g \neq U(f, F, \dg)$ by definition, hence a contradiction. Finally $\Cl \{f\} = \{f\}$ as intended. 
+		\end{proof}
+		\item Define $V(f, \eg) := U(f, I, \eg)$. Clearly (it's a relatively similar proof) $V$ form a nhood base at $f$, making $\R^{I}$ a topo space with topology $\tau$. 
+		\item Comparing the topos from 1 and 3, we get that the topo from 1 is a finer topology and the one on 3, because the the sets $F_x = \{x\}$ for each $x \in [0, 1]$, the infinite union: 
+		\[ \bigcup U(f, F_x, \eg) = U(f, I, \eg) = V(f, \eg) \]
+		is in the topo from 1 since topos are closed to a generalized union. 
+		\item Suppose now $C(\R^{I})$ is the set of continues functions $f \co I \to \R$. Then the topo from 3 at the subspace $C(\R^{I})$ is a topo too. Prove it's metrizable by the metric $\rho(f, g) = \sup\sof{f(x) - g(x)}$. 
+		\begin{proof}
+			idk this is just double inclusion. 
+		\end{proof}
+	\end{enumerate}
+	
+	\subsection*{4G $\sim$ Nowhere dense sets}
+	TODO
+	A set is \textit{nowhere dense} in $X$ iff its closure contains no nonempty open sets. $p$ is \textit{isolated} within a topology iff $\{p\}$ is open. $D$ is \textit{discrete} in $X$ iff each $d \in D$ has a nhood $U$ such as $U \cap D = \{d\}$. 
+	\begin{enumerate}
+		\item In a metric space $(X, \rho)$ without isolated points, the closure of a discrete set in $X$ is nowhere dense. \begin{proof}
+%			Consider $A \subset X$ to be a discrete set. Assume for the sake of contradiction the existence of some open disk $U(x, \eg)$ in $\Cl A$ for $\eg > 0$. Then for each closed set $A \subset B$ we have $U(x, \eg) \subset B$. Since $U(x, \eg) \neq \varnothing$ then $\Cl A \neq \varnothing$ hence $A \neq \varnothing$, and $\Cl A$ has some point $d \in A$ meets the basic nhood $U(x, \eg)$. Since $A$ is discrete we have some nhood $D = U(d, \dg)$ such that $A \cap D = \{d\}$. Note the open space $O = D \cap U$. We know $d \in U, D \implies d \in O$ and $O \neq \{d\}$ because $(X, \rho)$ has no isolated points, and same applies to any open subset of $O$. Because $O$ is open, there is a $\eg_1$ $d$-disk contained in $O$, 
+		\end{proof}
+		\item 
+	\end{enumerate}
+	
+	\section{}
+	\subsection*{5A $\sim$ examples of subbases}
+	\begin{enumerate}
+		\item the family of sets with the form $(-\inft, a)$ together with $(b, \inft)$ form a subbase for the usual topology. 
+		\begin{proof}
+			Denote with $\UU$ the family of all finite intersections of $(-\inft, a), (b, \inft)$. We'll proof it forms the usual base for the usual topology. Indeed, for each $(a, b)$ open disk from the base with have $(a, b) = (-\inft, b) \cap (a, \inft)$, and $\varnothing = (-\inft, 0) \cap (0, + \inft)$. On the other hand, for each $a, b$ the intersection of $(a, \inft)$ and $(\inft, b)$ is either $\varnothing$ if $a \le b$ or $(b, a)$ if $a > b$, both are in the usual topology, and the intersection of $(a, \inft)$ and $(b, \inft)$ is just $(\min(a, b), \inft)$ which is too open in the usual topology. Therefore each collection of finite elements from the subbase can be broken into pairs of two sets, whom their intersection is from the usual topology, that is closed for finite intersections, and consequently the intersection of that collection is in the usual topology.  
+		\end{proof}
+		\item Let the family of all straight lines in a plane to be a subbase. Then for each $r \in X$ we can take some two lines such that their intersection is $\{x\}$. Hence the family of all intersections is contained inside the set of singletons of $X$, which is the base for the discrete topology, the finest topology (so we don't care about any other intersections, and indeed that subbase is a subbase for exactly the discrete topology, and not some larger topology). 
+		\item Now take $(a, \inft)$ to be a subbase for a topology. It's easy to proof that for each finite set of $a_1 \dots a_n$ and $(a_1, \inft) \dots (a_n, \inft)$ elements of the subbase, the intersection between all of them is $(\min_n\{a_n\}, \inft)$ which is too in the subbase. Hence the subbase is a base. It's easy to observe that the union of elements from that base=subbase are either from the subbase, or $\R, \varnothing$. So the subbase itself is the topology. Clearly (because the subbase is almost the topology itself) the closed sets are $(\inft, a]$ that are the complement of each element of the subbase=base=topology (apart from $\R$). We get that: 
+		\begin{align*}
+			\Cl A = (-\inft, \sup A] && \Int A = (\inf A, +\inft)
+		\end{align*}
+		broadly speaking. 
+	\end{enumerate}
+	
+	\subsection*{5D $\sim$ No axioms for subbase}
+	Any family of subsets of a set $X$ is a subbase for some topology on $X$, and that topology is the smallest topology containing that family. 
+	TODO
+%	TODO
+
+	\subsection*{5F $\sim$ Second countable and separable spaces}
+	A space $X$ is \textit{second countable} iff $X$ has a countable base. $X$ is separable iff a countable subset $D$ of $X$ exists with $\Cl_XD = X$ (such $D$ said to be \textit{dense} in $X$). 
+	\begin{enumerate}
+		\item A separable metric space is second countable. \begin{proof}
+			Let some $(X, \rho)$ be a metric space with topology $\tau$. 
+			Suppose $A$ is separable. So there is some countable $D$ with $\Cl_XD = X$. WOLOD $D \neq \varnothing$, since otherwise $\varnothing = \Cl_XD = X$ and each topology over $X$ is finite. Lemma: each open set meets $D$. Ad absurdum exists some $A$ open and $A \cap D = \varnothing$. Then by definition $\ol A$ is closed. Since $A \cap D = \varnothing$ and both $A, D \subset X$, we get $D \subset \ol A$. Finally $X = \Cl_X A \subset \ol A \subset X$, hence $A = X \supset D$, so $A$ meets $D$ at any of its point -- a contradiction. 
+			
+			Now, consider the one-to-one mapping $D\times\Q \ni (d, \eg) \mapsto U(d, \eg)$. Its image will be denoted with $\XX$. 
+			
+			Let $x \in X$. Clearly $\XX \subset \tau$ (it's a group of open disks). For each $U \in \tau$ open set, it's a union of $\bigcup \oc$ where $O \in \oc$ is a basic nhood (open disk) marked as $U(x_O, \eg_O)$. For each $\eg_O$ and $x \in U(x_O, \eg_O)$ and $d \in U(x_O, \eg_O)$ we have a rational $q^{O}_{d}$ having the property that $0 < q < \min\{\rho(x, d), \eg_O - \rho(x, d)\}$. 
+			For that $O$ we'll define $\oc_O := \{U(d, q^{O}_{d}) \mid d \in D\}$. We immediately from definition and the triangle inequality have $U(d, q^{O}_d) \subset U(x_O, \eg_O)$. Moreover, for each $y \in U(x_O, \eg_O)$ and some open $P$ with $y \in U(y, \eg_O^{d}) \subset U(x_O, \eg_O)$ (same similar contraction), $P$ meets $D$ from the lemma at $d$. Both of them are in $U(y, \eg_O^{y})$ so $\rho(y, d) < \eg_O^{y} < \eg_O$. So we have some rational $q \in \Q$ that satisfies $0 <\eg_O^{y} < q < \min\{\rho(x, d), \eg_O - \rho(x, d)\}$, and finally we found a open disk $U(d, q) \in \XX$ with $y, d \in U(d, q) \subset U(y, \eg_O^{y}) \subset U(d, q_d^{O})$. Hence $\bigcup \oc_O = U(x_O, \eg_O)$. Then we have $\bigcup_{O \in \oc}\bigcup \oc_O = U$, and $\oc_O \subset \XX$, so $U$ is a union of items from (the now basis) $\XX$, since every open set in $\tau$ is given by a union (of union) of elements from $\XX$ and $\XX$ is contained in $\tau$. 
+			
+			We found a base $\XX$ that has one-to-one mapping into $D \times \Q$, which is countable because $D$ is countable and $\Q$ is countable, and $\az^{2} = \az$. Finally $\XX$ is a countable base for $(X, \rho)$, so $(X, \rho)$ is second-countable. 
+		\end{proof}
+		\item Every second-countable space is separable and first countable. \begin{proof}Let $(X, \tau)$ be some second-countable space. Then we have a base countable $\XX$. 
+			\begin{itemize}
+				\item \textbf{$\bm X$ is first countable: }let some $x \in X$, so it has some nhood system $\UU_x$. As explained in the book, for each $A \in \UU_x$ we can take a open space $A\intr$ having the property $x \in A\intr \subset A$, and then $\UU_x' = \{A\intr \mid A \in \UU_x\}$ is a nhood system with open sets. Ergo $\UU_x' \subset \XX \mapsto \N$, so $\UU_x'$ is a countable nhood system. Finally we have a countable nhood system for each $x \in X$ as intended. 
+				
+				\textit{Note: I essentially needlessly repeated the proof shown from theorem 5.4. }
+				\item \textbf{$\bm X$ is separable: }By AC there is a $F \co \XX \setminus \{\varnothing\} \to X$ choice function. We'll prove $D = \Img F$ is a countable dense set. 
+				\begin{itemize}
+					\item \textit{Countability: }each $x \in D$ maps to a $U \in \XX$ by definition. It's a injective map from $D$ to the countable $\XX$, so $\sof{D} \le \sof{\XX} = \az$ as intended. 
+					\item \textit{Density: }observe some $C$ closed set that covers $D$. Then $\ol{C}$ is open. Since it's open it has some basic nhood $U \in \XX$ contained in it. By definition there is $d \in D$ such that $d \in U$, unless $\ol C = \varnothing$ (in that case the choice function is undefined). Since $C$ covers $D$, there are no $d \in U \subset \ol C$; hence is must be that $\ol C = \varnothing$. From that $C = X$. 
+					
+					Finally, the only closed set that contains $D$ is $X$, so $\Cl_XD$ being the intersection of all closed that contains $D$ is $X$. Because $\Cl_XD = X$, we know $X$ is dense. 
+				\end{itemize}\envendproof
+			\end{itemize}
+		\end{proof}
+		\item The Sorgenfrey line is first countable and separable. \begin{proof}\,
+			\begin{itemize}
+				\item \textbf{First countable: }we can easily proof that $\{[x, q) \mid q \in \Q\}$ is a countable base for $x$. 
+				\item \textbf{Separable: }$\Q$ is dense because each $q \in \Q$ meets the open set $[q, p)$ where $p$ is rational bigger than $q$. We don't even need to proof that: it's being immediately followed by (2) + first countability. 
+			\end{itemize}\envendproof
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	\subsection*{Subspaces of separable spaces}
+	\begin{enumerate}
+		\skipitems{2}
+		\item $\AA$
+	\end{enumerate}
+	
+	
+	
+	
 	
 	
 	
