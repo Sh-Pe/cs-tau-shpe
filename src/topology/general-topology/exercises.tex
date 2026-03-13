@@ -4,20 +4,19 @@
 \usepackage[usenames]{color}
 \usepackage{xcolor}
 \usepackage{forest}
-\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots,centernot}
-\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots,centernot,stmaryrd}
+\usepackage{cancel,bm}
 \WithArrowsOptions{displaystyle}
 \renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts.
-\RequirePackage{cancel,bm}
 
 % Design
 \RequirePackage[labelfont=bf]{caption}
-\RequirePackage[margin=0.6in]{geometry}
+\RequirePackage[margin=0.8in]{geometry}
 \RequirePackage{multicol}
 \RequirePackage[skip=4pt, indent=0pt]{parskip}
 \RequirePackage[normalem]{ulem}
 \forestset{default}
-%\renewcommand\labelitemi{$\bullet$}
+\renewcommand\labelitemi{$\bullet$}
 \RequirePackage{titlesec}
 \titleformat{\section}[block]
 	{\huge}
@@ -26,31 +25,7 @@
 	{}
 
 \usepackage{../../../tex/packages/mathShortcuts}
-
-%\definecolor{myblue}      {rgb} {0.2,0.35,0.7}
-%\definecolor{mygreen}     {rgb} {0.15,0.65,0.35}
-%\definecolor{myyellow}    {rgb} {0.0,0.4,0.5}
-%\definecolor{mycyan}      {rgb} {0.05,0.65,0.6}
-%\definecolor{myred}       {rgb} {0.05,0.1,0.75}
-%\definecolor{mymagenta}   {rgb} {0.1,0.7,0.1}
 %
-%\theoremstyle{definition}
-%\newtheorem {Theorem}     {\color{myblue}Theorem}
-%\newtheorem {Definition}  {\color{mygreen}Definiton}
-%\newtheorem {Lemma}       {\color{myyellow}Lemma}
-%\newtheorem {Remark}      {\color{mycyan}Remark}
-%\newtheorem {Notion}      {\color{myred}Notion}
-%\newtheorem {Collary}     {\color{mymagenta}Collary}
-%\newtheorem {Exercise}    {\normalcolor Exercise}
-%
-%\newcommand \cola  [1]    {\begin{Collary}#1\end{Collary}}
-%\newcommand \theo  [1]    {\begin{Theorem}#1\end{Theorem}}
-%\newcommand \defi  [1]    {\begin{Definition}#1\end{Definition}}
-%\newcommand \rmark [1]    {\begin{Remark}#1\end{Remark}}
-%\newcommand \lem   [1]    {\begin{Lemma}#1\end{Lemma}}
-%\newcommand \noti  [1]    {\begin{Notion}#1\end{Notion}}
-%\newcommand \exe   [1]    {\begin{Exercise}#1\end{Exercise}}
-
 \makeatletter
 \newcommand{\skipitems}[1]{
 	\addtocounter{\@enumctr}{#1}
@@ -65,12 +40,24 @@
 \DeclareMathOperator{\Int}{Int}
 \DeclareMathOperator{\Fr}{Fr}
 \newcommand\intr {^{\circ}}
+\newcommand\eqrel{/\!\!\sim}
 
+\newcommand\nsubsection[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
 
+\usepackage{titling}
 \author{Shahar Perets}
-\title{Partial Solutions {\Large to} Exercises From {\Large the book} ``General Topology'' by Stephen Willard}
+\title{Partial Solutions To Exercises In Topology}
+\date{\today}
 \begin{document}
-	\maketitle
+%	\maketitle
+	\huge {\huge\,\\ \vfil {\begin{center}
+				\thetitle \\
+				\vspace{10pt}
+				\large \thedate
+		\end{center}} \vfil	}
+	\normalsize
+	
+	\pagebreak
 	
 	\section*{Intro}
 	Dr. Lior Kama recommended me this book. It has exercises that I should probably do assuming I want to learn something. I I'll probably have to write proofs in English at some point and I figured it might be a great choice to start with it now. Assuming for some reason you're reading this exact same book, you may find those solutions useful (even though I'm not going to solve all of the questions). My packages doesn't really support English really well so i ducttaped something. 
@@ -78,7 +65,7 @@
 	Oh and the book appears to be from the 60s so some definitions may be a bit outdated or smth. 
 	
 %	\section{Topological Spaces}
-%	\subsection{Fundamental concepts}
+%	\nsubsection{Fundamental concepts}
 %	\defi{The \textit{Colsure} of $E$ in $X$ is defined as: 
 %	\[ \bar E := \Cl_X(E) := \bigcap \{K \subseteq X \mid K \text{\ is closed} \land E \subseteq K\} \]}
 %	\defi{The \textit{Interior} of $G$ in $X$ is defined as: 
@@ -89,17 +76,31 @@
 %	\defi{$E$ is \textit{regularly open} iff $E = (\bar E)\intr$, and \textit{regularly closed} if $E = \ol{E \intr}$}
 %	\theo{The partial order $\subseteq$ over the family of typologies over $X$, is a complemented lattice. }
 %	
-	\section{}
-	Basic set theory -- I've done a course about it I think it's enough
-	\section{}
-	Metric spaces: idc it's trivial
-	\section{}
+	\tableofcontents
+	
+	\stepcounter{section}
+%	\section[Set Theory]{}
+%	Basic set theory -- I've done a course about it I think it's enough
+	\section[Metric spaces]{}
+	\nsubsection{Napkin 6.1.3}
+	A metric space $M$ is bounded iff (definition) $\exists D \in \R .\, \forall p, q \in M \co d(p, q) \le D$ iff $\forall p \in M.\, \exists R_p \in \R.\,\forall q \in M \co d(p, q) < R_p$. \begin{proof}
+		One side is trivial. For the other one, suppose there is some $\R\in R_p$ that bounds $d(p, q)$ for all $q \in M$. Fix some $p \in M$ (assume $M \neq \varnothing$, otherwise every number is trivially is bound), and let $q_1, q_2 \in M$. Then: 
+		\[ d(q_1, q_2) \le d(q_1, p) + d(p, q_2) = d(p, q_1) + d(p, q_2) < 2R_p \]
+		Hence $2R_p$ is a bound for the distance between each $q_1, q_2 \in M$. 
+	\end{proof}
+	
+	\nsubsection{Napkin 6.1.6}
+	In metric spaces, totally bound implies boundness. \begin{proof}
+		Let $M$ be a totally bound space, meaning there are finitely many $\eg$-balls denoted as $U(x_i, \eg_i)$ that covers $M$. The union of balls is an open set, denotes as $U$, and each open set $U$ has a basic neighborhood (another ball) containing it. Finally there is an open ball $U(x, \eg)$ that contains the whole of $M$. In fact, for each $x, y \in M$ from triangle inequality $x, y \in U(x, \eg)$ implies $d(x, y) < 2\eg$. Finally $M$ is bounded. 
+	\end{proof}
+	
+	\section{}[Fundamental Concepts]
 
-	\subsection*{3A}
+	\nsubsection{3A $\sim$ Examples of topologies}
 	\begin{enumerate}
 		\item let $\FF$  be the collection of all closed, bounded sets in $\R$. Prove $\FF' := \FF \cup \{\R\}$  is a family of closed sets. \begin{proof}
 			trivially, $\varnothing, \R \in \FF'$. Let $A \subseteq \FF'$ be a group of closed sets, WOLOG $\R \notin A$. Since $A$ contains closed sets, $\bigcap A \in \FF$. Same goes for union. 
-%			(elementary proof: assume $\bigcap A$ is either not bounded (immediate contradiction: $a \in A$ has a bound, and $\bigcap A \subseteq a$ hence $\bigcap A$ bounded by the same bound), nor not close (contradiction too: if there's a $x \in \R\setminus A$ such that no nhood around $x$ exists without colliding with $A$, ))
+%			(elementary proof: assume $\bigcap A$ is either not bounded (immediate contradiction: $a \in A$ has a bound, and $\bigcap A \subseteq a$ hence $\bigcap A$ bounded by the same bound), nor not close (contradiction too: if there's a $x \in \R\setminus A$ such that no neighborhood around $x$ exists without colliding with $A$, ))
 		\end{proof}
 		\item let $A \subseteq X$, prove $\XX = \{B \in \ps(X) \mid A \subseteq B\} \cup \{\varnothing\}$ is a topology. 
 		\begin{proof}
@@ -119,14 +120,14 @@
 		\end{proof}
 	\end{enumerate}
 	
-	\subsection*{3B}
+	\nsubsection{3B $\sim$ Frontiers in the plane}
 %	Theorem: each closed subset of $\R^{2}$ is a frontier os some set in $\R^{2}$. \begin{proof}
 		I'll proof for $\R$ because I'm lazy but it generalized easily. Let a $A \subseteq \R$ be a closed set. Denote $A'$ some different dense group in $R \setminus A$, such as $(R \setminus A) \cap \Q =: A'$. If $B \subseteq A'$ is closed, and for some $a \in B$ we need to demonstrate $a \in A$. If $a \notin A$ then $a \in R \setminus A$ 
 		
 		We notice that $A \subseteq (\R \setminus A')$ and $A \subseteq \Cl A'$ 
 %	\end{proof}
 
-	\subsection*{3H $\sim$ $F_\sg$ and $G_\dg$}
+	\nsubsection{3H $\sim$ ${F_\sg}$ and ${G_\dg}$}
 	A subset of a topological space $X$ is a $G_\dg$ iff it's a countable itersection of open sets, and an $F_\sg$ if it's a countable union of closed sets. 
 	\begin{enumerate}
 		\item The complement of a $G_\dg$ is an $F_\sg$ and vise versa. 
@@ -149,8 +150,8 @@
 		\end{proof}
 	\end{enumerate}
 	
-	\section{}
-	\subsection*{4A $\sim$ the Sorgenfrey line}
+	\section[Fundamental Concepts]{}
+	\nsubsection{4A $\sim$ the Sorgenfrey line}
 	\begin{enumerate}
 		\item Verify that the sets $[x, z)$ for some $z > x$ form a bhood base at $x$ for a topology. 
 		\begin{proof}
@@ -165,56 +166,56 @@
 		\end{proof}
 		\item Which intervals on the real line are open sets in the Sorgenfrey topology? 
 		\begin{proof}
-			We'll define $(\R, \tau)$ a topological space as defined above. Since $\BB_x$ is a nhood base of the topology that it forms, each open set $A$ is an (in/finite) union of some $B$ from the base ($\bc = \bigcup_{x \in X} \BB_x$). It clearly follows (technically from compactness) that the open sets are a finite union of bounded $[x, z)$ and unbounded $[x, \infty)$, $[\inft, z)$ and $\R$. 
+			We'll define $(\R, \tau)$ a topological space as defined above. Since $\BB_x$ is a neighborhood base of the topology that it forms, each open set $A$ is an (in/finite) union of some $B$ from the base ($\bc = \bigcup_{x \in X} \BB_x$). It clearly follows (technically from compactness) that the open sets are a finite union of bounded $[x, z)$ and unbounded $[x, \infty)$, $[\inft, z)$ and $\R$. 
 		\end{proof}
 		\item Describe the closure from each of the following subsets: $\Q, A = \ccb{\frac{1}{n} \mid n \in \N}, \Z$. \begin{proof}
-			We'll prove $\Cl \Q= \R$. Let $x \in \R$, then each basic nhood (in $\BB_x$) of $x$ meets $\Q$, which is true since $\Q$ is dense in $\R$, hence $x \in \Cl \Q$. From the other side clearly $\Cl \Q\subset \R$. So $\Cl \Q = \R$. 
+			We'll prove $\Cl \Q= \R$. Let $x \in \R$, then each basic neighborhood (in $\BB_x$) of $x$ meets $\Q$, which is true since $\Q$ is dense in $\R$, hence $x \in \Cl \Q$. From the other side clearly $\Cl \Q\subset \R$. So $\Cl \Q = \R$. 
 			
-			We'll continue to prove $\Cl A = A \cup \{0\}$. If $x \in A \cup \{0\}$, then each nhood $[x, z)$ if $x = 0$ immediately intersects $A$ at infinite amount of points, and if $x \in A$ then $A \ni x \in [x, z)$ so $[x, z)$ meets $A$. From the other side if $x \in \Cl A$ then each nhood intersects $A$, but if $x \notin A \cup \{0\}$ the set $A$ is discrete so for small enough nhoods from archmedianity we get a contradiction. 
+			We'll continue to prove $\Cl A = A \cup \{0\}$. If $x \in A \cup \{0\}$, then each neighborhood $[x, z)$ if $x = 0$ immediately intersects $A$ at infinite amount of points, and if $x \in A$ then $A \ni x \in [x, z)$ so $[x, z)$ meets $A$. From the other side if $x \in \Cl A$ then each neighborhood intersects $A$, but if $x \notin A \cup \{0\}$ the set $A$ is discrete so for small enough neighborhoods from archmedianity we get a contradiction. 
 			
 			By similar manners $\Cl \Z = \Z$. 
 		\end{proof}
 	\end{enumerate}
 	
-	\subsection*{4F $\sim$ Function Spaces}
+	\nsubsection{4F $\sim$ Function Spaces}
 	Consider $\R^{I}$ where $I = [0, 1]$. 
 	\begin{enumerate}
-		\item For each $f \in \R^{I}$, and $F$ a finite subset of $I$, we define $U(f, F, \dg) = \{g \in \R^{I} \mid \forall x \in F \co \sof{g(x) - f(x)} < \dg\}$. Show that $U(f, F, \dg)$ (shorten to $\BB_f = \{U(f, F, \dg) \mid \dg > 0, F \subset I \land \sof{F} \in \N\}$) form a nhood base at $f$. 
+		\item For each $f \in \R^{I}$, and $F$ a finite subset of $I$, we define $U(f, F, \dg) = \{g \in \R^{I} \mid \forall x \in F \co \sof{g(x) - f(x)} < \dg\}$. Show that $U(f, F, \dg)$ (shorten to $\BB_f = \{U(f, F, \dg) \mid \dg > 0, F \subset I \land \sof{F} \in \N\}$) form a neighborhood base at $f$. 
 		\begin{proof}
 			\begin{itemize}
 				\item[\textit{V}-a] Since $\sof{f(x) - f(x)} = 0 < \dg$ for each $\dg$, we get that $f \in \BB_f$. 
-				\item[\textit{V}-b] Let $V_1, V_2 \in \BB_f$. $V_1, V_2$ are assigned to some $\dg_1, \dg_2, \ F_1, F_2$, and let $\dg = \min\{\dg_1, \dg_2\}, F = F_1 \cap F_2$. Then $\BB_f \ni V_3 = U(f, F, \dg)$ is a nhood base that satisfies $V_3 \subset V_1 \cap V_2$. 
-				\item[\textit{V}-c] Suppose some $V \in \BB_x$ with $\dg > 0$. For $V_0 = U(f, F, \frac{\dg}{2})$, from the triangle inequality we get that for each $g \in V_0$ the nhood $W = U(g, F, \frac{\dg}{2})$ has the property that for all $h \in W$ and $x\in F$:
+				\item[\textit{V}-b] Let $V_1, V_2 \in \BB_f$. $V_1, V_2$ are assigned to some $\dg_1, \dg_2, \ F_1, F_2$, and let $\dg = \min\{\dg_1, \dg_2\}, F = F_1 \cap F_2$. Then $\BB_f \ni V_3 = U(f, F, \dg)$ is a neighborhood base that satisfies $V_3 \subset V_1 \cap V_2$. 
+				\item[\textit{V}-c] Suppose some $V \in \BB_x$ with $\dg > 0$. For $V_0 = U(f, F, \frac{\dg}{2})$, from the triangle inequality we get that for each $g \in V_0$ the neighborhood $W = U(g, F, \frac{\dg}{2})$ has the property that for all $h \in W$ and $x\in F$:
 				\[ \underbrace{\sof{h(x) - g(x)} < \frac{\dg}{2}}_{f \in W = U(g, F, \frac{\dg}{2})} \land \underbrace{\sof{g(x) - f(x)} < \frac{\dg}{2}}_{g \in V = U(f, F, \frac{\dg}{2})} \therefore \sof{h(x) - f(x)} < \dg \implies h \in V \]
 				So $W \subset V$. 
 			\end{itemize}
-			Hence $\BB_f$ is a nhood base at $f$. 
+			Hence $\BB_f$ is a neighborhood base at $f$. 
 		\end{proof}
 		\item Prove $\Cl \{f\} = \{f\}$. \begin{proof}
-			Since each nhood of $f$ contains $f$ by definition, $\{f\} \subset \Cl \{f\}$. Ad absurdum there is some $f \neq g \in \Cl\{f\}$, ergo $f(x) \neq g(x)$ for some $x \in I$. Hence $\sof{f(x) - g(x)} > \dg$ for some $\dg > 0$ at that very same $x$ where $f, g$ don't agree. Thus for the set $F = \{x\}$ we get that $g \neq U(f, F, \dg)$ by definition, hence a contradiction. Finally $\Cl \{f\} = \{f\}$ as intended. 
+			Since each neighborhood of $f$ contains $f$ by definition, $\{f\} \subset \Cl \{f\}$. Ad absurdum there is some $f \neq g \in \Cl\{f\}$, ergo $f(x) \neq g(x)$ for some $x \in I$. Hence $\sof{f(x) - g(x)} > \dg$ for some $\dg > 0$ at that very same $x$ where $f, g$ don't agree. Thus for the set $F = \{x\}$ we get that $g \neq U(f, F, \dg)$ by definition, hence a contradiction. Finally $\Cl \{f\} = \{f\}$ as intended. 
 		\end{proof}
-		\item Define $V(f, \eg) := U(f, I, \eg)$. Clearly (it's a relatively similar proof) $V$ form a nhood base at $f$, making $\R^{I}$ a topo space with topology $\tau$. 
-		\item Comparing the topos from 1 and 3, we get that the topo from 1 is a finer topology and the one on 3, because the the sets $F_x = \{x\}$ for each $x \in [0, 1]$, the infinite union: 
+		\item Define $V(f, \eg) := U(f, I, \eg)$. Clearly (it's a relatively similar proof) $V$ form a neighborhood base at $f$, making $\R^{I}$ a topological space with topology $\tau$. 
+		\item Comparing the topos from 1 and 3, we get that the topology from 1 is a finer topology and the one on 3, because the the sets $F_x = \{x\}$ for each $x \in [0, 1]$, the infinite union: 
 		\[ \bigcup U(f, F_x, \eg) = U(f, I, \eg) = V(f, \eg) \]
-		is in the topo from 1 since topos are closed to a generalized union. 
-		\item Suppose now $C(\R^{I})$ is the set of continues functions $f \co I \to \R$. Then the topo from 3 at the subspace $C(\R^{I})$ is a topo too. Prove it's metrizable by the metric $\rho(f, g) = \sup\sof{f(x) - g(x)}$. 
+		is in the topology from 1 since topos are closed to a generalized union. 
+		\item Suppose now $C(\R^{I})$ is the set of continues functions $f \co I \to \R$. Then the topology from 3 at the subspace $C(\R^{I})$ is a topology too. Prove it's metrizable by the metric $\rho(f, g) = \sup\sof{f(x) - g(x)}$. 
 		\begin{proof}
 			idk this is just double inclusion. 
 		\end{proof}
 	\end{enumerate}
 	
-	\subsection*{4G $\sim$ Nowhere dense sets}
+	\nsubsection{4G $\sim$ Nowhere dense sets}
 	TODO
-	A set is \textit{nowhere dense} in $X$ iff its closure contains no nonempty open sets. $p$ is \textit{isolated} within a topology iff $\{p\}$ is open. $D$ is \textit{discrete} in $X$ iff each $d \in D$ has a nhood $U$ such as $U \cap D = \{d\}$. 
+	A set is \textit{nowhere dense} in $X$ iff its closure contains no nonempty open sets. $p$ is \textit{isolated} within a topology iff $\{p\}$ is open. $D$ is \textit{discrete} in $X$ iff each $d \in D$ has a neighborhood $U$ such as $U \cap D = \{d\}$. 
 	\begin{enumerate}
 		\item In a metric space $(X, \rho)$ without isolated points, the closure of a discrete set in $X$ is nowhere dense. \begin{proof}
-%			Consider $A \subset X$ to be a discrete set. Assume for the sake of contradiction the existence of some open disk $U(x, \eg)$ in $\Cl A$ for $\eg > 0$. Then for each closed set $A \subset B$ we have $U(x, \eg) \subset B$. Since $U(x, \eg) \neq \varnothing$ then $\Cl A \neq \varnothing$ hence $A \neq \varnothing$, and $\Cl A$ has some point $d \in A$ meets the basic nhood $U(x, \eg)$. Since $A$ is discrete we have some nhood $D = U(d, \dg)$ such that $A \cap D = \{d\}$. Note the open space $O = D \cap U$. We know $d \in U, D \implies d \in O$ and $O \neq \{d\}$ because $(X, \rho)$ has no isolated points, and same applies to any open subset of $O$. Because $O$ is open, there is a $\eg_1$ $d$-disk contained in $O$, 
+%			Consider $A \subset X$ to be a discrete set. Assume for the sake of contradiction the existence of some open disk $U(x, \eg)$ in $\Cl A$ for $\eg > 0$. Then for each closed set $A \subset B$ we have $U(x, \eg) \subset B$. Since $U(x, \eg) \neq \varnothing$ then $\Cl A \neq \varnothing$ hence $A \neq \varnothing$, and $\Cl A$ has some point $d \in A$ meets the basic neighborhood $U(x, \eg)$. Since $A$ is discrete we have some neighborhood $D = U(d, \dg)$ such that $A \cap D = \{d\}$. Note the open space $O = D \cap U$. We know $d \in U, D \implies d \in O$ and $O \neq \{d\}$ because $(X, \rho)$ has no isolated points, and same applies to any open subset of $O$. Because $O$ is open, there is a $\eg_1$ $d$-disk contained in $O$, 
 		\end{proof}
 		\item 
 	\end{enumerate}
 	
-	\section{}
-	\subsection*{5A $\sim$ examples of subbases}
+	\section[Bases and Subbases]{}
+	\nsubsection{5A $\sim$ examples of subbases}
 	\begin{enumerate}
 		\item the family of sets with the form $(-\inft, a)$ together with $(b, \inft)$ form a subbase for the usual topology. 
 		\begin{proof}
@@ -228,12 +229,12 @@
 		broadly speaking. 
 	\end{enumerate}
 	
-	\subsection*{5D $\sim$ No axioms for subbase}
+	\nsubsection{5D $\sim$ No axioms for subbase}
 	Any family of subsets of a set $X$ is a subbase for some topology on $X$, and that topology is the smallest topology containing that family. 
 	TODO
 %	TODO
 
-	\subsection*{5F $\sim$ Second countable and separable spaces}
+	\nsubsection{5F $\sim$ Second countable and separable spaces}
 	A space $X$ is \textit{second countable} iff $X$ has a countable base. $X$ is separable iff a countable subset $D$ of $X$ exists with $\Cl_XD = X$ (such $D$ said to be \textit{dense} in $X$). 
 	\begin{enumerate}
 		\item A separable metric space is second countable. \begin{proof}
@@ -242,20 +243,20 @@
 			
 			Now, consider the one-to-one mapping $D\times\Q \ni (d, \eg) \mapsto U(d, \eg)$. Its image will be denoted with $\XX$. 
 			
-			Let $x \in X$. Clearly $\XX \subset \tau$ (it's a group of open disks). For each $U \in \tau$ open set, it's a union of $\bigcup \oc$ where $O \in \oc$ is a basic nhood (open disk) marked as $U(x_O, \eg_O)$. For each $\eg_O$ and $x \in U(x_O, \eg_O)$ and $d \in U(x_O, \eg_O)$ we have a rational $q^{O}_{d}$ having the property that $0 < q < \min\{\rho(x, d), \eg_O - \rho(x, d)\}$. 
+			Let $x \in X$. Clearly $\XX \subset \tau$ (it's a group of open disks). For each $U \in \tau$ open set, it's a union of $\bigcup \oc$ where $O \in \oc$ is a basic neighborhood (open disk) marked as $U(x_O, \eg_O)$. For each $\eg_O$ and $x \in U(x_O, \eg_O)$ and $d \in U(x_O, \eg_O)$ we have a rational $q^{O}_{d}$ having the property that $0 < q < \min\{\rho(x, d), \eg_O - \rho(x, d)\}$. 
 			For that $O$ we'll define $\oc_O := \{U(d, q^{O}_{d}) \mid d \in D\}$. We immediately from definition and the triangle inequality have $U(d, q^{O}_d) \subset U(x_O, \eg_O)$. Moreover, for each $y \in U(x_O, \eg_O)$ and some open $P$ with $y \in U(y, \eg_O^{d}) \subset U(x_O, \eg_O)$ (same similar contraction), $P$ meets $D$ from the lemma at $d$. Both of them are in $U(y, \eg_O^{y})$ so $\rho(y, d) < \eg_O^{y} < \eg_O$. So we have some rational $q \in \Q$ that satisfies $0 <\eg_O^{y} < q < \min\{\rho(x, d), \eg_O - \rho(x, d)\}$, and finally we found a open disk $U(d, q) \in \XX$ with $y, d \in U(d, q) \subset U(y, \eg_O^{y}) \subset U(d, q_d^{O})$. Hence $\bigcup \oc_O = U(x_O, \eg_O)$. Then we have $\bigcup_{O \in \oc}\bigcup \oc_O = U$, and $\oc_O \subset \XX$, so $U$ is a union of items from (the now basis) $\XX$, since every open set in $\tau$ is given by a union (of union) of elements from $\XX$ and $\XX$ is contained in $\tau$. 
 			
 			We found a base $\XX$ that has one-to-one mapping into $D \times \Q$, which is countable because $D$ is countable and $\Q$ is countable, and $\az^{2} = \az$. Finally $\XX$ is a countable base for $(X, \rho)$, so $(X, \rho)$ is second-countable. 
 		\end{proof}
 		\item Every second-countable space is separable and first countable. \begin{proof}Let $(X, \tau)$ be some second-countable space. Then we have a base countable $\XX$. 
 			\begin{itemize}
-				\item \textbf{$\bm X$ is first countable: }let some $x \in X$, so it has some nhood system $\UU_x$. As explained in the book, for each $A \in \UU_x$ we can take a open space $A\intr$ having the property $x \in A\intr \subset A$, and then $\UU_x' = \{A\intr \mid A \in \UU_x\}$ is a nhood system with open sets. Ergo $\UU_x' \subset \XX \mapsto \N$, so $\UU_x'$ is a countable nhood system. Finally we have a countable nhood system for each $x \in X$ as intended. 
+				\item \textbf{$\bm X$ is first countable: }let some $x \in X$, so it has some neighborhood system $\UU_x$. As explained in the book, for each $A \in \UU_x$ we can take a open space $A\intr$ having the property $x \in A\intr \subset A$, and then $\UU_x' = \{A\intr \mid A \in \UU_x\}$ is a neighborhood system with open sets. Ergo $\UU_x' \subset \XX \mapsto \N$, so $\UU_x'$ is a countable neighborhood system. Finally we have a countable neighborhood system for each $x \in X$ as intended. 
 				
 				\textit{Note: I essentially needlessly repeated the proof shown from theorem 5.4. }
 				\item \textbf{$\bm X$ is separable: }By AC there is a $F \co \XX \setminus \{\varnothing\} \to X$ choice function. We'll prove $D = \Img F$ is a countable dense set. 
 				\begin{itemize}
 					\item \textit{Countability: }each $x \in D$ maps to a $U \in \XX$ by definition. It's a injective map from $D$ to the countable $\XX$, so $\sof{D} \le \sof{\XX} = \az$ as intended. 
-					\item \textit{Density: }observe some $C$ closed set that covers $D$. Then $\ol{C}$ is open. Since it's open it has some basic nhood $U \in \XX$ contained in it. By definition there is $d \in D$ such that $d \in U$, unless $\ol C = \varnothing$ (in that case the choice function is undefined). Since $C$ covers $D$, there are no $d \in U \subset \ol C$; hence is must be that $\ol C = \varnothing$. From that $C = X$. 
+					\item \textit{Density: }observe some $C$ closed set that covers $D$. Then $\ol{C}$ is open. Since it's open it has some basic neighborhood $U \in \XX$ contained in it. By definition there is $d \in D$ such that $d \in U$, unless $\ol C = \varnothing$ (in that case the choice function is undefined). Since $C$ covers $D$, there are no $d \in U \subset \ol C$; hence is must be that $\ol C = \varnothing$. From that $C = X$. 
 					
 					Finally, the only closed set that contains $D$ is $X$, so $\Cl_XD$ being the intersection of all closed that contains $D$ is $X$. Because $\Cl_XD = X$, we know $X$ is dense. 
 				\end{itemize}\envendproof
@@ -269,12 +270,327 @@
 		\end{proof}
 	\end{enumerate}
 	
-	\section{}
-	\subsection*{Subspaces of separable spaces}
+	\section[Subspaces]{}
+	\nsubsection{6A $\sim$ Example of subspaces}
+	\begin{enumerate}
+		\skipitems{4}
+		\item The rationals, as a subspace of $\R$, do not inherit discrete topology. \begin{proof}
+			Suppose the rationals inherit the discrete topology. Hence for each $q \in \Q$, we have a open set $\{q\}$. By definition of relative topology, $q = \Q\cup\{x - \eg, x + \eg\}$ for some $\eg \in \R$. Hence $\Q$ is discrete, contradiction. 
+		\end{proof}
+	\end{enumerate}
+	\nsubsection{6C $\sim$ Subspaces of separable spaces}
 	\begin{enumerate}
 		\skipitems{2}
-		\item $\AA$
+		\item An open subset of a separable space is separable. \begin{proof}
+			Let $(X, \tau)$ be a separable topological space, and $A \subset X$ be a space with the relative topology. We have some dense $D \subset X$, such that for each $U \in \tau$ basic neighborhood, $U \cap D \neq \varnothing$. We'll prove $D \cap A$ is dense in $A$. Indeed, for each $U'$ basic neighborhood in $A$, we have some basic neighborhood $U$ in $X$ such that $U' = U \cap A$ -- which is a neighborhood in $X$ too since $\tau$ in closed for a finite intersection. Thus $D \cap (U \cap A) \neq \varnothing$ meaning $D \cap U' \neq \varnothing$, so $D$ meets each basic neighborhood, ergo dense. 
+		\end{proof}
 	\end{enumerate}
+	
+	\section[Continues Functions]{}
+	\nsubsection{7A $\sim$ Characterization of Spaces using Functions}
+	Denote with $I_A \co X \to \{0, 1\}$ the indicator for $A$ in a topological space $(X, \tau)$. (when $\{0, 1\}$ inherits has the discrete topology from $\R$)
+	\begin{enumerate}
+		\item $I_A$ is continues iff $A$ is both open and closed. \begin{proof}
+			\begin{itemize}
+				\item[$\implies$] If $I_A$ is continues, then $\{1\}$ is an open set, hence $f\op(\{1\}) = A$ is an open set. $\{1\}$ is a closed set too, hence $f\op(\{1\}) = A$ is a closed set. 
+				\item[$\impliedby$] If $A$ is both open and closed, by brute forcing how $f\op$ applies for each of the options for sets in $\ps\{0, 1\}$ we can verify that $f$ is continues. 
+			\end{itemize}
+		\end{proof}
+		\item Prove that $X$ has the discrete topology iff whenever $Y$ is a topological space, and $f \co X \to Y$ is continues. \begin{proof}
+			\begin{itemize}
+				\item[$\implies$]If $X$ has the discrete topology, for each $(Y, \tau)$ topological space and for each open set $U \in \tau$, we have $f\op(U) \in X$ hence open (each set is open in the discrete topo). By theorem 7.2 $f$ is continues. 
+				\item[$\impliedby$]If for each $(Y, \tau_Y)$ topological space, and $f \co X \to Y$, $f$ is continues, then in particular for $\tau$ the discrete topology, $Y = X$ and $f$ the identity, the identity is a homeomorphism and the category topological spaces with continues functions as morphisms, we have $\tau_Y = \tau_X$. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\nsubsection{7H $\sim$ Disjoint homeomorphism}
+	Suppose some $(X, \tau_X), (Y, \tau_Y)$ topological spaces such that $X = \biguplus X_n, Y = \biguplus Y_n$ a disjoint union of open sets $X_n\in \tau_X, Y_n \in \tau_Y$, then if $X_n \overset{f_n}{\cong} Y_N$ are homeomorphic, then $X \cong Y$. \begin{proof}
+		Consider a base for the relative topology at $X_n$, denoted $\XX_n$. Since $X_n, X_m$ are disjoint for each $n \neq m$, the union $\XX := \biguplus \XX_n$ is a base for $X$; for each open $U \in \tau$, we know that $U$ can be broken uniquely into $U =: \biguplus U_n$ such that $U_n = X_n \cap U$, and $U_n \in X_n$ is a union of elements from the base $\XX_n$. Finally the union of the union of all of these elements form $U$, hence $\XX$ indeed generated (via union) every open set in the topology $\tau$, and each set in $\XX$ is open (because the relative topology on $X_n$ is weaker than $\tau_X$). Similarly, we can build a base $\YY = \biguplus \YY_n$ for $Y$. 
+		
+		Since $f_n \co X_n \to Y_n$ is homeomorphism, it maps the open sets $\XX_n \mapsto \YY_n$. By defining: 
+		\begin{align*}
+			f \co X \to Y && f(x) = f_{\iota n \in \N \co x \in X_n}(x) = \biguplus f_n
+		\end{align*}
+		That is well-defined since $X_n, Y_n$ are a disjoint decomposition of $X, Y$, we have that $f$ maps $\XX \mapsto \YY$, as it's the union of $f_n$ that preserves $\XX_n \mapsto \YY_n$. Hence $f \co X \to Y$ is a homeomorphism, so $X \cong Y$. 
+	\end{proof}
+	
+	\nsubsection{7L $\sim$ Linear operators and linear functionals}
+	Let $(X, +_X, \cdot_X, \snorm_X),\ (Y, +_Y, \cdot_Y, \snorm_Y)$ over rings $\C$, be some normed (and in particular, metric and topological) linear spaces. 
+	
+	A \textit{linear operator $f \co X \to Y$} is a map that preserves $\cdot, +$. 
+	
+	An operator $\Cg$ is \textit{bounded} iff $\exists M \in \C \co \norm{\Cg(x)} \le M \norm x$. 
+	
+	\begin{enumerate}
+		\item A linear operator is bounded iff $\sup \norm{S_1} < \inft$ where $\norm{S_1} := \{\norm{\Cg(x)} \co x \in X \land \norm x = 1\}$. \begin{proof}
+			\begin{itemize}
+				\item[$\impliedby$] Suppose the supremum of $\norm{S_1}$ is $\inft$ (note that $\norm{\Cg(x)} \ge 0$). Ad absurdum $\Cg$ is bounded by $M$. By supremum definition, exists a $x \in X$ where $\norm x > 1$ such that $\norm{\Cg(x)} > M$. But $\norm{\Cg(x)}$ is bounded by $M \cdot \norm{x} = M$, hence a contradiction. Thus, $\Cg$ must be bounded. 
+				\item[$\implies$] Suppose $\Cg$ is bounded by some $M$. So for each $\norm x = 1$ we have $\norm{\Cg(x)} \le M \cdot \norm x = M$ for some $M$. Hence, $\norm{S_1}$ is bounded. By the completeness axiom, we know that a supremum for $S_1$ exists in $\C$, as intended. 
+			\end{itemize}
+		\end{proof}
+		\textit{Note: }it can be proven that $\norm{S_1}$ is the supremum (or the maximum the the finite-dimensional case) of the singular values of $\Cg$. 
+		\item TFAE for a linear $\Cg$: 
+		\begin{enumerate}
+			\item[a)]$\Cg$ is continues at some $x_0 \in X$
+			\item[b)]$\Cg$ is uniformly continues on $X$
+			\item[c)]$\Cg$ is bounded
+		\end{enumerate}
+		\begin{proof}
+			\begin{itemize}
+				\item[a$\to$b]Suppose $\Cg$ is continues at $x_0$. Note that continuity in the topological sense consolidates with continuity in the metric sense, since basic neighborhood sets in a metric space are open disks (and by using disks instead of neighborhoods, we get the same definition). 
+				
+				Then $\forall \eg > 0.\, \exists \dg > 0 \co \norm{\Cg(x_0 + \dg) - \Cg(x_0)} < \eg$. But we know $\Cg(x_0 + \dg) - \Cg(x_0) = \Cg(\dg) = \Cg(x_1 + \dg) - \Cg(x_1)$ by linearity, hence $\Cg$ is continues at all of $X$, for that very same $\dg$, hence uniformly continues. 
+				\item[b$\to$c]Suppose $\Cg$ is uniformly continues on $X$. Then for all $x, y \in X$, for each $\eg \in \R$, we have that $\norm{x - y} < \dg$ for some $\dg$ implies that $\sof{\Cg(x) - \Cg(y)} < \eg$. Using linearity, fixing $y = 0_X$, and other nonsense we get: 
+				\[ \norm{\Cg(x)} = \norm{\Cg(x -_X y)} = \norm{\Cg(x) -_Y \Cg(y)} < \eg \]
+				In particular, for $\eg = 1$. Denote $v = \frac{\dg}{2 \norm x}x$. We know that $\norm{v} = \frac{\dg}{2\norm x} \norm x = \frac{\dg}{2} < \dg$. Therefore $\norm{\Cg(v)} < \eg = 1$. Now, we have from linearity: 
+				\[ \frac{\dg}{2 \norm x}\norm{\Cg x} = \norm{\Cg\cl{\frac{\dg}{2 \norm x}x}} = \norm{\Cg v} < 1 \implies \norm{\Cg x} < \frac{2}{\dg} \cdot \norm x \]
+				So $\frac{2}{\dg}$ is a constant bound for $x$, as intended. 
+				\item[c$\to$a]Assume $\Cg$ is bounded. Prove it's continues at some $x_0 \in X$. 
+					We'll prove for $x_0 = 0$. We know $\Cg(0) = 0$ as it's linear. Indeed, by boundness: 
+					\[ \exists M \in \C.\, \forall x \in X \co  \norm{\Cg(x) - \Cg(0)} = \norm{\Cg(x)} \le M \norm{x} \]
+					Hence, for each $\eg > 0$, we can fix an arbitrary small $\norm{y} < \frac{\dg}{M}$ (this can be done by exploiting some $\norm{y} \neq 0$, and inductively subtracting $\frac{y}{2^{n}}$), that will satisfy the condition for continuity at $0$ from the statement above. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\nsubsection{7N $\sim$ The group of homeomorphisms}
+	Denote by $H(X)$ the group of homeomorphisms operators for a topological space $(X, \tau)$. 
+	\begin{enumerate}
+		\item $H(X)$ is a group, with the composition as a operation, and the identity map as an identity. \begin{proof}
+			Indeed, for each $f \in H(X)$ we have $f \circ I = f$. A homeomorphism is a one-to-one mapping with its inverse being a homeomorphism too, hence $f\op \in H(X)$, and $f \circ f\op = I$ by definition. 
+			We have associativity for each composition of operators in the general sense, regardless of $H(X)$ being a specific set. Finally $H(X)$ is a group. 
+		\end{proof}
+		\textit{Note: the set of continues maps is a monad. }
+		\item Let $X = [0, 1] =: I$ and $Y = (0, 1)$, and define $\phi(h) = h|_{Y}$ for each $h \in H(X)$. Prove $\phi \co H(X) \to H(Y)$ is a one-to-one, but there are no homeomorphism form $X$ onto $Y$. \begin{proof}
+			There are no homeomorphisms $f \co X \to Y$ because if there are such, then $f([0, 1]) = (0, 1)$, and $[0, 1]$ is closed while $(0, 1)$ is open, both inherits the same topology from $\R$, hence $(0, 1)$ is closed, a contradiction. Meanwhile, clearly $h$ is surjective, but it's injective too; for each $f \in H(Y)$, we know that any extension of $f$ to a $g \in H(X)$ such that $f = g|_Y$, will satisfy $g(0) = \lim_{x \to 0^{+}}f(x)$ in similarly for $g(1)$, which are defined uniquely by $f$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section[Product Spaces and Weak Topologies]{}
+	\nsubsection{8A $\sim$ Projection maps}
+	\begin{enumerate}
+		\item The $\bg$th projection $\pi_\bg$ is continues and open, although $\pi_1 \co \R^{2} \to \R$ is not closed. \begin{proof}
+			Let some $X_\ag \co I \to X$ and let $\Pi = \prod_{\ag \in I} X_\ag$. Fix some $\bg \in I$, we'll prove $\pi_\bg \co \Pi \to X_\bg$ is open and continues, where $X_\bg$ has some topology $\tau_\bg$ and $\Pi$ has the Tychonoff topology $\tau$. Let some $U \in \tau$ open. We know $U$ is a union of the base elements $u_x$, and that $\pi_\bg(u_x) \eqdef (u_x)_\bg$ is open. Hence, by continuity: 
+			\[ \pi_\bg(U) = \pi_\bg\cl{\bigcup u_x} = \bigcup \pi_\bg(u_x) \]
+			LHS is necessarily open since it's a union of open sets. Finally $\pi_\bg$ is open. 
+			
+			Now let some $U \in \tau_\bg$ open. We'll prove that $\pi_\bg\op(U)$ is open. Clearly $\pi_\bg\op(U) = \prod U_\ag$ where $U_\bg = U$ and $U_{\ag \neq \bg} = X_\ag$, which is open by definition. So $\pi_\bg\op(U)$ is open for each $U \in \tau_\bg$, ergo $\pi_\bg$ is continues. 
+			
+			With that said, $\pi_1 \co \R^{2} \to \R$ is not closed. Denote the group $A = \{(x, y) \in \R^{2}\co xy = 1\}$. Consider $f(x) = \frac{1}{x}$ continues map $f \co \R \to \R$ and $F((x, y)) = y - f(x)$ continues $F \co \R^{2}\to \R$ (because $(0, f(0))$ is continues, and the constant $(y, 0)$ is continues). Finally $A = F\op(\{0\})$ is closed because $\{0\}$ is closed in the $T_1$ space $\R$, and $F$ is continues. Even though $A$ is closed, we get that $\pi_\bg(A) = (0, \inft)$ is not closed; a contradiction. 
+		\end{proof}
+		\item We'll show that the projection $\pi_2 \co I \times \R \to \R$ is a closed map. \begin{proof}
+			Consider some $C \subset I \times \R$ closed group. We'll prove $\pi_2(C)$ is closed. We'll show that $\pi_2(C)$ is sequentially closed which is iff closed in $\R$. Suppose $\pi_2(C) \ni x_n \to x$. Consider $y_n \in I \times \R$ chosen (AC) such that $\pi_2\op(y_n) = x_n$. Since $\pi_2(y_n) = x_n \to x$ and $\pi_1(y_n) \in [0, 1]$, and $[0, 1]$ is compact, we can chose using BW some $y_{n_k}$ subsequence such that $\pi_1(y_{n_k}) \to \ml$. So using some random theorem $y \to (\ml, x)$. Since $C$ is sequentially closed $(\ml, x) \in C$, so $\pi_2((\ml, x)) = x \in C$ too by continuity of $\pi_2$, as intended. 
+		\end{proof}
+	\end{enumerate}
+	
+	\nsubsection{8B $\sim$ Separating points from closed sets}
+	\begin{enumerate}
+		\item Let some $(X_\ag, \tau_\ag)$ be topological spaces. Prove $f_\ag \co X \to X_\ag$ for each $\ag \in A$, then $\{f_\ag \mid \ag \in A\}$ separates points from closed sets and $f_\ag$ are continues\footnote{not required in the book. Probably a mistake, since Theorem 8.14 states that $f_\ag$ must be continues functions} in $X$ iff $\BB := \{f_\ag\op(V) \mid \ag \in A \land V \in \tau_\ag\}$ is a base for the topology on $X$. \begin{proof}
+			\begin{itemize}
+				\item[$\implies$]Suppose the collection $f(A)$ (holy abuse of notation) separates points from closed sets. Since $f_\ag$ are continues, for all $V \in \tau_\ag$ open indeed $f\op_\ag(V)$ is open in the topology of $X$. Now we'll make sure they actually form a base. 
+				
+				Firstly, we'll prove that $X = \bigcup f_\ag\op(\tau_\ag)$ (holy abuse of notation 2). Clearly $\bigcup f_\ag\op(\tau_\ag) \subset X$. Let $x \in X$, and fix some closed $B$. We know that exists some $\ag \in A$ such that $f_\ag(x) \notin \ol{f_{\ag}(B)}$ for each closed such that $x \notin B$ (exists if the topology is nontrivial). Therefore $f_{\ag}(x) \in f_\ag(B)$. 
+				\item[$\impliedby$]Assume $\BB$ is a base for the topology on $X$. Let some $x \in X$ and $B \in \BB$ such that $x \notin B$. We'll prove that for some $\ag \in A$ we know $f_{\ag}(x) \notin \ol{f_\ag(B)}$. For the sake of contradiction, assume the opposite. Hence for each closed $B \subset X$, $f_{\ag}(x) \notin f_{\ag}(B)$. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+%	TODO
+	TODO
+	
+	\nsubsection{8D $\sim$ Closure and Interior in products}
+	Let $X$ and $Y$ be topological spaces with $A \subset X, B \subset Y$. 
+	\begin{enumerate}
+		\item Prove $(A \times B)\intr = A\intr \times B\intr$. \begin{proof}
+			We know $(x, y) \in (A \times B)\intr$ iff there is some open $O$ such that $(x, y) \in O \subset A \times B$. Since $A \times B$ is a finite product that inherits the box topology, we notice that there are some $O_A, O_B$ such that $O = O_A \times O_B$. Hence $x \in O_A \subset A$ and $y \in O_B \subset B$. By that $x \in A\intr \land y \in B\intr$ hence $(x, y) \in A \intr \times B \intr$. For the converse, each $(x, y) \in A\intr \times B\intr$ we have $x \in O_A \subset A\intr \land y \in O_B \subset B\intr$ for some open $O_A, O_B$ therefore $O = O_A \times O_B$ is open ($2$ is a finite number) hence $(x, y) \in O_A \times O_B \subset A \times B$ as intended. 
+		\end{proof}
+			Note that this proof does not extends into an infinite product, since for the (sometimes false) inclusion $(\prod A)\intr \supset \prod A\intr$ we need (at least) the box topology, and the Tychonoff topology is not coarse enough. For example, in $\R^{\R}$, the set $A = (-1, 1)$ is open hence $A = A\intr$, so $\prod A\intr = \prod A = A^{\R}$. Meanwhile $(\prod A)\intr = (A^{\R})\intr$ is empty; in the open set $g \in U(f, F, \eg)$, when $F \in \ps_{\text{fin}}(\R), \eg > 0$, we have some $\R \ni i \notin F$, for which $g(i)$ could be any number in $\R$. Thus, since $f \in (A^{\R})\intr$ iff $f \subset U(g, F, \eg) \subset A^{\R}$ for some function $g$, and we know $g(i)$ could be any number in $\R$ including $g(i) \notin A$, we get there aren't any open sets contained in $A^{\R}$, therefore such $f$ does not exists, and $(A^{\R})\intr = \varnothing$, even though $A^{\R}\neq\varnothing$. 
+	\end{enumerate}
+	
+	\section[Quotient Spaces]{}
+%	TODO
+	TODO
+	
+	\section[Inadequacy Of Sequences]{}
+	\nsubsection{10C $\sim$ Topology of first-countable spaces}
+	Prove the following for $X, Y$ first-countable spaces: 
+	\begin{enumerate}
+		\item $U \subset X$ is open iff $x_n \to x \in U$ implies that $x_n$ is eventually in $U$. 
+		\item $F \subset X$ is closed iff whenever $x_n \in F$ and $x_n \to x$ then $x \in F$. 
+		\item $f \co X \to Y$ is continues iff $x_n \to x \implies f(x_n) \to f(x)$. 
+	\end{enumerate}
+	\begin{proof}
+		\begin{enumerate}
+			\item[2.]By theorem 10.4 and using the fact that $F$ is closed iff $F = \Cl_XF$. 
+			\item[1.]
+			\begin{itemize}
+				\item[$\implies$]Let $U$ be an open set an let $x_n \!\to x \in U$. We know that $x$ has some basic neighborhood $x \in O \subset U$. Since $x_n \!\to x$, at some point $n_0$ we know that $\forall n \ge n_0 \co x_n \in O \subset U$, hence $x_n$ is eventually in $U$. 
+				\item[$\impliedby$]Let $U \subset X$ and suppose $x_n \to x \in U$ implies that $x_n$ eventually in $U$. AFSOC $U$ is not open. Hence $\ol{U}$ is not closed. By (1) and since $X$ and by first-countability exists some $x_n \in \ol{U}$ that converges to some $x$ even though $x \notin \ol{U}$. Therefore $x \in U$ so $x_n$ is eventually in $U$, but if for some $n_0$ we know $x_n \in U$ then $\ol{U} \ni x_n \notin \ol{U}$ and that's a contradiction. Finally $U$ is open. 
+			\end{itemize}
+			\item[3.] \begin{itemize}
+				\item[$\implies$]Assume $f \co X \to Y$ is continues. Then each neighborhood $V \subset Y$ of $f(x)$ has some $U$ neighborhood of $x$ such that $f(U) \subset V$. Let $f(x) \in V$ be a neighborhood of $f(x)$. Exists some $U \subset X$ such that $f(U) \subset V$. Therefore $x \in U$ a neighborhood of $x$, and we get that $x_n$ eventually meets $U$, after some $n_0$. Hence for each $n \ge n_0$ we get that $f(x_n) \in f(U) \subset V$, so $x_n$ is eventually meets $V$. Ergo $f(x_n)$ eventually meets each neighborhood of $f(x)$ as intended. 
+				
+				\item[$\impliedby$]Assume $x_n \to x$ implies that $f(x_n) \to f(x)$. We'll prove $f$ is continues. Let $V \subset Y$ be an open set. Now consider $f\op(V) =: U$. Let $x_n \to x$ and assume $x \in U$, it's given that $f(x_n) \to f(x)$ too, and we know that $f(x) \in V$. Because $V$ is open, it's sequentially open, and $f(x_n)$ eventually after some $n_0$ reaches $V$. Since $f(x_{n \ge n_0}) \in V$ then $x_{n \ge n_0} \in f\op(V) = U$ so $x_n$ eventually meets $U$. Thereupon we get that $U$ is open via the converse of (1) and by first countability. Finally $f\op(V)$ is open in $X$ for each $V$ open in $Y$, hence $f$ is continues as intended. 
+			\end{itemize}\envendproof
+		\end{enumerate}
+	\end{proof}
+	
+	\stepcounter{section}
+	\stepcounter{section}
+	
+	\section[The separation axioms]{}
+	\nsubsection{13B $\sim$ $T_0$ and $T_1$-spaces}
+	\begin{enumerate}
+		\item Any subspace of a $T_0$ or a $T_1$ space is respectively a $T_0$ or a $T_1$ space. 
+		\begin{proof}
+			\begin{itemize}
+				\item Let $X$ be a $T_0$ space and consider some $A \subset X$ with the relative topology. Let $x, y \in A$. Exists some $U \subset X$ such that (WOLOG) $x \in U \land y \notin U$. Therefore the same applies for $A \cap U$ as intended. 
+				\item If $X$ is a $T_1$, it's the same proof just with $U_1, U_2$. 
+			\end{itemize}
+		\end{proof}
+		\item Any nonempty product space if $T_0$ or $T_1$ iff each factor space is respectively $T_0$ or $T_1$ space. 
+		\begin{proof}[proof for $T_0$ spaces]
+			\begin{itemize}
+				\item[$\implies$] Assume $\prod X_\ag$ is a nonempty $T_0$ product space. Since the product is nontrivial, we can fix some $b_\ag \in X_\ag$ for each $\ag$ in the indexing group $A$. Now consider the group $B_\ag = \{(x_\ag)_{\ag \in A} \mid \ag = \bg \lor x_\ag = \bg_\ag\}$. We know that $B_\ag \subset \prod X_\ag$ Therefore from (1) $B_\ag$ is $T_0$. Moreover $\pi_\ag|_{B_{\ag}}$ is a bijection because $X_\ag \ni x \mapsfrom x'$ where $\pi_\bg(x')$ is $b_\bg$ if $\bg = \ag$ and $x$ otherwise. Since we know that projections are open and continues, $\pi_\ag|_{B_\ag} \co B_\ag \to X_\ag$ is homeomorphism. Because $T_0$ is a topological property and $B_\ag$ is $T_0$ then $X_\ag \cong B_\ag$ is $T_1$ too as intended. 
+				\item[$\impliedby$] Assume each factor space $(X_\ag)_{\ag \in A}$ is $T_0$. Let some $x \neq y \in \prod X_\ag$. We know the existence of some $\ag$ such that $x_\ag \neq y_\ag$. For this $\ag$ we know that exists some $U_\ag \in X_\ag$ such that WOLOG $x \in U_\ag \land y \notin U_\ag$. Thereafter we get that $\pi_\ag\op(U_\ag)$ is open in $X$ and $x \in \pi_\ag\op(U_\ag) \land y \notin \pi\op_\ag(U_\ag)$ which implies that $X$ is $T_0$. 
+			\end{itemize}
+		\end{proof}
+		\item TODO
+		\item TODO
+	\end{enumerate}
+	\nsubsection{13C $\sim$ The $T_0$-identification}
+	Let $X$ be a topological space and $\sim$ defined as $x \sim y \iff \ol{\{x\}}  = \ol{\{y\}}$. 
+	\begin{itemize}
+		\item Prove $\sim$ is an equivalence relation. \begin{proof}
+			\begin{itemize}
+				\item If $x = y$ then indeed $\ol{x} = \ol{y}$ so $x \sim x$. 
+				\item If $x \sim y \land y \sim z$ then $\ol{x} = \ol{y} \land \ol{y} = \ol{z}$ therefore $x \sim z$. 
+				\item If $x \sim y$ then $\ol{x} = \ol{y}$ thereupon we get $\ol{y} = \ol{x}$ so $y \sim x$. 
+			\end{itemize}
+			Finally $\sim$ is an equivalence relation. 
+		\end{proof}
+		\item Prove that $X/\!\!\sim\ =: \tl X$ is $T_0$. \begin{proof}
+			Let $[x] \neq [y] \in X\eqrel$. Then either $x\notin \Cl \{y\} \lor y \notin \Cl\{x\}$, WOLOG assume the first. Because the closure is closed, $X \setminus \Cl \{y\}$ is an open set. It's obviously saturated since for the natural map $P \co X \to X\eqrel$ and $U =: X\eqrel \setminus \{[x]\}$, clearly $P\op(U) = X \setminus \Cl_X\{y\}$, hence $U$ is open. Clearly $[y] \in U \land [x] \notin U$, as intended. Finally $X\eqrel$ is $T_0$. 
+		\end{proof}
+	\end{itemize}
+	\nsubsection{13E $\sim$ Accumulation points and condensation points}
+	\begin{enumerate}
+		\item In a $T_1$-space, $a$ is an accumulation point of $A$ iff each neighborhood of $a$ meets $A$ in an infinite set. \begin{proof}
+			\begin{itemize}
+				\item[$\implies$]If $a$ is accumulation point of $A$, consider some neighborhood $U$ of $a$ that we know that meets $A$. Let some $y_1 \in U \cap A$, then we can separate $x$ from $y_1$ with some neighborhood $y_1 \notin U_{y_1} \ni x$. Inductively for each $y_n$ we can look at $U_{y_n}$, we know that $U_{y_n} \cap A$ is nonempty and has some $y_{n + 1}$, and we can separate $y_{n + 1}$ from $x$ using some open neighborhood $y_{n + 1} \notin U_{y_{n + 1}} \ni x$. 
+				
+				Ad absurdum $U \cap A$ is finite. Then we can number them $y_1 \dots y_n$. We can find neighborhoods $U_{y_1} \dots U_{y_n}$ as shown above (and if $y_{n + 1} \notin A \cap U_{y_n}$ we'll define $U_{y_{n + 1}} = U_{y_n}$, which satisfies the condition of being a neighborhood of $x$ without $y_{n + 1}$) although $U_{y_{n}}$ is a open neighborhood of $x$ that doesn't have any of $y_1 \dots y_n$, even though it meets $A$ at some point $y_{n + 1}$ which is not at $U \cap A$, hence a contradiction. 
+				
+				\item[$\impliedby$]If each neighborhood of $a$ meets $A$ is an infinite set, in particular the intersection is nonempty hence $a$ in an accumulation point. 
+			\end{itemize}
+		\end{proof}
+		\item Trivial
+		\item Practically we need to prove that $A' \supset (A')'$. \begin{proof}
+			From (2) $A'$ is closed. We also know that $\Cl A' = A' \cup A''$, but since $A'$ is closed $\Cl A' = A'$, hence $A' = A' \cup A''$. Then $A'' \subset A'$ as intended. 
+		\end{proof}
+		\item Define inductively $A^{n + 1} := (A^{n})'$ and $A^{1} := A'$. We proved $A^{1} \supset A^{2} \supset \cdots$. Now we need to prove that for any positive integer $n$, there is a set $A \subset \R$ such that $A, A^{1} \dots A^{n - 1}$ are nonempty and $A^{n} = \varnothing$. 
+		\begin{proof}
+			For $n = 0$ we define $A = \varnothing$, for $n = 1$ we define $A = \{0\}$ and then $A'= \varnothing$. For any $n > 1$ (define $A^{0} = A$): 
+			(Partially GPTed) notice the observation $A^{n - 1} = \{0\} \uplus \{\frac{1}{n} \mid n \in \N\}$ has the property that $\varnothing = A^{n} = \{0\}' = (A^{n - 1})' = ((A^{n - 2})')'$. Now we can ``integrate backwards''. For each $n - 2> k \ge 0$ (if exists such $k$) we'll define:
+			\[ A^{k} := \bigcup_{k \in A^{k + 1}}\!\!\ccb{k + \frac{1}{n} \mid n \in \N} \]
+			Notice that since $k$ is finite, we get that $(A^{k})' = A^{k + 1}$. This defines some $A = A^{0}$ that satisfies the required property. 
+		\end{proof}
+		\item In $T_1$ spaces, obviously a condensation point is an accumulation point and vice versa (from (1)). Although in non-$T_1$ spaces it's not guaranteed. 
+	\end{enumerate}
+	
+	\nsubsection{13G $\sim$ Topological groups}
+	A \textit{topological group} is defined as a $T_2$ space such as the inversion $O$ and the multiplication $m$ maps are continues. The identity of the group is denoted as $e$. 
+	\begin{enumerate}
+		\item $m \co X\times X \to X$ is continues iff for each neighborhood $W$ of $xy$ there are neighborhoods $U$ of $x$ and $V$ of $y$ such that $UV \subset W$. \begin{proof}
+			Trivial from the definition of continuity and product topology. 
+		\end{proof}
+		\item A group is a topological group iff $c \co G \times G \to G$ defined as $c(x, y) = x \cdot y\op$ is continues. \begin{proof}
+			Clearly $O$ the inversion map is continues since $O = \pi_1\circ c$ is a composition of continues maps. 
+			We also know that $m$ is continues, because the map $f(x, y) = (x, y\op)$ is continues because $\pi_1 \circ f = I_G$ which is continues and $\pi_2 \circ f = O$ which is continues too. Finally we get that $m = c \circ f$, and a composition of continues map is continues. 
+		\end{proof}
+		\item \begin{itemize}
+			\item In $\R$, which regular addition and usual topology, we get a topological group. \begin{proof}
+				First of all $O(x) = -x$ is continues because $(a, b) \mapsfrom (-a, -b)$ both are open (in fact, $O$ is an homeomorphism). Moreover $m(x, y) = x + y$ is continues, because $(x_n, y_n) \to (x, y)$ implies $f(x_n, y_n) = x_n - y_n \to x - y = f(x, y)$ and $\R$ is first countable. Finally addition and inversion are continues as intended. 
+			\end{proof}
+			\item Each group with the discrete topology is a topological group. \begin{proof}
+				Consider some group $G$ with the discrete topology and some $O \co G \to G$ inversion and $m \co G \times G \to G$ multiplication map. $O$ is continues because each operator within the discrete topology is continues. $G \times G$ has the discrete topology too, therefore $m$ is also continues. Finally $G$ is a topological group. 
+			\end{proof}
+			\item Let $a, b \in G$ a topological group. Each of the maps: 
+			\begin{align*}
+				(1) \ x \to x\op && (2) \ x \to ax && (3) \ x \to xb && (4) x \to axb
+			\end{align*}
+			It's sufficient to prove that $(1)$ and $(2)$ are homeomorphisms because $(4)$ is composition of $(2)$ and $(3)$ and $(3)$ can be proven from $(2)$ in the group that has $m'(x, y) = m(x, y)$. 
+			
+			For $(1)$, indeed $O(x) = x\op$ is continues. It's well known that inverse is unique in group theory (because let some $a, b\in G$, we get that if $O(a) = O(b)$ thereupon $O(O(a)) = O(O(b))$ and inversion is assumed to be monoidical so $a = b$, and more generally naturally isomorphic to it). Its inverse is also continues, because $O \circ O = I$ therefore $O = O\op$, hence both $O\op$ is open (it's given that $O$ is open). Finally $O$ is an homeomorphism. 
+			
+			For $(2)$, fix some $c \in G$ and define $f(x) = c \cdot x$. It's a bijection because if $f(x) = f(y)$ we know $cx = cy$, and by multiplying from the right by $c\op$ we get $c\op c x = c\op c  y$ so $x = y$. Also for each $x \in G$ we gave $f\op(x) = c\op x$ because $f(c\op x) = cc\op x = x$. Indeed its injective and surjective. 
+			
+			Clearly $m|_{\{c\} \times G}$ is continues and a restriction of a continues map is continues, and $\{c\} \times G \overset{r}{\cong} G$, finally $f = r \circ m|_{\{c\} \times G}$. Same goes for $c\op = c\op x$, $\{c\op\}\times G \overset{l}{\cong} G$ and $f\op = l \circ m|_{\{c\op\} \times G}$. 
+			
+			Finally $f$ is bijection, continues and its inverse is continues too. 
+		\end{itemize}
+		\item If $\UU$ is a neighborhood base at $e$, then for all $x \in G$, also $\{xU \mid U \in \UU\}$ and $\{Ux \mid U \in \UU\}$ are neighborhood bases at $x$. \begin{proof}
+			Let $x \in G$, and let some $\UU$ neighborhood base for $x$. We'll prove $x\UU$ is a neighborhood base at $x$. Consider the map $f(y) = xy$. Clearly $f(e) = x$ and $f(\UU) = x\UU$. Because we proved $f$ is a homeomorphism, for each neighborhood $O$ at $x$ we know that $f\op(O)$ is neighborhood at $e$ hence we have some $\UU \ni U \subset O$. Then $x\UU \ni xU = f(U) \subset f(f\op(O)) = O$ so indeed by definition $x\UU$ is a basic neighborhood. Similarly for $\UU x$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section[Regularity and complete regularity]{}
+	\nsubsection{14A $\sim$ Examples on regularity and complete regularity}
+	\begin{enumerate}
+		\item 
+		\item 
+		\item 
+		\item 
+	\end{enumerate}
+	\nsubsection{14F $\sim$ Urysohn spaces}
+	
+	\section[Normal spaces]{}
+	\nsubsection{15B $\sim$ Completely normal spaces}
+	\nsubsection{15D $\sim$ Retraction and extension}
+	\nsubsection{15E $\sim$ $C^*$-embedding: Urysohn's extension theorem}
+	\nsubsection{15H $\sim$ Hahn-Banach theorem}
+	
+	\section[Countability Properties]{}
+	\nsubsection{16F $\sim$ Cardinality and countability axioms}
+	
+	\section[Compact spaces]{}
+	
+	\section[Locally compact spaces]{}
+	
+	\section[Compactification]{}
+	
+	\section[Paracompactness]{}
+	
+	\section[Products of normal spaces]{}
+	
+	\section[Metric spaces and metrizable spaces]{}
+	
+	\section[Metrization]{}
+	
+	\section[Complete metric spaces]{}
+	
+	\section[The Baire theorem]{}
+	
+	\section[Connected spaces]{}
+	
+	\section[Pathwise and local connectedness]{}
+	
+	\section[Continua]{}
+	
+	\stepcounter{section}
+	\stepcounter{section}
+	\stepcounter{section}
+	
+	\section[The homotopy relation]{}
+	
+	\section[The fundamental group]{}
+	
+	\section[$\Pi_1(S^{1})$]{}
+	
+	
+	
+	
+	
 	
 	
 	
