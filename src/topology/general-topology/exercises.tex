@@ -42,6 +42,17 @@
 \newcommand\intr {^{\circ}}
 \newcommand\eqrel{/\!\!\sim}
 
+\newcommand\Tz   {$T_0$}
+\newcommand\Tp   {$T_0$}
+\newcommand\Tq   {$T_1$}
+\newcommand\Tw   {$T_2$}
+\newcommand\Twh  {$T_{2\frac{1}{2}}$}
+\newcommand\Te   {$T_3$}
+\newcommand\Teh  {$T_{3\frac{1}{2}}$}
+\newcommand\Tr   {$T_4$}
+\newcommand\Tt   {$T_5$}
+\newcommand\Ty   {$T_6$}
+
 \newcommand\nsubsection[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
 
 \usepackage{titling}
@@ -110,11 +121,22 @@
 				\item Let $\bc \in \ps(X)$. We'll prove that $\bigcup \bc \in \XX$. Clearly $\bigcup \bc \in \ps(X)$. We'll prove $A \subseteq B$. Since $\forall B \in \bc$ we know $A \subseteq B$ by definition, we get that $A \subseteq \bigcup \bc$. Hence $\bigcup \bc \in \XX$ by definition. 
 				\item Let $B_1 \dots B_n \in \XX$ be a finite number of sets. We'll prove $\bigcap B_i \in \XX$. From similar arguments $A \subseteq \bigcap B_i$ and we finished. 
 			\end{itemize}
-			Question: how does interior and closure looks like? Assuming $A \subseteq B \in \XX$, we get $\Int B = B$ since $B$ is an open set. Similarly $\Cl B = A$ since each closed $C \subseteq B$ has the property that $\ol{C}$ is open, hence $\ol{C} \in \XX$ meaning $A \subseteq \ol C$. Also $A \subseteq B$, so the intersection of all closed sets will be $A \cup B$. 
+			Question: how does interior and closure looks like? 
 			
-			For general $B \in \ps(X)$, we notice $B \setminus A$ is the maximal in $B$ (under that partial order $\subseteq$) that satisfies $A \subseteq \ol{B \setminus A}$. We deduce: 
+			Assuming $A \subseteq B \in X$, we get $\Int B = B \in \XX$ since $B$ is an open set. Given some $B \notin \XX$, we know that it contains no open sets (since if $C \subset B$ and $A \not\subset B$ then $A \not\subset C$ therefore $C\notin \XX$) apart from $\varnothing$, hence the union of all of the open sets is $\varnothing$. 
+			
+			For the closure, let some $B \subset X$. We know that $\Cl B = B \setminus B\intr$. Then if $A \subset B$ then $\Cl B = \varnothing$, otherwise $\Cl B = B$. 
+			
+			For the frontier, we know that $\partial B = \Cl B \setminus \Int B$. Quick check will yield the result that if $A \subset B$ then $\partial B = \varnothing \setminus B = \varnothing$, while if $A \cap B \neq \varnothing$ then $\partial B = B \setminus \varnothing = B$, therefore $\partial B = \Cl B$. 
+			Finally: 
 			\begin{align*}
-				\Int B = B \setminus A && \Cl B = A \cup B && \Fr B = A
+				\Int B = \begin{cases}
+					B & B \in \XX \\
+					\varnothing & B \notin \XX
+				\end{cases} && \Cl B = \begin{cases}
+					\varnothing & B \in \XX \\
+					B & B \notin \XX
+				\end{cases} && \Fr B = \Cl B
 			\end{align*}
 			We'll notice that for $A = \varnothing$ we get the discrete topology, and for $A = X$ we get the trivial topology. 
 		\end{proof}
@@ -537,12 +559,33 @@
 	\section[Regularity and complete regularity]{}
 	\nsubsection{14A $\sim$ Examples on regularity and complete regularity}
 	\begin{enumerate}
-		\item 
-		\item 
-		\item 
-		\item 
+		\item Let $A \subset X$ and define $\tau = \{U \in \ps(X) \mid A \subset U\} \cup \{\varnothing\}$. 
+		We've already proven that the closed sets are the sets that does not contain $A$ is 3A(1). Assuming $A \neq X, \varnothing$, we can find some open $x \in A \subset B \neq X$. Then $B^{c}$ is closed and $x \notin B^{c}$. But if $X$ is regular, exists some distinct open $U, V$ such that $B^c \subset U$ and $x \in V$, yet $A \subset U$ by definition (unless $U = \varnothing$, but then $B^c = \varnothing$ hence $B = X$ and we picked $B\neq X$). We know $V \ni x \in A \subset U$ and we get that $\varnothing = V \cap U \ni x$ which is a contradiction. In particular it's not completely regular. 
+		
+		If $A = \varnothing$ then we get the discrete topology which is regular, since every function $f \co X \to I$ is continues and in particular $f(A) = 0\ \text{if}\ x \in A,\ \text{otherwise}\ 0$ which separates each closed $A$ and $x \notin A$. 
+		
+		If $A = X$ then we get the trivial topology, then given $x \notin A$ and $A$ closed, it is necessary that $A = \varnothing$ and $x \in \R$ (the trivial case). Now consider the function $f \co X \to I$ that is constant in $1$. Constant maps are continues and indeed $f(\varnothing) \subset \{0\}$. 
+		\skipitems{1}
+		\item The slotted plane $(X, \tau)$ is $T_2$ but not $T_3$ (which contradicts some online dude that believes $X \cong \R^{2}$). \begin{proof}
+			First we'll prove Hausdorff. Let some distinct points $y \neq x \in X$. Denote with $\rho \co X \to \R$ the usual metric in $\R^{2}$, and with $U(\eg, x)$ a open disk at a point $x$. Now for $\Delta = \rho(x, y)$ we get that the disks $x \in U(\frac{\Delta}{2}, x)$ and $y \in U(\frac{\Delta}{2}, y)$ are clearly distinct, and a particular (trivial) example of a slotted disk. 
+			
+			With that said, it's not a $T_3$ space. Indeed, consider the slotted disk $U = U(\eg, 0) \setminus \{(x, x) \mid x \in \R\}$ for $\eg = 1$. We know that $U^{c}$ is closed by definition. We know that $S_1 \ni x := (\sqrt 2, \sqrt 2) \notin U^{c}$ (as it's in $U$), and ad absurdum $T_3$, then there are open $O, V$ such that $x \in O \land U^{c} \subset V$ can be separated. But $O$ must meet $U^{c}$ and indeed meet $V$ too, which is a contradiction. 
+		\end{proof}
+		\item The looped line is Tychonoff: trivial for each $x \neq y$ that are not in the origin, because $\R \setminus \{0\}$ contains a metrizable topology. If $x = 0$ (WOLOG), then there is some $n > y$ and $0 < \eg < \frac{\rho(x, y)}{2}$ hence the basic neighborhood $(-\eg, \eg) \cup [n, \infty) \cup (\inft, n]$ does not intersect $(y - \eg, y + \eg)$. 
 	\end{enumerate}
 	\nsubsection{14F $\sim$ Urysohn spaces}
+	A $X$ is a \textit{Urysohn space} iff for each distinct points $x \neq y$ there are neighborhoods $x \in U$ and $y \in V$ such that $\Cl U \cap \Cl V = \varnothing$. 
+	\begin{enumerate}
+		\item Every regular $T_1$ space is Urysohn and every Urysohn space is Hausdorff. 
+		\begin{proof}
+			Clearly every Urysohn space is Hausdorff since $U\intr \subset U \subset \Cl U$, therefore if $\Cl U \cap \Cl V = \varnothing$ then $U\intr \cap V\intr = \varnothing$. In particular if $U, V$ are neighborhoods then $x \in U\intr \land y \in V\intr$ so $x, y$ can be separated with $U\intr, V\intr$. 
+			
+			Now consider some regular $T_1$-space. We'll prove its Urysohn. Let $x \neq y \in X$. Since we're in a $T_3$ space, it's Hausdorff, hence there are open $V, U$ such that $x \in V \land y \in U$ yet $U \cap V = \varnothing$. By theorem 14.3(b) we know that there are $V', U'$ basic neighbors of $x, y$ respectively such that $\Cl V' \subset V \land \Cl U' \subset U$. Hence $\Cl V' \cap \Cl U' = \varnothing$ while $x \in V' \land y \in U'$ as intended. 
+		\end{proof}
+		\item Not every Urysohn space is semiregular. For example, the looped line is Urysohn (if $x \neq 0$ it's trivial, otherwise ) but not regular: the set $(1, 2] \cup [-2, -1) =: A$ is open, and we have $\Int(\Cl A) = \Int([-1, -2]\uplus [1, 2]) = A$. Even though $2$ and $A$ are not separatable with open sets. 
+		
+		I did not find any example of a non-semiregular \Twh space. 
+	\end{enumerate}
 	
 	\section[Normal spaces]{}
 	\nsubsection{15B $\sim$ Completely normal spaces}
