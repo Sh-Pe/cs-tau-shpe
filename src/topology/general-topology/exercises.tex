@@ -155,10 +155,17 @@
 		\item The complement of a $G_\dg$ is an $F_\sg$ and vise versa. 
 		\begin{proof}
 			We'll proof one side, the other one is trivial from duality. Let $G \subset X$ be some $G_\dg$. We'll proof $\ol{G_\dg}$ is a $F_\sg$. Denote $(G_i)_{i = 1}^{\inft}$ be open sets such as $\cup G_i = A$ (exists be definition). From De-Morgan we get: 
-			\[ \ol{G} = \ol{\bigcup G_i} = \bigcap \ol{G_i} =: \bigcap F_i \]
+			\[ {G}^c = \cl{\bigcup G_i}^c = \bigcap {G_i}^c =: \bigcap F_i \]
 			Since $G_i$ is open, then $F_i := \ol{G_i}$ is closed. Hence $\ol{G} = \bigcap F_i$ is a finite intersection of closed sets, then $\ol{G}$ is a $F_\dg$ as interned. 
 		\end{proof}
 		\item An $F_\sg$ can be written as a union of countable $F_1 \subset F_2 \subset F_3 \subset \cdots$ of closed sets. 
+		\begin{proof}
+			Consider some $F_\sg$-set $A$. Then we have $(\fc_n)_{n =1}^{\infty}$ a family of closed sets such that $A = \bigcup_{n = 1}^{\inft}\fc_n$. Define $F_n$ as the following: 
+			\begin{align*}
+				F_1 = \fc_1 && F_n = \bigcup_{i = 1}^{n}\fc_n
+			\end{align*}
+			Clearly $F_n \subset F_{n + 1}$. Since a finite union of closed set if closed, $F_n$ is closed. Finally, because $\fc_n \subset F_n$ we get that $A = \bigcup^{\inft} \fc_n \subset \bigcup^{\inft} F_n$ and because $F_n = \bigcup^{n}\fc_i \subset \bigcup^{\inft}\fc_i = A$ then $\bigcup^{\inft}F_n \subset A$. Finally $A = \bigcup^{\inft}F_n$ where $F_n$ are closed and $F_{n} \subset F_{n + 1}$ as intended. 
+		\end{proof}
 		
 		\item A closed set in a metric space if a $G_\dg$. \begin{proof}
 			Suppose $A$ is some closed set in a metric space $(X, \rho)$. For the sake of simplicity I'll assume it's complement is an open disk (and not a union of open disk: but it's enough to look at the base of the topology). So $\ol A = U(x, \eg)$. Look at the closed set $U_n = [x, \frac{1}{n}]$: we notice that $\bigcap U_n = U(x, \eg)$. Hence $\ol A$ is an $F_\sg$, meaning $A$ is a $G_\dg$. 
@@ -588,13 +595,101 @@
 	\end{enumerate}
 	
 	\section[Normal spaces]{}
-	\nsubsection{15B $\sim$ Completely normal spaces}
+	\nsubsection{15C $\sim$ Perfectly normal spaces}
+	A space is \textit{perfectly normal} iff exists $f \co X \to I$ that separates exactly $f\op(0) = A, f\op(1) = B$. A perfectly normal $T_1$ space is called a \textit{$T_6$ space}. 
+	\begin{enumerate}
+		\item $T_6$ iff $T_4$ and every closed set if a $G_{\dg}$-set. \begin{proof}
+			\begin{itemize}
+				\item[$\implies$]Assume $(X, \tau)$ is a perfectly normal space, and assume each closed set if a $G_{\dg}$ set. Consider some $A, B$ disjoint closed set. Because they're $G_{\dg}$, we have some $(A_n)_{n = 1}^{\inft}, \ (B_n)_{n = 1}^{\inft}$ sequence of open sets, such that $A = \bigcap A_n, \ B = \bigcap B_n$. WOLOG assume $A_n \supset A_{n + 1} \land B_n \supset B_{n + 1}$ (see 3H(2)). 
+				
+				Since we're in $T_4$ space, by Urysohn's Lemma, we have the existence of a Urysohn function for each two closed sets. In particular for the closed $A$ and $X - A_n$ we have Urysohn $f^{A}_n$ such that $f^{A}_n(A) = 0 \land f_n(X - A_n) = 1$. Similarly we have $f^{B}_1$ such that $f^{B}_n(B) = 0 \land f_n^{B}(X - B_n) = 1$. Now define: 
+				\begin{align*}
+					f_A(x) = \sum_{n = 1}^{\infty}\frac{f^{A}_n(x)}{2^{n}} && f_B(x) = \sum_{n = 1}^{\infty}\frac{f^{B}_n(x)}{2^{n}} && f(x) = \frac{f_A(x)}{f_A(x) + f_B(x)}
+				\end{align*}
+				Before dealing with $f$, let's prove some properties of $f_A(x)$ (which will obviously will apply to $f_B$ too): 
+				\begin{itemize}
+					\item $\bm{A = f_A\op(0)}$\textbf{: }On one side, consider $x \in A$. Then $f_n^{A}(x) = 0$ for each $n \in \N$. Therefore $f_A(x) = \sum \frac{0}{2^{n}} = 0$, and we got $A \subset f_A\op(0)$. On the other side, consider some $x \notin A$. Then $x \notin \bigcap A_n$, hence there's some $k \in \N$ such that $x \notin A_k$. Since $A_k \supset A_{n}$ for each $k > n$, thereafter $x \in A_{n > k}^{c}$, we get that: 
+					\[ f_A(x) = \sum_{n = 1}^{\inft}\frac{f_n^{A}(x)}{2^{n}} = \sum_{n = 1}^{\mathclap{k - 1}}\frac{1}{2^{n}} + \sum_{\mathclap{n = k}}^{\inft}\frac{0}{2^{n}} < 1 \]
+					So $f_A(x) \neq 1$, and we got $f\op(0) \subset A$. Finally $A = f_A\op(0)$ as intended. 
+					\item $\bm{f_A(x)}$\textbf{ is continues: }in the proof for Tietze's extension theorem (15.8), we've shown that a function series of continues maps converges to a continues map. 
+				\end{itemize}
+				Similarly $B = f\op_B(0)$
+				
+				Let $x \in X$. Now we're going to analyze the term $f_A(x) + f_B(x)$: 
+				\begin{itemize}
+					\item If $x \in A$, then $x \notin B$, and we're going to get $f_A(x) + f_B(x) = f_B(x) \le 1$. Since $f_B(x) = 0$ if and only if $x \in B$, then $f_A(x) + f_B(x) \neq 0$ in that case. 
+					\item If $x \in B$, we're going to get similarly that $0 < f_A(x) + f_B(x) = f_A(x) \le 1$. 
+					\item If $x \notin A \land x \notin B$, then neither $f_A(x)$ of $f_B(x)$ are $0$, then $f_A(x) + f_B(x) > 0$. 
+				\end{itemize}
+				Now we're going to prove that $f \co X \to I$ separates perfectly $A$ and $B$. 
+				\begin{itemize}
+					\item \textbf{$\bm{f}$ has the domain $\bm{X}$: }indeed for each $x \in X$ we've shown that $f_A(x) + f_B(x) \neq 0$, so $f$ is well-defined. 
+					\item \textbf{$\bm{f}$ has the range $I$: }indeed because $f_A(X), f_B(X) \subset I$, then $f$ gets the maximum value $\frac{1}{1 + 0} = 1$ and the minimum value $\frac{0}{r} = 0$. 
+					\item \textbf{$\bm{f}$ is continues: }an addition and well-defined division of continues functions $f_A, f_B$ is continues too. 
+					\item \textbf{$\bm{A = f\op(0)}$: }notice that: 
+					\begin{align*}
+						f(A) = \frac{f_A(x)}{f_A(x) + f_B(x)} = \frac{0}{0 + \smash{\underbrace{f_B(x)}_{\neq 0}}} = 0 && f(A^{c}) = \frac{\smash{\overbrace{f_A(x)}^{\neq 0}}}{f_A(x) + f_B(x)} > 0 
+					\end{align*}
+					\item \textbf{$\bm{B = f\op(1)}$: }notice that: 
+					\begin{align*}
+						f(B) = \frac{\smash{\overbrace{f_A(x)}^{\neq 0}}}{f_A(x) + 0} = 1 && f(B^{c}) = \frac{f_A(x)}{f_A(x) + \smash{\underbrace{f_B(x)}_{> 0}}} < 1
+					\end{align*}
+				\end{itemize}
+				Finally $X$ is perfectly normal. Moreover, since $X$ is $T_4$ it's also $T_2$. Finally $X$ is a $T_6$ space. 
+				\item[$\impliedby$]Assume $X$ is a $T_6$-space. We'll prove each closed set in $X$ is a $G_\dg$-set. 
+				
+				Let $A \subset X$ be a closed set. Then $X \setminus A$ is an open set, and since $T_6$ space is $T_3$, we have some open $U$ such that $U \subset \Cl U \subset X \setminus A$. Denote $B = \Cl U$ and we get that $A$ and $B$ are disjoint closed sets. By perfect normality, we have a continues $f \co X \to I$ such that $A = f\op(0)$ and $B = f\op(1)$. 
+				
+				Consider the groups: 
+				\[ U_n = \ccb{x \in X \mid f(x) < \frac{1}{n}} \]
+				Since $f$ is continues and in particular lower semicontinues, then $U_n$ are open. Now clearly $A \subset \bigcap A_n$, but also $\bigcap A_n \subset A$, we know that $\forall n \in \N \co f(x) < \frac{1}{n}$, hence $f(x) = 0$, which happens iff $x \in A$. Finally the countable open intersection $\bigcap A_n = A$, hence the closed $A$ is $G_\dg$ as intended. 
+			\end{itemize}\envendproof
+		\end{proof}
+		\item Every metric space is perfectly normal. \begin{proof}
+			We'll prove each closed set is $G_\dg$. Indeed, for each closed set $A$, consider the following open sets: 
+			\[ U_n = \ccb{x \in X \mid \rho(x, A) < \frac{1}{n}} \]
+			Those are open sets, since for each $a \in U_n$ the radius $r = \frac{1}{n} - \rho(a, A)$ we clearly get that $r > 0$, therefore it's a neighborhood of $A$, and that $U(a, r) \subset U_n$. 
+			
+			Now we'll prove $\bigcap U_n = A$. Clearly $A \subset \bigcap U_n$. For each $x \in \bigcap U_n$, ad absurdum $x \notin A$. Then $d(x, A) > 0$ therefore exists some $n \in \N$ such that $0 < \frac{1}{n} < d(x, A)$. This implies that for this $n$, $x \notin U_n$ which contradicts the assumption $x \in \bigcap U_n$. 
+			
+			Finally, each closed set is $G_\dg$. Hence by (1) a metric space is $T_6$ and in particular perfectly normal. 
+		\end{proof}
+	\end{enumerate}
+	
 	\nsubsection{15D $\sim$ Retraction and extension}
-	\nsubsection{15E $\sim$ $C^*$-embedding: Urysohn's extension theorem}
+	\begin{enumerate}
+		\item A retract in a \Tw space is a closed set. \begin{proof}
+			Consider a retract $A \subset X$. Then we have some $r \co X \to A$ such that $r|_A = I_A$. We'll prove that $X \setminus A$ is open. Consider some $x \in X \setminus A$. Since $r(x) \in A$ we know that $r(x) \neq x$ and can be separated with open neighborhoods $x \in U \land r(x) \in V$ such that $U \cap V = \varnothing$. 
+		\end{proof}
+	\end{enumerate}
+	
 	\nsubsection{15H $\sim$ Hahn-Banach theorem}
+	
+	\begin{enumerate}
+		\item Prove the Hahn-Banach theorem: Let $X$ be a linear space, and a seminorm $p \co X \to \R$. Let $A$ be a linear subspace of $X$ and $f$ be a linear functional on $A$ such that $\forall x \in A \co f(x) \le p(x)$. Then $f$ can be extended to $F \co X \to \R$ such that $\forall x \in X \co F(x) \le p(x)$. 
+		\begin{proof}
+			Consider some chain of functions $\fc$ with the partial order of extending each other. Under that linear order of $\fc$, there must be a maximal element, 
+		\end{proof}
+	\end{enumerate}
 	
 	\section[Countability Properties]{}
 	\nsubsection{16F $\sim$ Cardinality and countability axioms}
+	\begin{enumerate}
+		\item A separable first-countable first-countable space has a cardinal at most $\con$. \begin{proof}
+			Consider $A = (a_i)_{i = 1}^{\inft}$ be a dense set in $X$ (by separability). 
+			Similarly to 10.4, for each $x \in X$, we know that there is $\UU = (U_n)_{n = 1}^{\inft}$ countable basic neighborhood, and we can define $\UU_n = \bigcap_{k = 1}^{n}U_n$ to get another countable basic neighborhood. Since $A$ is dense $\UU_n$, we know $A \cap \UU_n \neq \varnothing$. Then we can build a choice function $x_n \co \N \to X$ s.t. $x_n \in A \cap \UU_n$. By definition $x_n \to x$ and $x_n \subset A$. 
+			
+			Now consider the identification $x \mapsto x_n$. It's injective since for each two different $x, y$ we'll get different $x \leftarrow x_n \neq y_n \to y$ otherwise they would've converge to the same point. Since that mapping is into $x_n \in \ps(A)$, we get that $\sof{X} \le \sof{\ps(A)} = 2^{\az} = \con$. 
+		\end{proof}
+		\item If $X$ is separable then $\sof{C(X)} \le \con$. \begin{proof}
+			Consider some $f \in C(X)$. Then $f \co X \to \R$ and continues. Consider the injection $C(X) \overset{F}{\mapsto} C(A)$ that maps $F(f) = f|_A$. It's injective, since for each two $f_1, f_2 \in C(X)$, if $f_1|_A = f_2|_A$, then for each $x \in X$ we can take $A \ni x_n \to x$ (as shown in (1)) and by 10.5(c) we get that: 
+			\[ f_1(x) \leftarrow f_1(x_n) = f_1|_A(x_n) = f_2|_A(x_n) = f_2(x_n) \to f_2(x) \]
+			Then clearly $\forall x \in X \co f_1(x) = f_2(x)$. Finally because $C(A) \subset A \to \R$ we get that $\sof{C(X)} \le \sof{C(A)} \le \sof{\R^A} = \con^{\az} = \con$. 
+		\end{proof}
+		\item If $(X, \tau)$ is second-countable, then $\sof{\tau} \le \con$. \begin{proof}
+			We know that $\tau$ has a countable base $(U_n)_{n = 1}^{\inft}$. Therefore each $U \in \tau$ is a union of $U_n$-s, aka there exists $I \subset \N$ s.t. $U = \bigcup_{i \in I}U_i$. Therefore (AC) the mapping $\tau \mapsto \ps(\N)$ that maps each open $U$ to such an indexing set $I$ will be clearly injective (union of the same elements yields the same set) and we get that $\sof{\tau} \le \sof{\ps(\N)} = \con$. 
+		\end{proof}
+	\end{enumerate}
 	
 	\section[Compact spaces]{}
 	
