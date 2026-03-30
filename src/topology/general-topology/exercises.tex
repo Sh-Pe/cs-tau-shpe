@@ -23,6 +23,7 @@
 	{\dotfill (\textbf{\thesection})\dotfill}
 	{0em}
 	{}
+\usepackage[hidelinks]{hyperref}
 
 \usepackage{../../../tex/packages/mathShortcuts}
 %
@@ -64,6 +65,8 @@
 	\huge {\huge\,\\ \vfil {\begin{center}
 				\thetitle \\
 				\vspace{10pt}
+				\large \theauthor \\
+				\vspace{3pt}
 				\large \thedate
 		\end{center}} \vfil	}
 	\normalsize
@@ -659,7 +662,8 @@
 	\nsubsection{15D $\sim$ Retraction and extension}
 	\begin{enumerate}
 		\item A retract in a \Tw space is a closed set. \begin{proof}
-			Consider a retract $A \subset X$. Then we have some $r \co X \to A$ such that $r|_A = I_A$. We'll prove that $X \setminus A$ is open. Consider some $x \in X \setminus A$. Since $r(x) \in A$ we know that $r(x) \neq x$ and can be separated with open neighborhoods $x \in U \land r(x) \in V$ such that $U \cap V = \varnothing$. 
+%			Consider a retract $A \subset X$. Then we have some $r \co X \to A$ such that $r|_A = I_A$. We'll prove that $X \setminus A$ is open. Consider some $x \in X \setminus A$. Since $r(x) \in A$ we know that $r(x) \neq x$ and can be separated with open neighborhoods $x \in U \land r(x) \in V$ such that $U \cap V = \varnothing$. 
+	TODO
 		\end{proof}
 	\end{enumerate}
 	
@@ -668,7 +672,8 @@
 	\begin{enumerate}
 		\item Prove the Hahn-Banach theorem: Let $X$ be a linear space, and a seminorm $p \co X \to \R$. Let $A$ be a linear subspace of $X$ and $f$ be a linear functional on $A$ such that $\forall x \in A \co f(x) \le p(x)$. Then $f$ can be extended to $F \co X \to \R$ such that $\forall x \in X \co F(x) \le p(x)$. 
 		\begin{proof}
-			Consider some chain of functions $\fc$ with the partial order of extending each other. Under that linear order of $\fc$, there must be a maximal element, 
+%			Consider some chain of functions $\fc$ with the partial order of extending each other. Under that linear order of $\fc$, there must be a maximal element, 
+			TODO
 		\end{proof}
 	\end{enumerate}
 	
