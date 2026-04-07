@@ -2,12 +2,26 @@
 
 % Letters shortcuts
 	\newcommand \N         {\mathbb{N}}
+	\newcommand \nb        {\mathbb{N}}
 	\newcommand \Z         {\mathbb{Z}}
+	\newcommand \zb        {\mathbb{Z}}
 	\newcommand \R         {\mathbb{R}}
+	\newcommand \rb        {\mathbb{R}}
 	\newcommand \Q         {\mathbb{Q}}
+	\newcommand \qb        {\mathbb{Q}}
 	\newcommand \C         {\mathbb{C}}
+	\newcommand \cb        {\mathbb{C}}
+	\newcommand \E         {\mathbb{E}}
+	\newcommand \eb        {\mathbb{E}}
 	\newcommand \K         {\mathbb{K}}
+	\newcommand \kb        {\mathbb{K}}
+	\newcommand \hb        {\mathbb{H}}
 	\newcommand \PP        {\mathbb{P}}
+
+	\newcommand \bv        {{\bf v}}
+	\newcommand \bu        {{\bf u}}
+	\newcommand \bx        {{\bf x}}
+	\newcommand \by        {{\bf y}}
 	
 	\newcommand \ml        {\ell}
 	\newcommand \mj        {\jmath}
@@ -23,6 +37,7 @@
 	\newcommand \ec        {\mathcal{E}}
 	\newcommand \fc        {\mathcal{F}}
 	\newcommand \nc        {\mathcal{N}}
+	\newcommand \kc        {\mathcal{K}}
 	\newcommand \vc        {\mathcal{V}}
 	\newcommand \oc        {\mathcal{O}}
 	\newcommand \sca       {\mathcal{S}} % \sc is already definded
@@ -36,6 +51,8 @@
 	\newcommand \XX        {\sc{X}}
 	\newcommand \YY        {\sc{Y}}
 	\newcommand \UU        {\sc{U}}
+	\newcommand \OO        {\sc{O}}
+	\newcommand \KK        {\sc{KK}}
 	
 	\newcommand \prm       {\bm{\mathrm{p}}}
 	\newcommand \arm       {\bm{\mathrm{a}}} % x86
@@ -336,6 +353,7 @@
 	\newcommand \sumiinf      {\sum_{i = 1}^{\inft}}
 
 	\newcommand \toinf        {\rrr{n \to \inft}}
+	\newcommand \otinf        {\reflectbox{$\rrr{\reflectbox{\scriptsize $n \!\!\to\!\! \inft$}}$\ }}
 	\newcommand \climsi       {\lim_{\mathclap{n \to \infty}}}
 
 
@@ -360,7 +378,7 @@
 	\let        \co        \colon
 	\let        \can       \cancel
 
-	\newcommand \sof[1]    {\left | #1 \right |}
+	\newcommand \sof[1]    {\left \lvert #1 \right \rvert}
 	\newcommand \cl [1]    {\left ( #1 \right )}
 	\newcommand \csb[1]    {\left [ #1 \right ]}
 	\newcommand \ccb[1]    {\left \{ #1 \right \}}

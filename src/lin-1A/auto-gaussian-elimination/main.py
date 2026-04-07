@@ -2,20 +2,25 @@ import sys
 from fractions import Fraction
 from typing import TypeVar, Any
 from pprint import pprint
-from math import *
+# from math import * # DO NOT uncomment this line. It breaks to code. Don't ask me why.
 
-import numpy
 import numpy as np
 
+# should've been NewType
 Matrix = TypeVar("Matrix", bound=np.ndarray)
 MatrixOperation = TypeVar("MatrixOperation", bound=str)
 
+# 0 for real numbers, anything above will be preformed in a modular field.
 p: int = 0
 
 
 def opening():
-    # Use a breakpoint in the code line below to debug your script.
-    print("pls make sure you have the following in your LaTeX preamble:")
+    print("==================================")
+    print("""This is a really junky script that takes a matrix and outputs it in a LaTeX-compatible form. It's aware of fractions (e.g. 1/3 will be displayed as \"\\frac{1}{3}\" and not like \"0.33333\") and by changing the constant \"p\" inside the code, you can tweak it to work inside a modular field.
+    \n"This code is astonishingly bad because I was on a trip when I have haded to hand in bazillion many RREF matrices. I didn't have time to write something good. Pls don't judge me.
+    \nI make some numerical estimates, and in general, the aim is not to be accurate (for that we have numpy). The aim is to copy paste something to my homeworks. """)
+    print("==================================")
+    print("*make sure you have the following in your LaTeX preamble:*")
     latex_preamble: str = r"""
 \makeatletter
 \newlength\min@xx
@@ -168,14 +173,15 @@ def parse_num(num: float | int | numpy.float64 | numpy.float32 | Fraction, op=Fa
 
 def main():
     global p
-    # opening()
+    opening()
     if len(sys.argv) >= 2:
+        print("working with given p")
         p = int(sys.argv[1])
     mat: str = input("Enter a matrix in a python-like format: ")
     finished = False
     while not finished:
         # try:
-        array = numpy.array(eval(mat), dtype=numpy.int64)
+        array = np.array(eval(mat), dtype=np.int64)
         if p==0:
             array = array + Fraction()
         print(elimination_to_latex(gaussian_elimination(array)))

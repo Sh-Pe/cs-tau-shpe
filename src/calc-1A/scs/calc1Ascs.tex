@@ -3,6 +3,13 @@
 \usepackage{../../../tex/packages/hebrewSupport}
 \usepackage{../../../tex/packages/mathShortcuts}
 \usepackage{../../../tex/packages/theoremsSupport}
+\usepackage{../../../tex/packages/enfancysections}
+\titleformat{\section}[block]
+	{\fontsize{20}{20}}
+	{\Large \dotfill \ (\thesection) \dotfill}
+	{0em}
+	{\vspace{2pt} \newline \hfil \Large \filleft \filright \MakeUppercase}
+	
 
 \newcommand\sumnoinf {\sum_{n = 0}^{\infty}}
 \newcommand\limssi  {\limsup_{n \to \inft}}
@@ -11,7 +18,7 @@
 \newcommand\og      {\omega}
 \newcommand\df      {\dd f}
 \newcommand\tfl     {\lim_{\mathclap{x \to x_0}}}
-\newcommand \limcsi {\limsi c_n}
+\newcommand\limcsi  {\limsi c_n}
 \newcommand\limxo   {\lim_{x \to x_0}}
 \newcommand\lxo     {$x_0 \in \R$ נקודת הצטברות של $A$}
 \newcommand\gf      {$f \co A \subseteq \R\to \R$\ }
@@ -25,13 +32,18 @@
 
 %! ~~~ Document ~~~
 
-\author{שחר פרץ}
-\title{נוסחאות, משפטים והגדרות לחדו''א 1א}
-\date{26 לאוקטובר 2025}
+\author{\en{Shahar Perets}}
+\title{\en{Shit Cheat Sheet {\normalsize(\textbf{v}\textit{1})} $\sim$ Calculus 1A $\sim$ TAU}}
+\date{\en{\textit{3.10.2025} $\to$ \textit{25.1.2026}}}
 \begin{document}
-	\maketitle
-	\textit{הערה: }עבור סטודנטים שלא למדו מהי נקודת התכנסות, אפשר להתייחס אליה כנקודה בה הגבול מוגדר (לדוגמה, לא בקצה קטע סגור). 
+	\textit{הערה חשובה: }עבור סטודנטים שלא למדו מהי נקודת התכנסות, אפשר להתייחס אליה כנקודה בה הגבול מוגדר (לדוגמה, לא בקצה קטע סגור). 
+	
+	{יתר החומרים (שלא את כולם אני מעלה לדרייב), הגרסה האחרונה של דף הנוסחאות, כמו כן קבצי המקור ל־pdf־ים, יחדיו עם סיכומים לחדו''א (וקורסים נוספים), זמינים בגיטהאב שלי \href{https://github.com/Sh-Pe/cs-tau-shpe/tree/master/}{כאן}. }
+	
+	דף הנוסחאות זמין תחת רישיון \href{https://www.gnu.org/licenses/gpl-3.0.en.html}{GPL version 3} – בקצרה, מותר להשתמש בו לכל שימוש, אך שינויים לקוד המקור חייבים להיות מופצים תחת אותו הרישיון. זו כמובן לא עצה משפטית, ואני לא באמת עומד לתבוע אף אחד בנוגע לקבצים הללו (גם זו לא עצה/הבטחה משפטית). 
 	\begin{multicols}{2}
+		\section{הגדרות בסיסיות}
+		\subsection{השדה הממשי}
 		\defi{$\F$ נקרא \textit{שדה} אם יש לו פעולות $+ \co \R \times \R \to \R$ ו־$\cdot \,\co \R \times \R \to \R$, המקיימות: 
 			\begin{enumerate}
 				\item קומטטיביות: \hfill $\forall x, y \in \R \co x + y = y + x$
@@ -86,7 +98,14 @@
 		\theo{$(\Q, \cdot, +, <)$ אינה מקיימת את אקסיומת השלמות. }
 		\theo{לכל $x \in \R$, אם $x > 0$ אז קיים $y \in \R$ \textit{יחיד} כך ש־$y > 0$ וגם $y^2 = x$. }
 		\theo{לכל $x \in \R$, ולכל $n \in \N_+$, אם $x > 0$ אז קיים $y \in \R$ יחיד כך ש־$y > 0$ וגם $y^n = x$. }
+		
 		\noti{נסמן את ה־$y$ היחיד שמקיים את המשפט לעיל ב־$\sqrt[n]{x}$. }
+		\begin{Theorem}[זהות פסקל]
+			\[ \binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k} \]
+		\end{Theorem}
+		\lem{\hfil $\forall x \in \R .\, (\forall \eg > 0 \co \sof{x} < \eg) \implies x = 0$}
+		
+		\subsection{יחס הסדר על הממשיים}
 		\begin{Theorem}[הארכימדיאניות של הטבעיים בממשיים]\ 
 			
 			\hfil $\forall x, y \in \R \co x > 0 \implies (\exists n \in \N \co nx > y)$
@@ -107,9 +126,15 @@
 		\begin{Theorem}[א''ש ברנולי]
 			\hfil $\forall x > -1 .\,\forall n \in \N \co (1 + x)^{n} \ge 1 + nx$
 		\end{Theorem}
-		\begin{Theorem}[זהות פסקל]
-			\[ \binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k} \]
+		
+		\begin{Theorem}[א''ש המשולש]
+			\[ \sof{\sof x - \sof y} \le \sof{x + y} \le \sof x + \sof y \]
 		\end{Theorem}
+		\cola{תוצאה מא''ש המשולש
+			\[ \sof{x - y} \le \sof{x - z} + \sof{y - z} \]}
+		
+		\section{סדרות}
+		\subsection{הגדרות בסיסיות}
 		\defi{\textit{סדרה ממשית} היא פונקציה $a(n) \co \N \to \R$. }
 		\defi{לעיתים רבות תבחינו שמסמנים סדרות באמצעות $(a_n)_{n = 1}^{\inft}$, או $\{a_n\}_{n = 1}^{\inft}$, או אפילו סתם $a_n$. }
 		\defi{בהינתן סדרה, $a_n := a(n)$}
@@ -126,16 +151,12 @@
 		\defi{סדרה $a_n$ תקרא \textit{מונוטונית יורדת} (או \textit{מונוטונית יורדת חלש}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n \ge a_m$}
 		\defi{סדרה $a_n$ תקרא \textit{מונוטונית יורדת ממש} (או \textit{מונוטונית יורדת חזק}) כאשר לכל $n, m \in \N$ מתקיים $n < m \implies a_n > a_m$}
 		\defi{סדרה תקרא \textit{מונוטונית} כאשר היא מונוטונית עולה או מונוטונית יורדת. }
-		\defi{תהא $\an$ סדרה. יהי $\ml \in \R$. נאמר כי $\ml$ הוא גבול של $\an$ כאשר \hfill $\forall \eg > 0.\, \exists N \in \N.\, \forall n \ge N \co \sof{a_n - \ml} < \eg$. }
-		\lem{\hfil $\forall x \in \R .\, (\forall \eg > 0 \co \sof{x} < \eg) \implies x = 0$}
-		\begin{Theorem}[א''ש המשולש]
-			\[ \sof{\sof x - \sof y} \le \sof{x + y} \le \sof x + \sof y \]
-		\end{Theorem}
-		\cola{תוצאה מא''ש המשולש
-			\[ \sof{x - y} \le \sof{x - z} + \sof{y - z} \]}
+		
+		\subsection{התכנסות}
+		\defi{תהא $\an$ סדרה. יהי $\ml \in \R$. נאמר כי $\ml$ הוא גבול של $\an$ כאשר \hfill $\forall \eg > 0.\, \exists N \in \N.\, \forall n \ge N \co \sof{a_n - \ml} < \eg$}
 		\theo{תהא $a_n$ סדרה. יהי $\ml \in \R$. אם $\ml$ גבול של $\an$ אז $\ml$ גבול \textit{יחיד} של $a_n$. }
 		
-		\defi{נאמר כי סדרה $\an$ \textit{מתכנסת} כאשר קיים לה גבול $\ml \in \R$}
+		\defi{נאמר כי סדרה $\an$ \textit{מתכנסת} כאשר קיים לה גבול $\ml \in \R$. }
 		\defi{אם $\an$ מתכנסת וגבולה (היחיד) הוא $\ml$, נסמן $\lim_{n \to \inft} a_n = \ml$. }
 		\lem{קבוצה חסומה אמ''מ $\exists M > 0 \co \forall a \in A \co \sof{a} \le M$. }
 		\theo{תהא $\an$ סדרה. אם $\an$ מתכנסת, אז $\an$ חסומה. }
@@ -180,6 +201,7 @@
 		\defi{נסמן:
 			\[e := \limsi \cl{1 + \frac{1}{n}}^{n} \dequad\ = \limsi \sumnk \frac{1}{k!}\]}
 		
+		\subsection{גבולות חלקיים}
 		\defi{תהי פונקציה $n_k \co \N \to \N$ סדרה עולה ממש של טבעיים, ותהא $\an$ סדרה. אז הסדרה $a_{(n_k)}$ נקראת \textit{תת־סדרה של} $\an$. פורמלית, זוהי הרכבה $a_n \circ n_k$. }
 		\defi{$\ml$ יקרא \textit{גבול חלקי} של $\ml$ כאשר קיימת ת''ס של $\an$ המתכנסת ל־$\ml$. }
 		\defi{$\pm\infty$ יקרא גבול חלקי של $\an$, כאשר קיימת ת''ס השואפת ל־$\pm\infty$. }
@@ -223,8 +245,11 @@
 		\theo{תהא $\an$ סדרה חסומה. אז לכל $\eg > 0$ כמעט תמיד:
 			\[ \liminf a_n - \eg < a_n < \limsup a_n + \eg \]}
 		\noti{בהינתן $F \co \N \to \R \cup \{\pm \infty\}$ כלשהי:
-			\[ \inf_n F(n) = \inf \{F(n) \mid n \in \N\} \quad \sup_n F(n) = \sup \{F(n) \mid n \in \N\} \]}
+			\begin{gather*}
+				\inf_n F(n) = \inf \{F(n) \mid n \in \N\} \\ \sup_n F(n) = \sup \{F(n) \mid n \in \N\}
+			\end{gather*}}
 		
+		\subsection{נושאים מתקדמים בסדרות}
 		\defi{תהא $\an$ סדרה. נאמר ש־$\an$ סדרת קושי, כאשר:
 			\[ \forall \eg > 0 .\, \exists N \in \N .\, \forall n, m \ge N \co \sof{a_n - a_m} <\eg  \]}
 		\defi{פונקציה $N \co X\times X \to \R$ נקראת \textit{נורמה} אם: 
@@ -260,6 +285,8 @@
 			\end{itemize}
 		\end{Theorem}
 		\theo{לכל $a, b > 0$, אם $a \neq 1$ אז קיים ויחיד $x \in \R$ כך ש־$a^{x} = b$. }
+		\section{טורים}
+		\subsection{הגדרות בסיסיות}
 		\cola{הפונקציה $\log_a(x)$ מוגדרת היטב. }
 		\defi{תהא $\an$ סדרה. נגדיר את סדרת הסכומים החלקיים של $\an$ להיות:
 			\[ \forall n \in \N \co S_n = \sumnko a_k \]}
@@ -275,6 +302,7 @@
 		\defi{תהא $\an$ סדרה. נאמר כי הטור $\sumninf a_n$ \textit{מתכנס בהחלט} כאשר $\sumninf \sof{a_n}$ מתכנס. }
 		\theo{אם טור מתכנס בהחלט, אז הוא בפרט מתכנס. }
 		\theo{תהא $\an$ סדרה, ונניח ש־$\forall n \in \N \co a_n \ge 0$. אז $\sumninf a_n$ אמ''מ סדרת הסכומים החלקיים חסומה. }
+		\subsection{קריטריוני התכנסות}
 		\begin{Theorem}[קריטריוני השוואה להתכנסות טורים]\,
 			\begin{enumerate}
 				\item \textbf{מבחן ההשוואה הראשון: }תהיינה $a_n, b_n$ סדרות אי־שליליות. נניח כי כמעט תמיד $a_n \le b_n$. אז אם $\sumninf b_n$ מתכנס אז $\sumninf a_n$ מתכנס.		
@@ -319,6 +347,8 @@
 		\begin{align*}
 			\sumnko k = \binom{n}{2} && \sumnko k^{2} = \frac{n(n + 1)(2n + 1)}{6}
 		\end{align*}}
+	
+		\subsection{אסוצאטיביות וקומטטיביות ש לטורים}
 		\theo{תהא $\an$ סדרה, נניח כי הטור $\sumninf$ מתכנס, אז לכל השמה של סוגריים על הסכום, הטור החדש מתכנס.}
 		
 		\theo{לכל $\an$ סדרה, ונניח כי קיימת השמה של סוגריים שבה:
@@ -351,7 +381,9 @@
 			\end{itemize}
 			(זה ה־$R$ היחיד מאבל)}
 		
-		
+		\section{פונקציות ממשיות}
+		\subsection{הטופולוגיה ב־$\R$}
+		תת־הפרק להלן נלמד לעיתים באודיסאה, אך רוב המרצים ידלגו עליו. 
 		\defi{יהי $x \in \R$. לכל $\eg > 0$, הקטע $(x - \eg, x + \eg)$, יקרה \textit{סביבת $\eg$ של $x$}. }
 		\defi{יהי $x \in \R$ ותהא $U \subseteq \R$, ויהי $x \in U$. אז $U$ תקרא \textit{סיבה של $x$} אם קיים $\eg > 0$ עבורו $U$ מכילה סביבת $\eg$ של $x$. }
 		\defi{קבוצה $U$ תקרא \textit{פתוחה} כאשר היא סביבה של כל אחת מהנקודות שלה. }
@@ -365,6 +397,7 @@
 		\defi{יהי $x \in \R$ ותהא $U$ סביבה של $x$. אז $U \setminus \{x\}$ נקראת \textit{סביבה נקובה} של $x$. }
 		\defi{תהא $U \subseteq \R$. $x \in \R$ תקרא \textit{נקודת הצטברות} של $A$ כאשר לכל סביבה \textbf{נקובה} $U$ של $x$, מתקיים $U \cap A \neq \varnothing$. }
 		
+		\subsection{גבול של פונקציה}
 		\defi{\textit{התמונה של $f$} היא $\Img f := \{x \in \R\mid \exists a \in A \co f(a) = x\}$}
 		\defi{\textit{התחום של $f$} הוא $\dom f = A$. }
 		ניתן להגדיר מנה, כפל, מכפלה, חיבור, חיסור, כפל בקבוע של פונקציות, וכו'.
@@ -419,11 +452,9 @@
 		\end{enumerate}}
 		
 		
-		מה שנעשה עכשיו על ת''קים ספציפיים, היה אפשר לעשות על כל תת־קבוצה.
-		
-		נגדיר את הסימון הבא לסיכום הזה בלבד (הוא לא מקובל). תהא $A \subseteq \R$ ותהא $x_0 \in \R$ נקודת הצטברות של $A$. נסמן $A_{x_0^{+}} := = A \cap (x_0, +\infty)$. נגדיר את $A_{x_0^{-}} :=  = A \cap (-\infty, x_0)$.
-		
-		מהמשפט הקודם, אם $x_0$ נקודת הצטברות של $A$, אז $x_0$ נקודת הצטברות של $A_{x_0^{+}}$ וכן של $A_{x_0^{-}}$.
+		\subsection{גבולות חלקיים}
+		\defi{נגדיר את הסימון הבא לסיכום הזה בלבד (הוא לא מקובל). תהא $A \subseteq \R$ ותהא $x_0 \in \R$ נקודת הצטברות של $A$. נסמן $A_{x_0^{+}} := = A \cap (x_0, +\infty)$. נגדיר את $A_{x_0^{-}} :=  = A \cap (-\infty, x_0)$.}
+		\cola{מהמשפט הקודם, אם $x_0$ נקודת הצטברות של $A$, אז $x_0$ נקודת הצטברות של $A_{x_0^{+}}$ וכן של $A_{x_0^{-}}$. }
 		
 		\defi{תהא $f \co A \subseteq \R \to \R$ ותהא $x_0$ נקודת הצטברות של $A$. אם $x_0$ נקודת הצטברות של $\{x \in A \mid x > x_0\}$ וגם קיים הגבול של $f|_{\{x \in A \mid x > x_0\}}$ ב־$x_0$, אז נאמר של־$f$ יש גבול מימין ב־$x_0$ ונסמנו $\lim_{x \to x_0^{+}} f(x)$. }
 		\defi{תהא $f \co A \subseteq \R \to \R$ ותהא $x_0$ נקודת הצטברות של $A$. אם $x_0$ נקודת הצטברות של $\{x \in A \mid x< x_0\}$ וגם קיים הגבול של $f|_{\{x \in A \mid x< x_0\}}$ ב־$x_0$, אז נאמר של־$f$ יש גבול מימין ב־$x_0$ ונסמנו $\lim_{x \to x_0^{-}} f(x)$. }
@@ -437,6 +468,8 @@
 				\item אם $x_0$ נקודת הצטברות של $A_{x_0^{+}}$ אז $\lim_{x \to x_0^{+}} = \ml$ גורר $\limxo f(x) = \ml$. [כלומר, אם אני יכול להגיע ל־$x_0$ רק מהצד החיובי – זה יקבע את הגבול]
 		\end{enumerate}}
 		\theo{תהא \gf ותהא \lxo. ל־$f$ יש גבול סופי ב־$x_0$ אמ''מ לכל $\eg > 0$, קיים $\dg > 0$, כך שלכל $x, y \in A$ אם $0 < \sof{x - x_0} < \dg$ וגם $0 < \sof{y - x_0} < \dg$ אז $\sof{f(x) - f(y)} < \eg$. }
+		
+		\subsection{רציפות}
 		\defi{תהא \gf ותהא $x_0 \in A$. נאמר ש־$f$ רציפה ב־$x_0$ אם:
 			\begin{multline}
 				\forall \eg > 0.\, \exists \dg > 0.\ \forall x \in A \co \cl{\sof{x - x_0} < \dg} \\
@@ -453,15 +486,17 @@
 		\begin{Theorem}[אריתמטיקה של רציפות]
 			תהאנא $f, g \co A \subseteq \R \to \R$ ותהא $x_0 \in \R$. נניח כי $f$ רציפה ב־$x_0$ וכן $g$ רציפה ב־$x_0$. אז:
 			\begin{itemize}
-				\item $f\pm g$ רציפה ב־$x_0$
+				\item $f \pm g$ רציפה ב־$x_0$
 				\item $f \cdot g$ רציפה ב־$x_0$.
 				\item אם $g(x_0) \neq 0$ אז $\frac{f}{g}$ רציפה ב־$x_0‏$.
 			\end{itemize}
 		\end{Theorem}
 		\theo{תהאנה $f \co A \to B$ ו־$g \co B \to \R$, ותהא $x_0 \in A$. נניח כי $f$ רציפה ב־$x_0$ ו־$g$ רציפה ב־$f(x_0)$. אז $g \circ f$ רציפה ב־$x_0$. }
-		\theo{\hfil $\disty \lim_{x \to 0}\frac{\sinx}{x} = 1$}
-		\theo{\hfil $\disty \limz \frac{\ln(1 + x)}{x} = 1$}
-		\theo{\hfil $\disty \frac{e^{x} - 1}{x} = 1$}
+		\theo{\dequad \dequad \dequad \dequad \hfil $\disty \lim_{x \to 0}\frac{\sinx}{x} = 1$
+			
+		\hfil $\disty \limz \frac{\ln(1 + x)}{x} = 1$
+		
+		\hfil $\disty \frac{e^{x} - 1}{x} = 1$}
 		\defi{פונקציה $f$ היא \textit{רציפה} אם היא רציפה בכל נקודה. }
 		\theo{תהא  $f \co A \to \R$. אז $f$ רציפה אמ''מ לכל קבוצה פתוחה $V \subseteq \R$ קיימת קבוצה פתוחה $U \subseteq \R$ כך ש־$f\op(V) = U \cap A$. }
 		\defi{תהא $f \co I \to \R$ כאשר $I$ קטע. נאמר כי $f$ מקיימת \textit{תכונת דרבו} כאשר לכל $a, b \in R$ כך ש־$a < b$, לכל $\lg \in \R$ בין $f(a) \le \lg \le f(b)$. קיים $c \in [a, b]$ כך ש־$f(x) = \lg$. }
@@ -473,11 +508,13 @@
 		\end{Theorem}
 		\theo{תהא $f \co I \to \R$ המקיימת תכונת דרבו. אז ל־$f$ אין נקודות אי־רציפות סליקות או מסוג ראשון. }
 		\cola{תהא $f \co I \to \R$. אם $f$ מקיימת תכונת דרבו ומונוטונית, היא בהכרח רציפה. }
-		\defi{$f$ \textit{רציפה במידה שווה} אם לכל $\eg > 0$ קיים $\dg > 0$ כך שלכל $x, y \in A$ אם $\sof{x - y} < \dg$ אז $\sof{f(x) - f(y)} < \eg$. }
+		
+		\subsection{רציפות במידה שווה}
+		\defi{$f$ \textit{רציפה במידה שווה} (\textit{רבמ''ש} או \textit{רציפה במ''ש}) אם לכל $\eg > 0$ קיים $\dg > 0$ כך שלכל $x, y \in A$ אם $\sof{x - y} < \dg$ אז $\sof{f(x) - f(y)} < \eg$. }
 		\theo{אם $f$ רציפה במידה שווה ב־$A$ אז $f$ רציפה ב־$A$. }
 		\theo{תהאנה $f, g \co A \to \R$. נניח כי $f$ רציפה במידה שווה ב־$A$ וגם $g$ רציפה במידה שווה ב־$A$. אז:
 			\begin{itemize}
-				\item $f\pm g$ רציהפ במידה שווה ב־$A$.
+				\item $f\pm g$ רציפה במידה שווה ב־$A$.
 				\item אם $f$ ו־$g$ חסומות ב־$A$, אז $fg$ רציפה במידה שווה.
 		\end{itemize}}
 		\begin{Theorem}[משפט קנטור]
@@ -486,9 +523,9 @@
 		\theo{יהיו $a, b \in \R\cup\{\pm\inft\}$. נניח $a < b$. יהי $a < c < b$. תהא $f\co (a, b) \to \R$ ונניח $f$ רציפה במידה שווה ב־$(a, c]$ וכן $f$ רציפה במידה שווה ב־$[c, b)$, אז $f$ רציפה במידה שווה ב־$(a, b)$. }
 		\theo{הפונקציה $\sqrt x$ רציפה במ''ש בקטע $[0, \infty)$. }
 		\theo{תהא $f \co [a, \infty) \to \R$. נניח $f$ רציפה וגם קיים וסופי $\lim_{x \to \inft}f(x)$. הראו כי $f$ רציפה במ''ש ב־$[a, \infty)$. }
-		\theo{יהי $a, b \in \R$ ונניח $a < b$. תהא $f \co (a, b) \to \R$ רציפה. אז $f$ רציפה במידה שווה ב־$(a, b)$ אמ''מ קיימים ל־$f$ הגבולות ב־$a$ וב־$b$ והסם סופיים. }
+		\theo{יהי $a, b \in \R$ ונניח $a < b$. תהא $f \co (a, b) \to \R$ רציפה. אז $f$ רציפה במידה שווה ב־$(a, b)$ אמ''מ קיימים ל־$f$ הגבולות ב־$a$ וב־$b$ והם סופיים. }
 		
-		
+		\subsection{גזירות}
 		\defi{בהינתן $f \co I \to \R$, וכן $x_0 \in I$ בפנים הקטע (איננה נקודת קצה). נאמר ש־$f$ \textit{גזירה ב־$x_0$} כאשר קיים וסופי הגבול $\limxz \frac{f(x) - f(x_0)}{x - x_0}$. }
 		\noti{בהנחה שהגבול לעיל ב־$x_0$ של הפונקציה $f$ קיים, נסמן $\frac{\dd f}{\dx}(x_0)$ או $f'(x_0)$. }
 		\theo{$f$ גזירה ב־$x_0$ אמ''מ קיים וסופי:
@@ -536,6 +573,8 @@
 		\begin{Theorem}[משפט לופיטל 2]
 			תהאנה $f, g \co I \setminus \{a\} \to \R$ כאשר $I$ קטע ו־$a$ נקודת הצטברות. נניח ש־$f, g$ גזירות ב־$I \setminus \{a\}$ ו־$\forall x \in I \setminus \{a\} \co g'(x) \neq 0$. עוד נניח $\lim_{x \to a}\sof{g(x)} \to \infty$ (המקרה היחיד שבאמת מעניין אותנו זה כשגם $f$ שואף לאינסוף בנקודה) וקיים $\lim_{x \to a} \frac{f'(x)}{g'(x)} = \ml$. אז $\lim_{x \to a}\frac{f(x)}{g(x)}$ קיים וערכו $\ml$.
 		\end{Theorem}
+		
+		\subsection{פולינום טיילור}
 		\defi{תהא $f \co I \to \R$ ויהי $x_0 \in \R$. ניתן להגדיר רקורסיבית את $f^{(n + 1)}(x_0) := (f^{(n)}(x_0))'$ כאשר $f^{(0)} = f$ בסיס. נבחין שלשם כך נדרוש ש־$f^{(n)}$ מוגדרת בסביבה של $x_0$. }
 		\noti{לעיתים $f^{(n)}$ תסומן גם ב־$\frac{\dd^{n} f}{\dd x^{n}}(x_0)$. }
 		\defi{תהא $f \co I \to \R$ וכן $x_0 \in I$. יהי $n \in \N$. נניח ש־$f$ גזירה $n$ פעמים ב־$x_0$. נגדיר את \textit{פולינום הטיילור של $f$ מסדר $n$ סביב $x_0$} ע''י:
@@ -580,6 +619,9 @@
 			\dequad\dequad\dequad\dequad\!\forall x \in (-1, 1] \co \ln(1 + x) &= \frac{(-1)^{n - 1}x^{n}}{n}
 		\end{align*}}
 	\end{multicols}
+	
+	{\vspace{-20pt}\let\newpage\relax\maketitle\vspace{-100pt}}
+	\maketitle
 
 
 \end{document}

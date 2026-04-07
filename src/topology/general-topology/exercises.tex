@@ -53,6 +53,7 @@
 \newcommand\Tr   {$T_4$}
 \newcommand\Tt   {$T_5$}
 \newcommand\Ty   {$T_6$}
+\newcommand\adolf{Lindelöf}
 
 \newcommand\nsubsection[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
 
@@ -667,6 +668,8 @@
 		\end{proof}
 	\end{enumerate}
 	
+	\nsubsection{15G $\sim$ Extremally disconnected spaces}
+	
 	\nsubsection{15H $\sim$ Hahn-Banach theorem}
 	
 	\begin{enumerate}
@@ -700,20 +703,86 @@
 	\nsubsection{17A $\sim$ Example of compactness}
 	\begin{enumerate}
 		\item An infinite set $X$ with the cofinite topology is compact. \begin{proof}
-			Consider some open cover $\UU$. Then for each $U \in \UU$ we know that $U^c$ is finite. 
+			We'll prove that the cofinite topology is compact. It would follow that each infinite set is compact, since the infinite sets are closed. Let $\UU$ be an open cover of $X$. Then $\bigcup \UU = X$ and $\forall U \in \UU \co \sof{U^{c}} < \inft$. Fix soem $U \in \UU$. Denote $u_1 \dots u_n \in U^{c} \subset X$ the elements of $U^c$, then since $X = \bigcup \UU$ we must have for each $j \in [n]$ some $U_j$ s.t. $u_j \in U_j$. Then: 
+			\[ X = U \uplus U^{c} = U \cup \biguplus_{j = 1}^{n} \{x_j\} \subset U \cup \bigcup_{j = 1}^{n} U_j \subset X \]
+			Finally $U, U_1 \dots U_n$ is a finite subset of $\UU$ s.t. its union covers $X$ as intended. 
+		\end{proof}
+		\item Which subset of the Sorgenfrey line $\E$ are compact? \begin{proof}
+			ok this is hard
 		\end{proof}
 	\end{enumerate}
 	\nsubsection{17I $\sim$ $\sg$-Compact spaces}
+	A space $X$ is called \textit{$\sg$-compact} iff it can be written as the union of countably many compact sets. $X$ is hemicompact iff there is a sequence $\kc = (K_i)_{i = 1}^{\inft}$ of compact subsets of $X$ s.t. for each $K$ compact there is $n \in \N$ s.t. $K \subset K_n$. 
 	
+	\begin{enumerate}
+		\item Every hemicompact space is $\sg$-compact, while the converse fails. \begin{proof}
+			Clearly every finite set is compact in each topological space (consider a cover $\OO$, then for each $x_i$ in the set we can find $x_i \in O_i \in \OO$ and the union of $O_i$-s). Hence for all $x \in X$ the singleton $\{x\}$ is compact and we can find $K_x \in \kc$ s.t. $x \in K_n$. Now: 
+			\[ X = \biguplus_{\mathclap{x \in X}}\{x\} \subset \bigcup_{\mathclap{x \in X}} K_x \subset \bigcup_{\mathclap{n \in \N}} K_n = \bigcup \kc \subset X \]
+			Therefore $\kc$, which is a family of countable open sets, covers $X$. 
+			
+			Meanwhile, the converse of the theorem fails. Consider $\Q \subset \R$ with the relative topology inherited from the usual topology. Then it's clearly $\sg$-compact as the singletons $\{q\} \subset \Q$ are compact and $\sof{\Q} = \az$. It's not hemicompact; a locally dense subset of $\Q$ must not be closed as it has a limit point in $\R \setminus \Q$, meanwhile, AFSOC there is such $\kc$. (since $\Q$ is second-countable) we have a (nested) countable neighborhood base $(O_i)_{i = 1}^{\inft}$ (e.g. $O_n = \cl{-\frac{1}{n} + x, x + \frac{1}{n}}$) at some $x \in X$. Now for each $n \in \N$ we know that $O_n \not\subset K_n$ (otherwise $K_n$ will be locally dense) thereafter we can pick $x_n \in O_n \setminus K_n$. Clearly $x_n \to x$. Then $S := \Img x_n \cup \{x\}$ must be compact (a converges sequence must have just one limit point ($x$), therefore it's closed, and it's bounded by $O_1$). But if $S_n \subset K_n$ then $x_n \in K_n$ which implies a contradiction. 
+		\end{proof}
+		\item A $\sg$-compact space is \adolf. \begin{proof}
+			We know that existence of a cover (of $X$) $\kc := (K_n)_{n = 1}^{\inft}$ made out of compact sets. 
+			Consider an open cover $\UU$ of $X$. In particular, $\UU$ covers $K_n$ for each $n \in \N$. Since $K_n$ is compact we have a finite subcover of $U_n \subset \UU$\!, s.t. $\bigcup U_n = \UU$. Since $\kc$ covers $X$ we know that $X = \bigcup_{n =1}^{\inft} K_n$, and as $K_n \subset U_n$, we conclude that $X = \bigcup\bigcup_{n = 1}^{\inft} U_n$. Hence $\UU' \!:= \bigcup_{n = 1}^{\inft} U_n \subset \UU$ is a subcover of $\UU$ that covers $X$. Moreover, it's a countable union of finite sets, hence countable. Finally each cover has a countable subcover and $X$ is \adolf. 
+		\end{proof}
+		\item The product of finitely many $\sg$-compact spaces if $\sg$-compact. \begin{proof}
+			Let $X_1 \dots X_n$ be finitely many $\sg$-compact spaces, that forms a product space $X$. $\kc_n$ will be a compact cover of $X_n$., and we can enumerate $(K_n^{i})_{i = 1}^{\inft} = \kc_n$ to be its elements. 
+			Now:
+			\[ X := \prod^{n}_{i = 1} X_i = \prod_{i = 1}^{n}\bigcup_{j = 1}^{\inft} K_i^{j} = \bigcup_{x_i \in \N^{n}}{\overbrace{\prod_{i = 1}^{\inft}K_i^{x_i}}^{:= C_{x_i}}} \]
+			(Where $x_i$ is a function $x_i \co [n] \to \N$) From Tychonoff we know that $C_{x_i}$ is compact space (in the relative topology of $X$), which implies being a compact subspace. Since $\sof{\N \to [n]} = \az$, we get that $X$ is the union of countably compact subsets, therefore it's a $\sg$-compact. 
+		\end{proof}
+	\end{enumerate}
+	
+	\nsubsection{17P $\sim$ Onto maps of compact spaces}
+	Let $X, Y$ be compact Hausdorff spaces. 
+	\begin{enumerate}
+		\item (With the help of some math.SE user that was willing to help me with the hard part) Exists a compact subset $X_0 \subset X$ s.t. $f(X_0) = Y$ but $f$ maps no closed subsets of $X_0$ onto $Y$. \begin{proof}
+			Consider the family of closed subsets of $X$ such that their image on $f$ is $Y$, denoted $\XX$. It's partially ordered by $\subset$. Now take a chain $\cc \subset \XX$. Consider the space $\kc = \bigcap_{K \in \cc} K$. It's an intersection of closed sets, therefore $\kc$ is closed too. Since it's a subsets of a compact Hausdorff space, it's also compact. We'll prove $\kc$ is a lower bound for $\cc$. 
+			
+			Clearly, $\forall K \in \cc \co \kc \subset K$. Therefore it only remains to prove that $f(\kc) = Y$. Indeed, let some $y \in Y$. Then AFSOC $y \notin f(\kc)$, then $f\op(\{y\}) \cap \kc = \varnothing$, hence $\bigcap_{K \in \cc}f\op\{y\} \cap K = f\op\{y\} \cap \bigcap_{K \in \cc}K = \varnothing$. Since $Y$ is Hausdorff, $\{y\}$ is closed, and because $f$ is continues, $f\op\{y\}$ is closed. This means that for each $K \in \kc$, $f\op\{y\} \cap K$ is closed, which gives us a family of closed sets in the compact space $X$. By FIT there must be a finite subcollection, denoted $\cc' \subset \cc$, with an empty intersection, otherwise the intersection of the family would be non-empty. Now $\bigcap _{K \in \cc'}f\op\{y\} \cap K = \varnothing$ is a finite empty intersection of closed sets. Because $\cc$ is a (linearly ordered) chain, then $\cc'$ is linearly ordered too, and because it's finite, we can obtain some smallest element ${\bf K} \in \cc' \subset \cc \subset \XX$ s.t. $\forall K \in \cc' \co {\bf K} = K$. Finally $\bigcap_{K \in \cc'}K \subset \bf K$ which means: 
+			\[ \varnothing = \bigcap_{\mathclap{K \in \cc'}}f\op\{y\}\cap K = f\op\{y\} \cap \bigcap_{\mathclap{K \in \cc'}}K = f\op\{y\}\cap \bf K \]
+			Hence ${\bf K} \cap f\op\{y\}$ so $Y \ni y \notin f({\bf K})$, but ${\bf K} \subset \XX$ which implies $f({\bf K}) = Y$, and that's a contradiction. 
+			
+			Finally, each chain has a lower bound. By Zorn's Lemma there exists some minimal element $X_0 \in \XX$. Because $X_0$ is closed in the Hausdorff space $X$, it's also compact. Clearly, if there is a proper closed subset $X_1 \subsetneq X_0$ s.t. $f(X_1) = Y$, then $X_1 \in \XX$ which will implies that $X_0$ is not minimal in the relation $\subset$ inside $\XX$. That gives as a contradiction. Finally we obtained a compact $X_0 \subset X$ for whom $f$ maps no closed proper subsets onto $Y$, as intended. 
+		\end{proof}
+%		\item Assume $Y$ is extremally disconnected, and no proper closed subset of $X$ is mapped onto $Y$. Then $f$ is a homehomorphism. \begin{proof}
+%			First of all, we'll show that $f$ is one-to-one. Consider some $x_1 \neq x_2 \in X$. Since $X$ is Hausdorff we can pick some open disjoint $G_1\cap G_2 = \varnothing$ such that $x_1 \in G_1 \land x_2 \in G_2$. Then $X \setminus G_i$ are closed, and so is $f(X \setminus G_i)$. $f(X \setminus G_i) \neq Y$ is clearly closed ($X \setminus G_i$ is a closed subset of a compact space, therefore compact, and the compact image of a continues map is compact too. $Y$ is $T_2$ hence the compact $f(X \setminus G_i)$ is closed). Define the open $V_i = Y \setminus f(X \setminus G_i)$, then $V_i \subset f(G_i)$. 
+%		\end{proof}
+	\end{enumerate}
 	\nsubsection{17Q $\sim$ Projective spaces}
+%	TODO
+	TODO
 	
 	\section[Locally compact spaces]{}
+	\nsubsection{18B $\sim$ Hilbert space}
+	Denote with $\hb$ the Hilbert space (sequences $x \co \N \to \R$ s.t. $\sum x_n^{2} < \inft$). 
+	\begin{enumerate}
+		\item The distance function is a metric for $\hb$. \begin{proof}
+			\begin{itemize}
+				\item Assume $d(x, y) = 0$. Since $(x_i - y_i) \ge 0$ and we know that $0 = d(x, y)^{2} = \sum (x_i - y_i)^{2}$ then it must be that $x_i - y_i = 0$, therefore $\forall i \in \nb \co x_i = y_i$ and $x = y$ as intended. 
+				\item Symmetry and positiveness are trivial. 
+				\item Let $x, y, z \in \hb$. Notice that for all $n \in \nb$: 
+				\begin{multline*}
+					\cl{d(x, y)}^{2} \otinf \sum_{i = 1}^{n}(x_i - z_i)^{2} = \sum_{i = 1}^{n}\big((x_i - y_i) + (y_i - z_i) \big)^{2} \\
+					\overset{(*)}{\le} \cl{{\sum_{i = 1}^{n}(x_i - y_i)^{2}} + {\sum_{i = 1}^{n}(y_i - z_i)^{2}}}^{2} \toinf \cl{d(x, y) + d(y, z)}^{2}
+				\end{multline*}
+				Where $(*)$ is true because of Cauchy-Schwartz: 
+				\[ \sum_{i = 1}^{n}(a_i + b_i)^{2} = \sum_{i = 1}^{n}\cl{a_i^{2} + b_i^{2}} + 2\sum_{i= 1}^{n}a_ib_i \le \sum_{i = 1}^{n}a_i^{2} + \sum_{i = 1}^{n}b_i^{2} + 2\sqrt{\sum_{i = 1}^{n}a_i\sum_{i = 1}^{n}b_i} = \cl{\sqrt{\sum_{i = 1}^{n}a_i^{2}} + \sqrt{\sum_{i = 1}^{n}b_i^{2}}}^{2} \]
+			\end{itemize}
+		\end{proof}
+		\item If $x^n \co \N \to \hb$ is a sequence in $\hb$, then $x^n \to x$ in $\hb$ implies $\forall i \in \N \co x^{n}_i \to x_i$ in $\R$, while the converse fails. 
+		\begin{proof}
+			We'll prove that the functions $\pi_i \co \hb \to \rb$ defined as $\pi_i(x) = x_i$ are closed (note that those are not projections from a product topology as shown in (4)). Let $K \subset \hb$ to be closed. Then $\hb \setminus K$ is open. We'll prove $R \setminus \pi_i(K)$ is open. Take a $r \in \R\setminus \pi_i(K)$. Note that in particular $x = \{r\}^{\az} \in \hb$ has the property $\pi_i(x) = r$, so $x \in \hb \setminus K$. Now we can take an $\eg$-disk such that $x \subset U(x, \eg) \subset \hb \setminus K$. In that disk, $\sqrt{\sum(x_i - y_i)^{2}} < \eg$, so $d(\pi_i(x), \pi_i(y)) = x_i - y_i < \eg$ when utilizing the $\ml_1$-norm. [wip]
+		\end{proof}
+	\end{enumerate}
+	\nsubsection{18D $\sim$ subsets and subgroups of a topological space}
+	\nsubsection{18H $\sim$ Manifolds}
 	
 	\section[Compactification]{}
 	
-	\section[Paracompactness]{}
-	
-	\section[Products of normal spaces]{}
+	\stepcounter{section}
+	\stepcounter{section}
 	
 	\section[Metric spaces and metrizable spaces]{}
 	
@@ -721,14 +790,13 @@
 	
 	\section[Complete metric spaces]{}
 	
-	\section[The Baire theorem]{}
+	\stepcounter{section}
 	
 	\section[Connected spaces]{}
 	
 	\section[Pathwise and local connectedness]{}
 	
-	\section[Continua]{}
-	
+	\stepcounter{section}
 	\stepcounter{section}
 	\stepcounter{section}
 	\stepcounter{section}
