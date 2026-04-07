@@ -518,35 +518,37 @@ def gcd(a, b):
 		\subsection{Numerical Analysis}
 		\subsubsection*{Derivative/Integral of a Function}
 		\begin{lstlisting}
-def derivative(f, x:float, h=10**(-10)):
-	return (f(x+h)-f(x))/h
-\end{lstlisting}
+def derivative(f, x: float, h=10 ** (-10)):
+    return (f(x + h) - f(x)) / h
+        \end{lstlisting}
 		\begin{lstlisting}
-def integral(f, a:float, b:float, h=10**(-10)):
-	return sum([f(x) for x in range(a,b,h)])/h
-\end{lstlisting}
+def integral(f, a: float, b: float, h=10 ** (-10)):
+    return sum([f(x) for x in range(a, b, h)]) / h
+        \end{lstlisting}
 		\subsubsection{Finding Function Root Using Bisection Method}
 		\begin{lstlisting}
-def find_root(f, a:float, b:float, epsilon=10**(-10)):
-	mid = (a+b)/2
-	fmid = f(mid)
-	if abs(fmid) <= epsilon:
-		return mid
-	if fmid >= 0:
-		return find_root(f,mid,b,epsilon)
-	else:
-		return find_root(f,a,mid,epsilon)
-\end{lstlisting}
+def find_root(f, a: float, b: float, epsilon=10 ** (-10)):
+    mid = (a + b) / 2
+    fmid = f(mid)
+    if abs(fmid) <= epsilon:
+        return mid
+    if fmid >= 0:
+        return find_root(f, mid, b, epsilon)
+    else:
+        return find_root(f, a, mid, epsilon)
+        \end{lstlisting}
 		Note: this function only works if $f(a)\ge 0$ and $f(b)\le 0$.
 		\subsubsection{Approximating $\pi$}
 		We know $\pi = \frac{4}{1+\frac{1^2}{3+\frac{2^2}{5+\frac{3^2}{\dots}}}}$, so:
 		\begin{lstlisting}
 def approx_pi(itters=10):
-	def rec(n):
-		if n > itters: return 1
-		return (2*n+1 + (n+1)**2)/rec(n+1)
-	return 4/rec(0)
-\end{lstlisting}
+    def rec(n):
+        if n > itters:
+            return 1
+        return (2 * n + 1 + (n + 1) ** 2) / rec(n + 1)
+
+    return 4 / rec(0)
+        \end{lstlisting}
 	\end{multicols}
 	
 	
