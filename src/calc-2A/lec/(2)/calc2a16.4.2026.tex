@@ -1,0 +1,223 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\rim{R([a, b])}
+\newcommand\daru{\ol{\Sigma}}
+\newcommand\Idaru{\ol{I}}
+\newcommand\dard{\underline{\Sigma}}
+\newcommand\Idard{\ol{I}}
+
+%\newcommand \bs \blacksquare
+
+\author{שחר פרץ}
+\title{\textit{חדו''א 2א} $\sim$ הרצאה 2}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	
+	\subsection*{פתיחת השיעור}
+	נזכר בלמות הבאות מחדו''א 1א: 
+	\begin{Exercise}[תרגיל פתיחה]
+		\begin{enumerate}
+			\item יהיו $A, B \subset \R$ קבוצות ממשיים. נגדיר $A + B = \{a + b \mid a\in A \land b \in B\}$. הוכיחו: 
+			\[ \sup (A + B) = (\sup A) + (\sup B) \]
+			\item יהיו $A \subset \R$ קבוצת ממשיים, וכן $\lg > 0$. נגדיר $\lg A = \{ \lg a \mid a \in A\}$. הוכיחו $\sup(\lg A) = \lg \sup A$. 
+			\item יהיו $A, B \subset \R$ קבוצות חסומות. הוכיחו: 
+			\[ \sup (A \cup B) = \max\{\sup A, \sup B\} \]
+			\item יהיו $A, B \subset \R$ חסומות. הוכיחו: 
+			\begin{enumerate}[A.]
+				\item \hfil $\sup A \le \inf B \iff \forall a \in A, b \in B\co a \le b$
+				\item \hfil $\sup A \ge \inf B \iff \forall \eg > 0 \exists a \in A, b \in B \co b - a < \eg$
+			\end{enumerate}
+			\item $A \subset B$ חסומה, אז: 
+			\[ \sup A - \inf A = \sup\{a - b \mid a, b \in A\} \]
+		\end{enumerate}
+	\end{Exercise}
+	הרבה מהדברים שנעשה בשעתיים הקרובות ידרשו את זה, וזה יתחבא למטה. 
+	
+	התכונית להיום: 
+	\begin{itemize}
+		\item השלמות מהשיעור הקודם (\shiri{1.2}, \shiri{2.1})
+		\item אינטגרביליות (\shiri{2.2.1}, \shiri{2.2.2}, אולי נספיק את \shiri{2.2.3})
+	\end{itemize}
+	
+	\section{אינטגרל רימן}
+	\subsection{דוגמאות לחישוב אינטגרל רימן}
+	נתבונן בפונקציה: 
+	\begin{align*}
+		f \co [a, b] \to \R && f(x) = \begin{cases}
+			15 & x = a \\
+			5 & a < x \le b
+		\end{cases}
+	\end{align*}
+	\theo{$\int^{b}_af = 5(b-a)$}
+	(גרף – להשלים אחכ)
+	
+	בהגדרה הקודמת שלנו לאינטגרל רימן, נדרשנו לדעת מה הערך של האינטגרל כדי להיות מסוגלים להוכיח אינטגרביליות. 
+	\begin{proof}
+		יהי $\eg > 0$. יהי $\dg  = \dg_\eg = ?$ (בדיעבד אחרי כן נדע להשלים את ה־$\dg$, אך כתלות ב־$\eg$ בלבד) ותהי חלוקה מתויגת $(\Pi, \{t_i\})$ של הקטע $[a, b]$. נניח שמדד העדינות $\lg(\Pi) < \dg$. יש להוכיח $\sof{S(f, \Pi, \{t_i\}) - 5(b - a)} < \eg$. נזכר שחישבנו בעבור הפונקציה לעיל בשיעור הקודם ש־: 
+		\[ \sof{S(f, \Pi, \{t_i\}) - 5(b-a)} \le 10 \cdot \lg(\Pi) < 10 \delta = \cdots \]
+		מכאן, שבעבור $\dg = \frac{\eg}{10}$ נקבל: 
+		\[ \cdots = \eg \]
+		כנדרש. 
+	\end{proof}
+	
+	נזכר בתרגיל (''שאתם לא מבינים כמה הוא חשוב וכמה סטודנטים מתקשים בו``. ''אם אתם מתקשים, תבואו לשעת הקבלה. אם אתם לא מתקשים, תבואו לשאול משהו אחר. לא ממליצה לשאול את ה־AI, הוא יכניס לכם רעש``). יעל מזכירה ש־AI יכול מאוד לעזור, אבל צריך להיות במצב (מתמטית) שאנו יודעים להנחות אותו לעזור לנו. התרגיל – השלילה של הביטוי ''$f$ איננה אינטגרבילית``. 
+	
+	\theo{פונקציית דיריכלה איננה אינטגרבילית, על אף תת־קטע סגור $[a, b]$ ($a < b$). }
+	\begin{proof}
+		נזכר בהגדרתה: 
+		\[ D(x) = \begin{cases}
+			1 & x \in \Q \\
+			0 & x \notin \Q
+		\end{cases} \]
+		נקבע קטע $[a, b]$. נניח בשלילה שקיים $I \in \R$  כך ש־$\int^b_a D(x) \dx = I$. נבחר $\eg = ?$ (נשלים אחרי כן מה הוא, כתלות ב־$I$ ו־$[a, b]$ בלבד) ותהי $\dg = \dg_e > 0$ המתאימה ל־$\eg$ ע''פ הגדרת אינטגרל רימן. נבחר $\Pi$ חלוקה של הקטע $[a, b]$, עם מדד עדינות $\lg(\Pi)$ (תרגיל: הוכיחו שקיימת כזו בהכרח כזו). מבחירת $\dg$, לכל תיוג של $\Pi$ נאמר $\{t_i\}$, מתקיים ש־: $\sof{S(f, \Pi, \{t_i\}) - I} < \eg$. מצפיפות הרציונליים והאי־רציונליים:
+		\begin{itemize}
+			\item קיים תיוג $\{t_i\}$ עם $t_i \in \Q$ (עבורו: סכום רימן הוא $b - a$, הוכחנו בשיעור הקודם)
+			\item קיים תיוג $\{t'_i\}$ עם $t_i \notin \Q$ (עבורו: סכום רימן הוא $0$ הוכחנו בשיעור הקודם)
+		\end{itemize}
+		עבור התיוג הראשון נקבל $\sof{(b - a) - I} < \eg$ ועבור התיוג השני נקבל $\sof{0 - I} < \eg$. נבחר בדיעבד (וכתלות ב־$[a, b]$ בלבד) את $\eg = \frac{b - a}{3}$. מא''ש המשולש: 
+		\[ \sof{b - a} \le \sof{(b - a) - I} + \sof I < 2 \eg < b - a\quad \bot \]\envendproof
+	\end{proof}
+	
+	כאן היו אמורים לבוא דיבורים על פונקציות קדומות, שכדי לא לצבור פער (וכי הכל ברשימות ובתרגול ממילא) נדלג עליהם. 
+	
+	
+	\subsection{חסימות ואינטגרביליות}
+	אנחנו קצת בבעיה. כדי להראות שפונקציה היא אינטגרבילית, היינו צריכים ''להחזיק $I$ ביד`` ולדעת מה הערך של האינטגרל. עתה נמצא ל''מסע`` כדי למצוא תנאים הכרחיים, מספיקים, ושקולים להיות פונקציה אינטגרבילית, בלי לדעת מה הוא ה־$I$. 
+	
+	\noti{\hfil $R([a, b]) := \{f \co [a, b] \to \R \mid \text{אינטגרבילית} f\}$}
+	לשימושנו, אינטגרבילית=אינטגרבילית רימן. כל שאר מושגי האינטגרל שנראה בהמשך לא יקראו ''אינטגרביליות``. 
+	
+	\theo{נניח $f \in \rim$, אז $f$ חסומה. }
+	לדוגמה, הפונקציה: 
+	\begin{align*}
+		f \co [0, 1] \to \R && f(x) = \begin{cases}
+			\frac{1}{\sqrt x} & 0 < x \le 1 \\
+			0 & x = 0
+		\end{cases}
+	\end{align*}
+	כאשר נלמד על אינטגרל לא אמיתי, נמצא משמעות לשטח מטחת לגרף, אבל $f$ איננה אינטגרבילית רימן. נפנה להוכיח את המשפט: 
+	\begin{proof}[הוכחת המשפט]
+		נניח $f \co [a, b] \to \R$ אינטגרבילית רימן. מכאן שקיים $I \in \R$ כך ש־$\int^b_a f = I$. יהי $\eg$, נבחר אותו להיות $\eg = 1$ (זה לא קריטי לאיזה ערך מקבעי םאותו). תהי $\dg > 0$ מתאימה ל־$\eg$ בהתאם להגדרת אינטגרל רימן. נבחר $\Pi = \{x_i\}_{i = 0}^{n}$ חלוקה של $[a, b]$ עם מדד עדינות $\lg(\Pi) < \dg$ (זכרו, יש להוכיח שקיימת כזו, תרגיל שנשאר לבית). נקבע תיוג $\{t_i\}_{i = 1}^{n}$ כלשהו של $\Pi$. 
+		
+		''נחלק`` את הקטע $[a, b]$ לקטעים קטנים ונדרוש שהיא תהיה חסומה על כל אחד מקטעי הביניים בנפרד. יהי $k \in \{1, \dots n\}$, וננסה להוכיח חסימות ב־$[x_{k - 1}, x_k]$. נתבונן בתיוגים $\{t'_i\}_{i = 1}^{n}$ מהצורה: 
+		\[ t'_1 \dots t'_n = \underbrace{t_1 \dots t_{k - 1}}_{\ \!\text{קבועים}}, \overbrace{t}^{\mathclap{t \in [x_{k - 1}, x_k]}}, \underbrace{t_{k + 1}, \dots, t_n}_{\ \!\text{קבועים}} \]
+		מהגדרת אינטגרל רימן, סכום רימן בעבור כל תיוג בסביבת $\eg$ של $I$, כלומר: 
+		\[ I - \eg < \underbrace{S(f, \Pi, \{t'_i\})}_{\mathclap{=f(t)\Delta x_k + \sum_{i \neq k}f(t_i)\Delta x_i}} < I + \eg \]
+		נבחין ש־$\sum_{i \neq k} f(t_i)\Delta x_i$ קבוע ביחס לבחירת $k$, ונסמנו $C_k$. לכן לכל $t \in [x_{k - 1}, x_k]$ מתקיים: 
+		\begin{gather*}
+			I - \eg - C_k < f(t) \Delta x_k < T + \eg - C_k \\
+			\frac{I - \eg - C_k}{\Delta x_k} < f(t) < \frac{I + \eg - C_k}{\Delta x_k}
+		\end{gather*}
+		''לכן $f|_{[x_{k - 1}, x_k]}$ חסומה, והטוש הזה הלך לעולמו``. 
+		
+		סה''כ $f$ חסומה על כמות סופית של קטעים סגורים שמכסים את $[a, b]$, כלומר היא חסומה. 
+	\end{proof}
+	
+	שימו לב! פונקציה חסומה לא חייבת להיות אינטגרבילית, לדוגמה, תנאי דרבו. חסימות הוא תנאי הכרחי, אך לא מספיק, לאינטגרביליות. 
+	
+	\subsection{סכומי דרבו}
+	(ציורים, להשלים אחכ)
+	אם רוצים להמנע מבחירת תיוג, בהינתן חלוקה, אפשר לקחת את האינפימום והסופרמום של הפונקציה על אותו קטע חלוקה. גובה המלבנים שיבחר על ידי התיוגים יהיו חסומים ע''י זה. פורמלית:
+	\defi{תהי $f \co [a, b] \to \R$ חסומה. תהי $\Pi = \{x_i\}_{i = 1}^{n}$ חלוקה של $[a, b]$, כלומר $a = x_0 < x_1 < \cdots < x_n = b$. לכל $i$, נגדיר:
+	\[ M_i := \sup_{\mathclap{[x_{i - 1}, x_i]}} f \quad\quad m_i := \inf_{\mathclap{[x{i -1}, x_i]}} f \]
+	(שימו לב שזה מוגדר רק בגלל שהנחנו $f$ חסומה). 
+	}
+	
+	\defi{בהינתן ההנחות מההגדרה הקודמת, נגדיר את \textit{סכום דרבו העליון} ו\textit{סכום דרבו התחתון} להיות:
+	\begin{align*}
+		\ol{\Sigma}(f, \Pi) = \sum_{i = 1}^{n} M_i\Delta x_i && \dard(f, \Pi) := \sum_{i = 1}^{n}m_i \Delta x_i
+	\end{align*}}
+	
+	
+	\theo{תהי $f \co [a, b] \to \R$ חסומה, ו־$\Pi$ חלוקה של $[a, b]$. אז: 
+	\begin{enumerate}
+		\item לכל תיוג $\{t_i\}$ של החלוקה $\Pi$, מתקיים: 
+		\[ \dard(f, \Pi), S(f, \Pi, \{t_i\}) \le \daru(f, \Pi) \]\begin{proof}
+			לכל $i \in [n]$, מתקיים $m_i \le f(t_i) < M_i$. נכפיל ב־$\Delta x_i$ את הא''שים ונסכם על $i$. נקבל: 
+			\[ \dard(f, \Pi) = \sumnio m_i\Delta x_i \le \sum_{i = 1}^{n}f(t_i)\Delta x_i \le \sum_{i = 1}^{n} M_i \Delta x_i = \daru(f, \Pi) \]
+			כנדרש. 
+		\end{proof}
+	\end{enumerate}}
+	\lem{תהי $f \co [a, b] \to \R$ חסומה, וכן $\Pi$ חלוקה של $[a, b]$. אז: 
+	\begin{align*}
+		\daru(f, \Pi) &= \sup\ccb{S(f, \Pi, \{t_i\}) \mid \Pi \ \text{תיוג של} \ \{t_i\}} \\
+		\dard(f, \Pi) &= \inf\ccb{S(f, \Pi, \{t_i\}) \mid \Pi \ \text{תיוג של} \ \{t_i\}}
+	\end{align*}}
+	ברשימות של שירי יש הוכחה קונקרטית עבור $\daru$, בעוד ההוכחה בעבור $\dard$ אמורה להופיע בתרגיל הבית (''אתם מעתיקים מהרשימות של שירי, וכל דבר עליון, תחתון``). לב הטיעון יושב בתוך (הכללה באינדוקציה של) תרגיל הפתיחה של ההרצאה הזו. אנחנו גם נוכיח בעבור $\daru$:
+	\begin{proof}
+		נגדיר $A_i = \{f(t_i) \mid t_i \in [x_{i - 1}, x_i]\}$ (כלומר $A_i = f([x_{i - 1}, x_i])$). אז: 
+		\begin{multline*}
+			\Sigma A := \ccb{S(f, \Pi, \{t_i\}) \mid \Pi \ \text{תיוג של} \ \{t_i\}} = \ccb{\sum_{i = 1}^{n}f(t_i)\Delta x_i \mid \forall i \co t_i \in [x_{i - 1}, x_i} = \ccb{\sumnio a_i \Delta x_i \mid a_i \in A_i} \\ 
+			= (\Delta x_1)A_1 + \cdots + (\Delta x_n) A_n
+		\end{multline*}
+		המושגים של ''לחבר קבוצות`` ו''להכפיל קבוצה במספר`` נתונים בתרגיל הפתיחה, שם נמצא עיקר התוכן. ברשימות של שירי זה כתוב יותר מפורש. \\
+		נזכר שבעצם יש להוכיח ש־$\daru(f, \Pi) = \sup \Sigma A$. מהשוויונות לעיל נקבל ש־:
+		\begin{align*}
+			\sup \Sigma A &= \sup((\Delta x_1)A_1 + \cdots + (\Delta x_n)A_n) \\
+			&= \Delta x_1 \underbrace{\sup A_1}_{\smash{M_1}} + \cdots + \Delta x_n \underbrace{\sup A_n}_{\smash{M_n}} \\
+			&= \sum_{i = 1}^{n}M_i\Delta x_i = \daru(f, \Pi)
+		\end{align*}
+	\end{proof}
+	
+	\begin{Theorem}[מונוטוניות של סכומי דרבו ביחס לעידון החלוקות]
+		תהי $f \co [a, b] \to \R$ חסומה. יהיו שתי חלוקות $\Pi_1 \subset \Pi_2$ חלוקות של $[a, b]$. אז: 
+		\[ \dard(f, \Pi_1) \le \dard(f, \Pi_2) \le \daru(f, \Pi_2) \le \daru(f, \Pi_1) \]
+	\end{Theorem}
+	אינטואיטיבית: כשמעדנים את החלוקה, סכום דרבו העליון והתחתון מתקרבים זה לזה, אך לא בהכרח משתווים. היינו רוצים שהם יתקרבו אל האינטגרל. שימו לב: חצי מהא''שים במשפט ידועים מהמשפט הקודם. 
+	\begin{proof}[הוכחה עבור סכום דרבו עליון, במקרה הפרטי של $\Pi_2 = \Pi_1 \uplus \{p\}$]
+		נרשום $\Pi_1 \co a = x_0 < x_1 < \cdots < x_n = b$. ישנו $k$ כך ש־$x_{k - 1} < p < x_k$. נסמן $M_i = \sup_{[x_{i - 1}, x_i]} f$, וכן $M'_k = \sup_{[x_{k - 1}, p]} f$ ו־$M''_k = \sup_{[p, x_k]}f$. אז: 
+		\[ \daru(f, \Pi_2) = \sum_{i \neq k} M_i \Delta x_i  + \underbrace{\underbrace{M'_k}_{\le M_k}(p - x_{k - 1}) + \underbrace{M''_k}_{\le M_k}(x_k - p)}_{\le M_k(x_k - x_{k -1})} \le M_k\Delta x_k + \sum_{i \neq k} M_i\Delta x_i = \daru(f, \Pi_1) \]
+		כנדרש. 
+	\end{proof}
+	הוכחת המקרה הכללי באינדוקציה על הנקודות שנוספו לחלוקה (זכרו, חלוקות הן סופיות). הוכחה עבור סכום דרבו תחתון מדואליות. 
+	
+	\begin{Collary}
+		לכל שתי חלוקות $\Pi_1, \Pi_2$ של $[a, b]$, תמיד $\dard(f, \Pi_1) \le \daru(f, \Pi_2)$. 
+	\end{Collary}
+	\begin{proof}
+		האיחוד $\Pi_3 := \Pi_1 \cup \Pi_2$ הוא עידון של $\Pi_1$ ושל $\Pi_2$ (עידון משותף). מהמשפט הקודם: 
+		\[ \dard(f, \Pi_1) \le \dard(f, \Pi_3) \le \daru(f, \Pi_3) \le \daru(f, \Pi_2) \]
+		כנדרש.
+	\end{proof}
+	זו מסקנה נחמדה, שאומרת שקבוצת כל סכומי הדרבו העליונים חסומה מלמטה (ע''י סכום דרבו תחתון כלשהו) ולהפך. זה אומר שקיים לה סופרמום. 
+	
+	\defi{תהי $f \co [a, b] \to \R$ חסומה. נגדיר: 
+	\begin{itemize}
+		\item אינטגרל דרבו עליון: \hfill $\displaystyle \Idaru(f) := \inf \ccb{\daru(f, \Pi) \mid [a, b] \ \text{חלוקה של} \ \Pi}$
+		\item אינטגרל דרבו תחתון: \hfill $\displaystyle \Idard(f) := \sup \ccb{\dard(f, \Pi) \mid [a, b] \ \text{חלוקה של} \ \Pi}$
+	\end{itemize}}
+
+	\defi{$f$ \textit{אינטגרבילית דרבו} אם $\Idard(f) = \Idaru(f)$. אם זה קורה, $I(f) = \Idard(f) = \Idaru(f)$ נקרא \textit{אינטגרל דרבו}. }
+	
+	\theo{עבור $f \co [a, b]\to \R$, $f$ אינטגרבילית רימן אמ''מ $f$ חסומה וגם $f$ אינטגרבילית דרבו. אם תנאים אלו מתקיימים, אז $\int^{b}_af = I(f)$. }
+	
+	\rmark{אינטגרל דרבו העליון והתחתון לא מוגדרים במידה ו־$f$ איננה חסומה, ולכן זו תמיד תתווסף כהנחה למשפטים הדורשים אינטגרל דרבו עליון או תחתון. }
+	
+	\begin{Theorem}[קריטריון דרבו]
+		$f \co [a, b] \to \R$ אינטגרבילית אמ''מ $f$ חסומה וגם לכל $\eg > 0$, כך שלכל חלוקה $\Pi$ של $[a, b]$, אם $\lg(\Pi) < \dg$ אז $\daru(f, \Pi) - \dard(f, \Pi) < \eg$. 
+	\end{Theorem}
+	\begin{Theorem}[קריטריון דרבו המשופר]
+		$f \co [a, b] \to \R$ אינטגרבילית אמ''מ $f$ חסומה וגם לכל $\eg > 0$ קיימת חלוקה $\Pi$ של $[a, b]$ עם $\daru(f, \Pi) - \dard(f, \Pi) < \eg$. 
+	\end{Theorem}
+	
+	\begin{proof}[הוכחת קריטריון דרבו הרגיל, החלק של ''רק אם``]
+		נניח ש־$f$ אינטגרבילית רימן עם $\int^{b}_a f = I$. כבר הראינו ש־$f$ חסומה. יהי $\eg > 0$. נבחר $\hat \eg = ?$ (נבחר בהמשך את ערכו). בהתאם להגדרת אינטגרל רימן, תהי $\dg$ שמתאימה ל־$\hat \eg$. תהי $\Pi$ חלוקה עם $\lg(\Pi) < \dg$. מבחירת $\dg$, לכל תיוג $\{t_i\}$ של החלוקה, נקבל: 
+		\[ I - \hat \eg < S(f, \Pi, \{t_i\}) < I + \hat \eg \]
+		מטענה קודמת, ומשום שספורמום מכבד א''ש חלש, נקבל מיידית ש־: 
+		\[ I - \hat \eg \le \int_{\{t_i\}} S(f, \Pi, \{t_i\}) = \dard(f, \Pi) \le \daru(f, \Pi) = \sup_{\{t_i\}} S(f, \Pi, \{t_i\}) \le I + \eg \]
+		נובע: 
+		\[ \daru(f, \Pi) - \dard(f, \Pi) \le 2 \hat \eg \]
+		מכאן שעבור בחירת $\hat \eg = \frac{\eg}{3}$ נקבל את הנדרש. 
+	\end{proof}
+	הכיוון ''אם`` השני – מהרשימות של שירי. 
+	
+	
+	
+	
+	
+	\ndoc
+\end{document}

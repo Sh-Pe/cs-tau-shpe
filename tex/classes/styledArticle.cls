@@ -16,7 +16,7 @@
 
 % Design
 	\RequirePackage[labelfont=bf]{caption}
-	\RequirePackage[margin=0.6in]{geometry}
+	\RequirePackage[margin=0.8in]{geometry}
 	\RequirePackage{multicol}
 	\RequirePackage[skip=4pt, indent=0pt]{parskip}
 	\RequirePackage[normalem]{ulem}
