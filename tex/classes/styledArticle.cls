@@ -18,7 +18,6 @@
 	\RequirePackage[labelfont=bf]{caption}
 	\RequirePackage[margin=0.8in]{geometry}
 	\RequirePackage{multicol}
-	\RequirePackage[skip=4pt, indent=0pt]{parskip}
 	\RequirePackage[normalem]{ulem}
 	\forestset{default}
 	\renewcommand\labelitemi{$\bullet$}
@@ -42,3 +41,7 @@
 		\parshape=3 3.1em \dimexpr\hsize-3.4em 3.4em \dimexpr\hsize-3.4em 0pt \hsize}
 	\def\frakstart#1{\noindent\smash{\lower3ex\hbox{\llap{\Huge\frakfamily#1}}}
 		\parshape=3 1.5em \dimexpr\hsize-1.5em 2em \dimexpr\hsize-2em 0pt \hsize}
+
+
+	\setlength{\parindent}{0pt}
+	\setlength{\parskip}{4pt}

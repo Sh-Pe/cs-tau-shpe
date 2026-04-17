@@ -3,6 +3,8 @@
 \usepackage{../../../../tex/packages/mathShortcuts}
 \usepackage{../../../../tex/packages/theoremsSupport}
 
+\usepackage{pstricks-add}
+
 \newcommand\rim{R([a, b])}
 \newcommand\daru{\ol{\Sigma}}
 \newcommand\Idaru{\ol{I}}
@@ -13,6 +15,7 @@
 
 \author{שחר פרץ}
 \title{\textit{חדו''א 2א} $\sim$ הרצאה 2}
+\date{16 באפריל 2026}
 \begin{document}
 	\maketitle
 	\textbf{מרצה: }יעל קרשון
@@ -53,7 +56,6 @@
 		\end{cases}
 	\end{align*}
 	\theo{$\int^{b}_af = 5(b-a)$}
-	(גרף – להשלים אחכ)
 	
 	בהגדרה הקודמת שלנו לאינטגרל רימן, נדרשנו לדעת מה הערך של האינטגרל כדי להיות מסוגלים להוכיח אינטגרביליות. 
 	\begin{proof}
@@ -127,21 +129,27 @@
 	(שימו לב שזה מוגדר רק בגלל שהנחנו $f$ חסומה). 
 	}
 	
+	\fig{\begin{pspicture}(-0.5,-3)(10,3)
+			\psaxes[ticks=none,labels=none]{->}(0,0)(-1,-2.5)(10,3)
+			\psplot[plotpoints=100,linewidth=1.5pt,algebraic]{0}{9.5}{sqrt(x)*sin(x)}
+			\psStep[linecolor=teal,StepType=supremum,fillstyle=hlines,algebraic](0,9){20}{sqrt(x)*sin(x)}
+			\psStep[linecolor=blue,StepType=infimum,fillstyle=vlines,algebraic](0,9){20}{sqrt(x)*sin(x)}
+	\end{pspicture}}{סכומי דרבו עליונים בכחול, סכומי דרבו תחתונים בירוק, בעבור חלוקה ''אחידה``}
+	
 	\defi{בהינתן ההנחות מההגדרה הקודמת, נגדיר את \textit{סכום דרבו העליון} ו\textit{סכום דרבו התחתון} להיות:
 	\begin{align*}
 		\ol{\Sigma}(f, \Pi) = \sum_{i = 1}^{n} M_i\Delta x_i && \dard(f, \Pi) := \sum_{i = 1}^{n}m_i \Delta x_i
 	\end{align*}}
 	
 	
-	\theo{תהי $f \co [a, b] \to \R$ חסומה, ו־$\Pi$ חלוקה של $[a, b]$. אז: 
-	\begin{enumerate}
-		\item לכל תיוג $\{t_i\}$ של החלוקה $\Pi$, מתקיים: 
-		\[ \dard(f, \Pi), S(f, \Pi, \{t_i\}) \le \daru(f, \Pi) \]\begin{proof}
-			לכל $i \in [n]$, מתקיים $m_i \le f(t_i) < M_i$. נכפיל ב־$\Delta x_i$ את הא''שים ונסכם על $i$. נקבל: 
-			\[ \dard(f, \Pi) = \sumnio m_i\Delta x_i \le \sum_{i = 1}^{n}f(t_i)\Delta x_i \le \sum_{i = 1}^{n} M_i \Delta x_i = \daru(f, \Pi) \]
-			כנדרש. 
-		\end{proof}
-	\end{enumerate}}
+	\theo{תהי $f \co [a, b] \to \R$ חסומה, ו־$\Pi$ חלוקה של $[a, b]$. אז	לכל תיוג $\{t_i\}$ של החלוקה $\Pi$, מתקיים: 
+		\[ \dard(f, \Pi), S(f, \Pi, \{t_i\}) \le \daru(f, \Pi) \]
+	}
+	\begin{proof}
+		לכל $i \in [n]$, מתקיים $m_i \le f(t_i) < M_i$. נכפיל ב־$\Delta x_i$ את הא''שים ונסכם על $i$. נקבל: 
+		\[ \dard(f, \Pi) = \sumnio m_i\Delta x_i \le \sum_{i = 1}^{n}f(t_i)\Delta x_i \le \sum_{i = 1}^{n} M_i \Delta x_i = \daru(f, \Pi) \]
+		כנדרש. 
+	\end{proof}
 	\lem{תהי $f \co [a, b] \to \R$ חסומה, וכן $\Pi$ חלוקה של $[a, b]$. אז: 
 	\begin{align*}
 		\daru(f, \Pi) &= \sup\ccb{S(f, \Pi, \{t_i\}) \mid \Pi \ \text{תיוג של} \ \{t_i\}} \\
