@@ -1,0 +1,107 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../../tex/packages/theoremsSupport}
+
+\author{שחר פרץ}
+\title{טופולוגיה $\sim$ \textit{תרגיל בית 1}}
+\begin{document}
+	\maketitle
+	
+	
+	\section{}
+	תהי $X$ קבוצה. נוכיח כי האוספים $\tc \subset \ps(X)$ שיורדו הן טופולוגיות על $X$. 
+	\begin{enumerate}[(A)]
+		\item טופולוגיית הקרניים המוגדרת ע''פ:
+		\[ \tc_1 = \{\varnothing, \R\} \uplus\{(a, \inft) \mid a \in \R\} \]
+		\begin{itemize}
+			\item \textbf{סגירות חיתוך סופי: }יהי אוסף סופי $U_1 \dots U_n$ של קבוצות מהמרחב. אם ישנה $U_i$ כך ש־$U_i = \vn$, אז החיתוך הוא ריק ובפרט במרחב. אחרת, כל הקבוצות קרניים (בה''כ, כי חיתוך עם כל המרחב לא משפיע) מצורה $U_i = (a_i, \inft)$. נבחין ש־: :
+			\[ \bigcap U_i = \bigcap (a_i, \inft) = \cl{\max_{i \in [n]} a_i, \ \inft} \in \tc_1 \]
+			כנדרש. 
+			\item \textbf{סגירות לאיחוד: }בהינתן אוסף $\UU \subset \ps(\tc_1)$ של קבוצות, אם $X \in \UU$ סיימנו, אחרת בה''כ $\vn \notin \UU$ ואז כל $U \in \UU$ היא קרן ואפשר למפות $(a, \infty) \overset{f}{\mapsto} a$. קל לראות ש־: 
+			\[ \bigcup_{\mathclap{U \in \UU}} U = (\inf f(\UU), \inft) \]
+			כאשר אם $\sup f(\UU) = -\infty$ נקבל שוויון ל־$(-\inft, \inft) = \R$ כנדרש. 
+			\item \textbf{גסה יותר מהטופולוגיה הטרוויאלית: }דה
+		\end{itemize}
+		\item טופולוגיות הנקודה הייחודית:
+		\[ \tc_2 = \{\varnothing\} \uplus \{U \subset X \mid a \in U\} \]
+		\begin{itemize}
+			\item \textbf{סגירות חיתוך סופי: }ניקח אוסף סופי $U_1 \dots U_n$ של קבוצות פתוחות. אם $U_i = \vn$ סיימנו, אחרת $a \in U_i$ לכל $i \in [n]$. מהגדרה $a \in \bigcap U_n \subset X$ כלומר $\bigcap U_n \in \tc_2$ כנדרש. 
+			\item \textbf{סגירות לאיחוד: }ניקח אוסף $\UU \subset \tau_2$ של קבוצות פתוחות. אם $\UU = \{\vn\}$ סיימנו, אחרת קיימת $U \in \UU$ כלשהי כך ש־$a \in U$. מהגדרה $a \in \bigcup U_n \subset X$ כלומר $\bigcup U_n \in \tc_2$ כנדרש. 
+			\item \textbf{גסה יותר מהטופולוגיה הטרוויאלית: }בבירור $\vn \in \tc_2$, ועוד נבחין ש־$a \in X \subset X$ כלומר $X \in \tc_2$ כנדרש. 
+		\end{itemize}
+		\item הטופולוגיה הקו־בת מנייה: 
+		\[ \tc_3 = \{U \subset X \mid U = \vn \lor \sof{U^{c}} \le \az\} \]
+		\begin{itemize}
+			\item \textbf{סגירות חיתוך סופי: }
+			\item \textbf{סגירות לאיחוד: }
+			\item \textbf{גסה יותר מהטופולוגיה הטרוויאלית: }
+		\end{itemize}
+	\end{enumerate}
+	
+	\section{}
+	נמצא את כל הטופולוגיות על $\{a, b, c\}$. נעבור על כל האיברים בקבוצת החזקה של קבוצת החזקה. 
+	\begin{gather*}
+		\ps(\{a, b, c\}) = \{\vn, \{a\}, \{b\}, \{c\}, \{a, b\}, \{b, c\}, \{a, c\}, \{a, b, c\}\} \quad\quad\quad \{\vn, \{a\}, \{b\}, \{a, b\}, \{a, c\}, \{a, b, c\}\} \\
+		\{\vn, \{a\}, \{a, c\}, \{a, b, c\}\} \quad\quad\quad \{\vn, \{a\}, \{a, b, c\}\}  \quad\quad\quad \{\vn, \{b\}, \{c\}, \{b, c\}, \{a, b, c\}\} \quad\quad\quad \{\vn, \{a\}, \{b\}, \{a, b\}, \{b, c\}, \{a, b, c\}\} \\
+	\end{gather*}
+	שאר המרחבים הומיאומורפים לאלו המצוינים לעיל (או במילים אחרות אין לי כוח להמשיך). 
+	
+	\section{}
+	תהי $X$ קבוצה ויהי $\{\tc_\ag\}_{\ag \in \Lg}$ אוסף הטופולוגיות על $X$. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\inf \Lg:= \bigcap_{\ag \in \Lg} \tc_{\ag}$ טופולוגיה. \begin{proof}
+			\item \textbf{סגירות חיתוך סופי: }נתבונן באוסף סופי של קבוצות $\UU \subset \inf \Lg$. מכאן ש־$\UU \subset \tc_\ag$ לכל $\ag \in \Lg$, ומשום ש־$\tc_\ag$ טופולוגיה, כן $\bigcap \UU \in \tc_\ag$. סה''כ $\bigcap \UU\in \inf \Lg$. 
+			\item \textbf{סגירות לאיחוד: }נתבונן באוסף של קבוצות $\UU \subset \inf \Lg$. מכאן ש־$\UU \subset \tc_\ag$ לכל $\ag \in \Lg$, ומשום ש־$\tc_\ag$ טופולוגיה, כן $\bigcup \UU \in \tc_\ag$. סה''כ $\bigcup \UU\in \inf \Lg$. 
+			\item \textbf{גסה יותר מהטופולוגיה הטרוויאלית: }ידוע $\vn, X \in \tc_\ag$ לכל $\ag \in \Lg$ ומכאן $\vn, X \in \bigcap_{\ag \in \Lg} \tc_{\ag}$
+		\end{proof}
+		\item נוכיח ש־$\bigcup_{\ag \in \Lg}\tc_\ag$ איננה בהכרח טופולוגיה. \begin{proof}
+			נתבונן באוסף המשמים הבא של טופולוגיות על $X = \{a, b, c\}$: 
+			\begin{align*}
+				\tc_1 = \{\vn, \{a\}, X\} && \tc_2 = \{\vn, \{b\}, X\} && \Lg = \{1, 2\}
+			\end{align*}
+			נבחין ש־$\bigcup_{\ag \in \Lg}\tc_\ag = \tc_1 \cup \tc_2$ איננה טופולוגיה שכן היא לא סגורה לאיחוד של $\{a\} \cup \{b\}$. 
+		\end{proof}
+		\item[(ג+ד)]נוכיח שקבוצת הטופולוגיות המוגדרות על $X$ הסדורה חלקית ע''י $\subset$ היא סריג. 
+		\begin{proof}נתבונן ב־$T$ אותה נגדיר להיות קבוצת הטופולוגיות המוגדרות על $X$ (נבחין ש־$T \subset \ps(\ps(X))$ ומכאן שהיא מוגדרת היטב). תהא קבוצת אינדקסים (מעוצמה כלשהי, ולמטרות פורמליות, $\Lg \subset T$) של $T_\ag \in T$. 
+			\begin{itemize}
+				\item \textbf{קיום חסם תחתון מקסימלי (אינפימום): }בבירור $\inf \Lg$ שהוגדר מקיים את הנדרש, שכן כל טופולוגיה גסה יותר $\tc \supsetneq \inf \Lg$ בעלת איזשהו $U \in \tc\notin \inf \Lg$ כלומר ישנה טופולוגיה $\tc_\ag$ כך ש־$U \notin \tc_\ag$, ומכאן ש־$\tc \not\subset \tc_\ag$ והיא איננה חסם תחתון. 
+				\item \textbf{קיום חסם עליון מינימלי (סופרמום): }נגדיר את $\tc$ להיות הטופולוגיה שנוצרת ע''י לקיחת התת־בסיס $\bigcup_{\ag \in \Lg} \tc_\ag$ (כלומר, את כל החיתוכים הסופיים של איברים אילו וכן את איחודים הלאו־דווקא סופי). מהגדרה $\tc_\ag \subset \tc$ וגם בערך מהגדרה יצירת טופולוגיה מתת־בסיס נותנת את הטופולוגיה המינימלית שמכילה תת־בסיס זה. 
+			\end{itemize}\envendproof
+		\end{proof}
+		\skipitems{2}
+		\item ישירות מהסעיף לעיל נקבל שהאיפימום והסופרמום של $\tc_1, \tc_2$ המוגדרות בתרגיל הבית הוא: 
+		\begin{align*}
+			\inf\{\tc_1, \tc_2\} = \{\vn, \{a\}, X\} && \sup\{\tc_1, \tc_2\} = \{\vn, \{a\}, \{b\}, \{a, b\}, \{b, c\}, X\}
+		\end{align*}
+	\end{enumerate}
+	
+	\section{}
+	יהי $(X, d)$ מרחב מטרי חסום. נגיד נגדיר את $X^{\az}$ להיות קבוצת הסדרות. יהי $\sumnio \wg_n$ טור מתכנסת ונגדיר $D \co X^{\az} \times X^{\az} \to \R$ ע''פ $D(\vec x, \vec y) = \sumnio \wg_n \cdot d(x_n, y_n)$. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$D$ היא פונקציה מוגדרת היטב. ידוע קיום חסם עליון $\sup_{\vec x, \vec y}d(\vec x, \vec y) = M \in \R$. מכאן ש־$d(\vec x, \vec y) \le M$ לכל $\vec x, \vec y \in X^{\az}$. נסיק ש־: 
+		\[ D(\vec x, \vec y) = \sum_{n = 1}^{\infty} \wg_n \. d(x_n, y_n) \le M \cdot \sum_{n = 1}^{\inft} \wg_n \in \R \]
+		כנדרש. 
+		\item נוכיח ש־$(X^{\az}, D)$ הוא מרחב מטרי. \begin{proof}
+			\begin{itemize}
+				\item \textbf{אי־ניוון: }אם $D(x, y) = 0$ אז משום ש־$\wg_n > 0$ בהכרח $x = y$. עוד נבחין ש־$D(x, x) = \sum_{i = 1}^{\inft}\wg_n \cdot d(x, x) = \sum_{i = 1}^{n}\wg_n \cdot 0 = 0$ כנדרש. 
+				\item \textbf{א''ש המשולש: }נבחין שלכל $N \in \N, \vec x, \vec y, \vec z \in X^{\az}$ מתקיים:
+				\[ d(x, z) \le \sum_{i = 1}^{N}\wg_n \cdot d(x_n, z_n) \le \sum_{i = 1}^{N}\wg_n \cl{d(x_n, y_n) + d(y_n, z_n)} = \sum_{i = 1}^{N}\wg_n d(x_n, y_n) + \sum_{i = 1}^{N}\wg_nd(y_n, z_n) \le d(x, y) + d(y, z) \]
+				ומכאן שהא''ש החלש נשמר גם בגבול $N \to \inft$. 
+				\item \textbf{סימטריות: }ישירות מסימטריות $d \co X \times X \to \R$. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהא $X$ קבוצה שאיננה סינגלטון, ועליה נגדיר את הטופולוגיה הטרוויאלית. נוכיח שהמרחב אינו מטרייזבילי. \begin{proof}
+		נניח בשלילה שהמרחב מטרייזבילי עם מטריקה $d$ כלשהי, אז משום ש־$\sof{X} \ge 2$ ישנם $x \neq y \in X$. זהו מרחב האוסדורף (מנותק אסטרמלית) שכן בהינתן $d(x, y) = \delta$ אז הכדורים הפתוחים $U(x, \frac{\delta}{2}) = \{x\}, \ U(y, \frac{\delta}{y}) = \{y\}$. אך $\{x\}$ איננה קבוצה פתוחה בטופולוגיה הטרוויאלית, וזו סתירה. 
+	\end{proof}
+	
+	
+	\ndoc
+	
+	
+	
+	
+\end{document}
