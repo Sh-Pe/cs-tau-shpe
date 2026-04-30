@@ -1,0 +1,229 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+
+\newcommand\rim{R([a, b])}
+\newcommand\daru{\ol{\Sigma}}
+\newcommand\Idaru{\ol{I}}
+\newcommand\dard{\underline{\Sigma}}
+\newcommand\Idard{\ol{I}}
+
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 3}}
+\begin{document}
+	\maketitle
+	
+	\begin{Exercise}[תרגיל פתיחה]
+		תהא פונקציה $f \co [a, b] \to \R$ ומספר $I \in \R$, וכן סדרת חלוקות מתויגות $(\Pi_k, \{t^{(k)_{\{t_i\}}}\})$ של $[a,b]$ שמדדי העדינות שלהן מקיימים $\lg(\Pi_k) \rrr{k \to \inft} 0$. הוכיחו: 
+		\begin{enumerate}
+			\item אם $\int^{b}_a f = I$ אז $S(f, \Pi_k, \{t_i^{(k)}\}) \rrr{k \to \inft} 0$. 
+			\item נניח $S(f, \Pi_k, \{t_i^{(k)}\}) \rrr{k \to \inft} 0$. האם בהכרח $\int^{b}_a = I$? [רמז: אפריורי לא יודעים בהכרח ש־$f$ אינטגרבילית]
+		\end{enumerate}
+	\end{Exercise}
+	
+	בשיעור הזה נסיים את \shiri{2.2} אינטגרביליות ברשימות של שירי. 
+	
+	\subsection*{תנאים שקולים לאינטגרביליות}
+	\theo{נתונה פונקציה ממשית $f \co [a, b] \to \R$. עבור פונקציה כזו, התנאים הבאים שקולים: 
+		\begin{enumerate}
+			\item קיים $I \in \R$ כך שלכל $\eg > 0$ קיים $\dg > 0$ כך שלכל חלוקה מתוייגת $(\Pi, \{t_i\})$ של $[a, b]$, אם $\lg(\Pi) < \dg$, אז $\sof{S(f, \Pi, \{t_i\}) - I} < \eg$. 
+			\item הפונקציה $f$ חסומה, וגם לכל $\eg > 0$, קיימת $\dg > 0$ כך שלכל חלוקה $\Pi$ של $[a, b]$, אם $\lg(\Pi) < \lg$, אז $\daru(f, \Pi) - \dard(f, \Pi) < \eg$. 
+			\item $f$ חסומה, וגם לכל $\eg > 0$ קיימת חלוקה $\Pi$ של $[a, b]$ כך ש־$\daru(f, \Pi) - \dard(f, \Pi) < \eg$
+			\item $f$ חסומה, וגם $\Idard(f) = \Idaru(f)$. 
+	\end{enumerate}}
+
+	\exe{התאימו בין השקילויות לעיל לשקילות הבאה: 
+	\begin{enumerate}
+		\item $f$ אינטגרבילית רימן
+		\item $f$ מקיימת את התנאי בקריטריון דרבו
+		\item $f$ מקיימת את התנאי בקריטריון דרבו המשופר
+		\item $f$ אינטגרבילית דרבו
+	\end{enumerate}}
+
+	(רמז: הם לפי הסדר)
+	
+	בשיעור הקרוב נוכיח את השקילויות לעיל, ואז נפנה להסיק מהן מסקנות. 
+
+	\exe{שיעור שעבר הוכחנו ש־$1$ גורר את $2$. הוכיחו ש־$2$ גורר את $3$ (רמז: ההוכחה קלה, זהו רק מקרה פרטי). }
+	
+	\begin{proof}[הוכחה ש־$3 \to 4$]
+		יהי $\eg > 0$. מההנחה $3$ קיימת חלוקה $\Pi$ כך ש־$\daru(f, \Pi) - \dard(f, \Pi) < \eg$. מצד שני, ידוע מהשיעור הקודם ומהגדרת אינטגרל דרבו עליון ותחתון: 
+		\[ \daru(f, \Pi) \le \Idard(f) \le \Idaru(f) \le \daru(f, \Pi) \]
+		נובע ש־$\sof{\Idaru(f) - \Idard(f)} < \eg$, בעבור כל $\eg > 0$ שרירותי, ומכאן ש־$\Idaru(f)=\Idard(f)$ כנדרש. 
+	\end{proof}
+	
+	נסכם: הוכחנו שיעור שעבר $1 \to 2$, נתנו כתרגיל $2 \to 3$, ועתה הראינו $3 \to 4$. עתה נוכיח $4 \to 1$. מההנחה של 4 יש לנו אינטגרל דרבו, ונוכל להראות שהוא שווה לאינטגרל רימן. 
+	
+	\begin{proof}[הוכחה ש־$4 \to 2$]
+		נסמן $\Idard(f) = \Idaru(f) =: I$. אזי לכל חלוקה $\Pi$ של $[a, b]$ מתקיים: 
+		\[ (\mathrm{I}) \quad \dard(f, \Pi) \le I \le \daru(f, \Pi) \]
+		כמו כן, לכל חלוקה מתויגת של הקטע: 
+		\[ (\mathrm{II})\quad \dard(f, \Pi) \le S(f, \Pi, \{t_i\}) \le \daru(f, \Pi) \]
+		נחפש $\delta$ המתאימה ל־$\eg$ בהתאם להגדרה $2$ (נגדירה בהמשך). תהי $(\Pi, \{t_i\})$ חלוקה מתוייגת כלשהי עם $\lg(\Pi) < \dg$. מבחירת $\dg$, ידוע $\daru(f, \Pi) - \dard(f, \Pi) < \eg$. מ־$(\mathrm{I}), (\mathrm{II})$ fkunr 
+		$S(f, \Pi, \{t_i\})$ חסום בסביבת $\eg$ של $I$, כנדרש. 
+	\end{proof}
+	נותרה לנו שקילות אחת להראות. לשם כך, נצטרך להגדיר כמה דברים. 
+	
+	\defi{בהינתן $f \co J \to \R$ חסומה, \textit{תנודה} של $f$ ב־$J$ היא $\wg(f, J) := \sup_{J}f - \inf_J f$}
+	\exe{הוכיחו כי 
+		\[ \wg(f) = \sup_{\mathclap{x, y \in J}}(f(x) - f(y)) = \sup\{\sof{f(x) - f(y) \mid x, y \in J}\} \]}
+	
+	\exe{עבור $J$ קטע פתוח, $x_0 \in J$, אז $f$ רציפה ב־$x_0$ אמ''מ $\wg(f, \; (x_0 - \dg, x_0 + \dg)) \rrr{\delta \to 0} 0$. }
+	
+	\defi{בהינתן $f \co [a, b] \to \R$ חסומה, ו־$\Pi$ חלוקה של $[a, b]$ נגדיר את \textit{תנודת דרבו של $f$ ביחס ל־$\Pi$} (או \textit{התנודה הכוללת של $f$ ביחס ל־$\Pi$}): 
+	\[ \wg(f, \Pi) := \sumnio \wg(f, [x_{i - 1}, x_i])\Delta x_i \]} 
+	
+	\exe{הוכיחו כי: 
+	\[ \wg(f, \Pi) = \daru(f, \Pi) - \dard(f, \Pi) \]}
+	
+	\lem{בהינתן $\Pi, \Pi'$ חלוקות של $[a, b]$, כך ש־$\Pi' = \Pi \cup \{p\}$, מתקיים: 
+	\[ 0 \le \wg(f, \Pi) - \wg(f, \Pi') \le \lg(\Pi) \wg(f, [a, b]) \]}
+	\begin{proof}
+		נרשום $\Pi = \{x_0, \dots, x_n\}$, כך ש־$a = x_0 < \cdots < x_n = b$. תהי $k \in [n]$ כך ש־$x_{k  -1} < p < x_k$. אז: 
+		\[ \wg(f, \Pi) = \sum_{i \neq k} \wg(f, [x_{i - 1}, x_i])\Delta x_i + \wg(f, [x_{k - 1}, x_k])\Delta x_k \]
+		וכן: 
+		\begin{align*}
+			\wg(f, \Pi') &= \sum_{i \neq k} \wg(f, [x_{i - 1}, x_i]) \Delta x_i + \underbrace{\wg(f, [x_{k - 1}, p])(p - x_{k -1})}_{\wg(f, [x_{k - 1}, x_k])} + \underbrace{\wg(f, [p, x_k])(x_k - p)}_{\le \wg(f, [x_{k - 1}, x_k])} \\
+			&\le \sum_{i \neq k} \cdots + \wg(f, [x_{k - 1}, x_k])\Big((p - x_{k - 1}) + (x_k - p)\Big) \\ 
+			&= \wg(f, \Pi)
+		\end{align*}
+		נסכם: 
+		\begin{align*}
+			\wg(f, \Pi) - \wg(f, \Pi') &= \wg(f, [x_{k - 1}, x_k])\Delta x_k - \cl{\text{שני ביטויים גדולים מ־0}} \\
+			&\le \wg(f, [x_{k - 1}, x_k])\Delta x_k \le \wg(f, [a, b]) \cdot \lg(\Pi)
+		\end{align*}
+		כנדרש. 
+	\end{proof}
+	\lem{נתונה $f \co [a, b] \to \R$ חסומה וחלוקות $\Pi, \Pi'$ של $[a, b]$ כך ש־$\Pi'$ מתקבלת מ־$\Pi$ ע''י הוספה של $m_0$ נקודות חלוקה. אז: 
+	\begin{alignat*}{9}
+		(1) \quad 0 &\le \wg(f, \Pi) - \wg(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b]) \\
+		(2) \quad 0 &\le \daru(f, \Pi) - \daru(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b]) \\
+		(3) \quad 0 &\le \dard(f, \Pi) - \dard(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b])
+		\end{alignat*}}
+	\begin{proof}
+		באינדוקציה מהלמה הקודמת, אם $\Pi, \Pi'$ חלוקות ו־$\Pi''$ עידון של $\Pi$, אז $\wg(f, \Pi'') \le \wg(f, \Pi)$. 
+		\begin{enumerate}
+			\item להוכחת $1$, נקבלת ישירות באינדוקציה מהלמה הקודמת על $m_0$. נרשום $\Pi' = \Pi'' \uplus \{p\}$ כאשר $\Pi''$ מתקבלת מ־$\Pi$ ע''י הוספת $m_0 - 1$ נקודות. נקבל: 
+			\[ \wg(f, \Pi) - \wg(f, \Pi') = \underbrace{\wg(f, \Pi) - \wg(f, \Pi'')}_{\mathclap{\le (m_0 - 1)\lg(\Pi)\wg(f, [a, b])}} + \underbrace{\wg(f, \Pi'') - \wg(f, \Pi')}_{\le \underbrace{\lg(\Pi'')}_{\le \lg(\Pi)}\wg(f, [a, b])} \le m_0 \lg(\Pi) \wg(f, [a, b]) \]
+			\item[2, 3]ידוע: 
+			\[ 0 \le \underbrace{\cl{\daru(f, \Pi) - \daru(f, \Pi')}}_{\ge 0} + \underbrace{\cl{\dard(f, \Pi') - \dard(f, \Pi)}}_{\ge 0} = \wg(f, \Pi) - \wg(f, \Pi') \le \text{החסם לעיל} \]
+		\end{enumerate}\envendproof
+	\end{proof}
+	
+	\theo{תהי $f \co [a, b] \to \R$ חסומה. אז לכל $\eg < 0$ קיימת $\dg > 0$, כך שלכל חלוקה $\Pi$ של $[a, b]$, אם $\lg(\Pi) < \dg$ אז:
+	\begin{align*}
+		\daru(f, \Pi) - \eg \le \Idaru(f) && \Idard(f) \le \dard(f, \Pi) + \eg
+	\end{align*}}
+	\begin{proof}[הוכחה בעבור סכומי דרבו עליונים]
+		נקבע $\Pi_0$ כך ש־: 
+		\[ \daru(f, \Pi_0) < \Idaru(f) + \frac{\eg}{2} \]
+		יש כמות סופית של נקודות ב־$\Pi$, נסמנה $m_0$. תהי $\dg = ???$ שנשלים בהמשך. 
+		
+		תהי $\Pi$ חלוקה עם $\lg(\Pi) < \dg$. תהי $\Pi'  =\Pi \cup \Pi_0$. נבחין ש־$\Pi'$ ניתנת ע''י הוספה של לכל היותר $m_0$ נקודות ל־$\Pi$. 
+		מהטענה שהוכחנו ו''ממונוטוניות`` של סכומי דרבו ביחס לעידון חלוקות: 
+		\[ \begin{WithArrows}
+			\daru(f, \Pi) &\le \daru(f, \Pi') + m_0 \, \lg(\Pi) \wg(f, [a, b]) \Arrow{מונוטוניות} \\
+			&\le \daru(f, \Pi_0) + m_0 \, \lg(\Pi) \wg(f, [a, b]) \Arrow[jump=2, down]{מבחירת $\!\,_0\Pi$} \\
+			&\le \Idaru(f) + \frac{\eg}{2} + m_0 \, \smash{\underbrace{\lg(\Pi)}_{\le \dg}\wg(f, [a, b])} \\ 
+			&< \daru(f) + \eg
+		\end{WithArrows} \]
+		כאשר השלמנו $\dg = \frac{1}{m_0\wg(f, [a, b])}$. 
+	\end{proof}
+	
+	עתה נחזור להוכיח $4 \to 1$ כדי להשלים את רצף הגרירות. 
+	\begin{proof}[הוכחה ש־$4 \to 1$]
+		נתונה $f \co [a, b] \to \R$. נניח $f$ חסומה ו־$\Idard(f) = \Idaru(f)$. יהי $\eg > 0$. נבחר $\dg > 0$ שמתאימה ל־$\frac{\eg}{3}$ כמו בטענה שעכשיו הוכחנו. כלומר, לכל חלוקה $\Pi$, אם $\lg(\Pi) < \dg$ אז: 
+		\[ \dard(f, \Pi) - \frac{\eg}{3} \le I \le \dard(f, \Pi) +\frac{\eg}{2} \]
+		תהי $(\Pi, \{t_i\})$ חלוקה מתוייגת עם $\lg(\Pi) < \dg$. מבחירת $\dg$: 
+		\[ I - \frac{\eg}{3} \le \dard(f, \Pi) \le \daru(f, \Pi) \le I + \frac{\eg}{3} \]
+		סה''כ $\dard(f, \Pi) - \daru(f, \Pi) < \eg$ כנדרש. 
+	\end{proof}
+	
+	\subsection{תנאים מספיקים לאינטגרביליות}
+	
+	\theo{תהי $f \co [a, b] \to \R$ פונקציה רציפה. אז $f$ אינטגרבילית. }\begin{proof}
+		ידוע ש־$f$ רציפה על קטע קומפקטי. אז:
+		\begin{itemize}
+			\item $f$ חסומה
+			\item $f$ רציפה במידה שווה
+		\end{itemize}
+		תהי $\eg > 0$, וכן נבחר $\hat \eg = ???$ שנמצא בהמשך (מדובר על האפסילון מההגדרה של רציפות במ''ש). 
+		
+		תהי $\dg > 0$ כך שלכל $x, y$ בקטע אם $\sof{x - y} < \dg$ אז $\sof{f(x) - f(y)} < \hat \eg$. אז לכל תת קטע $J$ מספיק קטן (כלומר $\sof{J} < \dg$), מתקיים $\wg(f, J) \le \hat \eg$. 
+		
+		לכן, לכל חלוקה $\Pi$, אם $\lg(\Pi) < \dg$ אז: 
+		\[ \wg(f, \Pi) = \sumnio \wg(f, [x_{i - 1}, x_i])\Delta x_i = \hat \eg(b - a) < \eg \]
+		נבחר בדיעבד $\hat \eg = \frac{1}{b - a}$. מקריטריון דרבו, $f$ אינטגרבילית. 
+	\end{proof}
+	
+	\theo{תהי $f \co [a, b] \to \R$ מונוטונית. אז $f$ אינטגרבילית. }\begin{proof}
+		לכל $x$ בקטע מתקיים $f(a) \le f(x) \le f(b)$. לכן $f$ חסומה. 
+		
+		יהי $\eg> 0$ ותהי $\dg = ???$ שנבחר בהמשך. תהי $\Pi$ עם $\lg(\Pi) \le \dg$. אז: 
+		\[ \wg(f, \Pi) = \sumnio \underbrace{\wg(f, [x_{i - 1}, x_i])}_{=f(x_i) - f(x_{i - 1}) \ge 0}\underbrace{\Delta x_i}_{< \dg} = \dg \sumnio \cl{f(x_i) - f(x_{i - 1})} < \eg \]
+		כאשר בחרנו בדיעבד $\dg = \frac{\eg}{f(b) - f(a) + 1}$. 
+	\end{proof}
+	
+	\exe{הוכיחו בעבור $f$ יורדת. }
+	\begin{Theorem}[איחוד קטעים זרים]
+		נתונה $f \co [a, b] \to \R$, וכן $a < b < c$. נניח ש־$f$ אינטגרבילית על $[a, b]$ וגם עם $[b, c]$. אז $f$ אינטגרבילית אז $[a, c]$. 
+	\end{Theorem}
+	\begin{proof}
+		$f$ אינטגרבילית על $[a, b]$ ו־$[b, c]$ ולכן חסומה. יהי $\eg > 0$, מקריטריון דרבו המשופר יש חלוקה $\Pi_1$ של $[a, b]$ ו־$\Pi_2 $ של $[b, c]$ עם תנודת דרבו קטנה כרצוננו, בפרט קיימות בעבור $\frac{\eg}{2}$ כלומר $\wg(f|_{a, b}, \Pi_1) < \frac{\eg}{2}$ ו־$\wg(f_{[b, c]}, \Pi_2) < \frac{\eg}{2}$. נבחין ש־$\Pi_1 \cup \Pi_2$ חלוקה של $[a, c]$, אז: 
+		\[ \wg(f, \Pi_1 \cup \Pi_2)  = \wg(f|_{[a, b]}, \Pi_1) + \wg(f|_{[b, c]}, \Pi_2) < \frac{\eg}{2} + \frac{\eg}{2} = \eg \]
+		סה''כ $f$ אינטגרבילית על הקטע כולו. 
+	\end{proof}
+	
+	\begin{Theorem}[תת־קטע]
+		נתונה $f \co [a, c] \to \R$ אינטגרבילית, ו־$a < b < c$. אז $f$ אינטגרבילית גם על $[a, b]$ וגם על $[a, c]$. 
+	\end{Theorem}
+	\begin{proof}
+		$f$ אינטגרבילית ולכן חסומה על $[a, c]$, ובפרט חסומה על $[a, b]$. יהי $\eg > 0$. מקריטריון דרבו המשופר, נבחר $\Pi_0$ חלוקה של $[a, c]$ כך ש־$\wg(f, \Pi_0) < \eg$. 
+		
+		נתבונן בחלוקה: 
+		\[ \Pi = \cl{\Pi_0 \cup \{b\}} \cap [a, b] \]
+		יש לוודא שזו אכן חלוקה. נבחין ש־: 
+		\[ \wg(f|_{[a, b]}, \Pi) \le \wg(f, \Pi_0 \uplus \{b\}) \le \wg(f, \Pi_0 \cup \{b\}) \le \wg(f, \Pi_0) < \eg \]
+		מקריטריון דרבו המשופר, $f|_{[a, b]}$ אינטגרבילית. 
+	\end{proof}
+	
+	\begin{Theorem}[כל הקטעים השמאליים]
+		נתונה $f \co [a, c] \to \R$ \textbf{חסומה} (חשוב). נניח שלכל $a < b < c$, מתקיים ש־$f|_{[a, b]}$ אינטגרבילית. אז $f$ אינטגרבילית. 
+	\end{Theorem}
+	\rmark{שימו לב, $f$ לא בהכרח חסומה אפילו אם היא אינטגרבילית על כל הקטעים השמאליים. לדוגמה, $\frac{1}{x^{2}}$. }\begin{proof}
+		יהי $\eg > 0$ ונבחר $b \in (a, c)$ כך ש־(חסם תחתון על $b$ קרוב ל־$c$ כרצוננו שנשלים בהמשך)
+		
+		מקריטריון דרבו המשופר בעבור $[a, b]$, ניתן לבחור חלוקה $\Pi_1$ של $[a, b]$ כך ש־$\wg(f|_{[a, b]}, \Pi) < \frac{\eg}{2}$. נבחין ש־$\Pi_1 \cup \{c\}$ חלוקה של $[a, c]$. 
+		\[ \wg(f, \Pi_1 \cup \{c\}) = \underbrace{\wg(f|_{a, b}, \Pi_1)}_{\le \eg/2} + \underbrace{\wg(f|_{[b, c]})(c - b)}_{\le \wg(f, [a, c])} < \eg \]
+		כלומר נשלים את התנאי על $b$ לעיל להיות $c - b < \frac{\eg}{2\wg(f, [a, c]) + 1}$. 
+	\end{proof}
+	
+	\exe{נסחו והוכיחו משפט על כל הקטעים הימניים}
+	
+	\textbf{דוגמה. }נתבונן בפונקציה $f \co [0, 1] \to \R$ המוגדרת לפי: 
+	\[ f(x) = \begin{cases}
+		17 & x = 0 \\
+		\sin \frac{1}{x} & 0 < x \le 1
+	\end{cases} \]
+	נבחין שהיא אינטגרבילית ממשפט ''כל הקטעים הימניים`` מכיוון שבכל $[\eg, 1]$ ($\eg \in (0, 1)$) היא רציפה, ולכן אינטגרבילית. 
+	
+	\theo{$f \co [a, b] \to \R$ חסומה, ו־$a = x_0 < x_1 < \cdots < x_n = b$ חלוקה. נניח שלכל $i$ מתקיים ש־$f|_{(x_{i - 1}, x_i)}$ מונוטונית או רציפה. אז $f$ אינטגרבילית. \begin{proof}
+			נקבע $1 \le k \le n$. לכל $x < y < z < x_k$. אז $f$ רציפה או מונוטונית ב־$[y, z]$ ולכן אינטרגבילית. 
+			
+			''כל הקטעים השמאליים`` $\impliedby$ $f$ אינטגרבילית ב־$[y, x_k]$. 
+			
+			''כל הקטעים הימניים`` $\impliedby$ $f$ אינטגרבילית ב־$[x_{k - 1}, x_k]$
+			
+			''איחוד קטעים זרים`` $\impliedby$ $f$ אינטגרבילית על $[a, b]$
+	\end{proof}}
+	
+	\ndoc
+	
+	
+	
+	
+\end{document}
