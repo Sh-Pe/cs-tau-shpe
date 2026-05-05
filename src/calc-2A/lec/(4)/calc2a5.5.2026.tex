@@ -1,0 +1,224 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 4}}
+\begin{document}
+	\maketitle
+	
+	\textbf{מרצה: }יעל קרשון 
+	
+	
+	\begin{Exercise}
+		\begin{enumerate}
+			\item הוכיחו מהגדרת האינטגרל: $f \co [a, b] \to \R$ קבועה, ו־$f = M$. אז $\int^b_a f(t) \dt = M(b - a)$. 
+			\item נתונות $f, g \co [a, b] \to \R$ כך שהקבוצה $\{x \mid f(x) = g(x)\}$ צפופה ב־$[a, b]$. הוכיחו: 
+			\begin{itemize}[A.]
+				\item הוכיחו אם $f, g$ אינטגרבילית (רימן) אז $\int^b_a f = \int^b_a g$. 
+				\item נניח $f$ אינטגרבילית, האם בהכרח $g$ אינטגרבילית?
+			\end{itemize}
+		\end{enumerate}
+	\end{Exercise}
+	
+	\exe{נתונות $f, g \co J \to \R$ חסומות כאשר $J$ קבוצה כלשהי. אז: 
+	\begin{enumerate}
+		\item \hfil $\forall \lg \in \R\co \wg(\lg f, J) = \sof{\lg}\wg(f, J)$.
+		\item \hfil $\wg(f + g, J) \le \wg(f, J) + \wg(g, J)$
+		\item \hfil $\wg(\sof f, J) \le \wg(f, J)$
+		\item \hfil $\sof f \le M \implies \wg(f^2, J) \le 2M\wg(f, J)$
+		\item \hfil $0 < \ag \le g \implies \wg\cl{\frac{1}{g}, J} \le \frac{1}{\ag^2}\wg(g, J)$
+	\end{enumerate}}
+
+	תזכורת! התנודה של פונקציה חסומה על קטע מוגדרת להיות: 
+	\[ \mathrm{osc}(f, J) = \wg(f, J) = \sup_J f - \inf_J f = \sup_{\mathclap{x, y \in J}} \sof{f(x) - f(y)} \]
+	ותנודת דרבו בהינתן $f$ חסומה וחלוקה $\Pi = \{x_i\}$ של $[a, b]$, אז: 
+	\[ \wg(f, \Pi) := \sum_{i = 1}^{n}\wg(f, [x_{i - 1}, x_i]) \cdot \Delta x_i \]
+	\begin{Collary}[מסקנה מהתרגיל]
+		משום שתנודות מהגדרתן הן אי־שליליות, נבחין בססקווי־לינארית של אוסילציית דרבו: 
+		\begin{enumerate}
+			\item \hfil $\wg(\lg f, \Pi) = \sof \lg \wg(f, \Pi)$
+			\item \hfil $\wg(f + g, \Pi) \le \wg(f, \Pi) + \wg(g, \Pi)$
+			\item \hfil $\wg(\sof f, \Pi) \le \wg(f, \Pi)$
+			\item \hfil $\sof f \le M \implies \wg(f^{2}, \Pi) \le 2M\wg(f, \Pi)$
+			\item \hfil $0 < \ag < g \implies \wg\cl{\frac{1}{g}, \Pi} \le \frac{1}{\ag^{2}}\wg(g, \Pi)$
+		\end{enumerate}
+	\end{Collary}
+	
+	תזכורת! קריטריון דרבו המשופר אומר שבהינתן $h \co [a, b] \to \R$ אינטגרבילית רימן אמ''מ $h$ חסומה ולכל $\eg > 0$ קיימת חלוקה $\Pi$ של $[a, b]$ כך ש־$\wg(h, \Pi) < \eg$. 
+	
+	את זה הוכחנו. 
+	
+	נשתמש בזה כדי להשתמש את הקריטריון האחרון בסדרה של אינטגרביליות. 
+	\begin{Theorem}[אריתמטיקת אינטגרביליות]
+		יהי זוג פונקציות $f, g \co [a, b] \to \R$ וכן $\lg \in \R$. אם $f, g$ אינטגרביליות, אז $\lg f, f + g, \sof f, f^{2}, f \cdot g$ אינטגרביליות כולן. יתר על כן, אם $ g \ge \ag >0$ אז $\frac{1}{g}$ אינטגרבילית. 
+	\end{Theorem}
+	
+	שימו לב שהמשפט מתקיים רק בכיוון ה''אם``. לדוגמה $D(x) - D(x)$ אינטגרבילי אך $D(x)$ אינה. 
+	
+	
+	בכך סיימנו את \shiri{2.2}. 
+	
+	\subsection*{על ערך האינטגרל}
+	
+	ברשימות של שירי מופיע כסעיף \shiri{2.3}. 
+	\theo{נתונה $f \co [a, b] \to \R$ ו־$I \in \R$. נתונה סדרת חלוקות מתוייגות $(\Pi^{(k)}, \{t_i^{(k)}\}^{n_k}_{i = 1})$ של $[a, b]$ שמקיימות $\lg(\Pi^{(k)}) \rrr{k \to \inft} 0$. יתר על כן, נניח שהיא אינטגרבילית. אז $\int^b_a f = I$ אמ''מ $S(f, \Pi^{(k)}), \{t_i\}^{(k)} \rrr{k \to \inft} I$. }
+	את אחד הכיוונים עשינו בשיעור הקודם. 
+	\begin{proof}[הוכחה]
+		\begin{itemize}
+			\item[$\implies$] רק אם – היה תרגיל פתיחה בשיעור \#3
+			\item[$\impliedby$] נתון $f$ אינטגרבילית. יהי $I'$ כך ש־$\int^{b}_a f(t) \dt = I'$. מהכיוון ''רק אם`` מתקיים $S(f, \Pi^{(k)}, \{t_i^{(k)}\}) \rrr{k \to \inft} I'$. מיחידות גבול הסדרה, $I' = I$. 
+		\end{itemize}
+	\end{proof}
+	
+	\exe{נתונים קטע $[a, b]$, $\dg > 0$ ו־$c_1 \dots c_m \in [a, b]$. מצאו חלוקה $\Pi$ של $[a, b]$ עם מדד עדינות $\lg(\Pi) < \dg$ כך ש־$c_1 \dots c_m \in \Pi$. }
+	
+	\begin{Theorem}[אדטיביות האינטגרל ביחס לקטע האינטגרציה]
+		נתונים $a < b < c$ ו־$f \co [a, b] \to \R$. הראינו ש־$f$ אינטגרבילית על $[a, c]$ אמ''מ $f$ אינטגרבילית על $[a, b]$ וכן אינטגרבילית על $[b, c]$. אז: 
+		\[ \int^{b}_af(x) \dx = \int^c_b f(x) \dx = \int^c_a f(x) \dx \]
+	\end{Theorem}\begin{proof}
+		לכל $k \in \N$, נבחר חלוקה $\Pi^{(k)}$ של $[a, c]$ עם $\lg(\Pi^{(k)}) < \frac{1}{k}$ ו־$b \in \Pi^{(k)}$ (אפשר לעשות זאת מהתרגיל הקודם). נבחר תיוג כלשהו $\{t_i^{(k)}\}_{i =1}^{n_k}$ של $\Pi^{(k)}$. נסמן ב־$1 \le m_k \le n_k - 1$ את נקודת החלוקה $b = x_{m_k}^{(k)}$. 
+		
+		נתבונן ב־$(\Pi^{(k)} \cap [a, b], \{t_i\}^{m_k}_{i = 1})$ חלוקה של $[a, b]$ עם מדד עדינות קטן מ־$k$, 
+		
+		ונתבונן ב־$(\Pi^{(k)} \cap [b, c], \{t_i\}^{n_k}_{i = m_k})$ חלוקה של $[b, c]$ עם מדד עדינות קטן מ־$k$. 
+		
+		עתה, לכל $k$:
+		\[ \underbrace{S(f, \Pi^{(k)}, \{t_i^{(k)}\}_{i = 1}^{n_k})}_{\rrr{k \to \infty} \int^{c}_a f(x) \dx} = \underbrace{S(f|_{[a, b]}, \Pi^{(k)} \cap [a, b], \{t_i\}_{i = 1}^{m_k})}_{\rrr{k \to \infty} \int^{b}_a f(x) \dx} + \underbrace{S(f|_{[b, c]}, \Pi^{(k)} \cap [b, c], \{t_i\}_{i = m_k}^{n_k})}_{\rrr{k \to \infty} \int^{c}_b f(x) \dx}  \]
+		כנדרש. 
+	\end{proof}
+	
+	\subsubsection*{קטע אינטגרציה מנוון או הפוך}
+	\defi{נבצע את ההגדרות הבאות בהינתן $a < b$: 
+		\begin{align*}
+			\int^{a}_a\dequad \  f:= 0 && \int^{a}_b\dequad \  f := -\int^{b}_a\dequad \  f
+	\end{align*}}
+	\theo{נתון קטע $J$ ופונקציה $f \co J \to \R$. נניח שלכל קטע סגור וחסום $I \subset J$ מתקיים $f|_I = I \to \R$. אז לכל $a, b, c \in \R$, מתקיים: 
+	\[ \int^c_a \dequad \  f = \int^b_a \dequad \ f + \int^c_b \dequad \ f \]}
+	\begin{proof}
+		\begin{itemize}
+			\item אם $a < b < c$, הוכחנו. 
+			\item אם $a = b < c$, צ''ל $\int^c_a = 0 + \int^c_b$ וסיימנו. 
+			\item אם $a < c < b$, צ''ל $\int^c_a = \int^b_a - \int^b_c$ ולאחר העברת אגפים נקבל את האדטיביות שהוכחנו. 
+			\item אם $b < a < c$ צ''ל $\int^c_a = -\int^a_b + \int^c_b$ ולאחר העברת אגפים נקבל פשוט אדטיביות. 
+			\item לבסוף עבור $b < c < a$ צ''ל $-\int^a_c = -\int^a_b + \int^c_b$ ונקבל את הדרוש לאחר העברת אגפים גם כאן. 
+		\end{itemize}
+		שאר המקרים לבית. 
+	\end{proof}
+	
+	
+	\defi{האינטגרנד זו הפונקציה המאֻסכּמֵת. }
+	\begin{Theorem}[לינאריות האינטגרל ביחס לאינטגרנד]
+		נתונות $f, g \co [a, b] \to \R$, ו־$\ag, \bg \in \R$. נניח $f, g$ אינטגרביליות רימן. הוכחנו $\ag f + \bg g $ אינטגרבילית. אז: 
+		\[ \int^{b}_a (\ag f + \bg g) = \ag \int^b_a \dequad \ f(x) + \bg \int^b_a \dequad \ f \]
+	\end{Theorem}
+	\begin{proof}
+		לכל $k$ נבחר חלוקה $\Pi^{(k)}$ של $[a, b]$ כך ש־$\lg(\Pi^{(k)}) < \frac{1}{k}$. נבחר תיוג $\{t_i^{(k)}\}_{i = 1}^{n_k}$ של $\Pi^{(k)}$. מלינאריות הסכום: 
+		\[ \underbrace{S(\ag f + \ag g, \Pi^{(k)}, \{t_i^{(k)}\}_{i = 1}^{n_k})}_{\rrr{k \to \inft} \int^b_a (\ag f + \bg g)} = \underbrace{\ag S(f, \Pi^{(k)}, \{t_i^{(k)}\})}_{\rrr{k \to \inft} \int^b_a f} + \bg \underbrace{S(g, \Pi^{(k)}, \{t_i^{(k)}\})}_{\rrr{k \to \inft} \int^b_a g} \]
+		
+		מתכונות של גבול של סדרה, נקבל $\int^b_a(\ag f + \bg g) = \ag \int^b_a f + \bg \int^b_a g$. 
+	\end{proof}
+	\exe{הוכיחו שזה עובד גם לקטעים מנוונים והפוכים. }
+	
+	\rmark{אין נוסחה כללית ל־$\int^b_af \cdot g$ לפי $\int^b_af$ ו־$\int^b_a g$. למה הכוונה? לא קיימת פונקציה אלמנטרית בשני משתנים שתלויה באינטגרל של $f$ ו־$g$ בלבד. תרגיל. למעשה, תמיד אפשר למצוא $\int^b_af = 0 \land \int^b_a g = 0$ אך $\int^b_a f g$ כל מספר ב־$\R$. }
+	
+	\rmark{יש שיטות להוכיח שפונקציות מסויימות הן לא אלמנטריות. אינטגרלים של פונקציות אלמנטריות יכולים להיות לא אלמנטרית. }
+	
+	\begin{Theorem}[מונוטוניות האינטגרל]
+		נתונות $f, g \co [a, b] \to \R$ אינטגרביליות. נניח $f \le g$. אז: 
+		\[ \int^b_a \dequad \ f(x) \dx \le \int^b_a \dequad \ g(x) \dx \]
+	\end{Theorem}
+	\begin{proof}
+		נבחר סדרת חלוקות מתוייגות $(\Pi^{(k)}, \{t_i\}_{i = 1}^{n_k})$ עם $\lg(\Pi^{(k)}) < \frac{1}{k}$. אז לכל $k$: 
+		\[ \int\dequad \ f \reflectbox{$\rrr{\reflectbox{\scriptsize $k \!\!\to\!\! \inft$}}$\ } S(f, \Pi^{(k)}, \{t_i\}_{i = 1}^{n_k}) \le S(g, \Pi^{(k)}, \{t_i^{(k)}\}_{i = 1}^{n_k}) \rrr{k \to \infty} \int^b_a \dequad \ g \]
+		וסיימנו. [הא''ש נובע ישירות ממונוטוניות סכום]
+	\end{proof}
+	
+	
+	\begin{Theorem}[חסמים שימושיים]
+		תהא $f \co [a, b] \to \R$ אינטגרבילית. נניח $n \le f \le M$. אז: 
+		\begin{enumerate}
+			\item \hfil $\displaystyle n(b - a) \le \int^{b}_a\dequad \ f(x) \dx \le M(b - a)$\begin{proof}
+				מצד אחד $f \le M$. מתרגיל הפתיחה ומהמשפט הקודם: 
+				\[ \int^b_a \dequad \ f \le \int^b_a \dequad \ M = M(b - a) \]
+				הא''ש השמאלי בדומה. 
+			\end{proof}
+			\item \hfil $\displaystyle \sof{\int^b_a\dequad \ f} \le \int^b_a\dequad \ \sof f \le (b -a) \cdot \sup_{[a, b]} \sof f$\begin{proof}
+				ידוע: 
+				\[ - \sof f \le f \le \sof f \le \sup_{[a, b]} \sof f \]
+				וממונוטוניות סיימנו. 
+			\end{proof}
+		\end{enumerate}
+	\end{Theorem}
+	
+	ה''שיא של השיאים`` של החשבון הדיפרנציאלי והאינטגרלי, הם המשפטים הייסודיים שנגיע אליהם שיעור הבא. הם נותנים קשר בין אינטגרל לגזירות. לפני כן, נרצה להראות קשר בין אינטגרל לרציפות. 
+	\begin{Theorem}[רציפות האינטגרל ביחס לגבולות האינטגרציה]
+		יהי $I \in [\zeta, \xi]$ (בחיי שלא אני זה שבחר את הסימון הזה וזו החלטה של המרצה) ותהי $f \co I \to \R$ אינטגרבילית. נקבע $\ag \in I$. נגדיר $F \co I \to \R$ ע''י: 
+		\[ F(x) := \int^x_a \dequad \ f(t)\dt \]
+		אז $F$ רציפה. 
+	\end{Theorem}
+	נכון לחשוב על $F$ כעל ''פונקציה צוברת שטח``. 
+	\begin{proof}
+		נסמן $M = \sup_I \sof f$. יהיו $x \in I, h > 0, x + h \in I$. אז: 
+		\[ F(x + h) - F(x) = \int^{x + h}_a \dequad \dequad \ f(x)\dx - \int^{x}_a \dequad \ f(x) \dx = \int^{x + h}\dequad\dequad f(x) \dx \]
+		ממונוטוניות: 
+		\[ \sof{F(x + h) - F(x)} = \sof{\int^{x + h}_x \dequad \dequad \ f(t)\dt} \le h \cdot M \rrr{h \to 0^{+}} 0 \]
+	\end{proof}
+	\cola{אם $x\in I$ נקודה פנימית או קצה שמאלית, אז $f$ רציפה מימין ב־$x$. }
+	\exe{נסחו והוכיחו טענה דומה עבור רציפות משמאל. בשני המקרים, הסיקו ש־$F$ רציפה ב־$I$ [כלומר רציפה מצד אחד בקצוות ובשני הצדדים בצדדים בפנים הקטע]}
+	
+	\subsection*{משפטי ערך ביניים}
+	תזכורת! [מחדו''א 1א] תהי $H \co [a, b] \to \R$ פונקציה רציפה (באופן כללי אפשר על קטע קומפקטי), אז (ממשפט קנטור) יש לתמונתה מינימום ומקסימום $M = \max_{[a, b]} H$ ו־$m = \min_{[a, b]}H$. נתון $m \le \ag \le M$. אז קיים $a \le x_0 \le b$ כך ש־$H(x_0) = \ag$. \begin{proof}
+		נבחר נקודות שבהן מתקבל המינימום והמקסימום, נאמר $f(c) = m, f(d) = M$. נפעיל את משפט ערך הביניים הרגיל של חדו''א 1א על הקטע $[c, d]$ או $[d, c]$ (תלוי בהאם $c < d$ או להפך). וסיימנו. 
+	\end{proof}
+	משתמשים כאן חזק בשלמות של הממשיים. 
+	
+	\theo{נתונה פונקציה $f \co [a, b] \to \R$ רציפה על קטע סגור. אז קיימת $a \le x_0 \le b$ כך ש־:
+		\[ f(x) = \frac{1}{b - a} \int^b_a \dequad \ f(t) \dt \]
+		(אפשר לחשוב על זה כעל הערך הממוצע של $f$ בקטע)}
+	\begin{proof}
+		יהיו $m = \max_{[a, b]} f$ ו־$m = \min_{[a, b]} f$. אז $m \le f \le M$. נבחין ש־: 
+		\begin{alignat*}{9}
+			m(b - a) &\le \int^{b}_a \dequad \ d(t) \dt &&\le M(b - a) \\
+			\implies m &\le \underbrace{\frac{1}{b - a} \int^{b}_a \dequad \ f(t) \dt}_{:= \ag} &&\le M
+		\end{alignat*}
+		וממשפט ערך הביניים קיימת $x_0$ עם $f(x_0) = \ag$, כנדרש. 
+	\end{proof}
+	
+	\begin{Theorem}[משפט ערך הביניים הראשון לאינטגרל מסוים]
+		נתונות $f, g \co [a, b] \to \R$. נניח ש־: 
+		\begin{itemize}
+			\item $f$ רציפה (ולכן אינטגרבילית)
+			\item $g$ אינטגרבילית ו־$g \ge 0$
+		\end{itemize}
+		אז קיים $a \le x_0 \le b$ כך ש־: 
+		\[ \int^b_a \dequad \ f(t)g(t) \dt = f(x_0)\int^{b}_a g(t) \dt \]
+	\end{Theorem}
+	\begin{proof}
+		נסמן $M = \max_{[a, b]} f, m = \min_{[a, b]} f$. משום ש־$m \le f \le M$ נקבל ש־$mg \le fg \le Mg$. נאסכם ונקבל: 
+		\[ m\int^{b}_a \dequad \ g \le \int^{b}_a \dequad \ fg \le M\! \int^{b}_a \dequad \ g \]
+		לכאורה, נרצה לחלק באינטגרל של $g$. אך אסור לחלק ב־$0$. אם $\int^b_a = 0$, אז אגפים שמאל וימין הינם $0$, וכן $\int^b_a fg = 0$, וסיימנו. אחרת, $\int^b_a g > 0$, ולכן נוכל לנרמל: 
+		\[ m \le \underbrace{\frac{\int^b_a fg}{\int^b_a g}}_{:= \ag} \le M \]
+		וממשפט ערך הביניים קיים $x_0$ עם $f(x_0) = \ag$ כנדרש. 
+	\end{proof}
+	
+	\begin{Lemma}[הלמה של בונה]נתונות $f, g \co [a, b] \to \R$. 
+		\begin{itemize}
+			\item \textbf{גרסה 1: }נניח $f$ מונוטונית, $g \ge 0$ ואינטגרבילית. 
+			\item \textbf{גרסה 2: }נניח $g$ רציפה, ו־$f$ גזירה ברציפות כך ש־$f' \ge 0$
+		\end{itemize}
+		אז, קיימת נקודת ביניים $a \le x_0 \le b$ כך ש־: 
+		\[ \int^b_a \dequad \ f(t)g(t) \dt = f(a)\! \int^{x_0}_a \dequad g(t) \dt + f(b)\! \int^{b}_{x_0}\dequad \ g(t) \dt \]
+	\end{Lemma}
+	\rmark{בלעז: Bonnet. }
+	שתי ההנחות, של גרסה 1 ושל גרסה 2, קבילות. אין הכרח להניח את שתיהן. 
+	
+	
+	
+	
+	\ndoc
+\end{document}
