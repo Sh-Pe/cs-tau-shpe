@@ -1,0 +1,205 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\Is{\dequad \ }
+	
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 6}}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	
+	\begin{Exercise}[פתיחה]
+		\begin{enumerate}
+			\item הראו: 
+			\[ \int_{-\pi}^{\pi}\Is \sqrt{R^{2} - x^{2}}\dx = \frac{\pi R^{2}}{2} \]
+			כאשר $\frac{-\pi}{2} \le t \le \frac{\pi}{2}$ ו־$\cos t \ge0$, וכן $\cos t = \sqrt{1 - \sin^{2}t}$. 
+			
+			\item נתונה פונקציה עולה חלש $F \co (0, 20) \to \R$. הוכיחו $\lim_{b \to -20}F(b) = \sup_{(0, 20)}F$. 
+		\end{enumerate}
+		
+		היום: השלמות מ־\shiri{2.3.7} ו־\shiri{2.3.8}, ו־\shiri{3} אינטגרל לא אמיתי (מתחילים). 
+	\end{Exercise}
+	
+	השימוש הראשון לשיטות אינטגרציה שנראה היום יהיה ''דעיכת מקדמי פורייה`` לפונקציה גזירה. 
+	\subsection*{דעיכת מקדמי פורייה לפונקציה גזירה}
+	נתונה $f \in C^{1}([0, 2\pi])$. אז קיים $B > 0$, כך ש־
+	\[ \forall n \in \N \co \sof{\int^{2\pi}_0 \Is f(x) \sin(nx) \dx} \le \frac{B}{n}  \]
+	\begin{proof}
+		נבצע אינטגרציה בחלקים: 
+		\begin{multline*}
+			\int^{2\pi}_0 f(x) \cdot \underbrace{\sin(nx)}_{g'(x)}\dx = \csb{g(x) = -\frac{\cos(nx)}{n}} = f(x)g(x)\Big\vert^{2\pi}_0 - \int^{2\pi}_0 \Is f'(x) g(x) \dx \\
+			= \underbrace{-\frac{f(x) \cos(nx)}{n}\Big\vert^{2\pi}_0}_{-\frac{f(2\pi) + f(0)}{n}} + \frac{1}{n}\overbrace{\int^{2\pi}_0 f'(x) \cos(nx) \dx}^{\mathclap{\smash{\sof{\cdot}\le \int^{2\pi}_0 \sof{f'(x)} \sof{\cos nx}} \dx \le \int^{2\pi}_0 \sof{f'(x)}\dx \le 2\pi\max_{0, 2\pi} \sof{f'(x)}}} \le \frac{1}{n}\cl{\sof{f(0) - f(2\pi)} + 2\pi \max_{0, 2\pi} \sof{f'}} = B
+		\end{multline*}
+		כנדרש. 
+	\end{proof}
+	\rmark{הסימון $C^{i}(A)$ מסמן את קבוצת הפונקציות הגזירות ברציפות $i$ פעמים. $C^{\infty}(A)$ מסמן פונקציה גזירה אינסוף פעמיים בכל $A$, ו־$C(A)$ את קבוצת הפונקציות הרציפות. }
+	
+	\defi{''עצרת בדילוגים`` (אנ' double factorial): עבור $k \in \Neven$ נגדיר $k!! = 2 \cdot 4 \cdots (k - 2) \cdot k$, בעבור $k \in \Nodd$ נגדיר $k!! := 1 \cdot 3 \cdot 5 \cdots (k- 2) \cdot k$, ועבור $k = -1, 0$ נגדיר $k!! = 0$. }
+	
+	
+	\begin{Theorem}
+		\[ I_m := \int^{2\pi}_0 \sin^{m}x \dx = \begin{cases}
+			\frac{\pi}{2} \cdot \frac{(m - 1)!!}{m!!} & m \in \Neven \\
+			\frac{(m - 1)!!}{m!! } & m \in \Nodd
+		\end{cases} \]
+	\end{Theorem}
+	ההוכחה משתמשת באינטגרציה בחלקים ואז פיתוח נוסחה רקורסיבית, בדומה למה שראינו בתרגול. 
+	\begin{proof}[רעיון הוכחה]
+		עבור $m = 0$ נמצא: 
+		\[ I_0 = \int^{\pi/2}_0 1 \dx = \frac{\pi}{2} \]
+		עבור $m = 1$: 
+		\[ I_1 = \int^{\pi/2}_0 \sinx\dx = -\cosx\Big\vert^{\pi/2}_0 = -0 + 1 = 1 \]
+		ובמקרה הכללי: 
+		\begin{multline*}
+			I_m = \int^{\pi/2}_0 (\underbrace{\sin^{m - 1}x}_{f(x)} \cdot \underbrace{\sinx}_{g'(x)}) \dx\\
+			 = \underbrace{\sin^{m - 1}x \cdot (-\cosx)\vert^{\pi/2}_0}_0 - \int^{\pi/2}_0 \Is (m - 1)\sin^{m - 2}x\cosx(-\cosx)\dx  + (m - 1)\int^{\pi/2}_0\Is \sin^{m - 2}x(1 - \sin^{2}x)\dx \\
+			 = (m - 1)\cl{I_{m - 2} - I_m}
+		\end{multline*}
+		לאחר העברת אגפים: 
+		\[ I_m = \frac{m - 1}{m}I_{m - 2} \]
+		ונסיים באינדוקציה. 
+	\end{proof}
+	
+	\begin{Theorem}[Wallis]
+		הגבול: 
+		\[ \limsi \cl{\frac{(2n)!!}{(2n - 1)!!}}^{2} \cdot \frac{1}{2n} = \frac{\pi}{2} \]
+	\end{Theorem}
+	הביטוי בפנים נראה משהו כזה: 
+	\[ \frac{2 \cdot 2 \cdot 4 \cdot 4 \cdots (2n - 2)^{2}(2n)}{1 \cdot 1 \cdot 3 \cdot 3 \cdots (2n - 1)^{2}} \]
+	\begin{proof}
+		בקטע $[0, \frac{\pi}{2}]$ נבחין ש־$0 \le \sinx \le 1$. לכן $(\sinx)^{2n + 1} \le \sin^{2n}x \le (\sinx)^{2n - 1}$. עתה ניקח אינטגרל על שלושת הביטויים שקיבלנו ונקבל, תוך שימוש בנוסחה מהמשפט הקודם: 
+		\[ I_{2n +1} \le I_{2n} \le I_{2n - 1} \]
+		מה שיוביל אותנו ל־: 
+		\[ \frac{(2n)!!}{(2n + 1)!!}\le \frac{\pi}{2} \cdot \frac{(2n - 1)!!}{(2n)!!} \le \frac{(2n - 2)!!}{(2n - 1)!!} \]
+		לאחר הכפלת האגפים ב־$\frac{(2n)!!}{(2n - 1)!!}$: 
+		\[ \underbrace{\frac{1}{2n + 1} \cdot \cl{\frac{(2n)!!}{(2n - 1)!!}}^{2}}_{\ \! \text{אגף שמאל}} \le \frac{\pi}{2} \le \underbrace{\cl{\frac{(2n)!!}{(2n - 1)!!}}^{2} \cdot \frac{1}{2n}}_{\ \! \text{ביטוי מנוסחאת Wallis}} \]
+		נראה שהביטויים מימין ומשמאל קרובים למדי: 
+		\[ \sof{\text{אגף ימין} - \frac{\pi}{2}} \le \sof{\text{אגף ימין} - \text{אגף שמאל}} = \underbrace{\cl{\frac{(2n)!!}{(2n - 1)!!}}^{2}}_{\le \frac{\pi}{2}(2n + 1)} \cdot\underbrace{\cl{\frac{1}{2n} - \frac{1}{2n + 1}}}_{\frac{1}{(2n + 1)(2n)}} \le \frac{\pi}{2} \cdot \frac{2n  + 1}{(2n + 1)(2n)} \rrr{n \to \infty} 0 \]
+		כנדרש. [את הא''ש $\cl{\frac{(2n)!!}{(2n -1)!!}}^{2} \le \frac{\pi}{2} (2n + 1)$ הוצאנו מאי השוויון הקודם]
+	\end{proof}
+	
+	עכשיו נדלג על העשרה שמופיעה ברשימות של שירי, שמוכיחה ש־$e$ מספר טרסצדנדטדלידלי (''נשגב`` בעברית), כלומר לא שורש של אף פונקציה רציונלית. 
+	
+	\subsection*{אינטגרל לא אמיתי}
+	באינטגרל רימן רצינו שהפונקציה תהיה חסומה על קטע סגור. אינטגרל לא אמיתי מכליל את הקונספט. אנ' improper integral. 
+	\defi{נתונה $f \co [a, \infty) \to \R$ ונתון $I \in \R$. נניח $f$ אינטגרבילית רימן על כל תת־קטע סגור. 
+	נאמר ש''האינטגרל הלא אמיתי של $f$ מתכנס ל־$I$, ונרשום $\int^{\inft}_a f(x)\dx = I$, אם: 
+	\[ \lim_{b \to \infty} \int^{b}_a \Is f(x) \dx = I \]
+	}
+	\exe{רשמו הגדרה דומה בעבור $f \co (-\infty, 0] \to \R$, בעבור פונקציה $f \co (0, 20] \to \R$, ובעבור פונקציה $f \co [-5, 5) \to \R$. }
+	
+	\exe{נניח $g \co [-5, 5] \to \R$ אינטגרבילית רימן. תהי $f:= g|_{[-5, 5)} \co [-5, 5) \to \R$. אז האינטגרל הלא אמיתי $\int^{5}_{-5}f(x)\dx$ קיים ושווה לאינטגרל רימן $\int^{5}_{-5}g(x)\dx$. }
+	רמז: משפט כל הקטעים השמאליים. 
+	
+	
+	\defi{נתונה $f \co [a, \inft)$ אינטגרבילית רימן על כל תת־קטע סופי. נאמר שהאינטגרל הלא אמיתי שלה \textit{מתבדר לאינסוף} ונרשום $\int^{\infty}_a f(x) \dx = \infty$ אם: 
+	\[ \lim_{b \to \infty} \int^{b}_a \Is f(x) \dx = \infty \]}
+	\defi{נתונה $f \co \R \to \R$ ונתון $I \in \R$. נאמר ש\textit{האינטגרל הלא אמיתי של $f$ מתכנס ל־$I$} אם $\int^{\infty}_0 f(x) \dx, \int^{0}_{-\infty}f(x)\dx$ מתכנסים, ומתקיים: 
+	\[ \int^{\infty}_{-\infty}\dequad\! f(x)\dx := \int^{0}_{-\infty}\dequad\! f(x)\dx + \int^{\infty}_0 \dequad f(x)\dx = I \]}
+	\exe{רשמו הגדרה דומה עבור $f \co (0,\infty) \to \R$. }
+	התרגיל לעיל יחייב לבחור איזשהי נקודת ביניים $a \in (0, \infty)$. כדאי להראות שלא משנה איפה שוברים את הקטע, הן השאלה האם הפונקציה תתכנס, והן השאלה לגבי ערך ההתכנסות, ישאר זהה. 
+	
+	\textbf{דוגמה: }בעבור $f(x) = x$, אומנם האינטגרל $\lim_{b \to \infty}\int^{b}_{-b}f(x)\dx = 0$, אך האינטגרל $\int^{\infty}_0 f(x)\dx$ מתבדר. לכן $\int^{\infty}_{-\infty}f(x) \dx$ לא מוגדר. 
+	
+	\exe{הגדירו $\int^{\infty}_{-\infty}f(x)\dx = \infty$ (רמז: מרשים אינסוף+סופי, סופי+אינסוף, ואינסוף+אינסוף). }
+	
+	\textbf{דוגמה: }
+	\[ \int^{\infty}_1 \frac{\dx}{x^{\ag}} = \lim_{b \to \infty} \int^{b}_1 \Is x^{-\ag}\dx \overset{\ag \neq 1}{=} \lim_{b \to \infty} \frac{x^{-\ag + 1}}{-\ag + 1}\Bigg\vert^{b}_1 = \lim_{b \to \infty}\frac{b^{1 - \ag} - 1}{1 - \ag} = \begin{cases}
+		\frac{1}{1 - \ag} & \ag > 1 \\
+		\infty & \ag < 1
+	\end{cases} \]
+	בפרט, $\int^{\infty}_1 \frac{\dx}{\sqrt x} = \infty$. 
+	
+	יש לטפל במקרה של $\ag = 1$ בנפרד. במקרה זה: 
+	\[ \int^{\infty}_1 \frac{\dx}{x} = \lim_{b \to \infty} \logx \Big\vert^{b}_1 = \lim_{b \to \infty} \log b = \infty \]
+	
+	\exe{חשבו את האינטגרל: 
+	\[ \int^{1}_0 \Is x^{\ag} \]}
+	נוכיח ש־: 
+	\[ \int^{1}_0\Is x^{\ag}\dx = \begin{cases}
+		\frac{1}{\ag  +1} & \ag > -1 \\
+		\infty & \ag \le -1
+	\end{cases} \]
+	רמז: אם $\ag \ge 0$ זהו אינטגרל רימן, בעוד אם $\ag < 0$ מדובר על אינטגרל לא אמיתי (כי במקרה זה $x^{\ag} \co (0, 1] \to \R$), ובמקרה זה האינטגרל יוגדר להיות: 
+	\[ \int^{1}_0 \Is x^{\ag}\dx = \lim_{\eg \to 0^{+}} \int^{1}_{\eg} \Is x^{\ag} \dx \]
+	
+	\textbf{דוגמה: }נגדיר
+	\[ I_n := \int^{\infty}_0 \dequad t^{n}e^{-t}\dt = \lim_{b \to \infty} \int^{b}_0  \overbrace{t^{n}}^{\mathclap{f(t) = t^{n}, f'(t) = nt^{n -1}}}\underbrace{e^{-t}}_{\mathclap{g'(t) = e^{-t}, g(t) = -e^{t}}}\dt = \lim_{b \to \infty} \cl{-t^{n}e^{-t}\Big\vert^{b}_0 - \int^{b}_0 nt^{n - 1}(-e^{t})\dt} = 0 + nI_{n - 1} \]
+	חישוב ישיר מראה ש־$I_0 = 1$, ובאינדוקציה נקבל $I_n = n!$. למעשה, קיבלנו ''החלקה`` של עצרת. זה מגדיר את פונקציית גאמא: $\Gamma(r) = I_r$ כאשר $I_r$ האינטגרל לעיל. 
+	
+	\subsection*{תכונות של אינטגרל לא אמיתי}
+	\begin{Theorem}[לינאריות בפונקציה המאוסכמת]
+		בהינתן $f, g \co [a, \infty) \to \R$ אינטגרביליות על כל ת''ק סגור. יהיו $\ag, \bg \in \R$. אז: 
+		\[ \int^{\infty}_a \dequad (\ag f + \bg g)(x)\dx = \ag\int^{\infty}_a \dequad f(x)\dx + \bg\int^{\infty}_a \dequad g(x)\dx \]
+		כלומר: אם האינטגרלים הלא אמיתיים מתכנסים, אז האינטגרל הלא אמיתי משמאל גם הוא מתכנס, ומתקיים השוויון. [הערה: בגרסה במובן הרחב של המשפט, לא נרשה מקרה של $\infty - \infty$ וכיו''ב, נתייחס לזה כאל מקרה שלא מכסה המשפט. אפשר לנסח את זה כרשימה של תנאים]
+	\end{Theorem}
+	ההוכחה נובעת ישירות מהגדרת האינטגרל הלא אמיתי ומתכונות של גבולות פונקציות שראינו בחדו''א 1א. זה מוביל אותנו להוכחה הבאה: 
+	\prooftrivial
+	
+	\begin{Theorem}[אדטיביות]
+		בקטע האינטגרציה: נתונה $f \co [a, \infty)$ אינטגרבילית על כל תת־קטע סגור. יהיו $a < b < \infty$. אז: 
+		\[ \int^{\infty}_a \dequad f(x) \dx = \int^{b}_a \Is f(x) \dx +\int^{\infty}_b\dequad f(x) \dx \]
+		כלומר: $\int^{\infty}_a$ מתכנס אמ''מ $\int^{\infty}_b$ מתכנס, ואם הם מתכנסים, אז מתקיים השוויון לעיל. 
+	\end{Theorem}
+	\prooftrivial
+	
+	\begin{Theorem}[מונוטוניות]
+		נתונות שתי פונקציות $f, g \co [a, \infty) \to \R$ אינטגרביליות על כל ת''ק סגור. נניח $f \le g$. אז: 
+		\[ \int^{\infty}_a \dequad f(x)\dx \le \int^{\infty}_a \dequad g(x) \dx \]
+		במובן הרחב (שימו לב שבמקרה בו האינטגרל של $g$ מתבדר לאינסוף, אי אפשר אפילו לדעת אם האינטגרל של $f$ מתבדר מתבדר (לאינסוף, לא לאינסוף, לא לשום מקום, סתם עושה שטויות) או לא)
+	\end{Theorem}
+	
+	\exe{נסחו והוכיחו טענות דומות עבור פונקציות $[-1, 0) \to \R$. }
+	
+	\begin{Theorem}[ניוטון לייבניץ לאינטגרלים לא אמיתיים]
+		נתונות $f, G \co [a, \infty) \to \R$ ונניח ש־$F$ גזירה ברציפות, $F' = f$. נניח $f$ אינטגרבילית על כל תת־קטע סגור. אז: 
+		\[ \int^{\infty}_a \Is f(x)\dx = \cl{\lim_{b \to \infty} F(b)} - F(a) \]
+		במובן הרחב. 
+	\end{Theorem}
+	\rmark{במשפט לעיל, אגף שמאל מתכנס אמ''מ אגף ימין מתכנס. כאשר יש התכנסות, יש שוויון. יתרה מכך, במידה ואחד מהם מתבדר לאינסוף, האחד מתבדר לאינסוף. }
+	
+	\prooftrivial
+	
+	\begin{Theorem}[שינוי משתנה]
+		יהיו: 
+		\[ [\ag, \eta) \rrt{\phi}{\text{מונוטונית עולה חלש}} [a, \infty) \rrt{f}{\text{רציפה}} \R \]
+		(יש גרסה יותר כללית, למעשה $\eta$ יכול להיות אינסופי) ונדרוש: 
+		\[ \phi(\ag) = a, \lim_{b \to \eta^{-}} \phi(b) = \infty \]
+		אז: 
+		\[ \int^{\eta}_\ag\Is f(\phi(t))\phi'(t) \dt = \!\!\int^{\infty}_a \dequad f(x) \dx  \]
+		כלומר: 
+		\begin{itemize}
+			\item האינטגרל הלא אמיתי באגף ימין מתכנס אמ''מ האינטגרל הלא אמיתי באגף שמאל מתכנס, ואם זה קורה, אז מתקיים השוויון. 
+			\item אגף שמאל מתבדר ל־$\infty$ אמ''מ אגף ימין מתבדר ל־$\infty$
+			\item כנ''ל ל־$-\infty$
+		\end{itemize}
+	\end{Theorem}
+	\begin{proof}[רעיון ההוכחה]
+		לכל $\ag < \bg <\eta$, ידוע ש־: (משינוי משתנה לאינטגרל רימן)
+		\[ G(\beta) := \int^{\bg}_\ag\Is f(\phi(t))\phi'(t) \dt = \int^{b}_a \Is f(x)\dx =: F(b) \]
+		כאשר $b = \phi(\bg)$. נבחין שהפונקציות שלנו: 
+		\[ G \co [\ag, \eta) \to \R \quad F \co [a, \infty) \to \R \quad \phi \co [\ag, \eta) \to [a, \infty) \]
+		ולכן נוכל לזרוק גבולות ולקבל: 
+		\[ \lim_{\beta \to \eta^{-}}\phi(\bg) = \infty \quad \forall \beta F(\phi(\beta)) = G(\beta) \]
+		ותחת ההנחה ש־$G, F$ רציפות נקבל: 
+		\[ \lim_{\beta \to \eta^{-}} G(\beta) = \lim_{b \to\infty} F(b) \]
+	\end{proof}
+	
+	\begin{Theorem}[אינטגרציה לחלקים לאינטגרלים לא אמיתיים]
+		יהיו $f, g \co [a, \infty) \to \R$ גזירות ברציפות [הנחה יותר חזקה ממה שבפועל צריך] אז: 
+		\[ \int^{\infty}_a \dequad f(x)g'(x)\dx = f(x)g(x)\bigg\vert^{\infty}_a - \int^{\infty}_a \dequad f'(x)g(x) \dx \]
+		כלומר: 
+		אם שני הגבולות מימין מתכנסים, אז הגבול משמאל מתכנס ומתקיים השוויון (בגבול: בהצבה יש לנו גבול, ואינטגרל לא אמיתי הוא גבול)
+	\end{Theorem}
+	
+	
+	
+	
+	
+	
+	
+	\ndoc
+\end{document}
