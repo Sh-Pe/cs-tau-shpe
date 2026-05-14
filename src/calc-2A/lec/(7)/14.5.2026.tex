@@ -1,0 +1,188 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\Is{\dequad \ }
+\newcommand\hopen {[a, \wg)}
+\newcommand\bto{\lim_{{b \to \wg^{-}}}}
+\newcommand\lims{\ol{\lim}}
+\newcommand\limii{\underline{\lim}}
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 7}}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	
+	\textbf{הבהרה: }הוכחות שנשארו כתרגיל מוכחות באמצעות היותן טרוויאליות. 
+	
+	\begin{Exercise}[פתיחה]
+		\begin{enumerate}
+			\item נתונות $F \co [1, \infty) \to \R$ ו־$G \co (0, 1] \to \R$. נניח $G(\frac{1}{x}) = F(x)$ לכל $x \ge 1$. הוכיחו: 
+			\[ \lim_{\epsi \to 0^{+}}G(\eg) = \lim_{b \to \infty}F(b) \]
+			(וודאו שאתם יודעים מה זה גבול מימין)
+			\item נתונה $f \co [1, \infty) \to \R$ אינטגרבילית על כל תת־קטע סגור. נגדיר $g \co (0, 1] \to \R$ ע''י $g(t) = f\cl{\frac{1}{t}}$. אז: 
+			\[ \int^{\infty}_1\dequad f(x)\dx = \int^{1}_0 \frac{1}{t^{2}}g(t) \dt \]
+			(שימו לב לקשר לשאלה הקודמת)
+			\item נתונה $g \co I \to \R$ אינטגרבילית רימן, ו־$\int^{1}_0 g(x) \dx = I$. נגדיר $f:= g|_{(0, 1]}$. הוכיחו שהאינטגרל הלא אמיתי $\int^{1}_0f(x)\dx$ קיים ושווה לאינטגרל רימן $\int^{1}_0 g(x)\dx$ (עשינו דברים דומים שבוע שעבר). 
+		\end{enumerate}
+	\end{Exercise}
+	
+	\subsection*{המשך אינטגרל לא אמיתי}
+	בסיכומים של שירי, \shiri{3}. 
+	
+	נטפל בפונקציות $g \co [a, \wg) \to \R$ עם $\wg \in \R$. 
+	\exe{רשמו הגדרות/טענות/הוכחות המתאימות ל־: 
+	\begin{itemize}
+		\item $g \co [1, \infty) \to \R$ (התנהגות כאשר $x \to \infty$)
+		\item $g \co (0, 1) \to \R$ (התנהגות כאשר $x \to 0^{+}$)
+	\end{itemize}}
+	המטרה: לפתח קריטריון קושי לאינטגרל לא אמיתי, שיאפשר לנו להבטיח התכנסות בלי לדעת לאן הולך הגבול. לפני כן, נחזור על חומר שאנחנו לכאורה יודעים מסמסטר ראשון. 
+	\subsubsection*{חזרה על חדו''א 1א}
+	נדבר על המושג של \textit{גבול משמאל}. 
+	\begin{Theorem}[התכנסות מונוטונית]
+		נתונה $g \co [a, \wg) \to \R$ מונוטונית חלש. 
+		\begin{itemize}
+			\item אם $g$ עולה וחסומה, הגבול מתכנס לסופרמום \hfill $\disty \lim_{b \to \wg^{-}} g(b) = \sup_{\hopen} g$. 
+			\item אם $g$ עולה אך לא חסומה, הגבול מתבדר לאינסוף \hfill $\disty \lim_{b \to \wg^{-}} g(b) = \infty$
+			\item אם $g$ יורדת וחסומה, אז הגבול מתכנס לאינפימום \hfill $\disty \lim_{b \to \wg^{-}} g(b) = \inf_{\hopen} g$
+			\item אם $g$ יורדת אך איננה חסומה, אז הגבול מתבדר למינוס אינסוף \hfill $\disty \lim_{b \to \wg^{-}} g(b) = -\infty$
+		\end{itemize}
+	\end{Theorem}
+	
+	\prooftrivial
+	
+	
+	\begin{Theorem}[סנדוויץ']
+		נתונות $f, g, h \co \hopen \to \R$. נניח $f \le g \le h$. אז: 
+		\[ \cl{\lim_{b \to \wg^{-}} f(b) = 17 \land \lim_{b \to \wg^{-}} = 17} \implies \lim_{b \to \wg^{-}} g(b) = 17 \]
+	\end{Theorem}
+	\theo{תהי $g \co \hopen \to \R$ חסומה $m \le g \le M$. נגדיר $h, H \co \hopen \to \R$ ע''י: 
+	\[ h(b) = \int_{[b, \wg)} g(x) \quad\quad H(b) = \sup_{[b, \wg)} g(x) \]
+	אז $h, H$ מוגדרות היטב (הסופרמום והאינפימום קיימים), מקיימות $m \le h \le H \le M$, נוסף על כך $h$ עולה חלש ו־$H$ עולה חלש. 
+	}
+	\prooftrivial
+	
+	\defi{נתונה $g \co \hopen \to \R$. אז: 
+	\begin{gather*}
+		\limsup_{b \to \wg^{-}} g(x) = \ol{\lim_{x \to \wg^{-}}} g(x) := \bto \underbrace{\sup_{[b, \wg)} g(b)}_{H(b)} = \inf_{b \to \hopen} \sup_{\hopen} g
+	\end{gather*}
+	באופן דומה לגבול תחתון}
+	
+	\begin{Theorem}
+		נתונה $g \co \hopen \to \R$ חסומה $m \le g \le M$. אז $\lim_{x \to \wg^{-}} g(x)$ מתכנס ל־$I$ אמ''מ $\limii_{x \to \wg^{-}} g(x) = I \land \lims_{x \to \wg^{-}} g(x) = I$. 
+	\end{Theorem}
+	
+	\prooftrivial
+	
+	\subsection{קריטריון קושי להתכנסות אינטגרל לא אמיתי}
+	\begin{Theorem}[קריטריון קושי]
+		נתונה $f \co \hopen \to \R$, אינטגרבילית על כל תת־קטע סגור. אז האינטגרל הלא אמיתי $\int^{\wg}_a f(x)\dx$ מתכנס אמ''מ לכל $\eg > 0$ קיימת $a < b_0 < \wg$ כך שלכל $b_1, b_2 \in [b_0, \wg)$ מתקיים: 
+		\[ \sof{\int^{b_2}_{b_1} \dequad f(x)\dx} < \eg \]
+		
+	\end{Theorem}
+	\rmark{לכאורה האינטגרל המסוים לעיל כולל גם אינטגרל הפוך, אך $\sof{\int^a_b} = \sof{\int^{b}_a}$ מהגדרה, ולכן בה''כ אפשר להסתכל על האינטגרלים הלא הפוכים. }
+	\begin{proof}
+		נגדיר $g(x) = \int^{x}_a f(t)\dt$ (אינטגרל רימן במובן הרגיל. הוכחנו בעבר שזה רציף). מאדטיביות אינטגרל רימן: 
+		\[ \forall b_1, b_2 \in \hopen \co \sof{\int^{b_2}_{b_1}\dequad f(t)\dt} = \sof{g(b_2) - g(b_1)} \]
+		\begin{itemize}
+			\item[$\implies$]ננניח ש־$\int^{\wg}_a f(t)\dt$ מתכנס. אז $\lim_{x \to \wg^{-}} g(x) = I$. יהי $\wg > 0$, יהי $b_0 \in \hopen$ כך ש־$\forall x \in [b_0, \wg) \co \sof{g(x) - I} < \frac{\eg}{2}$. אז לכל $b_1, b_2 \in [b_0, \wg)$: [מא''ש המשולש]
+			\[ \sof{\int^{b_2}_{b_1} \dequad f(x)\dx} = \sof{g(b_2) - g(b_1)} \le \sof{g(b_2) - I} + \sof{I - g(b_1)} < \frac{\eg}{2} + \frac{\eg}{2} = \eg \]
+			\item[$\impliedby$]מצד שני, נניח ש־$f$ מקיימת את התנאי בקריטריון קושי. יהי $\eg > 0$. אז יש $b_0$ מתאימה מקריטריון קושי. אז לכל $b_1, b_2 \in [b_0, \wg)$: 
+			\[ \sof{g(b_2) - g(b_1)} = \sof{\int^{b_2}_{b_1}\dequad f(t)\dt} < \eg \]
+			(מבחירת $b_0$). לכן: 
+			\[ \sup_{[b_0, \wg]} g - \inf_{[b_0, \wg)} g = \sup_{\mathclap{b_1, b_2 \in [b_0, \wg]}} \sof{g(b_2) - g(b_1)} \]
+			משום שהטענה לעיל נכונה לכל $\eg$, בהכרח $\limsup g = \liminf g$ (כפי שהוגדרו לעיל) ולכן קיים: 
+			\[ \lim_{x \to \wg^{-}}\int^{x}_a \Is f(t)\dt = \lim_{x \to \wg^{-}} g(x) \]
+		\end{itemize}
+	\end{proof}
+	
+	\rmark{היה אפשר להוכיח זאת בקלות יותר תוך שימוש בקריטריון קושי מחדו''א 1א. }
+	
+	\subsection*{התכנסות בהחלט של אינטגרל לא אמיתי}
+	נתונה $f \co [a, \wg) \to \R$ אינטגרבילית על כל תת־קטע סגור. 
+	\defi{נאמר שהאינטגרל $\int^{\wg}_a f(x)\dx$ \textit{מתכנס בהחלט} אם $\int^{\wg}_a \sof{f(x)}$ מתכנס. }
+	\theo{נניח $\int^{\wg}_a f(x)\dx$ מתכנס. אז $\int^{\wg}_a f(x)\dx$ מתכנס בהחלט, ו־: 
+	\[ \sof{\int^{\wg}_a \Is f(x)\dx} \le \int^{\wg}_a \Is  \sof{f(x)}\dx \]}
+	\begin{proof}
+		יהי $\eg > 0$. מקריטריון קושי ל־$\sof f$ קיים $b_0$ כך שלכל $b_0 \le b_1 < b_2 < \wg$ מתקיים $\int^{b_2}_{b_1} \sof{f(x)} \dx < \eg$. נבחר $b_0$ כזה. לכל $b_1, b_2$ אנחנו יודעים את א''ש המשולש לאינטגרל רימן, כלומר: 
+		\[ \sof{\int^{b_2}_{b_1}\dequad f(x)\dx} \le \int^{b_2}_{b_1}\dequad \sof{f(x)}\dx < \eg \]
+		(השוויון האחרון נכון מבחירת $b_0$). מקריטריון קושי ל־$f$, האינטגרל הלא אמיתי $\int^{\wg}_a f(x)\dx$ מתכנס. אחת שאנחנו יודעים שיש גבול, אפשר להשתמש בעובדה שגבול משמר אי־שוויון כדי לקבל את הנדרש. 
+	\end{proof}
+	
+	\subsubsection*{התכנסות לאטנטגרל לא אמיתי של פונקציה חיובית}
+	\begin{Theorem}[מה שכתוב בכותרת]
+		נתונה $f \co \hopen \to \R$ אינטגרבילית רימן על כל תת־קטע סגור. נניח $f \ge 0$. אז: 
+		\[ \int^{\wg}_a \Is f(x)\dx \quad \veebar \quad \int^{\wg}_a \Is f(x)\dx = \infty \]
+		(הסימן $\veebar$ מייצג $\lor$ אקסלוסיבי)
+	\end{Theorem}
+	\begin{proof}
+		הפונקציה $b \mapsto \int^{b}_a f(x)\dx$ מונוטונית עולה חלש מאדטיביות של אינטגרל רימן ביחס לקטע האינטגרציה + מונוטוניות אינטגרל רימן באינטנגרנד. לכן, או שיש לה גבול או שהיא מתבדרת לאינסוף (ממשפט מחדו''א 1א) כאשר $b \to \wg^{-}$. 
+	\end{proof}
+	
+	וודאי כולנו זוכרים את קריטריוני ההשוואה לטורים מחדו''א 1א. אז עכשיו נפליץ קריטריון השוואה נוסף, שה''רעיון`` שלו הוא שאפשר לחסום את האינטגרל בין שני סכומים. ניעזר בפונקציות מונוטוניות (שמבטיחה אינטגרביליות רימן בכל קטע סגור). ראה איור [איור שאוסיף בהמשך]. 
+	
+	\theo{נתונה $f \co [1, \infty) \to \R$. 
+	\begin{itemize}
+		\item נניח $f$ יורדת במובן החלש ו־$f > 0$. אז האינטגרל הלא אמיתי $\int^{\infty}_1 f(x)\dx$ מתכנס אמ''מ הטור $\sumninf f(n)$ מתכנס. ואם תנאים אלו מתקיימים, אז $\sum_{n = 2}^{\infty}f(n) \le \int^{\infty}_1 f(x) \dx \le \sumninf f(n)$. 
+	\end{itemize}}
+	''נתתי לך משפט יותר חזק. את מתלוננת?!``
+	\begin{proof}
+		לכל $n \in \N$ (''ואצלנו הטבעיים מתחילים מ־$1$. צרפת מתחילים מ־$0$, אצלנו מתחילים מ־$1$``) ולכל $n \le x \le n + 1$, מתקיים $f(n + 1) \le f(x) \le f(n)$ (ממונוטוניות). ממונוטוניות אינטגרל רימן בבירור: 
+		\[ f(n + 1) = \int^{n + 1}_n\dequad\Is f(n + 1) \le \int^{n + 1}_n \dequad \Is f(x)\dx \le \int^{n + 1}_n\dequad\Is f(n)\dx = f(n) \]
+		נסכום על הא''שים לעיל לפי $n = 1, 2 \dots N$: 
+		\[ \sum^{N + 1}_{n = 2}f(n) \le \int^{n + 1}_1\dequad\Is f(x)\dx \le \sum^{N}_{n = 1}f(n) \]
+		נניח $\sumninf f(n)$ מתכנס ל־$S$. אז לכל $b\ge 1$: 
+		\[ \int^{b}_1 \Is f(x)\dx \le \int^{\floor{b} + 1}_1 \dequad\dequad f(x)\dx \le \sum_{n = 1}^{\floor{b}} f(n) \overset{f \ge 0}{ \le }\sum_{n = 1}^{\infty} f(n) = S \]
+		מקריטריון להתכנסות אינטגרל לא אמיתי של פונקציות חיוביות, יש לנו דיכוטומיה (ראה משפט קודם), ולכן כל הביטוי לעיל חסום ולכן $\int^{\infty}_1 f(x) \dx$ מתכנס, ובגבול $\int^{S}_1 f(x)\dx \le S$. זה משלים כיוון אחד של המשפט וכיוון אחד של אי־השוויון. 
+		
+		עתה נראה את הכיוון ההפוך. נניח ש־$\int^{\infty}_1 f(x)\dx$ מתכנס ל־$I$. אז לכל $N \in \N$, מתקיים:
+		\[ \sum_{n = 1}^{N}f(n) \le f(1) + \int^{N}_1 \Is f(x)\dx \overset{f > 0}{\le} f(1) + \int^{\infty}_1 \Is f(x)\dx  = f(1) + I \]
+		משום שאיברי הטור אי־שליליים, יש דיכוטומיה, ובגלל שקבוצת הסכומים החלקיים חסומה כי $\sum_{n = 1}^{N} f(n) \le f(1) + I$, סה''כ קיבלנו ש־$\sum_{n = 1}^{\infty}f(n)$ מתכנס. יתרה מכך, קיבלנו ש־$\sum_{n = 2}^{\infty} f(n) \le \int^{\infty}_1 f(x)\dx$. 
+	\end{proof}
+	
+	\subsection*{''אם תתעסקו בזה תוכלו להרוויח מיליון דולר``}
+	\textbf{דוגמה: }פונקציית הזטא של רימן (על הממשיים. המיליון דולר של על המרוכבים). עבור $s > 1$ נגדיר: 
+	\[ \zeta(s) := \sum_{i = 1}^{\infty}\frac{1}{n^{s}} \]
+	כדי להראות שהפונקציה מוגדרת היטב, יש להראות שהטור לעיל מתכנס. את זה אנחנו יודעים ממבחן ההשוואה, כי הראנו ש־$\int^{\infty}_1 \frac{\dx}{x^{s}}$ עבור $s > 1$. 
+	
+	יש לפונקציית הזטא תכונות נחמדות מאוד. לדוגמה: 
+	\[ \lim_{s \to 1^{+}}(s-1)\zeta(s) = 1 \]
+	(פרטים ברשימות של שירי). לא מפתיע שזטא בשאיפה לאחת מתבדרת (כי הטור ההרמוני מתבדר), מה שמעניין בגבול לעיל זה שאנחנו יודעים להגיד ''באיזה קצב`` היא מתבדרת. 
+	\subsection*{התכנסות בתנאי של אינטגרל לא אמיתי של מכפלה של פונקציות}
+	\defi{\textit{התכנסות בתנאי} היא התכנסות לא בהחלט. }
+	\textbf{דוגמה: }האינטגרל הבא מתכנס בתנאי: \hfill $\disty \int^{\infty}_1 \frac{\sinx}{x}\dx$
+	
+	בבירור הוא לא מתכנס בהחלט (ממבחן ההשוואה ומהתבדרות הטור ההרמוני), אך בלי ערך מוחלט מאינטגרציה בחלקים על $\sinx$: 
+	\[ \int^{\infty}_1\frac{1}{x}\sinx \dx = \frac{1}{x}(-\cosx)\bigg\vert^{\infty}_1 - \int^{\infty}_1\cl{-\frac{1}{x^{2}}}\cl{-\cosx}\dx = -\frac{\cosx}{x}\bigg\vert^{\infty}_1 - \int^{\infty}_1\frac{\cosx}{x^{2}}\dx \]
+	מכיוון ש־$\cos$ חסום ו־$\frac{1}{x^{2}}$ מתכנס, בבירור $\int^{\infty}_1\frac{\cosx}{x^{2}}\dx$ מתכנס. נוסף על כך $-\frac{\cosx}{x}\big\vert^{\infty}_1$ מתכנס (חדו''א 1א) וסיימנו. 
+	
+	
+	\textbf{תזכורת: }\textit{הגרסה השנייה של הלמה של בונה: }אם $f, g \co [a, b] \to \R$ וכן $f \in C^{1}([a, b])$, ו־$f' \ge 0$ וכן $g \in C([a, b])$. אז קיימת $x_0 \in [a, b]$ כך ש־: 
+	\[ \int^{b}_a \Is f(t)g(t)\dt = f(a)\int^{x_0}_a \dequad g(t)\dt + f(b)\int^{b}_{x_0} \Is g(t)\dt \]
+	
+	\begin{Theorem}[קריטריוני אבל ודיריכלה]
+		נתונות $f, g \co \hopen \to \R$. נתון ש־$f \in C^{1}([a, b])$, וכן $f$ מונוטונית, ו־$g$ רציפה. 
+		\begin{itemize}
+			\item \textbf{קריטריון אבל: }נניח ש־$f$ חסומה ו־$\int^{\wg}_a g(x)\dx$ מתכנס
+			\item \textbf{קריטריון דיריכלה: }$x \mapsto \int^{x}_a g(t)\dt$ חסומה, וגם $f(x) \rrr{x \to \wg^{-}} 0$
+		\end{itemize}
+		אז $\int^{\wg}_a f(x)g(x) \dx$ מתכנס. 
+	\end{Theorem}
+	\begin{proof}
+		בה''כ $f$ עולה ואז $f' \ge 0$ (אחרת נעבוד עם $-f$ במקום). מהלמה של בונה (גרסה 2), לכל $b_1 < b_2$ קיים בינהם $x_0$ כך ש־: 
+		\[ \int^{b_2}_{b_1}\dequad f(t)g(t)\dt = f(b_1) \int^{x_0}_{b_1} \dequad g(t)\dt + f(b_2)\int^{b_2}_{x_0}\dequad g(t)\dt \]
+		נשתמש בקריטריון קושי בתלות בהנחות שלנו. 
+		\begin{itemize}
+			\item \textbf{אם מתקיימת ההנחה של אבל: }יהי $\eg > 0$. נסמן $M = \sup \sof f$. יהי $\hat \eg = ??? $ (נקבע בהמשך). מקריטריון קושי להתכנסות $\int^{\wg}_a g(x)\dx$, נבחר $a \le b_0 < \wg$ כך שלכל $y, z \in [b_0, \wg)$ מתקיים: 
+			\[ \sof{\int^{z}_y \Is g(t)\dt} < \hat \eg \]
+			יהיו $b_0 < b_1 < b_2 <\wg$ ותהי $x_0$ שהלמה של בונה הפילה לנו מהשמיים עבור $[b_1, b_2]$. אז: 
+			\[ \sof{\int^{b_2}_{b_1}\dequad f(x)g(x)\dx} \le \underbrace{\sof{f(b_1)}}_{\le M}\cdot \sof{\int^{x_0}_{b_1}g(t)\dt} + \underbrace{\sof{f(b_2)}}_{\le M}\cdot \sof{\int^{b_2}_{x_0}\dequad g(t)\dt} \le 2M \hat \eg < \eg \]
+			נבחר בדיעבד $\hat \eg = \frac{\eg}{2M + 1}$, וקיבלנו את הדרוש. 
+			\item \textbf{אם מתקיימת ההנחה של דיריכלה: }ברשימות של שירי. 
+		\end{itemize}
+	\end{proof}
+	
+	\ndoc
+\end{document}
