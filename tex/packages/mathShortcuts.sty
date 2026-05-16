@@ -1,4 +1,4 @@
-\RequirePackage{amsmath,bm,amsfonts,accents}
+\RequirePackage{amsmath,bm,amsfonts,accents,bbm}
 
 % Letters shortcuts
 	\newcommand \N         {\mathbb{N}}
@@ -337,7 +337,7 @@
 	\let                      \Asym  \asym
 	\DeclareMathOperator      {\rad} {rad}
 
-% Calc 1
+% Calc1A
 	\newcommand \floor[1]    {\lf #1 \rf}
 	\newcommand \ceil [1]    {\lc #1 \rc}
 	\newcommand \ang         {\{a_n\}_{n = 1}^{\inft}}
@@ -380,6 +380,7 @@
 \DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\Int}{Int}
 \DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\osc}{osc}
 \newcommand\intr {^{\circ}}
 \newcommand\eqrel{/\!\!\sim}
 
@@ -395,6 +396,13 @@
 \newcommand\Ty   {$T_6$}
 \newcommand\adolf{Lindelöf}
 
+% Calc2A
+\newcommand\rim{R([a, b])}
+\newcommand\daru{\ol{\Sigma}}
+\newcommand\Idaru{\ol{I}}
+\newcommand\dard{\underline{\Sigma}}
+\newcommand\Idard{\ol{I}}
+
 % Other shortcuts
 	\let        \tl        \tilde
 	\newcommand \op        {^{-1}}
@@ -409,7 +417,8 @@
 
 	\let        \bs        \blacksquare
 	\newcommand \dequad    {\!\!\!\!\!\!}
-	\newcommand \dequadd   {\dequad\duquad}
+	\newcommand \dequadd   {\dequad\dequad}
+	\newcommand \one       {\mathbbm{1}}
 
 	\let        \phi       \varphi
 	\newcommand \midmath[1] {\hfil $\displaystyle #1 $}
