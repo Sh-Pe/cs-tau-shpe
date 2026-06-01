@@ -1,0 +1,154 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 9}}
+\date{26 במאי 2026}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	\begin{Exercise}[פתיחה]
+		\begin{enumerate}
+			\item נניח $\sof{f_n(x)} \le 1$ לכל $x$ ולכל $n$, ונניח $g(x) \ge \dg > 0$. הוכיחו, המשפחה $\ccb{\frac{f_n(x)}{g(x)}}$ חסומה במידה אחידה. 
+			\item הוכיחו $\frac{x}{1 + n^{2}x^{2}} \rrr{n \to \infty} 0$ במ''ש ב־$[0,\infty)$. 
+			
+			\textbf{רמז: }במהלך השיעור נלמד משפט שיעזור. 
+		\end{enumerate}
+	\end{Exercise}
+	
+	\begin{Theorem}[עוד קריטריון קושי]
+		נתונות $f_n \co I \to \R$, אז $(f_n)_{n = 1}^{\infty}$ מתכנסות במ''ש אמ''מ 
+		\[ \forall \eg > 0.\, \exists N_\eg \in \N.\, \forall m, n > N_\eg.\, \forall x \in I \co \sof{f_m(x) - f_n(x)} < \eg \]
+	\end{Theorem}
+	לפעמים יותר נוח לעבוד עם הסופרמום במקום. 
+	\begin{proof}
+		\begin{itemize}
+			\item \textbf{הוכחת ''אם``: }התנאי בקריטריון קושי גורר שלכל $x$, $(f_n(x))_{n = 1}^{\infty}$ סדרת קושי (של מספרים) ולכן יש לה גבול. נגדיר $f(x) = \lim_{n \to \infty}f_n(x)$ (התכנסות נקודתית). יהי $\eg > 0$. אז קיימת $N_{\frac{9}{10}\eg}$ כך שלכל $m, n > N_{\frac{9}{10}\eg}$ מתקיים $\sof{f_n(x) - f_m(x)} < \frac{9}{10}\eg$. ''נקפיא את $n$ ונריץ את $m$``: 
+			בגבול $m \to \infty$: $\sof{f(x) - f_n(x)} \le \frac{9}{10}\eg < \eg$, וסיימנו. 
+			\item \textbf{הוכחת ''רק אם``: }נניח $f_n \to f$ במ''ש. יהי $\eg > 0$ כלשהו. יהי $N$ כך שלכל $n > N$ וכל $x$ מתקיים $\sof{f_n(x) - f(x)} < \frac{\eg}{2}$. אז לכל $m, n > N$ ולכל $x$, מא''ש המשולש: 
+			\[ \sof{f_n(x) - f_m(x)} \le \sof{f_n(x) - f(x)} + \sof{f(x) - f_m(x)} < \frac{\eg}{2} + \frac{\eg}{2} = \eg \]
+		\end{itemize}
+	\end{proof}
+	
+	עתה נראה משפט בשם \textit{משפט דיני}. הוא מגדיר תנאי של פונקציות המתכנסות נקודתית, תחתיו הן מתכנסות במ''ש. הוכחת המשפט דורשת את הלמה של היינה־בורל, שיש לו חשיבות משמעותית מאוד בטופולוגיה\footnote{באופן כללי יותר היינה בורל אומר שב־$\R^{n}$ קבוצה היא סגורה וחסומה אמ''מ היא קומפקטית. זו תכונה ייחודית למטריקה על $\R^{n}$}. נעשה פרק קצר על הטופולוגיה ב־$\R$ (בסיכומים קודמים שלי אפשר למצוא הרחבות). 
+	
+	\subsection*{טופולוגיה ב־$\R$}
+	\defi{הקבוצה $U \subset \R$ נקראת \textit{פתוחה} אם לכל $x \in U$ קיימת $\dg > 0$ כך ש־$(x - \dg, x + \dg) \subset U$. } 
+	\exe{כל קטע פתוח $(c, d)$ הוא קבוצה פתוחה. }
+	שאלות למחשבה: 
+	\begin{itemize}
+		\item האם $\R \setminus \Q$ פתוחה? לא – היא משלים של קבוצה צפופה. 
+		\item האם $[0, \infty)$ פתוחה? לא – כי סביבות של $0$ יוצאות מהקבוצה. 
+	\end{itemize}
+	
+	\exe{מצאו $U \subset \R$ שהיא גם פתוחה, גם צפופה, אך היא לא כל $\R$. }
+	פתרון: $\R$ פחות קבוצה צפופה. 
+	
+	\exe{איחוד (לאו דווקא בן מנייה) של קבוצות פתוחות הוא קבוצה פתוחה, וחיתוך סופי של קבוצות פתוחות הוא קבוצה פתוחה. }
+	
+	\defi{קבוצה $U \subset \R$ נקראת \textit{קומפקטית} אמ''מ לכל כיסוי פתוח, קיים תת־כיסוי סופי. }
+	
+	\begin{Theorem}[הלמה של היינה־בורל]
+		נתון קטע סגור $[a, b]$. יהי אוסף $\{U_\ag\}$ (אוסף לאו דווקא בן מניה. פורמלית, אוסף הוא פונקציה $f \co \Lg \to \ps(\R)$ כאשר $U_\ag := f(\ag)$ עבור $\ag \in \Lg$) של קבוצות פתוחות $U_\ag \subset \R$, שמכסות אותו כלומר: 
+		\[ [a, b] \subset \bigcup_\ag U_\ag \]
+		אז קיים תת־אוסף סופי $U_{\ag_1} \dots U_{\ag_n}$ שמכסה אותו, כלומר $[a, b] \subset U_{\ag_1} \cup \cdots \cup U_{\ag_n}$. 
+	\end{Theorem}
+	\rmark{בקורס שלנו, סגור זה לא סגור במובן הטופולוגי, אלא סגור וחסום. ''זה קטע סגור, אבל זה לא קטע סגור``. }
+	\exe{הראו שהלמה של היינה־בורל לא עובדת אם מחליפים את $[a, b]$ ב־$(a, b]$. אך היא כן עובדת בעבור מקרים כלליים יותר מקטעים סגורים, כמו $[a, b] \cup [c, d]$ (פורמלית: קבוצה היא קומפקטית אמ''מ היא סגורה טופולוגית וחסומה). }
+	
+	\begin{proof}[הוכחת הלמה של היינה־בורל]
+		נוכיח בדרך השלילה. נוכיח בשלילה ש\textit{אין} תת־אוסף סופי של $\{U_\ag\}$ שעדיין מכסה את הקטע הסגור $[a, b]$. אז לאחד מבין הקטעים $[a, \frac{a + b}{2}]$ או $[\frac{a + b}{2}, b]$ יש את אותה התכונה (אין לו תת־אוסף סופי של האוסף הנתון, שמכסה אותו). אחרת, היינו יכולים לאחד שני תת־אוסיף סופיים שמכסים את קטע בנפרד והיינו מגיעים לסתירה. נמשיך למצוא קטעים כאלו ברקורסיה (''אריה במדבר``) עד לכדי הגדרת קטעים $[a_n, b_n]$. נקבל: 
+		\[ [a, b] =: [a_0, b_0] \supset [a_1, b_1] \supset [a_2, b_2] \supset \cdots \]
+		כך שלכל $n$ ל־$[a_n, b_n]$ אין תת־אוסף סופי של $\{U_\ag\}$ שמכסה אותה. עוד נבחין ש־$b_n - a_n = \frac{b- a}{2^{n}}$, כלומר אורכי הקטעים שואפים לאפס. מהלמה של קנטור, החיתוך לא ריק וקיים בו איבר אחד, כלומר:, 
+		\[ \bigcup_{n = 1}^{\infty}[a_n, b_n] = \{x_0\} \]
+		בפרט, $x_0 \in [a, b]$, לכן קיים $\ag_0 \in \Lg$ כך ש־$x_0 \in U_{\ag_0}$. יהי $\dg > 0$ כך ש־$(x_0 - \dg, x_0 + \dg) \subset U_{\ag_0}$. משום שאורכי הקטעים בסדרת הקטעים לעיל שאופים לאפס, קיים $n$ מספיק קטן כך ש־$\frac{b - a}{2^{n}} < \dg$. ואז $x_0 \in [a_n, b_n] \subset (x_0 - \dg, x_0 + \dg)$ וזו סתירה, כי מצאנו תת־כיסוי סופי (בגודל $1$) שמכסה את $[a_n, b_n]$. 
+	\end{proof}
+	
+	\subsection*{חזרה להתכנסות במ''ש}
+	\begin{Theorem}[משפט דיני]
+		נתונות סדרה של פונקציות $f_n \co [a, b] \to \R$, ו־$f$ כלשהי. נניח: 
+		\begin{enumerate}[(A)]
+			\item $f_n$ ו־$f$ רציפות
+			\item נניח שיש התכנסות נקודתית $f_n \to f$. 
+			\item לכל $x$ (בנפרד), הסדרה $(f_n(x))_{n = 1}^{\infty}$ מונוטונית חלשה (לא נדרוש מונוטוניות באותו הכיוון לכל ה־$x$־ים). 
+		\end{enumerate}
+		אז $f_n \to f$ התכנסות במ''ש. 
+	\end{Theorem}
+	\rmark{לא נוכיח זאת, אבל ב+ג גוררים שלכל $x$ (בנפרד), $\sof{f_n(x) - f(x)}$ סדרה מונוטונית יורדת. זה החלק החשוב. }
+	\begin{proof}
+		יהי $\eg > 0$ כלשהו. יהי $x \in [a, b]$. מ(ב) קיים $n_x$ כך ש־$\sof{f_{n_x}(x) - f(x)} < \eg$. מ(א) מיידית $f_{n_x}$ ו־$f$ רציפות. לכן קיים $\dg > 0$ כך שלכל $y \in [a, b]$ אם $\sof{y - x}  < \dg_x$ אז $\sof{f_{n_x}(y) - f(y)} < \eg$. נסמן $\UU_x := (x -\dg_x, x + \dg_x)$. אז $\UU_x$ פתוחה, $x \in \UU_x$, ואם $y \in \UU_x \cap [a, b]$ אז $\sof{f_{n_x}(y) - f(y)} < \eg$. 
+		
+		נבחין שהאוסף $\{\UU_x\}_{x \in [a, b]}$ הוא אוסף של קבוצות פתוחות שמכסה את $[a, b]$. ואז היינה בורל יפיל לנו מהשמיים תת־כיסוי סופי, כלומר קיימים $x_1 \dots x_m \in [a, b]$ כך ש־$\UU_{x_i} \subset \bigcup_{i = 1}^{m}[a, b]$. תהי $N = \max\{n_{x_1} \dots n_{x_m}\}$. תהי $n > N$, ותהי $y \in [a, b]$. יהי $1 \le i \le m$ כך ש־$y \in \UU_{x_i}$. אז מההערה שקדמה להוכחה (שמשתמשת במונוטוניות): 
+		\[ \sof{f_n(y) - f(y)} \le \sof{f_{n_{x_i}}(y) - f(y)} < \eg \]
+		כנדרש. 
+	\end{proof}
+	
+	\begin{Lemma}
+		לפונקציות חסומות $f, \hat f \co J \to \R$, מתקיים: (תנודה רגילה, לא דרבו)
+		\[ \sof{\wg(f, J) - \wg(\hat f, J)} \le 2 \sup_J \sof{f - \hat f} \]
+	\end{Lemma}\begin{proof}
+		נסמן $B := \sup_J\sof{f - \hat f}$. לכל $y \in J$ מתקיים $\hat f(y) \le f(y) + B \le \sup_J f + B$. אפשר לקחת סופרמום על אגף שמאל של הא''ש שקיבלנו ולקבל $\sup_J \hat f \le \sup_J f + B$. מאותו השיקול נקבל מהצד השני $\sup_J f \le \sup_J \hat f + B$. מכאן נובע $\sof{\sup_J f - \sup _J \hat f} \le B$. באופן דומה (תרגיל) מתקיים $\sof{\inf_J f - \inf_J \hat f} \le B$ כלומר: 
+		\[ \sof{\wg(f, J) - \wg(\hat f, J)} = \sof{\cl{\sup_Jf - \inf_Jf} - \cl{\sup_J \hat f - \inf_J \hat f}} \le \sof{\sup_J f - \sup_J \hat f} + \sof{\inf_j \hat f - \inf_J f} \le B + B = 2B \]\envendproof
+	\end{proof}
+	
+	''כתבתי לכם טענה שגויה. בואו נתקן אותה`` (קודם לכן בלמה לעיל לא היה כפל פי $2$. תרגיל: למצוא דוגמה נגדית לטענה המקורית)
+	
+	\subsection*{גבול תחת האינטגרל}
+	\begin{Theorem}[גבול תחת אינטגרל]
+		נתונות $f, f_n \co [a, b] \to \R$. נניח שלכל $n$, $f_n$ אינטגרבילית רימן. נניח ש־$f_n \to f$ במ''ש. אז $f$ אינטגרבילית רימן, ויתר על כן, הפונקציות: 
+		\[ F(x) := \int^{x}_a \dequad \ f_n(t)\dt \quad \quad F(x) := \int^{x}_a \dequad \ f(t)\dt \] 
+		מקיימות $F_n \to F$ במ''ש. 
+	\end{Theorem}
+	\rmark{זה מזכיר לנו משפט מהשבוע שעבר, שבו הוכחנו את המשפט לעיל בהנחה ש־$f$ אינטגרבילית (ולא רק $f_n$), ואז הראנו שסדרת האינטגרלים מתכנסת. המשפט הזה הרבה יותר חזק: הוא מראה שהתכונה של האינטגרביליות משמרת אינטגרביליות. }
+	\begin{proof}
+		יהי $\eg > 0$ כלשהו. יהי $N$ כך ש־$\sup_{[a, b]}\sof{f_N - f} < \hat \eg$. מקריטריון דרבו המשופר ל־$f_n$ נבחר חלוקה של $[a, b]$ כך שתנודת דרבו של $f_n$ ביחס ל־$\Pi$ מקיימת $\wg(f_N, \Pi) < \frac{\eg}{1 + 4(b - a)}$. נסמן את תתי־הקטעים של החלוקה ב־$J_i := [x_{i - 1}, x_i]$. אז: 
+		\[ \sof{\wg(f, \Pi) - \wg(f_N, \Pi)} \le \sof{\sum_{i = 1}^{n}\wg(f, J_n) \Delta x_i - \sum_{i =1}^{n}\wg(f_N, J_n)\Delta x_i} \le \sum_{i = 1}^{n}\sof{\wg(f, J_i) - \wg(f_N, J_i)\Delta x_i} = 2(b - a)\hat \eg < \frac{\eg}{2} \]
+		נסיים עם א''ש המשולש: 
+		\[ \sof{\wg(f, \Pi)} \le \sof{\wg(f_N, \Pi)} + \sof{\wg(f, \Pi) - \wg(f_N, \Pi)} < \frac{\eg}{2} + \frac{\eg}{2} = \eg \]
+		מקריטריון דרבו המשופר, $f$ אינטגרבילית רימן. 
+		
+		עתה נותר להראות שהאינטגרבילית המצטברים מתכנסים במ''ש. אכן: 
+		\begin{multline*}
+			\sup_{[a, b]} \sof{F - F_N} = \sup_{x \in [a, b]}\sof{\int^{x}_a \dequad \ f(t)\dt - \int^{x}_a \dequad \ f_N(t) \dt} \le \sup_{[a, b]}\dequad \ \int^{x}_a \sof{f(t) - f_N(t)} \dt \\
+			= \int^{b}_a \dequad \ \sof{f(t) - f_N(t)}\dt \le (b - a) \sup_{t \in [a, b]} \sof{f(t) - f_N(t)}
+		\end{multline*}
+		הביטוי שקיבלנו באגף הימני שואף ל־$0$ מהתכנסות במ''ש של הפונקציות $f_n \to f$, ולכן סיינו את ההוכחה. 
+	\end{proof}
+	
+	
+	\subsection*{גבול תחת אינטגרל לא אמיתי}
+	\textbf{דוגמה: }''בריחת מסה לאינסוף``. נגדיר נגדיר $f_n \co [0, \infty) \to \R$ ע''י:
+	\[ f_n(x) = \begin{cases}
+		\frac{1}{n} & 0 \le x \le n \\
+		0 & \other
+	\end{cases} \]
+	אומנם אי אפשר להשתמש במשפט של דיני כאן, אבל ישירות מההגדרה קל לראות ש־$f_n \to 0$ במ''ש. עם זאת, האינטגרל הלא אמיתי $\int^{\infty}_0 f_n(x) \dx \not\to \int^{\infty}_0 0 \dx$ (כי אגף שמאל $1$ ואגף ימין $0$). מכאן, שבמקרה של אינטגרל לא אמיתי, יש צורך בתנאים יותר הדוקים בשביל שהפונקציות צוברות השטח יתכנסו לאותו המקום. 
+	\begin{Theorem}[משפט המג'וראנטה]
+		נתונות פונקציות $f, f_n \co [a, \infty) \to \R$. נניח ש־$f_n \to f$ במידה שווה על כל תת־קטע סגור. נניח שלכל $n$, $f_n$ אינטגרבילית על כל תת־קטע סגור. מ''גבול תחת האינטגרל`` נסיק גם ש־$f$ אינטגרבילית על כל תת־קטע סגור. נניח שקיימת $\Psi \co [a, b] \to \R$ (''המאז'וראנטה``) כך ש־: 
+		\begin{enumerate}
+			\item $\sof{f_n} \le \Psi$ לכל $n \in \N$. 
+			\item $\Psi$ אינטגרבילית על כל תת־קטע סגור. 
+			\item $\int^{\infty}_0 \Psi(x)\dx$ מתכנס. 
+		\end{enumerate}
+		אז $\int^{\infty}_a f_n(x)\dx$ ו־$\int^{\infty}_a f(x)\dx$ מתכנסים בהחלט, ויתר על כן: 
+		\[ \lim_{n \to \infty}\int^{\infty}_a \dequad f_n(x)\dx = \int^{\infty}_a\dequad f(x)\dx \]
+	\end{Theorem}\begin{proof}
+		נתון $\sof{f_n} \le \Psi$ וגם $f_n \to f$, ולכן גם $\sof{f} \le \Psi$. עוד ידוע ש־$\int^{\infty}_a \Psi(x)\dx$ מתכנס וגם $\sof f, \sof{f_n} \le \Psi$, ולכן האינטגרלים הלא אמיתיים $\int^{\infty}_a \sof{f(x)} \dx$ ו־$\int^{\infty}_a \sof{f_n(x)}\dx$ מתכנסים. לכן $\int^{\infty}_a f_n$ ו־$\int^{\infty}_a f$ מתכנסים בהחלט ובפרט מתכנסים. 
+		
+		יהי $\eg > 0$. נבחר $b$ כך ש־$\int^{\infty}_b \Psi(x) \dx < \frac{\eg}{4}$. נבחר $n_0$ כך שלכל $n > n_0$ מתקיים: 
+		\[ \sup_{[a, b]}\sof{f_n - f} < \frac{\eg}{4(b - a)} \]
+		אז לכל $n > n_0$: 
+		\begin{multline*}
+			\sof{\int^{\infty}_a \dequad f_n - \int^{\infty}_a \dequad f\ } = \sof{\int^{b}_a (f_n - f) + \int^{\infty}_b \dequad f_n - \int^{\infty}_b \dequad f} \le \int^{b}_a\sof{f_n - f} + \int^{\infty}_b \dequad \sof{f_n} + \int^{\infty}_a \dequad \sof{f} \\
+			\le (b - a)\sup_{[a, b]}\sof{f_n - f} + 2\int^{\infty}_b \dequad \Psi \le (b - a) \cdot \frac{\eg}{1 + 4(b - 1)} + 2\cdot \frac{\eg}{4} < \eg
+		\end{multline*}
+		כנדרש. 
+	\end{proof}
+	
+	
+	
+	\ndoc
+\end{document}

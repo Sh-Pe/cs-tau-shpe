@@ -37,24 +37,6 @@
 \newcommand \envendproof{\vspace{-17pt}}
 \newcommand \mathenvendproof{\par\vspace{-24pt}}
 
-\DeclareMathOperator{\Cl}{Cl}
-\DeclareMathOperator{\Int}{Int}
-\DeclareMathOperator{\Fr}{Fr}
-\newcommand\intr {^{\circ}}
-\newcommand\eqrel{/\!\!\sim}
-
-\newcommand\Tz   {$T_0$}
-\newcommand\Tp   {$T_0$}
-\newcommand\Tq   {$T_1$}
-\newcommand\Tw   {$T_2$}
-\newcommand\Twh  {$T_{2\frac{1}{2}}$}
-\newcommand\Te   {$T_3$}
-\newcommand\Teh  {$T_{3\frac{1}{2}}$}
-\newcommand\Tr   {$T_4$}
-\newcommand\Tt   {$T_5$}
-\newcommand\Ty   {$T_6$}
-\newcommand\adolf{Lindelöf}
-
 \newcommand\nsubsection[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
 
 \usepackage{titling}
@@ -617,7 +599,7 @@
 					So $f_A(x) \neq 1$, and we got $f\op(0) \subset A$. Finally $A = f_A\op(0)$ as intended. 
 					\item $\bm{f_A(x)}$\textbf{ is continues: }in the proof for Tietze's extension theorem (15.8), we've shown that a function series of continues maps converges to a continues map. 
 				\end{itemize}
-				Similarly $B = f\op_B(0)$
+				Similarly $B = f\op_B(0)$ and $f_B$ is continues. 
 				
 				Let $x \in X$. Now we're going to analyze the term $f_A(x) + f_B(x)$: 
 				\begin{itemize}
@@ -683,7 +665,7 @@
 	\section[Countability Properties]{}
 	\nsubsection{16F $\sim$ Cardinality and countability axioms}
 	\begin{enumerate}
-		\item A separable first-countable first-countable space has a cardinal at most $\con$. \begin{proof}
+		\item A separable first-countable space has a cardinal at most $\con$. \begin{proof}
 			Consider $A = (a_i)_{i = 1}^{\inft}$ be a dense set in $X$ (by separability). 
 			Similarly to 10.4, for each $x \in X$, we know that there is $\UU = (U_n)_{n = 1}^{\inft}$ countable basic neighborhood, and we can define $\UU_n = \bigcap_{k = 1}^{n}U_n$ to get another countable basic neighborhood. Since $A$ is dense $\UU_n$, we know $A \cap \UU_n \neq \varnothing$. Then we can build a choice function $x_n \co \N \to X$ s.t. $x_n \in A \cap \UU_n$. By definition $x_n \to x$ and $x_n \subset A$. 
 			
@@ -724,7 +706,7 @@
 		\end{proof}
 		\item A $\sg$-compact space is \adolf. \begin{proof}
 			We know that existence of a cover (of $X$) $\kc := (K_n)_{n = 1}^{\inft}$ made out of compact sets. 
-			Consider an open cover $\UU$ of $X$. In particular, $\UU$ covers $K_n$ for each $n \in \N$. Since $K_n$ is compact we have a finite subcover of $U_n \subset \UU$\!, s.t. $\bigcup U_n = \UU$. Since $\kc$ covers $X$ we know that $X = \bigcup_{n =1}^{\inft} K_n$, and as $K_n \subset U_n$, we conclude that $X = \bigcup\bigcup_{n = 1}^{\inft} U_n$. Hence $\UU' \!:= \bigcup_{n = 1}^{\inft} U_n \subset \UU$ is a subcover of $\UU$ that covers $X$. Moreover, it's a countable union of finite sets, hence countable. Finally each cover has a countable subcover and $X$ is \adolf. 
+			Consider an open cover $\UU$ of $X$. In particular, $\UU$ covers $K_n$ for each $n \in \N$. Since $K_n$ is compact we have a finite subcover of $(U_n) \subset \ps(\UU)$, s.t. $\bigcup U_n = \UU$\!. Since $\kc$ covers $X$ we know that $X = \bigcup_{n =1}^{\inft} K_n$, and as $K_n \subset U_n$, we conclude that $X = \bigcup\bigcup_{n = 1}^{\inft} U_n$. Hence $\UU' \!:= \bigcup_{n = 1}^{\inft} U_n \subset \UU$ is a subcover of $\UU$ that covers $X$. Moreover, it's a countable union of finite sets, hence countable. Finally each cover has a countable subcover and $X$ is \adolf. 
 		\end{proof}
 		\item The product of finitely many $\sg$-compact spaces if $\sg$-compact. \begin{proof}
 			Let $X_1 \dots X_n$ be finitely many $\sg$-compact spaces, that forms a product space $X$. $\kc_n$ will be a compact cover of $X_n$., and we can enumerate $(K_n^{i})_{i = 1}^{\inft} = \kc_n$ to be its elements. 
@@ -735,16 +717,16 @@
 	\end{enumerate}
 	
 	\nsubsection{17P $\sim$ Onto maps of compact spaces}
-	Let $X, Y$ be compact Hausdorff spaces. 
+	Let $X, Y$ be compact Hausdorff spaces and a continues $f \co X \to Y$. 
 	\begin{enumerate}
 		\item (With the help of some math.SE user that was willing to help me with the hard part) Exists a compact subset $X_0 \subset X$ s.t. $f(X_0) = Y$ but $f$ maps no closed subsets of $X_0$ onto $Y$. \begin{proof}
 			Consider the family of closed subsets of $X$ such that their image on $f$ is $Y$, denoted $\XX$. It's partially ordered by $\subset$. Now take a chain $\cc \subset \XX$. Consider the space $\kc = \bigcap_{K \in \cc} K$. It's an intersection of closed sets, therefore $\kc$ is closed too. Since it's a subsets of a compact Hausdorff space, it's also compact. We'll prove $\kc$ is a lower bound for $\cc$. 
 			
-			Clearly, $\forall K \in \cc \co \kc \subset K$. Therefore it only remains to prove that $f(\kc) = Y$. Indeed, let some $y \in Y$. Then AFSOC $y \notin f(\kc)$, then $f\op(\{y\}) \cap \kc = \varnothing$, hence $\bigcap_{K \in \cc}f\op\{y\} \cap K = f\op\{y\} \cap \bigcap_{K \in \cc}K = \varnothing$. Since $Y$ is Hausdorff, $\{y\}$ is closed, and because $f$ is continues, $f\op\{y\}$ is closed. This means that for each $K \in \kc$, $f\op\{y\} \cap K$ is closed, which gives us a family of closed sets in the compact space $X$. By FIT there must be a finite subcollection, denoted $\cc' \subset \cc$, with an empty intersection, otherwise the intersection of the family would be non-empty. Now $\bigcap _{K \in \cc'}f\op\{y\} \cap K = \varnothing$ is a finite empty intersection of closed sets. Because $\cc$ is a (linearly ordered) chain, then $\cc'$ is linearly ordered too, and because it's finite, we can obtain some smallest element ${\bf K} \in \cc' \subset \cc \subset \XX$ s.t. $\forall K \in \cc' \co {\bf K} = K$. Finally $\bigcap_{K \in \cc'}K \subset \bf K$ which means: 
+			Clearly, $\forall K \in \cc \co \kc \subset K$. Therefore it only remains to prove that $f(\kc) = Y$. Indeed, let some $y \in Y$. Then AFSOC $y \notin f(\kc)$, then $f\op(\{y\}) \cap \kc = \varnothing$, hence $\bigcap_{K \in \cc}f\op\{y\} \cap K = f\op\{y\} \cap \bigcap_{K \in \cc}K = \varnothing$. Since $Y$ is Hausdorff, $\{y\}$ is closed, and because $f$ is continues, $f\op\{y\}$ is closed. This means that for each $K \in \kc$, $f\op\{y\} \cap K$ is closed, which gives us a family of closed sets in the compact space $X$. By FIT there must be a finite subcollection, denoted $\cc' \subset \cc$, with an empty intersection, otherwise the intersection of the family would be non-empty. Now $\bigcap _{K \in \cc'}f\op\{y\} \cap K = \varnothing$ is a finite empty intersection of closed sets. Because $\cc$ is a (linearly ordered) chain, then $\cc'$ is linearly ordered too, and because it's finite, we can obtain some smallest element ${\bf K} \in \cc' \subset \cc \subset \XX$ s.t. $\forall K \in \cc' \co {\bf K} \subset K$. Finally $\bigcap_{K \in \cc'}K = \bf K$ which means: 
 			\[ \varnothing = \bigcap_{\mathclap{K \in \cc'}}f\op\{y\}\cap K = f\op\{y\} \cap \bigcap_{\mathclap{K \in \cc'}}K = f\op\{y\}\cap \bf K \]
-			Hence ${\bf K} \cap f\op\{y\}$ so $Y \ni y \notin f({\bf K})$, but ${\bf K} \subset \XX$ which implies $f({\bf K}) = Y$, and that's a contradiction. 
+			Hence there exists $Y \ni y \notin f({\bf K})$, but ${\bf K} \subset \XX$ which implies $f({\bf K}) = Y$, and that's a contradiction. 
 			
-			Finally, each chain has a lower bound. By Zorn's Lemma there exists some minimal element $X_0 \in \XX$. Because $X_0$ is closed in the Hausdorff space $X$, it's also compact. Clearly, if there is a proper closed subset $X_1 \subsetneq X_0$ s.t. $f(X_1) = Y$, then $X_1 \in \XX$ which will implies that $X_0$ is not minimal in the relation $\subset$ inside $\XX$. That gives as a contradiction. Finally we obtained a compact $X_0 \subset X$ for whom $f$ maps no closed proper subsets onto $Y$, as intended. 
+			Finally, each chain has a lower bound. By Zorn's Lemma there exists some minimal element $X_0 \in \XX\!$. Because $X_0$ is closed in the Hausdorff space $X$, it's also compact. Clearly, if there is a proper closed subset $X_1 \subsetneq X_0$ s.t. $f(X_1) = Y$, then $X_1 \in \XX$ which will implies that $X_0$ is not minimal in the relation $\subset$ inside $\XX$\!. That gives as a contradiction. Finally we obtained a compact $X_0 \subset X$ for whom $f$ maps no closed proper subsets onto $Y$, as intended. 
 		\end{proof}
 %		\item Assume $Y$ is extremally disconnected, and no proper closed subset of $X$ is mapped onto $Y$. Then $f$ is a homehomorphism. \begin{proof}
 %			First of all, we'll show that $f$ is one-to-one. Consider some $x_1 \neq x_2 \in X$. Since $X$ is Hausdorff we can pick some open disjoint $G_1\cap G_2 = \varnothing$ such that $x_1 \in G_1 \land x_2 \in G_2$. Then $X \setminus G_i$ are closed, and so is $f(X \setminus G_i)$. $f(X \setminus G_i) \neq Y$ is clearly closed ($X \setminus G_i$ is a closed subset of a compact space, therefore compact, and the compact image of a continues map is compact too. $Y$ is $T_2$ hence the compact $f(X \setminus G_i)$ is closed). Define the open $V_i = Y \setminus f(X \setminus G_i)$, then $V_i \subset f(G_i)$. 
