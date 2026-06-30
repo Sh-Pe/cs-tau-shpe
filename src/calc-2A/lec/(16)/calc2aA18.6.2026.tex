@@ -1,0 +1,131 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\tb{\mathbb{T}}
+\newcommand\uni{\overset{u}{\to}}
+
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 16}}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	
+	\textbf{תזכורת: }לכל $f, g \in R(\tb)$ הגדרנו סמי מכפלה פנימית הרמיטית, להיות: 
+	\[ \mut{f}{g} := \frac{1}{2\pi}\int^{2\pi}_0\dequad f(t)\ol{g(t)}\dt \]
+	\rmark{באנגלית, Hermitian inner/scalar/dot product}
+	המכפלה הפנימית לעיל משרה לנו (סמי) נורמת $L_2$, שתסומן ב־$\norm f = \norm{f}_{L_2} = \norm{L}_2$. דיברנו על קושי שוורץ, והסקנו ש־$\norm f = 0$ אמ''מ $\forall g \co \mut{f}{g} = 0$. מכאן שה־$f$־ים שהמאפס שלהם הוא כל המרחב הם מרחב וקטורי, ולקיחת quotient space עליהם מאפשרת לנו לקבל מרחב שבו הנורמה מתנהגת כמו נורמה רגילה ולא מנוונת. 
+	
+	\cola{א''ש המשולש, $\norm{f + g} \le \norm f + \norm g$. }\begin{proof}
+		ואכן: 
+		\[ \norm{f + g}^{2} = \mut{f + g}{ f + g} = \norm {f}^{2} + \underbrace{2\Re\mut{f}{g}}_{\mathclap{\le \sof{\mut{f}{g}} \le \norm f \norm g}} + \norm {g}^{2} \le \norm{f}^{2} + 2 \norm f \norm g + \norm{g}^{2} = (\norm f + \norm g)^{2} \]
+		כנדרש. 
+	\end{proof}
+	
+	באותה המידה שניתן לשייך לפונקציות חלקות טורי פונקציות (טיילור וכו'), ניתן לשייך לפונקציה מחזורית טור פוריה שהוא טור דו''צ. 
+	
+	\defi{\textit{מקדמי פוריה} (Fourier) של $f \in R(\tb)$, הם לכל $n \in \Z$: 
+	\[ \hat f(n) := \frac{1}{2\pi}f(t)e^{-int}\dt = \mut{f}{e^{int}} \]}
+	\defi{\textit{מקדמי פורייה של $f$} הם: 
+	\[ (S_nf)(t) := \sum_{n = -N}^{N}\hat f(n)e^{int} \]}
+	\defi{\textit{טור פורייה של $f$} הוא: 
+	\[ \sum_{n = - \infty}^{\infty}\dequad \ \hat f (n) e^{int} \]}
+	\rmark{שימו לב! מכיוון שאנחנו במרחב וקטורי שאיננו נוצר סופית, נורמות שונות שנגדיר יגדירו התכנסות שונה של הטור. פרטים נוספים בחלק השלישי של הקורס. }
+	
+	\theo{תהי $f \in R(\tb)$, אז $S_nf$ הוא ההטלה האורתוגונלית של $f$ על מרחב הפולינומים הטריגונומטריים מדרגה $n\ge $. }
+	או בניסוח מפורש יותר: 
+	\begin{enumerate}[(1)]
+		\item $S_nf$ שייך למרחב הפולינומים הטריגונומטריים. 
+		\item לכל $g$ פולינום טריגונומטרי מדרגה $n \ge$, $f - S_nf \perp g$. 
+	\end{enumerate}
+	\begin{proof}
+		ההוכחה קלה. (1) נובע ישירות מההגדרה. בשביל (2) נשתמש בעובדה ש־$\mut{e^{int}}{e^{imt}}$ הוא $1$ אמ''מ $n = m$, אחרת $0$. למזלנו, יש לנו את הבסיס של $e^{int}$ שהפולינומים הטריגונומטריים נתונים ע''י קומבינציה לינארית שלהם, לכן די להסתכל על איברי הבסיס: 
+		\[ \mut{f - S_nf}{e^{int}} = \mut{f}{e^{int}} - \mut{S_nf}{e^{int}} = \mut{f}{e^{int}} - \mut{\sum_{m = -N}^{N}\hat f(n)e^{imt}}{e^{int}} = \hat f(n) - \hat f(n) = 0 \]
+		לכן $\mut{f}{g} = 0$ לכל $g \in \{e^{int}\}_{n = -N}^{N}$. לכן לכל $g \in \Sp\{e^{int}\}_{n = -N}^{N}$ מתקיים ש־$\mut{f}{g} = 0$. 
+	\end{proof}
+	\cola{
+	\begin{enumerate}[(A)]
+		\item (''הזנב מאונך לקירוב``) $f - S_nf \perp S_nf$
+		\item $S_nf$ הוא הפולינום הטריגונומטרי מדרגה $n \ge$ הקרוב ביותר ל־$f$, כלומר לכל פולינום טריגונומטרי $p$ אחר מתקיים $\norm{f - S_nf} \le \norm{f - p}$. 
+	\end{enumerate}}\begin{proof}[הוכחת א']
+		מחלק $1$ מתקיים ש־$S_nf$ פולינום טריגונומטרי ולכן ניתן להשוואה. מחלק ב' $f - S_nf \perp S_nf$. 
+	\end{proof}\begin{proof}[הוכחת ב']
+		אכן מתקיים, לכל $p$ פולינום טריגונומטרי, ממשפט פיתגורס:
+		\[ \norm{f - p} = \norm{(f - S_nf) + (S_n - p)}^{2} = \norm{f - S_n}^{2} + \underbrace{\norm{S_n - f}^{2}}_{\ge 0} > \norm{f - S_nf}^{2} \]
+	\end{proof}
+	\rmark{זוהי מסקנה יותר כללית מלינארית א2 שנכונה לכל מכפלה פנימית. }
+	\rmark{מרחב הפולינומים הטריגונומטריים מכל מעלה צפוף ב־$R(\tb)$ ביחס לנורמת $L_2$. }
+	\defi{עבור $f, f_n \in R(\tb)$, נאמר ש־$f_n \rrr{L_2} f$ (''\textit{התכנסות $L_2$}``, ''\textit{התכנסות ב־$L_2$}``, ''\textit{התכנסות בנורמת $L_2$}``) באמצעות: 
+	\[ \lim_{n \to \infty}\norm{f_n - f}_{L_2} = 0 \]}
+	\rmark{שימו לב שזהו מרחב מטרי, ולכן הוא first countable (מקיים $C_1$). זה למה בכלל יש פואנטה לדבר על סדרות. }
+	\rmark{לא משתמשים ב־$L_\infty$ בקורס. }
+	\defi{בהינתן $f_n, f \in \tb$, אם $\max_{t \in [0, 2\pi]}\sof{f_n(t) - f(t)} \toinf 0$ אז $f_n \to f$ במ''ש. }
+	\lem{הטענה לעיל שקולה לכך ש־$\Re f_n \uni \Im f$ במ''ש וגם $\Im f_n \uni \Im f$ במ''ש. }
+	\rmark{ראשית נבחין שהתכנסות במ''ש של פונקציות מרוכבות לא תלויה בנורמה שאנו עובדים איתה, ושנית נבחין שזה שקול לשימוש ב־$L_\infty$}
+	\lem{נתונה $f_n \to f \in C(\tb) \subset R(\tb)$. נניח $f_n \toinf f$, רז $f_n \to f$ ב־$L_2$. }
+	\begin{proof}
+		''ההוכחה קלה``
+		\[ \norm{f_n - f}^{2} = \frac{1}{2\pi}\int^{2\pi}_0 \dequad \ \underbrace{\sof{f_n(t) - f(t)}^{2}}_{\le \max\sof{f_n - f}^{2}}\dt \le \frac{1}{2\pi} \cdot 2 \pi \cdot \max\sof{f_n -f}^{2} \toinf 0 \]
+	\end{proof}
+	נסכם: יש לנו שלושה מובנים של שאיפה. 
+	\begin{itemize}
+		\item שאיפה נקודתית
+		\item שאיפה במ''ש
+		\item שאיפה ב־$L_2$
+	\end{itemize}
+	\textbf{השאלה המרכזית: }בהינתן $f \in R(\tb)$, האם $S_nf \to f$ נקודתית? במ''ש? ב־$L_2$? 
+	\exe{
+	\begin{enumerate}
+		\item $f_n, f \in C(\tb)$ כאשר $f_n \to f$ במ''ש גורר $f_n \to f$ נקודתית
+		\item בהינתן $f_n \in C(\tb)$, ו־$f \co \R\to \C$ כלשהי, אם $f_n \to f$ במ''ש אז $f \in C(\tb)$. 
+	\end{enumerate}}
+	\lem{נניח ש־$p$ פולינום טריגונומטרי מדרגה $N \ge$. אז לכל $n \ge N$ מתקיים ש־$S_np = p$. }\begin{proof}
+		נרשום $p(t) = \sum_{k = -N}^{N}a_ke^{ikt}$. אז:
+		\[ \hat p(m) = \mut{\sum_{k = -N}^{N}a_ke^{ikt}}{e^{imt}} = \sum_{k = -N}^{N}a_k\mut{e^{ikt}}{e^{imt}} = \begin{cases}
+			a_m & \sof m \le N\\
+			0 & \sof m > N
+		\end{cases} \]
+	\end{proof}
+	\rmark{יותר קל להוכיח להוכיח את זה עם היטלים. }
+	\textbf{דוגמה. }עבור:
+	\[ f(t) = \sin t = \frac{e^{it} - e^{-it}}{2i} \]
+	נבחין ש־$f$ פולינום טריגונומטרי מדרגה $1$. נחשב את מקדמי פוריה שלה: 
+	\begin{align*}
+		\hat f(1) = \frac{1}{2i} = \frac{-i}{2} && \hat f(0) = 0  && \hat f(-1) = -\frac{1}{2i} = \frac{i}{2}
+	\end{align*}
+	ואכן, נקבל ש־: 
+	\[ \sin t = \frac{1}{2i}e^{it} - \frac{1}{2i}e^{it} \]
+	
+	\begin{Theorem}[(אי) יחידות של גבול $L_2$]
+		נתונות $f_n, f, g \in R(\tb)$. נניח $f_n \to f$ ו־$f_n \to g$ ב־$L_2$. אז $\norm{f - g} = 0$. 
+	\end{Theorem}
+	\begin{proof}
+		\[ \norm{f - g} = \norm{f - f_n + f_n - g} \le \norm{f - f_n} + \norm{f_n - g} \toinf 0 \]
+	\end{proof}
+	\exe{אם $f \in C(\tb)$ ו־$\norm f = 0$, אז $f \equiv 0$. }
+	\cola{אם $f_n \to f, g$ ו־$f, g \in C(\tb)$, אז $f = g$. }
+	\rmark{באמצעות פירוק של $f = u + iv$ (כאשר $u = \Re f, v = \Im f$) אז:
+	\[ \norm{f}^{2} = \frac{1}{2\pi}\int^{2\pi}_0 \sof{v(t) + iu(t)}^{2}\dt = \norm{u}^{2} + \norm{v}^{2} \]
+	לכן $\norm{f} = 0$ אמ''מ $\norm{u} = \norm{v} = 0$. }
+	\begin{Theorem}[א''ש בזל]
+		עבור $f \in R(\tb)$, לכל $N$ מתקיים ש־$\norm{S_n f} \le \norm f$. 
+	\end{Theorem}\begin{proof}
+		מא''ש המשולש: 
+		\[ \norm{f}^{2} = \norm{f - S_n f + S_nf}^{2} = \norm{f - S_n}^{2} + \norm{S_nf}^{2} \ge \norm{S_nf}^{2} \]
+	\end{proof}
+	\rmark{זו תכונה אופיינית להיטלים. }
+	\cola{נתונה $f \in R(\tb)$. אז $\sum_{n = -\infty}^{\infty}\norm{\hat f(n)}^{2}$ מתכנס. }
+	\rmark{שימו לב שאיברי הטור אי־שליליים ולכן סדר הסכימה אינו משנה. }\begin{proof}
+		לכל $N_1, N_2$ מתקיים: 
+		\[ \sum_{n = -N_1}^{N_2}\sof{\hat f(n)}^{2} \le \sum_{n = -N}^{N} \seq \norm{S_Nf}^{2} \overset{*}{\le} \norm{f} \]
+		כאשר $\overset{*}{\le}$ נובע מבזל, ו־$\seq$ נכון כי: 
+		\[ S_f = \sum_{n = -N}^{N}a_ne^{int} \]
+		ולכן: 
+		\[ \norm{S_Nf}^{2} = \mut{\sum_{k = -N}^{N}a_ke^{ikt}}{\sum_{\ml = -N}^{N}a_\ml e^{i\ml t}} = \sum_{\ml, k}a_k\ol{a_\ml}\mut{e^{ikt}}{e^{i\ml t}} = \sum_{k = -N}^{N}\sof{a_k}^{2} = \sum_{k = -N}^{N}\norm{\hat f(k)}^{2} \]
+	\end{proof}
+	
+	
+	\ndoc
+\end{document}

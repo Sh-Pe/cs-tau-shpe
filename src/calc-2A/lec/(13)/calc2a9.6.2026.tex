@@ -1,0 +1,114 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\cz {\mathrm{(C)\ }}
+\newcommand\ab {\mathrm{(A)\ }}
+\newcommand\embed{\hookrightarrow}
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 13}}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	\begin{Exercise}[פתיחה]
+		\begin{enumerate}
+			\item רשמו את המספר $\frac{1}{2 - i}$ בצורה $a + bi$ עם $a, b \in \R$. 
+			\item למספר מרוכב $z = a + bi$, הוכיחו: $\sof a, \sof b \le \sof z \le \sof a + \sof b$ עבור $a, b \in \R$. 
+			\item נגדיר יחס שקילות על $\R$: $x \sim y \iff x - y \in 2 \pi z$. נסמן ב־$[x]$ מחלקת שקילות וב־$R/_{2 \pi \Z}$ את מרחב המנה. האם $[x] + [y] + [x + y]$ מוגדר היטב? האם $[x] \cdot [y] = [x \cdot y]$ מוגדר היטב? 
+			\item נתונה קבוצת ממשיים $S \subset \R$. השלימו את החסר: ''לכל $x_0$ קיים $x > x_0$ כך ש־$x \in S$, אמ''מ קיימת סדרה $(x_k){k = 1}^{\infty}$ כל שלכל $k$, $x_k \in S$ וכך ש־[השלימו], אמ''מ הקבוצה $S$ איננה [השלימו]``. 
+		\end{enumerate}
+	\end{Exercise}
+	
+	\subsection*{סוגי סכימות}
+	\defi{\textit{צזארו: }$\cz \sumkoinf a_k = L$ פירושו: 
+	\[ \smash{\overbrace{\frac{S_0 + \cdots + S_N}{N + 1}}^{:= \sg_n}} \toinf L \]
+	כאשר $S_n = \sumkoinf a_k$. }
+	\rmark{למעשה יש לנו כאן סכום כפול: 
+	\[ \sg_N = \frac{1}{N + 1}\sum_{n = 0}^{n}\underbrace{\sumnko a_k}_{S_k} = \frac{1}{N + 1}\sum_{\mathclap{0 \le k \le n \le N}}a_k = \frac{1}{N + 1}\sum^{N}_{k = 0}\sum^{N}_{n = k}a_k = \frac{1}{N + 1}\sum_{k = 0}^{N}(N - k + 1)a_k = \sum_{k = 0}^{N}\cl{1 - \frac{k}{N + 1}}a_k \]
+	יעל ממליצה לחשוב על זה כמעין טבלה תת־ממדית (שמשוכנת ב־$\Z^{2}$). זה מאפשר בקלות לראות את השוויונות לעיל. }
+	\defi{\textit{אבל: }(Abel) $\ab \sumkoinf a_k = L$, פירושו: 
+	\[ \lim_{R \to 1^{-}}\sumkoinf a_kR^{k} = L \]}
+	\theo{אם טור $\sumkoinf a_k = L$ במובן הרגיל, אז $\ab \sumkoinf a_k = L$ וגם $\cz \sumkoinf a_k = L$. }
+	\begin{proof}
+		נניח $\sumkoinf = L$. 
+		\begin{itemize}
+			\item מההנחה $S_n \to L$, כאשר $S_n$ סדרת הסכומים החלקיים. בחדו''א 1א הוכחנו שאם סדרה מתכנס במובן הרגיל אז היא מתכנס צזארו, ולכן $\cz S_n \to L$ (כלומר $\frac{S_0 + \cdots + S_n}{n + 1} \to L$), כלומר $\cz \sumkoinf a_k = L$. 
+			\item מההנחה, הטור $\sumkoinf a_kx^{k}$ מתכנס כאשר $x = 1$. ממשפט אבל, הטור מתכנס במ''ש (לאו דווקא בהחלט) בכל $[0, 1]$. נסמן $f(x) := \sumkoinf a_kx^{k}$. נבחין ש־$f \co [0, 1] \to \R$ גבול במ''ש של פונקציות רציפות, ולכן רציפה. בפרט $\lim_{R\to 1^{-}}f(R) = f(1)$, נציב ב־$f$ ונקבל את הנדרש. 
+		\end{itemize}\envendproof
+	\end{proof}
+	\theo{התכנסות צזארו גוררת התכנסות לפי אבל, כלומר אם $\cz \sumkoinf a_k= L$, אז $\ab \sumkoinf a_k = L$. }\proofshiri
+	\begin{Theorem}[טאובר]
+		אם $\ab \sumkoinf a_k$ וגם $a_k = o(\frac{1}{k})$ אז $\sumkoinf a_k = L$. 
+	\end{Theorem}
+	\rmark{הכוונה ב־$a_k = o\cl{\frac{1}{k}}$ הוא ש־$\frac{a_k}{1/k} = ka_k \toinf 0$. }
+	\proofshiri
+	אין אמ''מ, גם במקרה שבו הטור חיובי. לדוגמה: 
+	\[ a_k = \begin{cases}
+		\frac{1}{k} & \exists n \in \N \co k = 2^{n} \\
+		0 & \other
+	\end{cases} \]
+	אומנם, $a_k \neq o\cl{\frac{1}{k}}$ אך $\sumkoinf a_k$ מתכנס במובן הרגיל וגם (ולכן גם במובן אבל). 
+	
+	\exe{$\sumkoinf (-1)^{k}$ אינו מתכנס במובן הרגיל (כמובן), אך כן מתכנס צזארו (ל־$\frac{1}{2}$). }
+	\exe{$\sumkoinf (-1)^{k} \cdot (k + 1)$ אינו מתכנס, אך מתכנס אבל ל־$\frac{1}{2}$. }
+	
+	\subsection*{סדר סכימה}
+	ה־subsection הזה הוא תזכורת מחדו''א 1א. 
+	\theo{אם טור מתכנס בהחלט, אז הוא מתכנס, וכמו כן כל טור שמתקבל ממנו ע''י שינוי סדר האיברים או קיבוץ האיברים, גם הוא מתכנס (בהחלט) לאותו הגבול. }
+	\defi{יהי $(t_j)_{j \in \Z_{\ge 0}}$. תזכורת־הגדרה: \textit{הטור $\sum t_j$ מתכנס בהחלט ל־$L$} פירושו: 
+		\begin{itemize}
+			\item הטור $\sum \sof{t_j}$ מתכנס. 
+			\item הטור המקורי $\sum t_j$ מתכנס ל־$L$. 
+	\end{itemize}}
+	שימו לב, הטור $\sumnoinf \sof{t_j}$ לאו דווקא מתכנס ל־$L$. מתנאי קושי ידוע שאם הטור מתכנס בהחלט, אז הטור המקורי מתכנס  (בהחלט) ל־$L$ כלשהו. 
+	\theo{\begin{enumerate}
+			\item הטור $\sum t_j$ מתכנס בהחלט, אמ''מ קבוצת הסוכמים הסופיים של הערכים המוחלטים: 
+			\[ \ccb{\sum_{j \in J}\sof{t_j} \middle\vert J \subset \Z_{\ge 0} \land \sof J \in \Z_{\ge 0}} \]
+			חסומה. 
+			\item נניח $\sum t_j$ מתכנס בהחלט ל־$L$. אז: 
+			\begin{enumerate}[(A)]
+				\item לכל $\eg > 0$ קיימת ת''ק סופית $J \subset \Z_{\ge 0}$ כך שלכל ת''ק סופית $J \subset I \subset \Z_{\ge 0}$ מתקיים $\sof{\sum_{j \in I}t_i - L} < \eg$. 
+				\item לכל פירוק זר לתתי קבוצות סופיות $\Z_{\ge 0} = J_0 \uplus J_1 \uplus J_2 \uplus \cdots$, אם נסמן $c_m:= \sum_{j \in J_m} t_j$ הטור $c_m$ מתכנס בהחלט ל־$L$. 
+			\end{enumerate}
+	\end{enumerate}}
+	סעיף (ב) תוצאה ישירה של דברים בחדו''א 1א. 
+	\begin{proof}
+		תעלה למודל. 
+	\end{proof}
+	
+	כל הסיפור הזה רלוונטי לקונספט של מכפלת טורים. 
+	\theo{נתונים טורים $\sum_{\ml = 0}^{\infty}\bg_{\ml}$ ו־$\sum_{k = 0}^{\infty}\ag_k$ שמתכנסים בהחלט לגבולות $A, B$ בהחלפה. נגדיר $\cg_m = \sum_{k + \ml = m}\ag_k \bg_\ml$. אז הטור $\sum_{m = 0}^{\infty}\cg_m$ שנקרא \textit{מכפלת קושי של הטורים $\sum \ag_k, \sum \bg_k$} מתכנס בהחלט לגבול $A \cdot B$. }
+	זה מופיע ברשימות של שירי לחדו''א 1א (על אף שלא ראינו את זה סמסטר קודם). 
+	\begin{proof}
+		נסמן $\hat A = \sumkoinf \sof{\ag_k}$ ו־$\hat B = \sum_{\ml = 0}^{\infty} \sof{\bg_\ml}$. לכל ת''ק סופית $J \subset \Z_{\ge 0}^{2}$ נבחר $\hat k, \hat l$ כך ש־$J \subset \{0 \dots \hat k\} \times \{0 \dots \hat \ml\}$, אז: 
+		\[ \sum_{\mathclap{(k, \ml) \in J}} \sof{\ag_k \bg_k} \le \sum_{\mathclap{(0, 0) \le (k, \ml) \le (\hat k, \hat \ml)}} \sof{\ag_k \bg_\ml} = \cl{\sum_{k = 0}^{\hat k}\sof{\ag_k}} \cdot \cl{\sum_{\ml = 0}^{\hat \ml}\sof{\bg_\ml}} \le \hat A \cdot \hat B \]
+		נבחר מניה כלשהי $\N$ ל־$\Z_{\ge 0}^{2}$ חחע''ל. מהמשפט על סידור סדר סכימה, $\sum_{i = 1}^{\infty} \ag_{k_i}\bg_{\ml_i}$ מתכנס בהחלט לאנשהו. נסמן ב־$L$ את גבולו. נטען ש־$L = AB$. לשם כך נפרק את $\Z_{\ge 0} \times \Z_{\ge 0}= J_0 \uplus \cdots$ באופן שיעל לא הגדירה וציירה על הלוח (מעין שכבות בצל כאלו). 
+		
+		אז: 
+		\[ \sum_{m = 0}^{N} \sum_{(k, \ml) \in J_m} \ag_k \bg_\ml = \cl{\sum_{k = 0}^{N}\ag_k}\cl{\sum_{\ml = 0}^{N}\bg_\ml} \rrr{N \to \inft} AB \]
+		מחלק 2ב של המשפט על שינוי סדר סכימה, ש־$L = AB$. 
+		
+		עתה נפרק אחרת, באלכסונים: 
+		\[ J_m' = \{(k, \ml) \mid k + \ml = m\} \]
+		מחלק 2ב של המשפט על שינוי סדר סכימה נקבל ש־: 
+		\[ \sum_{m = 0}^{\infty}\underbrace{\sum_{(k, \ml) \in J_m'}\ag_k \bg_\ml}_{\cg_m} \]
+		מתכנס לאותו הגבול $L = AB$. 
+	\end{proof}
+
+	\subsection*{מרוכבים}
+	מגדירים $\cb = \R^{2}$ ואז דוחפים על זה כל מיני פעולות. משכנים $\R \hookrightarrow \C$ ע''י $a \mapsto a + 0i$. רושמים $i = 0 + 1i$. עבור $z = a + ib$, החלק ממשי $a = \Re z$ והחלק המדומה $b = \Im z$. יש לנו חיבור, כפל בסקלר ממשי, נורמה (ערך מוחלט), כמו ב־$\R^{2}$. הנורמה משרה מטריקה שמשטרה טופולוגיה שמשרה סיגמא אלגברה ואז אנחנו יכולים לעשות שטויות כמו גבולות ואינטגרלים. יעל מגדירה כל מיני פעולות בצורה מעגלית שאני לא ממש מעוניין להעתיק. אני אנסח את זה כמו פיזיקאי ואגיד שכדי לחלק מכפילים בצמוד (המרוכב) ואז עובדים עם שאר ההגדרות של כפל מרוכבים וחילוק בסקלר, לדוגמה: 
+	\[ (1 + i)\op = \frac{1}{1 + i} = \frac{1 - i}{(1 + i)(1 - i)} = \frac{1 - i}{2} \]
+	הפעולה של הצמדה היא אוטומורפיזם (איזומורפיזם מהשדה אל עצמו) של השדה. יש לזה תכונות נחמדות כמו: 
+	\[ \Re z = \frac{z + \bar z}{2} \quad\quad \Im z = \frac{z - \bar z}{2 i} \]
+	זה גם הומיאומורפיזם טופולוגי ואיזומורפיזם קטגורי ואנדופונקטור ב־2 קטגוריה. 
+	\exe{עשו את תרגיל פתיחה 2. }
+	
+	
+	
+	
+	
+	
+	\ndoc
+\end{document}

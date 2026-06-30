@@ -1,0 +1,188 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\tb{\mathbb{T}}
+\newcommand\uni{\overset{u}{\to}}
+
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 17}}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	
+	\begin{Exercise}[פתיחה]
+		\begin{enumerate}
+			\item רשמו ניסוח של קריטריון דיריכלה להתכנסות במ''ש עבור טור $\sumkinf a_k(t)b_k(t)$. 
+			\item עבור $f, g \in R([a, b])$ ניתן להגדיר: 
+			\[ \norm{f} = \cl{\int^{b}_a \sof{f(t)}^{2}\dt}^{\frac{1}{2}} \quad\quad \mut{f}{g} = \int^{b}_a f(t)\ol{g(t)} \]
+			רשמו ניסוח של א''ש קושי שוורץ ושל א''ש המשולש עבור ההגדרות הללו, במונחים של אינטגרלים. 
+			\item מצאו נוסחה מפורשת לפונקציה $g \co [a, b] \to \C$ מהצורה $g(t) = \ag t + \bg$ שמקיימת $g(a) = A \land g(b)= B$ עבור $a, b \in \C$ נתונים. רמז: 
+			\[ g((1 - \lg)a + \lg b) = (1 - \lg)A  +\lg B \]
+		\end{enumerate}
+	\end{Exercise}
+	
+	\subsection*{קירובים}
+	נרצה להוכיח שקבוצת הפולינומים הטריגונומטריים צפופה ב־$R(\tb)$. 
+	\begin{itemize}
+		\item הראשון, משפט שנוכיח בחמישי בצורה קונסטרקטיבית. 
+		\begin{Theorem}[פייר]
+			כל פונקציה $f \in C(\tb)$ ניתן לקרב במ''ש ע''י פולינומים טריגונומטריים. 
+		\end{Theorem}
+		\rmark{באנגלית: Fejer}
+		למעשה, מה שאנחנו עומדים להראות הוא ש־:
+		\[ \sg_N f := \frac{S_0 f + \cdots S_nf}{N + 1} \rrt{u}{N \to \infty} f \]
+		כלומר, שטור פורייה של פונקציה $f \in C(\tb)$ מתכנס ל־$f$ צ'זארו במ''ש. 
+		(למעשה -- רציפות זה גם תנאי מספיק, ולא רק הכרחי)
+		\item משפט אחר, דווקא כן נוכיח היום: \begin{Theorem}
+			כל פונקציה אינטגרבילית ניתן לקרב במובן $L_2$ ע''י פונקציות ב־$C(\tb)$. 
+		\end{Theorem}
+		ניתן לרשום משפט זה בשני ניסוחים שונים: 
+		\begin{itemize}
+			\item \textbf{גרסה 1: }עבור $f \in R(\tb)$ אינטגרבילית. אז לכל $\eg > 0$ קיימת $g \in C(\tb)$ כך ש־$\norm{f - g} < \eg$. 
+			\item \textbf{גרסה 2: }עבור $f \in R(\tb)$ אינטגרבילית, קיימת סדרה $g_n \in C(\tb)$ כך ש־$g_n \tou f$ ב־$L_2$. 
+		\end{itemize}
+	\end{itemize}
+	\begin{Exercise}[קל]
+		הוכיחו שגרסה 1 גוררת את גרסה 2. 
+	\end{Exercise}
+	משני המשפטים לעיל, נקבל מסקנה: 
+	\cola{כל פונקציה $f \in R(\tb)$ ניתן לקרב ב־$L_2$ ע''י פולינומים טריגונומטריים. נוכיח מסקנה זו בהמשך}
+	\rmark{שימו לב, שכרגע כמו בוויראשטראס לאו דווקא יש טור. ב־$L_2$ נבחין בהמשך שיש טור. }
+	\begin{proof}[הוכחת המשפט ב־$\R$]
+		עבור $f \in R(\tb)$ עם ערכים ממשיים: יהי $\eg > 0$ כלשהו. תהי $M = \sup \sof{f}$ (קיים כי $f$ אינטגרבילית). יהי $\hat \eg = ?$ שנמצא בהמשך. מקריטריון קרבו המשופר קיימת חלוקה $\Pi \co 0 = x_0 < x_1 < \cdots < x_n = 2\pi$ כך ש־$\wg(f, \Pi) < \hat\eg$. נבחר חלוקה כזו. נסמן $\Delta x_j = x_j - x_{j - 1}$. נבנה $g \in C(\tb)$ כדלקמן: 
+		\begin{itemize}
+			\item בנקודות החלוקה, ניקח $g(x_j) =f(x_j)$. נשים לב: $g(0) = g(2\pi)$ (בדיקת שפיות). 
+			\item בכל אחד מקטעי החלוקה, נבחר את $g$ להיות לינארית כך ש־$g(x) = \ag_j x, \bg_j$ (למעשה זה הפתרון לתרגיל פתיחה מספר 3): 
+			\[ g(x) = \underbrace{\frac{x_j - x}{\Delta x_j}f(x_{j - 1})}_{1 - \lg} + \underbrace{\frac{x - x_{j - 1}}{\Delta x_j}}_{\mathclap{0 \le \lg \le 1}}f(x_j) \]
+			כאשר $\lg$ תלויה ב־$x$. 	ההוכחה שזה אינטרפולציה לינארית בין שתי הנקודות באמצעות ציור. 
+		\end{itemize}
+		עתה, נבחין ש־: (שימו לב ש־$\lg(x) =: \lg$ פונקציה של $x$) בקטע חלוקה ספציפי $x_{j - 1} \le x \le x$, מתקיים: 
+		\begin{align*}
+			f(x) - g(x) &= \cl{(1 - \lg)f(x) + \lg f(x)} - ((1 - \lg)f(x_{j - 1}) + \lg f(x_j)) \\
+			&= (1 - \lg)(f(x) - f(x_{j -1}) + \lg(f(x) - f(x_j))) \\
+			\implies \sof{f(x) - g(x)} &\le (1 - \lg)\underbrace{\sof{f(x) - f(x_{j - 1})}}_{\le \wg(f, [x_{j - 1}, x_j])} + \lg\underbrace{\sof{f(x) - f(x_j)}}_{\le \wg(f, [x_{j - 1}, x_j])} \\
+			&\le \wg(f, [x_{j - 1}, x_j]) < \hat \eg
+		\end{align*}
+		לכן, באותו הקטע (כלומר לכל $x_{j - 1} \le x\le x_j$) מתקיים: 
+		\[ \sof{f(x) - g(x)}^{2} = \underbrace{\sof{f(x) - g(x)}}_{\le \wg(f, [x_{j - 1}, x_j])}\underbrace{\sof{f(x) - g(x)}}_{\le 2M} \le 2M \wg(f, [x_{j -1}, x_j]) \]
+		למה $\sof{f(x) - g(x)}$ חסום ע''י $2M$? כי: 
+		\[ \sof{f(x) -g(x)} \le (1 - \lg)\underbrace{\sof{f(x) - f(x_{j - 1})}}_{\mathclap{\le \sof{f(x)} + \sof{f(x_{j - 1})}} \le 2M} + \lg\underbrace{\sof{f(x) - f(x_j)}}_{\le 2M} \le (1 - \lg)2M + \lg 2M = 2M \]
+		הוכחה אלטנרנטיבית לחסם הזה תהיה להראות שגם $g$ חסומה ב־$2M$ (כי תמונתה נמצאת באותו הטווח). 
+		
+		\textbf{לסיום: }
+		\[ \begin{WithArrows}
+			\norm{f - g}^{2} &= {\frac{1}{2\pi}\int^{2\pi}_0 \dequad \sof{f(t) - g(t)}^{2}\dt} \Arrow[lr]{אדטיביות אינטגרל רימן}\\
+			&= \frac{1}{2\pi} \sum_{j =1}^{n}\int^{x_j}_{x_{j - 1}} \dequad \sof{f(t) - g(t)}^{2}\dt \Arrow{מה שהוכחנו למעלה}\\
+			&= \frac{1}{2\pi}\sum_{j = 1}^{n}2M \wg(f, [x_{j - 1}, x_j]) \\
+			&= \frac{2M}{2\pi}\wg(f, \Pi) \le \frac{M}{\pi}\hat \eg < \eg
+		\end{WithArrows} \]
+		עבור $\hat \eg = \frac{\pi}{1 + M}\eg$ שנבחר בדיעבד. 
+	\end{proof}
+	
+	באשר להוכחה בעבור $f \in R(\tb)$ עם ערכים מרוכבים: 
+	\begin{itemize}
+		\item אפשר לנסח ולהוכיח (בלי בעיה) קריטריון דרבו משופר עבור פונקציות  חסומות) עם ערכים מרוכבים, ואז ההוכחה תהיה זהה, כאשר תנודה מוגדרת להיות: 
+		\[ \wg(f, J) = \sup_{\mathclap{x, y \in J}}\sof{f(x) - f(y)} \]
+		\item אפשר לקרב בנפרד את $\Im f$ ו־$\Re f$, כי $f = \Re f + i \Im f$. 
+	\end{itemize}
+	
+	נזכר במסקנה משילוב המשפט שהוכחנו במשפט שנוכיח בשיעור הבא, לפיה כל $f \in R(\tb)$ ניתן לקרב ב־$L_2$ ע''י פולינומים טריגונומטריים. נוכיחה. 
+	\begin{proof}
+		לכל $\eg > 0$ ופונקציה $f \in R(\tb)$, מהמשפט שהוכחנו קיימת $g \in C(\tb)$ כך ש־$\sof{f - g} < \frac{\eg}{2}$. ממשפט Fejer קיים פולינו טריגונומטרי $P$ כך ש־
+		\[ \max_{t \in [0,2\pi]} \sof{g(t) - P(t)} < \frac{\eg}{2} \]
+		נחבר ונקבל ש־: 
+		\[ \norm{f - P} \le \norm{f - g} + \norm{g - P} = \frac{\eg}{2} + \frac{\eg}{2} < \eg \]
+		(להראות ש־$\norm{g - P} < \frac{\eg}{2}$ לא קשה, הראנו את זה כשדיברנו על אינטגרלי רימן). 
+	\end{proof}
+	\begin{Collary}[התכנסות $L_2$ של טור פורייה]
+		תהי $f \in R(\tb)$, אז: 
+		\[ S_n f \rrr{N \to \infty}f \]
+		ב־$L_2$. 
+	\end{Collary}
+	
+	\begin{proof}
+		מהמסקנה הקודמת, קיים פולינום טריגונומטרי $P$ כך ש־$\norm{f - P} < \eg$. נבחר $P$ כזה. תהי $N$ דרגתו. יהי $n < N$. אז: 
+		\[ \begin{WithArrows}
+			\eg ^{2} > \norm{f -P}^{2} &= \norm{\quad\underbrace{f - S_n f}_{\mathclap{\text{הזנב בקירוב פורייה}}} + \overbrace{S_n f - P}^{\mathclap{\text{פולינום טריגונומטרי מסתורי מדרגה $\ge n$}}}\quad\quad\quad\quad}^{2} \Arrow{פיתגורס} \\
+			&= \norm{f - S_nf}^{2} + \norm{S_n f - P}^{2} \ge \norm{f - S_n f}^{2}
+		\end{WithArrows} \]
+		למה $(f - S_nf) \perp (S_nf - P)$? כי הראנו שהזנב של פורייה מאונך למרחב הפולינומים הטריגונומטריים מדרגות קטנות יותר. סה''כ $\norm{S_n - f} < \eg$ ומהגדרה $\norm{S_n - f} \to 0$ לפי $L_2$ כלומר $S_n \to f$ לפי $L_2$ כנדרש. 
+	\end{proof}
+	
+	\textbf{תזכורת: }א''ש בזל עבור $f \in R(\tb)$ אומר ש־$\sum_{n = -\infty}^{\infty} \sof{\hat f(n)}^{2} \le \norm f$. 
+	\begin{Lemma}[הלמה של רימן־לבג]
+		עבור $f \in R(\tb)$, מתקיים $\hat f(n) \toinf 0$. 
+	\end{Lemma}\begin{proof}
+		נובע מא''ש בזל ש־$\sof{\hat f(n)}^{2}$ איברי הטור המתכנס, ולכן $\sof{\hat f(n)}^{2} \toinf 0$ כלומר $\hat f(n) \toinf 0$ וסיימנו. 
+	\end{proof}
+	\exe{הוכיחו ש־$\norm{S_nf}^{2} = \sum_{n = -N}^{N}\sof{\hat f(n)}^{2}$. }
+	\rmark{התרגיל קל}
+	\begin{Theorem}[שוויון פרסבל]
+		עבור $f \in R(\tb)$, מתקיים: 
+		\[ \sum_{n = -\infty}^{\infty} \sof{\hat f(n)}^{2} = \norm f \]
+	\end{Theorem}\begin{proof}
+		מהתרגיל לעיל, למעשה רוצים להראות ש־$\norm{S_nf}^{2} \toinf \norm{f}^{2}$. אכן מהתכנסות $L_2$ של פורייה מתקיים ש־$\norm{S_n f} \toinf 0$ ומא''ש המשולש ההפוך: 
+		\[ \sof{\norm{S_nf} - \norm{f}} \le \norm{S_n f - f} \toinf 0 \]
+		ולכן סיימנו. 
+	\end{proof}
+	\theo{תהי $f \in C(\tb)$, ונניח ש־$\sum^{\infty}_{n = -\infty}\sof{\hat f(n)} < \infty$ (שימו לב – לא ריבועי מקדמי פורייה, אלא ממש מקדמי פוריה עצמם). אז $S_n f \tou f$ במ''ש. }\begin{proof}
+		מהגדרה $S_n f = \sum_{n = -N}^{N} \hat f(n) e^{int}$. מבוחן $M$ של וויראשטראס, נקבל ש־$\sum_{n = -\infty}^{\infty} \hat f(n) e^{int}$ מתכנס בהחלט במ''ש. תהי $g = \sum_{n = -\infty}^{\infty} \hat f(n) e^{int}$ הגבול. $g(t)$ גבול במ''ש של פונקציות רציפות $S_n f$, ולכן $g$ רציפה. לכן $S_nf \to g$ במ''ש ב־$L_2$ וכאמור גם $S_nf \to f$ ב־$L_2$. מיחידות הגבול נובע $\norm{f - g} = 0$, ובגלל ש־$f, g$ רציפות נקבל ש־$S_nf \to g = f$ במ''ש כנדרש. 
+	\end{proof}
+	\defi{נגדיר את $C^{1}(\tb)$ להיות קבוצת הפונקציות $f \in C^{1}(\R)$ ו־$f \in C(\tb)$, כלומר פונקציות ממחוזר $2\pi$ גזירות ברציפות. }
+	\lem{ל־$f \in C^{1}(\tb)$ מתקיים $\hat {f'}(n) = in \hat f(n)$}
+	\begin{proof}
+		נתבונן במקדמי פוריה של הנגזרת, וניעזר באינטגרציה בחלקים: 
+		\begin{align*}
+			\hat {f'}(n) = \frac{1}{2\pi}\int^{2\pi}_0\dequad f'(t)e^{int}\dt & = \frac{1}{2\pi}f(t)e^{int}\bigg\vert^{2\pi}_0 - \frac{1}{2\pi}\int^{2\pi}_0 \dequad f(t) (in e^{int})\dt \\
+			&=  0 + \underbrace{in \frac{1}{2\pi} \int^{2\pi}_0 f(t)e^{int}\dt}_{\hat f(n)}
+		\end{align*}\envendproof
+	\end{proof}
+	\cola{בהינתן $f \in C^{1}(\tb)$, לא רק ש־$\hat f(n) \to 0$, אלא גם ש־: 
+	\[ \frac{\hat f(n)}{\frac{1}{n}} = n \hat f(n) \toinf 0 \]
+	כלומר $\hat f(n)$ הוא ''$o$ קטן`` של $\frac{1}{n}$ כאשר $n \to \infty$. 
+	(זאת כי $in \hat f(n) = \hat{f'}(n)$.)
+	}
+	\cola{עבור $f \in C^{1}(\tb)$, אז $\sum_{n = -\infty}^{\infty} \sof{\hat f(n)}$ מתכנס, ולכן $S_n f \to f$ מתכנס במ''ש. }\begin{proof}
+		ראשית, מהלמה: 
+		\[ \sum_{n = -\infty}^{\infty} n^{2}\sof{\hat{f}(n)}^{2} = \sum_{n = -\infty}^{\inft}\sof{\hat f(n)}^{2} \]
+		והטור מימין מתכנס מא''ש בזל עבור $f'$. שנית, מא''ש הממוצעים: 
+		\[ 0 \le \sof{\hat f(n)} = \frac{1}{n}\sof{n \hat f(n)} = \sqrt{\cl{n^{2} \sof{\hat f(n)}^{2}} \cdot \frac{1}{n^{2}}} \le \frac{n^{2}\sof{\hat f(n)}^{2} + \frac{1}{n^{2}}}{2} \]
+		משום ש־$\frac{1}{n^{2}}$ מתכנס, והוכחנו קודם ש־$n^{2}\sof{\hat f(n)}$ גם מתכנסים, נסיק שמימין יש לנו איברי טור מתכנס. אנו מדברים על טור חיובי, ולכן מאחד ממשפטי ההשוואה $\sum_{n= -\infty}^{\infty} \hat f(n) e^{int}$ מתכנס בהחלט במ''ש. 
+		
+		נגדיר $g(t) := \sum_{n = -\infty}^{\infty} \hat f(n) e^{int}$ גבול במ''ש של רציפות, ולכן רציפה. מנימוקים דומים למה שראינו קודם לכן (אבל אנו מציגים שוב כי במבחן נידרש להראות את הכל כאשר נתבקש להוכיח את המשפט), $S_n f \to g$ ו־$S_n f \to f$ ב־$L_2$, ולכן $\norm{f - g} = 0$. מהיותן רציפות $f = g$ ו־$g$ מתכנסת במ''ש ולכן סיימנו. 
+	\end{proof}
+	
+	\begin{Lemma}[דעיכת מקדמי פוריה]
+		עבור $f \in C^{k}(\tb)$, מתקיים ש־$n^{k} \hat f(n) \toinf 0$. 
+	\end{Lemma}
+	זה נובע ישירות מאינדוקציה על הלמה של רימן־לבג על המקדמים $\widehat{f^{(k)}} (n) = i^{k} n^{k} \hat f(n)$. 
+	
+	\textbf{דוגמה. }נתבונן בפונקציה $f \in R(\tb)$ שנקבעת ע''י $f(t) = t$ בקטע $[- \pi, \pi)$ (ונמשיך כך באופן מחזורי). 
+	כתרגיל לבית, יש להראות ש־: 
+	\[ \begin{cases}
+		\hat f(0) = \frac{1}{2\pi}\int^{\pi}_{- \pi}t \dt = 0 \\
+		\hat f(n) = \frac{1}{2\pi}\int^{\pi}_{- \pi} t e^{-int}\dt = \frac{(-1)^{n}i}{n}
+	\end{cases} \]
+	נוכל להוכיח ש־$S_n \to f$ בקטע $(- \pi, \pi)$, ובמ''ש בכל ת''ק סגור של $(- \pi, \pi)$. מחישוב מפורש נוכל לקבל (קצת אלגברה): 
+	\[ S_n f = \sum_{n = 1}^{N}\frac{2}{n}(-1)^{n + 1} \sin (nt) \]
+	נרצה להפעיל את קריטריון דיריכלה. אכן $\frac{2}{n}$ מונוטונית שואפת ל־$0$, אך נותר להראות שסדרת הסכומים החלקיים של $(-1)^{n + 1}\sin (nt)$ חסומה במידה אחידה: 
+	\[ \sof{\sum_{n = 1}^{N}(-1)^{n + 1}\sin (nt)} \le \frac{2}{1 + \cos t} \le \frac{2}{1 - \cos \dg} \]
+	\begin{enumerate}
+		\item עבור $- \pi + \dg \le t \le \pi - \dg$ כלשהי. עבור $f$ הנ''ל, מסקנה משוויון פרסבל ש־: 
+		\[ \sum_{n = 1}^{\infty} \frac{1}{n^{2}} = \frac{\pi^{2}}{6} \]
+		\item מסקנה מהתכנסות במ''ש ב־$[-\pi + \dg, \pi - \dg]$ בפרט ההתכנסות ב־$t = \frac{\pi}{2}$: 
+		\[ \sumkinf \frac{(-1)^{k}}{2k + 1} = \frac{\pi}{4} \]
+	\end{enumerate}
+	
+	
+	
+	
+	
+	
+	
+	
+	\ndoc
+\end{document}

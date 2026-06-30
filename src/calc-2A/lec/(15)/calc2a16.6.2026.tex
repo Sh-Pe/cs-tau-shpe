@@ -1,0 +1,135 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\tb{\mathbb{T}}
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 15}}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	
+	\begin{Exercise}[פתיחה]
+		העלו למודל סריקה של משהו מהטלפון, בתיבת ההגהש ''אימן להגשת בוחן סרוק``. 
+	\end{Exercise}
+	
+	\textbf{תזכורת: }בשירי \shiri{6.1}, מתעסקים בפונקציות $f \co [a, b] \to \C$. 
+	\begin{Theorem}[לייבניץ]
+		יהיו $f, g \co [a, b] \to \C$ גזירות, אז: 
+		\[ (fg)' = f'g + f g' \]
+	\end{Theorem}
+	יש לנו שתי הוכחות: 
+	
+	\begin{proof}[הוכחה 1]
+		נובע מכלל לייבניץ לפונקציות ממשיות (תרגיל: גוזרים מרוכב ומדומה בנפרד). 
+	\end{proof}
+	
+	\begin{proof}[הוכחה 2]
+		\[ \frac{f(g)g(t) - f(t_0)g(t_0)}{t - t_0} = \underbrace{\frac{f(t) - f(t_0)}{t - t_0}}_{\rrr{t \to t_0}f'(t_0)}g(t) + f(t_0)\underbrace{\frac{g(t) - g(t_0)}{t - t_0}}_{ \rrr{t \to t_0}g'(t_0)} \rrr{t \to t_0} f'(t_0)g(t_0) + f(t_0)g'(t_0) \]
+	\end{proof}
+	
+	בכל הנוגע לרציפות\footnote{כמו שנגדיר במרחבים מטריים} נאמר ש־$f$ רציפה ב־$t_0$ אם: 
+	\[ \lim_{t \to t_0} f(t) = f(t_0) \]
+	זה שקול לכל שקיימות $u, v \co [a, b] \to \R$ רציפות ב־$t_0$, אך ש־$v = \Im f, u = \Re f$. 
+	
+	\begin{Theorem}[המשפט היסודי]
+		תהי $f \co [a, b] \to \C$ רציפה ב־$x_0$. אז $F \co [a, b] \to \C$ המוגדרת ע''י $F(x) := \int^{x}_a f(t)\dt$ מקיימת $F'(x_0) = f(x_0)$. 
+	\end{Theorem}
+	\begin{Theorem}[ניוטון לייבניץ]
+		נתונות $f, g \co [a, b] \to \C$, כך ש־$f' = g$, ו־$g$ אינטגרבילית. אז $\int^{b}_a g(x)\dx = f(b) - f(a)$. 
+	\end{Theorem}
+	
+	\textbf{דוגמה. }הראנו ש־$e^{int} = \cos(nt) + i \sin(nt)$ לכל $n \in \N$ (אוילר). מכאן נבחין ש־: 
+	\[ \int^{2\pi}_0 e^{i nt}\dt = \begin{cases}
+		\int^{ \pi }_0 1 \dt = 2 \pi  & n = 0 \\
+		\disty \frac{e^{int}}{in} \bigg\vert^{2\pi} & n \neq 0
+	\end{cases} \]
+	
+	\rmark{אם $n$ אינו טבעי, אז עדיין מתקיים $\int^{2\pi}_0 e^{i \ag t} \dt = \frac{e^{i\ag t}}{i \ag}\big\vert^{2\pi}_0$ אך זה לאו דווקא מחזורי. }
+	
+	\begin{Theorem}[אינטגרציה בחלקים]
+		\[ \int^{b}_a g'(t)\dt = f(t)g(t)\bigg\vert^{b}_a - \int^{b}_a f'(t)g(t)\dt \]
+		כאשר $f, g \co [a, b] \to \C$ גזירות, ו־$f', g'$ אינטגרביליות. 
+	\end{Theorem}
+	
+	\textbf{דוגמה. }נניח $n \neq 0$. אז: 
+	\[ \int^{\pi}_{- \pi}te^{i nt}\dt = t \cdot \frac{e^{i nt}}{in}\bigg\vert^{\pi}_{- \pi} - \int^{\pi}_{- \pi} \frac{e^{int}}{in}\dt = \frac{(-1)^{n}}{in}(\pi - (-\pi)) - \frac{e^{int}}{(in)^{2}}\bigg\vert^{\pi}_{-\pi} = \frac{(-1)^{n + 1}2\pi i}{n}\]
+	זאת כי $e^{in(\pm\pi)} = (-1)^{n}$. 
+	
+	\lem{נתונה $f \co [a, b] \to \C$ אינטגרבילית. אז $\sof f \co [a, b]\to \R$ אינטגרבילית, ו־: 
+	\[ \sof{\int^{b}_a f(t)} \le \int^{b}_a \sof{f(t)}\dt \]}\begin{proof}
+		נרשום $f =u + iv$ כאשר $u, v \co [a, b] \to \R$. בכל תת־קטע $J \subset [a. b]$ התנודה מקיימת: 
+		\[ \wg(\sof f, J) = \sup_{x, y \in J}\sof{\sof{f(x)} - \sof{f(y)}} \le \sup_{x, y \in J}\cl{\sof{f(x) - f(t)}} \le \sup_{x, y \in J}\cl{\sof{u(x) - u(y)} + \sof{v(x) + v(y)}} \le \wg(u, J) + \wg(v, J) \]
+		מכאן קל לראות $\wg(\sof f, \Pi) \le \wg(u, \Pi) + \wg(v, \Pi)$ ומסיימים מקריטריון דרבו המשופר ל־$u, v$. 
+		
+		נדרשנו עדיין להראות את אי השוויון, ולא רק אינטגרביליות. קיימים $R, \ta$ כך ש־$\int^{b}\sof{f(t)}\dt = Re^{i\ta}$ (כתיב פולארי). נקבל ש־: 
+		\begin{multline*}
+			\sof{\int^{b}_a \dequad \ f(t)\dt} = R = \cl{\int^{b}_a\dequad \ f(t)\dt}e^{-i\ta} =\underbrace{\int^{b}_a \dequad \ f(t)e^{-\ta}\dt}_{\ge 0} = \Re\int^{b}_a f(t)e^{-i\ta}\dt \\
+			= \underbrace{\int^{b}_a \Re\cl{f(t)e^{-i\ta}}\dt }_{\in \R}\le \int^{b}_a\dequad \  \sof{f(t)e^{-i\ta}}\dt = \int^{b}_a\sof{f(t)}\dt
+		\end{multline*}
+	\end{proof}
+	זה מסיים את \shiri{6.1} (הרחבנו יותר ממה שכתוב. נרחיב יותר גם כאשר נדבר על מרחבים מטריים). 
+	
+	\subsection*{פונקציות מחזוריות}
+	אצל שירי, \shiri{6.2}. לפני שבועיים הגדרנו $\tb = \R/_{2 \pi \Z}$. נזרוק כמה הגדרות: 
+	
+	\[ C(\tb) := \ccb{f \co \R \to \C \mid \forall x\co f(x + 2\pi) = f(x) \land \text{רציפה}\ f} \]
+	\[ R(\tb) := \ccb{f \co \R \to \C \mid \forall x\co  f(x + 2\pi) = f(x) \land \text{אינטגרבילית רימן} \ f_{[0, 2\pi]}} \]
+	\exe{הפונקציה $t \mapsto e^{i\ag t} = \cos(\ag t) + i \sin(\ag t), \ \ag \in \R$, פונקציה עם מחזור $2 \pi$ אמ''מ $\ag \in \Z$ (דיברנו על זה קודם). }
+	\defi{הפונקציה $f(t) = \sum_{n = -N}^{N}c_ne^{i nt}$ כאשר $N \in \Z_{\ge 0}$, ו־$\forall n \co c_n \in \C$, אז $f$ כזו נקראת \textit{פולינום טריגונומטרי מדרגה $\ge N$}}
+	
+	\cola{נבחין שהקבוצה: 
+	\[ \ccb{f \co \R\to \C \mid \forall x \co f(x) + 2\pi} = f(x) \]
+	עם הפעולות: 
+	\[ (f + g)(t) = g(t) + f(t) \land (\lg f)(t) = \lg f(t) \quad (\lg \in \C) \]}
+	\exe{המרחבים הבאים הם תתי־מרחבים וקטוריים שלו: 
+	\begin{enumerate}
+		\item $C(\tb)$
+		\item $R(\tb)$
+		\item לכל $N$:
+		\[ \ccb{\sum^{N}_{n = -N}c_ne^{int} \mid n, c_n \in \C}  = \ccb{n \ge \text{פולינום טריגונומטריים מדרגה}} \]
+	\end{enumerate}}
+	יתרה מכך, נבחין ש־$3$ (מרחב הפולינום הטריגונומטריים מדרגה לכל היותר $n$) נפרש ע''י: 
+	\lem{\[ \Sp_\C\cl{\ccb{e^{int} \mid -N \le n \le N}} \seq \Sp_\C\cl{\{1\} \cup \{\cos nt\}_{n = 1}^{N} \cup \ccb{\sin t}_{n = 1}^{N}} \]}
+	\begin{proof}
+		העובדה שמרחב הפולינומיים הטריגונומטריים שווה לאגף שמאל טרוויאלית. השוויון $\seq$ פחות, וכדי להוכיח את $\seq$ נראה הכלה דו־כיוונית. 
+		\begin{itemize}
+			\item[$\subset$]נובע ישירות מ־$e^{i\pm nt} = \cos nt \pm i\sin nt$ לכל $1 \le n \le N$. 
+			\item[$\supset$]נובע ישירות מ־:
+			\[ \cos nt = \frac{e^{int} - e^{-int}}{2} \quad\quad \sin nt = \frac{e^{int} - e^{-int}}{2i} \]
+		\end{itemize}
+	\end{proof}
+	
+	\subsection*{מכפלה פנימית ונורמה}
+	אצל שירי, \shiri{6.3}. 
+	\exe{אם $f, g \in R(\tb)$, אז גם $f \bar g \in R(\tb)$. }
+	\defi{\[ \mut{f}{g} := \frac{1}{2\pi}\int^{2\pi}_0 \dequad f(t)\ol{g(t)}\dt \]}
+	\lem{זו מכפלה פנימית מרוכבת. }
+	\cola{המכפלה הפנימית משרה סמי־נורמה $\norm f := \mut{f}{f}$. הנורמה מקיימת דברים של נורמה כמו שנגדיר בפרק $3$. נוכיח זאת בליני2. למה זה סמי־נורמה? כי לדוגמה התנאי שאנו מכירים על נורמות, ש־$\sof f = 0$ אמ''מ לכל $g$ אינטגרבילית $\mut{f}{g} = 0$ (במקום $f = 0$). לחילופין, אפשר להתרכז בפונקציות רציפות, ואז זה עובד. }
+	אה ויש לנו אורתוגונליות ושיט. 
+	
+	\theo{קל לראות ש־: 
+	\[ \sof{f + g}^{2} = \sof f^{2} + 2\Re\mut{f}{g} + \sof g^{2} \]}
+	\rmark{ההוכחה נובעת ישירות מתכונות המכפלה הפנימית, אין צורך לעבור דרך אינטגרלים. }
+	\begin{Collary}[פיתגורס]
+		אם $f \perp g$ אז $\sof{f + g}^{2} = \sof f^{2} + \sof g^{2}$. 
+	\end{Collary}
+	\textbf{דוגמה. }הבסיסים לעיל של מרחב הפולינומים הטריגונומטריים הם בסיס אורתונורמלי של המרחב הזה. קל לראות זאת כי $\mut{e^{int}}{e^{imt}} = \dg_{n = m}$ (כאשר $\dg$ הדלתא של קרונקר). אם לא הבנתם את זה, תסיימו לינארית 2, ואז זה יהיה טרוויאלי. טראסט. 
+	
+	\rmark{$\snorm$ מתנהג כמו (סמי)נורמת $L_2$, כי: 
+	\[ \norm{\sum_{n = -N}^{N}a_n e^{int}} = \cl{\sum_{n = -N}^{N}\sof{a_n}^{2}}^{\frac{1}{2}} \]}
+	\begin{proof}
+		בלינארית 2א
+	\end{proof}
+	\cola{א''ש קושי שוורץ (או למעשה, רק החלק של השוורץ): 
+	\[ \sof{\mut{f}{g}} \le \norm f \norm g \]}
+	\begin{proof}
+		בלינארית 2א
+	\end{proof}
+	x
+	
+	
+	\ndoc
+\end{document}
