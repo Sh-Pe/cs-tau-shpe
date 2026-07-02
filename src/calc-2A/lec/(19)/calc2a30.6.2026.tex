@@ -1,0 +1,30 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\author{\en{Shahar Perets}}
+\title{חדו''א 2א $\sim$ \textit{}}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	
+	בשיעור שעבר הוכחנו את משפט פייר (Fejer) – עבור $f \in C(\tb)$ מתקיים ש־$\sg_N f \tou f$ כאשר $\sg_N = \frac{1}{N + 1} \sum_{n = 0}^{N}S_nf$. קיבלנו כמה מסקנות מהמשפט: 
+	\begin{enumerate}[(A)]
+		\item כל $f \in C(\tb)$ ניתנות לקירוב במ''ש ע''י פולינומים טריגונומטריים, כלומר לכל $\eg > 0$ קיים פולינום טריגונומטרי $p$ כך ש־$\max\sof{f - p} < \eg$. 
+		\item השתמשנו ב(א) כדי להוכיח התכנסות ב־$L_2$, כלומר לכל $g \in R(\tb)$ טור פורייה של $g$ שואף ל־$g$ ב־$L_2$. 
+		\item עבור $f, g \in C(\tb)$, אם $\forall n \in \N \co \hat f(n) = \hat g(n)$ אז $f = g$. 
+	\end{enumerate}
+	\begin{proof}[הוכחת (ג) תוך שימוש במשפט פייר]
+		לכל $x$, מפייר (הפונקציות רציפות) $(\sg_N f)(x) \toinf f(x)$ וכן $(\sg_N g)(x) \toinf g(x)$ נקודתית, כי התכנסות במ''ש גוררת התכנסות נקודתית. נבחין ש־$(\sg_Nf)(x) = (\sg_Ng)(x)$, ולכן מיחידות הגבול של סדרת מספרים, נסיק ש־$f(x) = g(x)$. 
+	\end{proof}
+	
+	\begin{proof}[הוכחה אחרת ל־(ג), תוך שימוש ביחידות הגבול ב־$L_2$]
+		ידוע שבמובן $L_2$ מתקבל ש־$S_Nf \to f$ ו־$S_Ng \to g$, ואז מיחידות הגבול ב־$L_2$ בהכרח $\norm{f - g} = 0$. אך $f, g$. אך $f, g$ רציפות כלומר $f - g = 0$ ואז $f = g$ כדרוש. 
+	\end{proof}
+	
+	\rmark{גם ההוכחה תוך שימוש ביחידות הגבול ב־$L_2$ מסתמכת על פייר, כי הוכחנו את התכנסות הגבול ב־$L_2$ באמצעות פייר}
+	
+	
+	\ndoc
+\end{document}
