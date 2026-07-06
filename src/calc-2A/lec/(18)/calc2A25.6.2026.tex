@@ -1,0 +1,216 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+\usepackage{listings}
+\lstset{
+	language=Python,
+	numbers=left,
+	breaklines,
+	basicstyle=\ttfamily,
+	commentstyle=\color{gray},
+	prebreak=\textrightarrow,
+}
+
+%\usepackage{upgreek}
+%\usepackage{txfonts}
+%\usepackage{countriesofeurope}
+%\input pdfmsym
+%\newcommand \bs \blacksquare
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{הרצאה 18}}
+\date{הרצאה מה־25 ביוני, הוקלד ב־6 ביולי (2026)}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }יעל קרשון
+	
+	\begin{Exercise}[פתיחה]
+		\begin{enumerate}
+			\item פתרו את התעלומה: תהי $f(t) = e^{i\ag t}$ עם $\ag \notin \Z$. נחשב את $\hat f(n)$ בשתי דרכים: 
+			\begin{alignat*}{9}
+				\frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t) e^{-int}\dt &&= \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad e^{i(\ag - n)t}\dt &&= \frac{1}{2\pi} \cdot \frac{e^{i(\ag - n)t}}{i(\ag - n)}\bigg\vert^{\pi}_{-\pi}   &&= (-1)^{n}\frac{\sin(\ag \pi)}{\pi(\ag - n)} \\
+				\frac{1}{2\pi}\int^{2\pi}_0 \dequad f(t)e^{-int}\dt     &&= \frac{1}{2\pi}\int^{2\pi}_0\dequad e^{i(\ag - n)t}\dt     &&= \frac{1}{2\pi} \cdot \frac{e^{i(\ag -n)t}}{i(\ag - n)}\bigg\vert^{2\pi}_0        &&= e^{i\ag}\frac{\sin(\ag n)}{\pi(\ag - n)}
+			\end{alignat*}
+			\begin{itemize}
+				\item בדקו את החישוב – אם צריך, תקנו
+				\item קיבלנו שתי תשובות שונות! מה קרה? 
+			\end{itemize}
+			\item תהי $f \in R(\tb)$ נתונה ע''י $f(t) = e^{i \ag t}$ עבור $-\pi \le t < \pi$. רשמו את שוויון פרסבל $\sum_{-\infty}^{\infty}\sof{\hat f(n)}^{2} = \norm{f}^{2}$ עבור פונקציה זו. הסיקו: 
+			\[ \sum_{-\infty}^{\infty}\frac{1}{(n + \ag)^{2}} = \cl{\frac{\pi}{\sin(\ag n)}}^{2} \]
+			\item (היה ניתן להוכיח אותו לפני מספר שיעורים) הוכיחו שקל פונקציה רציפה מחזורית רבמ''שית, חסומה ומשיגה את חסמיה בכל $\R$. 
+		\end{enumerate}
+	\end{Exercise}
+	
+	\subsection*{גרעין אבל ודיריכלה}
+	נבחין שאת מקדמי פורייה הגדרנו להיות: 
+	\[ \hat f(n) e^{inx} = \cl{\frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t)e^{-int}\dt}e^{inx} = \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t)e^{in(x - t)\dt} \doc \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t)e_n(x - t)\dt \]
+	כלומר נגדיר $e_n(y) = e^{iny}$. 
+	
+	עתה, נסכום את המקבלים ונסיק שכתלות ב־$e_n$־ים פולינום פורייה הוא: 
+	\[ S_Nf \cod \sum_{n = -N}^{N} \hat f(n)e^{inx}\dt = \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t)\underbrace{\cl{\sum_{n = -N}^{N}e_n(y)}}_{D_N(x - t)}\dt \]
+	\defi{ל־$D_N(y) \cod \sum_{n = -N}^{N}e_N(y)$ קוראים \textit{גרעין דיריכלה}. }
+	נזכר שרצינו להוכיח את משפט Fejer משבוע שעבר, לפיו יש התכנסות במ''ש של סכומי צ'זארו של פולינומי פורייה לפונקציה. ננסה להבין כיצד מקדמי צ'זארו נראים: 
+	\begin{align*}
+		(\sg_N f)(x) &= \frac{1}{N + 1}\sum^{N}_{n = 0}(S_nf)(x) \\
+		&= \frac{1}{N + 1}\sum_{n = 0}^{N}\frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t)D_n(x - t)\dt \\
+		&= \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t) \cdot \cl{\frac{1}{N + 1}\sum_{n = 0}^{N}D_n(x - t)}\dt \\
+		&= \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t)F_N(x - t)\dt
+	\end{align*}
+	כאשר: 
+	\[ F_N(y) = \frac{1}{N + 1}\sum_{n = 0}^{N}D_n(y) \]
+	\defi{$F_N(y)$ המוגדרת לעיל תקרא \textit{גרעין פייר} (Fejer). }
+	נבחין בדימיון בין הנוסחא לסכומי צ'זארו בכתלות בגרעין פייר ובנוסחא לטורי פורייה כתלות בגרעין פייר: 
+	\begin{Claim}\label{clm:1}
+		\begin{align*}
+			\sg_N f &= \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t)F_N(x - t)\dt \\
+			S_Nf &= \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t){D_N(x - t)}\dt
+		\end{align*}
+	\end{Claim}
+	ההבחנה הזו תביא אותנו להגדרת ה\textit{קונבלוציה}, מושג כללי יותר: 
+	\defi{לכל $f, g \in R(\tb)$, ה\textit{קונבלוציה של $f, g$ בנקודה $x$} היא: 
+	\[ (f * g)(x) \cod \frac{1}{2\pi}\int^{\pi}_{-\pi}f(t)g(x - t)\dt \]}
+	\begin{Claim}[תכונות הקונבלוציה]\ 
+		\begin{itemize}
+			\item סימטריה: \hfil $f * g = g * f$ \\ 
+			קל להראות זאת באמצעות שינוי משתנה. 
+			\item בילינאריות: \hfil $\cl{\ag f_1 + \bg f_2} * g = \ag (f_1 * g) + \bg (f_2 * g)$
+			\item רציפות: \hfil $f * g \in C(\tb)$
+			\item אסוציאטיביות: \hfil $(f * g) * h = f * (g * h)$\\
+			(ההוכחה של זה בחדו''א 3)
+		\end{itemize}
+	\end{Claim}
+	מהסימטרייה, נבחין שאם $g \ge 0$ ו־$\frac{1}{2\pi}\int^{\pi}_{-\pi} g(t)\dt = 1$, אז אפשר לחשוב על $g$ כמו על ''ממוצע משוקלל של ערכי $f$``. אכן מה שקורה בעבור הגרעינים שלנו הם שהם מקיימים תכונה זו, וש''$g$ (הגרעינים) מרוכזת סביב $t = 0$`` ואז רוב ה''משקל`` בסביבת $f(x)$, ואז הקונבלוציה תהיה ''ממוצע משוקלל של ערכי $f$ בסביבת $t = 0$``. 
+	
+	\textbf{דוגמה. }עבור: 
+	\[ g_n(t) = \begin{cases}
+		n \pi & -\frac{1}{n} \le t \le \frac{1}{n} \\
+		0 & \frac{1}{n} \le \sof t \le \pi
+	\end{cases} \]
+	(בהמשך נבחין בדמיון בין הדוגמה הזו לגרעין דיריכלה), נקבל ש־: [שינוי משתנה]
+	\[ (f * g_n)(x) = \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(x - t)g_n(t)\dt = \frac{1}{2\pi}\int^{\frac{1}{n}}_{-\frac{1}{n}}\dequad f(x - t)n \pi \dt =  \frac{1}{2\cancel{\pi}}n \cancel{\pi} \int^{x + \frac{1}{n}}_{x - \frac{1}{n}}\dequad\ f(t)\dt \]
+	ואם $f$ רציפה ב־$x$, אז $(f * g_n) \toinf f(x)$. 
+	
+	עתה נחזור לטענה \ref{clm:1} ונקבל ש־: 
+	\begin{align*}
+		\hat f(n) e^{inx} &= (f * e_n)(x) \\
+		S_Nf &= f * D_n \\
+		\sg_N f = \frac{S_0 f + \cdots + S_Nf}{N + 1} &= f * F_n
+	\end{align*}
+	
+	\begin{Claim}[תכונות הקונבולוציה, פרק 2]
+		\begin{enumerate}
+			\item אם $g \equiv 1$: 
+			\[ (f * 1) = \frac{1}{2\pi}\int^{\pi}_{-\pi}f(t) 1 \dt = \hat f(0) \]
+			כאשר נבחין ש־$\hat f(0)$ קבועה ולא תלויה בקונבולוציה. 
+			\item באופן כללי, אם $g$ פולינום מדרגה $n \ge$ אז כך גם $f * g$. 
+			\item אם $g$ פולינום טריגונומטרי מדרגה $n \le$ אז כך גם $f * g$. 
+			\item באופן יותר ספציפי, מתקיים ש־$\widehat{(f * g)}(n) \hat f (n) \hat g(n)$ (זה נובע מאסציאטיביות)
+		\end{enumerate}
+	\end{Claim}
+	\begin{proof}[הוכחת 2]
+		בעבור $g(y) = y^{n}$ (לאחר מכן אפשר לקחת צירופים לינאריים), נקבל ש־: 
+		\[ (f * g)(x) = \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t)(x - t)^{n}\dt = \sum_{k = 0}^{n}\cl{\binom{n}{k}\frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \cl{f(t) \cdot t^{n - k}\dt}}x^{k} \]
+		כנדרש. 
+	\end{proof}
+	
+	\begin{proof}[הוכחת 3]
+		גם כאן נתעסק עם $g(y) = e^{iny}$ ואז ניקח צירופים לינאריים. כבר הראנו ש־: 
+		\[ (f * g)(x) = (f * e_n)(x) = \hat f(n) e^{inx} \]
+	\end{proof}
+	
+	\subsection*{נוסחאות מפורשות לגרעינים}
+	כנראה הנוסחאות האלו יופיע בדף הנוסחאות של כולם. 
+	\begin{Lemma}[נוסחה מפורשת לגרעין דיריכלה]
+		\[ D_N(y) = \sum_{n = -N}^{N}e^{iny} \seq \begin{cases}
+			2N + 1 & y = 0 \\
+			\frac{\sin\cl{\cl{N + \frac{1}{2}}}y}{\sin\cl{\frac{1}{2}y}} & y \neq 0
+		\end{cases} \]
+	\end{Lemma}\begin{proof}
+		מסכום הנדסי: 
+		\begin{align*}
+			\sum_{\mathclap{n = -N}}^{N}e^{iny} &= \frac{e^{-iNy} - e^{i(N + 1)y}}{1 - e^{iy}} = \frac{e^{-i\frac{y}{2}}\cl{e^{i(N + 1)y} - e^{-iNy}}}{e^{-i\frac{y}{2}}\cl{e^{iy} - 1}} \\
+			&= \frac{e^{i\cl{N + \frac{1}{2}}y} - e^{-i\cl{N + \frac{1}{2}}y}}{e^{i\frac{y}{2}} - e^{-i\frac{y}{2}}} = \frac{\cancel{2i}\sin\cl{\cl{N + \frac{1}{2}}y}}{\cancel{2i}\sin\cl{\frac{1}{2}y}}
+		\end{align*}
+		כנדרש. 
+	\end{proof}
+	\rmark{לגבי טור הנדסי, ברור לנו ש־$\sum_{k =0}^{17}\ag^{k} = \frac{1 - \ag^{18}}{1 - \ag}$, אך נבחין שמכאן מתקיי םש־$\sum_{n = -N}^{N}\ag^{k} = \frac{\ag^{-N} + \ag^{N + 1}}{-\ag}$, פשוט מהזזת הטור. }
+	
+	\begin{Lemma}[נוסחה מפורשת של גרעין פייר]
+		\[ F_N(y) = \frac{1}{N + 1}\sum_{n= 0}^{N}D_n(y) \seq \frac{1}{N + 1} \cl{\frac{\sin \cl{\frac{N + 1}{2} y}}{\sin(\frac{1}{2}y)}}^{2} \]
+	\end{Lemma}\begin{proof}
+		\[ \begin{WithArrows}
+			F_n(y) &= \frac{1}{N + 1}\sum_{n = 0}^{N}\underbrace{\sum_{m = -n}^{n} e^{imy}}_{D_n(y)} \Arrow[ll]{טריק: קיבוץ איברים}\\ 
+			&= \frac{1}{N + 1}\sum_{m = -N}^{N}(N _ 1 - \sof{m})e^{imy} \Arrow[ll]{טריק 2 שנראה בהמשך}\\
+			&= \frac{1}{N + 1} e^{iNy}\cl{\sum_{k = }^{N}e^{iky}}^{2} \Arrow[ll]{סכום הנדסי} \\
+			&= \frac{e^{-iNy}}{N + 1}\cl{\frac{1 -e^{(i(N + 1)y)}}{1 - e^{iy}}}^{2} \\
+			&= \frac{1}{N + 1} \cdot \cl{\frac{e^{-i\frac{N}{2}y}\cl{e^{i(N + 1)y} - 1} \cdot e^{-i\frac{y}{2}}}{\cl{e^{iy} - 1} \cdot e^{-i\frac{y}{2}}}}^{2} \Arrow[ll]{נכניס את $\,\!^{-iNy}e$ לתוך הריבוע} \\
+			&= \frac{1}{N  + 1} \cdot \cl{\frac{e^{\frac{N + 1}{2}y} - e^{-i\frac{N + 1}{2}y}}{e^{i\frac{y}{2}} - e^{-i\frac{y}{2}}}}^{2} \Arrow{$i\sinx = \sinh x$} \\
+			&= \frac{1}{N + 1} \cdot \cl{\frac{\cancel{2i} \sin\cl{\frac{N + 1}{2}y}}{\cancel{2i} \sin \cl{\frac{1}{2}y}}}
+		\end{WithArrows} \]
+		זאת בעבור $y \neq 0$ (השתמשנו בנוסחה של קריטריון דיריכלה). כאשר $y = 0$ נקבל ש־:
+		\[ F_N(0) = \frac{1}{N + 1}\sum_{n = 0}^{N} 2n + 1 = \frac{1}{N + 1} \cl{N(N + 1) + (N + 1)} = \frac{(N + 1)^{2}}{N + 1} = N + 1 \]
+		
+		נותר לנו להוכיח את טריק 2. 
+		\[ \cl{\sum_{k = 0}^{N}e^{iky}}\cl{\sum_{\ml = 0}^{N}e^{i\ml y}} \quad = \sum_{\mathclap{k, \ml \ \mathrm{s.t. }\ k, \ml \in [N]}}e^{i(k + \ml)y} = \sum_{n = -N}^{N}\cl{N + 1 - \sof m}e^{i(N + m)y} = e^{iNy}\sum_{m = -N}^{N}\cl{N + 1 - \sof m}e^{imy} \]
+		זה נובע גם משינוי סדר סכימה. 
+	\end{proof}
+	\textbf{בדיקת שפיות ל־$\bm{y = 0}$: }[טיילור]
+	\[ \lim_{y \to 0}\frac{1}{N + 1}\cdot \frac{\sin \frac{N + 1}{2}y}{\sin \frac{1}{2}y} = \lim_{y \to 0}\frac{1}{N + 1}\cl{\frac{\frac{N + 1}{\cancel 2}\cancel y}{\cancel{\frac{1}{2}y}}} = \lim_{y \to 0}\frac{(N + 1)^{2}}{N + 1} = N + 1 \]
+	
+	נרצה לשאול את עצמנו מיהם מקדמי הפורייה של הגרעינים שלנו. נבחין מהנוסחה המפורשת שלנו ש־: 
+	\begin{align*}
+		\widehat{D_n}(n) = \begin{cases}
+			1 & \sof n \le N \\
+			0 & \sof n > N
+		\end{cases} && \widehat{F_n}(m) = \begin{cases}
+			\disty \frac{1}{N + 1}\cl{N + 1 - \sof m} = 1 - \frac{\sof m}{N + 1} & \sof m \le N \\
+			0 & \sof m > N
+		\end{cases}
+	\end{align*}
+	מכאן, באופן ישיר האינטגרל המנורמל יהיה: 
+	\begin{alignat*}{9}
+		\frac{1}{2\pi}\int^{\pi}_{-\pi} \dequad D_n (y) \,\dd y &&= \widehat{D_n}(0) &&= 1 \\
+		\frac{1}{2\pi}\int^{\pi}_{-\pi} \dequad F_n (y) \,\dd y &&= \widehat{F_n}(0) &&= 1
+	\end{alignat*}
+	עוד נבחין ש־$D_N, F_N$ ממשיות וזוגיות. אפילו $F_N \ge 0$. 
+	
+	עתה נוכיח ש''גרעין פייר מרוכז סביב $y = 0$``. למה הכוונה? שבקטע בין $-\pi$ עד $\pi$ ערכה גודל באיזור $0$ ככל ש־$N$ גודל. פורמלית, נראה שלכל $\dg$ מתקיים: 
+	\[ 0 \le \frac{1}{2\pi} \int_{\dg \le \sof y \le \pi }\dequad\dequad F_N(y) \, \dd y \rrr{N \to \infty} 0 \]
+	\rmark{הכוונה היא: 
+	\[ \int_{\dg \le \sof y \le \pi }\dequad\dequad F_N(y) \, \dd y \cod \frac{1}{2\pi}\int^{-\dg}_{-\pi}\dequad F_N(y) \, \dd y  + \frac{1}{2\pi}\int^{\pi}_\dg \dequad \ F_N(y)\, \dd y \]}
+	\begin{proof}
+		נוכיח זאת באמצעות הנוסחה המפורשת. 
+		\[ F_N(y) = \frac{1}{N + 1}\cl{\frac{\sin\cl{\frac{N + 1}{2}y}}{\sin\cl{\frac{1}{2}y}}}^{2} \le \frac{1}{N + 1} \cdot \frac{1}{\sin \frac{\dg}{2}}^{2} \rrt{u}{N \to \infty} 0 \] 
+		השאיפה במ''ש בתחום $[-\pi, -\dg] \cup [\dg, \pi]$. משום שיש שאיפה לאפס במ''ש, גם האינטגרל שואף לאפס כנדרש. 
+	\end{proof}
+	
+	\begin{Theorem}[משפט פייר]
+		עבור $f \in C(\tb)$, מתקיים ש־: 
+		\[ \sg_Nf \rrt{u}{N \to \infty}f \]
+		במ''ש. 
+	\end{Theorem}
+	\begin{proof}
+		יהי $\eg > 0$ כלשהו. $f$ רציפה ומחזורית ולכן חסומה\footnote{תמונה קומפקטית של $S_1$ היא קומפקטית, וקבוצה קומפקטית היא חסומה (בפרט התמונה). אפשר גם להשתמש במשפט קנטור. } ורבמ''שית. נסמן את חסמה ב־$N = \max \sof f$. נבחר $\hat \eg = ? $ בהמשך. נבחר $N_0$ כך שלכל $N  > N_0$, מתקיים ש־$\frac{1}{2\pi} \int_{\dg \le \sof y \le \pi }\dequad\dequad F_N(y) \, \dd y < \hat \eg$. 
+		
+		יהי $N > N_0$. לכל $x \in \R$, מתקיים ש־: 
+		\begin{multline*}
+			\sof{\sg_N f(x) - f(x)} = \sof{(F_n * f)(x) - f(x)} = \Bigg\vert{\frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad F_N(t)f(x - t)\dt - {\underbrace{\cl{\frac{1}{2\pi} F_N(t)\dt}}_{1}}f(x)}\Bigg\vert \\
+			= \sof{\frac{1}{2\pi} \int^{\pi}_{-\pi} F_N(t)\cl{f(x - t) - f(x)}\dx} \le \frac{1}{2\pi}\int^{\pi}_{-\pi}F_N(t)\sof{f(x - t) - f(x)}\dt 
+			= \frac{1}{2\pi}\int^{\dg}_{-\dg} \cdots_1 + \frac{1}{2\pi}\int_{\dg \le \sof t \le \pi} \cdots_2 = \cdots_3
+		\end{multline*}
+		האינטגרל הראשון: 
+		\[ \frac{1}{2\pi}\int^{\dg}_{-\dg}F_N(t)\underbrace{\sof{f(x - t)  - f(x)}}_{\le \hat \eg}\dt \le \hat \eg \underbrace{\frac{1}{2\pi}\int^{\dg}_{-\dg}F_N(t)\dt }_{1} = \hat \eg \]
+		והשני: 
+		\[ 0 \le \frac{1}{2\pi}\int_{\dg \le \sof t \le \pi}\dequad\dequad F_N(t) \cdot \underbrace{\sof{f(x - t) - f(x)}}_{\le 2M}\dt \le 2M \cdot \frac{1}{2\pi} \underbrace{\int_{\dg \le \sof t \le \dg}\dequad\dequad F_N(t)\dt}_{\le \hat \eg} \le 2M \hat \eg \]
+		ואז: 
+		\[ \sof{(\sg_Nf)(x) - f(x)} \le \cdots_3 \le \hat \eg + 2M \hat \eg = (1 + 2M)\hat \eg < \eg \]
+		סה''כ נבחר בדיעבד $\hat \eg = \frac{\eg}{2 + 2M}$ וסיימנו. 
+	\end{proof}
+	
+	
+	
+	\ndoc
+\end{document}

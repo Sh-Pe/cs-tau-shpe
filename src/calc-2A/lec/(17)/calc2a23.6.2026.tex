@@ -3,12 +3,12 @@
 \usepackage{../../../../tex/packages/mathShortcuts}
 \usepackage{../../../../tex/packages/theoremsSupport}
 
-\newcommand\tb{\mathbb{T}}
 \newcommand\uni{\overset{u}{\to}}
 
 
 \author{שחר פרץ}
 \title{חדו''א 2א $\sim$ \textit{הרצאה 17}}
+\date{23 ליוני 2026}
 \begin{document}
 	\maketitle
 	\textbf{מרצה: }יעל קרשון
@@ -17,7 +17,7 @@
 		\begin{enumerate}
 			\item רשמו ניסוח של קריטריון דיריכלה להתכנסות במ''ש עבור טור $\sumkinf a_k(t)b_k(t)$. 
 			\item עבור $f, g \in R([a, b])$ ניתן להגדיר: 
-			\[ \norm{f} = \cl{\int^{b}_a \sof{f(t)}^{2}\dt}^{\frac{1}{2}} \quad\quad \mut{f}{g} = \int^{b}_a f(t)\ol{g(t)} \]
+			\[ \norm{f} = \cl{\int^{b}_a\dequad \ \sof{f(t)}^{2}\!\dt}^{\frac{1}{2}} \quad\quad \mut{f}{g} = \int^{b}_a \dequad\ f(t)\ol{g(t)} \]
 			רשמו ניסוח של א''ש קושי שוורץ ושל א''ש המשולש עבור ההגדרות הללו, במונחים של אינטגרלים. 
 			\item מצאו נוסחה מפורשת לפונקציה $g \co [a, b] \to \C$ מהצורה $g(t) = \ag t + \bg$ שמקיימת $g(a) = A \land g(b)= B$ עבור $a, b \in \C$ נתונים. רמז: 
 			\[ g((1 - \lg)a + \lg b) = (1 - \lg)A  +\lg B \]
@@ -48,9 +48,12 @@
 	\begin{Exercise}[קל]
 		הוכיחו שגרסה 1 גוררת את גרסה 2. 
 	\end{Exercise}
-	משני המשפטים לעיל, נקבל מסקנה: 
-	\cola{כל פונקציה $f \in R(\tb)$ ניתן לקרב ב־$L_2$ ע''י פולינומים טריגונומטריים. נוכיח מסקנה זו בהמשך}
-	\rmark{שימו לב, שכרגע כמו בוויראשטראס לאו דווקא יש טור. ב־$L_2$ נבחין בהמשך שיש טור. }
+	\begin{itemize}
+		\item משני המשפטים לעיל, נקבל מסקנה: 
+		\cola{כל פונקציה $f \in R(\tb)$ ניתן לקרב ב־$L_2$ ע''י פולינומים טריגונומטריים. נוכיח מסקנה זו בהמשך. }
+		\rmark{שימו לב, שכרגע כמו בוויראשטראס לאו דווקא יש \textit{טור} שמקרב. ב־$L_2$ נבחין בהמשך שיש טור. }
+	\end{itemize}
+	עתה נפנה להוכחת המשפט השני. 
 	\begin{proof}[הוכחת המשפט ב־$\R$]
 		עבור $f \in R(\tb)$ עם ערכים ממשיים: יהי $\eg > 0$ כלשהו. תהי $M = \sup \sof{f}$ (קיים כי $f$ אינטגרבילית). יהי $\hat \eg = ?$ שנמצא בהמשך. מקריטריון קרבו המשופר קיימת חלוקה $\Pi \co 0 = x_0 < x_1 < \cdots < x_n = 2\pi$ כך ש־$\wg(f, \Pi) < \hat\eg$. נבחר חלוקה כזו. נסמן $\Delta x_j = x_j - x_{j - 1}$. נבנה $g \in C(\tb)$ כדלקמן: 
 		\begin{itemize}
@@ -82,7 +85,7 @@
 		עבור $\hat \eg = \frac{\pi}{1 + M}\eg$ שנבחר בדיעבד. 
 	\end{proof}
 	
-	באשר להוכחה בעבור $f \in R(\tb)$ עם ערכים מרוכבים: 
+	באשר להוכחת המשפט בעבור $f \in R(\tb)$ עם ערכים מרוכבים, יש שתי גישות להוכחה: 
 	\begin{itemize}
 		\item אפשר לנסח ולהוכיח (בלי בעיה) קריטריון דרבו משופר עבור פונקציות  חסומות) עם ערכים מרוכבים, ואז ההוכחה תהיה זהה, כאשר תנודה מוגדרת להיות: 
 		\[ \wg(f, J) = \sup_{\mathclap{x, y \in J}}\sof{f(x) - f(y)} \]
@@ -91,7 +94,7 @@
 	
 	נזכר במסקנה משילוב המשפט שהוכחנו במשפט שנוכיח בשיעור הבא, לפיה כל $f \in R(\tb)$ ניתן לקרב ב־$L_2$ ע''י פולינומים טריגונומטריים. נוכיחה. 
 	\begin{proof}
-		לכל $\eg > 0$ ופונקציה $f \in R(\tb)$, מהמשפט שהוכחנו קיימת $g \in C(\tb)$ כך ש־$\sof{f - g} < \frac{\eg}{2}$. ממשפט Fejer קיים פולינו טריגונומטרי $P$ כך ש־
+		לכל $\eg > 0$ ופונקציה $f \in R(\tb)$, מהמשפט שהוכחנו קיימת $g \in C(\tb)$ כך ש־$\sof{f - g} < \frac{\eg}{2}$. ממשפט Fejer שנוכיח בהרצאה הבאה קיים פולינום טריגונומטרי $P$ כך ש־
 		\[ \max_{t \in [0,2\pi]} \sof{g(t) - P(t)} < \frac{\eg}{2} \]
 		נחבר ונקבל ש־: 
 		\[ \norm{f - P} \le \norm{f - g} + \norm{g - P} = \frac{\eg}{2} + \frac{\eg}{2} < \eg \]
@@ -106,10 +109,10 @@
 	\begin{proof}
 		מהמסקנה הקודמת, קיים פולינום טריגונומטרי $P$ כך ש־$\norm{f - P} < \eg$. נבחר $P$ כזה. תהי $N$ דרגתו. יהי $n < N$. אז: 
 		\[ \begin{WithArrows}
-			\eg ^{2} > \norm{f -P}^{2} &= \norm{\quad\underbrace{f - S_n f}_{\mathclap{\text{הזנב בקירוב פורייה}}} + \overbrace{S_n f - P}^{\mathclap{\text{פולינום טריגונומטרי מסתורי מדרגה $\ge n$}}}\quad\quad\quad\quad}^{2} \Arrow{פיתגורס} \\
+			\eg ^{2} > \norm{f -P}^{2} &= \norm{\quad\underbrace{f - S_n f}_{\mathclap{\text{הזנב בקירוב פורייה}}} + \overbrace{S_n f - P}^{\mathclap{\text{פולינום טריגונומטרי מסתורי מדרגה $\ge n$}}}\quad\quad\quad\quad}^{2} \Arrow[up]{פיתגורס} \\
 			&= \norm{f - S_nf}^{2} + \norm{S_n f - P}^{2} \ge \norm{f - S_n f}^{2}
 		\end{WithArrows} \]
-		למה $(f - S_nf) \perp (S_nf - P)$? כי הראנו שהזנב של פורייה מאונך למרחב הפולינומים הטריגונומטריים מדרגות קטנות יותר. סה''כ $\norm{S_n - f} < \eg$ ומהגדרה $\norm{S_n - f} \to 0$ לפי $L_2$ כלומר $S_n \to f$ לפי $L_2$ כנדרש. 
+		למה $(f - S_nf) \perp (S_nf - P)$? כי הראנו שהזנב של פורייה מאונך למרחב הפולינומים הטריגונומטריים מדרגות קטנות יותר (זה כי $S_n$ היטל). סה''כ $\norm{S_n - f} < \eg$ ומהגדרה $\norm{S_n - f} \to 0$ לפי $L_2$ כלומר $S_n \to f$ לפי $L_2$ כנדרש. 
 	\end{proof}
 	
 	\textbf{תזכורת: }א''ש בזל עבור $f \in R(\tb)$ אומר ש־$\sum_{n = -\infty}^{\infty} \sof{\hat f(n)}^{2} \le \norm f$. 

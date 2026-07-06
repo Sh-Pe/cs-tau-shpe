@@ -3,10 +3,10 @@
 \usepackage{../../../../tex/packages/mathShortcuts}
 \usepackage{../../../../tex/packages/theoremsSupport}
 
-\newcommand\tb{\mathbb{T}}
 
 \author{שחר פרץ}
 \title{חדו''א 2א $\sim$ \textit{הרצאה 15}}
+\date{16 ביוני 2026}
 \begin{document}
 	\maketitle
 	\textbf{מרצה: }יעל קרשון
@@ -73,32 +73,35 @@
 	זה מסיים את \shiri{6.1} (הרחבנו יותר ממה שכתוב. נרחיב יותר גם כאשר נדבר על מרחבים מטריים). 
 	
 	\subsection*{פונקציות מחזוריות}
-	אצל שירי, \shiri{6.2}. לפני שבועיים הגדרנו $\tb = \R/_{2 \pi \Z}$. נזרוק כמה הגדרות: 
+	אצל שירי, \shiri{6.2}. לפני שבועיים הגדרנו $\tb = \R/_{2 \pi \Z}$. נזרוק כמה הגדרות\footnote{טופולוגית, $C(\tb)$ היא קבוצת הפונקציות הרציפות מ־$\tb \cong S_1$ ל־$\R$. }: 
 	
 	\[ C(\tb) := \ccb{f \co \R \to \C \mid \forall x\co f(x + 2\pi) = f(x) \land \text{רציפה}\ f} \]
 	\[ R(\tb) := \ccb{f \co \R \to \C \mid \forall x\co  f(x + 2\pi) = f(x) \land \text{אינטגרבילית רימן} \ f_{[0, 2\pi]}} \]
 	\exe{הפונקציה $t \mapsto e^{i\ag t} = \cos(\ag t) + i \sin(\ag t), \ \ag \in \R$, פונקציה עם מחזור $2 \pi$ אמ''מ $\ag \in \Z$ (דיברנו על זה קודם). }
-	\defi{הפונקציה $f(t) = \sum_{n = -N}^{N}c_ne^{i nt}$ כאשר $N \in \Z_{\ge 0}$, ו־$\forall n \co c_n \in \C$, אז $f$ כזו נקראת \textit{פולינום טריגונומטרי מדרגה $\ge N$}}
+	\defi{הפונקציה $f(t) = \sum_{n = -N}^{N}c_ne^{i nt}$ כאשר $N \in \Z_{\ge 0}$, ו־$\forall n \co c_n \in \C$, אז $f$ כזו נקראת \textit{פולינום טריגונומטרי מדרגה $ N\ge$}}
 	
 	\cola{נבחין שהקבוצה: 
 	\[ \ccb{f \co \R\to \C \mid \forall x \co f(x) + 2\pi} = f(x) \]
 	עם הפעולות: 
-	\[ (f + g)(t) = g(t) + f(t) \land (\lg f)(t) = \lg f(t) \quad (\lg \in \C) \]}
+	\[ (f + g)(t) = g(t) + f(t) \land (\lg f)(t) = \lg f(t) \quad (\lg \in \C) \]
+	היא מרחב וקטורי. }
 	\exe{המרחבים הבאים הם תתי־מרחבים וקטוריים שלו: 
 	\begin{enumerate}
 		\item $C(\tb)$
 		\item $R(\tb)$
 		\item לכל $N$:
-		\[ \ccb{\sum^{N}_{n = -N}c_ne^{int} \mid n, c_n \in \C}  = \ccb{n \ge \text{פולינום טריגונומטריים מדרגה}} \]
+		\[ \ccb{\sum^{N}_{n = -N}c_ne^{int} \mid n, c_n \in \C}  = \ccb{N \ge \text{פולינום טריגונומטריים מדרגה}} \]
 	\end{enumerate}}
-	יתרה מכך, נבחין ש־$3$ (מרחב הפולינום הטריגונומטריים מדרגה לכל היותר $n$) נפרש ע''י: 
+	יתרה מכך, נבחין ש־$3$ (מרחב הפולינום הטריגונומטריים מדרגה לכל היותר $N$) נפרש ע''י: 
 	\lem{\[ \Sp_\C\cl{\ccb{e^{int} \mid -N \le n \le N}} \seq \Sp_\C\cl{\{1\} \cup \{\cos nt\}_{n = 1}^{N} \cup \ccb{\sin t}_{n = 1}^{N}} \]}
 	\begin{proof}
 		העובדה שמרחב הפולינומיים הטריגונומטריים שווה לאגף שמאל טרוויאלית. השוויון $\seq$ פחות, וכדי להוכיח את $\seq$ נראה הכלה דו־כיוונית. 
 		\begin{itemize}
 			\item[$\subset$]נובע ישירות מ־$e^{i\pm nt} = \cos nt \pm i\sin nt$ לכל $1 \le n \le N$. 
 			\item[$\supset$]נובע ישירות מ־:
-			\[ \cos nt = \frac{e^{int} - e^{-int}}{2} \quad\quad \sin nt = \frac{e^{int} - e^{-int}}{2i} \]
+			\begin{align*}
+				\cos nt = \cosh(ix) = \frac{e^{int} + e^{-int}}{2} && \sin nt = \frac{\sinh(ix)}{i} = \frac{e^{int} - e^{-int}}{2i}
+			\end{align*}
 		\end{itemize}
 	\end{proof}
 	
@@ -128,7 +131,6 @@
 	\begin{proof}
 		בלינארית 2א
 	\end{proof}
-	x
 	
 	
 	\ndoc

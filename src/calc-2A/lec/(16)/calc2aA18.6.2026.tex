@@ -3,12 +3,12 @@
 \usepackage{../../../../tex/packages/mathShortcuts}
 \usepackage{../../../../tex/packages/theoremsSupport}
 
-\newcommand\tb{\mathbb{T}}
 \newcommand\uni{\overset{u}{\to}}
 
 
 \author{שחר פרץ}
 \title{חדו''א 2א $\sim$ \textit{הרצאה 16}}
+\date{18 ליוני 2026}
 \begin{document}
 	\maketitle
 	\textbf{מרצה: }יעל קרשון
@@ -55,25 +55,24 @@
 		אכן מתקיים, לכל $p$ פולינום טריגונומטרי, ממשפט פיתגורס:
 		\[ \norm{f - p} = \norm{(f - S_nf) + (S_n - p)}^{2} = \norm{f - S_n}^{2} + \underbrace{\norm{S_n - f}^{2}}_{\ge 0} > \norm{f - S_nf}^{2} \]
 	\end{proof}
-	\rmark{זוהי מסקנה יותר כללית מלינארית א2 שנכונה לכל מכפלה פנימית. }
+	\rmark{זוהי מסקנה יותר כללית מלינארית א2 שנכונה להיטלים במרחב מכפלה פנימי. }
 	\rmark{מרחב הפולינומים הטריגונומטריים מכל מעלה צפוף ב־$R(\tb)$ ביחס לנורמת $L_2$. }
 	\defi{עבור $f, f_n \in R(\tb)$, נאמר ש־$f_n \rrr{L_2} f$ (''\textit{התכנסות $L_2$}``, ''\textit{התכנסות ב־$L_2$}``, ''\textit{התכנסות בנורמת $L_2$}``) באמצעות: 
 	\[ \lim_{n \to \infty}\norm{f_n - f}_{L_2} = 0 \]}
-	\rmark{שימו לב שזהו מרחב מטרי, ולכן הוא first countable (מקיים $C_1$). זה למה בכלל יש פואנטה לדבר על סדרות. }
 	\rmark{לא משתמשים ב־$L_\infty$ בקורס. }
 	\defi{בהינתן $f_n, f \in \tb$, אם $\max_{t \in [0, 2\pi]}\sof{f_n(t) - f(t)} \toinf 0$ אז $f_n \to f$ במ''ש. }
 	\lem{הטענה לעיל שקולה לכך ש־$\Re f_n \uni \Im f$ במ''ש וגם $\Im f_n \uni \Im f$ במ''ש. }
-	\rmark{ראשית נבחין שהתכנסות במ''ש של פונקציות מרוכבות לא תלויה בנורמה שאנו עובדים איתה, ושנית נבחין שזה שקול לשימוש ב־$L_\infty$}
-	\lem{נתונה $f_n \to f \in C(\tb) \subset R(\tb)$. נניח $f_n \toinf f$, רז $f_n \to f$ ב־$L_2$. }
+	\rmark{ראשית נבחין שהתכנסות במ''ש של פונקציות מרוכבות לא תלויה בנורמה שאנו עובדים איתה, ושנית נבחין שזה שקול לשימוש ב־$L_\infty$. }
+	\lem{נתונה $f_n \to f \in C(\tb) \subset R(\tb)$. נניח $f_n \toinf f$, אז $f_n \to f$ ב־$L_2$. }
 	\begin{proof}
 		''ההוכחה קלה``
 		\[ \norm{f_n - f}^{2} = \frac{1}{2\pi}\int^{2\pi}_0 \dequad \ \underbrace{\sof{f_n(t) - f(t)}^{2}}_{\le \max\sof{f_n - f}^{2}}\dt \le \frac{1}{2\pi} \cdot 2 \pi \cdot \max\sof{f_n -f}^{2} \toinf 0 \]
 	\end{proof}
 	נסכם: יש לנו שלושה מובנים של שאיפה. 
 	\begin{itemize}
-		\item שאיפה נקודתית
-		\item שאיפה במ''ש
-		\item שאיפה ב־$L_2$
+		\item שאיפה במ''ש\footnote{שקול לשאיפה במובן $L_\infty$, שכמובן משרה טופולוגיה. }, שגוררת שאיפה נקודתית. 
+		\item שאיפה נקודתית\footnote{שקול לשאיפה בטופולוגית המכפלה, Tychonoff Topology. }, שגוררת שאיפה ב־$L_2$
+		\item שאיפה ב־$L_2$\footnote{אפשר לנסח את הגרירות האלו בכך ש־$L_2$ משרה את הטופולוגיה הגסה ביותר, בעוד טופולוגיית המכפלה עדינה יותר, ו־$L_\infty$ עדינה אף יותר. }. 
 	\end{itemize}
 	\textbf{השאלה המרכזית: }בהינתן $f \in R(\tb)$, האם $S_nf \to f$ נקודתית? במ''ש? ב־$L_2$? 
 	\exe{
@@ -117,9 +116,9 @@
 	\end{proof}
 	\rmark{זו תכונה אופיינית להיטלים. }
 	\cola{נתונה $f \in R(\tb)$. אז $\sum_{n = -\infty}^{\infty}\norm{\hat f(n)}^{2}$ מתכנס. }
-	\rmark{שימו לב שאיברי הטור אי־שליליים ולכן סדר הסכימה אינו משנה. }\begin{proof}
-		לכל $N_1, N_2$ מתקיים: 
-		\[ \sum_{n = -N_1}^{N_2}\sof{\hat f(n)}^{2} \le \sum_{n = -N}^{N} \seq \norm{S_Nf}^{2} \overset{*}{\le} \norm{f} \]
+	\rmark{שימו לב שאיברי הטור אי־שליליים ולכן סדר הסכימה אינו משנה. }\begin{proof}נוכיח באמצעות קריטריון קושי. 
+		לכל $N_1, N_2$ ו־$N = \min\{N_1, N_2\}$ מתקיים: 
+		\[ \sum_{\mathclap{n = -N_1}}^{N_2}\sof{\hat f(n)}^{2} \le \sum_{\mathclap{n = -N}}^{N}\sof{\hat f(n)}^{2} \seq \norm{S_Nf}^{2} \overset{*}{\le} \norm{f} \]
 		כאשר $\overset{*}{\le}$ נובע מבזל, ו־$\seq$ נכון כי: 
 		\[ S_f = \sum_{n = -N}^{N}a_ne^{int} \]
 		ולכן: 

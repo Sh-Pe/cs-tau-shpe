@@ -18,9 +18,9 @@
 %  
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{enMegasumPreamble}[preamble for megasums in English]
-\LoadClassWithOptions{book}
-\PassOptionsToClass{a4paper}{book}
+\ProvidesClass{noChapterMegasumPreamble}[preamble for megasums]
+\LoadClassWithOptions{article}
+\PassOptionsToClass{a4paper}{article}
 
 %! ~~~ LaTeX stuff ~~~
 \RequirePackage {          % Internal Latex
@@ -70,23 +70,20 @@
 		% Titles
 			\titleformat{\section}       [block]
 				{\fontsize{15}{15}}
-				{\dotfill \huge \bfseries\thesection}
+				{\sen \dotfill \huge \bfseries\thesection \she}
 				{0em}
 				{}
 			\titleformat{\subsection}    [block]
 				{\large\itshape}
-				{\normalfont\Large\bfseries{{\thesubsection}} \,\,$\sim$\,\,}
+				{\normalfont\Large\bfseries\en{{\thesubsection}} \,\,$\sim$\,\,}
 				{0em}
 				{}
 			\titleformat{\subsubsection} [block]
 				{\normalsize\bfseries}
-				{\normalfont\large\bfseries{{(\thesubsubsection)}}}
+				{\normalfont\large\bfseries\en{{(\thesubsubsection)}}}
 				{0.5em}
 				{}
 			\setcounter{secnumdepth}{3} % enable subsubsection
-			
-			\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{} % disable double pages
-			\newcommand\npchapter[1] {\chapter[#1]{\textit{#1}}\thispagestyle{empty}\newpage}
 			
 		% Defaults
 			\renewcommand \le{\leqslant}
@@ -104,7 +101,7 @@
 			\pagestyle{fancy}
 			\fancyhead[C]{\textit{\textbf{\@document@name}}}
 			\fancyhead[L,R]{}
-			\fancyfoot[R]{\textit{Shahar Perets, 2026}\, {{\Large({\thepage})}}}
+			\fancyfoot[R]{\textit{שחר פרץ, 2026}\, \en{{\Large({\thepage})}}}
 			\fancyfoot[L]{\textit{\rightmark}}
 			\fancyfoot[C]{}
 			\renewcommand{\headrule}{\vspace{-7pt}\hfil\rule{200pt}{1pt}}
