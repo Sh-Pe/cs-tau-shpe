@@ -114,10 +114,7 @@
 			\renewcommand{\cftsubsecleader}    {\cftdotfill{\cftsecdotsep}} % fix this
 			\renewcommand{\cftsubsubsecleader} {\cftdotfill{\cftsecdotsep}}
 		% Theorems
-			\RequirePackage[usenames]{color}
-			\RequirePackage{amsthm}
 			\RequirePackage{xcolor}
-
 			\definecolor{myblue}      {rgb} {0.2,0.35,0.7}
 			\definecolor{mygreen}     {rgb} {0.15,0.65,0.35}
 			\definecolor{myyellow}    {rgb} {0.0,0.4,0.5}
