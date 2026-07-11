@@ -1,0 +1,459 @@
+%  TOPOLOGY SUMMARY ~ 2025B ~ by Shahar Perets ~ original .TeX
+%  file ~ compile with LuaLaTeX
+% 
+%  Copyright (C) 2025  Shahar Perets
+%  
+%  This program is free software: you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation, either version 3 of the License, or   
+%  (at your option) any later version.                                 
+%  
+%  This program is distributed in the hope that it will be useful,     
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of      
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the       
+%  GNU General Public License for more details.                        
+%  
+%  You should have received a copy of the GNU General Public License     
+%  along with this program.  If not, see https://www.gnu.org/licenses/.
+%  
+
+%! ~~~ Packages Setup ~~~ 
+\documentclass[name=רשימות טופולוגיה]{../../../tex/classes/noChapterMegasumPreamble}
+\usepackage{../../../tex/packages/mathShortcuts}
+\usepackage{../../../tex/packages/hebrewSupport}
+
+\usepackage{tikz-cd}
+\usetikzlibrary{cd}
+
+
+\newcommand\qq  {(\mathrm{1})}
+\newcommand\ww  {(\mathrm{2})}
+\newcommand\ee  {(\mathrm{3})}
+\newcommand\rr  {(\mathrm{4})}
+\newcommand\ttt {(\mathrm{5})}
+
+%! ~~~ Document ~~~
+\author{שחר פרץ}
+\title{\name}
+\date{2025 סמסטר ב'}
+\begin{document}
+	\renewcommand{\footrule}{\rule{\linewidth-19pt}{0.25pt}\vspace{-5pt}}
+%	\renewcommand{\footrule}{\rule{\linewidth-26pt}{0.25pt}\vspace{-5pt}}
+	\firstPage{2026B}
+	
+	\newpage
+	
+%		\hfil \textit{גרסה 1.3.1}
+	
+	\hfil \textit{תאריך קימפול: \today}
+	
+	\setcounter{section}{-1}	
+	\section[מבוא למבוא]{\en{Introduction to the Introduction}}
+	\subsection[רישיון]{License $\sim$ רישיון}
+	\en{The following summary is provided under the GNU General Public License version 3 (GPLv3). It can be distributed and/or modified under the terms of the license, or any later version of it. Additional information can be found \href{https://www.gnu.org/licenses}{here}. }
+			הסיכום להלן מסופק תחת רשיון התוכנה החופשית של גנו גרסה 3 (GNU General Public License (GPL) version 3). ניתן להעתיקו ו/או להפיצו תחת GPLv3 או גרסה מאוחרת יותר. מידע נוסף אפשר למצוא \href{https://www.gnu.org/licenses}{כאן}. 
+		
+	\subsection{הרבה מילים שאפשר לדלג עליהן}
+	הסיכום להלן נכתב כתרגיל כדי לוודא שאני יודע את החומר של טופולוגיה, שלמדתי עצמאית. הוא נועד לספק ידע נוסף אל מעבר לקורס של טופולוגיה באוניברסיטת תל־אביב. יש להבהיר שהסיכום עוסק בטופולוגיה כללית (אנ' \textit{general topology} או \textit{point-set topology}) ו\textbf{לא} עוסק בטופולוגיה אלגברית (אנ' \textit{algebraic topology}), טופולוגיה גיאומטרית (אנ' geometric topology) או באנליזה על יריעות ובגיאומטריה דיפרנציאלית (אנ' \textit{differential geometry}). עם זאת, הוא כן (אמור) לספק בסיס יציב לנושאים הללו. 
+		
+%		\hfill שחר פרץ, 19.7.2025
+	
+	
+	\color{red}\textbf{אזהרה. }\color{black}הסיכום נכתב לבד, וההוכחות בו הוכחות שלי. ייתכן ואף סביר שהוא יכיל טעויות. 
+	
+	\subsection{סימונים}		בסיכום הבא נניח את הסימונים הבאים: 
+		\begin{itemize}
+		\item \hfil $[n] \cod \N \cap [0, n]$
+		\item \hfil $\subset \; \cod \; \subseteq$
+	\end{itemize}
+	
+	\subsection{רשימת נושאים שהוספתי לסיכום נוסף על החומר של הקורס}
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item התכנסות רשתות
+			\item קומפקטיפיקצית סטון־צ'ך
+			\item מרחבי \Tt ו־\Ty. 
+			\item טופולוגיה חלשה וחזקה
+			\item משפט הקטגוריה של בייר
+			\item טופולוגיה חלשה וחזקה
+			\item קבוצת קנטור
+			\item הומוטופיה
+		\end{itemize}
+	\end{multicols}
+	נוסף על כך, חלק ניכר מהעיסוק במרחבים מטריים שמובא בסיכום הזה נלמד בחדו''א 2א, ולא בקורס ''טופולוגיה``. 
+	
+	
+	
+	\newpage
+	\setcounter{tocdepth}{3} % show subsubsections
+	\tableofcontents
+	
+	%	\listoftheorems
+	
+	\middleText{\textit{בתיאבון}}
+	
+	
+	\section[מרחבים מטריים]{\en{Metric Spaces}}
+	TODO!
+	\subsection{טופולוגיה של מרחב מטרי}
+	\subsection{משפט ההשלמה}
+	\subsection{ארצלה־אסכולי}
+	\subsection{רציפות}
+	
+	
+	\npage
+	\section[מבוא]{\en{Introduction}}
+	\subsection{מרחבים טופולוגיים}
+	\subsubsection{הגדרה}
+	\defi{יהיו $X$ ו־$\tau \subset \ps(X)$ קבוצות. נאמר ש־$(X, \tau)$ \textit{טופולוגיה על המרחב $X$} אם $\tau$ מקיים את התכונות הבאות: 
+	\begin{itemize}
+		\item \textbf{סגירות לאיחוד: }לכל $\UU\subset X$ משפחה של קבוצות, מתקיים ש־: 
+		\[ \bigcup_{\mathclap{U \in \UU}}U \in \tau \]
+		\item \textbf{סגירות לחיתוך סופי: }לכל $U_1 \dots U_n \subset X$ משפחה סופית של קבוצות ב־$\tau$, מתקיים ש־: 
+		\[ \bigcap_{i = 1}^{n} U_I \in \tau \]
+		\item \textbf{מכיל את המרחב הטרוויאלי: }מתקיים ש־$\varnothing \in \tau$ וכן $X \in \tau$. 
+	\end{itemize}}
+	\defi{בהינתן מרחב טופולוגי $(X, \tau)$ נאמר על $U \subset X$ ש־$U$ \textit{קבוצה פתוחה} אם $U \in \tau$, ו־$U$ \textit{קבוצה סגורה} אם $\ol{U} \in \tau$. }
+	\rmark{אומנם המושגים של ''קבוצה פתוחה`` ו''קבוצה סגורה`` דואלים באיזשהו הבט, הם \textbf{אינם} סותרים אחד את השני. קיימות קבוצות שהן הן פתוחות והן סגורות (נבחין שבכל מרחב הקבוצה הריקה $\varnothing$ והמרחב כולו $X$ הן קבוצות כאלו) וקבוצות אלו יקראו \textit{סגוחות}. נבחן לעומק את הקבוצות הללו כאשר נדבר על קשירות. }
+	\clm{\label{theo:closedbehavior}חיתוך של קבוצות סגורות הוא סגור, וכן איחוד בן מנייה. }\begin{proof}
+		\begin{itemize}
+			\item יהי $\XX \subset \ps(X)$ אוסף בן־מנייה של קבוצות סגורות. אז לכל $U \in \XX$ מתקיים ש־$X \setminus U$ קבוצה פתוחה, ומהגדרת הטופולוגיה הקבוצה: 
+			\[ G \cod \bigcup_{\mathclap{U \in \XX}}X \setminus U \]
+			פתוחה גם היא. עוד נבחין, שמחוקי דה־מורגן: 
+			\[ X \setminus \bigcap \XX = X \setminus \bigcap_{\mathclap{U \in \XX}}U = \bigcup_{\mathclap{U \in \XX}}\cl{ X \setminus U} = G \]
+			ולכן המשלים של $\bigcup \XX$ פתוח, ומהגדרת קבוצה פתוחה, הוא סגור. 
+			\item ההוכחה בעבור איחוד בן־מנייה זהה; ראו אותה כתרגיל. 
+		\end{itemize}
+	\end{proof}
+	
+	\defi{יהיו $\tau_1, \tau_2$ טופולוגיות על $X$. אם $\tau_1 \subset \tau_2$, אז נאמר ש־$\tau_1$ \textit{חלשה}, \textit{קטנה}, ו\textit{גסה} יותר מ־$\tau_2$, ונאמר ש־$\tau_2$ \textit{חזקה}, \textit{גדולה} ו\textit{עדינה} יותר מ־$\tau_2$. }
+	\rmark{כל השמות האלו שקולים. באנגלית, $\tau_1$ היא coarser, weaker and smaller בעוד $\tau_2$ היא finer, stronger and larger. }
+	\cola{נבחין שיחס ההכלה יחס סדר חלש על קבוצת הטופולוגיות על $X$, כאשר טופולוגיה $\tau_1$ קטנה מ־$\tau_2$ אמ''מ $\tau_1$ חלשה יותר. }
+	\defi{נאמר ששתי טופולוגיות $\tau_1, \tau_2$ הן \textit{ברות השוואה} אם הן ברות השוואה ביחס הסדר של הטופולוגיות על $X$. }
+	\defi{תהי $X$ קבוצה. \textit{הטופולוגיה הדיסקרטית} היא $\tau = \ps(X)$. }
+	\lem{הטופולוגיה הדיסקרטית היא טופולוגיה, והיא הטופולוגיה המקסימלית (העדינה והחזקה ביותר) ביחס הסדר של הטופולוגיות על $X$. }
+	\defi{תהי $X$ קבוצה. \textit{הטופולוגיה הטרוויאלית} היא $\tau = \{\varnothing, X\}$. }
+	\lem{הטופולוגיה הטרוויאלית היא טופולוגיה, והיא הטופולוגיה המינימלית (הגסה והחזקה ביותר) ביחס הסדר של הטופולוגיות על $X$. }
+	\cola{קיים איבר מקסימלי ומינימלי ביחס הסדר על $X$. }
+	
+	\textbf{מעתה ואילך, }נניח כמת של ''יהי $X$ מרחב טופולוגי`` אלא אם מצוין אחרת. 
+	
+	\defi{יהיו $U \subset X$ ו־$x \in X$. נאמר ש־\textit{$U$ סביבה של $x_0$} אם קיימת $V \in \tau$ פתוחה כך ש‏$x_0 \in V \subset U$. }
+	
+	הקונספט של \textit{סביבה} מרחיב רעיון שאנחנו מכירים כבר מחדו''א 2א – דיברנו על סביבות כדוריות, ריבועיות וכו', אבל הבחנו שהקונספט של \textit{התכנסות} לא משתנה כאשר בוחרים סביבות ''מסוג אחר``. כדי לפרמל את הקונספט של ''סוגי סביבות``, נגדיר את המושג של \textit{מערכת סביבות}. 
+	
+	\defi{\textit{מערכת הסביבות של $x_0$} היא קבוצת כל הסביבות של $x_0$. }
+	\defi{\textit{בסיס למערכת סביבות של $x_0$} היא קבוצה $\UU \subset U$ המקיימת את התנאים הבאים: 
+	\begin{itemize}
+		\item כל $U \in \UU$ היא סביבה של $x_0$. 
+		\item לכל $V$ פתוחה, קיימת $U \in \UU$ כך ש־$U \subset V$. 
+	\end{itemize}}
+	\textbf{דוגמה. }נבחין שלכל $x \in X$ בטופולוגיה, קבוצת הקבוצות הפתוחות ש־$x$ נמצא בהן מהווה בסיס למערכת הסביבות של $x$. נקרא לו \textit{הבסיס הסטנדרטי למערכת הסביבות של $x$}, ואלא אם מצוין אחרת נשתמש בו. 
+	\defi{תהי $A \subset X$ קבוצה. אז $x_0 \in X$ יקרא \textit{נקודת הצטברות ב־$A$} אם לכל סביבה $U$ של $x$ מתקיים ש־$(U \cap A) \setminus \{x_0\} \neq \vn$. }
+	\rmark{לא כל נקודת הצטברות חייבת להיות ב־$A$. לדוגמה בעבור $A = \{\frac{1}{n} \mid n \in \N\}$ מתקיים ש־$0$ נקודת הצטברות. }
+	\clm{$x_0$ נקודת הצטברות ב־$A$ אמ''מ לכל $U \in \UU$ כאשר $\UU$ בסיס למערכת הסביבות של $x_0$, מתקיים ש־$(U \cap A) \setminus \{x_0\} \neq \vn$. }
+	\begin{proof}תהי $\UU$ בסיס למערכת הסביבות. 
+		\begin{itemize}
+			\item[$\implies$] אם $x_0$ נקודת הצטברות ב־$A$, אז כל $U \in \UU$ היא סביבה של $x_0$ ולכן בהכרח מהגדרת נקודת הצטברות $U \cap A \neq \{x_0\}$. 
+			\item[$\impliedby$] אם לכל $U \in \UU$ מתקיים התנאי לעיל, אז לכל $V$ סביבה של $x_0$ קיימת $U \in \UU$ כך ש־$U \subset V$ (מהגדרה), ומההנחה $(V \cap A) \setminus \{x_0\} \neq \vn$. משום ש־$V \subset U$ בבירור:
+			\[ (U \cap A) \setminus \{x_0\} \subset (V \cap A) \setminus \{x_0\} \neq \vn \]
+			כנדרש. 
+		\end{itemize}
+	\end{proof}
+	\noti{נסמן את קבוצת נקודות ההצטברות של $A$ ב־$A'$. }
+	\defi{בהינתן $A \subset X$ ו־$x_0 \in A$, $x_0$ יקרא \textit{נקודה מבודדת ב־$A$} אמ''מ קיימת סביבה $U$ של $x_0$ כך ש־$U \cap A = \{x_0\}$. }
+	\clm{יהי $\UU$ בסיס למערכת הסביבות. אז $x_0$ נקודה מבודדת אמ''מ לכל $U \in \UU$ מתקיים ש־$U \cap A \neq \{x_0\}$. }\begin{proof}יהי $\UU$ בסיס למערכת הסביבות של $U$. 
+		\begin{itemize}
+			\item[$\implies$]נניח ש־$x_0$ נקודה מבודדת. אז כל $U \in \UU$ גם הוא סביבה ולכן מקיים את הנדרש. 
+			\item[$\impliedby$]נניח ש־$\UU$ מקיים את התנאי הנדרש על $x_0$. אז לכל $U$ סביבה של $x_0$ קיימת $U \in \UU$ כך ש־$U \subset V$, וידוע $U \cap A \neq \{x_0\}$. משום ש־$x_0 \in U \cap A$ (שכן $x_0 \in U$ משום שהיא סביבה, ו־$x_0 \in A$ מההנחה) אז נסיק שאם $U \cap A \neq \{x_0\}$ בהכרח $V \cap A \neq \{x_0\}$ (שכנעו עצמכם בכך; נזכר כי $U \subset V$) וסיימנו. 
+		\end{itemize}\envendproof
+	\end{proof}
+	כאשר ברור על איזה בסיס למערכת הסביבות $\UU$ של $x$ מדובר, לעיתים נקרא ל־$U \in \UU$ \textit{סביבה בסיסית של $x$} או פשוט \textit{סביבה בסיסית}. 
+	\clm{\label{theo:closed-open-iffs}תהי $A \subset X$ קבוצה, ונניח שלכל נקודה $x \in X$ נקבע איזשהו בסיס למערכת הסביבות שלה (נסמנו ב־$\UU_x$). 
+	\begin{enumerate}
+		\item $A$ פתוחה אמ''מ לכל $x \in A$ ישנה סביבה $U$ של $x$ כך ש־$x \in U \subset A$. 
+		\item $A$ פתוחה אמ''מ לכל $x \in A$ ישנה סביבה בסיסית $U \in \UU_x$ כך ש־$x \in U \subset A$. 
+		\item $A$ סגורה אמ''מ לכל $x \notin A$ כל סביבה $U$ של $x$ כך ש־$U \cap A \neq \vn$. 
+		\item $A$ סגורה אמ''מ לכל $x \notin A$ כל סביבה בסיסית $U \in \UU_x$ של $x$ כך ש־$U \cap A \neq \vn$. 
+	\end{enumerate}}
+	\begin{proof}
+%		TODO
+	\end{proof}
+	
+	\defi{יהי $(X, \tau)$ מרחב טופולוגי. בהינתן $A \subset X$, נקרא ל־$(A, \tau')$ \textit{תת־המרחב של $X$ עם הטופולוגיה הרלטיבית} כאשר $\tau'$ מוגדר להיות:
+	\[ \tau' = \ccb{A \cap U \mid U \in \tau} \]}
+	\clm{הטופולוגיה הרלטיבית היא טופולוגיה על $A$. }\begin{proof}
+		\begin{itemize}
+			\item ידוע ש־$X$ פתוחה ב־$\tau$. לכן $A = X \cap A \in \tau'$. באופן דומה $\vn \in \tau$ ולכן $\vn = A \cap \vn \in \tau'$. 
+			\item ישנה סגירות לאיחוד: לכל $\UU \subset \tau'$, מתקיים שלכל $V \in \UU$ קיימת $U_V \in \tau$ כך ש־$U_V \cap A = V$. ואז: 
+			\[ \bigcup \UU = \bigcup_{\mathclap{V \in \UU}}V = \bigcup_{\mathclap{V \in \UU}}\cl{A \cap U_V} = \cl{A \cap \bigcup_{\mathclap{V \in \UU}}U_V} \]
+			ומשום ש־$\tau$ טופולוגיה ולכן סגורה לאיחוד, אז $\bigcup U_V \in \tau$ גם היא בטופולוגיה. 
+			\item \item ישנה סגירות לחיתוך סופי: לכל $\UU \subset \tau'$ כך ש־$\sof{\UU} \in \N$, מתקיים שלכל $V \in \UU$ קיימת $U_V \in \tau$ כך ש־$U_V \cap A = V$. ואז: 
+			\[ \bigcup \UU = \bigcap_{\mathclap{V \in \UU}}V = \bigcap_{\mathclap{V \in \UU}}\cl{A \cap U_V} = \cl{A \cap \bigcap_{\mathclap{V \in \UU}}U_V} \]
+			ומשום ש־$\tau$ טופולוגיה ולכן סגורה לחיתוך סופי, אז $\bigcup U_V \in \tau$ גם היא בטופולוגיה. 
+		\end{itemize}\envendproof
+	\end{proof}
+	
+	\subsubsection{פעולות במרחבים טופולוגיים}
+	שתי הפעולות הבסיסיות ביותר שניתן להגדיר בעבור קבוצות, הן הפעולות להלן: 
+	\defi{יהי $X$ מרחב טופולוגי ותהי $A \subset X$. אז נגדיר את \textit{הסוגר של $A$} להיות: 
+	\[ \ol{A} := \Cl_X A \cod \bigcap \ccb{A \subset F \mid F \, \mathrm{is \; closed\, in \,}X} \]}
+	\defi{יהי $X$ מרחב טופולוגי ותהי $A \subset X$. אז נגדיר את \textit{פנים של $A$} להיות: 
+		\[ A\intr := \Int_X A \cod \bigcup \ccb{G \subset A \mid G \, \mathrm{is \; open\, in \,}X} \]}
+	\cola{נבחין ש־$\ol A$ קבוצה סגורה ו־$A\intr$ קבוצה פתוחה. זו תוצאה מיידית של הגדרת הטופולוגיה ושל משפט \ref{theo:closedbehavior}. עוד נבחין שישירות מההגדרה: 
+	\[ A\intr \subset A \subset \ol{A} \]
+	ואף ש־$A$ פתוחה אמ''מ $A = A\intr$ וסגורה אמ''מ $A = \ol{A}$. ההוכחה פשוטה. }
+	\clm{לכל $A, B \subset X$ מתקיים $(A \cap B)\intr = A \intr \cap B \intr$ וכן $\ol{A \cup B} = \ol A \cup \ol B$. }
+	\cola{אם $Y$ תת־מרחב של $X$, אז $\Cl_Y A = Y \cap \Cl_X A$. }\begin{proof}
+		content
+	\end{proof}
+	\clm{\label{clm:clsoureLimitPoints}מתקיים ש־: 
+	\[ \Cl_X A = A \cup A' \]}
+	\begin{proof}
+		נוכיח הכלה דו כיוונית. 
+		\begin{itemize}
+			\item[$\subset$]יהי $x \in \ol{A}$. נפריד למקרים: 
+			\begin{itemize}
+				\item אם $x \in A$, סיימנו. 
+				\item אם $x \notin A$, נראה ש־$x \in A'$. תהי $U$ סביבה של $x$. משום ש־$x \notin A$, די להוכיח ש־$(U \cap A) \setminus \{x\} = U \cap A \neq \vn$. מטענה \ref{theo:closed-open-iffs} ומשום שהסגור סגור, כל סביבה $V$ של $x$ כך ש־$V \cap A \neq \vn$, ובפרט $V = U$. בכך סיימנו. 
+			\end{itemize}
+			\item[$\supset$]מספיק להוכיח שהקבוצה $A \cup A'$ סגורה כי אז מהגדרת $\Cl_X A$ נקבל ש־$\Cl_X A \subset A \cup A'$ (כי $A \subset A \cup A'$). היא אכן סגורה: לכל $x \in A \cup A'$, כל סביבה $U$ של $x$ מקיימת $U \cap A \neq \vn$, שכן: 
+			\begin{itemize}
+				\item אם $x \in A$, אז $x \in U \land x \in A \implies x \in U \cap A \neq \vn$ וסיימנו. 
+				\item אם $x \notin A$ אז $x \in A'$, ואז מהגדרה $(U \cap A) \setminus \{x\} \neq \vn$. אך משום ש־$x \notin A$ נסיק ש־$U \cap A \neq \vn$ כנדרש. 
+			\end{itemize}
+		\end{itemize}\envendproof
+	\end{proof}
+	אם אנו מבינים כיצד נראה הסגור של קבוצות (או לחילופין, הפנים) אנחנו מבינים כיצד הטופולוגיה נראית. למה הכוונה? פונקציית הסגור ופונקציית הפנים מגדירות באופן יחיד (=חח''ע) טופולוגיה. נוכיח זאת. 
+	\clm{תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז הפונקציה $\tau \overset{I}{\mapsto} \Int_{(X, \tau)}$ כאשר $\tau \in \tc$ (נבחין ש־$I \co \tc \to (\ps(X) \to \ps(X))$) חח''ע. }\begin{proof}
+			יהיו $\tau_1, \tau_2 \in \tc$ טופולוגיות על $X$. נסמן ב־$\Int_1 \cod I(\tau_1)$ את פונקציית הפנים לפי $\tau_1$ וב־$\Int_2 \cod I(\tau_2)$ את פונקציית הפנים לפי $\tau_2$. נניח ש־$\Int_1 = \Int_2$, ונוכיח ש־$\tau_1 = \tau_2$. 
+			
+			לשם כך, נראה טענת עזר. לכל $\tau \in \tc$ נגדיר את הקבוצה: 
+			\[ \tau' \cod \Img I(\tau) = \ccb{I(\tau)(A) \mid A \subset X} \]
+			ונטען ש־$\tau' = \tau$. אכן, כל $U \in\tau'$ בתמונה של פונקציית הפנים ולכן פתוחה, ומהגדרה בטופולוגיה (נזכר כי $A\intr$ קבוצה פתוחה). מצד שני, כל $U \in \tau$ מקיימת ש־$U = \Int_{(X, \tau)}U = I(\tau)(U)$ (הפנים של קבוצה פתוחה פתוח) ולכן $U \in \Img I(\tau)$ כנדרש. 
+			
+			נחזור להוכחת הטענה המקורית. נשלב את הלמה עם ההנחה ש־$\Int_1 = \Int_2$: 
+			\[ \tau_1 = \tau_1' = \Img \Int_1 = \Img \Int_2 = \tau_2' = \tau_2 \]
+			כנדרש. 
+	\end{proof}
+	\clm{תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז הפונקציה $\tau \overset{C}{\mapsto} \Cl_{(X, \tau)}$ כאשר $\tau \in \tc$ (נבחין ש־$C \co \tc \to (\ps(X) \to \ps(X))$) חח''ע. }
+	\begin{proof}
+		ההוכחה דומה. תרגיל. 
+	\end{proof}
+	
+	\clm{\label{clm:clsoureEntriorRelation}לכל $A \subset X$ מתקיימים השוויונות: 
+	\begin{align*}
+		\qq \  \Int A = X \setminus \Cl(X \setminus A) && \ww \  \Cl A = X \setminus \Int(X \setminus A)
+	\end{align*}}
+	\begin{proof}
+		ראשית נוכיח את $\qq$, באמצעות הכלה דו־כיוונית. 
+		\begin{itemize}
+			\item[$\subset$]יהי $x \in \Int A$. בפרט $x \in X$. נראה ש־$x \notin \Cl(X \setminus A)$. 
+			ידוע ש־$x \in U \subset A$ כאשר $U$ פתוחה כלשהי (כי $x \in \Int A$). בפרט $F \cod X \setminus U$ קבוצה סגורה המקיימת $X \setminus A \subset X \setminus U = F$. סה''כ מצאנו $F$ סגורה כך ש־$x \notin F$ (כי $x \in A$) וגם $F \subset X \setminus A$ ולכן מהגדרת הסגור, $x \notin \Cl F$ כנדרש. 
+			\item[$\supset$]נניח ש־$x \in X \setminus \Cl(X \setminus A)$. מכאן ש־$x \in X$. נוכיח ש־$x \in A$. מהגדרת הסגור, קיימת קבוצה סגורה $F$ כך ש־$X \setminus A \subset F \land x \notin F$. נבחין ש־$U \cod X \setminus F$ מקיימת: 
+			\[ A = X \setminus (X \setminus A) \subset X \setminus F = U \]
+			ובגלל ש־$x \notin F$ וגם $x \in X$ אז $x \in X \setminus F$ (ומכאן $x \in U$). סה''כ מצאנו $U$ פתוחה כך ש־$A \subset U \ni x$ ולכן $x \in \Int A$ (מהגדרת הפנים). 
+		\end{itemize}
+		לאחר הכלה דו־כיוונית זו סיימנו להוכיח את $\qq$. נפנה להוכחת $\ww$; נבחין ש־: 
+		\[ \Int(X \setminus A) \overset{\qq}{=} X \setminus \Cl(X \setminus (X \setminus A)) = X \setminus \Cl A \]
+		ולכן: 
+		\[ X \setminus \Int(X \setminus A) = X \setminus (X \setminus \Cl A) = A \]
+		ובכך הוכחנו גם את $\ww$ כנדרש. 
+	\end{proof}
+	
+	ישנן עוד פעולה אחת חשובה שמגדירים מעל מרחבים טופולוגיים: הקצה (באגנלית, frontier או boundary) של קבוצה. 
+	\defi{תהי $A$ קבוצה. אז $\partial A = \Fr_X A = \ol{A} \setminus \ol{X \setminus A}$. }
+	\clm{מתקיימים השוויונות המדהימים הבאים: 
+	\begin{align*}
+		\ol{A} = A \cup \partial A && A\intr = A \setminus \partial A && X = E\intr \uplus \partial A \uplus (X \setminus A)\intr
+	\end{align*}}
+	\begin{proof}
+		%	TODO
+	\end{proof}
+	\defi{תהי $A$ קבוצה. אז $A$ תקרא \textit{קבוצה צפופה} אם לכל $x \in X$ ולכל $U$ סביבה של $x$ מתקיים $U \cap A \neq \varnothing$. }
+	\textbf{דוגמה. }$\Q$ קבוצה צפופה ב־$\R$; לכל $x \in \R$ ולכל סביבה בסיסית $U \cod (x - \eg, x + \eg)$ של $x$, מתקיים $U \cap \Q \neq \varnothing$ (שכן בין $x - \eg, x + \eg$ בהכרח קיים מספר רציונלי מארכימדיאניות). 
+	\clm{תהי $A$ קבוצה. אז הטענות הבאות שקולות: 
+	\begin{enumerate}
+		\item $A$ קבוצה צפופה במרחב $X$. 
+		\item הקבוצה הסגורה היחידה שמכילה את $A$ היא $X$. 
+		\item \hfil $\Cl_X A = X$
+		\item \hfil $\Int (X \setminus A) = \varnothing$
+		\item \hfil $A \cup A' = X$
+	\end{enumerate}}\begin{proof}נוכיח שרשרת של שקילויות: 
+		\begin{itemize}
+			\item[$5\lra3$]מ־\ref{clm:clsoureLimitPoints} אנו מקבלים ש־$A \cup A' = \Cl_X A$ ומכאן באופן מיידי נקבל שקילות. 
+			\item[$3\lra4$]מ־\ref{clm:clsoureEntriorRelation} אנו מקבלים ש־$\Cl A = X \setminus \Int(X \setminus A)$, ולכן אם $\Cl_X = X$ אז $\Int(X \setminus A) = \varnothing$ ואם $\Int(X \setminus A) = \vn$ אז $\Cl A = X$ כנדרש. 
+			\item[$2\to3$]אם הקבוצה היחידה שמכילה את $X$ היא $A$, אז חיתוך כל הקבוצות הסגורות שמכילות את $A$ הוא חיתוך של $X$ עם אף קבוצה אחרת, וסה''כ מהגדרה $\Cl A = X$ כנדרש. 
+			\item[$1\to2$]נניח ש־$A$ צפופה ונוכיח שהקבוצה הסגורה היחידה שמכילה את $A$ היא $X$. נניח בשלילה שקיימת $F$ סגורה כך ש־$A \subset F$ אבל $F \neq X$. לכן $X \setminus F = U$ פתוחה ו־$U \neq \vn$, כלומר קיים $x \in U$ כלשהו. נבחין ש־$U$ סביבה של $x$, ולכן $U \cap A \neq \vn$. עם זאת, משום ש־$A \subset F$ אז $U = X \setminus F \subset X \setminus A$ כלומר $x \notin U$, וזו סתירה לכך ש־$x \in U$, וסיימנו. 
+			\item[$5\to1$]נניח ש־$A \cup A' = X$, ונוכיח ש־$A$ צפופה. יהי $x \in X$ ותהי $U$ סביבה של $x$. נוכיח ש־$U \cap A \neq \vn$. נפרק למקרים. 
+			\begin{itemize}
+				\item אם $x \in A$, אז $x \in U \cap A$ וסיימנו. 
+				\item אם $x \notin A$ אז בהכרח $x \in A'$ (שכן $x \in X = A \cup A'$), ואז מהגדרת נקודת הצטברות $U \cap A \neq \vn$ וסיימנו. \quad\ \ 
+			\end{itemize}
+		\end{itemize}\envendproof
+	\end{proof}
+	\subsection{בסיסים}
+	כאשר הגדרנו בסיס לסביבת נקודות, שאלנו את עצמנו איזו הגדרה מספיק חזקה כדי להיות שמישה דיו כחלופה לכל המקרים בהם נרצה לדבר על סביבה של נקודה, אך מאידך חלשה יותר מההגדרה של מערכת סביבות. באופן דומה, כאשר נדבר על בסיסים, נרצה לענות על אותה השאלה בעבור המרחב הטופולוגי כולו – איזו הגדרה מספיק חלשה כדי שבמקום לדבר על קבוצה פתוחה, נדבר על קבוצה פתוחה בסיסית? 
+	
+	בפרק להלן על בסיסים נעסוק בשתי הגדרות – הראשונה, בסיס, הגדרה שמנצלת את הסגירות לאיחוד, והשנייה, תת‏־בסיס, שמנצלת גם את הסגירות לחיתוך. שתי ההגדרות מאפשרות לנו (בהינתן בסיס או תת־בסיס) להשרות טופולוגיה (למעשה, זו הדרך העיקרית בה נגדיר בהמשך טופולוגיות חדשות). בשתיהן, די יהיה להבין כיצד הבסיסים או תתי־הבסיסים נראים כדי לאפיין את הטופולוגיה, ולהפך. 
+	\subsubsection{בסיסים}
+	\defi{\textit{בסיס} למרחב}
+	\clm{בסיס משרה מערכת סביבות בסיסית}
+	\clm{בסיס יוצר טופולוגיה}
+	\clm{יש לטופולוגיות סופרמום}
+	\subsubsection{תתי־בסיסים}
+	\defi{תת־בסיס}
+	\clm{תת־בסיס יוצר טופולוגיה}
+	\clm{יש לטופולוגיות אינפימום}
+	\cola{הטופולוגיות הן סריג}
+	\subsection{רשתות}
+	\subsection{פונקציות רציפות}
+	\defi{רציפות בנקודה}
+	\defi{רציפות}
+	\clm{שקילויות לרציפות כולל שקול לרציפות בחלוקה של הטווח}
+	\defi{פונקציה פתוחה וסגורה}
+	\defi{הומיאומורפיזם}
+	\defi{תכונה טופולוגית}
+	\clm{שקילויות של הומיאומורפיזמים}
+	\defi{שיכון}
+	\clm{הומיאומורפיזם זה מונד}
+	\rmark{אם $A$ משוכן ב־$B$ ו־$B$ משוכן ב־$A$, לאו דווקא $A \cong B$. }\begin{proof}
+		נבחין ש־$I \inc \R$ ע''י פונקציית הזהות. עוד נבחין ש־$R \inc I$ ע''י הפונקציה $\arctan x$ (שהיא הומיאומורפיזם $\R \to (0, 1) \subset [0, 1]$). עם זאת, $I \not\cong \R$; הוכחה נראה מאוחר יותר כאשר נוכיח שתמונה רציפה של קבוצה קומפקטית הינה קומפקטית, ו־$\R$ איננו קומפקטי. 
+	\end{proof}
+	
+	\npage
+	\section[בניית מרחבים טופולוגיים]{\en{Building New Spaces}}
+	\subsection{הטופולוגיה החלשה והטופולוגיה החזקה}
+	בתת־נושא זה נציג שתי הגדרות שאומנם תחילה יראו קצת מוזרות, אך יעזרו לנו להבין לעומק אחר־כך את הנושא של טופולוגיית המכפלה וטופולוגיית המנה. 
+	\defi{תהי $X$ קבוצה ויהיו $(Y_i)_{i \in I}$ משפחת מרחבים טופולוגיים כלשהם. תהי $(f_i)_{i \in I}$ משפחת פונקציות $f_i \co X \to Y_i$. אז \textit{הטופולוגיה החלשה} היא הטופולוגיה $\tau$ המינימלית (גסה) ביותר כך ש־$f_i \co (X, \tau) \to Y$ פונקציות רציפות. }
+	\rmark{באנגלית, initial/induced/weak/limit/projective topology. }
+	
+	\defi{תהי $X$ קבוצה ויהיו $(Y_i)_{i \in I}$ משפחת מרחבים טופולוגיים כלשהם. תהי $(f_i)_{i \in I}$ משפחת פונקציות $f_i \co Y_i \to X$. אז \textit{הטופולוגיה החזקה} היא הטופולוגיה $\tau$ המקסימלית (עדינה) ביותר כך ש־$f_i \co Y \to (X, \tau)$ פונקציות רציפות. }
+	\rmark{באנגלית, final/coinduced/strong/colimit/inductive topology. }
+	
+	\begin{Theorem}[תכונה אוניברסלית של הטופולוגיה החלשה]
+		יהי $Z$ מרחב טופולוגי, $X$ קבוצה. אז ל־$X$ יש את הטופולוגיה החלשה המושרה מ־$f_i \co X \to Y_i$ אמ''מ מתקיים שכל פונקציה $g \co Z \to X$ רציפה אמ''מ $f_i \circ g$ רציפה: 
+		\begin{center}
+			\sen\begin{tikzcd}
+				Y_i \arrow[rd, "g \circ f_i"'] \arrow[r, "f_i"] & X \arrow[d, "g"] \\
+				                                                & Z
+			\end{tikzcd}\she
+		\end{center}רק
+	\end{Theorem}
+	
+	\begin{Theorem}[תכונה אוניברסלית של הטופולוגיה החזקה]
+		יהי $Z$ מרחב טופולוגי, $X$ קבוצה. אז ל־$X$ יש את הטופולוגיה החזקה המושרה מ־$f_i \co Y_i \to X$ אמ''מ מתקיים שכל פונקציה $g \co X \to Z$ רציפה אמ''מ $g \circ f_i$ רציפה:
+		\begin{center}
+			\sen\begin{tikzcd}
+				Y_i & X \arrow[l, "f_i"'] \\
+				    & Z \arrow[ul, "g \circ f_i"] \arrow[u, "g"']
+			\end{tikzcd}\she
+		\end{center}
+	\end{Theorem}
+	כאן יש לכסות את הנושאים: [תחילה בעבור טופולוגיה חלשה, ואז לנסח את הדואלים ללא הוכחה]
+	\begin{itemize}
+		\item בטופולוגיה חלשה הevaluation map היא שיכון אמ''מ משפחת הפונקציות מפרידה נקודות. 
+		\item המשפט המצחיק על separting points from closed sets שגם מופיע בויקיפדיה וב־8B בווילארד
+	\end{itemize}
+	
+	\subsection{טופולוגיית המכפלה}
+	\defi{תהי $(Y_i)_{i \in I}$ משפחת פונקציות. נגדיר את \textit{הכפל הקרטזי} (המוכלל) שלהם להיות: 
+	\[ \prod_{i \in I}Y_i \cod \ccb{f(i) \in Y_i \ \middle\vert \ f \co I \to \bigcup_{i \in I}Y_i} \]
+	כאשר ההיטלים $(\pi_i)_{i \in I}$ יהיו: 
+	\begin{align*}
+		\pi_i(x) \cod x(i) && \pi_i \co \prod_{i \in I} Y_i \to Y_i
+	\end{align*}}
+	נבחין שהעובדה שהקבוצה לעיל לא ריקה לכל משפחה שקולה לאקסיומת הבחירה. 
+	\defi{בהינתן $(Y_i)_{i \in I}$ אוסף מרחבים טופולוגיים, אז \textit{טופולוגיית המכפלה} היא הטופולוגיה החלשה המושרה מההיטלים. }
+	\defi{טופולוגיית טיכונוף}
+	\clm{בטופולוגיית טיכונוף ההיטלים רציפים ופתוחים. }
+	\begin{Theorem}
+		טופולוגיית המכפלה שווה לטופולוגיית טיכונוף. 
+	\end{Theorem}
+	\defi{טופולוגיית קופסא}
+	\clm{טופולוגיית הקופסא עדינה יותר מטופולוגיית המכפלה}
+	
+	\subsection{טופולוגיית המנה}
+	
+	\npage
+	\section[אקסיומות מניה]{\en{Countability Axioms}}
+	\subsection{מניה שניה ומניה ראשונה}
+	\subsubsection{מניה ראשונה}
+	\subsubsection{מניה שנייה}
+	\subsection{ספרביליות ולינדוף}
+	
+	\npage
+	\section[אקסיומות הפרדה]{\en{Separation Axoims}}
+	\subsection{מבוא}
+	[להרחיב את $R0, R1$ ל־$R2-R3.5$, ולהבהיר שאלו לא סימונים מקובלים]
+	\subsection{אקסיומות הפרדה ראשונות}
+	\subsection{מרחבי טיכונוף}
+	\subsubsection{משפטים בסיסיים}
+	\subsubsection{משפט השיכון של טיכונוף}
+	\subsection{מרחבים רגולרים}
+	\subsection{מרחבים נורמליים}
+	\subsubsection{משפטים בסיסיים}
+	\subsubsection{הלמה של אוריסון}
+	הלמה של אוריסון מספקת לנו הוכחה לפיה $R3.5$ מתקים אמ''מ $R3$. לאחר מכן, נרחיב אותה באמצעות משפט ההרחבה של טיצה. בניית הפונקציה המפרידה תיעשה באמצעות לקיחת גבול של סדרת פונקציות – דבר שאומנם הגדרנו בחדו''א 2א, אך לא בעבור מרחבים טופולוגיים כלליים. 
+	\defi{התכנסות נקודתית}
+	\defi{התכנסות במ''ש}
+	\begin{Theorem}[הלמה של אוריסון]\label{theo:urysohn}
+		...
+	\end{Theorem}
+	\subsubsection{מרחבים נורמלים לחלוטין ובאופן מושלם}
+	הגדרה, $G_\dg, F_\sg$ וכו'. 
+	\subsubsection{משפט ההרחבה של טיצה}
+	
+	\npage
+	\section[קשירות]{\en{Connectedness}}
+	\subsection{קשירות רגילה}
+	\subsection{קשירות מסילתית}
+	\subsection{רכיבי קשירות}
+	
+	\npage
+	\section[קומפקטיות]{\en{Compactness}}
+	\subsection{מרחבים קומפקטיים}
+	\subsubsection{מבוא}
+	לכסות: 
+	\begin{itemize}
+		\item קומפקטיות ואיפיון באמצעות רשתות
+		\item קומפקטיות סדרתית
+		\item תמונה של קבוצה קומפקטית
+		\item משפטים על מרחב האוסדורף קומפקטי
+	\end{itemize}
+	\subsubsection{משפט טיכונוף}
+	\subsection{מרחבים קומפקטיים מקומית}
+	\subsection{קומפקטיפיקציה}
+	\subsubsection{קומפקטיפיקציה חד־נקודתית (אלכסנדרוב)}
+	\subsubsection{קומפקטיפיקצית סטון־צ'ך}
+	
+	\npage
+	\section[נושאים נוספים]{\en{Supplementary Material}}
+	מבין כל הנושאים שבחרתי לברבר עליהם בלי סיבה, יש כל מיני נושאים נוספים שמהווים בסיס חשוב לנושאים אחרים המתבססים על טופולוגיה במתמטיקה. 
+	\subsection{פרה־קומפקטיות}
+	\subsection{קבוצת קנטור}
+	\subsection{שקילות הומוטופית}
+	\subsection{מרחב אוקלידי מקומית}
+	\subsection{מרחבי פונקציות}
+	
+	
+	\npage
+	\section[מרחבים מטריים מנקודת מבט טופולוגית]{\en{Metric Spaces from a Topological Prespective}}
+	\subsection{מרחבים מטריים ושמורות טופולוגיות}
+	באופן לא מפתיע, מרחבים מטריים מקיימים את כל אקסיומות ההפרדה. לפי משפט [...]  די יהיה להראות שמרחבים מטריים הם רגולוריים וכן שקבוצות פתוחות הן $G_\dg$ כדי להוכיח את \Ty \ (וכל התוצאות הנובעות ממנו). תכונה חשובה אחרת של מרחבים מטריים (תוצאה ישירה של צפיפות $\Q$ ב־$\R$) היא העובדה שכולם מקיימים את אקסיומת המנייה הראשונה, ולכן התכנסות סדרות ורשתות שקולה לחלוטין. 
+	\subsection{מרחב מטרי קומפקטי}
+	\subsubsection{חסימות}
+	\subsubsection{משפט היינה־בורל}
+	במקרה הספציפי של מרחב אוקלידי, מתקיימים אף תנאים יותר חזקים. 
+	\subsection{מרחבים מטרייזביליים}
+	\subsubsection{משפט המטרייזביליות של אוריסון}
+	\subsubsection{משפט המטרייזביליות של נגטה־סמירוב}
+	\subsection{משפט הקטגוריה של בייר}
+	\subsection{מרחבים נורמיים}
+	\subsection{תוצאות נוספות}
+	\subsubsection{משפט נקודות השבת של בנך}
+	\subsubsection{קצת משפטים איזוטריים}
+	
+		
+	\ndoc
+\end{document}
