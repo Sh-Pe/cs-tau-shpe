@@ -65,6 +65,7 @@
 		\begin{itemize}
 		\item \hfil $[n] \cod \N \cap [0, n]$
 		\item \hfil $\subset \; \cod \; \subseteq$
+		\item \hfil $\bigcup A \cod \bigcup_{X \in A}X$
 	\end{itemize}
 	
 	\subsection{רשימת נושאים שהוספתי לסיכום נוסף על החומר של הקורס}
@@ -138,7 +139,7 @@
 	
 	\textbf{מעתה ואילך, }נניח כמת של ''יהי $X$ מרחב טופולוגי`` אלא אם מצוין אחרת. 
 	
-	\defi{יהיו $U \subset X$ ו־$x \in X$. נאמר ש־\textit{$U$ סביבה של $x_0$} אם קיימת $V \in \tau$ פתוחה כך ש‏$x_0 \in V \subset U$. }
+	\defi{יהיו $U \subset X$ ו־$x \in X$. נאמר ש־\textit{$U$ סביבה של $x_0$} אם קיימת $V \in \tau$ פתוחה כך ש‏־$x_0 \in V \subset U$. }
 	
 	הקונספט של \textit{סביבה} מרחיב רעיון שאנחנו מכירים כבר מחדו''א 2א – דיברנו על סביבות כדוריות, ריבועיות וכו', אבל הבחנו שהקונספט של \textit{התכנסות} לא משתנה כאשר בוחרים סביבות ''מסוג אחר``. כדי לפרמל את הקונספט של ''סוגי סביבות``, נגדיר את המושג של \textit{מערכת סביבות}. 
 	
@@ -146,7 +147,7 @@
 	\defi{\textit{בסיס למערכת סביבות של $x_0$} היא קבוצה $\UU \subset U$ המקיימת את התנאים הבאים: 
 	\begin{itemize}
 		\item כל $U \in \UU$ היא סביבה של $x_0$. 
-		\item לכל $V$ פתוחה, קיימת $U \in \UU$ כך ש־$U \subset V$. 
+		\item לכל $x \in V$ פתוחה, קיימת $U \in \UU$ כך ש־$U \subset V$. 
 	\end{itemize}}
 	\textbf{דוגמה. }נבחין שלכל $x \in X$ בטופולוגיה, קבוצת הקבוצות הפתוחות ש־$x$ נמצא בהן מהווה בסיס למערכת הסביבות של $x$. נקרא לו \textit{הבסיס הסטנדרטי למערכת הסביבות של $x$}, ואלא אם מצוין אחרת נשתמש בו. 
 	\defi{תהי $A \subset X$ קבוצה. אז $x_0 \in X$ יקרא \textit{נקודת הצטברות ב־$A$} אם לכל סביבה $U$ של $x$ מתקיים ש־$(U \cap A) \setminus \{x_0\} \neq \vn$. }
@@ -300,6 +301,7 @@
 	\defi{\textit{בסיס} היא קבוצה $\UU$, כך שלכל $U_1, U_2 \in \UU$ ולכל $p \in U_1 \cap U_2$, ישנה $U_3$ כך ש־$p \in U_3 \subset U_1 \cap U_2$. }
 	\defi{\textit{בסיס למרחב טופולוגי $(X, \tau)$} היא קבוצה $\UU$ כך ש־: 
 	\[ \tau = \ccb{\bigcup \XX \ \middle\vert \ \XX \subset \UU} \]}
+	\cola{בסיס למרחב טופולוגי מכיל קבוצות פתוחות בלבד. }
 	\clm{\label{clm:baseCreatsTopology}לכל $\UU$ בסיס, הקבוצה $\tau_\UU$: 
 	\[ \tau_\UU = \ccb{\bigcup \XX \ \middle\vert \ \XX \subset \UU} \]
 	היא טופולוגיה על $X = \bigcup \UU$, ש־$\UU$ בסיס שלה. }\begin{proof}
@@ -310,19 +312,48 @@
 			כלומר מהגדרת $\tau_\UU$ מתקיים $\bigcup_{i \in I}U_i \in \tau_\UU$. 
 			\item עבור $\XX = \UU\subset \UU$ מההגדרה מתקיים $X = \bigcup \XX$ ולכן $X \in \tau_\UU$. כמו כן $\vn \subset \UU$ ולכן $\vn = \bigcup \vn \in \tau_\UU$ גם כן. 
 			\item נוכיח שהיא סגורה לחיתוך. לשם כך נוכיח שלכל $U_1, U_2 \in \tau_\UU$ מתקיים ש־$U_1 \cap U_2 \in\tau_\UU$, ומכאן ההוכחה לגבי חיתוך סופי כללי תהיה נכונה באינדוקציה. 
-		\end{itemize}
+			
+			משום ש־$U_1, U_2 \in \tau_\UU$, אז קיימות קבוצות $\XX_1, \XX_2$ כך ש־$U_1 = \bigcup \XX_1$ ו־$U_2 = \bigcup \XX_2$. נבחין ש־: 
+			\[ U_1 \cap U_2 = \cl{\ \ \bigcup_{\mathclap{X \in \XX_1}} X} \cap \cl{\ \ \bigcup_{\mathclap{X \in \XX_2}} X} = \bigcup_{\mathclap{\substack{X_1 \in \XX_1\\ X_2 \in \XX_2}}}X_1 \cap X_2 = \cdots \]
+			נתבונן באותו החיתוך, $X_1 \cap X_2$. לכל $p \in X_1 \cap X_2$ קיימת $U_{1, 2, p} \in \tau_\UU$ כך ש־$p \in U_{1, 2, p} \subset X_1 \cap X_2$. ולכן $X_1 \cap X_2 = \bigcup_{p \in X_1 \cap X_2} U_{1, 2, p}$. נסיק ש־: 
+			\[ \cdots = \bigcup_{\mathclap{\substack{X_1 \in \XX_1\\ X_2 \in \XX_2}}}\quad \quad\bigcup_{\mathclap{p \in X_1 \cap X_2}}U_{1, 2, p} \]
+			זהו איחוד מוכלל של קבוצות $U_{1, 2, p} \in \tau_\UU$ ולכן מסגירות לאיחוד סיימנו. 
+		\end{itemize}\envendproof
 	\end{proof}
 	הסיבה העיקרית שבחרנו להגדיר ''בסיס`` ו''בסיס למרחב טופולוגי`` בנפרד, היא שבהינתן בסיס ניתן להשרות טופולוגיה באמצעות \ref{clm:baseCreatsTopology}. 
 	
 	\textbf{דוגמה. }הטופולוגיה על הישר הממשי מושרת מהבסיס שהוא קבוצת הקטעים הפתוחים. 
 	\cola{כאשר משרים טופולוגיה $\tau$ מבסיס $\UU$, מתקיים ש־$\UU$ בסיס של $(X, \tau)$. ההוכחה פשוטה. }
-	\clm{בסיס משרה מערכת סביבות בסיסית}
-	\clm{יש לטופולוגיות סופרמום}
+	\clm{בסיס משרה מערכת סביבות בסיסית, באופן הבא: בהינתן בסיס $\UU$ של המרחב $X$, לכל $x \in X$ נגדיר: 
+	\[ \UU_x \cod \ccb{U \in \UU \mid x \in U} \]
+	ונוכיח ש־$\UU_x$ מערכת סביבות בסיסית. }
+	\begin{proof}
+		נוכיח לפי ההגדרה של מערכת סביבות בסיסית. 
+		\begin{itemize}
+			\item אכן, כל $U \in \UU_x$ סביבה של $x$ כל כי $U \in \UU_x$ פתוחה ולכן מכילה קבוצה פתוחה (את עצמה) וכן $x \in U \subset U$. 
+			\item תהי $x \in V$ קבוצה פתוחה כלשהי. נוכיח שקיים $\UU\ni U \subset V$. נבחין ש־$x \in V = \bigcup \XX$ כאשר $\XX\subset \UU$. לכן קיים $U \in \XX$ כך ש־$x \in U$ (הגדרת איחוד מוכלל) דהיינו $x \in U \in \UU$ וכן $U \subset V$ ולכן מקיימת את הנדרש. 
+		\end{itemize}
+	\end{proof}
+	\begin{Claim}[לטופולוגיות יש אינפימום]
+		תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז לכל $(\tau_i)_{i \in I}$ כך ש־$\tau_i \in \tc$ קבוצה של טופולוגיות, קיים להם חסם תחתון מקסימלי $\inf (\tau_i)_{i \in I}$. 
+	\end{Claim}\begin{proof}
+		נתבונן בקבוצה: 
+		\[ \tau \cod \bigcap_{i \in I}\tau_i \]
+		נוכיח שהיא טופולוגיה המקיימת את הנדרש. מקסימליות ברורה מהגדרת החיתוך. נראה שהיא טופולוגיה. 
+		\begin{itemize}
+			\item סגירות לאיחוד: יהי $\UU\subset \tau$. אז לכל $U \in \UU$ מתקיים ש־$U \in \bigcap_{i \in I} \tau_i = \tau$ ולכן כל $x \in U$ מקיים $x \in \tau$. סה''כ גם כל $x \in \bigcup \UU$ מקיים $x \in \tau$, ומהגדרת חיתוך מכאן מתקיים ש־$\bigcup \UU \in \tau$ כנדרש.
+			\item סגירות לחיתוך: יהי אוסף בן־מנייה של קבוצות $(U_i)_{i = 1}^{n}$ כך ש־$U \in \tau$. לכל $U_i$ קיימות $U_{i, j} \in \tau_i$  כך ש־$\bigcup_{j \in I}U_{i, j} = U_i$
+			אז: 
+			\[ \bigcap_{i = 1}^{n} U_i = \bigcap_{i = 1}^{n} \bigcap_{j \in I}^{}U_{i, j} = \bigcap_{j \in I}^{}\underbrace{\bigcap_{i = 1}^{n} U_{i, j}}_{X_j} \]
+			נבחין ש־$X_j \in \tau_j$ כי $\tau_j$ סגורה לחיתוך סופי. ואז מדובר בחיתוך של קבוצות שנמצאות ב־$\tau_j$ ומהגדרת $\tau$ מתקיים $\bigcap_{i = 1}^{n} U_i \in \tau$ כנדרש. 
+			\item משום ש־$X, \vn \in \tau_i$ לכל $i \in I$ אז $X, \vn \in \bigcap \tau_i = \tau$ כנדרש. 
+		\end{itemize}\envendproof
+	\end{proof}
 	\subsubsection{תתי־בסיסים}
 	\defi{תת־בסיס}
 	\clm{תת־בסיס יוצר טופולוגיה}
 	\clm{יש לטופולוגיות אינפימום}
-	\cola{הטופולוגיות הן סריג}
+	\cola{קבוצת הטופולוגיות על קבוצה $X$ הינה סריג. }
 	\subsection{רשתות}
 	\subsection{פונקציות רציפות}
 	\defi{רציפות בנקודה}
