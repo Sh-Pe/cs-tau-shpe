@@ -6,7 +6,7 @@
 \usepackage{../../../tex/packages/enfancysections}
 \titleformat{\section}[block]
 	{\fontsize{20}{20}}
-	{\Large \dotfill \ (\thesection) \dotfill}
+	{\Large \dotfill \sen(\thesection)\she \dotfill}
 	{0em}
 	{\vspace{2pt} \newline \hfil \Large \filleft \filright \MakeUppercase}
 
@@ -47,7 +47,7 @@
 	\maketitle
 	
 	\begin{multicols}{2}
-		\section{עקומות ב־$\R^{n}$}
+		\section{עקומות ב־$\R^{2}$}
 			\defi{בהינתן $a, b \in \R$ וכן $a < b$, \textit{קטע סגור} יוגדר להיות $[a, b] := \{c \mid a \le c \le b\}$}
 			\exe{בהינתן קטע סגור, ניתן לעבור עליו בקצב אחיד. רמז:
 				\[ \{c \mid a \le c \le b\} = \{(1 - \lg)a + \lg b \mid 0 \le \lg \le 1\} \]}
@@ -91,7 +91,7 @@
 				\[ L(\cg) = \sup\ccb{\ml(\cg, \Pi) \mid [a, b]\ \textit{חלוקה של}\ \Pi} \]
 			}
 			
-			\theo{$\cg$ היא עקומה בעלת אורך סופי, וכן $2 \le L(\cg) \le 4$. }\begin{proof}
+			\clm{$\cg$ היא עקומה בעלת אורך סופי, וכן $2 \le L(\cg) \le 4$. }\begin{proof}
 				מספיק להראות:
 				\begin{enumerate}
 					\item קיימת חלוקה $\Pi$ של $[-1, 1]$ עם $\ml(\cg, \Pi) = 3$
@@ -113,8 +113,8 @@
 			\defi{הפונקציה $f$ נקראת \textit{אינטגרבילית} אם קיים $I$ כך ש־$\int^{b}_a f = I$. }
 			\defi{לפונקציות ממשיות $f, F \co I \to \R$ על קטע $I \subset \R$, אז $F$ נקראת \textit{פונקציה קדומה של $f$ על קטע\footnote{לשימושנו, קבוצה סגורה. } $I$} אם $\forall x \in I \co F'(x) = f(x)$, כאשר בקצוות הקטע (אם יש כאלו) מדובר על נגזרת חד־כיוונית. }
 			\defi{\textit{האינטגרל הלא מסויים של $f$} הוא \textbf{קבוצת} הפונקציות הקדומות של $f$. }
-			\theo{$\int^{b}_af = 5(b-a)$}
-			\theo{פונקציית דיריכלה איננה אינטגרבילית, על אף תת־קטע סגור $[a, b]$ ($a < b$). }
+			\clm{$\int^{b}_af = 5(b-a)$}
+			\clm{פונקציית דיריכלה איננה אינטגרבילית, על אף תת־קטע סגור $[a, b]$ ($a < b$). }
 			\noti{\hfil $R([a, b]) := \{f \co [a, b] \to \R \mid \text{אינטגרבילית} f\}$}
 		\subsection{דרבו}
 			\defi{תהי $f \co [a, b] \to \R$ חסומה. תהי $\Pi = \{x_i\}_{i = 1}^{n}$ חלוקה של $[a, b]$, כלומר $a = x_0 < x_1 < \cdots < x_n = b$. לכל $i$, נגדיר:
@@ -125,7 +125,7 @@
 			\begin{align*}
 				\ol{\Sigma}(f, \Pi) = \sum_{i = 1}^{n} M_i\Delta x_i && \dard(f, \Pi) := \sum_{i = 1}^{n}m_i \Delta x_i
 			\end{align*}}
-			\theo{תהי $f \co [a, b] \to \R$ חסומה, ו־$\Pi$ חלוקה של $[a, b]$. אז	לכל תיוג $\{t_i\}$ של החלוקה $\Pi$, מתקיים:
+			\clm{תהי $f \co [a, b] \to \R$ חסומה, ו־$\Pi$ חלוקה של $[a, b]$. אז	לכל תיוג $\{t_i\}$ של החלוקה $\Pi$, מתקיים:
 				\[ \dard(f, \Pi), S(f, \Pi, \{t_i\}) \le \daru(f, \Pi) \]
 			}
 			\lem{תהי $f \co [a, b] \to \R$ חסומה, וכן $\Pi$ חלוקה של $[a, b]$. אז:
@@ -146,7 +146,7 @@
 					\item אינטגרל דרבו תחתון: \\\hfill$\displaystyle \Idard(f) := \sup \ccb{\dard(f, \Pi) \mid [a, b] \ \text{חלוקה של} \ \Pi}$
 			\end{itemize}}
 			\defi{$f$ \textit{אינטגרבילית דרבו} אם $\Idard(f) = \Idaru(f)$. אם זה קורה, $I(f) = \Idard(f) = \Idaru(f)$ נקרא \textit{אינטגרל דרבו}. }
-			\theo{עבור $f \co [a, b]\to \R$, $f$ אינטגרבילית רימן אמ''מ $f$ חסומה וגם $f$ אינטגרבילית דרבו. אם תנאים אלו מתקיימים, אז $\int^{b}_af = I(f)$. }
+			\clm{עבור $f \co [a, b]\to \R$, $f$ אינטגרבילית רימן אמ''מ $f$ חסומה וגם $f$ אינטגרבילית דרבו. אם תנאים אלו מתקיימים, אז $\int^{b}_af = I(f)$. }
 			\rmark{אינטגרל דרבו העליון והתחתון לא מוגדרים במידה ו־$f$ איננה חסומה, ולכן זו תמיד תתווסף כהנחה למשפטים הדורשים אינטגרל דרבו עליון או תחתון. }
 			\begin{Theorem}[קריטריון דרבו]
 				$f \co [a, b] \to \R$ אינטגרבילית אמ''מ $f$ חסומה וגם לכל $\eg > 0$, כך שלכל חלוקה $\Pi$ של $[a, b]$, אם $\lg(\Pi) < \dg$ אז $\daru(f, \Pi) - \dard(f, \Pi) < \eg$.
@@ -159,7 +159,7 @@
 				תהא פונקציה $f \co [a, b] \to \R$ ומספר $I \in \R$, וכן סדרת חלוקות מתויגות $(\Pi_k, \{t^{(k)_{\{t_i\}}}\})$ של $[a,b]$ שמדדי העדינות שלהן מקיימים $\lg(\Pi_k) \rrr{k \to \inft} 0$. הוכיחו שאם $\int^{b}_a f = I$ אז $S(f, \Pi_k, \{t_i^{(k)}\}) \rrr{k \to \inft} 0$.
 			\end{Exercise}
 			
-			\theo{נתונה פונקציה ממשית $f \co [a, b] \to \R$. עבור פונקציה כזו, התנאים הבאים שקולים:
+			\clm{נתונה פונקציה ממשית $f \co [a, b] \to \R$. עבור פונקציה כזו, התנאים הבאים שקולים:
 				\begin{enumerate}
 					\item קיים $I \in \R$ כך שלכל $\eg > 0$ קיים $\dg > 0$ כך שלכל חלוקה מתוייגת $(\Pi, \{t_i\})$ של $[a, b]$, אם $\lg(\Pi) < \dg$, אז $\sof{S(f, \Pi, \{t_i\}) - I} < \eg$.
 					\item הפונקציה $f$ חסומה, וגם לכל $\eg > 0$, קיימת $\dg > 0$ כך שלכל חלוקה $\Pi$ של $[a, b]$, אם $\lg(\Pi) < \lg$, אז $\daru(f, \Pi) - \dard(f, \Pi) < \eg$.
@@ -183,13 +183,13 @@
 					(2) \quad 0 &\le \daru(f, \Pi) - \daru(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b]) \\
 					(3) \quad 0 &\le \dard(f, \Pi) - \dard(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b])
 			\end{alignat*}}
-			\theo{תהי $f \co [a, b] \to \R$ חסומה. אז לכל $\eg < 0$ קיימת $\dg > 0$, כך שלכל חלוקה $\Pi$ של $[a, b]$, אם $\lg(\Pi) < \dg$ אז:
+			\clm{תהי $f \co [a, b] \to \R$ חסומה. אז לכל $\eg < 0$ קיימת $\dg > 0$, כך שלכל חלוקה $\Pi$ של $[a, b]$, אם $\lg(\Pi) < \dg$ אז:
 				\begin{align*}
 					\daru(f, \Pi) - \eg \le \Idaru(f) && \Idard(f) \le \dard(f, \Pi) + \eg
 			\end{align*}}
 		\subsection{קריטריוני אינטגרביליות נוספים}
-			\theo{תהי $f \co [a, b] \to \R$ פונקציה רציפה. אז $f$ אינטגרבילית. }
-			\theo{תהי $f \co [a, b] \to \R$ מונוטונית. אז $f$ אינטגרבילית. }
+			\clm{תהי $f \co [a, b] \to \R$ פונקציה רציפה. אז $f$ אינטגרבילית. }
+			\clm{תהי $f \co [a, b] \to \R$ מונוטונית. אז $f$ אינטגרבילית. }
 			\exe{הוכיחו בעבור $f$ יורדת. }
 			\begin{Theorem}[איחוד קטעים זרים]
 				נתונה $f \co [a, b] \to \R$, וכן $a < b < c$. נניח ש־$f$ אינטגרבילית על $[a, b]$ וגם עם $[b, c]$. אז $f$ אינטגרבילית אז $[a, c]$.
@@ -201,7 +201,7 @@
 				נתונה $f \co [a, c] \to \R$ \textbf{חסומה} (חשוב). נניח שלכל $a < b < c$, מתקיים ש־$f|_{[a, b]}$ אינטגרבילית. אז $f$ אינטגרבילית.
 			\end{Theorem}
 			\rmark{שימו לב, $f$ לא בהכרח חסומה אפילו אם היא אינטגרבילית על כל הקטעים השמאליים. לדוגמה, $\frac{1}{x^{2}}$. }
-			\theo{$f \co [a, b] \to \R$ חסומה, ו־$a = x_0 < x_1 < \cdots < x_n = b$ חלוקה. נניח שלכל $i$ מתקיים ש־$f|_{(x_{i - 1}, x_i)}$ מונוטונית או רציפה. אז $f$ אינטגרבילית. }
+			\clm{$f \co [a, b] \to \R$ חסומה, ו־$a = x_0 < x_1 < \cdots < x_n = b$ חלוקה. נניח שלכל $i$ מתקיים ש־$f|_{(x_{i - 1}, x_i)}$ מונוטונית או רציפה. אז $f$ אינטגרבילית. }
 			\exe{נתונות $f, g \co J \to \R$ חסומות כאשר $J$ קבוצה כלשהי. אז:
 				\begin{enumerate}
 					\item \hfil $\forall \lg \in \R\co \wg(\lg f, J) = \sof{\lg}\wg(f, J)$.
@@ -225,7 +225,7 @@
 			\begin{Theorem}[אריתמטיקת אינטגרביליות]
 				יהי זוג פונקציות $f, g \co [a, b] \to \R$ וכן $\lg \in \R$. אם $f, g$ אינטגרביליות, אז $\lg f, f + g, \sof f, f^{2}, f \cdot g$ אינטגרביליות כולן. יתר על כן, אם $ g \ge \ag >0$ אז $\frac{1}{g}$ אינטגרבילית.
 			\end{Theorem}
-			\theo{נתונה $f \co [a, b] \to \R$ ו־$I \in \R$. נתונה סדרת חלוקות מתוייגות $(\Pi^{(k)}, \{t_i^{(k)}\}^{n_k}_{i = 1})$ של $[a, b]$ שמקיימות $\lg(\Pi^{(k)}) \rrr{k \to \inft} 0$. יתר על כן, נניח שהיא אינטגרבילית. אז $\int^b_a f = I$ אמ''מ $S(f, \Pi^{(k)}), \{t_i\}^{(k)} \rrr{k \to \inft} I$. }
+			\clm{נתונה $f \co [a, b] \to \R$ ו־$I \in \R$. נתונה סדרת חלוקות מתוייגות $(\Pi^{(k)}, \{t_i^{(k)}\}^{n_k}_{i = 1})$ של $[a, b]$ שמקיימות $\lg(\Pi^{(k)}) \rrr{k \to \inft} 0$. יתר על כן, נניח שהיא אינטגרבילית. אז $\int^b_a f = I$ אמ''מ $S(f, \Pi^{(k)}), \{t_i\}^{(k)} \rrr{k \to \inft} I$. }
 			\exe{נתונים קטע $[a, b]$, $\dg > 0$ ו־$c_1 \dots c_m \in [a, b]$. מצאו חלוקה $\Pi$ של $[a, b]$ עם מדד עדינות $\lg(\Pi) < \dg$ כך ש־$c_1 \dots c_m \in \Pi$. }
 			\begin{Theorem}[אדטיביות האינטגרל ביחס לקטע האינטגרציה]
 				נתונים $a < b < c$ ו־$f \co [a, b] \to \R$. הראינו ש־$f$ אינטגרבילית על $[a, c]$ אמ''מ $f$ אינטגרבילית על $[a, b]$ וכן אינטגרבילית על $[b, c]$. אז:
@@ -235,7 +235,7 @@
 				\begin{align*}
 					\int^{a}_a\dequad \  f:= 0 && \int^{a}_b\dequad \  f := -\int^{b}_a\dequad \  f
 			\end{align*}}
-			\theo{נתון קטע $J$ ופונקציה $f \co J \to \R$. נניח שלכל קטע סגור וחסום $I \subset J$ מתקיים $f|_I = I \to \R$. אז לכל $a, b, c \in \R$, מתקיים:
+			\clm{נתון קטע $J$ ופונקציה $f \co J \to \R$. נניח שלכל קטע סגור וחסום $I \subset J$ מתקיים $f|_I = I \to \R$. אז לכל $a, b, c \in \R$, מתקיים:
 				\[ \int^c_a \dequad \  f = \int^b_a \dequad \ f + \int^c_b \dequad \ f \]}
 			\defi{האינטגרנד זו הפונקציה המאֻסכּמֵת. }
 			\begin{Theorem}[לינאריות האינטגרל ביחס לאינטגרנד]
@@ -262,7 +262,7 @@
 			\cola{אם $x\in I$ נקודה פנימית או קצה שמאלית, אז $f$ רציפה מימין ב־$x$. }
 			
 		\subsection{משפטי ערך ביניים}		
-			\theo{נתונה פונקציה $f \co [a, b] \to \R$ רציפה על קטע סגור. אז קיימת $a \le x_0 \le b$ כך ש־:
+			\clm{נתונה פונקציה $f \co [a, b] \to \R$ רציפה על קטע סגור. אז קיימת $a \le x_0 \le b$ כך ש־:
 				\[ f(x) = \frac{1}{b - a} \int^b_a \dequad \ f(t) \dt \]
 				(אפשר לחשוב על זה כעל הערך הממוצע של $f$ בקטע)}
 			\begin{Theorem}[משפט ערך הביניים הראשון לאינטגרל מסוים]
@@ -272,7 +272,7 @@
 					\item $g$ אינטגרבילית ו־$g \ge 0$
 				\end{itemize}
 				אז קיים $a \le x_0 \le b$ כך ש־:
-				\[ \int^b_a \dequad \ f(t)g(t) \dt = f(x_0)\int^{b}_a g(t) \dt \]
+				\[ \int^b_a \dequad \ f(t)g(t) \dt = f(x_0)\int^{b}_a\dequad \ g(t) \dt \]
 			\end{Theorem}
 			\begin{Lemma}[הלמה של בונה]נתונות $f, g \co [a, b] \to \R$.
 				\begin{itemize}
@@ -284,12 +284,10 @@
 			\end{Lemma}
 			\noti{הסימון $C^{i}(A)$ מסמן את קבוצת הפונקציות הגזירות ברציפות $i$ פעמים. $C^{\infty}(A)$ מסמן פונקציה גזירה אינסוף פעמיים בכל $A$, ו־$C(A)$ את קבוצת הפונקציות הרציפות. }
 			\defi{''עצרת בדילוגים`` (אנ' double factorial): עבור $k \in \Neven$ נגדיר $k!! = 2 \cdot 4 \cdots (k - 2) \cdot k$, בעבור $k \in \Nodd$ נגדיר $k!! := 1 \cdot 3 \cdot 5 \cdots (k- 2) \cdot k$, ועבור $k = -1, 0$ נגדיר $k!! = 0$. }
-			\begin{Theorem}
-				\[ I_m := \int^{2\pi}_0 \sin^{m}x \dx = \begin{cases}
+			\clm{\[ \int^{2\pi}_0 \dequad \sin^{m}x \dx = \begin{cases}
 					\frac{\pi}{2} \cdot \frac{(m - 1)!!}{m!!} & m \in \Neven \\
 					\frac{(m - 1)!!}{m!! } & m \in \Nodd
-				\end{cases} \]
-			\end{Theorem}
+				\end{cases} \]}
 			\begin{Theorem}[Wallis]
 				הגבול:
 				\[ \limsi \cl{\frac{(2n)!!}{(2n - 1)!!}}^{2} \cdot \frac{1}{2n} = \frac{\pi}{2} \]
@@ -318,7 +316,7 @@
 			\begin{Theorem}[מונוטוניות]
 				נתונות שתי פונקציות $f, g \co [a, \infty) \to \R$ אינטגרביליות על כל ת''ק סגור. נניח $f \le g$. אז:
 				\[ \int^{\infty}_a \dequad f(x)\dx \le \int^{\infty}_a \dequad g(x) \dx \]
-				במובן הרחב (שימו לב שבמקרה בו האינטגרל של $g$ מתבדר לאינסוף, אי אפשר אפילו לדעת אם האינטגרל של $f$ מתבדר מתבדר (לאינסוף, לא לאינסוף, לא לשום מקום, סתם עושה שטויות) או לא)
+				במובן הרחב. 
 			\end{Theorem}
 			
 			\begin{Theorem}[ניוטון לייבניץ לאינטגרלים לא אמיתיים]
@@ -334,33 +332,28 @@
 				\[ \phi(\ag) = a, \lim_{b \to \eta^{-}} \phi(b) = \infty \]
 				אז:
 				\[ \int^{\eta}_\ag\Is f(\phi(t))\phi'(t) \dt = \!\!\int^{\infty}_a \dequad f(x) \dx  \]
-				כלומר:
-				\begin{itemize}
-					\item האינטגרל הלא אמיתי באגף ימין מתכנס אמ''מ האינטגרל הלא אמיתי באגף שמאל מתכנס, ואם זה קורה, אז מתקיים השוויון.
-					\item אגף שמאל מתבדר ל־$\infty$ אמ''מ אגף ימין מתבדר ל־$\infty$
-					\item כנ''ל ל־$-\infty$
-				\end{itemize}
+				כלומר: האינטגרל הלא אמיתי באגף ימין מתכנס אמ''מ האינטגרל הלא אמיתי באגף שמאל מתכנס, ואם זה קורה, אז מתקיים השוויון, אגף שמאל מתבדר ל־$\pm\infty$ אמ''מ אגף ימין מתבדר ל־$\pm\infty$. 
 			\end{Theorem}
 			\begin{Theorem}[אינטגרציה לחלקים לאינטגרלים לא אמיתיים]
 				יהיו $f, g \co [a, \infty) \to \R$ גזירות ברציפות [הנחה יותר חזקה ממה שבפועל צריך] אז:
 				\[ \int^{\infty}_a \dequad f(x)g'(x)\dx = f(x)g(x)\bigg\vert^{\infty}_a - \int^{\infty}_a \dequad f'(x)g(x) \dx \]
 				כלומר:
-				אם שני הגבולות מימין מתכנסים, אז הגבול משמאל מתכנס ומתקיים השוויון (בגבול: בהצבה יש לנו גבול, ואינטגרל לא אמיתי הוא גבול)
+				אם שני הגבולות מימין מתכנסים, אז הגבול משמאל מתכנס ומתקיים השוויון. 
 			\end{Theorem}
 			\begin{Theorem}[התכנסות מונוטונית]
 				נתונה $g \co [a, \wg) \to \R$ מונוטונית חלש.
 				\begin{itemize}
-					\item אם $g$ עולה וחסומה, הגבול מתכנס לסופרמום \hfill $\disty \lim_{b \to \wg^{-}} g(b) = \sup_{\hopen} g$.
-					\item אם $g$ עולה אך לא חסומה, הגבול מתבדר לאינסוף \hfill $\disty \lim_{b \to \wg^{-}} g(b) = \infty$
-					\item אם $g$ יורדת וחסומה, אז הגבול מתכנס לאינפימום \hfill $\disty \lim_{b \to \wg^{-}} g(b) = \inf_{\hopen} g$
-					\item אם $g$ יורדת אך איננה חסומה, אז הגבול מתבדר למינוס אינסוף \hfill $\disty \lim_{b \to \wg^{-}} g(b) = -\infty$
+					\item אם $g$ עולה וחסומה, אז: \hfill $\disty \smash{\lim_{b \to \wg^{-}}} g(b) = \smash{\sup_{\hopen}} g$
+					\item אם $g$ עולה אך לא חסומה, אז: \hfill $\disty \smash{\lim_{b \to \wg^{-}}} g(b) = \infty$
+					\item אם $g$ יורדת וחסומה, אז: \hfill $\disty \smash{\lim_{b \to \wg^{-}}} g(b) = \smash{\inf_{\hopen}} g$
+					\item אם $g$ יורדת אך איננה חסומה, אז: \hfill $\disty \smash{\lim_{b \to \wg^{-}}} g(b) = -\infty$
 				\end{itemize}
 			\end{Theorem}
 			\begin{Theorem}[סנדוויץ']
 				נתונות $f, g, h \co \hopen \to \R$. נניח $f \le g \le h$. אז:
 				\[ \cl{\lim_{b \to \wg^{-}} f(b) = 17 \land \lim_{b \to \wg^{-}} = 17} \implies \lim_{b \to \wg^{-}} g(b) = 17 \]
 			\end{Theorem}
-			\theo{תהי $g \co \hopen \to \R$ חסומה $m \le g \le M$. נגדיר $h, H \co \hopen \to \R$ ע''י:
+			\clm{תהי $g \co \hopen \to \R$ חסומה $m \le g \le M$. נגדיר $h, H \co \hopen \to \R$ ע''י:
 				\[ h(b) = \int_{[b, \wg)} g(x) \quad\quad H(b) = \sup_{[b, \wg)} g(x) \]
 				אז $h, H$ מוגדרות היטב (הסופרמום והאינפימום קיימים), מקיימות $m \le h \le H \le M$, נוסף על כך $h$ עולה חלש ו־$H$ עולה חלש.
 			}
@@ -368,7 +361,7 @@
 				\begin{gather*}
 					\limsup_{b \to \wg^{-}} g(x) = \ol{\lim_{x \to \wg^{-}}} g(x) := \bto \underbrace{\sup_{[b, \wg)} g(b)}_{H(b)} = \inf_{b \to \hopen} \sup_{\hopen} g
 				\end{gather*}
-				באופן דומה לגבול תחתון}
+				(באופן דומה לגבול תחתון). }
 			\begin{Theorem}
 				נתונה $g \co \hopen \to \R$ חסומה $m \le g \le M$. אז $\lim_{x \to \wg^{-}} g(x)$ מתכנס ל־$I$ אמ''מ $\limii_{x \to \wg^{-}} g(x) = I \land \lims_{x \to \wg^{-}} g(x) = I$.
 			\end{Theorem}
@@ -380,14 +373,14 @@
 				
 			\end{Theorem}
 			\defi{נאמר שהאינטגרל $\int^{\wg}_a f(x)\dx$ \textit{מתכנס בהחלט} אם $\int^{\wg}_a \sof{f(x)}$ מתכנס. }
-			\theo{נניח $\int^{\wg}_a f(x)\dx$ מתכנס. אז $\int^{\wg}_a f(x)\dx$ מתכנס בהחלט, ו־:
+			\clm{נניח $\int^{\wg}_a f(x)\dx$ מתכנס. אז $\int^{\wg}_a f(x)\dx$ מתכנס בהחלט, ו־:
 				\[ \sof{\int^{\wg}_a \Is f(x)\dx} \le \int^{\wg}_a \Is  \sof{f(x)}\dx \]}
 			\begin{Theorem}[התכנסות לאינטגרל לא אמיתי של פונקציה חיובית]
 				נתונה $f \co \hopen \to \R$ אינטגרבילית רימן על כל תת־קטע סגור. נניח $f \ge 0$. אז:
 				\[ \int^{\wg}_a \Is f(x)\dx \quad \veebar \quad \int^{\wg}_a \Is f(x)\dx = \infty \]
 				(הסימן $\veebar$ מייצג $\lor$ אקסלוסיבי, כלומר xor)
 			\end{Theorem}
-			\theo{נתונה $f \co [1, \infty) \to \R$.
+			\clm{נתונה $f \co [1, \infty) \to \R$.
 				\begin{itemize}
 					\item נניח $f$ יורדת במובן החלש ו־$f > 0$. אז האינטגרל הלא אמיתי $\int^{\infty}_1 f(x)\dx$ מתכנס אמ''מ הטור $\sumninf f(n)$ מתכנס. ואם תנאים אלו מתקיימים, אז $\sum_{n = 2}^{\infty}f(n) \le \int^{\infty}_1 f(x) \dx \le \sumninf f(n)$.
 			\end{itemize}}
@@ -440,7 +433,7 @@
 			\end{Theorem}
 			
 		\subsection{החלפת גבול ונגזרת}
-			\theo{נתונות $f, gf_n \co [a, b] \to \R$ ונניח ש־$f_n \in C^{1}([a, b])$ נקודתית וכן $f_n \to f, f_n' \to g$ במ''ש. אז $f_n \to f$ במ''ש וגם $f' = g$. }
+			\clm{נתונות $f, gf_n \co [a, b] \to \R$ ונניח ש־$f_n \in C^{1}([a, b])$ נקודתית וכן $f_n \to f, f_n' \to g$ במ''ש. אז $f_n \to f$ במ''ש וגם $f' = g$. }
 			\begin{Theorem}[גרסה חזקה יותר של המשפט הקודם]
 				יהיו $f_n, g \co [a, b] \to \R$. נניח:
 				\begin{itemize}
@@ -487,10 +480,10 @@
 			\exe{אם $\sumninf u_n(x) = f(x)$ נקודתית, אז $u_n(x) \to 0$ נקודתית. אם $\sumninf u_n(x)$ מתכנס במ''ש, אז $u_n(x) \to 0$ במ''ש ב־$I$. }
 			\rmark{זהירות! $\int^{\infty}_0 g(t) \dt$ מתכנס \textbf{לא גורר} ש־$g(t) \to 0$ (כאשר $t$ שואף לאינסוף). }
 			\defi{נתונות $u_n \co I \to \R$. הטור $\sumninf u_n(x)$ מתכנס בהחלט במ''ש ב־$I$ אם $\sumninf \sof{u_n(x)}$ מתכנס במ''ש ב־$I$. }
-			\theo{אם טור מתכנס בהחלט במ''ש, אז $\sumninf \sof{u_n(x)}$ מתכנס לכל $x$ וגם $\sumninf u_n(x)$ מתכנס במ''ש (הוכחה באמצעות קריטריון קושי במ''ש). \textbf{הכיוון השני לא עובד. }התכנסות בהחלט + התכנסות במ''ש לא גורר התכנסות בהחלט במ''ש. }
+			\clm{אם טור מתכנס בהחלט במ''ש, אז $\sumninf \sof{u_n(x)}$ מתכנס לכל $x$ וגם $\sumninf u_n(x)$ מתכנס במ''ש (הוכחה באמצעות קריטריון קושי במ''ש). \textbf{הכיוון השני לא עובד. }התכנסות בהחלט + התכנסות במ''ש לא גורר התכנסות בהחלט במ''ש. }
 			
 		\subsection{על התכנסות טור פונקציות}
-			\theo{נניח $\sumninf u_n(x) =f(x)$ במ''ש ב־$I = [a, b]$.
+			\clm{נניח $\sumninf u_n(x) =f(x)$ במ''ש ב־$I = [a, b]$.
 				\begin{enumerate}
 					\item אם לכל $n$, $u_n$ רציפה אז $f(x)$ רציפה.
 					\item אם לכל $n$, $u_n$ אינטגרבילית אז $f(x)$ אינטגרבילית. במקרה זה מתקיים:
@@ -504,7 +497,7 @@
 			\exe{נתונות $u_n \co [0, R] \to \R$ רציפות. נניח שהטור $\sumnoinf u_n(x)$ מתכנסת במ''ש ב־$[0, R)$. אז $\sumnoinf u_n(x)$ מתכנס במ''ש ב־$[0, R]$.}
 			
 			
-			\theo{תחת ההגדרות: 
+			\clm{תחת ההגדרות: 
 				\begin{multline*}
 					u_0(x) := \begin{cases}
 						\{x\} & n \le x \le n + \frac{1}{2} \\
@@ -555,13 +548,13 @@
 			\end{Theorem}
 			
 		\subsection{גזירה איבר־איבר של טור חזקות}
-			\theo{לטורים $\sumkoinf a_kx^{k}$ ו־$\sumkinf ka_kx^{k - 1}$ יש אותו רדיוס ההתכנסות. }
-			\theo{נתון טור חזקות $\sumkoinf a_k x^{k}$, עם רדיוס התכנסות $R$. נגדיר $f \co (-R, R) \to \R$ ע''י $f(x) = \sumkoinf a_kx^{k}$. אז $f$ גזירה ב־$(-R, R)$ ו־$\frac{\dd f}{\dx} = \sumkinf ka_kx^{k - 1}$. }
-			\theo{נניח $f(x) = \sumkoinf a_kx^{k}$ ב־$(-R, R)$. אז $f$ גזירה אינסוף פעמים ב־$0$ ו־$\sumkoinf a_kx^{k}$ הוא טור טיילור של $f$ ב־$x = 0$. }
+			\clm{לטורים $\sumkoinf a_kx^{k}$ ו־$\sumkinf ka_kx^{k - 1}$ יש אותו רדיוס ההתכנסות. }
+			\clm{נתון טור חזקות $\sumkoinf a_k x^{k}$, עם רדיוס התכנסות $R$. נגדיר $f \co (-R, R) \to \R$ ע''י $f(x) = \sumkoinf a_kx^{k}$. אז $f$ גזירה ב־$(-R, R)$ ו־$\frac{\dd f}{\dx} = \sumkinf ka_kx^{k - 1}$. }
+			\clm{נניח $f(x) = \sumkoinf a_kx^{k}$ ב־$(-R, R)$. אז $f$ גזירה אינסוף פעמים ב־$0$ ו־$\sumkoinf a_kx^{k}$ הוא טור טיילור של $f$ ב־$x = 0$. }
 			\noti{ישנה מוסכמה כי את טור החזקות $a_0 + a_2x + \cdots = a_0 + \sum_{k =1}^{\infty}a_kx^{k}$ נרשום כך: $\sumkoinf a_kx^{k}$, כאשר $a_kx^{k}$ ב־$k = 0$ מוכרז להיות $1$ אפילו אם $x =0$. }
 			\color{red}\textbf{אזהרה. }\color{black}תהי $f(x)$ פונקציה חלקה (כלומר $f \in C^{\infty}(\R)$ עם טור טיילור $\sumkoinf a_kx^{k}$ (סביב $0$). כלומר לכל $k$, מתקיים $a_k = \frac{f^{(k)}(0)}{k!}$. \textbf{לא נובע שטור הטיילור מתכנס לפונקציה באיזושהי סביבה של $0$}. יתר על כן, במידה והוא כן מתכנס בסביבה של $0$, לא נובע שהגבול הוא $f$.
 		\subsection{קצה תחום ההתכנסות}
-			\theo{נתון טור חזקות $\sumkoinf a_kx^{k}$ עם רדיוס התכנסות $0 < R \in \R$. אם הטור מתבדר ב־$x = R$, אז ההתכנסות של הטור ב־$[0, R)$ איננה במ''ש. }
+			\clm{נתון טור חזקות $\sumkoinf a_kx^{k}$ עם רדיוס התכנסות $0 < R \in \R$. אם הטור מתבדר ב־$x = R$, אז ההתכנסות של הטור ב־$[0, R)$ איננה במ''ש. }
 			\begin{Theorem}[משפט אבל על קצה תחום ההתכנסות]
 				נניח $f(x) = \sumkoinf a_kx^{k}$ מתכנס נקודתית ב־$[0, R]$. אז התכנסות הטור ל־$f(x)$ היא במ''ש.
 			\end{Theorem}
@@ -581,18 +574,18 @@
 			}
 			\defi{\textit{אבל: }(Abel) $\ab \sumkoinf a_k = L$, פירושו:
 				\[ \lim_{R \to 1^{-}}\sumkoinf a_kR^{k} = L \]}
-			\theo{אם טור $\sumkoinf a_k = L$ במובן הרגיל, אז $\ab \sumkoinf a_k = L$ וגם $\cz \sumkoinf a_k = L$. }
-			\theo{התכנסות צזארו גוררת התכנסות לפי אבל, כלומר אם $\cz \sumkoinf a_k= L$, אז $\ab \sumkoinf a_k = L$. }
+			\clm{אם טור $\sumkoinf a_k = L$ במובן הרגיל, אז $\ab \sumkoinf a_k = L$ וגם $\cz \sumkoinf a_k = L$. }
+			\clm{התכנסות צזארו גוררת התכנסות לפי אבל, כלומר אם $\cz \sumkoinf a_k= L$, אז $\ab \sumkoinf a_k = L$. }
 			\begin{Theorem}[טאובר]
 				אם $\ab \sumkoinf a_k$ וגם $a_k = o(\frac{1}{k})$ אז $\sumkoinf a_k = L$.
 			\end{Theorem}	
-			\theo{אם טור מתכנס בהחלט, אז הוא מתכנס, וכמו כן כל טור שמתקבל ממנו ע''י שינוי סדר האיברים או קיבוץ האיברים, גם הוא מתכנס (בהחלט) לאותו הגבול. }
+			\clm{אם טור מתכנס בהחלט, אז הוא מתכנס, וכמו כן כל טור שמתקבל ממנו ע''י שינוי סדר האיברים או קיבוץ האיברים, גם הוא מתכנס (בהחלט) לאותו הגבול. }
 			\defi{יהי $(t_j)_{j \in \Z_{\ge 0}}$. תזכורת־הגדרה: \textit{הטור $\sum t_j$ מתכנס בהחלט ל־$L$} פירושו:
 				\begin{itemize}
 					\item הטור $\sum \sof{t_j}$ מתכנס.
 					\item הטור המקורי $\sum t_j$ מתכנס ל־$L$.
 			\end{itemize}}
-			\theo{\begin{enumerate}
+			\clm{\begin{enumerate}
 					\item הטור $\sum t_j$ מתכנס בהחלט, אמ''מ קבוצת הסוכמים הסופיים של הערכים המוחלטים:
 					\[ \ccb{\sum_{j \in J}\sof{t_j} \middle\vert J \subset \Z_{\ge 0} \land \sof J \in \Z_{\ge 0}} \]
 					חסומה.
@@ -602,7 +595,7 @@
 						\item לכל פירוק זר לתתי קבוצות סופיות $\Z_{\ge 0} = J_0 \uplus J_1 \uplus J_2 \uplus \cdots$, אם נסמן $c_m:= \sum_{j \in J_m} t_j$ הטור $c_m$ מתכנס בהחלט ל־$L$.
 					\end{enumerate}
 			\end{enumerate}}
-			\theo{נתונים טורים $\sum_{\ml = 0}^{\infty}\bg_{\ml}$ ו־$\sum_{k = 0}^{\infty}\ag_k$ שמתכנסים בהחלט לגבולות $A, B$ בהחלפה. נגדיר $\cg_m = \sum_{k + \ml = m}\ag_k \bg_\ml$. אז הטור $\sum_{m = 0}^{\infty}\cg_m$ שנקרא \textit{מכפלת קושי של הטורים $\sum \ag_k, \sum \bg_k$} מתכנס בהחלט לגבול $A \cdot B$. }
+			\clm{נתונים טורים $\sum_{\ml = 0}^{\infty}\bg_{\ml}$ ו־$\sum_{k = 0}^{\infty}\ag_k$ שמתכנסים בהחלט לגבולות $A, B$ בהחלפה. נגדיר $\cg_m = \sum_{k + \ml = m}\ag_k \bg_\ml$. אז הטור $\sum_{m = 0}^{\infty}\cg_m$ שנקרא \textit{מכפלת קושי של הטורים $\sum \ag_k, \sum \bg_k$} מתכנס בהחלט לגבול $A \cdot B$. }
 		\section{פורייה}
 		\subsection{מרוכבים}
 			\begin{Theorem}[לייבניץ]
@@ -641,13 +634,13 @@
 			\end{enumerate}}
 			יתרה מכך, נבחין ש־$3$ (מרחב הפולינום הטריגונומטריים מדרגה לכל היותר $N$) נפרש ע''י:
 			\lem{\begin{multline*}
-					\Sp_\C\cl{\ccb{e^{int} \mid -N \le n \le N}} \\\seq \Sp_\C\cl{\{1\} \cup \{\cos nt\}_{n = 1}^{N} \cup \ccb{\sin t}_{n = 1}^{N}}
+					\Sp_\C\cl{\ccb{e^{int} \mid -N \le n \le N}} \\= \Sp_\C\cl{\{1\} \cup \{\cos nt\}_{n = 1}^{N} \cup \ccb{\sin t}_{n = 1}^{N}}
 			\end{multline*}}
 			
 			\exe{אם $f, g \in R(\tb)$, אז גם $f \bar g \in R(\tb)$. }
 			\defi{\[ \mut{f}{g} := \frac{1}{2\pi}\int^{2\pi}_0 \dequad f(t)\ol{g(t)}\dt \]}
 			\lem{זו מכפלה פנימית מרוכבת (עד לכדי ניוון). }
-			\theo{קל לראות ש־:
+			\clm{קל לראות ש־:
 				\[ \sof{f + g}^{2} = \sof f^{2} + 2\Re\mut{f}{g} + \sof g^{2} \]}
 			\begin{Collary}[פיתגורס]
 				אם $f \perp g$ אז $\sof{f + g}^{2} = \sof f^{2} + \sof g^{2}$.
@@ -661,12 +654,12 @@
 		\subsection{סכום פורייה}
 			\defi{\textit{מקדמי פוריה} (Fourier) של $f \in R(\tb)$, הם לכל $n \in \Z$:
 				\[ \hat f(n) := \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t)e^{-int}\dt = \mut{f}{e^{int}} \]}
-			\defi{\textit{מקדמי פורייה של $f$} הם:
-				\[ (S_nf)(t) := \sum_{n = -N}^{N}\hat f(n)e^{int} \]}
+			\defi{\textit{סכומי פורייה של $f$} הם לכל $n \in \N$:
+				\[ (S_nf)(t) := \sum_{\mathclap{n = -N}}^{N}\hat f(n)e^{int} \]}
 			\defi{\textit{טור פורייה של $f$} הוא:
 				\[ \sum_{n = - \infty}^{\infty}\dequad \ \hat f (n) e^{int} \]}
 			
-			\theo{תהי $f \in R(\tb)$, אז $S_nf$ הוא ההטלה האורתוגונלית של $f$ על מרחב הפולינומים הטריגונומטריים מדרגה $n\ge $. או בניסוח מפורש יותר:
+			\clm{תהי $f \in R(\tb)$, אז $S_nf$ הוא ההטלה האורתוגונלית של $f$ על מרחב הפולינומים הטריגונומטריים מדרגה $n\ge $. כלומר: 
 			\begin{enumerate}[(1)]
 					\item $S_nf$ שייך למרחב הפולינומים הטריגונומטריים.
 					\item לכל $g$ פולינום טריגונומטרי מדרגה $n \ge$, $f - S_nf \perp g$.
@@ -725,7 +718,7 @@
 				עבור $f \in R(\tb)$, מתקיים:
 				\[ \sum_{n = -\infty}^{\infty} \sof{\hat f(n)}^{2} = \norm f \]
 			\end{Theorem}
-			\theo{תהי $f \in C(\tb)$, ונניח ש־$\sum^{\infty}_{n = -\infty}\sof{\hat f(n)} < \infty$ (שימו לב – לא ריבועי מקדמי פורייה, אלא ממש מקדמי פוריה עצמם). אז $S_n f \tou f$ במ''ש. }
+			\clm{תהי $f \in C(\tb)$, ונניח ש־$\sum^{\infty}_{n = -\infty}\sof{\hat f(n)} < \infty$ (שימו לב – לא ריבועי מקדמי פורייה, אלא ממש מקדמי פוריה עצמם). אז $S_n f \tou f$ במ''ש. }
 			\defi{נגדיר את $C^{1}(\tb)$ להיות קבוצת הפונקציות $f \in C^{1}(\R)$ ו־$f \in C(\tb)$, כלומר פונקציות ממחוזר $2\pi$ גזירות ברציפות. }
 			\lem{ל־$f \in C^{1}(\tb)$ מתקיים $\hat {f'}(n) = in \hat f(n)$}
 			\cola{בהינתן $f \in C^{1}(\tb)$, לא רק ש־$\hat f(n) \to 0$, אלא גם ש־:
@@ -742,7 +735,7 @@
 			
 		\subsection{גרעין אבל ודיריכלה}
 			\defi{לכל $f, g \in R(\tb)$, ה\textit{קונבלוציה של $f, g$ בנקודה $x$} היא:
-				\[ (f * g)(x) \cod \frac{1}{2\pi}\int^{\pi}_{-\pi}f(t)g(x - t)\dt \]}
+				\[ (f * g)(x) \cod \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t)g(x - t)\dt \]}
 			\begin{Claim}[תכונות הקונבלוציה]\
 				\begin{itemize}
 					\item סימטריה: \hfil $f * g = g * f$ \\
@@ -756,7 +749,7 @@
 					כאשר נבחין ש־$\hat f(0)$ קבועה ולא תלויה בקונבולוציה.
 					\item באופן כללי, אם $g$ פולינום מדרגה $n \ge$ אז כך גם $f * g$.
 					\item אם $g$ פולינום טריגונומטרי מדרגה $n \le$ אז כך גם $f * g$.
-					\item באופן יותר ספציפי, מתקיים ש־$\widehat{(f * g)}(n) \hat f (n) \hat g(n)$ (זה נובע מאסציאטיביות)
+					\item באופן יותר ספציפי, מתקיים ש־$\widehat{(f * g)}(n) = \hat f (n) \hat g(n)$. 
 				\end{itemize}
 			\end{Claim}
 			
@@ -765,20 +758,20 @@
 			\defi{$F_N(y)\cod \frac{1}{N + 1}\sum_{n = 0}^{N}D_n(y)$ יקרא \textit{גרעין פייר} (Fejer). }
 			\begin{Claim}\label{clm:1}
 				\begin{alignat*}{9}
-					& \hat f(n) e^{inx} &&= (f * e_n)(x) \\
-					\sg_N f &= \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t)F_N(x - t)\dt &&= f * F_n \\
-					S_Nf &= \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t){D_N(x - t)}\dt &&= f * D_n
+					&& \hat f(n) e^{inx} &= (f * e_n)(x) \\
+					\sg_N f &=& \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t)F_N(x - t)\dt\, &= f * F_n \\
+					S_Nf &=& \ \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ f(t){D_N(x - t)}\dt &= f * D_n
 				\end{alignat*}
 			\end{Claim}
 			\begin{Lemma}[נוסחה מפורשת לגרעין דיריכלה]
-				\[ D_N(y) = \sum_{n = -N}^{N}e^{iny} \seq \begin{cases}
+				\[ D_N(y) = \sum_{\mathclap{n = -N}}^{N}e^{iny} = \begin{cases}
 					2N + 1 & y = 0 \\
 					\frac{\sin\cl{\cl{N + \frac{1}{2}}}y}{\sin\cl{\frac{1}{2}y}} & y \neq 0
 				\end{cases} \]
 			\end{Lemma}
 			
 			\begin{Lemma}[נוסחה מפורשת של גרעין פייר]
-				\[ F_N(y) = \frac{1}{N + 1}\sum_{n= 0}^{N}D_n(y) \seq \frac{1}{N + 1} \cl{\frac{\sin \cl{\frac{N + 1}{2} y}}{\sin(\frac{1}{2}y)}}^{2} \]
+				\[ F_N(y) = \frac{1}{N + 1}\sum_{n= 0}^{N}D_n(y) = \frac{1}{N + 1} \cl{\frac{\sin \cl{\frac{N + 1}{2} y}}{\sin(\frac{1}{2}y)}}^{2} \]
 			\end{Lemma}
 			
 			\cola{\begin{enumerate}[(A)]
