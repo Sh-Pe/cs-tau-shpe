@@ -18,7 +18,7 @@
 %  
 
 %! ~~~ Packages Setup ~~~ 
-\documentclass[name=רשימות טופולוגיה]{../../../tex/classes/noChapterMegasumPreamble}
+\documentclass[name=רשימות טופולוגיה כללית]{../../../tex/classes/noChapterMegasumPreamble}
 \usepackage{../../../tex/packages/mathShortcuts}
 \usepackage{../../../tex/packages/hebrewSupport}
 
@@ -48,27 +48,38 @@
 	\hfil \textit{תאריך קימפול: \today}
 	
 	\setcounter{section}{-1}	
-	\section[מבוא למבוא]{\en{Introduction to the Introduction}}
-	\subsection[רישיון]{License $\sim$ רישיון}
+\section[מבוא למבוא]{\en{Introduction to the Introduction}}
+\subsection[רישיון]{License $\sim$ רישיון}
 	\en{The following summary is provided under the GNU General Public License version 3 (GPLv3). It can be distributed and/or modified under the terms of the license, or any later version of it. Additional information can be found \href{https://www.gnu.org/licenses}{here}. }
+			
 			הסיכום להלן מסופק תחת רשיון התוכנה החופשית של גנו גרסה 3 (GNU General Public License (GPL) version 3). ניתן להעתיקו ו/או להפיצו תחת GPLv3 או גרסה מאוחרת יותר. מידע נוסף אפשר למצוא \href{https://www.gnu.org/licenses}{כאן}. 
 		
 	\subsection{הרבה מילים שאפשר לדלג עליהן}
 	הסיכום להלן נכתב כתרגיל כדי לוודא שאני יודע את החומר של טופולוגיה, שלמדתי עצמאית. הוא נועד לספק ידע נוסף אל מעבר לקורס של טופולוגיה באוניברסיטת תל־אביב. יש להבהיר שהסיכום עוסק בטופולוגיה כללית (אנ' \textit{general topology} או \textit{point-set topology}) ו\textbf{לא} עוסק בטופולוגיה אלגברית (אנ' \textit{algebraic topology}), טופולוגיה גיאומטרית (אנ' geometric topology) או באנליזה על יריעות ובגיאומטריה דיפרנציאלית (אנ' \textit{differential geometry}). עם זאת, הוא כן (אמור) לספק בסיס יציב לנושאים הללו. 
+	
+	באשר למקורות – את ההוכחות כתבתי בעצמי (לעיתים עם עזרה של מקורות נוספים, במידה ונתקעתי) ולכן כמובן סביר (עד לכדי וודאות מוחלטת) שיש בסיכום הזה טעויות. אשמח מאוד אם תפנו אלי (במייל, ב־PR בגיטהאב, או בטלפון אם אתם מכירים אותי) כדי שאוכל לתקן. עם זאת, רשימת הנושאים לא נבחרה באקראי, ומרבית המשפטים מופיעים באחד מהמקורות האלו:
+	\begin{itemize}
+		\item הספר ''General Topology`` של Stephen Willard. (כנראה בעל ההשפעה הכי משמעותית עלי)
+		\item הספר ''Topology`` של James R. Munkers. 
+		\item הרשימות המצוינות של איתמר רוט. (כדי לוודא שאני לא מפספס חומר שנלמד בתל־אביב)
+		\item ויקיפדיה האנגלית והעברית מפעם לפעם. 
+	\end{itemize}
+	לפעמים גם סתם המצאתי משפטים שנראו לי מועילים (כמו \ref{clm:clCongTopo}). סביר להניח שהסיכום בעת השלמתו יהיה המקור המקיף ביותר (אם כי לאו דווקא המעמיק ביותר) לטופולוגיה כללית בעברית. עם זאת, הוא לא שואף להיות חיבור אקדמי (בפרט הביבליוגרפיה שלי לוקה בחסר, בלשון המעטה). אני סך הכל סטודנט שנה א' לתואר במתמטיקה, אל תצפו ליותר מדי. 
 		
-%		\hfill שחר פרץ, 19.7.2025
+		\hfill שחר פרץ, 17.7.2026
 	
 	
-	\color{red}\textbf{אזהרה. }\color{black}הסיכום נכתב לבד, וההוכחות בו הוכחות שלי. ייתכן ואף סביר שהוא יכיל טעויות. 
+%	\color{red}\textbf{אזהרה. }\color{black}הסיכום נכתב לבד, וההוכחות בו הוכחות שלי. ייתכן ואף סביר שהוא יכיל טעויות. 
 	
-	\subsection{סימונים}		בסיכום הבא נניח את הסימונים הבאים: 
+\subsection{סימונים}
+	בסיכום הבא נניח את הסימונים הבאים: 
 		\begin{itemize}
 		\item \hfil $[n] \cod \N \cap [0, n]$
 		\item \hfil $\subset \; \cod \; \subseteq$
 		\item \hfil $\bigcup A \cod \bigcup_{X \in A}X$
 	\end{itemize}
 	
-	\subsection{רשימת נושאים שהוספתי לסיכום נוסף על החומר של הקורס}
+\subsection{רשימת נושאים שהוספתי לסיכום נוסף על החומר של הקורס}
 	\begin{multicols}{2}
 		\begin{itemize}
 			\item התכנסות רשתות
@@ -94,17 +105,17 @@
 	\middleText{\textit{בתיאבון}}
 	
 	
-	\section[מרחבים מטריים]{\en{Metric Spaces}}
+\section[מרחבים מטריים]{\en{Metric Spaces}}
 	TODO!
-	\subsection{טופולוגיה של מרחב מטרי}
-	\subsection{משפט ההשלמה}
-	\subsection{ארצלה־אסכולי}
-	\subsection{רציפות}
+\subsection{טופולוגיה של מרחב מטרי}
+\subsection{משפט ההשלמה}
+\subsection{ארצלה־אסכולי}
+\subsection{רציפות}
 	
 	
 	\npage
-	\section[מבוא]{\en{Introduction}}
-	\subsection{מרחבים טופולוגיים}
+\section[מבוא]{\label{s:intro}\en{Introduction}}
+\subsection{\label{ss:topoSpaces}מרחבים טופולוגיים}
 	\subsubsection{הגדרה}
 	\defi{יהיו $X$ ו־$\tau \subset \ps(X)$ קבוצות. נאמר ש־$(X, \tau)$ \textit{טופולוגיה על המרחב $X$} אם $\tau$ מקיים את התכונות הבאות: 
 	\begin{itemize}
@@ -195,7 +206,7 @@
 		\end{itemize}\envendproof
 	\end{proof}
 	
-	\subsubsection{פעולות במרחבים טופולוגיים}
+\subsubsection{\label{ss:topoSpaceStructs}פעולות במרחבים טופולוגיים}
 	שתי הפעולות הבסיסיות ביותר שניתן להגדיר בעבור קבוצות, הן הפעולות להלן: 
 	\defi{יהי $X$ מרחב טופולוגי ותהי $A \subset X$. אז נגדיר את \textit{הסוגר של $A$} להיות: 
 	\[ \ol{A} := \Cl_X A \cod \bigcap \ccb{A \subset F \mid F \, \mathrm{is \; closed\, in \,}X} \]}
@@ -226,7 +237,7 @@
 		\end{itemize}\envendproof
 	\end{proof}
 	אם אנו מבינים כיצד נראה הסגור של קבוצות (או לחילופין, הפנים) אנחנו מבינים כיצד הטופולוגיה נראית. למה הכוונה? פונקציית הסגור ופונקציית הפנים מגדירות באופן יחיד (=חח''ע) טופולוגיה. נוכיח זאת. 
-	\clm{תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז הפונקציה $\tau \overset{I}{\mapsto} \Int_{(X, \tau)}$ כאשר $\tau \in \tc$ (נבחין ש־$I \co \tc \to (\ps(X) \to \ps(X))$) חח''ע. }\begin{proof}
+	\clm{\label{clm:intrCongTopo}תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז הפונקציה $\tau \overset{I}{\mapsto} \Int_{(X, \tau)}$ כאשר $\tau \in \tc$ (נבחין ש־$I \co \tc \to (\ps(X) \to \ps(X))$) חח''ע. }\begin{proof}
 			יהיו $\tau_1, \tau_2 \in \tc$ טופולוגיות על $X$. נסמן ב־$\Int_1 \cod I(\tau_1)$ את פונקציית הפנים לפי $\tau_1$ וב־$\Int_2 \cod I(\tau_2)$ את פונקציית הפנים לפי $\tau_2$. נניח ש־$\Int_1 = \Int_2$, ונוכיח ש־$\tau_1 = \tau_2$. 
 			
 			לשם כך, נראה טענת עזר. לכל $\tau \in \tc$ נגדיר את הקבוצה: 
@@ -236,10 +247,6 @@
 			נחזור להוכחת הטענה המקורית. נשלב את הלמה עם ההנחה ש־$\Int_1 = \Int_2$: 
 			\[ \tau_1 = \tau_1' = \Img \Int_1 = \Img \Int_2 = \tau_2' = \tau_2 \]
 			כנדרש. 
-	\end{proof}
-	\clm{תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז הפונקציה $\tau \overset{C}{\mapsto} \Cl_{(X, \tau)}$ כאשר $\tau \in \tc$ (נבחין ש־$C \co \tc \to (\ps(X) \to \ps(X))$) חח''ע. }
-	\begin{proof}
-		ההוכחה דומה. תרגיל. 
 	\end{proof}
 	
 	\clm{\label{clm:clsoureEntriorRelation}לכל $A \subset X$ מתקיימים השוויונות: 
@@ -260,6 +267,11 @@
 		ולכן: 
 		\[ X \setminus \Int(X \setminus A) = X \setminus (X \setminus \Cl A) = A \]
 		ובכך הוכחנו גם את $\ww$ כנדרש. 
+	\end{proof}
+	
+	\clm{\label{clm:clCongTopo}תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז הפונקציה $\tau \overset{C}{\mapsto} \Cl_{(X, \tau)}$ כאשר $\tau \in \tc$ (נבחין ש־$C \co \tc \to (\ps(X) \to \ps(X))$) חח''ע. }
+	\begin{proof}
+		מיידית מ־\ref{clm:intrCongTopo} ומ־\ref{clm:clsoureEntriorRelation}. 
 	\end{proof}
 	
 	ישנן עוד פעולה אחת חשובה שמגדירים מעל מרחבים טופולוגיים: הקצה (באגנלית, frontier או boundary) של קבוצה. 
@@ -293,16 +305,17 @@
 			\end{itemize}
 		\end{itemize}\envendproof
 	\end{proof}
-	\subsection{בסיסים}
+\subsection{\label{ss:bases}בסיסים ותת־בסיסים}
 	כאשר הגדרנו בסיס לסביבת נקודות, שאלנו את עצמנו איזו הגדרה מספיק חזקה כדי להיות שמישה דיו כחלופה לכל המקרים בהם נרצה לדבר על סביבה של נקודה, אך מאידך חלשה יותר מההגדרה של מערכת סביבות. באופן דומה, כאשר נדבר על בסיסים, נרצה לענות על אותה השאלה בעבור המרחב הטופולוגי כולו – איזו הגדרה מספיק חלשה כדי שבמקום לדבר על קבוצה פתוחה, נדבר על קבוצה פתוחה בסיסית? 
 	
 	בפרק להלן על בסיסים נעסוק בשתי הגדרות – הראשונה, בסיס, הגדרה שמנצלת את הסגירות לאיחוד, והשנייה, תת‏־בסיס, שמנצלת גם את הסגירות לחיתוך. שתי ההגדרות מאפשרות לנו (בהינתן בסיס או תת־בסיס) להשרות טופולוגיה (למעשה, זו הדרך העיקרית בה נגדיר בהמשך טופולוגיות חדשות). בשתיהן, די יהיה להבין כיצד הבסיסים או תתי־הבסיסים נראים כדי לאפיין את הטופולוגיה, ולהפך. 
-	\subsubsection{בסיסים}
-	\defi{\textit{בסיס} היא קבוצה $\UU$, כך שלכל $U_1, U_2 \in \UU$ ולכל $p \in U_1 \cap U_2$, ישנה $U_3$ כך ש־$p \in U_3 \subset U_1 \cap U_2$. }
-	\defi{\textit{בסיס למרחב טופולוגי $(X, \tau)$} היא קבוצה $\UU$ כך ש־: 
+	\subsubsection{\label{sss:base}בסיסים}
+	
+	\defi{\label{defi:base}\textit{בסיס} היא קבוצה $\UU$, כך שלכל $U_1, U_2 \in \UU$ ולכל $p \in U_1 \cap U_2$, ישנה $U_3 \subset \UU$ כך ש־$p \in U_3 \subset U_1 \cap U_2$. }
+	\defi{\label{defi:topobase}\textit{בסיס למרחב טופולוגי $(X, \tau)$} היא קבוצה $\UU$ כך ש־: 
 	\[ \tau = \ccb{\bigcup \XX \ \middle\vert \ \XX \subset \UU} \]}
 	\cola{בסיס למרחב טופולוגי מכיל קבוצות פתוחות בלבד. }
-	\clm{\label{clm:baseCreatsTopology}לכל $\UU$ בסיס, הקבוצה $\tau_\UU$: 
+	\clm{\label{clm:baseCreatesTopology}לכל $\UU$ בסיס, הקבוצה $\tau_\UU$: 
 	\[ \tau_\UU = \ccb{\bigcup \XX \ \middle\vert \ \XX \subset \UU} \]
 	היא טופולוגיה על $X = \bigcup \UU$, ש־$\UU$ בסיס שלה. }\begin{proof}
 		ראשית נוכיח ש־$\tau_\UU$ טופולוגיה. 
@@ -320,7 +333,7 @@
 			זהו איחוד מוכלל של קבוצות $U_{1, 2, p} \in \tau_\UU$ ולכן מסגירות לאיחוד סיימנו. 
 		\end{itemize}\envendproof
 	\end{proof}
-	הסיבה העיקרית שבחרנו להגדיר ''בסיס`` ו''בסיס למרחב טופולוגי`` בנפרד, היא שבהינתן בסיס ניתן להשרות טופולוגיה באמצעות \ref{clm:baseCreatsTopology}. 
+	הסיבה העיקרית שבחרנו להגדיר ''בסיס`` ו''בסיס למרחב טופולוגי`` בנפרד, היא שבהינתן בסיס ניתן להשרות טופולוגיה באמצעות \ref{clm:baseCreatesTopology}. 
 	
 	\textbf{דוגמה. }הטופולוגיה על הישר הממשי מושרת מהבסיס שהוא קבוצת הקטעים הפתוחים. 
 	\cola{כאשר משרים טופולוגיה $\tau$ מבסיס $\UU$, מתקיים ש־$\UU$ בסיס של $(X, \tau)$. ההוכחה פשוטה. }
@@ -334,7 +347,10 @@
 			\item תהי $x \in V$ קבוצה פתוחה כלשהי. נוכיח שקיים $\UU\ni U \subset V$. נבחין ש־$x \in V = \bigcup \XX$ כאשר $\XX\subset \UU$. לכן קיים $U \in \XX$ כך ש־$x \in U$ (הגדרת איחוד מוכלל) דהיינו $x \in U \in \UU$ וכן $U \subset V$ ולכן מקיימת את הנדרש. 
 		\end{itemize}
 	\end{proof}
-	\begin{Claim}[לטופולוגיות יש אינפימום]
+	\cola{\label{clm:baseCreatesMinimalTopology}יהי $\UU$ בסיס. אז הטופולוגיה $(X, \tau)$ שהוא משרה מינימלית ביחס ההכלה מבין הטופולוגיות שמקיימות $\UU\subset \tau$. }\begin{proof}
+		ישירות מסגירות לאיחוד: תהי $\eta$ טופולוגיה כלשהי של $X$ כך ש־$\UU\subset \eta$, אזי מסגירות לאיחוד של $\eta$ ומהגדרת הטופולוגיה ש־$\UU$ משרה נקבל מיידית ש־$\tau \subset\eta$. 
+	\end{proof}
+	\begin{Claim}[לטופולוגיות יש אינפימום]\label{clm:topoinfimum}
 		תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז לכל $(\tau_i)_{i \in I}$ כך ש־$\tau_i \in \tc$ קבוצה של טופולוגיות, קיים להם חסם תחתון מקסימלי $\inf (\tau_i)_{i \in I}$. 
 	\end{Claim}\begin{proof}
 		נתבונן בקבוצה: 
@@ -349,13 +365,58 @@
 			\item משום ש־$X, \vn \in \tau_i$ לכל $i \in I$ אז $X, \vn \in \bigcap \tau_i = \tau$ כנדרש. 
 		\end{itemize}\envendproof
 	\end{proof}
-	\subsubsection{תתי־בסיסים}
-	\defi{תת־בסיס}
-	\clm{תת־בסיס יוצר טופולוגיה}
-	\clm{יש לטופולוגיות אינפימום}
-	\cola{קבוצת הטופולוגיות על קבוצה $X$ הינה סריג. }
-	\subsection{רשתות}
-	\subsection{פונקציות רציפות}
+	
+	\subsubsection{\label{sss:subbases}תתי־בסיסים}
+
+	עתה ננסה לנצל את ההנחה של סגירות לחיתוך, כמו שקודם לכן ניצלנו את ההנחה של סגירות לאיחוד (בהגדרת הבסיס). לתוצאה נקרא תת־בסיס, וכמו שנבחין ב־\ref{clm:subbaseCreatesTopology}, הקבוצה הזו תשרה את הטופולוגיה המינימלית שהיא מוכלת בה. 
+	\defi{\label{defi:subbase}תת־בסיס זו קבוצה. }
+	\defi{\label{defi:toposubbase}תת־בסיס של מרחב טופולוגי $X$ היא קבוצה $\UU$ כך ש־: 
+	\[ \UU' \cod \ccb{\bigcap_{i = 1}^{n} U_i \mid (U_i)_{i = 1}^{n} \subset \UU} \]
+	הוא בסיס של $X$. }
+	\defi{\label{defi:subbaseTopology}בהינתן תת־בסיס $\UU$, הטופולוגיה שהוא משרה היא הטופולוגיה ש־$\UU' \cod \ccb{\bigcap_{i = 1}^{n} U_i \mid (U_i)_{i = 1}^{n} \subset \UU}$ משרה (כבסיס). }
+	\rmark{כדי שההגדרה לעיל תהיה תקינה, כמובן שיש להראות שלכל $\UU$ קבוצה, $\UU'$ בסיס לטופולוגיה כלשהי. }
+	\clm{\label{clm:subbaseCreatesTopology}תת־בסיס יוצר טופולוגיה, שהוא תת־הבסיס שלה. }\begin{proof}
+		יהי $\UU$ תת־בסיס. נגדיר את $\UU'$ כמו שהגדרנו בעבר. 
+		\begin{itemize}
+			\item ראשית, נוכיח ש־$\UU'$ הינו בסיס. ניזכר בהגדרה \ref{defi:base} ונבחין שיש להוכיח שלכל $U_1, U_2 \in \UU'$ ו־$p \in U_1 \cap U_2$, ישנה $U_3 \in \UU$ כך ש־$p \in U_3 \subset U_1 \cap U_2$. ההוכחה פשוטה: עבור $n = 2$, ידוע ש־$\UU' \ni U_3 \cod U_1 \cap U_2$, ולכן כל $p \in U_1 \cap U_2$ מתאים לו $p \in U_3 = U_1 \cap U_2$ כלשהו. 
+			\item עתה, הראנו ש־$\UU'$ בסיס. לכן, מ־\ref{clm:baseCreatesTopology}, $\UU'$ משרה טופולוגיה $\tau$ על הקבוצה $X = \bigcup \UU'$. בהתאם להגדרה \ref{defi:subbaseTopology} (שרק עתה למעשה הראנו שהיא מוגדרת היטב), $\UU$ אכן משרה טופולוגיה. 
+			\item יש להראות ש־$\UU$ תת־בסיס של $(X, \tau)$, בהתאם להגדרה \ref{defi:toposubbase}. מ־\ref{clm:baseCreatesTopology} אנו יודעים ש־$\UU'$ בסיס של $(X, \tau)$, ולכן סיימנו. 
+		\end{itemize}\envendproof
+	\end{proof}
+	\cola{\label{clm:subbaseCreatesMinimalTopology}מבין הטופולוגיות שתת־הבסיס מוכל בהן, הטופולוגיה שתת־הבסיס משרה מינימלית ביחס ההכלה. }\begin{proof}
+		נניח ש־$\UU$ תת־בסיס שמשרה טופולוגיה $\tau$ על $X$. תהי איזושהי טופולוגיה $\eta$ של $X$ ונניח ש־$\UU \subset \eta$. אז ישירות מהגדרת $\tau$ הטופולוגיה המושרת מתת־הבסיס, בהכרח $\UU'$ המוגדרת ב־\ref{defi:subbaseTopology} ומסגירות לחיבור של $\eta$ נקבל ש־$\UU \subset \UU' \subset \eta$. ב־\ref{clm:subbaseCreatesTopology} הראנו ש־$\UU'$ בסיס, ולכן מ־\ref{clm:baseCreatesMinimalTopology} בהכרח $\eta$ הטופולוגיה המינימלית שמכילה את $\UU'$, ובאופן שקול הטופולוגיה המינימלית שמכילה את $\eta$ (הראנו כי $\UU' \subset \eta$ אמ''מ $\UU \subset \eta$, אם $\eta$ טופולוגיה של $X$). סה''כ הוכחנו את הדרוש. 
+	\end{proof}
+	\begin{Claim}[לטופולוגיות יש סופרמום]\label{clm:toposupremum}
+		תהי $X$ קבוצה. נסמן ב־$\tc$ את קבוצת הטופולוגיות על $X$. אז לכל $(\tau_i)_{i \in I}$ כך ש־$\tau_i \in \tc$ קבוצה של טופולוגיות, קיים להם חסם עליון מינימלי $\sup (\tau_i)_{i \in I}$. 
+	\end{Claim}\begin{proof}
+		נתבונן בקבוצה: 
+		\[ \UU \cod \bigcup_{i \in I}\tau_i \]
+		נבחין ש־$\UU$ תת־בסיס (בהתאם ל־\ref{defi:subbase}) ולכן משרה טופולוגיה $\tau$ המינמלית ביחס ההכלה על פני הקבוצות שמכילות את $\UU$. נבחין שמהגדרת יחס סדר ההכלה, אם $\tau'$ חסם עליון של $(\tau_i)_{i \in I}$, אז $\UU\subset \tau_i$. סה''כ $\tau$ חסם עליון מינימלי כנדרש. 
+	\end{proof}
+	\theo{\label{clm:topolattice}קבוצת הטופולוגיות על קבוצה $X$, נסמנה $\tc$ הינה סריג. }
+	\begin{proof}
+		ישירות מ־\ref{clm:toposupremum} ומ־\ref{clm:topoinfimum}. 
+	\end{proof}
+	למעשה, קבוצת הטופולוגיות על $X$ היא יותר מסריג: יש לנו איפימום וסופרמום לכל תת־קבוצה של $\tc$, לא רק על זוגות מבין איברי $\tc$. המסקנות האלו ישמשו אותנו כדי שהגדרות קריטיות ב־\ref{ss:strongWeakTopo} יהיו מוגדרת היטב. 
+	
+\subsection{\label{ss:nets}רשתות}
+	סביר להניח שהקורא מכיר את מושג ההתכנסות של סדרה במרחבים מטריים. נבחין שבמרחב מטרי הקבוצה $A \cup A'$ היא קבוצת כל הערכים אליהן סדרות שאיבריהן ב־$A$ מתכנסות. מכאן, שבמרחבים מטריים הבנה של ערכי ההתכנסות של הסדרות מאפשרת לנו להגדיר את מושג הסוגר (בהתאם ל־\ref{clm:clsoureLimitPoints}) ומכאן באופן יחיד להגדיר את הטופולוגיה (בהתאם ל־\ref{clm:clCongTopo}). 
+	
+	לכן, לא מפתיע שאפשר להגיד הרבה דברים חשובים על האובייקטים השונים שלנו במרחב מטרי באמצעות סדרות (כמו קומפקטיות אמ''מ קומפקטיות סדרתית, קריטריון היינה לרציפות, ועוד). במרחבים טופולוגיים כלליים יש לנו בעיה קטנה – לפעמים ''לא מספיק`` להשתמש רק בסדרות, שיכולות לבקר רק במספר בן מנייה של סביבות (על מהות היחס המדויק הזה נאמוד ב־\ref{ss:ci}). הפתרון הוא ''להגדיל את התחום`` להיות לא בן־מנייה. הפעולה הזו לבדה מציגה ערמה של בעיות, אבל התוצאה – רשתות – שווה את זה: היא גם הופכת מושגים רבים לאינטואיטייבים יותר, וגם מקלה על הוכחות רבות שבהוכחתן הסטנדרטית ארוכות למדי. 
+	
+	נציג את הכלי הזה בשלב מאוד מוקדם ברשימות, כדי שבעתיד נוכל להזכר בו בהקשרים שונים ורבים ולהיעזר בו. 
+	
+	\defi{\label{defi:direction}\textit{כיוון} על קבוצה $\Lg$ הוא יחס $\le$ רפלקסיבי, טרנזטיבי, כך שלכל זוג איברים ב־$\Lg$ יש חסם עליון. }
+	\rmark{כיוון לאו דווקא יחס סדר חלקי, כי הוא לאו דווקא אנטי־סימטריה. }
+	\defi{\textit{רשת} היא פונקציה $P \co \Lg \to X$ כאשר $P$ קבוצה מכוונת. }
+	\noti{בהינתן רשת $P\co \Lg \to X$, נהוג לסמן $(x_\lg)_{\lg \in \Lg}$ ו־$P(\lg) = x_\lg$. }
+	\defi{תהי $P \co \Lg \to X$ רשת ו־$\psi \co M \to \Lg$ כאשר $M$ קבוצה מכוונת. אז אם: 
+	\begin{itemize}
+		\item $\psi$ מונוטונית עולה, כלומר $\psi(x) \le_\Lg \psi(y)$ לכל $x \le_M y$. 
+		\item $\Img \psi$ לא חסומה ב־$\Lg$, כלומר לכל $\Lg$ קיים חסם עליון ביחס ל־$\lg_\Lg$ ב־$\Img \psi$. 
+	\end{itemize}
+	אז $P \circ \psi$ נקראת \textit{תת־רשת של $P$}. }
+\subsection{\label{ss:continuesFunctions}פונקציות רציפות}
 	\defi{רציפות בנקודה}
 	\defi{רציפות}
 	\clm{שקילויות לרציפות כולל שקול לרציפות בחלוקה של הטווח}
@@ -371,7 +432,7 @@
 	
 	\npage
 	\section[בניית מרחבים טופולוגיים]{\en{Building New Spaces}}
-	\subsection{הטופולוגיה החלשה והטופולוגיה החזקה}
+	\subsection{\label{ss:strongWeakTopo}הטופולוגיה החלשה והטופולוגיה החזקה}
 	בתת־נושא זה נציג שתי הגדרות שאומנם תחילה יראו קצת מוזרות, אך יעזרו לנו להבין לעומק אחר־כך את הנושא של טופולוגיית המכפלה וטופולוגיית המנה. 
 	\defi{תהי $X$ קבוצה ויהיו $(Y_i)_{i \in I}$ משפחת מרחבים טופולוגיים כלשהם. תהי $(f_i)_{i \in I}$ משפחת פונקציות $f_i \co X \to Y_i$. אז \textit{הטופולוגיה החלשה} היא הטופולוגיה $\tau$ המינימלית (גסה) ביותר כך ש־$f_i \co (X, \tau) \to Y$ פונקציות רציפות. }
 	\rmark{באנגלית, initial/induced/weak/limit/projective topology. }
@@ -424,43 +485,42 @@
 	\subsection{טופולוגיית המנה}
 	
 	\npage
-	\section[אקסיומות מניה]{\en{Countability Axioms}}
-	\subsection{מניה שניה ומניה ראשונה}
-	\subsubsection{מניה ראשונה}
-	\subsubsection{מניה שנייה}
-	\subsection{ספרביליות ולינדוף}
+	\section[אקסיומות מניה]{\label{s:countability}\en{Countability Axioms}}
+	\subsection{\label{ss:ci}מניה ראשונה}
+	\subsection{\label{ss:cii}מניה שנייה}
+	\subsection{\label{ss:adolf}ספרביליות ולינדוף}
 	
 	\npage
-	\section[אקסיומות הפרדה]{\en{Separation Axoims}}
-	\subsection{מבוא}
+	\section[אקסיומות הפרדה]{\label{s:seperation}\en{Separation Axoims}}
+	\subsection{\label{ss:overview}מבוא}
 	[להרחיב את $R0, R1$ ל־$R2-R3.5$, ולהבהיר שאלו לא סימונים מקובלים]
-	\subsection{אקסיומות הפרדה ראשונות}
-	\subsection{מרחבי טיכונוף}
+	\subsection{\label{ss:t1-t2.5}אקסיומות הפרדה ראשונות}
+	\subsection{\label{ss:t3}מרחבים רגולרים}
+	\subsection{\label{ss:t3.5}מרחבי טיכונוף}
 	\subsubsection{משפטים בסיסיים}
-	\subsubsection{משפט השיכון של טיכונוף}
-	\subsection{מרחבים רגולרים}
-	\subsection{מרחבים נורמליים}
+	\subsubsection{\label{sss:cube}משפט השיכון של טיכונוף}
+	\subsection{\label{ss:t4}מרחבים נורמליים}
 	\subsubsection{משפטים בסיסיים}
-	\subsubsection{הלמה של אוריסון}
+	\subsubsection{\label{sss:urysohnsLemma}הלמה של אוריסון}
 	הלמה של אוריסון מספקת לנו הוכחה לפיה $R3.5$ מתקים אמ''מ $R3$. לאחר מכן, נרחיב אותה באמצעות משפט ההרחבה של טיצה. בניית הפונקציה המפרידה תיעשה באמצעות לקיחת גבול של סדרת פונקציות – דבר שאומנם הגדרנו בחדו''א 2א, אך לא בעבור מרחבים טופולוגיים כלליים. 
 	\defi{התכנסות נקודתית}
 	\defi{התכנסות במ''ש}
 	\begin{Theorem}[הלמה של אוריסון]\label{theo:urysohn}
 		...
 	\end{Theorem}
-	\subsubsection{מרחבים נורמלים לחלוטין ובאופן מושלם}
+	\subsubsection{\label{sss:t5-t6}מרחבים נורמלים לחלוטין ובאופן מושלם}
 	הגדרה, $G_\dg, F_\sg$ וכו'. 
 	\subsubsection{משפט ההרחבה של טיצה}
 	
 	\npage
-	\section[קשירות]{\en{Connectedness}}
-	\subsection{קשירות רגילה}
-	\subsection{קשירות מסילתית}
+	\section[קשירות]{\label{s:connectedness}\en{Connectedness}}
+	\subsection{\label{ss:connectedness}קשירות רגילה}
+	\subsection{\label{ss:pathwiseConnectedness}קשירות מסילתית}
 	\subsection{רכיבי קשירות}
 	
 	\npage
-	\section[קומפקטיות]{\en{Compactness}}
-	\subsection{מרחבים קומפקטיים}
+	\section[קומפקטיות]{\label{s:compactness}\en{Compactness}}
+	\subsection{\label{ss:comapctTopos}מרחבים קומפקטיים}
 	\subsubsection{מבוא}
 	לכסות: 
 	\begin{itemize}
@@ -479,6 +539,8 @@
 	\section[נושאים נוספים]{\en{Supplementary Material}}
 	מבין כל הנושאים שבחרתי לברבר עליהם בלי סיבה, יש כל מיני נושאים נוספים שמהווים בסיס חשוב לנושאים אחרים המתבססים על טופולוגיה במתמטיקה. 
 	\subsection{פרה־קומפקטיות}
+	\subsection{פרקומפקטיות}
+	[להכניס תמונה של פרה עם כיסוי סופי]
 	\subsection{קבוצת קנטור}
 	\subsection{שקילות הומוטופית}
 	\subsection{מרחב אוקלידי מקומית}

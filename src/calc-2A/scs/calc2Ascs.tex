@@ -34,15 +34,15 @@
 
 %! ~~~ Document ~~~
 
-\author{\en{Shahar Perets}}
-\title{\en{Shit Cheat Sheet {\normalsize(\textbf{v}\textit{1})} $\sim$ Calculus 2A $\sim$ TAU}}
+\author{\en{{\small By} Shahar Perets \sim \ {\small Based On Lectures By} Yael Karshon}}
+\title{\en{Shit Cheat Sheet $\sim$ Calculus 2A $\sim$ TAU}}
 \date{\en{\textit{14.4.2025} $\to$ \textit{30.6.2026}}}
 \begin{document}
 	{יתר החומרים (שלא את כולם אני מעלה לדרייב), הגרסה האחרונה של דף הנוסחאות, כמו כן קבצי המקור ל־pdf־ים, יחדיו עם סיכומים לחדו''א (וקורסים נוספים), זמינים בגיטהאב שלי \href{https://github.com/Sh-Pe/cs-tau-shpe/tree/master/}{כאן}. }
 
 	דף הנוסחאות זמין תחת רישיון \href{https://www.gnu.org/licenses/gpl-3.0.en.html}{GPL version 3} – בקצרה, מותר להשתמש בו לכל שימוש, אך שינויים לקוד המקור חייבים להיות מופצים תחת אותו הרישיון. זו כמובן לא עצה משפטית, ואני לא באמת עומד לתבוע אף אחד בנוגע לקבצים הללו (גם זו לא עצה/הבטחה משפטית).
 	
-	{\vspace{-20pt}\let\newpage\relax\maketitle}
+	{\vspace{-25pt}\let\newpage\relax\maketitle}\vspace{-20pt}
 %	\vspace{-100pt}
 	\maketitle
 	
@@ -60,7 +60,9 @@
 			\exe{אם $\Pi' \supset \Pi$ אז $\lg(\Pi') \le \lg(\Pi)$. }
 			
 			\exe{$\sof{a - b} = \sof{a - c} + \sof{c - b}$ אמ''מ $a \le c \le b \lor a \ge c \ge b$}
-			\[ d(p, q) := \sof{o - q} := \sqrt{(x_p - x_q)^{2} + (y_p - y_q)^{2}} \]
+			\begin{Definition}[מרחק אוקלידי]
+				\[ d(p, q) := \sof{o - q} := \sqrt{(x_p - x_q)^{2} + (y_p - y_q)^{2}} \]
+			\end{Definition}
 			\exe{
 				\[ \sof{x_p - x_q} + \sof{y_p - y_q} \ge \sof{p - q} \ge \begin{cases}
 					\sof{x_p - x_q} \\
@@ -99,7 +101,7 @@
 				\end{enumerate}
 				פרטים יעלו למודל.
 			\end{proof}
-			\defi{$\pi := L(\cg)$ כאשר $\cg$ העקומה המוגדרת לעיל. }
+			\defi{$\pi := L(\cg)$ כאשר $\cg$ עקומת חצי העיגול ב־$\R^{2}$. }
 		\section{אינטגרלי רימן}
 			\subsection{הגדרות בסיסיות}
 			\defi{\textit{חלוקה מתויגת} (באנגלית tagged partition, ברשימות ''חלוקה+נקודות מתאימות``) של הקטע $[a, b]$
@@ -111,7 +113,7 @@
 				אם זה קורה, נאמר ש־$I$ \textit{האינטגרל המסויים} של $f$ בקטע $[a, b]$. }
 			\noti{מסמנים $\int^{b}_af = \int^{b}_af(x)\dx = I$}
 			\defi{הפונקציה $f$ נקראת \textit{אינטגרבילית} אם קיים $I$ כך ש־$\int^{b}_a f = I$. }
-			\defi{לפונקציות ממשיות $f, F \co I \to \R$ על קטע $I \subset \R$, אז $F$ נקראת \textit{פונקציה קדומה של $f$ על קטע\footnote{לשימושנו, קבוצה סגורה. } $I$} אם $\forall x \in I \co F'(x) = f(x)$, כאשר בקצוות הקטע (אם יש כאלו) מדובר על נגזרת חד־כיוונית. }
+			\defi{לפונקציות ממשיות $f, F \co I \to \R$ על קטע $I \subset \R$, אז $F$ נקראת \textit{פונקציה קדומה של $f$ על קטע $I$} אם $\forall x \in I \co F'(x) = f(x)$, כאשר בקצוות הקטע (אם יש כאלו) מדובר על נגזרת חד־כיוונית. }
 			\defi{\textit{האינטגרל הלא מסויים של $f$} הוא \textbf{קבוצת} הפונקציות הקדומות של $f$. }
 			\clm{$\int^{b}_af = 5(b-a)$}
 			\clm{פונקציית דיריכלה איננה אינטגרבילית, על אף תת־קטע סגור $[a, b]$ ($a < b$). }
@@ -179,9 +181,9 @@
 				\[ 0 \le \wg(f, \Pi) - \wg(f, \Pi') \le \lg(\Pi) \wg(f, [a, b]) \]}
 			\lem{נתונה $f \co [a, b] \to \R$ חסומה וחלוקות $\Pi, \Pi'$ של $[a, b]$ כך ש־$\Pi'$ מתקבלת מ־$\Pi$ ע''י הוספה של $m_0$ נקודות חלוקה. אז:
 				\begin{alignat*}{9}
-					(1) \quad 0 &\le \wg(f, \Pi) - \wg(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b]) \\
-					(2) \quad 0 &\le \daru(f, \Pi) - \daru(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b]) \\
-					(3) \quad 0 &\le \dard(f, \Pi) - \dard(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b])
+					(1) \quad\quad 0 &\le \wg(f, \Pi) - \wg(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b]) \\
+					(2) \quad\quad 0 &\le \daru(f, \Pi) - \daru(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b]) \\
+					(3) \quad\quad 0 &\le \dard(f, \Pi) - \dard(f, \Pi') &\le m_0 \cdot \lg(\Pi) \; \wg(f, [a, b])
 			\end{alignat*}}
 			\clm{תהי $f \co [a, b] \to \R$ חסומה. אז לכל $\eg < 0$ קיימת $\dg > 0$, כך שלכל חלוקה $\Pi$ של $[a, b]$, אם $\lg(\Pi) < \dg$ אז:
 				\begin{align*}
@@ -261,7 +263,7 @@
 			\end{Theorem}
 			\cola{אם $x\in I$ נקודה פנימית או קצה שמאלית, אז $f$ רציפה מימין ב־$x$. }
 			
-		\subsection{משפטי ערך ביניים}		
+		\subsection{משפטים נוספים}
 			\clm{נתונה פונקציה $f \co [a, b] \to \R$ רציפה על קטע סגור. אז קיימת $a \le x_0 \le b$ כך ש־:
 				\[ f(x) = \frac{1}{b - a} \int^b_a \dequad \ f(t) \dt \]
 				(אפשר לחשוב על זה כעל הערך הממוצע של $f$ בקטע)}
@@ -282,6 +284,21 @@
 				אז, קיימת נקודת ביניים $a \le x_0 \le b$ כך ש־:
 				\[ \int^b_a \dequad \ f(t)g(t) \dt = f(a)\! \int^{x_0}_a \dequad g(t) \dt + f(b)\! \int^{b}_{x_0}\dequad \ g(t) \dt \]
 			\end{Lemma}
+			\begin{Theorem}[המשפט היסודי של החדו''א]
+				תהי $f \in R([a, b])$ ותהי $x_0 \in [a, b]$ נקודת רציפות של $f$. אזי $F(x) = \int^{x}_a f(t)\dt$ גזירה ב־$x_0$ ומתקיים $F'(x_0) = f(x_0)$
+			\end{Theorem}
+			\begin{Theorem}[ניוטון־לייבניץ]
+				תהי $f \in R([a, b])$ ותהי $F \co [a, b] \to \R$ קדומה של $f$ ב־$[a, b]$. אזי: 
+				\[ \int^{b}_a \dequad \ f(x)\dx = F(b) - F(a) \]
+			\end{Theorem}
+			\begin{Theorem}[החלפת משתנה]
+				תהי $f \co [a, b] \to \R$ רציפה ותהי $\phi \co [a, b] \to [\phi(a), \phi(b)]$ גזירה ברציפות. אז: 
+				\[ \int^{\phi(b)}_{\phi(a)} \dequad f(x)\dx = \int^{b}_a \dequad \ f(\phi(x))\phi'(x)\dx \]
+			\end{Theorem}
+			\begin{Theorem}[אינטרציה בחלקים]
+				יהיו $f, g \co [a, b] \to \R$ גזירות ונגזרותיהן אינטגרביליות. אז: 
+				\[ \int^{b}_a\dequad \ f'(x)g(x)\dx = \csb{f(x)g(x)}\bigg\vert^{b}_a \!- \int^{b}_a\dequad f(x)g'(x)\dx \]
+			\end{Theorem}
 			\noti{הסימון $C^{i}(A)$ מסמן את קבוצת הפונקציות הגזירות ברציפות $i$ פעמים. $C^{\infty}(A)$ מסמן פונקציה גזירה אינסוף פעמיים בכל $A$, ו־$C(A)$ את קבוצת הפונקציות הרציפות. }
 			\defi{''עצרת בדילוגים`` (אנ' double factorial): עבור $k \in \Neven$ נגדיר $k!! = 2 \cdot 4 \cdots (k - 2) \cdot k$, בעבור $k \in \Nodd$ נגדיר $k!! := 1 \cdot 3 \cdot 5 \cdots (k- 2) \cdot k$, ועבור $k = -1, 0$ נגדיר $k!! = 0$. }
 			\clm{\[ \int^{2\pi}_0 \dequad \sin^{m}x \dx = \begin{cases}
@@ -398,6 +415,29 @@
 				\[ \forall \eg > 0.\, \exists N_\eg \in \N.\, \forall m, n > N_\eg.\, \forall x \in I \co \sof{f_m(x) - f_n(x)} < \eg \]
 			\end{Theorem}
 			
+			\begin{Theorem}[סטרלינג]
+			\[ n! \sim \sqrt{2n\pi} \cl{\frac{n}{e}}^{n} \]
+			כלומר:
+			\[ \frac{n!}{\sqrt{2 \pi n}\cl{\frac{n}{e}}^{n}} \rrr{n \to \infty} 1 \]
+			\end{Theorem}
+			
+		\section{סדרות פונקציות}
+		\subsection{הגדרות}
+			\defi{יהי $I \subset \R$ קטע, $f \co I \to \R$ פונקציה ו־$f_n \co I \to \R$ סדרת פונקציות. נאמר ש־\textit{$f_n$ מתכנסות במידה שווה ל־$f$} ונסמן $f_n \tou f$ אם: 
+			\[ \sup_{x \in I}\sof{f_n(x) - f(x)} \toinf 0 \]}
+			\defi{נאמר ש־$f_n \co I \to \R$ סדרת פונקציות \textit{חסומה במידה אחידה} אמ''מ קיימת $M \in \R$ כך ש־$\sof{f_n} < M$ לכל $n \in \N$. }
+			\begin{Claim}[אריתמטיקה של התכנסות במ''ש]
+				יהיו $f_n, g_n \co I \to \R$ סדרות פונקציות ונניח $f_n \tou f, g_n \tou g$. אז: 
+				\begin{itemize}
+					\item \hfil $(f_n + g_n) \tou f + g$
+					\item אם $f_n, g_n$ חסומות במידה אחידה, אז $f_ng_n \tou fg$. 
+				\end{itemize}
+			\end{Claim}
+			\begin{Theorem}[קריטריון קושי במ''ש]
+				תהי $f_n \co I \to \R$. אז $f_n$ מתכנסות במ''ש לפונקציה כלשהי אמ''מ: 
+				\[ \forall \eg > 0.\, \exists N_\eg .\,\forall n, m > N_\eg .\, \forall x \in I \co \sof{f_n(x) - f_m(x)} < \eg \]
+			\end{Theorem}
+		\subsection{משפטים}
 			\begin{Theorem}[משפט דיני]
 				נתונות סדרה של פונקציות $f_n \co [a, b] \to \R$, ו־$f$ כלשהי. נניח:
 				\begin{enumerate}[(A)]
@@ -425,11 +465,6 @@
 				\end{enumerate}
 				אז $\int^{\infty}_a f_n(x)\dx$ ו־$\int^{\infty}_a f(x)\dx$ מתכנסים בהחלט, ויתר על כן:
 				\[ \lim_{n \to \infty}\int^{\infty}_a \dequad f_n(x)\dx = \int^{\infty}_a\dequad f(x)\dx \]
-			\end{Theorem}
-			\begin{Theorem}[סטרלינג]
-				\[ n! \sim \sqrt{2n\pi} \cl{\frac{n}{e}}^{n} \]
-				כלומר:
-				\[ \frac{n!}{\sqrt{2 \pi n}\cl{\frac{n}{e}}^{n}} \rrr{n \to \infty} 1 \]
 			\end{Theorem}
 			
 		\subsection{החלפת גבול ונגזרת}
@@ -466,7 +501,6 @@
 				\[ [a, b] \subset \bigcup_\ag U_\ag \]
 				אז קיים תת־אוסף סופי $U_{\ag_1} \dots U_{\ag_n}$ שמכסה אותו, כלומר $[a, b] \subset U_{\ag_1} \cup \cdots \cup U_{\ag_n}$.
 			\end{Theorem}
-			\rmark{בקורס שלנו, סגור זה לא סגור במובן הטופולוגי, אלא סגור וחסום. ''זה קטע סגור, אבל זה לא קטע סגור``. }
 			
 		\section{טורי פונקציות}
 		\subsection{הגדרות בסיסיות}
@@ -517,11 +551,7 @@
 			\end{Theorem}
 			
 		\subsection{טורי חזקות}
-			ברשימות של שירי, \shiri{5}. בשיעור הזה נשתדל להספיק את \shiri{5.1}-\shiri{5.4}.
 			\defi{\textit{טור חזקות סביב $x = \eta$} הוא טור פורמלי (כלומר אכפת לנו מהמקדמים בלבד) מהצורה $\sumkoinf a_k(x - \eta)^{k}$}
-			''אטא זה פשוט קשקוש אחר`` – סטודנטית אחרי שיעל החליפה $\xi$ ב־$\eta$.
-			
-			לעת עתה, לצורך הנוחות, נניח בה''כ ש־$\eta = 0$, אז ברור שהטור מתכנס ב־$x = 0$. אבל מה קורה לגבי שאר ה־$x$־ים?
 			\lem{נניח $\sum a_k x^{k}$ מתכנס ב־$x_0 \neq 0$. יהי $R := \sof{x_0}$. יהי $0 < R' < R$, אז הטור מתכנס במ''ש בקטע $[-R', R']$. }
 			\rmark{שימו לב, הטור לאו דווקא מתכנס בקטע הפתוח $(-R, R)$. }
 			\cola{יהי נתון טור חזקות $\sumkoinf a_kx^{k}$. אז:
@@ -529,7 +559,7 @@
 					\item הטור מתכנס ב־$(-R, R)$. נוכל להגדיר $f \co (-R, R) \to \R$ ע''י $f(x) = \sumkoinf a_kx^{k}$. מעתה ואילך, נגדיר $f(x) := \sumkoinf a_kx^{k}$.
 					\item $f$ רציפה.
 					\item גם הטור $\sumkoinf a_k\frac{x^{k + 1}}{k + 1}$ מתכנס ב־$(-R, R)$, ולכל $x \in (-R, R)$ מתקיים:
-					\[ \int_0^{x}f(t)\dt = \sumkoinf \frac{x^{k}}{k + 1} \]
+					\[ \int_0^{x}\dequad \ f(t)\dt = \sumkoinf \frac{x^{k}}{k + 1} \]
 			\end{enumerate}}
 			
 			\begin{Theorem}[אבל]
@@ -539,7 +569,7 @@
 					\item אם $\sof x > R$ אז הטור מתבדר ב־$x$.
 					\item אם $\sof x = R$ אז הולכים לשבור את הראש מה קורה ב־boundary.
 				\end{itemize}
-				ה־$R$ הזה נקרא \textit{רדיוס התכנסות}\footnote{במרוכבות, זה אותו הדבר אבל אשכרה רדיוס, כי מדובר על דיסק. גם במקרה המרוכב, צריך לבדוק ידנית מה קורה ב־boundary (כלומר ב־$\partial\{x \le R \mid x \in \R\} \cong S^{1}$)}.
+				ה־$R$ הזה נקרא \textit{רדיוס התכנסות}.
 			\end{Theorem}
 			\begin{Theorem}[קושי־הדמרד]
 				יהי $R$ רדיוס ההתכנסות של $\sumkoinf \sof{a_k}x^{k}$. אז:
@@ -559,21 +589,21 @@
 				נניח $f(x) = \sumkoinf a_kx^{k}$ מתכנס נקודתית ב־$[0, R]$. אז התכנסות הטור ל־$f(x)$ היא במ''ש.
 			\end{Theorem}
 			\begin{Theorem}
-				יהי $R \in \R_{\ge 0}$ רדיוס ההתכנסות של טור $\sumkoinf a_kx^{k}$ (ולכן גם של $\sumkinf ka_kx^{k + 1}$). נניח $\sumkinf ka_kx^{k - 1}$ מתכנס ב־$x = R$. אז גם $\sumkoinf a_kx^{k}$ מתכנס ב־$x =R$.
+				יהי $R \in \R_{\ge 0}$ רדיוס ההתכנסות של טור $\sumkoinf a_kx^{k}$ (ולכן גם של $\sumkinf ka_kx^{k - 1}$). נניח $\sumkinf ka_kx^{k - 1}$ מתכנס ב־$x = R$. אז גם $\sumkoinf a_kx^{k}$ מתכנס ב־$x =R$.
 			\end{Theorem}
 		\subsection{סוגי סכימות}
-			\begin{Definition}[סוגי סכימות של סדרות]
+			\begin{Definition}[סוגי סכימות]
 				\begin{enumerate}
 					\item \textit{צזארו: }סדרה $(C_k)_{k = 0}^{\infty}$ \textit{מתכנסת צזארו ל־$L$} אם סדרת ממוצעיה $\lim_{n \to \infty}\frac{C_0 + \cdots + C_n}{n + 1} \toinf L$. נסמן $\cz C_k \to L$. 
+					\item \textit{צזארו לטורים: }טור $\sum_{n = 0}^{\infty}a_n$ \textit{מתכסנת צזארו ל־$L$} אמ''מ סדרת הסכומים החלקיים מתכנסת צזארו ל־$L$. נסמן $\cz \sum_{n = 0}^{\infty}a_n = L$. 
 					\item \textit{אבל: }טור פורמלי $\sumkoinf a_k$ \textit{מתכנס לפי אבל ל־$K$} אם $\lim_{R\to 1^{-}} \sumkoinf a_kR^{k} = L$. נסמן $\ab a_n \to L$
 				\end{enumerate}
 			\end{Definition}
+			\defi{בהינתן סדרה (או טור) $(a_n)_{n = 1}^{\infty}$, נגדיר את \textit{סכומי אבל} שלה להיות $\sg_N = \frac{\sum_{n = 0}^{N}a_n}{N + 1}$. }
 		
-			\rmark{למעשה יש לנו כאן סכום כפול:
+			\rmark{בעבור התכנסות צזארו של טורים, למעשה יש לנו סכום כפול: 
 				\[ \sg_N = \frac{1}{N + 1}\sum_{n = 0}^{n}{\sumnko a_k} = \sum_{k = 0}^{N}\cl{1 - \frac{k}{N + 1}}a_k \]
 			}
-			\defi{\textit{אבל: }(Abel) $\ab \sumkoinf a_k = L$, פירושו:
-				\[ \lim_{R \to 1^{-}}\sumkoinf a_kR^{k} = L \]}
 			\clm{אם טור $\sumkoinf a_k = L$ במובן הרגיל, אז $\ab \sumkoinf a_k = L$ וגם $\cz \sumkoinf a_k = L$. }
 			\clm{התכנסות צזארו גוררת התכנסות לפי אבל, כלומר אם $\cz \sumkoinf a_k= L$, אז $\ab \sumkoinf a_k = L$. }
 			\begin{Theorem}[טאובר]
@@ -597,23 +627,23 @@
 			\end{enumerate}}
 			\clm{נתונים טורים $\sum_{\ml = 0}^{\infty}\bg_{\ml}$ ו־$\sum_{k = 0}^{\infty}\ag_k$ שמתכנסים בהחלט לגבולות $A, B$ בהחלפה. נגדיר $\cg_m = \sum_{k + \ml = m}\ag_k \bg_\ml$. אז הטור $\sum_{m = 0}^{\infty}\cg_m$ שנקרא \textit{מכפלת קושי של הטורים $\sum \ag_k, \sum \bg_k$} מתכנס בהחלט לגבול $A \cdot B$. }
 		\section{פורייה}
-		\subsection{מרוכבים}
-			\begin{Theorem}[לייבניץ]
-				יהיו $f, g \co [a, b] \to \C$ גזירות, אז:
-				\[ (fg)' = f'g + f g' \]
-			\end{Theorem}
-			
-			\begin{Theorem}[המשפט היסודי]
-				תהי $f \co [a, b] \to \C$ רציפה ב־$x_0$. אז $F \co [a, b] \to \C$ המוגדרת ע''י $F(x) := \int^{x}_a f(t)\dt$ מקיימת $F'(x_0) = f(x_0)$.
-			\end{Theorem}
-			\begin{Theorem}[ניוטון לייבניץ]
-				נתונות $f, g \co [a, b] \to \C$, כך ש־$f' = g$, ו־$g$ אינטגרבילית. אז $\int^{b}_a g(x)\dx = f(b) - f(a)$.
-			\end{Theorem}
-			
-			\begin{Theorem}[אינטגרציה בחלקים]
-				\[ \int^{b}_a g'(t)\dt = f(t)g(t)\bigg\vert^{b}_a - \int^{b}_a f'(t)g(t)\dt \]
-				כאשר $f, g \co [a, b] \to \C$ גזירות, ו־$f', g'$ אינטגרביליות.
-			\end{Theorem}
+%		\subsection{מרוכבים}
+%			\begin{Theorem}[לייבניץ]
+%				יהיו $f, g \co [a, b] \to \C$ גזירות, אז:
+%				\[ (fg)' = f'g + f g' \]
+%			\end{Theorem}
+%			
+%			\begin{Theorem}[המשפט היסודי]
+%				תהי $f \co [a, b] \to \C$ רציפה ב־$x_0$. אז $F \co [a, b] \to \C$ המוגדרת ע''י $F(x) := \int^{x}_a f(t)\dt$ מקיימת $F'(x_0) = f(x_0)$.
+%			\end{Theorem}
+%			\begin{Theorem}[ניוטון לייבניץ]
+%				נתונות $f, g \co [a, b] \to \C$, כך ש־$f' = g$, ו־$g$ אינטגרבילית. אז $\int^{b}_a g(x)\dx = f(b) - f(a)$.
+%			\end{Theorem}
+%			
+%			\begin{Theorem}[אינטגרציה בחלקים]
+%				\[ \int^{b}_a g'(t)\dt = f(t)g(t)\bigg\vert^{b}_a - \int^{b}_a f'(t)g(t)\dt \]
+%				כאשר $f, g \co [a, b] \to \C$ גזירות, ו־$f', g'$ אינטגרביליות.
+%			\end{Theorem}
 		
 		\subsection{$R(\tb)$ ותתי־מרחביו}
 			\exe{הפונקציה $t \mapsto e^{i\ag t} = \cos(\ag t) + i \sin(\ag t), \ \ag \in \R$, פונקציה עם מחזור $2 \pi$ אמ''מ $\ag \in \Z$. }
@@ -780,7 +810,10 @@
 			\end{enumerate}}
 			
 	\end{multicols}
-	\ndoc
+	\vspace{-15pt}
+	\dotfill
+	
+	\hfil \en{\textit{Compilation Date:} \today}
 
 	
 

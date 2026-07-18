@@ -104,7 +104,7 @@
 			\fancyfoot[R]{\textit{שחר פרץ, 2026}\, \en{{\Large({\thepage})}}}
 			\fancyfoot[L]{\textit{\rightmark}}
 			\fancyfoot[C]{}
-			\renewcommand{\headrule}{\vspace{-7pt}\hfil\rule{200pt}{1pt}}
+			\renewcommand{\headrule}{\vspace{-7pt}\hfil\rule{150pt}{1pt}}
 		% TOC
 			\renewcommand{\cfttoctitlefont}    {\Huge\itshape\bfseries}
 			\renewcommand{\cftsecleader}       {\cftdotfill{\cftsecdotsep}}
