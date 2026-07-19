@@ -1,0 +1,95 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\newcommand\Is{\dequad \ }
+\newcommand\hopen {[a, \wg)}
+\newcommand\bto{\lim_{{b \to \wg^{-}}}}
+\newcommand\lims{\ol{\lim}}
+\newcommand\limii{\underline{\lim}}
+
+\newcommand\udv[4]{\csb{\begin{aligned}
+			u &= #1  \ & v &= #3 \\
+			du &= #2 \ & dv &= #4
+\end{aligned}}}
+
+\newcommand\pt[2]{\csb{\begin{aligned}
+			t &= #1 \\
+			\dt &= #2\dx
+\end{aligned}}}
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{תרגיל בית 4} $\sim$ \textbf{פתרון חלקי}}
+\begin{document}
+	\maketitle
+	
+	\subsection*{לבודק}
+	לא היה לי לפתור את כל התרגיל, ואני לא מצפה לקבל עליו ציון עובר (יש כאן רק את שאלות 1-3). אבל כתבתם שעדיף להגיש תרגיל חלקי מלא להגיש דבר, אז הנה תרגיל חלקי. 
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item תהי $f \co (0, \infty]  \to \R$. נגדיר את האינטגרל הלא אמיתי $\int^{a}_{-\infty} f(x)\dx$
+		\defi{תהי $f \co (a, \infty] \to \R$ אינטגרבילית על כל ת''ק סגור. \textit{האינטגרל הלא אמיתי $\int_{-\infty}^{a} f(x)\dx$} יוגדר להיות שווה ל־: 
+		\[ \lim_{b \to -\infty} \int^{a}_{b}\Is f(x)\dx \]
+		במידה והגבול קיים. אחרת, האינטגרל הלא אמיתי לעיל איננו מוגדר. }
+		\item תהי $f \co \hopen \to \R$. נגדיר את האינטגרל הלא אמיתי $\int^{b}_af(x)\dx$. 
+		\defi{תהי $f \co \hopen \to \R$ אינטגרבילית על כל ת''ק סגור. \textit{האינטגרל הלא אמיתי $\int^{b}_af(x)\dx$} יוגדר להיות שווה בערכו לערך התכנסות הגבול: 
+		\[ \lim_{b \to \wg}\int^{b}_a \Is f(x)\dx \]
+		במידה והגבול קיים. אחרת, האינטגרל הלא אמיתי לעיל איננו מוגדר. }
+		\item ננסח טענה בעבור אינטגרציה בחלקים של פונקציות $f, g \co \R \to \R$. 
+		\theo{יהיו $f, g \co \R\to \R$ גזירות, ונניח $f', g'$ אינטגרביליות רימן על כל ת''ק סגור של $\R$. אזי: 
+		\[ \int^{\infty}_{-\infty}\dequad (f'\circ g)(x)\dx = \csb{f \cdot g}\bigg\vert^{\infty}_{-\infty} - \int^{\infty}_{-\infty}\dequad (f \circ g')(x)\dx \]
+		כאשר $\int^{\infty}_{-\infty}h(x)\dx$ הוא האינטגרל הלא אמיתי כפי שהגדרנו בהרצאה, ו־$h\vert^{\infty}_{-\infty}$ הוא הגבול: 
+		\[ h\Big\vert^{\infty}_{-\infty} := \lim_{x \to -\infty}\!\!h(x) + \lim_{x \to \infty}\!\!h(x) \]
+		בעבור $b \in \R$ כלשהו (אין זה תלוי בנציג). }
+	\end{enumerate}
+	
+	\section{}
+	נחשב את הנגזרות של הפונקציות הבאות תוך שימוש במשפטים היסודיים. 
+	\begin{enumerate}[(A)]
+		\item נתבונן בפונקציה $F \co \R\to \R$ המוגדרת ע''י: 
+		\[ F(x) = \int^{x^{2}}_0 \dequad e^{t^{2}}\dt \]
+		נמצא את נגזרתה. ראשית כל, ניעזר בהחלפת משתנה בעזרת $\phi(x) = x^{2}$: 
+		\[ F(x) = \int^{\phi(x)}_{\phi(0)} \dequad e^{t^{2}}\dt = \int^{x}_{0} \Is e^{\phi(t^{2})}\phi'(t)\dt = \int^{x}_0\Is e^{t^{4}} \cdot 2t \dt = \int^{x}_0\cl{2te^{t^{4}}}\dt \]
+		עתה ניעזר במשפט היסודי של החדו''א. משום ש־$2te^{t^{4}}$ גזירה ברציפות בכל תחומה, מתקיים $F'(x) = 2te^{t^{4}}$. [הערה: האינטגרל תמיד אמיתי כי $x^{2}  \ge 0$]
+		\item נתבונן בפונקציה $G(x) \co [-\zeta, \zeta] \to \R$ כאשר $\zeta \in \R$ היא המספר היחיד שמקיים את המשוואה $\zeta - \sin\zeta < 1$, המוגדרת ע''י: 
+		\[ G(x) = \int^{\sinx}_{x - \sinx} \dequad\dequad \arcsin t \dt \]
+		ניעזר בכמה מעברים אלגבריים: 
+		\[ G(x) = \underbrace{\int^{\sinx}_{0}\dequadd\ \ \arcsin t \dt}_{G_1(x)} + \underbrace{\int_{x-\sin x}^{0}\dequad\dequad\arcsin tdt}_{G_2(x)} \]
+		תוך שימוש ב־$\phi(x) = \sinx$, נבחין ש־: 
+		\[ G_1(x) = \int^{\phi(x)}_{\phi(0)}\dequadd\ \arcsin t\dt = \int^{x}_{0}\Is\arcsin(\sin t) \cdot \cos t \dt \overset{\text{המשפט היסודי}}{\implies} G_1'(x) = \arcsin(\sin x)\cos x \]
+		עוד נבחין ש־: (כאשר $\psi(x) = x-\sinx$)
+		\[ G_2(x) = \int^{0}_{x-\sinx}\dequadd \arcsin t \dt = \int^{\psi(x)}_0\dequad \Is -\arcsin t \dt = \int^{x}_0\Is -\arcsin(t-\sin t)(1- \cos t)\dt \overset{\text{המשפט היסודי}}{\implies} G_2'(x)=\arcsin(x-\sinx)(\cosx - 1) \]
+		מאדטיביות הנגזרת: 
+		\[ G'(x) = (G_1(x) + G_2(x))' = G_1'(x) + G_2'(x) = \arcsin(\sinx)\cosx + \arcsin(x-\sinx)(\cosx - 1) \]
+	\end{enumerate}
+	
+	\section{}
+	נמצא את הגבול של הסדרות הבאות:
+	\begin{enumerate}[(A)]
+		\item נתבונן בסדרה: 
+		\[ a_n = \frac{1}{n^{5}} \cdot \sum_{i = 1}^{n}i^{4} = \sum_{i = 1}^{n}\frac{1}{n}\cl{\frac{i^{4}}{n^{4}}} = \cdots \]
+		נתבונן בחלוקה $\Pi_n$ של הקטע $[0, 1]$ ל־$n$ קטעים שווים, ודגימה/תיוג של הקצוות הקיצוניים (ימניים) ביותר בכל קטע (הם $t_i = \frac{i}{n}$) בעבור הפונקציה $f(x) = x^{4}$, נקבל שזהו סכום רימן הבא: 
+		\[ \cdots = S(x^{4}, \Pi_n, \{t_i\}_n) \]
+		עתה נתבונן בגבול של $a_n$. משום ש־$\lg(\Pi_n) \to 0$, ובגלל שהאינטגרל רימן של $x^{4}$ ב־$[0, 1]$ קיים, בהכרח סכומי רימן מתכנסים לערכו. דהיינו: 
+		\[ a_n = S(x^{4}, \Pi_n, \{t_i\}_n) \rrr{n \to \infty} \int^{1}_0 \Is x^{4}\dx = \frac{x^{5}}{5}\bigg\vert^{1}_0 = \frac{1}{5} \]
+		כנדרש. 
+		\item נתבונן בסדרה: 
+		\[ b_n = \frac{1}{n^{2}}\sum_{i = 1}^{n}i e^{\frac{i^{2}}{n^{2}}} = \sum_{i = 1}^{n}\frac{1}{n} \cdot \frac{i}{n}e^{\frac{i^{2}}{n^{2}}} = \cdots \]
+		תבונן בחלוקה $\Pi_n$ של הקטע $[0, 1]$ ל־$n$ קטעים שווים, ודגימה/תיוג של הקצוות הקיצוניים (ימניים) ביותר בכל קטע (הם $t_i = \frac{i}{n}$) בעבור הפונקציה $f(x) = x  e^{x^{2}}$, נקבל שזהו סכום רימן הבא: 
+		\[ \cdots = S(f, \Pi_n, \{t_i\}_n) \]
+		עתה נתבונן בגבול של $נ_מ$. משום ש־$\lg(\Pi_n) \to 0$, ובגלל שהאינטגרל רימן של $f(x)$ ב־$[0, 1]$ קיים, בהכרח סכומי רימן מתכנסים לערכו. דהיינו: 
+		\[ b_n = S(f, \Pi_n, \{t_i\}_n) \rrr{n \to \infty} \int^{1}_0 \Is xe^{x^{2}}\dx = \pt{x^{2}}{2x} = \int^{1}_0 \Is e^{t} \cdot \frac{\dt}{2} = \frac{e^{t}}{2}\bigg\vert^{1}_0 = \frac{e^{x^{2}}}{2}\bigg\vert^{1}_0 = \frac{1}{2} \]
+		כנדרש. 
+	\end{enumerate}
+	
+%	\section{}
+%	נקבע האם אינטגרלים הלא־אמיתיים הבאים מתכנסים או מתבדרים: 
+%	\begin{enumerate}[(A)]
+%		\item 
+%		\[ \int^{1}_0 \frac{\dx}{\lnx} \]
+%	\end{enumerate}
+	
+	\ndoc
+\end{document}

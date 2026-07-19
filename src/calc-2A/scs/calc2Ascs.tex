@@ -32,6 +32,7 @@
 \newcommand\uni{\overset{u}{\to}}
 
 
+
 %! ~~~ Document ~~~
 
 \author{\en{{\small By} Shahar Perets \sim \ {\small Based On Lectures By} Yael Karshon}}
@@ -371,7 +372,7 @@
 				\[ \cl{\lim_{b \to \wg^{-}} f(b) = 17 \land \lim_{b \to \wg^{-}} = 17} \implies \lim_{b \to \wg^{-}} g(b) = 17 \]
 			\end{Theorem}
 			\clm{תהי $g \co \hopen \to \R$ חסומה $m \le g \le M$. נגדיר $h, H \co \hopen \to \R$ ע''י:
-				\[ h(b) = \int_{[b, \wg)} g(x) \quad\quad H(b) = \sup_{[b, \wg)} g(x) \]
+				\[ h(b) = \int_{[b, \wg)} \dequad \! g(x) \quad\quad H(b) = \sup_{[b, \wg)} g(x) \]
 				אז $h, H$ מוגדרות היטב (הסופרמום והאינפימום קיימים), מקיימות $m \le h \le H \le M$, נוסף על כך $h$ עולה חלש ו־$H$ עולה חלש.
 			}
 			\defi{נתונה $g \co \hopen \to \R$. אז:
@@ -385,7 +386,7 @@
 			
 		\subsection{קריטריוני התכנסות}
 			\begin{Theorem}[קריטריון קושי]
-				נתונה $f \co \hopen \to \R$, אינטגרבילית על כל תת־קטע סגור. אז האינטגרל הלא אמיתי $\int^{\wg}_a f(x)\dx$ מתכנס אמ''מ לכל $\eg > 0$ קיימת $a < b_0 < \wg$ כך שלכל $b_1, b_2 \in [b_0, \wg)$ מתקיים:
+				נתונה $f \co \hopen \to \R, f \in R([a, b])$ לכל $b \in [a, \wg)$. אז האינטגרל $\int^{\wg}_a f(x)\dx$ מתכנס אמ''מ לכל $\eg > 0$ קיימת $a < b_0 < \wg$ כך שלכל $b_1, b_2 \in [b_0, \wg)$ מתקיים:
 				\[ \sof{\int^{b_2}_{b_1} \dequad f(x)\dx} < \eg \]
 				
 			\end{Theorem}
@@ -410,9 +411,14 @@
 				\end{itemize}
 				אז $\int^{\wg}_a f(x)g(x) \dx$ מתכנס.
 			\end{Theorem}
-			\begin{Theorem}[קריטריון קושי]
-				נתונות $f_n \co I \to \R$, אז $(f_n)_{n = 1}^{\infty}$ מתכנסות במ''ש אמ''מ
-				\[ \forall \eg > 0.\, \exists N_\eg \in \N.\, \forall m, n > N_\eg.\, \forall x \in I \co \sof{f_m(x) - f_n(x)} < \eg \]
+			
+			\begin{Theorem}[השוואה לטורים]
+				תהי $f \co [1, \infty) \to \R$ יורדת ואי־שלילית. אזי האינטגרל $\int^{\infty}_1 f(x)\dx$ מתכנס אמ''מ הטור $\sum_{n = 1}^{\infty}f(n)$ מתכנס, וכן: 
+				\[ \sum_{n = 2}^{\infty}f(n) \le \int^{\infty}_1\dequad f(x)\dx \le \sum_{n = 1}^{\infty}f(n) \]
+			\end{Theorem}
+			
+			\begin{Theorem}[קריטריון ההשוואה]
+				יהיו $f, g \co [a, \wg) \to \R$ פונקציות אי־שליליות אינטגרביליות בכל תתי־הקטעים. נניח $f \le g$. אז $\int^{\wg}_a f(x)\dx$ מתכנס אם $\int^{\wg}_a g(t)\dx$ מתכנס, ואם $\int^{\wg}_a f(x)\dx$ מתבדר אז $\int^{\wg}_a g(t)\dx$ מתבדר. 
 			\end{Theorem}
 			
 			\begin{Theorem}[סטרלינג]
@@ -453,7 +459,7 @@
 			\end{Lemma}
 			\begin{Theorem}[גבול תחת אינטגרל]
 				נתונות $f, f_n \co [a, b] \to \R$. נניח שלכל $n$, $f_n$ אינטגרבילית רימן. נניח ש־$f_n \to f$ במ''ש. אז $f$ אינטגרבילית רימן, ויתר על כן, הפונקציות:
-				\[ F(x) := \int^{x}_a \dequad \ f_n(t)\dt \quad \quad F(x) := \int^{x}_a \dequad \ f(t)\dt \]
+				\[ F_n(x) := \int^{x}_a \dequad \ f_n(t)\dt \quad \quad F(x) := \int^{x}_a \dequad \ f(t)\dt \]
 				מקיימות $F_n \to F$ במ''ש.
 			\end{Theorem}
 			\begin{Theorem}[משפט המג'וראנטה]
@@ -467,40 +473,34 @@
 				\[ \lim_{n \to \infty}\int^{\infty}_a \dequad f_n(x)\dx = \int^{\infty}_a\dequad f(x)\dx \]
 			\end{Theorem}
 			
-		\subsection{החלפת גבול ונגזרת}
-			\clm{נתונות $f, gf_n \co [a, b] \to \R$ ונניח ש־$f_n \in C^{1}([a, b])$ נקודתית וכן $f_n \to f, f_n' \to g$ במ''ש. אז $f_n \to f$ במ''ש וגם $f' = g$. }
-			\begin{Theorem}[גרסה חזקה יותר של המשפט הקודם]
-				יהיו $f_n, g \co [a, b] \to \R$. נניח:
+			\clm{נתונות $f, g, f_n \co [a, b] \to \R$ ונניח ש־$f_n \in C^{1}([a, b])$ נקודתית וכן $f_n \to f, f_n' \tou g$. אז $f_n \tou f$ במ''ש וגם $f' = g$. }
+			\begin{Theorem}[החלפת גבול בנגזרת, גרסה כללית יותר]
+				יהיו $f_n, \ g \co [a, b] \to \R$. נניח:
 				\begin{itemize}
-					\item $f_n \in C^{1}([a, b])$
-					\item $f_n' \to g$ במ''ש
+					\item $f_n \in C^{1}([a, b])$ גזירה ברציפות. 
+					\item $f_n' \tou g$ במ''ש. 
 					\item קיימת $x_0 \in [a, b]$ כך ש־$(f_n(x_0))^{\infty}_{n = 1}$ מתכנסת ל־$c \in \R$.
 				\end{itemize}
-				אז הפונקציה:
+				אז $f_n$ מתכנס במ''ש לפונקציה:
 				\[ f_n\overset{u}{\to} f(x) := c + \int^{x}_{x_0} \dequad \ g(t)\dt \]
 				וכן $\frac{d}{\dx}f(x) = g(x)$ (נוסף על התכנסות במ''ש של $f_n$ ל־$f$).
 			\end{Theorem}
 		\subsection{טופולוגיה ב־$\R$}
 			\defi{הקבוצה $U \subset \R$ נקראת \textit{פתוחה} אם לכל $x \in U$ קיימת $\dg > 0$ כך ש־$(x - \dg, x + \dg) \subset U$. }
 			\exe{כל קטע פתוח $(c, d)$ הוא קבוצה פתוחה. }
-			שאלות למחשבה:
-			\begin{itemize}
-				\item האם $\R \setminus \Q$ פתוחה? לא – היא משלים של קבוצה צפופה.
-				\item האם $[0, \infty)$ פתוחה? לא – כי סביבות של $0$ יוצאות מהקבוצה.
-			\end{itemize}
-			
-			\exe{מצאו $U \subset \R$ שהיא גם פתוחה, גם צפופה, אך היא לא כל $\R$. }
-			פתרון: $\R$ פחות קבוצה צפופה.
 			
 			\exe{איחוד (לאו דווקא בן מנייה) של קבוצות פתוחות הוא קבוצה פתוחה, וחיתוך סופי של קבוצות פתוחות הוא קבוצה פתוחה. }
 			
 			\defi{קבוצה $U \subset \R$ נקראת \textit{קומפקטית} אמ''מ לכל כיסוי פתוח, קיים תת־כיסוי סופי. }
+			\defi{קבוצה $K \subset \R$ נקראת \textit{סגורה} אם המשלים שלה $X \setminus K$ פתוח. }
 			
 			\begin{Theorem}[הלמה של היינה־בורל]
-				נתון קטע סגור $[a, b]$. יהי אוסף $\{U_\ag\}$ (אוסף לאו דווקא בן מניה. פורמלית, אוסף הוא פונקציה $f \co \Lg \to \ps(\R)$ כאשר $U_\ag := f(\ag)$ עבור $\ag \in \Lg$) של קבוצות פתוחות $U_\ag \subset \R$, שמכסות אותו כלומר:
-				\[ [a, b] \subset \bigcup_\ag U_\ag \]
-				אז קיים תת־אוסף סופי $U_{\ag_1} \dots U_{\ag_n}$ שמכסה אותו, כלומר $[a, b] \subset U_{\ag_1} \cup \cdots \cup U_{\ag_n}$.
+				נתונה קבוצה סגורה $J$. יהי אוסף $\{U_\ag\}$ (אוסף לאו דווקא בן מניה. פורמלית, אוסף הוא פונקציה $f \co \Lg \to \ps(\R)$ כאשר $U_\ag := f(\ag)$ עבור $\ag \in \Lg$) של קבוצות פתוחות $U_\ag \subset \R$, שמכסות אותו כלומר:
+				\[ J \subset \bigcup_\ag U_\ag \]
+				אז קיים תת־אוסף סופי $U_{\ag_1} \dots U_{\ag_n}$ שמכסה אותו, כלומר $J \subset U_{\ag_1} \cup \cdots \cup U_{\ag_n}$.
 			\end{Theorem}
+			
+			\cola{קבוצות ב־$\R$ הן קומפקטיות אמ''מ הן סגורות וחסומות. }
 			
 		\section{טורי פונקציות}
 		\subsection{הגדרות בסיסיות}
@@ -547,7 +547,7 @@
 			
 			
 			\begin{Theorem}[וויראטשראס]
-				תהי $f \co C([a, b])$ כלשהי. אז קיימת סדרה של פולינומים $P_k(x)$ כך ש־$P_k \to f$ במ''ש\footnote{מומלץ לקרוא על ה־function topology של $C([a, b])$, ואז משפט וויראשטראס למעשה אומר צפיפות של הפולינומים בתוך מרחב הפונקציות הרציפות. }.
+				תהי $f \co C([a, b])$ כלשהי. אז קיימת סדרה של פולינומים $P_k(x)$ כך ש־$P_k \to f$ במ''ש. 
 			\end{Theorem}
 			
 		\subsection{טורי חזקות}
@@ -561,6 +561,10 @@
 					\item גם הטור $\sumkoinf a_k\frac{x^{k + 1}}{k + 1}$ מתכנס ב־$(-R, R)$, ולכל $x \in (-R, R)$ מתקיים:
 					\[ \int_0^{x}\dequad \ f(t)\dt = \sumkoinf \frac{x^{k}}{k + 1} \]
 			\end{enumerate}}
+		
+			\begin{Theorem}[בוחן $M$ של וויראשטראס]
+				תהי $u_n \co I \to \R$ ונניח שקיימת סדרת מספרים $M_n$ המקיימת $\sum_{n = 1}^{\infty}M_n < \infty$, כל שלכל $n$ מתקיים $\sof{u_n(x)} < M_n$. אזי $\sum_{i = 1}^{\infty}u_n$ מתכנס בהחלט ובמ''ש. 
+			\end{Theorem}
 			
 			\begin{Theorem}[אבל]
 				יהי טור חזקות $\sumkoinf a_kx^{k}$. אז קיים $0 \le R \le \infty$, כך ש־:
@@ -814,6 +818,12 @@
 	\dotfill
 	
 	\hfil \en{\textit{Compilation Date:} \today}
+	
+	\vfil
+	\renewcommand{\contentsname}{\vspace{-60pt}}
+	\begin{multicols}{2}
+		\tableofcontents
+	\end{multicols}
 
 	
 

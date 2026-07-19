@@ -1,0 +1,106 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+\usepackage{halloweenmath}
+
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{תרגיל בית 10}}
+\begin{document}
+	\maketitle
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item יהי $0 \le k \in \N$. אז: 
+		\[ C^{k}(\tb) \cod \ccb{f \in \R \to \C \ \middle\vert \ \cl{\forall k \in \Z \, \forall x \in \R \co f(x) = f(x + k \cdot 2\pi)} \land \cl{f^{(k)} \ \mathrm{is \ well \ defined}}} \]
+		\item יהי $C(\overbat{\tb})$ אוסף הפונקציות הרציפות $f \co R \to \C$ עם מחזור $2026$. 
+		\begin{itemize}
+			\item נגדיר את נורמת $L_2$ על $C(\overbat{\tb})$: 
+			\[ \norm{f}_{L_2} \! \cod \frac{1}{2026}\int^{69420}_{67394}\dequad\dequad \sof{f(x)}^{2}\dx \]
+			\item הקונבלוציה של פונקציות ב־$C(\overbat\tb)$ תהיה: 
+			\[ (f * g)(t) = \frac{1}{2026}\int^{67}_{-1959}\dequad \dequad f(x)\ol{g(t - x)}\dx \]
+		\end{itemize}
+	\end{enumerate}
+	
+	\stepcounter{section}
+	\section{}
+	תהיינה $f, g \in R(\tb)$. 
+	\begin{enumerate}[(A)]
+		\item נניח ש־$f \equiv 0$ בסביבת $x_0$. נוכיח ש־$S_nf(x_0) \toinf 0$. \begin{proof}
+			נבחין ש־$f$ היא $M$־לפישיצית לכל $M\in \R$ בסביבת $x_0$, שכן באותה סביבת $\dg > 0$ מתקיים שכל $x \in (x_0 - \dg, x_0 + \dg)$ מקיים: 
+			\[ \sof{f(x) - f(x_0)} = \sof{0 - 0} = 0 \le M \cdot\sof{x - x_0} \le M \cdot \dg \]
+			לכל $M$, ובפרט עבור $M = 1$. לכן ממשפט 6.6.12 ברשימות (הנהדרות) של שירי מתקיים: 
+			\[ S_n f(x_0) \toinf f(x_0) = 0 \]
+			כנדרש. 
+		\end{proof}
+		\item נוכיח שאם $f \equiv g$ בסביבת $x_0$ אז $S_nf(x_0) \to f(x_0)$ אמ''מ $S_ng(x_0) \to g(x_0)$. \begin{proof}
+			נבחין שמשום ש־$f \equiv g$ בסביבת $x_0$ כלשהי, אז $h = f - g$ מתאפסת גם היא בסביבת $x_0$. לכן מהמשפט הקודם $S_nh(x_0) \toinf 0$ בסביבת $x_0$. משום ש־$S_n$ היא העתקה לינארית (היטל), נקבל ש־: 
+			\[ S_nf(x_0) - S_ng(x_0) = \cl{S_n\cl{f - g}}(x_0) = S_nh(x_0) \toinf 0 \]
+			ולכן, במידה ואחד מבין $S_nf(x_0)$ ו־$S_ng(x_0)$ גבולות מוגדרים, נקבל (ממשפט מחדו''א 1א לגבי גבולות של סדרות): 
+			\[ S_nf(x_0) \toinf S_ng(x_0) \]
+			אזי, מיחידות הגבול ב־$\R$, נקבל ש־$S_nf(x_0) \toinf f(x_0)$ אמ''מ $S_ng(x_0) \toinf g(x_0)$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נגדיר את סדרות הפונקציות $\{g_n\} \subset R(\tb)$ ע''י המשכה מחזורית מהקטע $[-\pi, \pi]$ של הפונקציה: 
+		\[ g_n(x) = \pi n \cdot \begin{cases}
+			1 & x \in \csb{-\frac{1}{n}, \frac{1}{n}} \\
+			0 & \other
+		\end{cases} \]
+		ותהי $f \in C(\tb)$. נוכיח ש־$\{f * g_n\}$ היא סדרת פונקציות $C^{1}$ המתכנסות במ''ש ל־$f$. \begin{proof}
+			\textit{הערה: }בסעיף זה לצורך הנוחות נתעלם מהפקטור של $\frac{1}{2\pi}$ על הקונבלוציה, שכן הוא  לא משפיע על דברים כמו התכנסות במ''ש אך הופך את האלגברה למסורבלת יותר. 
+			
+			נמצא מפורשות את $f * g_n$: 
+			\[ \cl{f * g_n} = \int^{\pi}_{-\pi}\dequad f(x)\ol{g(t - x)}\dx = \int^{t + \frac{1}{n}}_{t-\frac{1}{n}} \dequadd f(x)\dx + \int_{x \notin \csb{t-\frac{1}{n}, t + \frac{1}{n}}}\dequadd\dequadd\dequad \cl{f(x) \cdot 0} \dx = \bm{\int^{t + \frac{1}{n}}_{t-\frac{1}{n}}\!\! f(x) \dx} \]
+			מהמשפט היסודי משום ש־$f$ רציפה אז האינטגרל גזיר, וממשפט אחר האינטגרל רציף. ממשפט אחר האינטגרל מחזורי. לכן $(f * g_n) \in C^{1}(\tb)$. עתה נוכיח התכנסות במ''ש ל־$f$: ראשית, נתחיל מהתכנסות נקודתית.  משום ש־$\tb \cong S_1$ קבוצה קומפקטית, מקנטור $f$ רבמ''שית. לכן, לכל $\eg$ ובפרט עבור $\eg = \frac{1}{2\pi}$ קיימת $\dg$ כך שלכל $r_1, r_2$ בסביבת $\dg_n$ של $x$ מתקיים $\sof{f(r_1) - f(r_2)} < \eg$, ובפרט בעבור $r_2 = x$ ו־$r_1 = t$ לכל $t \in \R$. מארכימדיאניות לכל $\dg$ קיים $N \in \N$ כך ש־$\frac{1}{2N} < \dg$, ולכן לכל $n > N$ מתקיים ש־: 
+			\[ (f* g_n)(x) - f(x) = \int^{x + \frac{1}{n}}_{x - \frac{1}{n}}\dequadd \cl{f(t) - f(x)}\dt \le \int^{x + \frac{1}{n}}_{x - \frac{1}{n}}\dequadd \eg \dx = \frac{\eg}{2n} = \frac{1}{n}  \]
+			סה''כ, המ''מ (החל מ־$N$) מתקיים ש־: 
+			\[ \sup_{x \in \R}\sof{(f* g_n)(x) - f(x)} \le \frac{1}{n} \xrightswishingghost{n \to \infty} 0 \]
+			ולכן $f * g_n \tou f$ מהגדרה. 
+		\end{proof}
+		\item תהי $f \in C^{1}(\tb)$. נשתמש באינטגרציה בחלקים כדי להוכיח ש־$\sof{\hat f(n)} \toinf 0$ (ללא שימוש בלמה של רימן־לבג). \begin{proof}
+			נבחין ש־: 
+			\begin{align*}
+				\frac{1}{2\pi}\int^{2\pi}_0 \dequad f(t)e^{-int}\dt &= \frac{1}{2\pi}\csb{f(t) \cdot \frac{e^{-int}}{in}\bigg\vert^{2\pi}_0 + \int^{2\pi}_0  \frac{f'(x)e^{-int}}{in}\dx} \\
+				&=  \frac{f(0) - f(2\pi)}{2\pi \cdot in} + \frac{1}{in} \mut{f'}{e^{int}} \\ 
+				&= \frac{\widehat{f'}(n)}{in} = \cdots
+			\end{align*}
+			נבחין ש־$\widehat{f'}(n)$ (ובכללי מקדמי פורייה) חסומים ע''י קבוע שלא תלוי ב־$n$, תוך שימוש בא''ש המשולש לאינטגרלים: 
+			\[ \widehat{f'(n)} = \sof{\frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f'(t)e^{-int}\dt} \le \frac{1}{2\pi}\int^{\pi}_{-\pi} \dequad \sof{f'(t)}\underbrace{\sof{e^{-int}\dt}}_{1}\dt = \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \sof{f'(t)}\dt \doc M \]
+			ועתה: 
+			\[ \cdots = \frac{\widehat{f'}(n)}{in} \le \frac{M}{in} \xrightflutteringbat{n \to \infty} 0 \]
+			כנדרש. 
+		\end{proof}
+		\item נתפור הוכחה תוך שימוש בסעיפים הקודמים ללמה של רימן־לבג עבור פונקציות רציפות. \begin{proof}
+			תהי $f \in C(\tb)$. נבחין כי $f * g_n$ (בהתאם ל־$g_n$ המוגדרת בסעיף (א)) גזירה ברציפות ומתכנסת במ''ש ל־$f$ (הוכחנו ב־(א)). לאחר הפעלת סעיף (ב) על $f * g_n$, נקבל ש־$\widehat{\cl{f * g_n}}(n) \toinf 0$ משום שאלו גזירות ברציפות. עוד נבחין ש־: 
+			\[ \lim_{n \to \infty} \widehat{\cl{f * g_n}}(n) = \lim_{n \to \infty} \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \ (f * g_n)e^{-int}\dt \seq \frac{1}{2\pi}\int^{\pi}_{-\pi} \lim_{n \to \infty} (f * g_n)e^{-int}\dt = \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad fe^{-int}\dt = \hat f(n) \]
+			כאשר השוויון $\seq$ התאפשר רק בגלל ההתכנסות במ''ש $(f * g)e^{-int} \toinf fe^{-int}$. סה''כ מיחידות הגבול במרחב ההאוסדורף $\R$ הראנו את הדרוש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נוכיח שלא קיימת $f \in R(\tb)$ כך שלכל $g \in R(\tb)$ מתקיים $f * g = 2g$. 
+	\begin{proof}
+		בכיתה הראנו שלכל $f, g \in R(\tb)$ מתקיים ש־$f * g$ רציפה. עם זאת, בעבור ההרחבה הרציפה של: 
+		\[ g = \begin{cases}
+			1 & x = 0 \\
+			0 & x \in (0, 2\pi)
+		\end{cases} \]
+		מתקיים ש־$2g$ אינה רציפה, על אף שלכל $f \in R(\tb)$ מתקיים ש־$f * g$ רציפה. לכן $f * g \neq 2g$ לכל $f \in R(\tb)$ והטענה הופרכה. 
+	\end{proof}
+	
+	\section{}
+	תהיינה $f, g \in R(\tb)$ ונניח ש־$\sof f \le M$. נוכיח שלכל $x \in [0, 2\pi]$ מתקיים ש־: 
+	\[ \sof{(f * g)(x)} \le \frac{M}{2\pi}\int^{2\pi}_0 \dequad \sof g \]
+	\begin{proof}
+		מהגדרה: 
+		\[ \sof{\cl{f * g}(x)} = \sof{\frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad\ g(t)f(x - t)\dt} \le \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad \  \sof{g(t)}\sof{f(x - t)}\!\dt \le \frac{M}{2\pi}\int^{2\pi}_0 \dequad \sof f \dt \]
+	\end{proof}
+	
+	
+	
+	\ndoc
+\end{document}

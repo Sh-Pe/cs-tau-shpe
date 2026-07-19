@@ -1,0 +1,170 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\usepackage{halloweenmath}
+
+\newcommand\Is{\dequad \ }
+\newcommand\hopen {[a, \wg)}
+\newcommand\bto{\lim_{{b \to \wg^{-}}}}
+\newcommand\lims{\ol{\lim}}
+\newcommand\limii{\underline{\lim}}
+
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{תרגיל בית 3}}
+\begin{document}
+	\maketitle
+	\subsection*{סימונים}
+	\begin{itemize}
+		\item $\osc$ יסמן אוסילאציה (במקום $\wg$). 
+		\item $I = [0, 1]$ אלא אם מצוין אחרת בסעיף. 
+	\end{itemize}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item משפט על כך שערך האינטגרל לינארי בפונקציה: 
+		\theo{יהיו $f, g \co [a, b] \to \R$. אז במידה ו־$\int^{a}_b f(x)\dx$ ו־$\int^{a}_b g(x)\dx$ מוגדרים היטב, אז $f(x) + g(x)$ אינטגרבילית רימן ב־$[a, b]$ ומתקיים שערך האינטגרל: 
+		\[ \int^{b}_a \Is \cl{f(x) + g(x)} \dx = \int^b_a  \Is f(x)\dx + \int^{b}_a \Is  g(x)\dx \]}
+		\item משפט על מונוטוניות האינטגרל: \theo{יהיו $f, g \co [a, b] \to \R$ אינטגרביליות רימן. אז אם $\forall x \in [a, b] \co f(x) \le g(x)$ אז: 
+		\[ \int^{b}_a \Is f(x)\dx \le \int^{b}_a \Is g(x)\dx \]}
+	\end{enumerate}
+	
+	\section{}
+	נוכיח ונפריך את הטענות הבאות: 
+	\begin{enumerate}[(A)]
+		\item אם $\sof f$ אינטגרבילית רימן ב־$[a, b]$, אז $f$ גם כן אינטגרבילית רימן ב־$[a, b]$. 
+		\begin{proof}[הפרכה]
+			נתבונן בפונקציה הבאה: 
+			\[ f \co I \to \R \quad\quad f(x) = \begin{cases}
+				-1 & x \in \Q \\
+				1 & x \in \R\setminus \Q
+			\end{cases} \]
+			נבחין ש־$\sof f \equiv 1$, ומשום שהיא קבועה ב־$I$ תחום הגדרתה היא אינטגרבילית רימן בקטע. נניח בשלילה את המשפט, ואז מאריתמטיקה $\frac{f + 1}{2}  = D(x)$ אינטגרבילית רימן, אך הוכחנו בהרצאה שפונקציית דיריכלה איננה אינטגרבילית רימן. 
+		\end{proof}
+		\item אם $g$ אינטגרבילית רימן ב־$[a, b]$ ו־$g \neq 0$, ונוסף על כך $\frac{1}{g}$ חסומה ב־$[a, b]$, אז $\frac{1}{g}$ אינטגרבילית רימן ב־$[a, b]$. \begin{proof}
+			בה''כ $g \co I \to \R$ (כי אחרת נבצע שינוי משתנה לינארית $[0, 1] \rrr{\phi} [a, b]$ בקצב קבוע, כלומר כאשר $\phi' \in \R$). נסמן $F(x) := \frac{1}{x}$. נבחין ש־$f = F \circ g = \frac{1}{g}$ מוגדרת היטב שכן $g \neq 0$. עוד נבחין שנתון כי $f$ חסומה. 
+			
+			הראינו בחדו''א 1א ש־$F$ רציפה ב־$(0, 1]$ ובפרט רציפה לכל $a > 0$ ב־$[a, 1]$. ממשפט מהתרגול, הרכבה של פונקציה אינטגרבילית רימן $g$ ברציפה $F$ תותיר אותנו עם פונקציה אינטגרבילית רימן $f|_{[a, 1]} \co [a, 1] \to \R$ לכל $a \in (0, 1)$. עתה נפעיל את חסימות $f$ ואת משפט כל הקטעים השמאליים כדי להסיק ש־$f$ אינטגרבילית רימן בכל $I$. 
+		\end{proof}
+		\item אם $f, g$ אינטגרבליות רימן ב־$[a, b]$ אז $F(x) = \max \{f, g\}$ אינטגרבילית רימן בקטע. \begin{proof}
+			יהי $\eg > 0$. מקריטריון דרבו המשופר	ידוע קיום חלוקות $\Pi_1, \Pi_2$ כך ש־: 
+			\begin{align*}
+				\osc(f, \Pi_1) < \frac{\eg}{2} && \land && \osc(f, \Pi_2) < \frac{\eg}{2}
+			\end{align*}
+			נגדיר $\Pi = \Pi_1 \cup \Pi_2$, חלוקה אחרת. משום ש־$\Pi_1, \Pi_2 \subset \Pi$ כלומר $\Pi$ עדינה יותר, ממשפט $\osc(f, \Pi_1) \le \osc(f, \Pi_1) \land \osc(g, \Pi_2) \le \osc(g, \Pi)$. 
+			
+			נתבונן באיזשהו $x_{i>1} \in \Pi$. נתבונן ב־$J = [x_{i - 1}, x_i]$. קל לראות ש־$\sup_{J}\max\{f, g\} = \max\{\sup_J f, \sup_J, g\}$. במקרה $(\mathrm I)$, $\sup_J \max\{f, g\} = \sup_J f$. קל לראות ש־$\inf_J \max \{f, g\} \ge \inf_J f$. סה''כ: 
+			\[ \osc(\max\{f, g\}, J) = \sup_J F - \inf_J F = \sup_J f - \inf_JF \le \sup_J f - \inf_J f = \osc(f, J)  \]
+			באופן זהה במקרה $(\mathrm {II})$ מתקיים ש־$\osc(\max\{f, g\}, J) \le \osc(g, J)$. מכאן שנוכל לחלק את ה־$x_i$־ים לקבוצת אינדקסים $I_1$ ו־$I_2$ כך ש־: 
+			\begin{align*}
+				\forall i \in I_1 &\co \osc(F, [x_{i - 1}, x_i]) \le \osc(f, [x_{i - 1}, x_i]) \\
+				\forall i \in I_2 &\co \osc(F, [x_{i - 1}, x_i]) \le \osc(g, [x_{i - 1}, x_i])
+			\end{align*}
+			ונסיק: (כאשר $n = \sof \Pi$)
+			\begin{align*}
+				\osc(F, \Pi) &= \sum_{i = 1}^{n}\osc(F, [x_{i - 1}, x_i])\Delta x_i \\
+				&= \sum_{i \in I_1}\osc(F, [x_{i - 1}, x_i])\Delta x_i + \sum_{i \in I_2}\osc(F, [x_{i - 1}, x_i])\Delta x_i \\
+				&\le \sum_{i \in I_1}\osc(f, [x_{i - 1}, x_i])\Delta x_i + \sum_{i \in I_2}\osc(g, [x_{i - 1}, x_i])\Delta x_i \\
+				&\le \sum_{i = 1}^{n}\osc(f, [x_{i - 1}, x_i])\Delta x_i + \sum_{i = 1}^{n}\osc(g, [x_{i - 1}, x_i])\Delta x_i \\
+				&= \osc(f, \Pi) + \osc(g, \Pi) \le \osc(f, \Pi_1) + \osc(f, \Pi_2) < \frac{\eg}{2} + \frac{\eg}{2} = \eg
+			\end{align*}
+			
+			ממשפט: 
+			\[ \osc(F, \Pi) = \daru(F, \Pi) - \dard(F, \Pi) \]
+			כלומר, לכל $\eg$ מצאנו חלוקה $\Pi$ כך ש־$\daru(F, \Pi) - \dard(F, \Pi) < \eg$. מקריטריון דרבו המשופר, $F = \max \{f, g\}$ אינטגרבילית רימן בקטע, כנדרש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item תהי $f \ge 0$ אינטגרבילית ב־$[a, b]$. נוכיח שאם $f$ רציפה ב־$x_0 \in (a, b)$ ומתקיים $f(x_0) > 0$, אזי: 
+		\[ \int^{b}_a \Is f(x)\dx > 0 \]
+		\begin{proof}
+			למה: אם $f$ רציפה ב־$x_0$ ו־$f(x_0) > 0$, אז קיימת סביבת $\dg$ של $x_0$ שבה $f$ היא bounded away מ־$0$. נניח בשלילה אחרת, ומכאן שלכל $\dg$ מתקיים שקיימת $x_\dg$ ב־$(x_0 - \dg, x_0 + \dg)$ כך ש־$f(x_\dg)$ קרובה כרצוננו ל־$0$, ובפרט $f(x_0) \le \dg$. משום ש־$\R$ מקיים אקסיומת מניה ראשונה נוכל לקחת $\dg = \frac{1}{n}$ ואז לקבל מאקסיומת הבחירה תיפול מהשמיים פונקציית בחירה שהיא למעשה סדרה כך ש־$x_n \to x_0$ כי $x_n \in (x_0 - \frac{1}{n}, x_0 + \frac{1}{n})$ אך $f(x_n) \ge \frac{1}{n}$. בגלל ש־$x_n \neq x_0$ (כי אחרת $f(x_n) > 0$ וסתירה) נקבל מהיינה ש־$f(x_n) \to f(x_0)$. אך בגלל ש־$f(x_n) \le 0$ בהכרח: 
+			\[ \frac{1}{n} \ge f(x_n) \rrr{n \to \infty} f(x_0) \implies 0 \ge f(x_0) \]
+			אך ידוע $f(x_0) > 0$ וזו סתירה. 
+			
+			נתבונן בסביבת $\dg_1$ כלשהי שבה $f$ היא bounded away from zero ע''י קבוע $c$. נסמן $\dg_2 = \min\!\ccb{\sof{a - x_0}, \sof{b - x_0}}$ ונגדיר $\dg = \min\{\dg_2, \frac{\dg_1}{2}\}$. משום ש־$x_0$ בפנים הקטע, בהכרח $\dg > 0$. עוד נבחין שבגלל ש־$\dg < \dg_2$ הפונקציה $f$ מוגדרת בסביבת $\dg$. בגלל ש־$f$ אינטגרבילית ב־$[a, b]$ היא אינטגרבילית בכל תת־קטע סגור של $[a, b]$.
+			
+			$f(x) > c$ לכל $x \in [x_0 -\dg, x_0 + \dg]$ כי $\dg \le \frac{\dg_2}{2}$. לכן: 
+			\[ \int^{x_0 + \dg}_{x_0 - \dg}\dequadd f(x)\dx \ge \int^{x_0 + \dg}_{x_0 - \dg}\dequadd c \dx = 2 \dg \dx > 0 \]
+			
+			ממשפט מההרצאה, בגלל ש־$f \ge 0$ אז $\int^{p}_q f(x)\dx \ge 0$ לכל $a \le p < q \le b$. ממשפט אחר מההרצאה:
+			\[ \int^{b}_a \Is f(x)\dx = \underbrace{\int_{a}^{x_0 - \dg}\dequadd f(x)\dx}_{\ge 0} + \underbrace{\int^{x_0 + \dg}_{x_0 - \dg} \dequadd f(x)\dx}_{>0} + \underbrace{\int^{b}_{x_0 + \dg}\dequad \Is f(x)\dx}_{\ge 0} > 0 \]
+			כנדרש. 
+		\end{proof}
+		\item תהי $f \co [a, b] \to \R$ אינטגרבילית רימן ונניח $\int^{b}_a f^{2}(x)\dx = 0$. נוכיח כי בכל נקודות הרציפות של $f$ מתקיים $f(x) = 0$. \begin{proof}
+			תהי $x \in [a, b]$ נקודת רציפות של $f$. אז היא נקודת רציפות של $f^{2}$. אם $x \in (a, b)$ אז מהמשפט הקודם, בגלל ש־$f^{2} \ge 0$ בהכרח $f(x) = 0$. אם $x \in \{\{a\}, \{b\}\} = \partial[a, b]$, אז אז מטיעונים דומים לאלו שהועלו בהוכחת הטענה בסעיף א', אם בשלילה $f^{2}(x) = 0$ אז	בסביבת $\dg$ חד־צדדית (כלומר $[a, a + \dg)$ או $(b - \dg, b]$) הפונקציה $f^{2}$ היא bounded away from zero ואז סתירה באופן דומה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהי $f$ גזירה ברציפות $n$ פעמים בקטע $[a, b]$. נוכיח שקיימת $c \in (a, b)$ כך ש־: 
+	\[ \frac{f^{(n)}(c)}{n!}(b -a)^{n} = \frac{1}{(n - 1)!}\int^{b}_a \Is f^{(n)}(t)(b -t)^{n - 1}\dt \]
+	\begin{proof}
+		נתבונן בשארית האינטגרלית לטור טיילור סביב $a$: 
+		\[ R_{n}(x) = \frac{1}{(n - 1)!}\int^{x}_a\Is f^{(n)}(t)(x - t)^{n - 1}\dt \]
+		נוכיח מכך את שארית לגראנג'. ממשפט ערך הביניים הראשון (לאינטגרלים), לכל $x \in [a, b]$ קיימת $c_x \in [a, b]$ עבורה: 
+		\[ \int^{x}_a \Is f^{(n)}(t)(x - t)^{n - 1}\dt = f^{(n)}(c_x)\int^{x}_a\Is (x - a)^{n -1} = f^{(n)}(c_x) \cdot \frac{(x - t)^{n}}{n} \]
+		בפרט, בעבור $c = b$ תוך הצבה בשארית האינטגרלית נקבל: 
+		\[ R_{n}(b) = \frac{1}{(n - 1)}\int^{b}_a \Is f^{(n)}(t)(b - t)^{n - 1}\dt = \frac{1}{(n - 1)!} \cdot f^{(n)}(c_b) \cdot \frac{(b - a)^{n}}{n} = \frac{f^{(n)}(c_b)}{n!}(b - a)^{n} \]
+		כנדרש. 
+	\end{proof}
+	
+	\section{}
+	תהי $f \co [a, b] \to \R$ אינטגרבילית רימן. 
+	\begin{enumerate}[(A)]
+		\item נוכיח שלכל קטע סגור $I \subset [a, b]$ קיים תת־קטע סגור $I' \subset I$ כך ש־$\osc(f, I') \le \frac{1}{2}\osc(f, I)$. \begin{proof}
+			משום ש־$f$ אינטגרבילית בפרט $f|_I$ אינטגרבילית. לכל $\eg$ קיימת חלוקה $\lg(\Pi) < \dg$ של $I$ כך ש־$\osc(f|_I, \Pi) < \overbat \eg$ (את $\overbat \eg$ נבחר בהמשך ללא תלות ב־$\Pi$) מקריטריון דרבו המשופר/ ולכן $\osc(f, \Pi) < \overbat \eg$. בגלל שיש כמות סופית של נקודות בחלוקה, נוכל לסמן ב־$[x_{j - 1}, x_j]$ את הקטע בעבורו האוסילאציה $\osc(f, [x_{j - 1}, x_j])$ היא הקטנה ביותר (פשוט ניקח מינימום). 
+			\[ \begin{WithArrows}
+				\overbat \eg > \osc(f, \Pi) = &\ \sum_{i = 1}^{n}\osc(f, [x_{i - 1}, x_i])\Delta x_i \Arrow[ll]{$\forall i \co \osc(f, [x_{i - 1}, x_i]) \ge \osc(f, [x_{j - 1}, x_j])$}\\
+				\ge & \ \sum_{i= 1}^{n}\osc(f, [x_j, x_j])\Delta x_j \\
+				\ge & \ \osc(f, [x_{j - 1}, x_j])\cdot \underbrace{\sum_{i = 1}^{n}\Delta x_i}_{b - a}
+			\end{WithArrows} \]
+			סה''כ בעבור $\overbat \eg = \frac{\osc(f, I)}{2(b - a) + 1}$ ו־$I' = [x_{j -1}, x_j]$ יתקיים ש־$\osc(f, I') \le \frac{1}{2}\osc(f, I)$, כנדרש. 
+		\end{proof}
+		
+		\item נוכיח שקבוצת נקודות הרציפות של $f$ צפופה בקטע $[a, b]$. \begin{proof}בעבור קטע סגור $[p, q]$ נגדיר את אורכו להיות $\lg([p, q]) = q - p$. 
+			
+			תהי $J = (\ag, \bg) \subset [a, b]$ קבוצה בבסיס הטופולוגיה על $[a, b]$ (ביחס לסטנדרטית על $\R$). אז נוכל להתבונן בת''ק סגור לא מנוון: 
+			\[ J_1 = \csb{\ag + \frac{\bg - \ag}{4},\  \bg - \frac{\bg - \ag}{4}} \subset (\ag, \bg) \subset [a, b] \]
+			לכל ת''ק סגור $J_i$ נוכל להגדיר ת''ק סגור $J_{i + 1}' \subset J_i$ לא מנוון עבורו $\osc(f, I_i) \le \frac{1}{2}\osc(f, I_{i + 1})$, ומשום שהאוסילאציה קטנה בעבור קטע קטן יותר, אם $J'_{i + 1} = [x, y]$, נוכל להגדיר: 
+			\[ J_{i + 1} = \csb{x + \frac{y - x}{4}, \ y - \frac{y - x}{4}} \]
+			נבחין ש־$\lg(J_{i + 1}) = \frac{1}{2}\lg(J_{i + 1}') \le \frac{1}{2}\lg(J_i)$. ובפרט ל־$J_1$ נוכל להגדיר כך (ממשפט הרקורסיה) סדרת קטעים $n \mapsto J_n$. באינדוקציה 
+			$\frac{1}{2^{n}}\osc(f, J_1) \ge \osc(f, J_n)$ וגם $\lg(f, J_{n}) \le \frac{1}{2^{n}}\lg(f, J_1)$. לכן $\lg(f, J_n) \to 0$ (וכמובן אלו קטעים מקוננים $J_{n + 1} \subset J_n$) מה שמאפשר לנו להפעיל את הלמה של קנטור ולהפיל מהשמיים $\{c\} = \bigcap_{n \in \N}J_n$ (בפרט $c \in J_1 \subset J$). 
+			
+			משום ש־$J_n$ בסיס למערכת הסביבות של $c$ (כי אורכם שואף ל־$0$) ובגלל ש־$\frac{1}{2^{n}}\osc(f, J_1) \ge \osc(f, J_n)$ אז כאשר $\dg \to 0$ מתקיים $\osc(f, [c + \dg, x - \dg]) \to 0$ (ההוכחה דומה מאוד לדברים אחרים שעשיתי כבר בתרגיל הבית הזה (כמו שאלה 3(א)), אז אני נותן נימוק טופולוגי בלי להסביר יותר מדי), ומטענה שהוזכרה בהרצאה $c$ נקודת רציפות של $f$. 
+			
+			בגלל ש־$c \in J$ אז קיימת נקודת רציפות ב־$J$ (כל קבוצה בבסיס הטופולוגיה של $[a, b]$), ומשום שכל קבוצה פתוחה כוללת בתוכה קבוצה מבסיס הטופולוגיה (בהקשר הזה, קטע פתוח) נסיק שכל קבוצה פתוחה כוללת בתוכה נקודת רציפות של $f$. מכאן שקבוצת נקודות הרציפות של $f$ צפופה ב־$[a, b]$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהי $f \co \R \to \R$ פונקציה אינטגרבילית רימן על כל קטע סופי ומחזורית עם מחזור $T > 0$. נוכיח שהאינטגרל $I(a) = \int^{a + T}_a f(x)\dx$ אינו תלוי ב־$a$. 
+	\begin{proof}
+		ראשית נטפל ב־$a \in [0, T]$. במקרה זה, משום ש־$T \in [a, a + T]$, נוכל לפרק את האינטגרל כדילהלן, כדי לקבל את משוואה $(\mathrm{I})$: 
+		\[ \int^{a + T}_a \dequad \Is f(x)\dx = \int_{a}^{T}\Is f(x)\dx + \int^{a + T}_{T} \dequad\Is f(x)\dx \]
+		נגדיר $\phi(x) = x - T$. בגלל ש־$\phi' \equiv 1$, וממחזוריות $f$, נקבל את משוואה $(\mathrm{II})$: 
+		\[ \int_T^{a + T}\dequad \Is f(x)\dx = \int^{\phi(a + T)}_{\phi(T)}\dequadd\Is f(\phi(x))\phi'(x)\dx = \int_0^{a} \Is f(x - T)\dx = \int^{a}_0 f(x)\dx \]
+		ובאמצעות הצבה של $(\mathrm{II})$ ב־$(\mathrm{I})$, נקבל: 
+		\[ I(a) = \int^{a + T}_a\dequad\Is f(x)\dx = \int_0^{a}\Is f(x)\dx + \int_a^{T}\Is f(x)\dx = \int_0^{T}\Is f(x)\dx = I(0) \]
+		כלומר, בעבור $a \in [0, T]$ נקבל ש־$I(a) \equiv I(0)$ קבוע. עתה נטפל ב־$a \in \R$ כללי. במקרה זה, נגדיר $\psi(x) = x - \floor{\frac{a}{T}}T$. קל לראות באינדוקציה ש־$f(x + zT) = f(x)$ לכל $z \in \Z$. נסמן $a' = \psi(a)$, ונבחין ש־$a' \in [0, T]$. ואז: 
+		\[ I(a) = \int^{a + T}_a\dequad \Is f(x)\dx = \int^{\psi(a + T)}_{\psi(a)}\dequadd\Is f(\psi(x))\psi'(x)\dx = \int^{a' + T}_{a'}\Is f\cl{x - \floor{\frac{a}{T}}T}\dx = \int^{a' + T}_{a'}\dequadd f(x)\dx = I(a') \]
+		בעבור $I(a')$ משום ש־$a' = 0$ בהכרח $I(a') = I(0)$. ואז מטרנזטיביות $I(a) = I(0)$ בעבור $a \in \R$  כללי, כנדרש. 
+	\end{proof}
+	
+	\section{}
+	תהי $f \co \R \to \R$ אינטגרבילית ו־$g \co \R \to \R$ לינארית. אז $f \circ g$ אינטגרבילית בכל ת''ק. \begin{proof}
+		משום ש־$f$ אינטגרבילית, מהגדרת אינטגרל לא אמיתי היא בפרט אינטגרבילית רימן בכל ת''ק $I$. 
+		
+		יהי קטע סגור $J = [a, b] \subset \R$. אזי $g(J) = [\ag, \bg]$ גם ת''ק סגור. נסמן $\phi = g\op$ (פונקציה לינארית היא הפיכה), גם היא לינארית, ולכן $\phi' = c$ קבועה. אז:
+		\[ \int^{b}_a \Is\ (f \circ g)\dx= \int^{\phi(b)}_{\phi(a)}\dequadd \ (f \circ g \circ \phi)(x)\phi'(x) \dx = \int^{\bg}_\ag \Is f(x) \cdot c \dx = c \cdot \int^{\bg}_\ag \Is f(x)\dx \]
+		ומשום שאף ימין מוגדר כי $f$ אינטגרבילית רימן על $I = [\ag, \bg]$ (ומאריתמטיקה), כן גם אגף שמאל (מהחלפת משתנה). דהיינו $f \circ g$ אינטגרבילית רימן ב־$J$ כנדרש. 
+	\end{proof}
+	
+	
+	
+	\ndoc
+\end{document}

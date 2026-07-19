@@ -1,0 +1,28 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{תרגיל בית 6}}
+\begin{document}
+	\maketitle
+	\section{}
+	\begin{enumerate}[(A)]
+		\item 
+	\end{enumerate}
+	
+	\section{}
+	תהי $f \co \R \to \R$ כך שלכל $a < b \in \R$ מתקיים $f \in R[a, b]$, וש־$\int_{-\infty}^{\infty} \sof f$ קיים וסופי. 
+	\begin{enumerate}
+		\item נוכיח ש־$\int^{\infty}_{-\infty}f(x)e^{-\eg \sof x}$ מתכנס לכל $\eg > 0$. 
+		\begin{proof}
+			יהי $\eg > 0$. מהגדרה: 
+			\[ \int^{\infty}_{-\infty}\dequad f(x)e^{-\eg \sof x} = \int_0^{\infty}\dequad \ f(x)e^{-\eg x} + \int_{-\infty}^{0}\dequad f(x)e^{\eg x} \]
+			הפונקציה $e^{-\epsi \sof x}$ זוגית, בתחומה החיובית קל לראות שהאינטגרל מ־$0$ לאינסוף מתכנס שכן הקדומה $\frac{e^{-\epsi x}}{\epsi}$ מתכנסת הן באינסוף והן ב־$0$ (ואז מניוטון לייבניץ סיימנו). 
+		\end{proof}
+	\end{enumerate}
+	
+	\ndoc
+\end{document}

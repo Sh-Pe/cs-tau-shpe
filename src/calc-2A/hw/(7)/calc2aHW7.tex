@@ -1,0 +1,125 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{תרגיל בית 7} $\sim$ פתרון חלקי}
+\begin{document}
+	\maketitle
+	\section{}
+	\begin{enumerate}[(A)]
+		\item ניסוח טענה לגבי כך שכל פונקציה רציפה היא גבול במ''ש של פולינומים: 
+		\theo{תהי $f \co \R \to \R$ רציפה. אז קיימת סדרה של פולינומים $(P_k)_{k = 1}^{\infty}$ כך ש־$P_k \rrr{k \to \infty} f$. }
+		\item טור חזקות סביב $\sqrt 2$: 
+		\defi{טור חזקות סביב $\sqrt 2$ הוא טור פורמלי (כלומר, נבדיל טורים ע''י השוואת מקדמים) מהצורה $\sumkoinf a_k(x - \sqrt)^{k}$. }
+		\item משפט אבל לתחום התכנסות של טור חזקות סביב $\sqrt2$: 
+		\begin{Theorem}[אבל]
+			יהי טור חזקות $\sumkoinf a_k(x - \sqrt2)^{k}$ סביב $\sqrt 2$. אז קיים $0 \le R \le \infty$ (כלומר מספר אי־שלילי במובן הרחב) כך שאם $\sof x < R$ אז הטור מתכנס ב־$x$, ואם $\sof x > R$ הטור מתבדר ב־$x$. 
+		\end{Theorem}
+		\item טענה אודות התכנסות במ''ש של טור חזקות ב־$(-R, 0]$ כתלות בהתכנסות נקודתית של הטור ב־$-R$: 
+		\theo{נניח שטור חזקות $\sumkoinf a_k(x - \eta)^{k}$ סביב $\eta$ מתכנס נקודתית ב־$(-R, 0]$. אז הטור מתכנס במ''ש ב־$(-R, 0]$ (ולמעשה גם ב־$[-R, 0]$) אמ''מ הוא מתכנס נקודתית ב־$-R$. }
+	\end{enumerate}
+	
+	\section{}
+	נראה כי הפונקציה: 
+	\[ f(x) = \sumnoinf \frac{\sin(nx^{2})}{1 + n^{4}} \]
+	גזירה פעמיים ברציפות בכל $\R$. 
+	\begin{proof}
+		נסמן $u_n(x) = \frac{\sin(nx^{2})}{1 + n^{4}}$. נבחין כי כרגע $f(x) = \sumnoinf u_n$ (לא ברור כלל אם $f$ אפילו מוגדרת היטב). נבחין ש־: 
+		\[ u_n(x)'' = \cl{\frac{2nx\cos(nx^{2})}{1 + n^{4}}}' = \underbrace{\frac{2n\cos(nx^{2})}{1 + n^4}}_{f_n}-\underbrace{\frac{4n^{2}x\sin(nx^{2})}{1 + n^{4}}}_{g_n} \]
+		מכתיבה מחדש: 
+		\begin{align*}
+			f_n = \underbrace{\frac{2n}{n^{2} + \sqrt n + 1}}_{a_n}\cdot \underbrace{\frac{\cos(nx^{2})}{n^{2}_{b_n} + \sqrt n + 1}}_{b_n} && g_n = \underbrace{\frac{4n}{n^{2} + \sqrt n + 1}}_{c_n} \cdot \underbrace{\frac{x\sin(nx^{2})}{n^{2} + \sqrt n + 1}}_{d_n}
+		\end{align*}
+		קל לראות ש־$d_n, b_n \tou 0$ (ישירות מהגדרה) וכן ש־$\sum a_n, \sum c_n$ חסום במ''ש (הם חסומים ע''י המקסימום של $a_0$ ו־$b_0$). לכן מדיריכלה $\sum f_n, \sum g_n$ מתכנס במ''ש. דהיינו $\sum u_n''(x)$ מתכנס במ''ש (אריתמטיקה). משום ש־$u_n''(x)$ פונקציות רציפות בבירור, וההתכנסות במ''ש, אז גם $\sum u_n''(x)$ רציף. 
+		
+		קל לראות ש־$u_n(0)= 0 \land u_n'(0) = 0$ נקודתית. לכן ממשפט מההרצאה $\sum u_n$ מתכנס לכדי האינטגרל הכפול על הפונקציה $\sum u_n''(x)$ (קבועה האינטגרציה הוא $0$. הפונקציה הזו אינטגרבילית כי היא רציפה), ומכאן שהנגזרת השנייה של $f$ היא הפונקציה $\sum u_n''(x)$ הרציפה, וסיימנו. 
+		
+%		בבירור ישנה התכנסות נקודתית לאפס של $f_n$ ושל $g_n$ (כי $\sin, \cos$ חסומות ו־$\frac{n^{2}}{1 + n^{4}} \toinf 0$). נטען שההתכנסות במ''ש שכן סופרמום החיסור מ־$0$ הוא: 
+%		\[ \sup_{{x\in\R}}\sof{f_n - 0} = \sup_{{x\in\R}}\sof{\frac{2n\cos(nx)}{1 + n^{4}}} = \sup_{x\in\R}\cl{\frac{2n + 1}{n^{4}}} \toinf 0 \]
+%		באופן דומה בעבור $g_n$. סה''כ $f_n, g_n \tou 0$. מכאן ש־$u_n(x)'' \tou 0$. קל לראות שנקודתית $u_n(0)' \to 0 \land u_n(0) \to 0$. קל לראות ש־$u_n', u_n \in C^{1}(\R)$ (אלו פונקציות אלמנטריות ללא נקודות אי־הגדרה) ולכן כאשר נפעיל פעמיים משפט מהכיתה נקבל ש־$u_n$ מתכנס במ''ש ל־:
+%		\[ f_n \to f = 0 + \int^{x}_0\cl{0 + \int^{x}_0 \dequad \ 0 \dx} \]
+	\end{proof}
+	
+	\section{}
+	תהי $\{a_n\}$ סדרת מספרים כלשהי. נתבונן בטור הפונקציות: 
+	\[ \sumnoinf \frac{a_n}{n^{x}} \]
+	נוכיח שהטור מתכנס בנקודה $x = s$ אמ''מ הוא מתכנס בקרן $[s, \infty)$. 
+	\begin{proof}
+		\begin{itemize}
+			\item[$\implies$]נניח שהוא מתכנס בקרן $[s, \infty)$. מכאן הטור בפרט מתכנס ב־$x = s$ כנדרש. 
+			\item[$\impliedby$]נניח שהטור מתכנס בנקודה $x = s$. יהי $x \in [s, \infty)$. נבחין ש־$x \ge s$ ולכן $n^{x}\ge n^{s}$. לכן $\frac{a_n}{n^{x}} \le \frac{a_n}{n^{s}}$, ומסכימת הביטויים $\sum^{N}_{n = 1}\frac{a_n}{n^{x}} \le \sum^{N}_{n =1}\frac{a_n}{n^{s}}$. כאשר $N \to \infty$ אגף ימין מתכנס (זה נתון) ולכן ממשפט מחדו''א 1א סיימנו. 
+		\end{itemize}
+	\end{proof}
+	
+	\section{}
+	נחשב את הסכומים הבאים באמצעות טורי חזקות: 
+	\begin{enumerate}[(a)]
+		\item נתבונן בטור: 
+		\[ \sum^{\infty}_{n = 1}\frac{n}{x^{n}} = \sumnoinf n \cdot \cl{\frac{1}{x}}^{n} = \sumnoinf \frac{1}{x} \cdot \cl{\cl{\frac{1}{x}}^{n}}\!' = \frac{1}{x}\cl{\sumnoinf \cl{\frac{1}{x}}^{n}}' = \frac{1}{x} \cdot\cl{\frac{1}{1 - \frac{1}{x}}}' = \frac{1}{x(1 - \frac{1}{x})^{2}} \]
+		נבחין שהמעבר הנוגע להתכנסות הטור הגיאומטרי דורש ש־$\frac{1}{x} \in (-1, 1)$. אכן כאשר נציב $x =2$ יתקיים $\frac{1}{2} \in (-1, 1)$, ולכן נקבל שוויון ל־$\frac{1}{2(1 - 0.5)^{2}} = \frac{1}{0.5} = 2$. 
+		\item נתבונן בטור: 
+		נבחין ש־: 
+		\begin{align*}
+			\int\! \frac{1}{x^{n - 1}}\dx = \frac{1}{n}x^{-n} + C &&
+			\int \! \frac{1}{x^{n - 2}}\dx = \frac{1}{n^{2} + n}x^{-n} + C
+		\end{align*}
+		לכן: 
+		\[ \frac{1}{n^{2}x^{n}} = \int_1^{x} \! \cl{\frac{1}{x^{n - 2}} - \frac{1}{x^{n - 1}}}\dx \]
+		מאינטגרציה איבר־איבר: 
+		\[ \sumninf \frac{1}{n^{2}t^{n}} = \sumninf \int^{t}_1\!\cl{\frac{1}{x^{n - 2}} - \frac{1}{x^{n - 1}}}\dx = \int^{t}_1 \cl{\sum_{n = -1}^{\infty} \cl{\frac{1}{x}}^{n} \!- \sumnoinf \cl{\frac{1}{x}}^{n}} = \int^{t}_1 \cl{x + \cancel{\frac{x}{1 - x} - \frac{x}{1 - x}}}\dx = \int^{t}_1x\dx \]
+		סה''כ: 
+		\[ \sumnoinf \frac{1}{n^{2}3^{n}} = \int^{3}_1 x\dx = \frac{3^{2} - 1^{2}}{2} = 4 \]
+		כנדרש. 
+	\end{enumerate}
+	
+	\stepcounter{section}
+	\section{}
+	נמצא את רדיוס ההתכנסות של טורי הטיילור של הפונקציות ההבאות: 
+	\begin{enumerate}[(a)]
+		\item נתבונן בפונקציה: 
+		\[ (1 + x^{2})\arctan(x) \]
+		נפרק לפי טיילור ונקבל: 
+		\[ (1 + x^{2})\arctan x \seq \cl{1 + x^{2}}\sumkoinf (-1)^{k}\frac{x^{2k + 1}}{2k + 1} = \sumnoinf (-1)^{k}\frac{(1+x^{2})x^{2k + 1}}{2k + 1} = \underbrace{\sumnoinf \frac{(-1)^{k}x^{2k + 1}}{2k + 1}} + \underbrace{\sumnoinf \frac{(-1)^{k}x^{2k + 3}}{2k + 1}} \]
+		כאשר: 
+		\[ a_k = \begin{cases}
+			0 & k \in \Neven \\
+			(-1)^{\frac{k - 1}{2}}\frac{1}{k} & k \in \Nodd
+		\end{cases} \]
+		וכן: 
+		\[ b_k = \begin{cases}
+			0 & k \in \Neven \\
+			(-1)^{\frac{k - 2}{2}}\frac{1}{k - 2} & k \in \Nodd
+		\end{cases} \]
+		ניעזר במשפט קושי־הדמרד כדי למצוא את רדיוס ההתכנסות של הטור כולו (הפיצול לשני טורים היה אך ורק כדי למצוא את המקדמים בנפרד. אך הטור הוא $\sumnoinf (a_k + b_k)x^{k}$). נבחין ש־$(-1)^{k} = (-1)^{\frac{k - 2}{2}}$. לכן: 
+		\[ \sqrt[k]{\sof{a_k + b_k}} = \sqrt[k]{(-1)^{k} \cdot \frac{1}{k} \cdot \frac{1}{k - 1}} = \sqrt[k]{\frac{1}{k^{2} + k}} \rrr{k \to \infty} 1 \]
+		סה''כ מקושי הדמרד הטור מתכנס ברדיוס של $1\op = 1$. 
+		\item נתבונן בפונקציה: 
+		\[ f(x) = \int^{x}_0 \frac{\sin t}{t}\dt \]
+		נפתח לה טור טיילור. ניעזר באינטגרציה איבר־איבר של גבול במ''ש של פונקציות: 
+		\[ f(x) = \int^{x}_0 \frac{\sin t}{t}\dt = \int^{x}_0\! \cl{\frac{1}{t}\sumnoinf \frac{(-1)^{n}}{(2n + 1)!}t^{2n + 1}}\dt = \sumnoinf \int^{x}_0\!\! \frac{(-1)^{n}}{(2n + 1)!}t^{2n}\dt = \sumnoinf \frac{(-1)^{n}}{(2n + 1)!(2n + 1)}t^{2n + 1} \]
+		עתה נפעיל את קושי־הדמרד: 
+		\[ \limsup\sqrt[n]{\frac{(-1)^{n}}{(2n + 1)!(2n + 1)}} = \sqrt[n]{(-1)^{n}} \cdot \sqrt[n]{\frac{1}{(2n + 1)!(2n + 1)}} \]
+		משום שהביטוי $\frac{1}{(2n + 1)!(2n + 1)}$ יורד אף יותר מהר מ־$\frac{1}{(2n + 1)!}$, והראנו ש־$\sqrt[n]{\frac{1}{(2n + 1)!}} \toinf 0$, אז בהכרח נקבל בגבול $0 \cdot 1 = 0$. לכן מקושי הדמרד הטור מתכנס בכל $\R$. 
+	\end{enumerate}
+	
+	\stepcounter{section}
+	\section{}
+	יהיו $R_1, R_2$ רדיוסי התכנסות של הטורים $\sumnoinf a_nx^{n}, \sumnoinf b_nx^{n}$. 
+	\begin{enumerate}[(A)]
+		\item נניח ש־$R_1 \neq R_2$. אז ראינו בתרגול שרדיוס ההתכנסות של $\sumnoinf (a_n + b_n)x^{n}$ הוא $\min\{R_1, R_2\}$. 
+		\item נניח ש־$R_1 = R_2 = 1$. במקרה זה, רדיוס ההתכנסות של $\sumnoinf (a_n + b_n)x^{n}$ יכול להיות גדול מ־$1$: 
+		\begin{itemize}
+			\item ראינו שעבור $a_n = 1, b_n = -1$ הטורים מרדיוס התכנסות $1$ (טור הטיילור של $\frac{1}{1 - x}$). אך במקרה זה $\sumnoinf (a_n + b_n)x^{n} = \sumnoinf 0 \cdot x^{n} = 0$, שמתכנס ל־$0$ במ''ש בכל $\R$. במקרה זה רדיוס ההתכנסות גדול מ־$1$ (הוא $\infty$). 
+			\item לא ייתכן שהוא יהיה קטן מ־$1$. זה נובע ישירות מדיסטרבוטיביות טורים: אם ישנה התכנסות נקודתית ל־$\sumnoinf a_n x^{n}, \sumnoinf b_n x^{n}$ ל־$x \in (-1, 1)$ אזי משום שהסדרות: 
+			\[ \sum^{N}_{n = 0}(a_n + b_n)x^{n} = \sum^{N}_{n = 0}a_nx^{n} + \sum^{N}_{n = 0}b_nx^{n} \]
+			שוות, אזי גם בגבול מתקיים $\sumnoinf (a_n + b_n)x^{n}$ שווה לערך ש־$\sumnoinf a_nx^{n}$ מתכנס נקודתית אליו ועוד הערך ש־$\sumnoinf b_n x^{n}$ מתכנס נקודתית אליו. 
+		\end{itemize}
+		\item לא עשיתי. 
+	\end{enumerate}
+	
+	
+	
+	\ndoc
+\end{document}

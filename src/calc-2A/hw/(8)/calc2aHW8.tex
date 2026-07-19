@@ -1,0 +1,136 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+\DeclareMathOperator\per{Per}
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{תרגיל בית 8}}
+\begin{document}
+	\maketitle
+	\section{}
+	\begin{enumerate}[(A)]
+		\item תהי $a_n \co \N \to \R$ סדרה. 
+		\begin{itemize}
+			\item אם הטור $\sum^{\infty}_{n = 1} a_n$ מתכנס נקודתית, אז הוא מתכנס לאותו הערך במובן צ'זארו. 
+			\item אם הטור $(\mathrm C) \ \sum^{\infty}_{n = 1} a_n$ מתכנס במובן צ'זארו, אז הוא מתכנס לאותו הערך במובן אבל. 
+		\end{itemize}
+		\item תהי $f \co [0, \infty) \to \C$. דהיינו קיים ויחיד פירוק ל־$u = \Re f, v = \Im f$ כך ש־$f = u + iv$, ואז נאמר ש\textit{האינטגרל הלא אמיתי של $f$ בקטע $[0, \infty)$} הוא:
+		\[ \ml = \lim_{x \to \infty}\!\cl{\int^{x}_0 \dequad \ u(x)\dx + i \cdot \!\!\int^{x}_0 \dequad \ v(x)\dx} \]
+		במידה והגבול $\ml$ אכן קיים. 
+	\end{enumerate}
+	
+	\stepcounter{section}
+	\section{}
+	\begin{enumerate}[(A)]
+		\item נוכיח באינדוקציה על $N$. בעבור $N = 0$ מתקבל: 
+		\[ \sum_{n = 0}^{N}z^{n} = 1 = \frac{1 - z}{1 - z} \]
+		כנדרש. בעבור הצעד, נניח באינדוקציה נכונות על $N$. ואכן: 
+		\[ \sum_{n = 0}^{N + 1}z^{n} = z^{N + 1} + \sum_{n = 0}^{N}z^{n} = z^{N + 1} + \frac{1 - z^{N + 1}}{1 - z} = \frac{1 \cancel{- z^{N + 1} + z^{N + 1}} - z^{N + 2}}{1 - z} \]
+		כנדרש. 
+		\item נוכיח נוסחאות טריגונומטריות מצחיקות. בשביל הראשונה, ניעזר בזווית כפולה: 
+		\begin{align*}
+			\sin(3\ta) = \sin(\ta + 2\ta) &= \sin \ta \cos2\ta + \cos\ta \sin2\ta \\ 
+			&= \sin \ta \cl{\cos^{2}\ta - \sin^{2}\ta} + \cos\ta\cl{2 \sin\ta \cos \ta} \\
+			&= -\sin^{3}\ta + 3\cos^{2}\ta \sin\ta
+		\end{align*}
+		בשביל השנייה ניעזר באמצעים דומים:
+		\begin{align*}
+			\cos(3 \ta) = \cos(\ta + 2\ta) &= \cos\ta \cos 2\ta - \sin\ta \sin2\ta \\
+			&= \cos\ta\cl{\cos^{2}\ta - \sin^{2}\ta} - \sin\ta\cl{2 \sin \ta \cos\ta} \\
+			&= \cos^{3}\ta - 2 \sin^{2}\cos\ta
+		\end{align*}
+		בשביל שלישית, ניעזר בנוסחאת אוילר (מה שכנראה רציתם שגם נעשה בשתיים הראשונות): 
+		\begin{multline*}
+			1\cl{\cos\ag \pm \cos\bg} + i\cl{\sin \ag \pm \sin \bg} = e^{i\ag} \pm e^{i\bg} = e^{i\frac{\ag + \bg}{2}}\cl{e^{i\frac{\ag - \bg}{2}} \pm e^{i\frac{\bg - \ag}{2}}}  \\
+			= \cl{\cos \cl{\frac{\ag + \bg}{2}} + i \sin\cl{\frac{\ag + \bg}{2}}}\cl{\cos\cl{\frac{\ag - \bg}{2}} \pm \cos\cl{\frac{\bg - \ag}{2}} + i\sin\cl{\frac{\ag - \bg}{2}} \pm i \sin\cl{\frac{\bg - \ag}{2}}} \\
+			= \cos\cl{\frac{\ag + \bg}{2}}\cl{(1 - \sgn)2\cos \cl{\frac{\ag - \bg}{2}} + \sgn \cdot 2i\sin\cl{\frac{\ag - \bg}{2}}} \\
+			+ i\sin\cl{\frac{\ag + \bg}{2}}\cl{\sgn\cdot 2\cos \cl{\frac{\ag - \bg}{2}} + (1 - \sgn) \cdot 2i\sin\cl{\frac{\ag - \bg}{2}}}
+		\end{multline*}
+		נוציא את החלק המרוכב החוצה. נקבל: 
+		\[ \sin \ag \pm \sin \bg = \sgn\cos\cl{\frac{\ag + \bg}{2}}\sin\cl{\frac{\ag - \bg}{2}} + {(1 - \sgn)\sin\cl{\frac{\ag + \bg}{2}}\cos\cl{\frac{\ag - \bg}{2}}} \]
+		נפרק למקרים ($\sgn = 1$ כלומר חיבור, ו־$\sgn = 0$ כלומר חיסור) ונבחין שקיבלנו את הדרוש. 
+	\end{enumerate}
+	
+	\section{}
+	נעשה ערמה של חישובים לא מעניינים: 
+	\begin{enumerate}[(A)]
+		\item נחשב את $\mut{t^{2} + it^{3}}{t}$. 
+		נבחין ש־: 
+		\[ \mut{t^{n}}{t} = \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad t^{n} \cdot\ol{t}\dt = \frac{2\pi}{2\pi}\cl{t^{n}\ol{t}} \]
+		לכן: 
+		\[ \mut{t^{2} + it^{3}}{t} = \mut{t^{2}}{t} + i\mut{t^{3}}{t} = t^{2}\ol{t} + t^{3}\ol{t} = \bm{\sof{t}t\cl{1 + it}} \]
+		\item יהי $n \in \Z$. נחשב את $\mut{t}{e^{int}}$. נבחין ש־$\overline{e^{ix}} = \overline{\cos(x) + i\sin(x)} = \cos(-x) + i\sin(-x) = e^{-ix}$. לכן: 
+		\[ \mut{t}{e^{int}} = \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad t \cdot e^{-ix}\dx = \frac{t}{2\pi}\cl{\int^{\pi}_{-\pi}\dequad \cos(x)\dx - i \sin \int^{\pi}_{-\pi}\dequad \sin(x)\dx} = \frac{t}{2\pi} = \frac{t}{2\pi}\cl \cdot 0 = 0 \]
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}[(A)]
+		\item \begin{itemize}
+			\item עבור $c \in \R$ הפונקציה $f(x) = c$ מחזורית כי $\forall x \co f(x) = c = f(x  +\pi)$ כנדרש. 
+			\item עבור $x \in \R$, הפונקציה $g_1 = e^{x}$ איננה מחזורית כי היא מונוטנית עולה חזק ב־$\R$. עם זאת, הפונקציה $g_2(x) = e^{ix}$ מחזורית מנוסחת אוילר ומהיות $\sinx, \cosx$ מחזוריות. 
+			\item פונקציית רימן בעלת מחזור $1$ שכן $\frac{p}{q} + 1 = \frac{p + 1}{q}$ ועדיין $q$ מינימלי. 
+			\item הפונקציה $h(x) = \tanx$ מחזורית כי $\sinx, \cosx$ מחזורית ומהגדרתה. 
+			\item הפונקציה $t(x) = \cos\cl{x^{3}}$ איננה מחזורית, כי היא חלקה ואם בשלילה היא מחזורית כל הנגזרות שלה מחזוריות, אך $t'(x) = -3x^{2}\sin\cl{x^{3}}$ רציפה אך לא חסומה על־אף שפונקציה מחזורית רציפה חייבת להיות חסומה (כי ממשפט קנטור היא חסומה ורבמ''שית בצמצום על המחזור שלה, וממחזוריות החסם הזה עובד בכל $\R$). 
+		\end{itemize}
+		\item תהי $f \co \R\to \C$ פונקציה עם מחזור $T_0 > 0$. נגדיר:
+		\[ \per f := \{T > 0 \mid \forall x \in \R . f(x + T) = f(x)\} \]
+		נוכיח של־$\per f$ קיים מינימום אמ''מ $\inf(\per f) > 0$. 
+		\begin{proof}
+			\begin{itemize}
+				\item אם קיים מינימום, הוא לא $0$ ובהכרח חיובי מהגדרת הקבוצה, והוא גם האינפימום שלה, ולכן סיימנו. 
+				\item נניח ש־$T := \inf(\per f) > 0$ (האינפימום מוגדר כי יש מחזור לפונקציה). נוכיח שקיים מינימום ל־$\per f$, והוא $T$. 
+				
+				
+				לכל $\eg < 0$ קיים $  T_\eg \in (T, T +\eg)$ כך ש־$T_\eg$ מחזור. עבור $a_n = T - T_\eg$ עבור $\eg = \frac{1}{n}$ נבחין ש־$a_n \in (0, \eg)$ וכן $a_n \to 0$, ואז: 
+				\[ f(x + T + a_n) = f(x + T_\frac{1}{n}) = f(x) \]
+				משום ש־$a_n \to 0$ אז $x + a_n \to x$, ואם $f$ רציפה, סיימנו מהיינה. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נוכיח שמרחב הפולינומים הטריגונומטריים על $[-\pi, \pi]$ צפוף במ''ש בפונקציות הרציפות בצמצום לאותו הקטע. 
+	\begin{enumerate}[(A)]
+		\item נראה ש־$\cos^{n}x$ ניתן להתבטא כקומבינציה לינארית של $\cos(kx)$. 
+		\begin{proof}
+			הראנו ש־$\cos x = \cosh(ix)$. לכן: 
+			\begin{multline*}
+				\cos^{n}x + 0i = \cosh^{n}(ix) = \cl{\frac{e^{ix} + e^{-ix}}{2}}^{n} \!\!\!= \sum_{k = 0}^{n}\binom{n}{k}\cl{\frac{e^{ix}}{2}}^{k}\cl{\frac{e^{-ix}}{2}}^{n - k} \dequad \\
+				= \sum_{k = 0}^{n}\binom{n}{k}{\frac{e^{ix\cl{2k - n}}}{2}} = \sum_{k = 0}^{n}\frac{\cos\cl{\cl{2k - n}x} + i\sin\cl{\cl{2k - n}}x}{2^{2k - n}}
+			\end{multline*}
+			משום ש־$\cos^{n}x \in \R$, בהכרח כל הסינוסים יתבטלו ונקבל באמצעות שינוי סדר סכימה ש־: 
+			\[ \cos^{nx} = \sum_{k = 0}^{n}\frac{\cos(\cl{2k - n}x)}{2^{2k - n}} = \sum_{k = 0}^{n}\frac{\cos\cl{(n - 2k)x}}{2^{n - 2k}} \]
+			משום ש־$n - 2k \in \{0, \dots, n\}$ קיבלנו פונקציה מהצורה הנדרשת. באופן דומה, בעבור $\sin^{n}x$ נקבל: 
+			\begin{multline*}
+				\sin^{n}x + 0i = \sinh^{n}(ix) = \cl{\frac{e^{ix} - e^{-ix}}{2}}^{n} \!\!\!= \sum_{k = 0}^{n}\binom{n}{k}\cl{\frac{e^{ix}}{2}}^{k}\cl{-\frac{e^{-ix}}{2}}^{n - k} \dequad \\
+				= \sum_{k = 0}^{n}\binom{n}{k}{\frac{e^{ix\cl{2k - n}}}{2}} = \sum_{k = 0}^{n}\frac{\cos\cl{\cl{2k - n}x} + i\sin\cl{\cl{2k - n}}x}{2^{2k - n}}
+			\end{multline*}
+		\end{proof}
+		\item נניח כי $f = u + iv$. נפרק את $u$ לסכום של פונקציה זוגית $u_e$ ואי־זוגית $u_0$. 
+		\begin{proof}
+			ההליך פשוט. נגדיר: 
+			\[ u_e(x) = \frac{u(x) + u(-x)}{2}\quad\quad u_o = \frac{u(x) - u(-x)}{2} \]
+			מכאן $u = u_e + u_o$ וקל לוודא שהן זוגית ואי זוגית בהחלפה. 
+		\end{proof}
+		\item \begin{proof}
+			ממשפט וויראשטראס, קיים $P_e$ בקטע $[-1, 1]$ קרוב כרצוננו ל־$u_e \circ \arccos$, כלומר לכל $x \in [-1, 1]$ מתקיים ש־\\$\sof{P_e(x)- \cl{u_e \circ \arccos}(x)} < \frac{\eg}{5}$. בפרט לכל $y \in [0, \pi]$ השווה ל־$y = \arccos x$ נקבל ש־: 
+			\[ \frac{\eg}{5} > \sof{P_e(x) - (u_e \circ \arccos)(x)} = \sof{P_e(\cos y) - u_e(\arccos \cos y)} = \sof{P_e(\cos y) - u_e(y)} \]
+			לכן: (קבוצה חסומה ב־$\frac{\eg}{5}$, מותר לקחת סופרמום)
+			\[ \sup_{y \in [-\pi, \pi]}\sof{P_e(\cos y) - u_e(y)} \le \frac{\eg}{5} < \frac{\eg}{4} \]
+			עוד נבחין ש־$P_e(\cosx)$ פולינום טריגונומטרי. זאת כי $P_e = \sum_{i = 1}^{n}a_nx^{n}$ פולינום, וכן את $\cos^{i}x$ ניתן לבטא כ־$\sum_{\ml = 0}^{n} b^{i}_\ml \cos(\ml x)$. ואז נקבל ש־:
+			\[ P_e \circ \cos = \sum_{i = 0}^{n}a_i\cos^{i}x = \sum_{i = 0}^{n}\sum_{\ml = 0}^{n}a_ib_\ml^{i}\cos(\ml x) = \sum_{\ml = 0}^{n}\Bigg({\underbrace{\cl{\sum_{i = 0}^{n}b_\ml^{i}a_i}}_{c_\ml}\cos(\ml x)}\Bigg)  = \Re\cl{\sum_{\ml = 0}^{n}c_\ml e^{i\ml x}}\]
+			כנדרש. 
+		\end{proof}
+		\item \begin{proof}
+			באופן דומה, ממשפט וויראשטראס $u_o \circ \arcsin$ רציף ולכן קיים $P_o$ הקרוב אליו כרצוננו, ומטיעונים דומים (נציב $y = \arcsin x$) נקבל ש־$\sup_{x \in [-\pi, \pi]}\sof{P_o(\sin x) - u_o(x)} < \frac{\eg}{4}$. ואכן באופן דומה, כאשר $P_o = \sum_{i = 1}^{n}a_ix^{i}$ ואת $\sin^{i}x$ נבטא כקומבינציה לינארית 
+			
+			\[ P_o \circ \sin = \sum_{i = 0}^{n}a_i\cos^{i}x = \sum_{i = 0}^{n}\sum_{\ml = 0}^{n}a_ib_\ml^{i}\cos(\ml x) = \sum_{\ml = 0}^{n}\Bigg({\underbrace{\cl{\sum_{i = 0}^{n}b_\ml^{i}a_i}}_{c_\ml}\cos(\ml x)}\Bigg)  = \Re\cl{\sum_{\ml = 0}^{n}c_\ml e^{i\ml x}} \]
+		\end{proof}
+	\end{enumerate}
+	
+	
+	\ndoc
+\end{document}

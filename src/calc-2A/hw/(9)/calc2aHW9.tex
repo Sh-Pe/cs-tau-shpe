@@ -1,0 +1,24 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\author{שחר פרץ}
+\title{חדו''א 2א $\sim$ \textit{תרגיל בית 9}}
+\begin{document}
+	\maketitle
+	\section{}
+	\begin{enumerate}[(A)]
+		\item תהי $f \in R(\tb)$. נגדיר $\hat f(n)$ לכל $n \in \Z$. 
+		\defi{לכל $n \in \Z$ ו־$f \in R(\tb)$ אנו מגדירים $\hat f(n) = \mut{f}{e^{int}}$. }
+		\item יהי $f(x) = \sum_{n = -N}^{N}c_n e^{inx}$. נוכיח שטור פורייה של $f(x)$ הוא $\sum_{n = -N}^{N}c_n e^{inx}$. \begin{proof}
+			נבחין שלכל $m > N$ מתקבל: 
+			\[ \mut{f}{e^{int}} = \mut{\sum_{n = -N}^{N}\!\!\!c_n e^{imx}}{e^{inx}} = \sum_{n = -N}^{N}\!\!\!c_n\mut{e^{inx}}{e^{imx}} = \sum_{\mathclap{n = -N}}^{N}c_n \cdot 0 = 0 \]
+			זאת כי: 
+			\[ \mut{e^{inx}}{e^{imx}} = \frac{1}{2\pi}\int^{2\pi}_0 \dequad e^{int} \cdot e^{-imt}\dt = \frac{1}{2\pi}\int^{2\pi}e^{i(n - m)t}\dt \]
+		\end{proof}
+	\end{enumerate}
+	
+	
+	\ndoc
+\end{document}
