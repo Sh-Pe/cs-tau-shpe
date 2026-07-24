@@ -1,0 +1,29 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+\author{שחר פרץ}
+\title{פתרון שאלה 4(ג) במועד 26BA}
+\begin{document}
+	\maketitle
+	יהי $(X, d)$ מרחב מטרי, ונניח שכל סדרה מקוננת של כדורים סגורים בעלת חיתוך לא־ריק. נוכיח שהוא שלם. 
+	
+	\begin{proof}
+		תהא $x_n$ סדרת קושי. נסמן $\eg_n = \frac{1}{n^{2}}$ ו־$r_n = \frac{1}{n}$. משום ש־$x_n$ קושי, לכל $\eg_n$ ישנו $N \in \N$ כך ש־$\forall m\ge N \co \sof{x_n - x_m} < \eg_n$. נסמן $y_n = x_N$, ואז בבירור $y_n$ ת''ס של $x_n$. 
+		
+		נוכיח שהכדורים $\ol B(y_n, r_n) \subset \ol B (y_{n - 1}, r_{n - 1})$ מקוננים. ראשית, נבחין באי־השוויון הבא: 
+		\[ \frac{1}{n - 1} - \frac{1}{n} = \frac{n - (n - 1)}{n(n - 1)} = \frac{1}{n(n - 1)} \ge \frac{1}{n^{2}} \implies \frac{1}{n^{2}} + \frac{1}{n} \le \frac{1}{n - 1} \]
+		עתה נפנה להוכיח את ההכלה. יהי $z \in \ol B(y_n, r_n)$. נראה ש־$z \in \ol B(y_{n - 1}, r_{n - 1})$, כלומר ש־$d(z, y_{n - 1}) \le r_{n - 1}$. אכן מא''ש המשולש: 
+		\[ d(z, y_{n - 1}) \le \underbrace{d(z, y_n)}_{\le r_n} + \underbrace{d(y_n, y_{n - 1})}_{\le \eg_n} \le \frac{1}{n^{2}} + \frac{1}{n} \le \frac{1}{n- 1} = r_{n - 1} \]
+		ולכן הכדורים מקוננים כנדרש. יתרה מכך, $r_i \to 0$ ולכן מההנחה ישנה $y \in \bigcap_{i = 1}^{\infty}\ol B(y_i, r_i)$. נבחין שלכל $i \in \N$, מתקיים ש־$d(y_i, y) \le r_i$ מהגדרת חיתוך מוכלל. דהיינו $d(y_i, y) \to 0$ ו־$y_i \to y$. מסעיף (א), הסדרה $y_i$ המהווה ת''ס של $x_n$ מתכנסת לאותו הערך שסדרת הקושי $x_n$ מתכנסת. לכן $x_n \to y$ סדרת קושי מתכנסת. 
+		
+		נסכם שכל סדרת קושי מתכנסת ולכן המרחב שלם כנדרש. 
+	\end{proof}
+	
+	
+	
+	
+	\ndoc
+\end{document}

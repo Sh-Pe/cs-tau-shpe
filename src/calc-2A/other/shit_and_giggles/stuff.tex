@@ -1,0 +1,87 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+\author{שחר פרץ}
+\title{דברים לזכור לקראת המבחן}
+\begin{document}
+	\maketitle
+	\textbf{מרצה: }
+	
+	\section{משפטים ולמות מהתרגולים}
+	\textbf{קושי הדמרד למרוכבים}: 
+	\[ R = \frac{1}{\limsup_{k \to \infty} \sqrt[k]{\sof {a_k}}} \]
+	(יש ערך מוחלט על $a_k$). 
+	
+	על מעגל היחידה, $\sof z = 1\implies \bar z = z\op$. 
+	
+	\textbf{זהות לגראנג': }
+	\[ \sum_{n = 0}^{N}\sin(nx) = \frac{\cos \frac{x}{2} - \cos\cl{N + \frac{1}{2}}x}{2 \sin \cl{\frac{x}{2}}} \]
+	
+	\begin{enumerate}
+		\item אם $f$ ממשית אז $\hat f(n) = \ol{f(-n)}$
+		\item אם $f$ מרוכבת אז $\hat f(n) = - \ol{f(-n)}$
+		\item אם $f$ ממשית וזוגית אז $\hat f(n)$ ממשיים, $\hat f(n) = \hat f(-n)$ (כלומר טור פורייה קומבינציה של $\cos(nt)$). 
+		\item אם $f$ ממשית ואי־זוגית אז $\hat f(n)$ מדומים, $\hat f(n) = - \hat f(-n)$ (כלומר טור פורייה קומבינציה של $\sin(nt)$). 
+	\end{enumerate}
+	
+	\textbf{אינטגרציה בחלקים: }מותרת אם $f', g' \in R([a, b])$. לכן גם מספיק $f' \in R(\tb)$ בשביל התכנסות במ''ש של פורייה (עושים אינטגרציה בחלקים כדי להגיע לביטוי $\hat f'(n) = in \hat f(n)$). 
+	
+	\textbf{פייר מגניב יותר: }$\sg_Nf \to \frac{f(x^{+}) + f(x^{-})}{2}$ כאשר הגבולות $f(x^{+}) = \lim_{x \to x^{+}}f(x)$ קיימים. 
+	
+	\textbf{תוצאה מבוחן M: }מספיקה התכנסות בהחלט נקודתית כדי שתהיה התכנסות במש לכל הטור. 
+	
+	\[ \mut{f}{g} = \sum_{n = -\infty}^{\infty}\hat f(n) \ol{\hat g(n)} \]
+	
+	\textbf{התכנסות תחת לפישיץ מקומי: }אם בסביבת $\dg$ של $x_0$, כל $x$ מקיים תנאי ליפשיץ: 
+	\[ \forall x \in (x_0 - \dg, x_0 + \dg) \co \quad \sof{f(x) - f(x_0)} \le M\sof{x - x_0} \]
+	אז $S_Nf(x_0) \to f(x_0)$ נקודתית. 
+	
+	\textbf{גרעין פייר מקיים: }$\sof{D_N(y)} \le \sof{\frac{1}{\sin\cl{\frac{y}{2}}}} \le \frac{\pi}{\sof{y}}$. 
+	
+	\textbf{גרעין טוב: }$P_N$ יקרא \textit{גרעין טוב} אם: 
+	\begin{itemize}
+		\item \hfil $\disty \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad P_N(x)\dx = 1$
+		\item $P_N \ge 0$, או לחילופין $\frac{1}{2\pi}\int^{\pi}_{-\pi} \sof{P_N(x)}\dx$ חסום במידה אחידה. 
+		\item \hfil $\disty \forall 0 < \dg < 1 \co \frac{1}{2\pi}\int_{\dg \le \sof x \le \pi}\dequadd\sof{F_N(x)}\dx \rrr{N\to \infty} 0$
+	\end{itemize}
+	
+	\textbf{שפה} היא $\partial A = \Cl A \setminus \Int A$
+	
+	\textbf{משפט וויראשטראס לצפיפות יוניפורמית ומשפט דיני} עובדים רק בקטע סגור
+	
+	\textbf{טאובר: }טור $\sumnoinf a_n$ מתכנס אבל, מתכנס במובן הרגיל אם $a_k = o\cl{\frac{1}{k}}$. 
+	
+	\textbf{טיילורים: }(אין בדףנוס): 
+	\begin{align*}
+		\frac{1}{1 - x} &= \sum_{n = 0}^{\infty}x^{n} \\
+		\cosx &= \sum_{n = 0}^{\infty}\frac{(-1)^{n}}{(2n)!}x^{n} \\
+		\sinx &= \sum_{n = 0}^{\infty}\frac{(-1)^{n}}{(2n + 1)!}x^{n} \\
+		e^{x} &= \sum_{n = 0}^{\infty}\frac{1}{n!}x^{n} \\
+		\ln(1 + x) &= \sum_{n = 1}^{\infty} \frac{(-1)^{n + 1}}{n}x^{n}
+	\end{align*}
+	\textbf{טורים: }(אין בדףנוס): 
+	\begin{align*}
+		\frac{1}{1 - x} &= \sum_{n = 0}^{\infty}x^{n} \\
+		\frac{1 - x^{N + 1}}{1 - x} &= \sum_{n = 0}^{N}x^{n}
+	\end{align*}
+	
+	\textbf{מטריקות: }
+	\begin{itemize}
+		\item על $\R^{n}$ מרחק מנהטן $d_1(x, y) = \sum_{i = 1}^{n}\sof{x_i -y_i}$ יקרא $\ml_1^{n}$
+		\item על $\R^{n}$ עם מרחק יוניפורמי $d_{\infty}(x, y) = \max_{i =1}^{n}\sof{x_i - y_i}$ יקרא $\ml^{n}\infty$. 
+		\item באופן כללי עבור $p >1$ מסמנים $d_{p}(x, y) = \cl{\sum_{i = 1}^{n}\sof{x_i - y_i}}^{\frac{1}{p}}$ ומסמנים את המרחב ב־$\ml_p^{n}$. 
+		\item על $C[a, b]$ נשתמש במטריקה היוניפורמית $d(f, g) = \sup_{[a, b]}\sof{f(x) - g(x)}$. 
+		\item על סדרות אינסופיות חסומות מגדירים $d_{\infty}$ ו־$d_p$ גם כן, באמצעות לקיחת הגבול על הסכום. למרחבים האלו נקרא $\ml_{\infty}$. 
+		\item $c_0$ יהיה מרחב הסדרות ששואפות ל־$0$ ו־$c_{00}$ הסדרות שמזדהות עם $0$ המ''מ, כתת־מרחב של $\ml_{\infty}$. 
+	\end{itemize}
+	
+	
+	
+	
+	
+	
+	\ndoc
+\end{document}
