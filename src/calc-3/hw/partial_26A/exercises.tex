@@ -1,0 +1,273 @@
+\documentclass[a4paper]{article}
+
+% Math packages
+\usepackage[usenames]{color}
+\usepackage{xcolor}
+\usepackage{forest}
+\usepackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots,centernot,stmaryrd}
+\usepackage{cancel,bm}
+\WithArrowsOptions{displaystyle}
+\renewcommand{\qedsymbol}{$\blacksquare$} % end proofs with \blacksquare. Overwrites the defualts.
+
+% Design
+\RequirePackage[labelfont=bf]{caption}
+\RequirePackage[margin=0.8in]{geometry}
+\RequirePackage{multicol}
+\RequirePackage[skip=4pt, indent=0pt]{parskip}
+\RequirePackage[normalem]{ulem}
+\forestset{default}
+\renewcommand\labelitemi{$\bullet$}
+\RequirePackage{titlesec}
+\titleformat{\section}[block]
+	{\huge}
+	{\dotfill (\textbf{\thesection})\dotfill}
+	{0em}
+	{}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{../../../..//tex/packages/mathShortcuts}
+%
+\makeatletter
+\newcommand{\skipitems}[1]{
+	\addtocounter{\@enumctr}{#1}
+}
+\makeatother
+
+\newcommand \middleText[1] {\vfil {\hfil {#1}} \hfil \vfil \newpage}
+\newcommand \envendproof{\vspace{-17pt}}
+\newcommand \mathenvendproof{\par\vspace{-24pt}}
+
+\newcommand\nsubsection[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+
+\usepackage{titling}
+
+
+\newcommand\opn[1]{\norm{#1}_{\mathrm{op}}}
+\newcommand\hsn[1]{\norm{#1}_{\mathrm{HS}}}
+
+\author{Shahar Perets}
+\title{Partial Solutions To Exercises In Calculous 3}
+\date{\today}
+\begin{document}
+%	\maketitle
+	\huge {\huge\,\\ \vfil {\begin{center}
+				\thetitle \\
+				\vspace{10pt}
+				\large \theauthor \\
+				\vspace{3pt}
+				\large \thedate
+		\end{center}} \vfil	}
+	\normalsize
+	
+	\pagebreak
+	
+	\section*{Intro}
+	Partial solution to exercises from 26A calc3 homeworks. Learned using Shiri's 25A course notes and Boris Tsirelson lectures from 2016.
+%
+	\tableofcontents
+	
+	\pagebreak
+	\section{}
+	\begin{enumerate}
+		\item Suppose $A \in \lin(\R^{n}, \R^{m})$ and $B \in \lin(\R^{n}, \R^{m})$ are matrices. We'll prove HS norm and the operator norm a sub-multiplicative. \begin{proof}
+			\begin{itemize}
+				\item \textbf{Operator norm: }Let $x \in \R^{n}$. Then by the very definition of $\norm{A}_{op}$ and $\norm{B}_{op}$ we get that: 
+				\[ \norm{ABx} \le \norm{A} \cdot \norm{Bx} \le \norm{A} \cdot \norm{B} \cdot \norm{x} \]
+				Hence we get that: 
+				\[ \forall x \in \R^{n} \co \frac{\norm{ABx}}{\norm{x}} \le \norm{A}_{op} \cdot \norm{B}_{op} \]
+				Therefore, the supremum on all $x \in \R^{n}$, which is defined to be $\norm{AB}_{op}$, is bounded by $\norm{A}_{op} \cdot \norm{B}_{op}$ as intended. 
+				\item \textbf{HS: }We'll alternatively write: 
+				\[ \norm{M}_{HS} = \sqrt{\sum_{i =1}^{n}\sum_{j= 1}^{k}M_{ij}^{2}} = \sqrt{\sum_{i =1}^{n}\norm{Me_i}_2^{2}} \]
+				We clearly get for every matrix $M$ that: 
+				\[ \norm{M}_{HS}^{2} = \sum_{i= 1}^{n}\norm{Me_i}_2^{2} \ge \sum_{i= 1}^{n}(\norm{M\op}_{op})\op \]
+				Now: 
+				\[ \hsn{AB}^{2} = \sum_{i =1}^{n}\norm{A(Be_i)}_2^{2} \le \sum_{i = 1}^{n}\opn{A}^{2}\norm{Be_i}_{2}^{2} = \opn{A}^{2} \hsn{B}^{2} \]
+				It remains to prove that $\opn{M}\le \hsn{M}$ for each matrix $M$. The SVD decomposition of $M$ yields orthonormal bases $u_1 \dots u_n$ and $v_1 \dots v_n$ s.t. $Mx = \sum_{i = 1}^{r}\sg_i v_iu_i^{T} \cdot x$ (where $r$ is the rank). Now, assuming $r \neq 0$: 
+				\[ \hsn{M}^{2} = \sum_{i= 1}^{n}\norm{Me_i}^{2} = \sum_{i= 1}^{n}\norm{\sum_{i = 1}^{r}\sg_iv_iu_i^{T} \cdot e_i}^{2} \!= m \sum_{i= 1}^{n}\sg_i^{2}\underbrace{\norm{v_iu_i^{T}}}_{1} \ge r \cdot \max_i \sg_i^{2} = m \opn{M}^{2} \ge \opn{M} \]
+				Otherwise $r = 0$ and then $\hsn{M} = \opn{M} = 0$ and we finished. 
+				Finally $\hsn{AB}^{2} \le \opn{A}^{2}\hsn{B}^{2} \le \hsn{A}^{2}\hsn{B}^{2}$ ergo $\hsn{AB} \le \hsn{A}\hsn{B}$ as intended. 
+			\end{itemize}
+		\end{proof}
+		\item Let $A \in \lin(\R^{n}, \R^{m})$ a linear operator with $u_1 \dots u_n$ orthonormal basis for $\R^{n}$. We'll prove $\hsn{A}^{2} = \sum_{i = 1}^{n}\norm{Mu_i}^{2}$. \begin{proof}
+			For $u_i = e_i$ it follows from the definition. Otherwise, there exists some unitary matrix $U$ s.t. $Ue_i = u_i$. Now $\norm{Mu_i} = \norm{MUe_i} = \norm{Me_i}$ (as composing by a unitary matrix does not change a vector's norm). This finishes the proof. 
+		\end{proof}
+		\item We'll show that the parallelogram law holds for every norm induced from an inner product structure. \begin{proof}
+			Consider $N(x) = \sqrt{\mut{x}{x}}$. Then: 
+			\begin{align*}
+				N(x + y)^{2} + N(x - y)^{2} =& \mut{x + y}{x + y} + \mut{x - y}{x-  y} \\
+				=& \mut{x}{x + y} + \mut{y}{x + y} + \mut{x}{x - y} - \mut{y}{x - y} \\
+				=& \mut{x}{x} + \mut{x}{y} + \mut{y}{x} + \mut{y}{y} \\
+				&+ \mut{x}{x} - \mut{x}{y} - \mut{y}{x} + \mut{y}{y} \\
+				=& 2\mut{x}{x} + 2\mut{y}{y} + \cancel{2\mut{x}{y} - 2\mut{y}{x}} \\
+				=& 2N(x)^{2} + 2N(y)^{2}
+			\end{align*}
+			As intended. 
+		\end{proof}
+		%	We'll deduce that the operator is not induced by some inner product, for $m, n > 1$. 
+		\item Consider $D \subset M_{2 \times 2}(\R)$ be the set of diagonalizable matrices. Then: 
+		\begin{itemize}
+			\item \textbf{Closure: }consider some $A \in M_{2 \times 2}(\R)$. If $A$ is diagonalizable, we finished. Otherwise, it's similar to Jordan $J_2(\lg)$. Now the sequence of $J{\eg}(\lg) \cod \binom{\lg\,\,1}{\eg\,\,\lg}$ for $\eg \to 0$ clearly converge to $J_2(\lg)$. Moreover, $J_\eg(\lg)$ are diagonalizable matrices as their characteristic polynomial is $(\lg - x)^{2} - 1 \cdot \eg = \lg^{2} - 2\lg x + x^{2} + \eg = 0$ so: 
+			\[ x = \frac{2\lg\pm\overbrace{\sqrt{4 - 4\lg^{2}\eg}}^{> 0}}{2} \]
+			We got two distinct eigenvalues for $J_\eg(\lg)$ hence it's diagonalizable. Now when $A = UJ_2(\lg)U\op$ we know that $A_\eg \cod UJ_\eg(\lg)U\op$ for $\eg = \frac{1}{n}$ is a sequence of diagonalizable matrices. Moreover, it approaches $A$ since: 
+			\begin{align*}
+				\opn{A - A_\eg} &= \opn{UJ_2(\lg)U\op - UJ_\eg(\lg) U\op} = \opn{U(J_2(\lg) - J_\eg(\lg))U\op} \\
+				&\le \underbrace{\opn{U}\opn{U\op}}_{1}\opn{J_2(\lg) - J_\eg(\lg)} \\
+				&= \opn{\pms{0 & 0 \\ \eg & 0}} \le \hsn{\pms{0 & 0 \\ \eg & 0}} = \eg \to 0
+			\end{align*}
+			We got that $A$ is a limit point of a sequence in $D$. Therefore $A \in \Cl D$. Finally $\Cl D = M_{2 \times 2}{(\R)}$. 
+			
+			\item \textbf{Interior: }the complement of $D$ is dense too. The proof is similar, except we're using $A_\eg = U \binom{\lg_1 \,\, \eg}{0\,\,\,\,\lg_2} U\op$ instead (when $A \sim \diag(\lg_1, \lg_2)$). Since $\Cl X \setminus D = X$ then $\Int D = X \setminus \Cl (X \setminus D) = X \setminus X = \vn$. 
+			\item \textbf{Boundary: }clearly $\partial D = \Cl D \setminus \Int D = M_{2 \times 2}(\R)$. 
+		\end{itemize}
+		\item Directly from the definition. 
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}
+		\item Suppose for two norms $N_1, N_2$ the limit $\lim_{x \to 0}\frac{N_2(x)}{N_1(x)} = L$ exists. We'll prove $N_2 = L \cdot N_1$. 
+		\begin{proof}
+			Let $x \in \R^{d}$. If $x = 0$, we finished. Otherwise, for each $\hat \eg$ there is some $\dg$ s.t. $-\hat\eg + L \le \frac{N_2(x)}{N_1(x)} \le L + \hat\eg$. Let $\eg > 0$ and consider $\hat \eg = \frac{\eg}{N_1(x)}$. We deduce from above that $\sof{N_2(x) - L\cdot N_1(x)} \le \eg$ for all $\eg \in \R$. Hence $N_2(x) - L \cdot N_1(x) = 0$ for each $x \in \R^{d}$, and we got $N_1 = L \cdot N_2$. 
+		\end{proof}
+		
+		\item Let $X \subset \R^{n}$ be a path-connected set, and $x_0$ an accumulation point of $X$. Let $f \co X \to \R$. We'll prove that $\lim_{x \to x_0}f(x) = y$ iff for any $\cg \co (0, 1) \to X \setminus \{x_0\}$ continues with $\lim_{t \to 0^{+}}\cg(t) = x_0$, we get that $\lim_{t \to 0^{+}}f(\cg(t)) = y$. \begin{proof}
+			\begin{itemize}
+				\item[$\implies$]Suppose that $\lim_{x \to x_0}f(x) = y$. Let $\cg$ be such path. Let $0 < t_n \to 0$ be a sequence in $\R$ (WOLOG bounded by $1$). Now, $x_n \cod \cg(t_n)$ is a sequence if $X \setminus \{x_0\}$, and because $\lim_{t \to 0^{+}} \cg(t) = x_0$ we know that $x_0 \neq x_n \to x_0$. Since $\lim_{x \to x_0}f(x) = y$ and $x_0 \neq x_n \to x_0$, we know that $f(x_n) \to y$ too. Now for each $t_n$ approaching $0$ from above we got that $f(\cg(t_n)) = f(x_n) \to y$ and from Heine we get that $\lim_{t \to 0^{+}}f(\cg(t)) = y$. 
+				\item[$\impliedby$]Suppose that any such $\cg$ has the property $\lim_{t \to 0^{+}}f(\cg(t)) = y$. Consider some $x_n \to x_0$ with $x_n \neq x_0$. As each $x_i, x_{i + 1} \in X$ and $X$ is path-connected there exists a continues path $\cg_i \co [0, 1] \to X$ s.t. $\cg_i(0) = x_i \land \cg_i(1) = x_{i + 1}$. Now consider the infinite sum $\cg \cod \sum_{i = 1}^{\infty}\cg_i$ defined as: 
+				\[ \cg \cod \sum_{i = 1}^{\infty}\cg_i \cod \lambda x \in (0, 1). \begin{cases}
+					\cg_1(2x - 1) & x \in \csb{\frac{1}{2}, 1} \\
+					\cg_2(4x - 1) & x \in \csb{\frac{1}{4}, \frac{1}{2}} \\
+					\vdots & \vdots \\
+					\cg_n(2^{n}x - 1) & x \in \csb{\frac{1}{2^{n}}, \frac{1}{2^{n - 1}}}
+				\end{cases} \]
+				Note that this is well-defined as if $x = \frac{1}{2^{n}}$ then $\cg_n(2^{n}x - 1) = \cg_n(0) = \cg_{n + 1}(1) = \cg_{n + 1}(2^{n + 1}x - 1)$. For this reason $\cg$ is also continues and for each $n \neq 0, 1$ we get that $\cg(2^{-n}) = x_n$. Since $\cg$ is continues and we have partial limit of $x_0$, $\cg$ must converge to $x_0$ for $t \to 0^{+}$. Now $\lim_{t \to 0^{+}}f(\cg(t)) = y$ therefore $f(\cg(\frac{1}{2^{n}})) = f(x_n)$ must converge to $y$ too, as intended. 
+			\end{itemize}
+		\end{proof}
+		
+		\item Let $E \subset X$. We'll prove that the indicator $\one_E$ is discontinues on $x \in X$ iff $x \in \partial E$. \begin{proof}
+			If $\partial E = \vn$, we finished. Otherwise: 
+			\begin{itemize}
+				\item[$\implies$]Suppose that $\one_E$ is discontinues at $x$. Then either the limit does not exists or 
+				%			TODO
+				\item[$\impliedby$]Suppose that $x \in \partial E = \Cl E \cap \Cl(X \setminus E)$. Then $x \in \Cl E$ therefore there exists a sequence $x_n \to x$ s.t. $x_n \in X$. In addition there is a sequence $y_n \to x$ s.t. $y_n \in X \setminus E$. By definition $f(y_n) = 0 \land f(x_n) = 1$ therefore from Heine the limit $\lim_{y \to x}f(y)$ does not exists. 
+			\end{itemize}
+		\end{proof}
+		
+		\item \begin{enumerate}
+			\item Consider the function $f(x, y) = \frac{x + y}{\log(x^{2} + y^{2})}$. We'll prove when $(x, y) \to (0, 0)$ then $f(x, y) \to 0$. From AMGM we know that $x^{2} + y^{2} \ge 2xy$. Since $\log$ monotonically increases, we get that $\log(x^{2} + y^{2}) \ge \log(2xy)$, and $\sof{x^2} \le \sof{\log x}$ for small enough $x$ ($x < 0.5$) and therefore: 
+			\[ \sof{f(x, y)} = \sof{\frac{x + y}{\log(x^{2} + y^{2})}} \le \sof{\frac{x + y}{\log(2xy)}} = \sof{\frac{x + y}{\log 2x + \log 2y}} \sle \sof{\frac{x + y}{4x^{2} + 4y^{2}}} \to 0 \]
+			($\smash{\sle}$ is true only once $(x, y)$ reaches certain bound)
+		\end{enumerate}
+		\skipitems{1}
+		\item Let $\vn \neq A \subset \R^{d}$. We'll prove that if any continues $f \co A \to \R$ is bounded, then $f \co A \to \R$ attains maximum \& minimum. 
+		\begin{proof}
+			\begin{itemize}
+				\item[$\implies$]AFSOC $A$ is not closed and bounded. 
+				\begin{itemize}
+					\item If $A$ if not bounded, then for $f(x) = x$ the identity, $f$ is not bounded although its continues which is a contradiction. 
+					\item If $A$ if not closed, then $\Cl A \setminus A \neq \vn$. Therefore there is some point $x_0 \in \Cl A \setminus A$, which implies the existence of a sequence $x_n \to x_0$ s.t. $x_n \in A$. WOLOG $\norm{x_n}$ monotonically increases (otherwise we can always choose a monotonic subsequence of $x_n$ instead, and for monotonically decreasing sequences the solution is similar). Now define $f$ as follows: 
+					\[ f(x) = \begin{cases}
+						\frac{1}{n - 1} + \cl{\norm{x} - \frac{1}{n}} & \norm x \in [\norm{x_{n - 1}}, \norm{x_n}] \\
+						\inf A +  \norm{x}& \norm x \in [\inf A, x_1] \\
+						\norm{x_0 + \cl{x - v}} & \norm x \in [\norm{x_0}, \sup \norm{A}]
+					\end{cases} \]
+					(Where $v$ is some $v \in \R^{d}$ s.t. $\norm v = \sup A$)
+					WOLOG $A$ is bounded otherwise we proved a contradiction. From the definition of linear interpolation, and because $\norm {x_0} = \sup \norm x_n$, it's clear that $f$ is continues. Moreover, $f(x_n) = \frac{1}{n}$ and therefore $f$ is not bounded. 
+				\end{itemize}
+				Finally $A$ is closed and bounded and from Heine-Borel it's also compact. Therefore $f(A)$ is compact too and we finished. 
+				\item[$\impliedby$] If each $f \co A \to \R$ attains a maximum and minimum, it's in particular bounded. 
+			\end{itemize}
+		\end{proof}
+		
+		\item Suppose $\vn \neq A, B \subset \R^{d}$ are closed and disjoint.
+		\begin{enumerate}
+			\item We'll prove $x \mapsto d(x, A)$ is continues and $d(x, A) = 0$ iff $x \in A$. \begin{proof}
+				If $x \in A$ clearly $d(x, A) = 0$. Otherwise since $A$ is closed there is an basic open neighborhood of $x$ s.t. $x \in U = B(x, \eg)$ and $U \cap A = \vn$. Now clearly $d(x, A) \ge \eg > 0$ and we finished. 
+				
+				We'll proceed to prove that $x \mapsto d(x, A)$ is continues. For each $\eg > 0$ exists  $N$ s.t. $d(x_{n> N}, x) < \eg$. Let $\eg > 0$ and choose such $N$. Now: 
+				\begin{align*}
+					d(x, A) &\le d(x, x_{n}) + d(x_{n}, A) & \implies && d(x, A) - d(x_{n}, A) &\le \eg \\ 
+					d(x_{n_k}, A) &\le d(x_{n}, x) + d(x, A) & \implies && d(x_{n}, A) - d(x, A) &\le \eg
+				\end{align*}
+				Therefore $\sof{d(x_{n}, A) - d(x, A)} \le \eg$ for $n > N$. By definition $d(x_{n}, A) \to d(x, A)$ as intended. 
+			\end{proof}
+			\item Clearly exists such Urysohn function because $\R^{d}$ is completely normal. See topology exercises. 
+		\end{enumerate}
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}
+		\item Let $\cg, \eta \co \R \to \R^{n}$ to differentiable functions. We'll prove that: 
+		\[ \frac{\dd}{\dd t}\mut{\cg(t)}{\eta(t)} = \mut{\cg'(t)}{\eta(t)} + \mut{\cg(t)}{\eta'(t)} \]\begin{proof}
+			%		Denote $f(t) = \cg(t)$ and $g(t) = t^T \eta(t)$. Then $f \co \R \to \R^{n}$ and $g \co \R^n \to \R$, and therefore the composition $h(t) = g(f(t)) = \cg(t)^T\eta(t)$ is defined. Using the chain rule: 
+			%		\[ \frac{\dd}{\dd t}h(t) = D_h(t) = D_g(f(x_0)) D_f(x_0) = \nabla_g(f(x_0)) \cdot \cg'(t) \]
+			%		We also notice that $\nabla_g(t) = \eta(t) + \eta'(t)^Tt$ therefore $\nabla_g(f(x_0)) = \eta(\cg(t)) + \eta(t)$
+			
+			Denote $h(t) = \cg(t)^T\eta(t)$. Then: 
+			\begin{align*}
+				{h(t + s) - h(t)} &= {\mut{\cg(t + s)}{\eta(t + s)} - \mut{\cg(t)}{\eta(t)}} \\
+				&= {\mut{\cg(t + s)}{\eta(t + s)} - \mut{\cg( t + s)}{\eta(t)} - \mut{\cg(t)}{\eta(t)}} + \mut{\cg( t + s)}{\eta(t)} \\
+				&= \mut{\cg(t + s)}{\eta(t + s) - \eta(t)} + \mut{\cg(t + s) - \cg(s)}{\eta(t)}
+			\end{align*}
+			And by definition: 
+			\begin{align*}
+				\frac{\dd}{\dd t}h(t) &= \lim_{s \to 0} \frac{h(t + s) -h(t)}{s} = \lim_{s \to 0} \frac{\mut{\cg(t + s)}{\eta(t + s) - \eta(t)} + \mut{\cg(t + s) - \cg(s)}{\eta(t)}}{s} \\
+				&= \cl{\lim_{s \to 0}\cg(t + s)}^T \cl{\lim_{s \to 0} \frac{{}{\eta(t + s) - \eta(t)}}{s}} + \cl{\lim_{s \to 0} \frac{{\cg(t + s) - \cg(s)}{}}{s}}^T\!\eta(t) \\
+				&= \cg(t)^T\eta'(t) + \cg'(t)^T\eta(t) = { \mut{\cg(t)}{\eta'(t)} + \mut{\cg'(t)}{\eta'(t)}}
+			\end{align*}
+			And if $\norm{\cg(t)} $ is constant $\sqrt c$, then $c = \norm{\cg(t)}^2 = \mut{\cg(t)}{\cg(t)}$ is constant too, which happens if and only if its derivative is $0$, and by the theorem above: 
+			\[ 0 = \mut{\cg}{\cg'} + \mut{\cg'}{\cg} = 2\mut{\cg'}{\cg} \iff \mut{\cg'}{\cg} = 0 \iff \cg' \perp \cg \]
+		\end{proof}
+		
+		\item Let $f, g \co \R^{n} \to \R$ by differentiable functions. We'll prove $f \cdot g$ is differentiable too, and find $\nab(f \cdot g)$. \begin{proof}
+			%		Consider the case for $x = 0$ (the other will follow immediately). 
+			Denote $h = f \cdot g$. Then: 
+			\begin{align*}
+				h(x + v) - h(x) &= f(x + v)g(x + v) - f(x)g(x) \\
+				&= f(x + v)g(x + v) - f(x + v)g(x) - f(x)g(x) + f(x + v)g(x) \\
+				&= f(x + v)\big(g(x + v) - g(x)\big) + g(x)\big(f(x + v) - f(x)\big)
+			\end{align*}
+			Consider the linear transformation $A_x \cod f(x) \nab(g) + g(x) \nab (f)$. 
+			Now (no need for $\sof{\cdot}$ since $\sof{P} \to 0$ iff $p \to 0$): 
+			\begin{align*}
+				\lim_{v \to 0}\frac{\sof{h(x + v) - h(x) - Av }}{\norm{v}} &= \lim_{v \to 0}\frac{f(x + v)\big(g(x + v) - g(x)\big) + g(x)\big(f(x + v) - f(x)\big) - Av}{\norm{v}} \\
+				&= \lim_{v \to 0} f(x + v)\frac{g(x + v) - g(x)}{\norm{v}}
+			\end{align*}
+		\end{proof}
+		%	TODO
+		\item 
+		%	TODO
+		\item Let $f \co \R^{n} \to \R^{m}$ be a differentiable function. Suppose $W \subset \R^{m}$ is a linear space s.t. $\Img f \subset W$. We'll prove $\Img(D_fx) \subset W$. 
+		\begin{proof}
+			Let $x \in \R^{n}. $Ad absurdum there exists $y \in \R^{n}$ s.t. $(D_fx)y \notin W$. Then for all $\eg \in \R$ we know that $(D_fx)(\eg\cdot y) \notin W$ from the linearity of $D_fx$. Now notice that: 
+			\[ 0 = \lim_{x' \to x}\frac{\norm{f(x') - f(x) - (D_fx)(x- x_0)}}{\norm{x - x'}} = \lim_{y' \to 0}\frac{\norm{f(x + y') - f(x) - (D_fx)(y')}}{\norm y} \]
+			And in particular, for the subsequence $\eg_n = \frac{1}{n}$ and $y_n = \eg_n \cdot y$. Then: 
+			\[ 0 = \lim_{n \to \infty}\frac{||{\overbrace{f(x + y_n) - f(x)}^{\cod p_n \in W} - \overbrace{(D_fx)(y_n)}^{\cod q_n \notin W}}||}{\norm {y_n}} = \norm{y} \cdot \lim_{n \to \infty}\frac{\norm{p_n - q_n}}{\frac{1}{n}} = \lim_{n \to \infty}n\norm{p_n - q_n} = \lim_{n \to \infty}\norm{np_n - (D_fx)(y)} \]
+			Therefore $np_n \rrr{n \to \infty} (D_fx)(y) \notin W$, although $np_n \in W$ (linearity) so $\lim_{n \to \infty}np_n \in W$ ($W$ is a closed subset of $\R^{n}$, as a linear space), which forms a contradiction. 
+		\end{proof}
+		
+		\item Suppose that $f \co \R^{n} \to \R^{n}$ is differentiable at the origin and $f(\lg x) = \lg f(x)$ for all $\lg \in \R$. We'll prove that $f$ is linear. 
+		
+		\begin{proof}
+			Clearly $f(0) = 0$ since $f(0) = f(0 \cdot 0) = 0 f(0) = 0$. 
+			Denote $D_f \cod D_f0$. Now for all $x, y$ we know that $\norm{\frac{f(0) - f(x + y) - D_f \cdot (x + y)}{x + y}} \to 0$ as $x + y$ approaches $0$, and considering $f(0) = 0$ and the linearity of $D_f$ we get that $\norm{\frac{f(x + y) - \cl{(D_f) x + (D_f)y}}{x + y}} \to 0$. In particular for all of the $\lambda$-multiplicities of $x, y$. It immediately follows from linearity of $D_f$ and from the fact that $f(\lg x) = \lg f(x)$ that: 
+			\begin{align*}
+				0 = \!\!\lim_{x + y \to 0}\!\norm{\frac{f(x + y) - \cl{(D_f) x + (D_f)y}}{x + y}} &\seq \lim_{\lg \to 0}\norm{\frac{\lg f(\cl{x + y}) - \lg \cl{(D_f)x + (D_f)y}}{ \lg\cl{x+ y}}} \\
+				&= \norm{\frac{ f(\cl{x + y}) - \cl{(D_f)x + (D_f)y}}{\cl{x+ y}}}
+			\end{align*}
+			Where $\seq$ is true as we're taking a subsequence of $x + y \to 0$. 
+			It implies that $f(x + y) = (D_f)x + (D_f)y$ therefore $f$ is linear. 
+		\end{proof}
+		
+		\item Consider $F(A) = A^{2}$ ($F \co M_{n \times n}(\R) \lin$). We'll show by definition that $F$ is differentiable with $[D_f A](H) = AH + HA$. 
+		\begin{proof}
+			We need to prove that $\lim_{H \to 0}\frac{\norm{f(A + H) - f(A) - [D_fA](H)}}{\norm{H}} = 0$. By declaring $[D_fA](H) = AH + HA$ this is clear since: 
+			\[ \frac{\norm{(A + H)^{2} - A^{2} - AH - HA}}{\norm{A - H}} = \frac{\norm{H^2}}{\norm{A - H}} \]
+			For all $A \neq 0$, $A$ has a singular value greater than $0$ and then $\lim_{H\to 0}\norm{A - H} = \norm{A} \neq 0$. In this case: 
+			\[ \lim_{H\to 0} \frac{\norm{f(A + H)} - f(A) - [D_fA](A)}{\norm{H}} = \lim_{H \to 0}\frac{\norm{H}}{\norm{A - H}} = \frac{0}{\norm{A}}= 0 \]
+			If $A = 0$ then we get the limit: [all norms are equal, so we'll use the operator norm]
+			\[ \lim_{H \to 0}\frac{\norm{H^{2}}}{\norm{A - H}} = \lim_{H \to 0}\frac{\norm{H}^{2}}{\norm{H}} = \lim_{H\to 0}\norm{H} = 0 \]
+			Either way the limit approaches $0$ as intended. 
+		\end{proof}
+	\end{enumerate}
+	
+\end{document}

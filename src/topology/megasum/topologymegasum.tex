@@ -32,6 +32,9 @@
 \newcommand\rr  {(\mathrm{4})}
 \newcommand\ttt {(\mathrm{5})}
 
+\newcommand\tych{\tau_{\mathrm{tchf}}}
+\newcommand\cotych{\tau_{\mathrm{cotchf}}}
+
 %! ~~~ Document ~~~
 \author{שחר פרץ}
 \title{\name}
@@ -417,10 +420,28 @@
 	\end{itemize}
 	אז $P \circ \psi$ נקראת \textit{תת־רשת של $P$}. }
 \subsection{\label{ss:continuesFunctions}פונקציות רציפות}
-	\defi{רציפות בנקודה}
-	\defi{רציפות}
-	\clm{שקילויות לרציפות כולל שקול לרציפות בחלוקה של הטווח}
-	\defi{פונקציה פתוחה וסגורה}
+	\defi{יהיו $X, Y$ מרחבים טופולוגיים. אז $f \co X \to Y$ \textit{רציפה ב־$x_0 \in X$} אם לכל סביבה $f(x_0) \in U \subset X$ ישנה סביבה $U \subset Y$ כך ש־$f(V) \subset U$. }
+	\defi{יהיו $X, Y$ מרחבים טופולוגיים. אז $x \co X \to Y$ \textit{רציפה} אם לכל $U \subset Y$ פתוחה ישנה $V \subset X$ פתוחה כך ש־$f(V) \subset U$. }
+	\cola{\label{clm:continuesIffContinuesEachPoint}פונקציה $f \co X \to Y$ רציפה אמ''מ היא רציפה בכל $X$. }\begin{proof}
+		במידה והיא רציפה, אז לכל $x_0 \in X$ מתקיים שלכל סביבה בסיסית $f(x_0) \subset U$ היא קבוצה פתוחה ב־$Y$ ואז ישנו $V$ מתאים וסיימנו. מצד שני אם $f$ רציפה בכל $X$ אז עבור כל $U \subset Y$ פתוחה, אם $f\op(U) = \vn$ אז $V \cod \vn$ סיימנו, אחרת ישנה $y_0 \in U$ כך שקיים $x_0 \in X$ עבורו $f(x_0) = y_0$. ואז מההנחה על רציפות בכל נקודה סיימנו. 
+	\end{proof}
+	\defi{תהא $f \co X \to Y$. אם לכל $K\subset X$ סגורה מתקיים $f(K)$ סגורה ב־$Y$, אז $f$ תקרא \textit{פונקציה סגורה}. אם לכל $U \subset X$ פתוחה מתקיים $f(U)$ פתוחה ב־$Y$, אז $f$ תקרא \textit{פונקציה פתוחה}. }
+	\rmark{לפעמים פונקציות יקראו \textit{העתקות}. }
+	\cola{אם $f \co X \to Y$ חח''ע, אז $f$ רציפה אמ''מ $f\op$ פתוחה. }
+	\clm{\label{clm:continuityIffs}התנאים הבאים שקולים: 
+	\begin{enumerate}
+		\item $f$ רציפה
+		\item $f$ רציפה בכל נקודה ב־$x_0$
+		\item לכל $U \subset Y$ פתוחה, $f\op(U)$ פתוחה גם כן. 
+		\item לכל $K \subset Y$ סגורה, $f\op(K)$ סגורה גם כן. 
+		\item לכל $E \subset X$, מתקיים ש־$f(\Cl_X E) \subset \Cl_Yf(E)$. 
+	\end{enumerate}}\begin{proof}
+		הראנו ש־$1\siff2$ ב־\ref{clm:continuesIffContinuesEachPoint}. עתה נוכיח שרשרת גרירות. 
+		\begin{itemize}
+			\item[$1\to3$]תהא $f$ רציפה ותהא $U$ פתוחה ב־$Y$. 
+			\item[$3\to4$]
+		\end{itemize}
+	\end{proof}
 	\defi{הומיאומורפיזם}
 	\defi{תכונה טופולוגית}
 	\clm{שקילויות של הומיאומורפיזמים}
@@ -465,24 +486,91 @@
 		\item המשפט המצחיק על separting points from closed sets שגם מופיע בויקיפדיה וב־8B בווילארד
 	\end{itemize}
 	
-	\subsection{טופולוגיית המכפלה}
-	\defi{תהי $(Y_i)_{i \in I}$ משפחת פונקציות. נגדיר את \textit{הכפל הקרטזי} (המוכלל) שלהם להיות: 
-	\[ \prod_{i \in I}Y_i \cod \ccb{f(i) \in Y_i \ \middle\vert \ f \co I \to \bigcup_{i \in I}Y_i} \]
+	\subsection{טופולוגיית מכפלה וקו־מכפלה\label{ss:prod-topo}}
+	\defi{תהי $(X_i)_{i \in I}$ משפחת קבוצות. נגדיר את \textit{הכפל הקרטזי} (המוכלל) שלהם להיות: 
+	\[ \prod_{i \in I}X_i \cod \ccb{f(i) \in Y_i \ \middle\vert \ f \co I \to \bigcup_{i \in I}X_i} \]
 	כאשר ההיטלים $(\pi_i)_{i \in I}$ יהיו: 
 	\begin{align*}
 		\pi_i(x) \cod x(i) && \pi_i \co \prod_{i \in I} Y_i \to Y_i
 	\end{align*}}
-	נבחין שהעובדה שהקבוצה לעיל לא ריקה לכל משפחה שקולה לאקסיומת הבחירה. 
-	\defi{בהינתן $(Y_i)_{i \in I}$ אוסף מרחבים טופולוגיים, אז \textit{טופולוגיית המכפלה} היא הטופולוגיה החלשה המושרה מההיטלים. }
-	\defi{טופולוגיית טיכונוף}
-	\clm{בטופולוגיית טיכונוף ההיטלים רציפים ופתוחים. }
-	\begin{Theorem}
-		טופולוגיית המכפלה שווה לטופולוגיית טיכונוף. 
+	\cola{(תחת ZF) כפל קרטזי של משפחת קבוצות כלשהי לא ריק אמ''מ אקסיומת הבחירה. }
+	\rmark{בהגדרה שלנו, $X \times Y = Y \times X$, ולא רק $X \times Y \cong Y \times X$. זאת כי לא מוגדר על $I$ סדר (במידת הצורך, ניתן להגדיר סדר טוב. אבל אין צורך). }
+	
+	\defi{תהי $(Y_i)_{i \in I}$ משפחת קבוצות. נגדיר את \textit{הסכום הישר} (המוכלל) שלהם להיות: 
+	\[ \bigoplus_{i \in I} Y_i \cod \biguplus_{i \in I}\cl{Y_i \times \{i\}} \]
+	כאשר הקו־היטלים $(\pi_i^T)_{i \in I}$ יהיו: 
+	\begin{align*}
+		\pi_i^T(x) \cod \{x\} \times \{i\} = ( x, i ) && \pi_i^T \co Y_i \to \bigoplus_{i \in I}Y_i
+		\end{align*}}
+	\begin{Definition}[מכפלה]
+		תהא $(X_i)_{i \in I}$ משפחת מרחבים טופולוגיים. אז \textit{טופולוגיית המכפלה} היא הטופולוגיה החלשה שההטלים $\pi_i \co \prod_{i \in I}X_i \to X_i$ משרים. 
+	\end{Definition}
+	\begin{Definition}[קו־מכפלה]
+		תהא $(Y_i)_{i \in I}$ משפחת מרחבים טופולוגיים. אז \textit{טופולוגיית הקו־מכפלה} היא הטופולוגייה החזקה שהשיכונים $\pi_i^T \co Y_i \inc \bigoplus_{i \in I}Y_i$ משרים. 
+	\end{Definition}
+	\begin{Definition}[טופולוגיית טיכונוף]
+		תהא $(X_i)_{i \in I}$ משפחת מרחבים טופולוגיים $(X_i, \tau_i)$. אז \textit{טופולוגיית טיכונוף} היא הטופולוגיה בה הקבוצות הפתוחות $V \in \tau_{\mathrm{tchf}}$ מקיימות: 
+		\begin{itemize}
+			\item $V$ מכפלה של קבוצות פתוחות $U_i \in \tau_i$. 
+			\item לכל $i \in I$ פרט לקבוצה $J \subset I$ סופית, מתקיים $U_{i \notin J} = X_i$. 
+		\end{itemize}
+	\end{Definition}
+	\begin{Definition}[טופולוגיית קו־טיכונוף]
+		תהא $(Y_i)_{i \in I}$ משפחת מרחבים טופולוגיים $(Y_i, \tau_i)$. אז \textit{טופולוגיית קו־טיכונוף} שלהם היא: 
+		\[ \tau_{\mathrm{cotchf}} \cod \biguplus_{i \in I} \ccb{U_i \times \{i\} \mid U_i \in \tau_i} \]
+	\end{Definition}
+	\lem{\label{lem:tychIsTopo}טופולוגיית טיכונוף היא טופולוגיה על המכפלה הקרטזית וטופולוגיית קו־טיכונוף היא טופולוגיה על הסכום הישר. }\begin{proof}
+		\begin{itemize}
+			\item ראשית נוכיח בעבור טופולוגיית טיכונוף. יהיו $(X_i, \tau_i)$ מרחבים טופולוגיים עם קבוצת אינדקסים $I$ מעוצמה כלשהי. בבירור, בעבור $J = \vn$ מתקיים ש־$\prod X_i \in \tych$ ובעבור $X_1 = \vn$ (בהנחה שהמכפלה איננה ריקה: במקרה זה ההוכחה טרוויאלית) מתקיים ש־$\vn \in \tych$.
+			
+			בבירור הקבוצה סגורה לאיחוד, שכן עבור $(U_p)_{p \in P}$ קבוצות פתוחות עם $J_p$ קבוצת אינדקסים מתאימה, מתקיים שהקבוצה: 
+			\[ \tych \ni \prod_{i \in I} \bigcup_{p \in P} \pi_i(U_p) = \bigcup_{p \in P} \prod_{i \in I} \pi_i(U_p) = \bigcup_{p \in P}U_p \]
+			שכן קבוצת האיברים שאיננה מהצורה $X_i$ היא $\bigcap_{p \in P} J_p$, חיתוך של קבוצות סופיות ולכן סופי. 
+			
+			בבירור היא גם סגורה לחיתוך סופי, מטעמים דומים. עבור $(U_p)_{p = 1}^{n}$ קבוצה סופית של קבוצות פתוחות, מתקיים: 
+			\[ \tych \ni \prod_{i \in I} \bigcap_{p = 1}^{n} \pi_i(U_p) = \bigcap_{p = 1}^{n} \prod_{i \in I} \pi_i(U_p) = \bigcap_{p = 1}^{n}U_p \]
+			וגם כאן קבוצת האיברים שאינם מהצורה $X_i$ היא $\bigcap_{p = 1}^{n} J_p$, איחוד סופי של קבוצות סופיות ולכן סופי (עוצמתו חסומה ב־$\prod_{p = 1}^{n} \sof{J_p}$). 
+			\item עתה נוכיח בעבור טופולוגיית קו־טיכונוף. תהא $(Y_i, \tau_i)$ משפחה של מרחבים טופולוגיים מעל קבוצת אינדקסים $I$. עבור $U_i = \vn$ לכל $i$, נקבל ש־$\vn = \biguplus U_i \times \{i\} \in \cotych$. באופן דומה עבור $U_i = Y_i$ נקבל ש־$\bigoplus Y_i = \biguplus Y_i \times \{i\} \in \cotych$. 
+			
+			בבירור הקבוצה סגורה לאיחוד, שכן עבור $(U_j)_{j \in J}$ קבוצות פתוחות, שכל אחת מתפרקת לסכום ישר של $U_{ij} \times \{i\}$, מתקיים ש־: 
+			\[ \cotych \ni \biguplus_{i \in I}\Bigg(\bigg(\bigcup_{j \in J}U_{ij}\bigg) \times \{i\}\Bigg) = 
+			\bigcup_{j \in J}\Bigg(\biguplus_{i \in I}U_{ij}\times \{i\} \Bigg) = \bigcup_{j \in J}U_j \]
+			
+			שכן $\bigcup_{j \in J}U_{ij}$ פתוחה ב־$Y_i$ מהיות $(Y_i, \tau_i)$ טופולוגיה סגורה לאיחוד. 
+			הקורא וודאי יוכל להשלים את ההוכחה בעבור חיתוך סופי, לאור הדואליות הברורה בין טופולוגיית טיכונוף וקו־טיכונוף. 
+		\end{itemize}\envendproof
+	\end{proof}
+	\begin{Theorem}\label{theo:tych-prod}
+		טופולוגיית טיכונוף היא טופולוגיית המכפלה וטופולוגית קו־טיכונוף היא טופולוגיית הקו־מכפלה. 
 	\end{Theorem}
+	\begin{proof}
+		ראשית נפנה להוכיח שטופולוגיית טיכונוף היא טופולוגיית המכפלה. יהיו $(X_i, \tau_i)$ משפחה של מרחבים טופולוגיים ($i \in I$ קבוצת אינדקסים מעוצמה כלשהי). לשם כך, נראה שב־$\tych$ ההיטלים רציפים והיא מינימלית מבין הטופולוגיית שבהן ההיטלים רציפים. 
+		\begin{itemize}
+			\item \textbf{ההיטלים רציפים מ־$\bm{\tych}$: }יהי $i \in I$. ואכן, עבור $U \in X_i$ פתוחה כלשהי, מתקיים ש־$\pi_i\op(U) = U \times \prod_{j \neq i}X_i$ פתוחה ב־$\tych$ מהגדרה (כי $U$ פתוחה, $X_i$־ים פתוחים, וכל האינדקסים פרט למספר סופי (סינגלטון $i$) הם המרחבים $X_i$ עצמם). 
+			\item \textbf{$\bm{\tych}$ מינימלית: }תהא $\tl \tau$ כלשהו בעבורה ההיטלים רציפים. הבחנו זה עתה שתנאי הכרחי ומספיק לכך שההיטלים יהיו רציפים הוא ש־$\pi\op_i(U) \in \tl \tau$. הטופולוגיה המינימלית שבה מתקיים  $A \cod \ccb{\pi\op_i(U) \mid U \in X_i, i \in I} \subset \tl \tau$ היא הטופולוגיה המתקבלת מלקיחת $A$ כתת־בסיס, כפי שהבחנו ב־\ref{clm:subbaseCreatesMinimalTopology}. בבירור, חיתוך סופי של איברי $A$ יוצר את $\tych$, שאנו כבר יודעים שהיא סגורה לאיחוד (מ־\ref{lem:tychIsTopo}) ולכן סה''כ $\tych$ הטופולוגייה הניתנת כאשר לוקחים את $A$ להיות תת־בסיס. 
+		\end{itemize}
+		
+		עתה נפנה להוכיח שטופולוגיית הקו־מכפלה היא טופולוגיית קו־טיכונוף. יהיו $(Y_i, \tau_i)$ משפחת טופולוגיות. בדומה להוכחה הקודמת, נראה שהקו־מכפלות רציפות ב־$\cotych$ ו־$\cotych$ המינימלית בעבורה הקו־מכפלות רציפות. 
+		\begin{itemize}
+			\item \textbf{הקו־היטלים רציפים אל $\bm{\cotych}$: }יהי $i \in I$. תהא $U \in \bigoplus_{i \in I}Y$ קבוצה פתוחה. אזי היא ניתנת לפירוק ל־$U_i$ קבוצות פתוחות כך ש־$U = \bigoplus_{i \in I}U_i$. נבחין ש־$(\pi_i^T)\op(U) = U_i$ ו־$U_i$ פתוחה ב־$Y$ מהגדרה. 
+			\item \textbf{$\bm{\cotych}$ הטופו' המינימלית בה הקו־היטלים רציפים: }בבירור שתנאי הכרחי (ומספיק) לכך ש־$\tl \tau$ כלשהי על $\bigoplus_{i \in I}Y_i$ מרצפת את הקו־היטלים, הוא ש־$\cl{\pi_i^T}\op(U) = U_i$ לכל $U \in \tau$ כאשר $U_i \cod \pi_1\cl{U \cap Y_i \times \{i\}}$ (גם כאן $U = \bigoplus_{i \in I}U_i$ ו־$U_i \in Y_i$ מהגדרת $\bigoplus_{i \in I}Y_i$). מכאן ש־$\pi_i^T(U_i) = U$, ונסיק שלכל $i \in I$ ו־$U_i \in \tau_i$ מתקיים ש־$\pi_i^T(U_i) \in \cotych$. 
+%			TODO
+		\end{itemize}\envendproof
+	\end{proof}
+	\noti{מעתה ואילך, אלא אם מצוין אחרת, כאשר נכתב $\prod_{i \in I}X_i$ הקבוצה מצוידת בטופולוגיית המכפלה, וכאשר נכתב $\bigoplus_{i \in I}Y_i$ הקבוצה מצוידת בטופולוגיית הקו־מכפלה. }
+	\cola{הקבוצה $A$ המוגדרת לעיל היא תת־בסיס של טופולוגיית המכפלה. }
+	\cola{בטופולוגיית טיכונוף ההיטלים רציפים ופתוחים. }\begin{proof}
+		רציפות כבר הראנו ב־\ref{theo:tych-prod}. 
+	\end{proof}
+	
+	\subsubsection{\label{sss:boxTopo}טופולוגיית הקופסא}
 	\defi{טופולוגיית קופסא}
 	\clm{טופולוגיית הקופסא עדינה יותר מטופולוגיית המכפלה}
+	\cola{בעבור קבוצת אינדקסים סופית, טופולוגיית הקופסא שווה לטופולוגיית המכפלה. }
 	
-	\subsection{טופולוגיית המנה}
+	\subsection{\label{ss:quotientTopo}טופולוגיית המנה}
+	\subsection{\label{ss:spaceBuild}בניית מרחבים}
+	בפרק זה נציג בנייה של מספר מרחבים טופולוגיים שימושיים באמצעות הכלים שפיתחנו בתת־הנושאים האחרונים. 
 	
 	\npage
 	\section[אקסיומות מניה]{\label{s:countability}\en{Countability Axioms}}

@@ -42,6 +42,7 @@
 	\newcommand \fc        {\mathcal{F}}
 	\newcommand \nc        {\mathcal{N}}
 	\newcommand \kc        {\mathcal{K}}
+	\newcommand \lin       {\mathcal{L}}
 	\newcommand \oc        {\mathcal{O}}
 	\newcommand \sca       {\mathcal{S}} % \sc is already definded
 	\newcommand \rca       {\mathcal{R}} % \rc is already definded
@@ -384,45 +385,62 @@
 
 
 % Topology
-\newcommand\vn      {\varnothing}
-\DeclareMathOperator{\Cl}{Cl}
-\DeclareMathOperator{\Int}{Int}
-\DeclareMathOperator{\Fr}{Fr}
-\DeclareMathOperator{\osc}{osc}
-\newcommand\intr {^{\circ}}
-\newcommand\eqrel{/\!\!\sim}
+	\newcommand\vn      {\varnothing}
+	\DeclareMathOperator{\Cl}{Cl}
+	\DeclareMathOperator{\Int}{Int}
+	\DeclareMathOperator{\Fr}{Fr}
+	\DeclareMathOperator{\osc}{osc}
+	\newcommand\intr    {^{\circ}}
+	\newcommand\eqrel   {/\!\!\sim}
 
-\newcommand\Tz   {$T_0$}
-\newcommand\Tp   {$T_0$}
-\newcommand\Tq   {$T_1$}
-\newcommand\Tw   {$T_2$}
-\newcommand\Twh  {$T_{2\frac{1}{2}}$}
-\newcommand\Te   {$T_3$}
-\newcommand\Teh  {$T_{3\frac{1}{2}}$}
-\newcommand\Tr   {$T_4$}
-\newcommand\Tt   {$T_5$}
-\newcommand\Ty   {$T_6$}
-\newcommand\adolf{Lindelöf}
+	\newcommand\Tz    {$T_0$}
+	\newcommand\Tp    {$T_0$}
+	\newcommand\Tq    {$T_1$}
+	\newcommand\Tw    {$T_2$}
+	\newcommand\Twh   {$T_{2\frac{1}{2}}$}
+	\newcommand\Te    {$T_3$}
+	\newcommand\Teh   {$T_{3\frac{1}{2}}$}
+	\newcommand\Tr    {$T_4$}
+	\newcommand\Tt    {$T_5$}
+	\newcommand\Ty    {$T_6$}
+	\newcommand\adolf {Lindelöf}
 
 % Calc2A
-\newcommand\rim   {R([a, b])}
-\newcommand\daru  {\ol{\Sigma}}
-\newcommand\Idaru {\ol{I}}
-\newcommand\dard  {\underline{\Sigma}}
-\newcommand\Idard {\underline{I}}
-\newcommand\tou   {\overset{u}{\to}}
+	\newcommand\rim   {R([a, b])}
+	\newcommand\daru  {\ol{\Sigma}}
+	\newcommand\Idaru {\ol{I}}
+	\newcommand\dard  {\underline{\Sigma}}
+	\newcommand\Idard {\underline{I}}
+	\newcommand\tou   {\overset{u}{\to}}
 
 % Algo
-
-\newcommand\din   {d_{\mathrm{in}}}
-\newcommand\dout  {d_{\mathrm{out}}}
-\newcommand\dinv  {d_{\mathrm{in}}(v)}
-\newcommand\doutv {d_{\mathrm{out}}(v)}
+	\newcommand\din   {d_{\mathrm{in}}}
+	\newcommand\dout  {d_{\mathrm{out}}}
+	\newcommand\dinv  {d_{\mathrm{in}}(v)}
+	\newcommand\doutv {d_{\mathrm{out}}(v)}
 
 \newcommand\squig {\rightsquigarrow}
 
+% Calc4A
+	\newcommand\nab{\nabla}
+
+% Group-Theory
+	\DeclareMathOperator{\ord}{ord}
+
+	\newcommand\gO   {\mathrm{O}}
+	\newcommand\gSO  {\mathrm{SO}}
+	\newcommand\SOe  {\mathrm{SO}_3}
+	\newcommand\SOw  {\mathrm{SO}_2}
+	\newcommand\gL   {\mathrm{L}}
+	\newcommand\gSL  {\mathrm{SL}}
+	\newcommand\gE   {\mathrm{E}}
+	\newcommand\gSE  {\mathrm{SE}}
+	\newcommand\gPSL {\mathrm{PSL}}
+	\newcommand\gGL  {\mathrm{GL}}
+
 
 % Other shortcuts
+	\let        \lin       \hookleftarrow
 	\let        \tl        \tilde
 	\newcommand \op        {^{-1}}
 	\let        \co        \colon
