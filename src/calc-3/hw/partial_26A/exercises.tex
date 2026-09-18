@@ -44,6 +44,7 @@
 
 \newcommand\opn[1]{\norm{#1}_{\mathrm{op}}}
 \newcommand\hsn[1]{\norm{#1}_{\mathrm{HS}}}
+\newcommand\ial   {\partial}
 
 \author{Shahar Perets}
 \title{Partial Solutions To Exercises In Calculous 3}
@@ -196,6 +197,7 @@
 	
 	\section{}
 	\begin{enumerate}
+		\item 
 		\item Let $\cg, \eta \co \R \to \R^{n}$ to differentiable functions. We'll prove that: 
 		\[ \frac{\dd}{\dd t}\mut{\cg(t)}{\eta(t)} = \mut{\cg'(t)}{\eta(t)} + \mut{\cg(t)}{\eta'(t)} \]\begin{proof}
 			%		Denote $f(t) = \cg(t)$ and $g(t) = t^T \eta(t)$. Then $f \co \R \to \R^{n}$ and $g \co \R^n \to \R$, and therefore the composition $h(t) = g(f(t)) = \cg(t)^T\eta(t)$ is defined. Using the chain rule: 
@@ -268,6 +270,35 @@
 			\[ \lim_{H \to 0}\frac{\norm{H^{2}}}{\norm{A - H}} = \lim_{H \to 0}\frac{\norm{H}^{2}}{\norm{H}} = \lim_{H\to 0}\norm{H} = 0 \]
 			Either way the limit approaches $0$ as intended. 
 		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	\begin{enumerate}
+		\item 
+		\item Suppose $T \in C^{1}(\R^{2})$ satisfies the Cauchy-Riemann equations. We'll call such $T$ an \textit{holomorphic function}. 
+		\begin{enumerate}
+			\item We'll show that at any $p \in \R^{2}$ we got wither $D_T(p) > 0$ or $D_T(p) = 0$. \begin{proof}
+				We'll find the Jacobian of such a function. Denote $a = \frac{\partial T_1}{\partial x_1}(p)$. Then $\frac{\partial T_2}{\partial x_2}(p) = a$ by the Cauchy-Riemann equations. Similarly if we denote $b = \frac{\partial T_1}{\partial x_2} = b$ then we got $-b = \frac{\partial T_2}{\partial x_1}$. Then one would represent $D_T(p)$ by the standard base $\ec = (x_1, x_2)$ and get the Jacobian: 
+				\[ [D_T(p)]_\ec = \pms{\disty \frac{\ial T_1}{\ial x_1} & \disty \frac{\ial T_1}{\ial x_2} \\ \ & \  \\
+				\disty \frac{\ial T_2}{\ial x_1} & \disty \frac{\ial T_2}{\ial x_2}} = \pms{a & b \\ -b & a} \]
+				Therefore $\det D_T(p) =\det [D_T(p)]_\ec = a^{2} - b(-b) = a^{2} + b^{2} \ge 0$. Now clearly $\det D_T(p) = 0 $ iff $a = b = 0$ and in such case $D_T(p) = 0$. Otherwise $a^{2} + b^{2} > 0$. 
+			\end{proof}
+			\item We'll show that the composition of two holomorphic functions is holomorphic too. \begin{proof}
+				We know that $D_(T \cdot S) = T D_S + S D_T$. It's clear that there exists $a, b, c, d \in \R$ s.t.:
+				\[ [D_{T \cdot S}]_\ec= T(p) \cdot \pms{a & b \\ -b & a} + S(p) \cdot \pms{c & d \\ -d & c} \]
+				Now denote $\ml = T(p)a + S(p)c$ and $m = T(p)b + S(p)d$. Now clearly $[D_{T \cdot S}]_\ec = \binom{\ \, c \, \ d\,}{-d \ c\,}$...
+			\end{proof}
+		\end{enumerate}
+		\item \textbf{Hadmard's Lemma: }Let $U \subset \R^{n}$ be a convex domain, and let $a \in U$ and $f \in C^{1}(U, \R)$. Then there exists $g_1 \dots g_n \in C^1(U, \R)$ s.t. $f(x) = f(a) + \sum_{i = 1}^{n}(x_i - a)g_i(x)$. 
+		We'll prove that $g_i(a) = \frac{\ial f}{\ial x_i}$. \begin{proof}
+			hmm that's kinda trivial since: 
+			\[ D[f] = D\csb{f(a) + \sum_{i = 1}(x_i - a)g_i} = D\csb{\sumni (x_i - a)g_i} = \sumnio x_iD[g_i] \]
+			So: 
+			\[ \pms{\frac{\ial f}{\ial x_1} \\ \vdots \\ \frac{\ial f}{\ial x_n}} = \nab_f = [D[f]]_\ec = \pms{\frac{\ial x_1D[g_1]}{\ial x_1} \\ \vdots \\ \frac{\ial x_nD[g_n]}{x_n}} = \pms{g_1 \\ \vdots \\ g_n} \]
+			So $\frac{\ial f}{\ial x_i} = g_i$ as intended. 
+			(Should have done things pointwise for formality but who cares)
+		\end{proof}
+		\item Consider $B \subset \R^{n}$ the unit ball and suppose $T \co C^{1}(B, \R) \to \R$ is linear and $\forall f, g \in C^{1}(B, \R) \co T(f \cdot g) = g(0)T(f) + f(0)T(g)$. Then $T$ has the form $T(f) = \frac{\ial f}{\ial u}(0)$. 
 	\end{enumerate}
 	
 \end{document}

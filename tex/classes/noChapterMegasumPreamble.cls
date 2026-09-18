@@ -83,7 +83,12 @@
 				{\normalfont\large\bfseries\en{{(\thesubsubsection)}}}
 				{0.5em}
 				{}
-			\setcounter{secnumdepth}{3} % enable subsubsection
+			\titleformat{\paragraph}
+			{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+			\titlespacing*{\paragraph}
+			{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+			\setcounter{secnumdepth}{4} % enable subsubsubsection
+			\let \subsubsubsection \paragraph
 			
 		% Defaults
 			\renewcommand \le{\leqslant}
