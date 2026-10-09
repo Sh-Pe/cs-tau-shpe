@@ -322,25 +322,25 @@
 
 
 % Math Operators
-	\DeclareMathOperator      {\dom} {dom}
-	\DeclareMathOperator      {\Img} {Im}
-	\DeclareMathOperator    {\range} {range}
-	\DeclareMathOperator      {\chr} {char}
+	\DeclareMathOperator     {\dom} {dom}
+	\DeclareMathOperator     {\Img} {Im}
+	\DeclareMathOperator     {\range} {range}
+	\DeclareMathOperator     {\chr} {char}
 	\DeclareMathOperator     {\diag} {diag}
-	\DeclareMathOperator      {\Hom} {Hom}
-	\DeclareMathOperator       {\Sp} {span} 
-	\DeclareMathOperator      {\sgn} {sgn} 
-	\DeclareMathOperator      {\row} {Row} 
-	\DeclareMathOperator      {\adj} {adj} 
-	\DeclareMathOperator       {\rk} {rank} 
-	\DeclareMathOperator      {\col} {Col} 
-	\DeclareMathOperator       {\tr} {tr}
-	\DeclareMathOperator      {\lcm} {lcm}
-	\DeclareMathOperator      {\sym} {Sym}
-	\let                      \Sym   \sym
+	\DeclareMathOperator     {\Hom} {Hom}
+	\DeclareMathOperator     {\Sp} {span}
+	\DeclareMathOperator     {\sgn} {sgn}
+	\DeclareMathOperator     {\row} {Row}
+	\DeclareMathOperator     {\adj} {adj}
+	\DeclareMathOperator     {\rk} {rank}
+	\DeclareMathOperator     {\col} {Col}
+	\DeclareMathOperator     {\tr} {tr}
+	\DeclareMathOperator     {\lcm} {lcm}
+	\DeclareMathOperator     {\sym} {Sym}
+	\let                     \Sym   \sym
 	\DeclareMathOperator     {\asym} {ASym}
-	\let                      \Asym  \asym
-	\DeclareMathOperator      {\rad} {rad}
+	\let                     \Asym  \asym
+	\DeclareMathOperator     {\rad} {rad}
 
 % Calc1A
 	\newcommand \floor[1]    {\lf #1 \rf}
@@ -426,6 +426,13 @@
 
 % Group-Theory
 	\DeclareMathOperator{\ord}{ord}
+	\DeclareMathOperator{\Aut}{Aut}
+	\DeclareMathOperator{\Inn}{Inn}
+	\DeclareMathOperator{\Out}{Out}
+	\newcommand\seqtrio {\trianglelefteq}
+	\newcommand\strio   {\vartriangleleft}
+	\newcommand\sdp     {\rtimes}
+	\newcommand\pds     {\ltimes}
 
 	\newcommand\gO   {\mathrm{O}}
 	\newcommand\gSO  {\mathrm{SO}}
@@ -438,6 +445,16 @@
 	\newcommand\PSL  {\mathrm{PSL}}
 	\newcommand\gGL  {\mathrm{GL}}
 	\newcommand\AGL  {\mathrm{AGL}}
+
+% Cat Theo
+	\newcommand \catname[1]{{\normalfont\textbf{#1}}}
+	\newcommand \Cat       {\catname{Cat}}
+	\newcommand \Set       {\catname{Set}}
+	\newcommand \Top       {\catname{Top}}
+	\newcommand \Grp       {\catname{Grp}}
+	\newcommand \Vect      {\catname{Vect}}
+	\newcommand \Rmod      {{\textbf\mathit{R}}-\catname{Mod}}
+	\newcommand \Man       {\catname{Man}}
 
 
 % Other shortcuts
