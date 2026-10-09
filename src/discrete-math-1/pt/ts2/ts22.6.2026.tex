@@ -1,0 +1,33 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+\newcommand\pfin{\ps_{\mathrm{fin}}}
+\author{שחר פרץ}
+\title{שאלות לצוציקים, חלק $2$}
+\begin{document}
+	\maketitle
+	
+	\begin{Theorem}
+		תהי $A$ קבוצה. הוכיחו ש־: 
+		\[ \pfin (A) := \ccb{X \subset A \co \sof{X} \in \N} \]
+		מקיימת $\sof{\pfin(A)} = \sof A$. 
+	\end{Theorem}
+	\lem{איחוד בן־מנייה של קבוצות מעוצמה $A$ הוא מעוצמה $A$. }
+	\begin{proof}[הוכחת הלמה]
+		יהי אוסף $(X_i)_{i =1}^{\infty}$ של קבוצות מעוצמה $\sof{X_i} = \sof A$. נסמן $X := \bigcup_{i = 1}^{\infty}X_i$. קל לראות ש־$\sof{A} \le \sof{X}$ כי יש זיווג $f \co A \to X_1$ ונבחין שהוא שיכון כפונקציה $f \co A \to X$. 
+		לכל $x \in X$, נגדיר: 
+		\[ \zc(x) := \ccb{i \in \N \co x \in X_i} \]
+		נבחין שהגדרנו פונקציה $x \mapsto \zc(x)$. לכן קיימת לה פונקציית בחירה $C \co X \to \N$. עוד ידוע שלכל $X_i$ קיים זיווג $F_i \co X_i \to A$. לכן נוכל להגדיר את הפונקציה: 
+		\[ f(x) = \la C(x), F_{C(x)}(x) \ra \]
+		נבחין ש־$f \co X \to \N \times A$ מוגדרת היטב וחח''ע (יש להוכיח זאת). משום ש־$\sof{\N \times A} = \sof{A}$, נסכם כי מקש''ב $\sof{X} = \sof{A}$ כנדרש. 
+	\end{proof}
+	\begin{proof}[הוכחת המשפט]
+		נרשום את $\pfin(A)$ כאיחוד בן מנייה של קבוצות מעוצמה $A$: 
+		\[ \pfin(A) = \bigcup_{n =1}^{\infty}\ccb{X \subset A \co \sof{X} = n} \]\
+	\end{proof}
+	
+	\ndoc
+\end{document}

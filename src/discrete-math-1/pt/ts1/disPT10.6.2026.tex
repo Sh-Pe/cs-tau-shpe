@@ -1,0 +1,100 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+\author{שחר פרץ}
+\title{תרגול לצוציקים של שנה א'}
+\begin{document}
+	\maketitle
+	\subsection*{דוגמה לחזרה על לכסון}
+	\exe{הוכיחו ש־$\sof A > \az$
+		\[ A := \ccb{f \co \N \to \N \co \forall n \in \Neven \co f(n) = 0} \]}
+	\begin{proof}[\textbf{לא מלאה}, חסרים פרטים]
+		\begin{itemize}
+			\item $\bm{\sof A  \ge \az}$\textbf{: }נתבונן בפונקציה החח''ע הבאה: 
+			\[ f \co \N \to A \quad \quad f = \lambda n \in \N. \lambda m \in \N\co \begin{cases}
+				n & m \in \Nodd \\
+				0 & n \in \Neven
+			\end{cases} \]
+			יש להוכיח שהיא (א) חח''ע ו(ב) מוגדרת היטב. הראנו זאת בתרגול. 
+			\item $\bm{\sof A \neq \con}$\textbf{: }נניח בשלילה שקיימת $F \co \N \to A$ חח''ע ועל. נתבונן בפונקציה הבאה: 
+			\[ f \co \N \to \N \quad\quad f = \lambda n \in \N\co \begin{cases}
+				F\cl{\frac{n - 1}{2}}(n) + 1 & n \in \Nodd \\
+				0 & n \in \Neven
+			\end{cases} \]
+			יש להראות ש$f \notin \Img F$ וגם $ f \in A$, עשינו זאת בתרגול. זו סתירה לכך ש־$f$ על. 
+		\end{itemize}\envendproof
+	\end{proof}
+	
+	תרגילים דומים: \exe{הוכיחו ש־: 
+			\[ A = \ps(\N \times \N) \setminus (\N \to \N) \]
+			מקיימת $\sof{A} > \az$. }\exe{$C = \{f \co \N \to \N\mid f[\Neven] \cap f[\Nodd] = \varnothing \}$. הוכיחו ש־$\sof C > \az$ באמצעות לכסון. }
+	
+	התרגילים לעיל דומים מאוד, אבל אני ממליץ לכם לנסות לפתור אותם במידה ואתם לא חושבים שתוכלו לכתוב את ההוכחה מסודר לבד. 
+	
+	\subsection*{שאלה ראשונה}
+	\exe{הוכיחו ש־: 
+		\[ A = \ps(\N \times \N) \setminus (\N \to \N) \]
+		מקיימת $\sof{A} > \az$. }
+	\begin{itemize}
+		\item גדול חלש: 
+		\[ \lambda n \in \N\co \ccb{\la n, 0 \ra} \]
+		יש להראות שהפונקציה לעיל חח''ע וטווחה מוגדר היטב. 
+		\item לא שווה: בשלילה $F(n) \co \N \to A$ חח''ע ועל, נגדיר $F(n) = R_n$ ונבחר: 
+		\[ R = \{\la 0, 1 \ra , \la 0, 0 \ra\} \cup \bigcup_{n \in \N_+}\{\la a, b \ra \in \N^{2}\co a = n \land \lnot aR_{n - 1}b\} \]
+		ראשית, נבחין ש־$R \in A$ כי $R \subset \N \times \N$ ולכן $R \in \ps(\N \times \N)$, אך $R \notin \N\to \N$ מכיוון שהיא לא חד־ערכית (מתקיים $0R1 \land 0R 0$). 
+		
+		מהיות $f$ על, בהכרח $\exists n\in \N \co F(n) = R_n = R$. אזי בפרט $(n + 1)R_nb \iff (n + 1)Rb$ ובפרט עבור $b = 1$. נפרק למקרים. 
+		\begin{itemize}
+			\item אם $\la n + 1, 1 \ra \in R_n$, אז $(n + 1)R_{n + 1 - 1}b$, כלומר$\la n + 1, b \ra \notin R$ מהגדרה (וכי $n + 1 \in \N_+$) וזו סתירה לשוויון קבוצות. 
+			\item אם $\la n + 1, 1 \ra \notin R_n$, אז באופן דומה $\la n + 1, 1 \ra \in R$ וזו סתירה. 
+		\end{itemize}
+		סה''כ $R_n \neq R$ וזו סתירה לכך ש־$F(n) = R$, כנדרש. 
+	\end{itemize}
+	
+	\subsection*{שאלה שנייה}
+	23CA במבוא לתקב''צ. 
+	
+	\exe{תהי $B$ אינסופית, ותהי $A$ כך ש־$\sof a \le \sof B$. הוכיחו שקיימת חלוקה $(C_i)_{i \in I}$  כך ש־$\sof{C_i} = \sof B$ ו־$\sof I = \sof A$. }
+	\textit{הערה. }הכוונה ב־$(C_i)_{i \in I}$, היא למצוא $I$ מעוצמה $\sof A$ ולמצוא פונקציה $F \co I \to \ps(B)$, ונסמן $C_i := F(i)$. 
+	
+	\begin{proof}[הוכחה \textbf{לא מלאה, חסרים פרטים}]
+		ידוע $\sof A \cdot \sof B = \sof B$ מחשבון עוצמות, כי ממונוטוניות $\sof A \cdot \sof B \ge \sof B$ אך גם $\sof B \cdot \sof A \le \sof B \cdot \sof B = \sof B$. לכן קיים זיווג $f \co I \times B \to B$. נגדיר:
+		\[ C_i = f[\{i\} \times B] \]
+		עבור $i \in I = A$. 
+		עתה יש להוכיח שזו חלוקה המקיימת את הנדרש. 
+		\begin{itemize}
+			\item ידוע $I = A$ כלומר $\sof I = \sof A$
+			\item ידוע $f$ זיווג לכן $B \ni b \mapsto f(\la i, b\ra) \in C_i$ זיווג. מכאן ש־$\sof B = \sof {C_i}$
+			\item זו אכן חלוקה: 
+			\begin{itemize}
+				\item מתקיים ש־$C_i \neq \varnothing$ כי $\sof{C_i} = \sof B \neq 0$. 
+				\item מתקיים ש־$C_i = C_j \iff i = j$ (זרים בזוגות) כי $f$ חח''ע. 
+				\item מתקיים ש־$\bigcup C_i = B$ כי: 
+				\[ \bigcup_{i \in I} C_i = \bigcup_{i \in I}f[\{i\} \times B] = f \csb{\bigcup_{i \in I} \{i\}\times B} = f\csb{A \times B} = B \]
+			\end{itemize}
+		\end{itemize}
+	\end{proof}
+	
+	\subsection*{הערות נוספות}
+	\begin{itemize}
+		\item מי שרוצה ללמוד LyX או \en{\LaTeX}\ מוזמן לפנות אלי במייל או בטלפון. אגב, נטלי מעבירה בפקולטה הרצאות על ליך מדי פעם. אתם יכולים לשאול אותה מתי זה קורה ולהגיע לאחת מהן. 
+		\item שאלו אותי האם שכאשר רוצים להוכיח ש־$\sof A > \sof B$, האם אפשר להוכיח שלא קיימת פונקציה $f \co B \to A$ שהיא על, במקום להוכיח שקיימת $f \co B \to A$ חח''ע ושלא קיימת $F \co B \to A$ שהיא זיווג. התשובה היא כן: זה הקונטראפוזיטיב של משפט שהוכחתם בכיתה, בהינתן אקסיומת הבחירה. 
+		\begin{proof}
+			נניח שלא קיימת $f \co B \to A$ על. נניח בשלילה $\sof A \ge \sof B$, ואז מאקסיומת הבחירה הוכחתם בכיתה שקיימת $f \co B \to A$ על, וזו סתירה. 
+		\end{proof}
+		כאשר מבקשים מכם ''להוכיח באמצעות לכסון`` הכוונה היא להראות קיום פונקציה חח''ע ושלא קיים זיווג, ולא להראות שלא קיימת פונקציה על כמו שמתואר לעיל. 
+		\item המבחנים של בדידה 1 לפני 2024 (לא כולל) שנמצאים בדרייב די קלים, ולא הייתי מצפה שהמבחן שלכם יראה ככה. הסיבה לכך היא שלפני 2024, הקורס היה שילוב של בדידה 1 עם בדידה 2, ובאופן טבעי השאלות שנגעו בחומר של בדידה 1 היו יותר קלות. הייתי שוקל להתחיל ללמוד מהמבחנים של בדידה 1, ואחת שאתם מרגישים בנוח עם החומר לתרגל מהמבחנים של ''מבוא לתקב''צ`` (קורס של בית הספר למתמטיקה). שימו לב שבמבוא לתקב''צ יש חומר ש\textbf{לא} נמצא בבדידה 1, והוא: 
+		\begin{itemize}
+			\item שרשראות, הלמה של צורן
+			\item משפט הסדר הטוב
+			\item איזומורפיזם של יחסי סדר
+		\end{itemize}
+		באופן אישי הייתי ממליץ לכם ללמוד על הלמה של צורן ועל שרשראות לידע כללי (זה יועיל לכם בקורס מאוחרים יותר כמו טופולוגיה) אבל זה לא קריטי למבחן שלכם. 
+	\end{itemize}
+	
+	
+	
+	\ndoc
+\end{document}
