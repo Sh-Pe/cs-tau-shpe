@@ -117,6 +117,30 @@
 			\renewcommand{\cftsubsubsecleader} {\cftdotfill{\cftsecdotsep}}
 		% Theorems
 			\RequirePackage{xcolor}
+			\RequirePackage[most]{tcolorbox}
+
+			% Define a tcb wrapper for theorems etc.
+			\tcbset{
+				theoremstyle/.style={
+					enhanced,
+					breakable,
+					frame hidden,
+					borderline west={1.4pt}{-2.3pt}{#1},
+					colback=white,
+					left=2pt,
+					right=0pt,
+					top=-16pt,
+					bottom=-4.6pt,
+					sharp corners,
+					before skip=16pt,
+					after skip=6pt
+				}
+			}
+
+			% Negative indent for the first line
+			\newcommand\beforetheo{\!\!\!\!}
+
+			% Custom colors
 			\definecolor{myblue}      {rgb} {0.2,0.35,0.7}
 			\definecolor{mygreen}     {rgb} {0.15,0.65,0.35}
 			\definecolor{myyellow}    {rgb} {0.0,0.4,0.5}
@@ -124,7 +148,8 @@
 			\definecolor{myred}       {rgb} {0.05,0.1,0.75}
 			\definecolor{mymagenta}   {rgb} {0.1,0.7,0.1}
 
-			\newtheoremstyle{mystyle}% name of the style to be used
+			% Styles
+			\newtheoremstyle{mystyle}
 				{\parskip}
 				{}
 				{}
@@ -133,15 +158,6 @@
 				{.}
 				{ }
 				{\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}}
-
-			\theoremstyle{mystyle}
-			\newtheorem {Theorem}                  {\color{myblue}משפט}     [subsection]
-			\newtheorem {Claim}       [Theorem]    {\color{myblue}טענה}
-			\newtheorem {Lemma}       [Theorem]    {\color{myyellow}למה}
-			\newtheorem {Definition}               {\color{mygreen}הגדרה}   [subsection]
-			\newtheorem {Notion}      [Definition] {\color{myred}סימון}
-			\newtheorem {Collary}                  {\color{mymagenta}מסקנה} [subsection]
-			\newtheorem {Exercise}                 {\normalcolor תרגיל}     [subsection]
 
 			\newtheoremstyle{myremark}% name of the style to be used
 				{\parskip}
@@ -152,8 +168,29 @@
 				{.}
 				{ }
 				{\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}}
+
+
+			\theoremstyle{mystyle}
+			\newtheorem {Theorem}                  {\beforetheo\color{myblue}משפט}     [subsection]
+			\newtheorem {Claim}       [Theorem]    {\beforetheo\color{myblue}טענה}
+			\newtheorem {Lemma}       [Theorem]    {\beforetheo\color{myyellow}למה}
+			\newtheorem {Definition}               {\beforetheo\color{mygreen}הגדרה}   [subsection]
+			\newtheorem {Notion}      [Definition] {\beforetheo\color{myred}סימון}
+			\newtheorem {Collary}                  {\beforetheo\color{mymagenta}מסקנה} [subsection]
+			\newtheorem {Exercise}                 {\normalcolor תרגיל}     [subsection]
 			\theoremstyle{myremark}
-			\newtheorem {Remark}      {\color{mycyan}הערה}
+			\newtheorem {Remark}                   {\beforetheo\color{mycyan}הערה}
+
+			\newcommand\Notation{Notion} % old typo but I can't introduce breaking changes
+
+			% tcb wrapper
+			\tcolorboxenvironment{Theorem}    {theoremstyle=myblue}
+			\tcolorboxenvironment{Claim}      {theoremstyle=myblue}
+			\tcolorboxenvironment{Lemma}      {theoremstyle=myyellow}
+			\tcolorboxenvironment{Definition} {theoremstyle=mygreen}
+			\tcolorboxenvironment{Notion}     {theoremstyle=myred}
+			\tcolorboxenvironment{Collary}    {theoremstyle=mymagenta}
+			\tcolorboxenvironment{Remark}     {theoremstyle=mycyan}
 
 			\newcommand \cola  [1]    {\begin{Collary}#1\end{Collary}}
 			\newcommand \theo  [1]    {\begin{Theorem}#1\end{Theorem}}

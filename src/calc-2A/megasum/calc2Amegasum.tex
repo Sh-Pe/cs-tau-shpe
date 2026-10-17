@@ -58,6 +58,13 @@
 		\item \hfil $\bigcup A \cod \bigcup_{X \in A}X$
 	\end{itemize}
 	
+\subsection{חלקים שחסרים}
+	\begin{itemize}
+		\item הוכחה של פורייה למרחבי הילברט כלליים (ללא הסתמכות על פייר)
+		\item ניסוח והוכחת המשפטים היסודיים
+		\item ההרצאה הראשונה בנוגע להתכנסות במ''ש (3.1)
+		\item הוכחת פייר לכל גרעין טוב (אלגנטי יותר)
+	\end{itemize}
 %\subsection{רשימת נושאים שהוספתי לסיכום נוסף על החומר של הקורס}
 	
 	
@@ -72,14 +79,14 @@
 
 \section[אינטגרלי רימן]{\en{Riemann Integrals}}
 \subsection{מבוא לחלוקות: חישוב אורך עקומות}
-	\defi{בהינתן $a, b \in \R$ וכן $a < b$, \textit{קטע סגור} יוגדר להיות $[a, b] := \{c \mid a \le c \le b\}$}
+	\defi{בהינתן $a, b \in \R$ וכן $a < b$, \textit{קטע סגור} יוגדר להיות $[a, b] \cod \{c \mid a \le c \le b\}$}
 	\exe{בהינתן קטע סגור, ניתן לעבור עליו בקצב אחיד. רמז:
 	\[ \{c \mid a \le c \le b\} = \{(1 - \lg)a + \lg b \mid 0 \le \lg \le 1\} \]}
 	\defi{\textit{חֲלוּקָה} של קטע $[a, b]$ (באנגלית – partition) היא קבוצה של $n + 1$ נקודות $\Pi = \{x_0, x_1 \dots x_n\}$ כאשר $n \in \N$, כך ש־$a = x_0 < x_1 < \cdots < x_n = b$. }
 	מכאן, שכמות הנקודות בחלוקה היא {סופית}.
 	\defi{בהינתן חלוקה, \textit{תת־הקטע ה־$i$} של החלוקה הוא $[x_{i - 1}, x_i]$. }
 	\noti{{אורכו} של תת־הקטע ה־$i$ של החלוקה הוא $\Delta x_i = x_i - x_{i - 1}$. }
-	\defi{ממד העדינות של החלוקה הוא $\lg(\Pi) := \max_{i}\Delta x_i$. }
+	\defi{ממד העדינות של החלוקה הוא $\lg(\Pi) \cod \max_{i}\Delta x_i$. }
 	\defi{\textit{עידון} $\Pi$ של חלוקה $\Pi'$ כך ש־$\Pi' \supset \Pi$. }
 	\exe{אם $\Pi' \supset \Pi$ אז $\lg(\Pi') \le \lg(\Pi)$. }\prooftrivial
 	\exe{תארו במפורש חלוקה $\Pi$ של $[0, \sqrt 2]$ עם $\lg(\Pi) \le \frac{1}{3}$. }
@@ -97,7 +104,7 @@
 	''אני מדברת בהמון בטחון עצמי ואומרת טעויות. אתם צריכים לתפוס אותי`` $\sim$ יעל.
 
 	ב־$\R^{n}$ כל נקודה במישור מיוצגת באמצעות קורדינאטות. המרחק בין שתי נקודות $p, q$ מוגדר להיות הנורמה (האוקלידית, לא שזה משנה חדו''אית) של חיסורם. בפרט, ב־$\R^{2}$, בהינתן $p = (x_p, y_p)$ וכן $q = (x_q, y_q)$, נקבל:
-	\[ d(p, q) := \sof{o - q} := \sqrt{(x_p - x_q)^{2} + (y_p - y_q)^{2}} \]
+	\[ d(p, q) \cod \sof{o - q} \cod \sqrt{(x_p - x_q)^{2} + (y_p - y_q)^{2}} \]
 	\exe{\footnote{רמז: להוכיח את א''ש המשולש בעבור הנורמה האוקלידית באמצעות קושי שוורץ. בעבור המטריקה המושרה מנורמת $L_p$ (מי שיודע מה זה) אפשר להשתמש בא''ש מינקובסקי במקום, שראינו בחדו''א 1א. }
 	\[ \sof{x_p - x_q} + \sof{y_p - y_q} \ge \sof{p - q} \ge \begin{cases}
 		\sof{x_p - x_q} \\
@@ -176,7 +183,7 @@
 		\end{enumerate}
 		פרטים יעלו למודל.
 	\end{proof}
-	\defi{$\pi := L(\cg)$ כאשר $\cg$ העקומה המוגדרת לעיל. }
+	\defi{$\pi \cod L(\cg)$ כאשר $\cg$ העקומה המוגדרת לעיל. }
 
 \subsection{הגדרת אינטגרל רימן}
 \subsubsection{סכומי רימן}
@@ -195,7 +202,7 @@
 
 	\defi{\textit{חלוקה מתויגת} (באנגלית tagged partition, ברשימות ''חלוקה+נקודות מתאימות``) של הקטע $[a, b]$
 		היא זוג $(\Pi, \{t_i\})$ כאשר $\Pi\co a = x_0 < x_1 < \cdots < x_n = b$ חלוקה של הקטע $[a, b]$, וכן תיוג $t_i \in [x_{i - 1}, x_i]$ לכל אחד מ־$i \in [n]$ קטעי החלוקה. אז \textit{סכום רימן} של הפונקציה $f \co [a, b] \to \R$ ביחס לחלוקה המתויגת $\{t_i\}_{i = 1}^{n}$ הוא:
-		\[ S(f, \pi, \{t_i\}) := \sumnio f(t_i)\Delta x_i \]}
+		\[ S(f, \pi, \{t_i\}) \cod \sumnio f(t_i)\Delta x_i \]}
 
 	\textbf{דוגמה. }\fig{\begin{pspicture}(-0.5,-1.5)(10,1.5)
 			\psaxes[ticks=none,labels=none]{->}(0,0)(-1,-1.5)(10,1.5)
@@ -333,7 +340,7 @@
 \subsubsection{חסימות ואינטגרביליות}
 	אנחנו קצת בבעיה. כדי להראות שפונקציה היא אינטגרבילית, היינו צריכים ''להחזיק $I$ ביד`` ולדעת מה הערך של האינטגרל. עתה נמצא ל''מסע`` כדי למצוא תנאים הכרחיים, מספיקים, ושקולים להיות פונקציה אינטגרבילית, בלי לדעת מה הוא ה־$I$.
 
-	\noti{\hfil $R([a, b]) := \{f \co [a, b] \to \R \mid \text{אינטגרבילית} f\}$}
+	\noti{\hfil $R([a, b]) \cod \{f \co [a, b] \to \R \mid \text{אינטגרבילית} f\}$}
 	לשימושנו, \textbf{אינטגרבילית=אינטגרבילית רימן}. יש מושגי אינטגרציה אחרים (כמו אינטגרל לבג) שלא רלוונטיים בעבורנו. 
 	
 	\renewcommand{\footrule}{\rule{\linewidth-26pt}{0.25pt}\vspace{-5pt}}
@@ -370,13 +377,13 @@
 \subsubsection{הגדרות בסיסיות}
 	אם רוצים להמנע מבחירת תיוג, בהינתן חלוקה, אפשר לקחת את האינפימום והסופרמום של הפונקציה על אותו קטע חלוקה. גובה המלבנים שיבחר על ידי התיוגים יהיו חסומים ע''י זה. פורמלית:
 	\defi{תהי $f \co [a, b] \to \R$ חסומה. תהי $\Pi = \{x_i\}_{i = 1}^{n}$ חלוקה של $[a, b]$, כלומר $a = x_0 < x_1 < \cdots < x_n = b$. לכל $i$, נגדיר:
-	\[ M_i := \sup_{\mathclap{[x_{i - 1}, x_i]}} f \quad\quad m_i := \inf_{\mathclap{[x{i -1}, x_i]}} f \]
+	\[ M_i \cod \sup_{\mathclap{[x_{i - 1}, x_i]}} f \quad\quad m_i \cod \inf_{\mathclap{[x{i -1}, x_i]}} f \]
 	(שימו לב שזה מוגדר רק בגלל שהנחנו $f$ חסומה).
 	}
 
 	\defi{בהינתן ההנחות מההגדרה הקודמת, נגדיר את \textit{סכום דרבו העליון} ו\textit{סכום דרבו התחתון} להיות:
 	\begin{align*}
-		\ol{\Sigma}(f, \Pi) = \sum_{i = 1}^{n} M_i\Delta x_i && \dard(f, \Pi) := \sum_{i = 1}^{n}m_i \Delta x_i
+		\ol{\Sigma}(f, \Pi) = \sum_{i = 1}^{n} M_i\Delta x_i && \dard(f, \Pi) \cod \sum_{i = 1}^{n}m_i \Delta x_i
 	\end{align*}}
 
 	\fig{\begin{pspicture}(-0.5,-3)(10,3)
@@ -403,7 +410,7 @@
 	\begin{proof}
 		נגדיר $A_i = \{f(t_i) \mid t_i \in [x_{i - 1}, x_i]\}$ (כלומר $A_i = f([x_{i - 1}, x_i])$). אז:
 		\begin{multline*}
-			\Sigma A := \ccb{S(f, \Pi, \{t_i\}) \mid \Pi \ \text{תיוג של} \ \{t_i\}} = \ccb{\sum_{i = 1}^{n}f(t_i)\Delta x_i \mid \forall i \co t_i \in [x_{i - 1}, x_i} = \ccb{\sumnio a_i \Delta x_i \mid a_i \in A_i} \\
+			\Sigma A \cod \ccb{S(f, \Pi, \{t_i\}) \mid \Pi \ \text{תיוג של} \ \{t_i\}} = \ccb{\sum_{i = 1}^{n}f(t_i)\Delta x_i \mid \forall i \co t_i \in [x_{i - 1}, x_i} = \ccb{\sumnio a_i \Delta x_i \mid a_i \in A_i} \\
 			= (\Delta x_1)A_1 + \cdots + (\Delta x_n) A_n
 		\end{multline*}
 		המושגים של ''לחבר קבוצות`` ו''להכפיל קבוצה במספר`` נתונים בתרגיל הפתיחה, שם נמצא עיקר התוכן. ברשימות של שירי זה כתוב יותר מפורש. \\
@@ -431,7 +438,7 @@
 		לכל שתי חלוקות $\Pi_1, \Pi_2$ של $[a, b]$, תמיד $\dard(f, \Pi_1) \le \daru(f, \Pi_2)$.
 	\end{Collary}
 	\begin{proof}
-		האיחוד $\Pi_3 := \Pi_1 \cup \Pi_2$ הוא עידון של $\Pi_1$ ושל $\Pi_2$ (עידון משותף). מהמשפט הקודם:
+		האיחוד $\Pi_3 \cod \Pi_1 \cup \Pi_2$ הוא עידון של $\Pi_1$ ושל $\Pi_2$ (עידון משותף). מהמשפט הקודם:
 		\[ \dard(f, \Pi_1) \le \dard(f, \Pi_3) \le \daru(f, \Pi_3) \le \daru(f, \Pi_2) \]
 		כנדרש.
 	\end{proof}
@@ -439,8 +446,8 @@
 
 	\defi{תהי $f \co [a, b] \to \R$ חסומה. נגדיר:
 	\begin{itemize}
-		\item אינטגרל דרבו עליון: \hfill $\displaystyle \Idaru(f) := \inf \ccb{\daru(f, \Pi) \mid [a, b] \ \text{חלוקה של} \ \Pi}$
-		\item אינטגרל דרבו תחתון: \hfill $\displaystyle \Idard(f) := \sup \ccb{\dard(f, \Pi) \mid [a, b] \ \text{חלוקה של} \ \Pi}$
+		\item אינטגרל דרבו עליון: \hfill $\displaystyle \Idaru(f) \cod \inf \ccb{\daru(f, \Pi) \mid [a, b] \ \text{חלוקה של} \ \Pi}$
+		\item אינטגרל דרבו תחתון: \hfill $\displaystyle \Idard(f) \cod \sup \ccb{\dard(f, \Pi) \mid [a, b] \ \text{חלוקה של} \ \Pi}$
 	\end{itemize}}
 
 	\defi{$f$ \textit{אינטגרבילית דרבו} אם $\Idard(f) = \Idaru(f)$. אם זה קורה, $I(f) = \Idard(f) = \Idaru(f)$ נקרא \textit{אינטגרל דרבו}. }
@@ -509,7 +516,7 @@
 	נסכם: הוכחנו שיעור שעבר $1 \to 2$, נתנו כתרגיל $2 \to 3$, ועתה הראינו $3 \to 4$. עתה נוכיח $4 \to 1$. מההנחה של 4 יש לנו אינטגרל דרבו, ונוכל להראות שהוא שווה לאינטגרל רימן.
 
 	\begin{proof}[הוכחה ש־$4 \to 2$]
-		נסמן $\Idard(f) = \Idaru(f) =: I$. אזי לכל חלוקה $\Pi$ של $[a, b]$ מתקיים:
+		נסמן $\Idard(f) = \Idaru(f) \doc I$. אזי לכל חלוקה $\Pi$ של $[a, b]$ מתקיים:
 		\[ (\mathrm{I}) \quad \dard(f, \Pi) \le I \le \daru(f, \Pi) \]
 		כמו כן, לכל חלוקה מתויגת של הקטע:
 		\[ (\mathrm{II})\quad \dard(f, \Pi) \le S(f, \Pi, \{t_i\}) \le \daru(f, \Pi) \]
@@ -518,14 +525,14 @@
 	\end{proof}
 	נותרה לנו שקילות אחת להראות. לשם כך, נצטרך להגדיר כמה דברים.
 
-	\defi{בהינתן $f \co J \to \R$ חסומה, \textit{תנודה} של $f$ ב־$J$ היא $\wg(f, J) := \sup_{J}f - \inf_J f$}
+	\defi{בהינתן $f \co J \to \R$ חסומה, \textit{תנודה} של $f$ ב־$J$ היא $\wg(f, J) \cod \sup_{J}f - \inf_J f$}
 	\exe{הוכיחו כי
 		\[ \wg(f) = \sup_{\mathclap{x, y \in J}}(f(x) - f(y)) = \sup\{\sof{f(x) - f(y) \mid x, y \in J}\} \]}
 
 	\exe{עבור $J$ קטע פתוח, $x_0 \in J$, אז $f$ רציפה ב־$x_0$ אמ''מ $\wg(f, \; (x_0 - \dg, x_0 + \dg)) \rrr{\delta \to 0} 0$. }
 
 	\defi{בהינתן $f \co [a, b] \to \R$ חסומה, ו־$\Pi$ חלוקה של $[a, b]$ נגדיר את \textit{תנודת דרבו של $f$ ביחס ל־$\Pi$} (או \textit{התנודה הכוללת של $f$ ביחס ל־$\Pi$}):
-	\[ \wg(f, \Pi) := \sumnio \wg(f, [x_{i - 1}, x_i])\Delta x_i \]}
+	\[ \wg(f, \Pi) \cod \sumnio \wg(f, [x_{i - 1}, x_i])\Delta x_i \]}
 
 	\exe{הוכיחו כי:
 	\[ \wg(f, \Pi) = \daru(f, \Pi) - \dard(f, \Pi) \]}
@@ -661,15 +668,16 @@
 	\end{cases} \]
 	נבחין שהיא אינטגרבילית ממשפט ''כל הקטעים הימניים`` מכיוון שבכל $[\eg, 1]$ ($\eg \in (0, 1)$) היא רציפה, ולכן אינטגרבילית.
 
-	\clm{$f \co [a, b] \to \R$ חסומה, ו־$a = x_0 < x_1 < \cdots < x_n = b$ חלוקה. נניח שלכל $i$ מתקיים ש־$f|_{(x_{i - 1}, x_i)}$ מונוטונית או רציפה. אז $f$ אינטגרבילית. \begin{proof}
-			נקבע $1 \le k \le n$. לכל $x < y < z < x_k$. אז $f$ רציפה או מונוטונית ב־$[y, z]$ ולכן אינטרגבילית.
-
-			''כל הקטעים השמאליים`` $\impliedby$ $f$ אינטגרבילית ב־$[y, x_k]$.
-
-			''כל הקטעים הימניים`` $\impliedby$ $f$ אינטגרבילית ב־$[x_{k - 1}, x_k]$
-
-			''איחוד קטעים זרים`` $\impliedby$ $f$ אינטגרבילית על $[a, b]$
-	\end{proof}}
+	\clm{$f \co [a, b] \to \R$ חסומה, ו־$a = x_0 < x_1 < \cdots < x_n = b$ חלוקה. נניח שלכל $i$ מתקיים ש־$f|_{(x_{i - 1}, x_i)}$ מונוטונית או רציפה. אז $f$ אינטגרבילית. }
+	\begin{proof}
+		נקבע $1 \le k \le n$. לכל $x < y < z < x_k$. אז $f$ רציפה או מונוטונית ב־$[y, z]$ ולכן אינטרגבילית.
+		
+		''כל הקטעים השמאליים`` $\impliedby$ $f$ אינטגרבילית ב־$[y, x_k]$.
+		
+		''כל הקטעים הימניים`` $\impliedby$ $f$ אינטגרבילית ב־$[x_{k - 1}, x_k]$
+		
+		''איחוד קטעים זרים`` $\impliedby$ $f$ אינטגרבילית על $[a, b]$
+	\end{proof}
 
 
 	\begin{Exercise}
@@ -695,7 +703,7 @@
 	תזכורת! התנודה של פונקציה חסומה על קטע מוגדרת להיות:
 	\[ \mathrm{osc}(f, J) = \wg(f, J) = \sup_J f - \inf_J f = \sup_{\mathclap{x, y \in J}} \sof{f(x) - f(y)} \]
 	ותנודת דרבו בהינתן $f$ חסומה וחלוקה $\Pi = \{x_i\}$ של $[a, b]$, אז:
-	\[ \wg(f, \Pi) := \sum_{i = 1}^{n}\wg(f, [x_{i - 1}, x_i]) \cdot \Delta x_i \]
+	\[ \wg(f, \Pi) \cod \sum_{i = 1}^{n}\wg(f, [x_{i - 1}, x_i]) \cdot \Delta x_i \]
 	\begin{Collary}[מסקנה מהתרגיל]
 		משום שתנודות מהגדרתן הן אי־שליליות, נבחין בססקווי־לינארית של אוסילציית דרבו:
 		\begin{enumerate}
@@ -752,7 +760,7 @@
 
 	\defi{נבצע את ההגדרות הבאות בהינתן $a < b$:
 		\begin{align*}
-			\int^{a}_a\dequad \  f:= 0 && \int^{a}_b\dequad \  f := -\int^{b}_a\dequad \  f
+			\int^{a}_a\dequad \  f\cod 0 && \int^{a}_b\dequad \  f \cod -\int^{b}_a\dequad \  f
 	\end{align*}}
 	\theo{נתון קטע $J$ ופונקציה $f \co J \to \R$. נניח שלכל קטע סגור וחסום $I \subset J$ מתקיים $f|_I = I \to \R$. אז לכל $a, b, c \in \R$, מתקיים:
 	\[ \int^c_a \dequad \  f = \int^b_a \dequad \ f + \int^c_b \dequad \ f \]}
@@ -815,7 +823,7 @@
 	ה''שיא של השיאים`` של החשבון הדיפרנציאלי והאינטגרלי, הם המשפטים הייסודיים שנגיע אליהם שיעור הבא. הם נותנים קשר בין אינטגרל לגזירות. לפני כן, נרצה להראות קשר בין אינטגרל לרציפות.
 	\begin{Theorem}[רציפות האינטגרל ביחס לגבולות האינטגרציה]
 		יהי $I \in [\zeta, \xi]$ (בחיי שלא אני זה שבחר את הסימון הזה וזו החלטה של המרצה) ותהי $f \co I \to \R$ אינטגרבילית. נקבע $\ag \in I$. נגדיר $F \co I \to \R$ ע''י:
-		\[ F(x) := \int^x_a \dequad \ f(t)\dt \]
+		\[ F(x) \cod \int^x_a \dequad \ f(t)\dt \]
 		אז $F$ רציפה.
 	\end{Theorem}
 	נכון לחשוב על $F$ כעל ''פונקציה צוברת שטח``.
@@ -841,7 +849,7 @@
 		יהיו $m = \max_{[a, b]} f$ ו־$m = \min_{[a, b]} f$. אז $m \le f \le M$. נבחין ש־:
 		\begin{alignat*}{9}
 			m(b - a) &\le \int^{b}_a \dequad \ d(t) \dt &&\le M(b - a) \\
-			\implies m &\le \underbrace{\frac{1}{b - a} \int^{b}_a \dequad \ f(t) \dt}_{:= \ag} &&\le M
+			\implies m &\le \underbrace{\frac{1}{b - a} \int^{b}_a \dequad \ f(t) \dt}_{\cod \ag} &&\le M
 		\end{alignat*}
 		וממשפט ערך הביניים קיימת $x_0$ עם $f(x_0) = \ag$, כנדרש.
 	\end{proof}
@@ -859,7 +867,7 @@
 		נסמן $M = \max_{[a, b]} f, m = \min_{[a, b]} f$. משום ש־$m \le f \le M$ נקבל ש־$mg \le fg \le Mg$. נאסכם ונקבל:
 		\[ m\int^{b}_a \dequad \ g \le \int^{b}_a \dequad \ fg \le M\! \int^{b}_a \dequad \ g \]
 		לכאורה, נרצה לחלק באינטגרל של $g$. אך אסור לחלק ב־$0$. אם $\int^b_a = 0$, אז אגפים שמאל וימין הינם $0$, וכן $\int^b_a fg = 0$, וסיימנו. אחרת, $\int^b_a g > 0$, ולכן נוכל לנרמל:
-		\[ m \le \underbrace{\frac{\int^b_a fg}{\int^b_a g}}_{:= \ag} \le M \]
+		\[ m \le \underbrace{\frac{\int^b_a fg}{\int^b_a g}}_{\cod \ag} \le M \]
 		וממשפט ערך הביניים קיים $x_0$ עם $f(x_0) = \ag$ כנדרש.
 	\end{proof}
 
@@ -901,11 +909,11 @@
 	\end{proof}
 	\rmark{הסימון $C^{i}(A)$ מסמן את קבוצת הפונקציות הגזירות ברציפות $i$ פעמים. $C^{\infty}(A)$ מסמן פונקציה גזירה אינסוף פעמיים בכל $A$, ו־$C(A)$ את קבוצת הפונקציות הרציפות. }
 
-	\defi{''עצרת בדילוגים`` (אנ' double factorial): עבור $k \in \Neven$ נגדיר $k!! = 2 \cdot 4 \cdots (k - 2) \cdot k$, בעבור $k \in \Nodd$ נגדיר $k!! := 1 \cdot 3 \cdot 5 \cdots (k- 2) \cdot k$, ועבור $k = -1, 0$ נגדיר $k!! = 0$. }
+	\defi{''עצרת בדילוגים`` (אנ' double factorial): עבור $k \in \Neven$ נגדיר $k!! = 2 \cdot 4 \cdots (k - 2) \cdot k$, בעבור $k \in \Nodd$ נגדיר $k!! \cod 1 \cdot 3 \cdot 5 \cdots (k- 2) \cdot k$, ועבור $k = -1, 0$ נגדיר $k!! = 0$. }
 
 
 	\begin{Claim}
-		\[ I_m := \int^{2\pi}_0 \sin^{m}x \dx = \begin{cases}
+		\[ I_m \cod \int^{2\pi}_0 \sin^{m}x \dx = \begin{cases}
 			\frac{\pi}{2} \cdot \frac{(m - 1)!!}{m!!} & m \in \Neven \\
 			\frac{(m - 1)!!}{m!! } & m \in \Nodd
 		\end{cases} \]
@@ -951,20 +959,21 @@
 	באינטגרל רימן רצינו שהפונקציה תהיה חסומה על קטע סגור. אינטגרל לא אמיתי מכליל את הקונספט. אנ' improper integral.
 	
 \subsubsection{הגדרות}
+	נגדיר את משוג האינטגרל הלא אמיתי. לעיתים נטפל רק במקרה אחד (לדוגמה, קטע חצי־פתוח מצד ימין) אך ההכללה ברורה בעבור כל המקרים. 
 	\defi{נתונה $f \co [a, \infty) \to \R$ ונתון $I \in \R$. נניח $f$ אינטגרבילית רימן על כל תת־קטע סגור.
 	נאמר ש''האינטגרל הלא אמיתי של $f$ מתכנס ל־$I$, ונרשום $\int^{\inft}_a f(x)\dx = I$, אם:
 	\[ \lim_{b \to \infty} \int^{b}_a \Is f(x) \dx = I \]
 	}
 	\exe{רשמו הגדרה דומה בעבור $f \co (-\infty, 0] \to \R$, בעבור פונקציה $f \co (0, 20] \to \R$, ובעבור פונקציה $f \co [-5, 5) \to \R$. }
 
-	\exe{נניח $g \co [-5, 5] \to \R$ אינטגרבילית רימן. תהי $f:= g|_{[-5, 5)} \co [-5, 5) \to \R$. אז האינטגרל הלא אמיתי $\int^{5}_{-5}f(x)\dx$ קיים ושווה לאינטגרל רימן $\int^{5}_{-5}g(x)\dx$. }
+	\exe{נניח $g \co [-5, 5] \to \R$ אינטגרבילית רימן. תהי $f\cod g|_{[-5, 5)} \co [-5, 5) \to \R$. אז האינטגרל הלא אמיתי $\int^{5}_{-5}f(x)\dx$ קיים ושווה לאינטגרל רימן $\int^{5}_{-5}g(x)\dx$. }
 	רמז: משפט כל הקטעים השמאליים.
 
 
 	\defi{נתונה $f \co [a, \inft)$ אינטגרבילית רימן על כל תת־קטע סופי. נאמר שהאינטגרל הלא אמיתי שלה \textit{מתבדר לאינסוף} ונרשום $\int^{\infty}_a f(x) \dx = \infty$ אם:
 	\[ \lim_{b \to \infty} \int^{b}_a \Is f(x) \dx = \infty \]}
 	\defi{נתונה $f \co \R \to \R$ ונתון $I \in \R$. נאמר ש\textit{האינטגרל הלא אמיתי של $f$ מתכנס ל־$I$} אם $\int^{\infty}_0 f(x) \dx, \int^{0}_{-\infty}f(x)\dx$ מתכנסים, ומתקיים:
-	\[ \int^{\infty}_{-\infty}\dequad\! f(x)\dx := \int^{0}_{-\infty}\dequad\! f(x)\dx + \int^{\infty}_0 \dequad f(x)\dx = I \]}
+	\[ \int^{\infty}_{-\infty}\dequad\! f(x)\dx \cod \int^{0}_{-\infty}\dequad\! f(x)\dx + \int^{\infty}_0 \dequad f(x)\dx = I \]}
 	\exe{רשמו הגדרה דומה עבור $f \co (0,\infty) \to \R$. }
 	התרגיל לעיל יחייב לבחור איזשהי נקודת ביניים $a \in (0, \infty)$. כדאי להראות שלא משנה איפה שוברים את הקטע, הן השאלה האם הפונקציה תתכנס, והן השאלה לגבי ערך ההתכנסות, ישאר זהה.
 
@@ -993,7 +1002,7 @@
 	\[ \int^{1}_0 \Is x^{\ag}\dx = \lim_{\eg \to 0^{+}} \int^{1}_{\eg} \Is x^{\ag} \dx \]
 
 	\textbf{דוגמה: }נגדיר
-	\[ I_n := \int^{\infty}_0 \dequad t^{n}e^{-t}\dt = \lim_{b \to \infty} \int^{b}_0  \overbrace{t^{n}}^{\mathclap{f(t) = t^{n}, f'(t) = nt^{n -1}}}\underbrace{e^{-t}}_{\mathclap{g'(t) = e^{-t}, g(t) = -e^{t}}}\dt = \lim_{b \to \infty} \cl{-t^{n}e^{-t}\Big\vert^{b}_0 - \int^{b}_0 nt^{n - 1}(-e^{t})\dt} = 0 + nI_{n - 1} \]
+	\[ I_n \cod \int^{\infty}_0 \dequad t^{n}e^{-t}\dt = \lim_{b \to \infty} \int^{b}_0  \overbrace{t^{n}}^{\mathclap{f(t) = t^{n}, f'(t) = nt^{n -1}}}\underbrace{e^{-t}}_{\mathclap{g'(t) = e^{-t}, g(t) = -e^{t}}}\dt = \lim_{b \to \infty} \cl{-t^{n}e^{-t}\Big\vert^{b}_0 - \int^{b}_0 nt^{n - 1}(-e^{t})\dt} = 0 + nI_{n - 1} \]
 	חישוב ישיר מראה ש־$I_0 = 1$, ובאינדוקציה נקבל $I_n = n!$. למעשה, קיבלנו ''החלקה`` של עצרת. זה מגדיר את פונקציית גאמא: $\Gamma(r) = I_r$ כאשר $I_r$ האינטגרל לעיל.
 
 \subsubsection{תכונות של אינטגרל לא אמיתי}
@@ -1045,7 +1054,7 @@
 	\end{Claim}
 	\begin{proof}[רעיון ההוכחה]
 		לכל $\ag < \bg <\eta$, ידוע ש־: (משינוי משתנה לאינטגרל רימן)
-		\[ G(\beta) := \int^{\bg}_\ag\Is f(\phi(t))\phi'(t) \dt = \int^{b}_a \Is f(x)\dx =: F(b) \]
+		\[ G(\beta) \cod \int^{\bg}_\ag\Is f(\phi(t))\phi'(t) \dt = \int^{b}_a \Is f(x)\dx \doc F(b) \]
 		כאשר $b = \phi(\bg)$. נבחין שהפונקציות שלנו:
 		\[ G \co [\ag, \eta) \to \R \quad F \co [a, \infty) \to \R \quad \phi \co [\ag, \eta) \to [a, \infty) \]
 		ולכן נוכל לזרוק גבולות ולקבל:
@@ -1068,7 +1077,7 @@
 			\item נתונה $f \co [1, \infty) \to \R$ אינטגרבילית על כל תת־קטע סגור. נגדיר $g \co (0, 1] \to \R$ ע''י $g(t) = f\cl{\frac{1}{t}}$. אז:
 			\[ \int^{\infty}_1\dequad f(x)\dx = \int^{1}_0 \frac{1}{t^{2}}g(t) \dt \]
 			(שימו לב לקשר לשאלה הקודמת)
-			\item נתונה $g \co I \to \R$ אינטגרבילית רימן, ו־$\int^{1}_0 g(x) \dx = I$. נגדיר $f:= g|_{(0, 1]}$. הוכיחו שהאינטגרל הלא אמיתי $\int^{1}_0f(x)\dx$ קיים ושווה לאינטגרל רימן $\int^{1}_0 g(x)\dx$ (עשינו דברים דומים שבוע שעבר).
+			\item נתונה $g \co I \to \R$ אינטגרבילית רימן, ו־$\int^{1}_0 g(x) \dx = I$. נגדיר $f\cod g|_{(0, 1]}$. הוכיחו שהאינטגרל הלא אמיתי $\int^{1}_0f(x)\dx$ קיים ושווה לאינטגרל רימן $\int^{1}_0 g(x)\dx$ (עשינו דברים דומים שבוע שעבר).
 		\end{enumerate}
 	\end{Exercise}
 
@@ -1106,7 +1115,7 @@
 
 	\defi{נתונה $g \co \hopen \to \R$. אז:
 	\begin{gather*}
-		\limsup_{b \to \wg^{-}} g(x) = \ol{\lim_{x \to \wg^{-}}} g(x) := \bto \underbrace{\sup_{[b, \wg)} g(b)}_{H(b)} = \inf_{b \to \hopen} \sup_{\hopen} g
+		\limsup_{b \to \wg^{-}} g(x) = \ol{\lim_{x \to \wg^{-}}} g(x) \cod \bto \underbrace{\sup_{[b, \wg)} g(b)}_{H(b)} = \inf_{b \to \hopen} \sup_{\hopen} g
 	\end{gather*}
 	ובאופן דומה לגבול תחתון. }
 
@@ -1182,7 +1191,7 @@
 
 	\subsection*{''אם תתעסקו בזה תוכלו להרוויח מיליון דולר``}
 	\textbf{דוגמה: }פונקציית הזטא של רימן (על הממשיים. המיליון דולר של על המרוכבים). עבור $s > 1$ נגדיר:
-	\[ \zeta(s) := \sum_{i = 1}^{\infty}\frac{1}{n^{s}} \]
+	\[ \zeta(s) \cod \sum_{i = 1}^{\infty}\frac{1}{n^{s}} \]
 	כדי להראות שהפונקציה מוגדרת היטב, יש להראות שהטור לעיל מתכנס. את זה אנחנו יודעים ממבחן ההשוואה, כי הראנו ש־$\int^{\infty}_1 \frac{\dx}{x^{s}}$ עבור $s > 1$.
 
 	יש לפונקציית הזטא תכונות נחמדות מאוד. לדוגמה:
@@ -1267,7 +1276,7 @@
 	\defi{קבוצה $U \subset \R$ נקראת \textit{קומפקטית} אמ''מ לכל כיסוי פתוח, קיים תת־כיסוי סופי. }
 
 	\begin{Theorem}[הלמה של היינה־בורל]
-		נתון קטע סגור $[a, b]$. יהי אוסף $\{U_\ag\}$ (אוסף לאו דווקא בן מניה. פורמלית, אוסף הוא פונקציה $f \co \Lg \to \ps(\R)$ כאשר $U_\ag := f(\ag)$ עבור $\ag \in \Lg$) של קבוצות פתוחות $U_\ag \subset \R$, שמכסות אותו כלומר:
+		נתון קטע סגור $[a, b]$. יהי אוסף $\{U_\ag\}$ (אוסף לאו דווקא בן מניה. פורמלית, אוסף הוא פונקציה $f \co \Lg \to \ps(\R)$ כאשר $U_\ag \cod f(\ag)$ עבור $\ag \in \Lg$) של קבוצות פתוחות $U_\ag \subset \R$, שמכסות אותו כלומר:
 		\[ [a, b] \subset \bigcup_\ag U_\ag \]
 		אז קיים תת־אוסף סופי $U_{\ag_1} \dots U_{\ag_n}$ שמכסה אותו, כלומר $[a, b] \subset U_{\ag_1} \cup \cdots \cup U_{\ag_n}$.
 	\end{Theorem}
@@ -1276,7 +1285,7 @@
 
 	\begin{proof}[הוכחת הלמה של היינה־בורל]
 		נוכיח בדרך השלילה. נוכיח בשלילה ש\textit{אין} תת־אוסף סופי של $\{U_\ag\}$ שעדיין מכסה את הקטע הסגור $[a, b]$. אז לאחד מבין הקטעים $[a, \frac{a + b}{2}]$ או $[\frac{a + b}{2}, b]$ יש את אותה התכונה (אין לו תת־אוסף סופי של האוסף הנתון, שמכסה אותו). אחרת, היינו יכולים לאחד שני תת־אוסיף סופיים שמכסים את קטע בנפרד והיינו מגיעים לסתירה. נמשיך למצוא קטעים כאלו ברקורסיה (''אריה במדבר``) עד לכדי הגדרת קטעים $[a_n, b_n]$. נקבל:
-		\[ [a, b] =: [a_0, b_0] \supset [a_1, b_1] \supset [a_2, b_2] \supset \cdots \]
+		\[ [a, b] \doc [a_0, b_0] \supset [a_1, b_1] \supset [a_2, b_2] \supset \cdots \]
 		כך שלכל $n$ ל־$[a_n, b_n]$ אין תת־אוסף סופי של $\{U_\ag\}$ שמכסה אותה. עוד נבחין ש־$b_n - a_n = \frac{b- a}{2^{n}}$, כלומר אורכי הקטעים שואפים לאפס. מהלמה של קנטור, החיתוך לא ריק וקיים בו איבר אחד, כלומר:,
 		\[ \bigcup_{n = 1}^{\infty}[a_n, b_n] = \{x_0\} \]
 		בפרט, $x_0 \in [a, b]$, לכן קיים $\ag_0 \in \Lg$ כך ש־$x_0 \in U_{\ag_0}$. יהי $\dg > 0$ כך ש־$(x_0 - \dg, x_0 + \dg) \subset U_{\ag_0}$. משום שאורכי הקטעים בסדרת הקטעים לעיל שאופים לאפס, קיים $n$ מספיק קטן כך ש־$\frac{b - a}{2^{n}} < \dg$. ואז $x_0 \in [a_n, b_n] \subset (x_0 - \dg, x_0 + \dg)$ וזו סתירה, כי מצאנו תת־כיסוי סופי (בגודל $1$) שמכסה את $[a_n, b_n]$.
@@ -1314,7 +1323,7 @@
 	\end{Theorem}
 	\rmark{לא נוכיח זאת, אבל ב+ג גוררים שלכל $x$ (בנפרד), $\sof{f_n(x) - f(x)}$ סדרה מונוטונית יורדת. זה החלק החשוב. }
 	\begin{proof}
-		יהי $\eg > 0$ כלשהו. יהי $x \in [a, b]$. מ(ב) קיים $n_x$ כך ש־$\sof{f_{n_x}(x) - f(x)} < \eg$. מ(א) מיידית $f_{n_x}$ ו־$f$ רציפות. לכן קיים $\dg > 0$ כך שלכל $y \in [a, b]$ אם $\sof{y - x}  < \dg_x$ אז $\sof{f_{n_x}(y) - f(y)} < \eg$. נסמן $\UU_x := (x -\dg_x, x + \dg_x)$. אז $\UU_x$ פתוחה, $x \in \UU_x$, ואם $y \in \UU_x \cap [a, b]$ אז $\sof{f_{n_x}(y) - f(y)} < \eg$.
+		יהי $\eg > 0$ כלשהו. יהי $x \in [a, b]$. מ(ב) קיים $n_x$ כך ש־$\sof{f_{n_x}(x) - f(x)} < \eg$. מ(א) מיידית $f_{n_x}$ ו־$f$ רציפות. לכן קיים $\dg > 0$ כך שלכל $y \in [a, b]$ אם $\sof{y - x}  < \dg_x$ אז $\sof{f_{n_x}(y) - f(y)} < \eg$. נסמן $\UU_x \cod (x -\dg_x, x + \dg_x)$. אז $\UU_x$ פתוחה, $x \in \UU_x$, ואם $y \in \UU_x \cap [a, b]$ אז $\sof{f_{n_x}(y) - f(y)} < \eg$.
 
 		נבחין שהאוסף $\{\UU_x\}_{x \in [a, b]}$ הוא אוסף של קבוצות פתוחות שמכסה את $[a, b]$. ואז היינה בורל יפיל לנו מהשמיים תת־כיסוי סופי, כלומר קיימים $x_1 \dots x_m \in [a, b]$ כך ש־$\UU_{x_i} \subset \bigcup_{i = 1}^{m}[a, b]$. תהי $N = \max\{n_{x_1} \dots n_{x_m}\}$. תהי $n > N$, ותהי $y \in [a, b]$. יהי $1 \le i \le m$ כך ש־$y \in \UU_{x_i}$. אז מההערה שקדמה להוכחה (שמשתמשת במונוטוניות):
 		\[ \sof{f_n(y) - f(y)} \le \sof{f_{n_{x_i}}(y) - f(y)} < \eg \]
@@ -1325,7 +1334,7 @@
 		לפונקציות חסומות $f, \hat f \co J \to \R$, מתקיים: (תנודה רגילה, לא דרבו)
 		\[ \sof{\wg(f, J) - \wg(\hat f, J)} \le 2 \sup_J \sof{f - \hat f} \]
 	\end{Lemma}\begin{proof}
-		נסמן $B := \sup_J\sof{f - \hat f}$. לכל $y \in J$ מתקיים $\hat f(y) \le f(y) + B \le \sup_J f + B$. אפשר לקחת סופרמום על אגף שמאל של הא''ש שקיבלנו ולקבל $\sup_J \hat f \le \sup_J f + B$. מאותו השיקול נקבל מהצד השני $\sup_J f \le \sup_J \hat f + B$. מכאן נובע $\sof{\sup_J f - \sup _J \hat f} \le B$. באופן דומה (תרגיל) מתקיים $\sof{\inf_J f - \inf_J \hat f} \le B$ כלומר:
+		נסמן $B \cod \sup_J\sof{f - \hat f}$. לכל $y \in J$ מתקיים $\hat f(y) \le f(y) + B \le \sup_J f + B$. אפשר לקחת סופרמום על אגף שמאל של הא''ש שקיבלנו ולקבל $\sup_J \hat f \le \sup_J f + B$. מאותו השיקול נקבל מהצד השני $\sup_J f \le \sup_J \hat f + B$. מכאן נובע $\sof{\sup_J f - \sup _J \hat f} \le B$. באופן דומה (תרגיל) מתקיים $\sof{\inf_J f - \inf_J \hat f} \le B$ כלומר:
 		\[ \sof{\wg(f, J) - \wg(\hat f, J)} = \sof{\cl{\sup_Jf - \inf_Jf} - \cl{\sup_J \hat f - \inf_J \hat f}} \le \sof{\sup_J f - \sup_J \hat f} + \sof{\inf_j \hat f - \inf_J f} \le B + B = 2B \]\envendproof
 	\end{proof}
 
@@ -1335,12 +1344,12 @@
 \subsubsubsection{תחת אינטגרל רימן}
 	\begin{Theorem}[גבול תחת אינטגרל]
 		נתונות $f, f_n \co [a, b] \to \R$. נניח שלכל $n$, $f_n$ אינטגרבילית רימן. נניח ש־$f_n \to f$ במ''ש. אז $f$ אינטגרבילית רימן, ויתר על כן, הפונקציות:
-		\[ F_n(x) := \int^{x}_a \dequad \ f_n(t)\dt \quad \quad F(x) := \int^{x}_a \dequad \ f(t)\dt \]
+		\[ F_n(x) \cod \int^{x}_a \dequad \ f_n(t)\dt \quad \quad F(x) \cod \int^{x}_a \dequad \ f(t)\dt \]
 		מקיימות $F_n \to F$ במ''ש.
 	\end{Theorem}
 	\rmark{זה מזכיר לנו משפט מהשבוע שעבר, שבו הוכחנו את המשפט לעיל בהנחה ש־$f$ אינטגרבילית (ולא רק $f_n$), ואז הראנו שסדרת האינטגרלים מתכנסת. המשפט הזה הרבה יותר חזק: הוא מראה שהתכונה של האינטגרביליות משמרת אינטגרביליות. }
 	\begin{proof}
-		יהי $\eg > 0$ כלשהו. יהי $N$ כך ש־$\sup_{[a, b]}\sof{f_N - f} < \hat \eg$. מקריטריון דרבו המשופר ל־$f_n$ נבחר חלוקה של $[a, b]$ כך שתנודת דרבו של $f_n$ ביחס ל־$\Pi$ מקיימת $\wg(f_N, \Pi) < \frac{\eg}{1 + 4(b - a)}$. נסמן את תתי־הקטעים של החלוקה ב־$J_i := [x_{i - 1}, x_i]$. אז:
+		יהי $\eg > 0$ כלשהו. יהי $N$ כך ש־$\sup_{[a, b]}\sof{f_N - f} < \hat \eg$. מקריטריון דרבו המשופר ל־$f_n$ נבחר חלוקה של $[a, b]$ כך שתנודת דרבו של $f_n$ ביחס ל־$\Pi$ מקיימת $\wg(f_N, \Pi) < \frac{\eg}{1 + 4(b - a)}$. נסמן את תתי־הקטעים של החלוקה ב־$J_i \cod [x_{i - 1}, x_i]$. אז:
 		\[ \sof{\wg(f, \Pi) - \wg(f_N, \Pi)} \le \sof{\sum_{i = 1}^{n}\wg(f, J_n) \Delta x_i - \sum_{i =1}^{n}\wg(f_N, J_n)\Delta x_i} \le \sum_{i = 1}^{n}\sof{\wg(f, J_i) - \wg(f_N, J_i)\Delta x_i} = 2(b - a)\hat \eg < \frac{\eg}{2} \]
 		נסיים עם א''ש המשולש:
 		\[ \sof{\wg(f, \Pi)} \le \sof{\wg(f_N, \Pi)} + \sof{\wg(f, \Pi) - \wg(f_N, \Pi)} < \frac{\eg}{2} + \frac{\eg}{2} = \eg \]
@@ -1399,6 +1408,7 @@
 %	TODO
 
 \subsubsection{החלפת גבול ונגזרת}
+	שאלה מתבקשת היא מתי ניתן להוציא ולהכניס את הנגזרת מגבול של סדרת פונקציות. 
 	\clm{נתונות $f, gf_n \co [a, b] \to \R$ ונניח ש־$f_n \in C^{1}([a, b])$ נקודתית וכן $f_n \to f, f_n' \to g$ במ''ש. אז $f_n \to f$ במ''ש וגם $f' = g$. }\begin{proof}
 		$f_n \in C^{1}([a, b])$ ולכן $f_n'$ רציפות ובפרט אינטגרביליות. $g$ גבול במ''ש של פונקציות רציפות, ולכן $g$ רציפה אזי בעצמה אינטגרבילית. נקבע $x_0 \in [a, b]$ כלשהו. נגדיר:
 		\[ G(x) = \int^{x}_{x_0} \dequad \ g(t)\dt \quad\quad h_n(x) = \int^{x}_{x_0}\dequad \ f_n'(t)\dt \]
@@ -1414,7 +1424,7 @@
 			\item קיימת $x_0 \in [a, b]$ כך ש־$(f_n(x_0))^{\infty}_{n = 1}$ מתכנסת ל־$c \in \R$.
 		\end{itemize}
 		אז הפונקציה:
-		\[ f_n\overset{u}{\to} f(x) := c + \int^{x}_{x_0} \dequad \ g(t)\dt \]
+		\[ f_n\overset{u}{\to} f(x) \cod c + \int^{x}_{x_0} \dequad \ g(t)\dt \]
 		וכן $\frac{d}{\dx}f(x) = g(x)$ (נוסף על התכנסות במ''ש של $f_n$ ל־$f$).
 	\end{Theorem}
 	בניגוד למשפט הקודם, עתה ''שחזרנו`` את הפונקציה $f$ בהינתן גבול נקודתי אחד, בלי שהיא הייתה נתונה לנו.
@@ -1431,6 +1441,7 @@
 
 \subsection{טורי פונקציות}
 \subsubsection{הגדרות בסיסיות}
+	נספק מספר הגדרות בסיסיות לטורי פונקציות. 
 	\defi{יהיו $f, u_N \to I \to \R$ ($I$ קבוצה כללית). אז \textit{טור הפונקציות $\sumninf u_n(x) = f(x)$ מתכנס ל־$f$ במ''ש ב־$I$} אם סדרת הסכומים החלקיים $f_n(x)= \sumnko u_k(x)$ מתכנסת ל־$f$ במ''ש ב־$I$. }
 	\noti{מקובל להוסיף את האות $u$ מעל השוויון (כך, $\overset{u}{=}$) כדי להדגיש ההתכנסות במ''ש. }
 	\defi{תחת התנאים לעיל, נאמר ש־$\sumninf u_n(x) = f(x)$ \textit{נקודתית} אם לכל $\ag \in \R$, מתקיים $\sumninf u_n(\ag) = f(\ag)$ כטור מספרים. }
@@ -1447,6 +1458,7 @@
 	\textbf{דוגמה. }נתבונן ב־$\log(1 + x) = \sum_{n = 1}^{\inft}(-1)^{n -1}\frac{x^{n}}{n}$ בקטע $[0, 1)$. היא מתכנסת במ''ש ומתכנסת בהחלט, אך לא בהחלט במ''ש.
 
 \subsubsection{משפטים מבניים וטרוויאלים}
+	נתעסק ב''לייבא`` את המשפטים שלנו על התכנסות במ''ש והתכנסות נקודתית לטורי פונקציות (הרי טורי פונקציות מהווים בעצמם התכנסות של סדרת פונקציות). 
 	\theo{נניח $\sumninf u_n(x) =f(x)$ במ''ש ב־$I = [a, b]$.
 	\begin{enumerate}
 		\item אם לכל $n$, $u_n$ רציפה אז $f(x)$ רציפה.
@@ -1463,21 +1475,21 @@
 	\begin{Exercise}[תרגיל פתיחה]
 		\begin{enumerate}
 			\item נתונות $u_n \co [0, R] \to \R$ רציפות. נניח שהטור $\sumnoinf u_n(x)$ מתכנסת במ''ש ב־$[0, R)$. אז $\sumnoinf u_n(x)$ מתכנס במ''ש ב־$[0, R]$.
-			\item ידוע ש־$B_n(x) := \sumnko \sin(kx) = \frac{\sin\cl{\frac{n + 1}{2}x}\sin\cl{\frac{n}{2}x}}{\sin\cl{\frac{x}{2}}}$ (ברשימות). הראנו ש־$\{B_n\}$ חסומה במידה אחידה ב־$[\eg, 2\pi - \eg]$. הוכיחו שהמשפחה $\{B_n\}$ אינה חסומה במ''ש ב־$(0, 2\pi)$.
+			\item ידוע ש־$B_n(x) \cod \sumnko \sin(kx) = \frac{\sin\cl{\frac{n + 1}{2}x}\sin\cl{\frac{n}{2}x}}{\sin\cl{\frac{x}{2}}}$ (ברשימות). הראנו ש־$\{B_n\}$ חסומה במידה אחידה ב־$[\eg, 2\pi - \eg]$. הוכיחו שהמשפחה $\{B_n\}$ אינה חסומה במ''ש ב־$(0, 2\pi)$.
 
 			\textbf{רמז: }מצאו $x_n \in (0, 2\pi)$ כך ש־$x_n \to 0$ ולכל $n$ מתקיים $\sin\cl{\frac{n}{2}x_n} = 1$. הראו ש־$B_n(x_n) \toinf \infty$.
 		\end{enumerate}
 	\end{Exercise}
 
 \subsubsection{פונקציה רציפה שאינה גזירה באף נקודה}
-	ממליץ מאוד לראות של הגרפים ברשימות של שירי: (נסמן ב־$\{x\} := x - \floor{x}$ את החלק השברי של $x$)
+	ממליץ מאוד לראות של הגרפים ברשימות של שירי: (נסמן ב־$\{x\} \cod x - \floor{x}$ את החלק השברי של $x$)
 	\begin{align*}
-		u_0(x) := \begin{cases}
+		u_0(x) \cod \begin{cases}
 			\{x\} & n \le x \le n + \frac{1}{2} \\
 			1 - \{x\} & n + \frac{1}{2} \le x \le n + 1
-		\end{cases} && u_k(x) := \frac{1}{4^{k}}u_0(4^{k}x)
+		\end{cases} && u_k(x) \cod \frac{1}{4^{k}}u_0(4^{k}x)
 	\end{align*}
-	ניעזר בפונקציות העזר האלו, כדי להתבונן בטור $f(x) := \sumkoinf u_k(x)$ שמתכנס במ''ש. זה מבוחן $M$ של ווייראשטראס: עבור $M_k = \frac{1}{24^{k}}$ נקבל $\sof{u_k(x)} \le M_k$, ו־$\sumkoinf M_k$ מתכנס. מכאן נובע ש־$f$ מוגדרת היטב ורציפה (התכנסות במ''ש של רציפות היא רציפה). יתר על כן, $f$ איננה גזירה באף נקודה – נוכיח זאת.
+	ניעזר בפונקציות העזר האלו, כדי להתבונן בטור $f(x) \cod \sumkoinf u_k(x)$ שמתכנס במ''ש. זה מבוחן $M$ של ווייראשטראס: עבור $M_k = \frac{1}{24^{k}}$ נקבל $\sof{u_k(x)} \le M_k$, ו־$\sumkoinf M_k$ מתכנס. מכאן נובע ש־$f$ מוגדרת היטב ורציפה (התכנסות במ''ש של רציפות היא רציפה). יתר על כן, $f$ איננה גזירה באף נקודה – נוכיח זאת.
 
 	\theo{לכל $x_0 \in \R$ קיימת סדרה $x_n$ כך ש־
 	\[ \frac{f(x_n) - f(x_0)}{x_n - x_0} \in \begin{cases}
@@ -1514,9 +1526,9 @@
 	''אטא זה פשוט קשקוש אחר`` – סטודנטית אחרי שיעל החליפה $\xi$ ב־$\eta$.
 
 	לעת עתה, לצורך הנוחות, נניח בה''כ ש־$\eta = 0$, אז ברור שהטור מתכנס ב־$x = 0$. אבל מה קורה לגבי שאר ה־$x$־ים?
-	\lem{נניח $\sum a_k x^{k}$ מתכנס ב־$x_0 \neq 0$. יהי $R := \sof{x_0}$. יהי $0 < R' < R$, אז הטור מתכנס במ''ש בקטע $[-R', R']$. }
+	\lem{נניח $\sum a_k x^{k}$ מתכנס ב־$x_0 \neq 0$. יהי $R \cod \sof{x_0}$. יהי $0 < R' < R$, אז הטור מתכנס במ''ש בקטע $[-R', R']$. }
 	\rmark{שימו לב, הטור לאו דווקא מתכנס בקטע הפתוח $(-R, R)$. }\begin{proof}
-		לכל $x \in [-R', R']$ נרשום $\sof{a_kx^{k}} = \sof{a_kx^{k}}\cdot \sof{\frac{x}{x_0}}^{k}$. הטור $\sum a_kx^{k}$ מתכנס, ולכן סדרת איבריו שואפת לאפס, ולכן חסומה. יהי $B := \sup_{k \in \Z}\sof{a_kx_0^{k}}$. תהי $q:=\frac{R'}{R}$. אזי $0 < q < 1$, ולכן $\sumkoinf Bq^{k}$ מתכנס. עתה, לכל $x \in [-R', R']$ מתקיים:
+		לכל $x \in [-R', R']$ נרשום $\sof{a_kx^{k}} = \sof{a_kx^{k}}\cdot \sof{\frac{x}{x_0}}^{k}$. הטור $\sum a_kx^{k}$ מתכנס, ולכן סדרת איבריו שואפת לאפס, ולכן חסומה. יהי $B \cod \sup_{k \in \Z}\sof{a_kx_0^{k}}$. תהי $q\cod\frac{R'}{R}$. אזי $0 < q < 1$, ולכן $\sumkoinf Bq^{k}$ מתכנס. עתה, לכל $x \in [-R', R']$ מתקיים:
 		\[ \sof{a_kx^{k}} = \underbrace{\sof{a_kx_0^{k}}}_{\le B}\underbrace{\sof{\frac{x}{x_0}}^{k}}_{\mathclap{=\frac{\sof x ^{k}}{R^{k}} \le q^{k}}} \le Bq^{k} \]
 		ולכן מבוחן $M$ של וויראשטראס $\sum a_kx^{k}$ מתכנס בהחלט במ''ש ב־$[-R', R']$.
 	\end{proof}
@@ -1524,7 +1536,7 @@
 	בשלב הזה יהיו לנו כל מיני מסקנות נחמדות.
 	\cola{יהי נתון טור חזקות $\sumkoinf a_kx^{k}$. אז:
 	\begin{enumerate}[(A)]
-		\item הטור מתכנס ב־$(-R, R)$. נוכל להגדיר $f \co (-R, R) \to \R$ ע''י $f(x) = \sumkoinf a_kx^{k}$. מעתה ואילך, נגדיר $f(x) := \sumkoinf a_kx^{k}$.
+		\item הטור מתכנס ב־$(-R, R)$. נוכל להגדיר $f \co (-R, R) \to \R$ ע''י $f(x) = \sumkoinf a_kx^{k}$. מעתה ואילך, נגדיר $f(x) \cod \sumkoinf a_kx^{k}$.
 		\item $f$ רציפה.
 		\item גם הטור $\sumkoinf a_k\frac{x^{k + 1}}{k + 1}$ מתכנס ב־$(-R, R)$, ולכל $x \in (-R, R)$ מתקיים:
 		\[ \int_0^{x}f(t)\dt = \sumkoinf \frac{x^{k}}{k + 1} \]
@@ -1566,7 +1578,7 @@
 		כאשר $R$ רדיוס ההתכנסות, במובן הרחב (אם ה־$\limsup$ הוא $0$, הטור מתכנס בכל $\R$, אם הוא מספר אז במובן הצר, ואם הוא $\infty$ אז הוא מתכנס בסינגילטון $\{x_0\}$)
 	\end{Theorem}
 	\begin{proof}
-		נגדיר $\bar{R} := \cl{\limsup_{k \to \infty}\sof{a_k}^{\frac{1}{k}}}\op$ במובן הרחב. יהי $x \in \R$. נניח $0 < \sof x < \bar R$ (במובן הרחב). אז ישנו $q \in (0, 1)$ כך ש־$\sof x < q \bar R$. מהגדרת $\bar R$ מתקיים $\limsup \sof{a_k}^{\frac{1}{k}} < \frac{q}{\sof x}$.
+		נגדיר $\bar{R} \cod \cl{\limsup_{k \to \infty}\sof{a_k}^{\frac{1}{k}}}\op$ במובן הרחב. יהי $x \in \R$. נניח $0 < \sof x < \bar R$ (במובן הרחב). אז ישנו $q \in (0, 1)$ כך ש־$\sof x < q \bar R$. מהגדרת $\bar R$ מתקיים $\limsup \sof{a_k}^{\frac{1}{k}} < \frac{q}{\sof x}$.
 
 		תרגיל: קיים $k_0$ כך שלכל $k > k_0$ מתקיים $\sof{a_k}\frac{1}{k} < \frac{q}{\sof x}$.
 
@@ -1625,7 +1637,7 @@
 	\color{red}\textbf{אזהרה. }\color{black}תהי $f(x)$ פונקציה חלקה (כלומר $f \in C^{\infty}(\R)$ עם טור טיילור $\sumkoinf a_kx^{k}$ (סביב $0$). כלומר לכל $k$, מתקיים $a_k = \frac{f^{(k)}(0)}{k!}$. \textbf{לא נובע שטור הטיילור מתכנס לפונקציה באיזושהי סביבה של $0$}. יתר על כן, במידה והוא כן מתכנס בסביבה של $0$, לא נובע שהגבול הוא $f$.
 
 	\textbf{דוגמה. }נגדיר:
-	\[ f(x) := \begin{cases}
+	\[ f(x) \cod \begin{cases}
 		e^{-\frac{1}{x}} & x > 0\\
 		0 & x \le 0
 	\end{cases} \]
@@ -1691,7 +1703,7 @@
 	כלומר: תחום ההתכנסות לא גדל כשגוזרים.
 	\exe{תעשו אותו הדבר ב־$-R$. }
 	\begin{proof}
-		מההנחה, $\sumkinf ka_kx^{k - 1}$ מתכנס ב־$[0, R]$. ממשפט אבל ההתכנסות היא במ''ש. נובע שהגבול $f(x) := \sumkinf ka_k$ הוא פונקציה רציפה, ובפרט אינטגרבילית ב־$[0, R]$ (היא חסומה ממשפט קנטור), ושניתן לבצע אינטגרציה איבר־איבר. מאינטגרציה איבר־איבר נקבל ש־:
+		מההנחה, $\sumkinf ka_kx^{k - 1}$ מתכנס ב־$[0, R]$. ממשפט אבל ההתכנסות היא במ''ש. נובע שהגבול $f(x) \cod \sumkinf ka_k$ הוא פונקציה רציפה, ובפרט אינטגרבילית ב־$[0, R]$ (היא חסומה ממשפט קנטור), ושניתן לבצע אינטגרציה איבר־איבר. מאינטגרציה איבר־איבר נקבל ש־:
 		\[ \int^{R}_0 \dequad \ f(t)\dt = \sum^{\infty} \underbrace{a_kR^{k}}_{\mathclap{\int^{R}_0 ka_kx^{k - 1}\dx}} \]
 		כלומר, אגף ימין קיים ושווה לאגף שמאל. סה''כ הטור מהקורי מתכנס גם ב־$x = R$.
 	\end{proof}
@@ -1716,7 +1728,7 @@
 	\end{Exercise}
 
 	\defi{\textit{צזארו: }$\cz \sumkoinf a_k = L$ פירושו:
-	\[ \smash{\overbrace{\frac{S_0 + \cdots + S_N}{N + 1}}^{:= \sg_n}} \toinf L \]
+	\[ \smash{\overbrace{\frac{S_0 + \cdots + S_N}{N + 1}}^{\cod \sg_n}} \toinf L \]
 	כאשר $S_n = \sumkoinf a_k$. }
 	\rmark{למעשה יש לנו כאן סכום כפול:
 	\[ \sg_N = \frac{1}{N + 1}\sum_{n = 0}^{n}\underbrace{\sumnko a_k}_{S_k} = \frac{1}{N + 1}\sum_{\mathclap{0 \le k \le n \le N}}a_k = \frac{1}{N + 1}\sum^{N}_{k = 0}\sum^{N}_{n = k}a_k = \frac{1}{N + 1}\sum_{k = 0}^{N}(N - k + 1)a_k = \sum_{k = 0}^{N}\cl{1 - \frac{k}{N + 1}}a_k \]
@@ -1728,7 +1740,7 @@
 		נניח $\sumkoinf = L$.
 		\begin{itemize}
 			\item מההנחה $S_n \to L$, כאשר $S_n$ סדרת הסכומים החלקיים. בחדו''א 1א הוכחנו שאם סדרה מתכנס במובן הרגיל אז היא מתכנס צזארו, ולכן $\cz S_n \to L$ (כלומר $\frac{S_0 + \cdots + S_n}{n + 1} \to L$), כלומר $\cz \sumkoinf a_k = L$.
-			\item מההנחה, הטור $\sumkoinf a_kx^{k}$ מתכנס כאשר $x = 1$. ממשפט אבל, הטור מתכנס במ''ש (לאו דווקא בהחלט) בכל $[0, 1]$. נסמן $f(x) := \sumkoinf a_kx^{k}$. נבחין ש־$f \co [0, 1] \to \R$ גבול במ''ש של פונקציות רציפות, ולכן רציפה. בפרט $\lim_{R\to 1^{-}}f(R) = f(1)$, נציב ב־$f$ ונקבל את הנדרש.
+			\item מההנחה, הטור $\sumkoinf a_kx^{k}$ מתכנס כאשר $x = 1$. ממשפט אבל, הטור מתכנס במ''ש (לאו דווקא בהחלט) בכל $[0, 1]$. נסמן $f(x) \cod \sumkoinf a_kx^{k}$. נבחין ש־$f \co [0, 1] \to \R$ גבול במ''ש של פונקציות רציפות, ולכן רציפה. בפרט $\lim_{R\to 1^{-}}f(R) = f(1)$, נציב ב־$f$ ונקבל את הנדרש.
 		\end{itemize}\envendproof
 	\end{proof}
 	\theo{התכנסות צזארו גוררת התכנסות לפי אבל, כלומר אם $\cz \sumkoinf a_k= L$, אז $\ab \sumkoinf a_k = L$. }\proofshiri
@@ -1763,7 +1775,7 @@
 			\item נניח $\sum t_j$ מתכנס בהחלט ל־$L$. אז:
 			\begin{enumerate}[(A)]
 				\item לכל $\eg > 0$ קיימת ת''ק סופית $J \subset \Z_{\ge 0}$ כך שלכל ת''ק סופית $J \subset I \subset \Z_{\ge 0}$ מתקיים $\sof{\sum_{j \in I}t_i - L} < \eg$.
-				\item לכל פירוק זר לתתי קבוצות סופיות $\Z_{\ge 0} = J_0 \uplus J_1 \uplus J_2 \uplus \cdots$, אם נסמן $c_m:= \sum_{j \in J_m} t_j$ הטור $c_m$ מתכנס בהחלט ל־$L$.
+				\item לכל פירוק זר לתתי קבוצות סופיות $\Z_{\ge 0} = J_0 \uplus J_1 \uplus J_2 \uplus \cdots$, אם נסמן $c_m\cod \sum_{j \in J_m} t_j$ הטור $c_m$ מתכנס בהחלט ל־$L$.
 			\end{enumerate}
 	\end{enumerate}}
 	סעיף (ב) תוצאה ישירה של דברים בחדו''א 1א.
@@ -1818,7 +1830,7 @@
 	זה שקול לכל שקיימות $u, v \co [a, b] \to \R$ רציפות ב־$t_0$, אך ש־$v = \Im f, u = \Re f$.
 
 	\begin{Theorem}[המשפט היסודי]
-		תהי $f \co [a, b] \to \C$ רציפה ב־$x_0$. אז $F \co [a, b] \to \C$ המוגדרת ע''י $F(x) := \int^{x}_a f(t)\dt$ מקיימת $F'(x_0) = f(x_0)$.
+		תהי $f \co [a, b] \to \C$ רציפה ב־$x_0$. אז $F \co [a, b] \to \C$ המוגדרת ע''י $F(x) \cod \int^{x}_a f(t)\dt$ מקיימת $F'(x_0) = f(x_0)$.
 	\end{Theorem}
 	\begin{Theorem}[ניוטון לייבניץ]
 		נתונות $f, g \co [a, b] \to \C$, כך ש־$f' = g$, ו־$g$ אינטגרבילית. אז $\int^{b}_a g(x)\dx = f(b) - f(a)$.
@@ -1857,8 +1869,8 @@
 \subsection{פונקציות מחזוריות}
 	לפני שבועיים הגדרנו $\tb = \R/_{2 \pi \Z}$. נזרוק כמה הגדרות\footnote{טופולוגית, $C(\tb)$ היא קבוצת הפונקציות הרציפות מ־$\tb \cong S_1$ ל־$\R$. }:
 
-	\[ C(\tb) := \ccb{f \co \R \to \C \mid \forall x\co f(x + 2\pi) = f(x) \land \text{רציפה}\ f} \]
-	\[ R(\tb) := \ccb{f \co \R \to \C \mid \forall x\co  f(x + 2\pi) = f(x) \land \text{אינטגרבילית רימן} \ f_{[0, 2\pi]}} \]
+	\[ C(\tb) \cod \ccb{f \co \R \to \C \mid \forall x\co f(x + 2\pi) = f(x) \land \text{רציפה}\ f} \]
+	\[ R(\tb) \cod \ccb{f \co \R \to \C \mid \forall x\co  f(x + 2\pi) = f(x) \land \text{אינטגרבילית רימן} \ f_{[0, 2\pi]}} \]
 	\exe{הפונקציה $t \mapsto e^{i\ag t} = \cos(\ag t) + i \sin(\ag t), \ \ag \in \R$, פונקציה עם מחזור $2 \pi$ אמ''מ $\ag \in \Z$ (דיברנו על זה קודם). }
 	\defi{הפונקציה $f(t) = \sum_{n = -N}^{N}c_ne^{i nt}$ כאשר $N \in \Z_{\ge 0}$, ו־$\forall n \co c_n \in \C$, אז $f$ כזו נקראת \textit{פולינום טריגונומטרי מדרגה $ N\ge$}}
 
@@ -1889,9 +1901,9 @@
 
 \subsection{מרחבי הילברט $R(\tb)$ ו־$C(\tb)$}
 	\exe{אם $f, g \in R(\tb)$, אז גם $f \bar g \in R(\tb)$. }
-	\defi{\[ \mut{f}{g} := \frac{1}{2\pi}\int^{2\pi}_0 \dequad f(t)\ol{g(t)}\dt \]}
+	\defi{\[ \mut{f}{g} \cod \frac{1}{2\pi}\int^{2\pi}_0 \dequad f(t)\ol{g(t)}\dt \]}
 	\lem{זו מכפלה פנימית מרוכבת. }
-	\cola{המכפלה הפנימית משרה סמי־נורמה $\norm f := \mut{f}{f}$. הנורמה מקיימת דברים של נורמה כמו שנגדיר בפרק $3$. נוכיח זאת בליני2. למה זה סמי־נורמה? כי לדוגמה התנאי שאנו מכירים על נורמות, ש־$\sof f = 0$ אמ''מ לכל $g$ אינטגרבילית $\mut{f}{g} = 0$ (במקום $f = 0$). לחילופין, אפשר להתרכז בפונקציות רציפות, ואז זה עובד. }
+	\cola{המכפלה הפנימית משרה סמי־נורמה $\norm f \cod \mut{f}{f}$. הנורמה מקיימת דברים של נורמה כמו שנגדיר בפרק $3$. נוכיח זאת בליני2. למה זה סמי־נורמה? כי לדוגמה התנאי שאנו מכירים על נורמות, ש־$\sof f = 0$ אמ''מ לכל $g$ אינטגרבילית $\mut{f}{g} = 0$ (במקום $f = 0$). לחילופין, אפשר להתרכז בפונקציות רציפות, ואז זה עובד. }
 	אה ויש לנו אורתוגונליות ושיט.
 
 	\theo{קל לראות ש־:
@@ -1916,7 +1928,7 @@
 	\textbf{מרצה: }יעל קרשון
 
 	\textbf{תזכורת: }לכל $f, g \in R(\tb)$ הגדרנו סמי מכפלה פנימית הרמיטית, להיות:
-	\[ \mut{f}{g} := \frac{1}{2\pi}\int^{2\pi}_0\dequad f(t)\ol{g(t)}\dt \]
+	\[ \mut{f}{g} \cod \frac{1}{2\pi}\int^{2\pi}_0\dequad f(t)\ol{g(t)}\dt \]
 	\rmark{באנגלית, Hermitian inner/scalar/dot product}
 	המכפלה הפנימית לעיל משרה לנו (סמי) נורמת $L_2$, שתסומן ב־$\norm f = \norm{f}_{L_2} = \norm{L}_2$. דיברנו על קושי שוורץ, והסקנו ש־$\norm f = 0$ אמ''מ $\forall g \co \mut{f}{g} = 0$. מכאן שה־$f$־ים שהמאפס שלהם הוא כל המרחב הם מרחב וקטורי, ולקיחת quotient space עליהם מאפשרת לנו לקבל מרחב שבו הנורמה מתנהגת כמו נורמה רגילה ולא מנוונת.
 
@@ -1929,9 +1941,9 @@
 	באותה המידה שניתן לשייך לפונקציות חלקות טורי פונקציות (טיילור וכו'), ניתן לשייך לפונקציה מחזורית טור פוריה שהוא טור דו''צ.
 \subsection{סכומי פורייה}
 	\defi{\textit{מקדמי פוריה} (Fourier) של $f \in R(\tb)$, הם לכל $n \in \Z$:
-	\[ \hat f(n) := \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t)e^{-int}\dt = \mut{f}{e^{int}} \]}
+	\[ \hat f(n) \cod \frac{1}{2\pi}\int^{\pi}_{-\pi}\dequad f(t)e^{-int}\dt = \mut{f}{e^{int}} \]}
 	\defi{\textit{מקדמי פורייה של $f$} הם:
-	\[ (S_nf)(t) := \sum_{n = -N}^{N}\hat f(n)e^{int} \]}
+	\[ (S_nf)(t) \cod \sum_{n = -N}^{N}\hat f(n)e^{int} \]}
 	\defi{\textit{טור פורייה של $f$} הוא:
 	\[ \sum_{n = - \infty}^{\infty}\dequad \ \hat f (n) e^{int} \]}
 	\rmark{שימו לב! מכיוון שאנחנו במרחב וקטורי שאיננו נוצר סופית, נורמות שונות שנגדיר יגדירו התכנסות שונה של הטור. פרטים נוספים בחלק השלישי של הקורס. }
@@ -2049,7 +2061,7 @@
 		\end{Theorem}
 		\rmark{באנגלית: Fejer}
 		למעשה, מה שאנחנו עומדים להראות הוא ש־:
-		\[ \sg_N f := \frac{S_0 f + \cdots S_nf}{N + 1} \rrt{u}{N \to \infty} f \]
+		\[ \sg_N f \cod \frac{S_0 f + \cdots S_nf}{N + 1} \rrt{u}{N \to \infty} f \]
 		כלומר, שטור פורייה של פונקציה $f \in C(\tb)$ מתכנס ל־$f$ צ'זארו במ''ש.
 		(למעשה -- רציפות זה גם תנאי מספיק, ולא רק הכרחי)
 		\item משפט אחר, דווקא כן נוכיח היום: \begin{Theorem}
@@ -2078,7 +2090,7 @@
 			\[ g(x) = \underbrace{\frac{x_j - x}{\Delta x_j}f(x_{j - 1})}_{1 - \lg} + \underbrace{\frac{x - x_{j - 1}}{\Delta x_j}}_{\mathclap{0 \le \lg \le 1}}f(x_j) \]
 			כאשר $\lg$ תלויה ב־$x$. 	ההוכחה שזה אינטרפולציה לינארית בין שתי הנקודות באמצעות ציור.
 		\end{itemize}
-		עתה, נבחין ש־: (שימו לב ש־$\lg(x) =: \lg$ פונקציה של $x$) בקטע חלוקה ספציפי $x_{j - 1} \le x \le x$, מתקיים:
+		עתה, נבחין ש־: (שימו לב ש־$\lg(x) \doc \lg$ פונקציה של $x$) בקטע חלוקה ספציפי $x_{j - 1} \le x \le x$, מתקיים:
 		\begin{align*}
 			f(x) - g(x) &= \cl{(1 - \lg)f(x) + \lg f(x)} - ((1 - \lg)f(x_{j - 1}) + \lg f(x_j)) \\
 			&= (1 - \lg)(f(x) - f(x_{j -1}) + \lg(f(x) - f(x_j))) \\
@@ -2171,7 +2183,7 @@
 		\[ 0 \le \sof{\hat f(n)} = \frac{1}{n}\sof{n \hat f(n)} = \sqrt{\cl{n^{2} \sof{\hat f(n)}^{2}} \cdot \frac{1}{n^{2}}} \le \frac{n^{2}\sof{\hat f(n)}^{2} + \frac{1}{n^{2}}}{2} \]
 		משום ש־$\frac{1}{n^{2}}$ מתכנס, והוכחנו קודם ש־$n^{2}\sof{\hat f(n)}$ גם מתכנסים, נסיק שמימין יש לנו איברי טור מתכנס. אנו מדברים על טור חיובי, ולכן מאחד ממשפטי ההשוואה $\sum_{n= -\infty}^{\infty} \hat f(n) e^{int}$ מתכנס בהחלט במ''ש.
 
-		נגדיר $g(t) := \sum_{n = -\infty}^{\infty} \hat f(n) e^{int}$ גבול במ''ש של רציפות, ולכן רציפה. מנימוקים דומים למה שראינו קודם לכן (אבל אנו מציגים שוב כי במבחן נידרש להראות את הכל כאשר נתבקש להוכיח את המשפט), $S_n f \to g$ ו־$S_n f \to f$ ב־$L_2$, ולכן $\norm{f - g} = 0$. מהיותן רציפות $f = g$ ו־$g$ מתכנסת במ''ש ולכן סיימנו.
+		נגדיר $g(t) \cod \sum_{n = -\infty}^{\infty} \hat f(n) e^{int}$ גבול במ''ש של רציפות, ולכן רציפה. מנימוקים דומים למה שראינו קודם לכן (אבל אנו מציגים שוב כי במבחן נידרש להראות את הכל כאשר נתבקש להוכיח את המשפט), $S_n f \to g$ ו־$S_n f \to f$ ב־$L_2$, ולכן $\norm{f - g} = 0$. מהיותן רציפות $f = g$ ו־$g$ מתכנסת במ''ש ולכן סיימנו.
 	\end{proof}
 
 	\begin{Lemma}[דעיכת מקדמי פוריה]
@@ -2398,7 +2410,7 @@
 		ידוע שבמובן $L_2$ מתקבל ש־$S_Nf \to f$ ו־$S_Ng \to g$, ואז מיחידות הגבול ב־$L_2$ בהכרח $\norm{f - g} = 0$. אך $f, g$. אך $f, g$ רציפות כלומר $f - g = 0$ ואז $f = g$ כדרוש.
 	\end{proof}
 
-	\rmark{גם ההוכחה תוך שימוש ביחידות הגבול ב־$L_2$ מסתמכת על פייר, כי הוכחנו את התכנסות הגבול ב־$L_2$ באמצעות פייר}
+	\rmark{גם ההוכחה תוך שימוש ביחידות הגבול ב־$L_2$ מסתמכת על פייר, כי הוכחנו את התכנסות הגבול ב־$L_2$ באמצעות פייר. עם זאת, ניתן לנסח הוכחה ללא פייר למרחבי הילברט כלליים. }
 	
 	\rmark{הוכחת משפט פייר עובדת עבור כל גרעין $\fc_N$ שמקיים את התנאים הבאים: 
 	\begin{enumerate}
