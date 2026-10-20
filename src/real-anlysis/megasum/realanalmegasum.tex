@@ -1,0 +1,580 @@
+\documentclass[name=רשימות פונקציות ממשיות]{../../../tex/classes/noChapterMegasumPreamble}
+\usetikzlibrary{calc}
+\usepackage{../../../tex/packages/mathShortcuts}
+\usepackage{../../../tex/packages/hebrewSupport}
+\usepackage{../../../tex/packages/megasumextendedtheoremsupport}
+
+\newcommand \lectext[1] {{\color{blue}\textbf{#1}}}
+\newcommand \firstlec   {\lectext{תחילת הרצאה 1}}
+\newcommand \nthlec[2]  {\lectext{סוף הרצאה #1, תחילת הרצאה #2}}
+
+\author{שחר פרץ}
+\title{\name}
+\date{2026 סמסטר ב'}
+\begin{document}
+	\renewcommand{\footrule}{\rule{\linewidth-19pt}{0.25pt}\vspace{-5pt}}
+	\firstPage{2027A $\sim$ מבוסס על הקלטות 2016B}
+	\newpage
+
+	\hfil \textit{תאריך קימפול: \today}
+
+	\setcounter{section}{-1}
+\section[מבוא למבוא]{\en{Introduction to the Introduction}}
+\subsection[רישיון]{License $\sim$ רישיון}
+	\en{The following summary is provided under the GNU General Public License version 3 (GPLv3). It can be distributed and/or modified under the terms of the license, or any later version of it. Additional information can be found \href{https://www.gnu.org/licenses}{here}. }
+
+	הסיכום להלן מסופק תחת רשיון התוכנה החופשית של גנו גרסה 3 (GNU General Public License (GPL) version 3). ניתן להעתיקו ו/או להפיצו תחת GPLv3 או גרסה מאוחרת יותר. מידע נוסף אפשר למצוא \href{https://www.gnu.org/licenses}{כאן}.
+
+\subsection{הרבה מילים שאפשר לדלג עליהן}
+	להלן מובא סיכום מוקלד של ההרצאות \href{https://youtu.be/CrTJoGaCI8U?si=Ccje3Wyot-WmqLMW}{ביוטיוב} של פרופסור בועז קלרטג ב־2016. הסיכום הוקלד בסמסטר הראשון של שנת 2027. {\color{red} הסיכום עדיין בשלבי כתיבה}.
+
+
+\subsection{סימונים}
+	בסיכום הבא נניח את הסימונים הבאים:
+	\begin{itemize}
+		\item \hfil $[n] \cod \N \cap [0, n]$
+		\item \hfil $\subset \; \cod \; \subseteq$
+		\item \hfil $\bigcup A \cod \bigcup_{X \in A}X$
+		\item \hfil $I \cod [0, 1]$
+	\end{itemize}
+
+
+
+	\newpage
+	\setcounter{tocdepth}{3} % show subsubsections
+	\tableofcontents
+
+	%	\listoftheorems
+
+	\middleText{\textit{בתיאבון}}
+
+	\section[מבואות למיניהם]{\en{All Kinds of Introductions}}
+	\firstlec
+	\subsection{חומרי קריאה}
+	\begin{itemize}
+		\item Stein \& Sakarachi: Measure Theory
+		\item לינדשטראוס, וייס: מבוא לאנליזה מודרנית 
+	\end{itemize}
+	
+	\subsection{השלמות מטופולוגיה}
+	הרציונלים בני מנייה, כלומר נוכל למספר $\{q_n\}_{n = 1}^{\infty} = \Q$. עתה נתבונן בקבוצה הבאה: 
+	\[ A = \bigcup_{n = 1}^{\infty}\cl{q_n - \frac{1}{2^{n}}, q_n + \frac{1}{2^{n}}} \]
+	נבחין שהיא איחוד של קבוצות ולכן פתוחה. משום ש־$\Cl \Q = \R$, מתבקש לשאול האם $A = \R$. נוכל לענות על שאלה זו באמצעות מושג ה\textit{מידה} שנגדיר בהמשך, שיגדיר את גודל הקבוצה להיות סופי, ובפרט: 
+	\[ m(A) \le \sum_{n = 1}^{\infty} \frac{1}{2^{n}} = 2 \]
+	
+	\textit{הערה: }משפט דיריכלה על קירובים דיופאנטים: 
+	\[ \forall p, q \in \N\co \sof{\sqrt 2 - \frac{p}{q}} > \frac{1}{q^{2}} \]
+	
+	לכן, לדוגמה, ''אי אפשר לקרב את $\frac{1}{\sqrt 2}$ בצורה יחסית טובה ב־$A$``. 
+	
+	שימו לב שהקטעים בהגדרה של $A$ לא זרים, בהכרח, מצפיפות. עם זאת, ניתן להציג את $A$ כאיחוד קטעים זרים ופתוחים (היא לא קשירה). 
+	\theo{\label{theo:1}תהא $A \subset \R$ קבוצה פתוחה. אז אפשר להציג את $A$ כאיחוד סופי או בן־מנייה של איחוד קטעים פתוחים זרים. }
+	\defi{שקטע $I \subset A$ קטע פתוח מקסימלי ביחס ל־$A$ אם לא קיים $J \subset \R$ קטע פתוח כך ש־$I \subsetneq J \subset A$}
+	נוכל להגדיר את המושג באופן דומה בעבור קבוצה פתוחה. 
+	\rmark{לצורך המשפט, ''קטע פתוח`` במובן הרחב, כלומר בפרט קרנות $(\infty, a), (a, \infty)$ ו־$\R$. }
+	\lem{תהא $A$ פתוחה. אז לכל $x_0 \in A$ קיים קטע מקסימלי שמכיל את $x_0$. }
+	\begin{proof}
+		נסמן: 
+		\begin{gather*}
+			\bg_* = \sup\ccb{\bg > x_0 \co [x_0, \bg) \subset A} \\
+			\ag_* = \inf\ccb{\ag < x_0 \co (\ag, x_0] \subset A}
+		\end{gather*}
+		נבחין במספר הבחנות: 
+		\begin{itemize}
+			\item $\bm{\ag_* < x_0 < \bg_*}$\textbf{: }כי $x_0$ נקודת פנים ($x_0 \in \Int A$ כי $A$ פתוחה) לכן $x_0 \in (\ag, \bg) \subset A$ אז יש איזשהם $\ag, \bg$ לא טרוויאלים
+			\item \textbf{הקטע }$\bm{(\ag_*, \bg_*) \subset A}$\textbf{: }ניקח $x \in (\ag_*, \bg_*)$. 
+			\begin{itemize}
+				\item אם $x > x_0$ אז קיים $\bg \ge x_0$ כך ש־$x \in [x_0, \bg) \subset A$
+				\item אם $x \le x_0$ אז $\ag_* < x$ ולכן קיימת $\ag < x$ כך ש־$x \in [\ag, x_0) \subset A$
+			\end{itemize}
+			\item \textbf{הקטע $I \cod \bm{(\ag_*, \bg_*)}$ מקסימלי} (ביחס ל־$A$)\textbf{: }נניח בשלילה שלא היה מקסימלי, ואז היה קטע $(\ag, \bg)$ כך ש־$(\ag_*, \bg_*) \subsetneq (\ag, \bg) \subset A$, אך מהגדרת הסופרמום $\bg \le \bg_*$ ומהאינפימום $\ag \ge \ag_*$ כלומר $(\ag, \bg) =(\ag_*, \bg_*)$ בסתירה. 
+		\end{itemize}
+	\end{proof}
+	נפנה להוכחת המשפט. 
+	\begin{proof}[הוכחת משפט \ref{theo:1}]
+		 נתונה קבוצה $A$. נביט באוסף הקטעים המקסימליים ביחס ל־$A$. 
+		 \begin{itemize}
+		 	\item \textbf{הקטעים הנ''ל פתוחים: }טרוויאלי, קטע פתוח הוא קבוצה פתוחה. 
+		 	\item \textbf{איחודם מכסה את $\bm{A}$: }ישירות מטענת העזר, סביב כל נקודה יש קטע פתוח מקסימלי כזה. 
+		 	\item \textbf{הקטעים הנ''ל זרים: }נניח ש־$I, J \subset A$ שני קטעים מקסימליים שנחתכים, ובשלילה $I \cap J \neq \vn$. אזי $I \cup J \subset A$ פתוח, ומכיל את הקטע המקסימלי $I$ כלומר $I = I \cup J$. באותו האופן $J = I \cup J = I$ ולכן הם שווים. 
+		 	\item \textbf{האיחוד לכל היותר בן בנייה: }כי $\R$ הוא CII – בכל קטע ישנו רציונלי, הרציונלים שווים זה מזה (הם זרים) ומאקסיומת הבחירה הבת מנייה הגדרנו העתקה חח''ע לקבוצה בת מנייה. 
+		 \end{itemize}\envendproof
+	\end{proof}
+
+	\subsection{מידת לבג ב־$\R^2$}
+	
+	כיצד נגדיר את מושג המידה? הרעיון הוא להתאים לקבוצה $A \subset \R^{d}$ מספר, שאמור לתאר את \textit{המידה} שלה. 
+	\begin{itemize}
+		\item כש־$d = 1$, \textit{מידה} משמעה אורך
+		\item כש־$d = 2$, \textit{מידה} משמעה אורך
+		\item כש־$d = 3$, \textit{מידה} משמעה נפח
+	\end{itemize}
+	
+	נגדיר את מידת לבג במקרה הפרטי בו $d = 2$. הבנייה עובדת באותה המידה בכל הממדים. לאחר מכן נגדיר את המידה באופן כללי בכל מרחב מידה (כלומר קבוצה עם מבנה נוסף שמתאר אילו קבוצות מדידות ואילו לא). 
+	
+	תהא $A \subset \R^{2}$, ונרצה באיזשהו אופן להגדיר את $m(A)$ שמייצג את השטח שלה. אנחנו כבר יודעים לחשב שטח של מלבן $a \times b$ ששטחו $a \cdot b$. זו הנחת הייסוד שנעבוד איתה (ביחד עם אדטיביות של קבוצות זרות). 
+	
+	\defi{\textit{מלבן אלמנטרי} ב־$\R^{2}$ הוא קבוצה מהצורה $[a, b) \times [c, d)$ כאשר $a \le b, c \le d \in \R$. }
+	
+	נבחין שהגדרה זו בפרט כוללת את הקבוצה הריקה. נגדיר את השטח/מידה של מלבן אלמנטרי כזה להיות: 
+	\[ m(A) \cod m_2(A) \cod (b - a) \cdot (d - c) \]
+	(מסמנים לעיתים ב־$m_d$ את המידה ל־$\R^{d}$). 
+	 
+	\begin{Lemma}[אדטיביות]
+		נניח ש־$R, R_1 \dots R_N \subset \R^{2}$ מלבנים אלמנטריים, כך ש־$R = \biguplus_{k = 1}^{N}R_k$ (איחוד זר). אזי: 
+		\[ m(R) = \sum_{k = 1}^{N}m_2(R_k) \]
+	\end{Lemma}
+	\prooftrivial
+	(הטריק שעושים כאן, הוא לקחת את כל המלבנים, ''להמשיך`` את הצלעות שלהם לישרים אינסופיים, להוכיח למקרה הזה ואז לעשות רדוקציה למקרה המקורי). 
+	
+	באותו האופן, נוכל להוכיח את הלמה הבאה: 
+	\begin{Lemma}[תת־אדטיביות]
+		יהיו $P, P_1 \dots P_N \subset \R^{2}$ מלבנים אלמנטריים, כך ש־$P \subset \bigcup_{i = 1}^{N}P_i$, אזי $m(P) \le \sum_{i = 1}^{N}m(P_i)$. 
+	\end{Lemma}
+	
+	לעיתים גם \textit{תת־אדטיביות} מכונה \textit{סאב־אדטיביות}. 
+	
+	נקבע מלבן אלמנטרי $\Og \subset \R^{2}$, ונעבוד בה''כ בתוכו לצורך הנוחות. 
+	\defi{קבוצה $A \subset \Og$ נקראת \textit{קבוצה אלמנטרית} אם היא איחוד סופי של מלבנים אלמנטריים. }
+	
+	ההצגה לא יחידה (ניתן לייצגה כאיחוד סופי של מלבנים אלמנטריים שונים), אך מידת הקבוצה לא תלויה בהצגה. 
+	
+	\clm{ב־$\Og$, איחוד, חיתוך ומשלים של מספר סופי של קבוצות אלמנטריות, הוא קבוצה אלמנטרית. }
+	\begin{proof}יהיו $P_1 \dots P_N, R_1 \dots R_T$ מלבנים אלמנטריים, כך ש־$B = \bigcup_{i = 1}^{T}R_i, \ A = \bigcup_{i = 1}^{N}P_i$ אלמנטריים. 
+		\begin{itemize}
+			\item איחוד: ברור ש־$A \cup B = \bigcup_{i = 1}^{T} R_i \cup \bigcup_{j = 1}^{N}P_i$ כנדרש. 
+			\item חיתוך: בדומה לאיחוד, בשילוב עם העובדה שחיתוך מלבנים אלמנטריים נותנת מלבן אלמנטרי. 
+			\item משלים: אם $\cg = [a, b) \times [c, d)$ אז משלים של מלבן מדה־מורגן $R = [x, y) \times [z, w) \subset \Og$ ואז נקבל ש־: 
+			\[ \ol R = [a, b) \times [c, z) \cup [a, b) \times [w, c) \cup [a, x) \times [z, w) \cup [y, b) \times [z, w) \]
+			קבוצה אלמנטרית. ואז ל־$A$ כללית נקבל ש־$\Og \setminus A = (\Og \setminus R_1) \cap \cdots \cap (\Og \setminus R_N)$
+		\end{itemize}
+	\end{proof}
+
+	\nthlec{1}{2}
+	
+	\rmark{תוצאה של המשפט לעיל היא המקרה הפרטי לפיו $A \cup B, A \cap B, A \trio B, A^{c} = \Og \setminus A, A \setminus B$ כולן קבוצות אלמנטריות. מכאן ש־: 
+	\begin{itemize}
+		\item קבוצת הקבוצת האלמנטריות המוכלות ב־$\Og$ היא אלגברה בוליאנית. 
+		\item כל $A \subset \Og$ אלמנטרית אפשר להציג כאיחוד \textit{זר} של מספר סופי של מלבנים אלמנטריים. 
+	\end{itemize}}
+	ההוכחה של המסקנה השנייה היא הוכחה דומה למה שכבר ראינו של להמשיך את המלבנים. 
+	
+	\textbf{תזכורת: }$A \trio B \cod (A \setminus B) \cup (B \setminus A)$
+	
+	\defi{אוסף תת־קבוצות של $\Og$ הסגור למשלים ולאיחוד סופיים, וכן מכיל את הקבוצה הריקה, נקרא \textit{אלגברה של קבוצות}. }
+	\clm{\label{theo:boolring}בהינתן אלגברה של קבוצות מעל $\Og$, תחת ההגדרה: 
+	\begin{align*}
+		A + B \cod A \trio B && A \cdot B = A \cap B
+	\end{align*}
+	מקבלים חוג עם יחידה (שהוא $\vn$), שבו $\forall x \co x^{2} = x$. קבוצה שמקיימת תנאים אלו נקראת \textit{אלגברה בוליאנית}. }
+	\defi{חוג שבו $\forall x \co x^{2} = x$ נקרא \textit{חוג בוליאני}. }
+	\cola{חוג בוליאני היא חוג קומטטיבי ממאפיין $2$. }
+	\rmark{יש איזומורפיזם בין קטגוריית החוגים הבוליאנים לבין קטגוריית האלגבראות הבוליאניות, שמנוסח במפורש במשפט \ref{theo:boolring}. לרוב משתמשים במושג אלגברה בוליאנית בהקשרים של תקב''צ, ובחוג בוליאני בהקשרים אלגבריים. }
+	
+	\defi{תהי $A \subset \R^{2}$ קבוצה אלמנטרית $A = \bigcup_{i = 1}^{N}P_i$ כאשר $P_i \subset \R^{2}$ מלבנים אלמנטריים. נגדיר את מידת $A$ להיות: 
+	\[ m(A) \cod \sum_{i = 1}^{N}m(P_i) \]}
+	\clm{\ 
+	\begin{enumerate}
+		\item $m(A)$ לא תלויה בהצגה של $A$ כאיחוד של מלבנים אלמנטרים זרים, 
+		\item ההגדרה לעיל מזדהה עם ההגדרה הקודמת במקרה ש־$A$ מלבן אלמנטרי. 
+	\end{enumerate}}
+	ההוכחה של $1$ פשוטה מאדטיביות של מידת מלבנים, ו־$1$ גורר ישירות את $2$. 
+	
+	\clm{תכונות בסיסיות של מידת קבוצות אלמנטריות: 
+	\begin{itemize}
+		\item בהינתן $A, B \subset \Og$ אלמנטריות אז $A \cap B = \vn \implies m(A \cup B) = m(A) + m(B)$
+		\item אם $A_1 \dots A_N$ אלמנטריות זרות בזוגות, אז $m\cl{\bigcup A_i} = \sum m(A_i)$ (באינדוקציה על $1$)
+		\item אם $A_1 \dots A_N$ אלמנטריות, אז $m\cl{\bigcup A_i} \le \sum m(A_i)$ 
+	\end{itemize}}
+	
+	ההוכחה של כולן מסתמכת על ''הרחבה`` של המלבנים. 
+	
+	\begin{Theorem}[תת־סיגמה־אדטיביות]\label{theo:r2subsigmaadd}
+		נניח ש־$A, A_1 \dots \subset \R^{2}$ סדרת קבוצות אלמנטריות כך ש־$A \subset \bigcup_{n = 1}^{\infty} A_n$, אז: 
+		\[ m(A) \le \sum_{n = 1}^{\infty}m(A_n) \]
+	\end{Theorem}
+	\rmark{בהקשרים הללו, האות סיגמה לרוב מסמנת איחוד בן־מנייה. }
+	התכונה לעיל קשורה לשלמות של $\R^{2}$ כמרחב מטרי. אם לדוגמה היינו עוברים ברציונליים, אז לדוגמה המלבן $I = [0, 1)^{2} \cap \Q^{2}$ היה איחוד של ''המון ישרים דקים`` וזה לא היה עובד. 
+	
+	הוכחת המשפט מסתמכת על רדוקציה מאיחוד בן־מנייה לאיחוד סופי (שם יש לנו בבירור סאב סיגמה אדטיביות מתכונות האלגברה), והדרך המתבקשת לעשות את זה היא באמצעות היינה־בורל. 
+	\lem{תהא $A$ אלמנטרית ו־$\eg > 0$. אז קיימות אלמנטריות $A', \tl A\subset \R^{2}$ כך ש־:
+	\begin{enumerate}[(A)]
+		\item קירוב מבפנים ע''י קבוצה סגורה: $\Cl A' \subset A \ \land \ m(A \setminus A') < \eg$. 
+		\item קירוב מבחוץ ע''י קבוצה פתוחה: $A \subset \Int(\tl A) \ \land \ m(\tl A \setminus A) < \eg$. 
+	\end{enumerate}}\begin{proof}
+		במלבנים, ההוכחה פשוטה (בונים מלבן קטן). במקרה של איחוד סופי של $n$ מלבנים, נקרב באופן זהה כל אחד מהמלבנים בעבור $ \frac{\eg}{n}$, ואז נאחד. פנים וסגור אינווריאנטים לאיחוד ולכן סיימנו. 
+	\end{proof}
+	''אנחנו לא פיזיקאים`` $\sim$ המרצה אחרי שהוא כתב את ההוכחה הזו. 
+	
+	\begin{proof}[הוכחת \ref{theo:r2subsigmaadd}]
+		לאיחוד סופי – טרוויאלי. \textbf{הרעיון: }במקום להוכיח ש־$x \le y$, נוכיח ש־$\forall \eg \co x \le y + \eg$. נקבע $\eg > 0$ כלשהו. מטרתנו להוכיח ש־$m(A) \le \sum_{n = 1}^{\infty} m(A_n)$. נחליף את $A$ באלמנטרית $\Cl A' \subset A$ כך ש־$m(A \setminus A') \le \frac{\eg}{2}$, ובאופן דומה נחליף את $A_n$ באלמנטרית $\tl A_n$ כך ש־$A \subset \Int(\tl A_n)$ ו־$m(\tl A_n \setminus A_n) < \frac{\eg}{2^{n + 1}}$. נשים לב ש־$A'$ פרה־קומפקטית (היא חסומה + היינה־בורל) ולכן: 
+		\[ \Cl A' \subset A \subset \bigcup_{n = 1}^{\infty}A_n \subset \bigcup_{n = 1}^{\infty}\Int(\tl A_n) \]
+		הקבוצות הפתוחות $\Int(\tl A_1) \dots \Int(\tl A_n)$ כיסוי פתוח של הקומפט $\Cl A'$, ולכן ויש תת־כיסוי סופי $\ol{A'} \subset \bigcup_{r = 1}^{\infty}$. עתה, נשתמש בטענה לאיחוד סופי של אלמנטריות: 
+		\[ \begin{WithArrows}
+			m(A) &= m(A') + m(A \setminus A') \\
+			&\le \frac{\eg}{2} + m(A') \Arrow[ll]{$A' \subset \bigcup_{r = 1}^{N}\tl A_n$}\\
+			&\le \frac{\eg}{2} + \sum_{r = 1}^{N}m(\tl A_n) \\
+			&\le \frac{\eg}{2} + \sum_{n = 1}^{\infty}\csb{m(A_n) + \frac{\eg}{2^{n + 1}}} \Arrow[ll]{$\sum_{n = 1}^{\infty}\frac{1}{2^{n + 1}} = \frac{1}{2}$}\\
+			&= \eg + \sum_{n = 1}^{\infty}\cl{m(A_n)}
+		\end{WithArrows} \]
+	\end{proof}
+	
+	\cola{\label{col:elemntaryprop}אז מה אנחנו יודעים על קבוצות אלמנטריות ב־$\Og$? 
+		\begin{enumerate}
+			\item הן מהוות אלגברה (סגורות לאיחוד סופי ומשלים)
+			\item המידה $m$ אדטיבית־סופית עבורן (כלומר $A \cap B = \vn \implies m(A \cup B) = m(A) + m(B)$)
+			\item $m$ היא תת־$\sg$־אדטיבית (כלומר $A \subset \bigcup_{n = 1}^{\infty}A_n \implies m(A) \le \sum_{n = 1}^{\infty}m(A_n)$)
+	\end{enumerate}}
+
+	\subsubsection{מידה חיצונית}
+	
+	אלו שלושת התכונות \textit{היחידות} שאנחנו עומדים להשתמש בהן בהגדרת המידה לקבוצות שאינן אלמנטריות. הניסיון הראשון שלנו להגדיר מידה כזו תהיה מידה חיצונית. 
+	
+	\defi{\label{defi:outermeasure}תהא $A \subset \R^{2}$ קבוצה כלשהי. אז \textit{המידה החיצונית של $A$} היא: 
+	\[ m^{*}(A) = \inf \ccb{\sum_{n = 1}^{\infty}m(P_n)\ \middle\vert \ A \subset \bigcup_{n = 1}^{\infty}P_n \ \mathrm{s.t.} \ \text{$A_n$ אלמנטריים}} \]}
+	הבחנה חשובה היא ש־$\Img m^{*} = [0, +\infty]$. יש קבוצות שהשטח עבורן ''אינסופי``. 
+	
+	\begin{itemize}
+		\item \textbf{מה טוב? }אכן קבוצות שהיינו מצפים לשטח מסוים יצאו סבירות, לדוגמה השטח של מעגל היחידה הוא $\pi$. 
+		\item \textbf{מה רע? }אם מאמינים באקסיומת הבחירה, ניתן לבנות $A, B \subset I^{2}$ \textit{זרות} כך ש־$m^{*}(A \cup B) < m^*(A) + m^*(B)$
+	\end{itemize}
+	
+	הפתרון של הדבר הרע יהיה לצמצם את $m^*$ לתת קבוצה נחמדה של קבוצות ''מדידות``. 
+	
+	\rmark{את הרחבת מושג השטח, אפשר לבסס רק על שלוש התכונות במסקנה \ref{col:elemntaryprop}. }
+	
+	
+	\begin{Collary}[תכונות של $m^*$]
+		\begin{enumerate}
+			\item אם $A \subset \R^{2}$ ברת מנייה, אז $m^*(A) = 0$. למה? כי $A = \{x_i\}_{i = 1}^{\infty}$, ואז נוכל לכסות את $x_i$ על מלבן אלמנטרי ששטחו $\frac{\eg}{2^{i}}$, ולקבל $\forall \eg > 0 \co m^*(A) \le \eg$. 
+			\item בהגדרה של $m^*(A)$, אפשר להחליף ''מלבנים אלמנטריים`` ב־''קבוצות אלמנטריות`` (כי איחוד בן נייה של קבוצות סופיות הוא בן מנייה). 
+			\item בהגדרה של $m^*(A)$, אפשר להחליף את $A \subset \bigcup_{n = 1}^{\infty}A_n$ בתנאי $A \subset \bigcup_{n = 1}^{\infty}\ol{A_n}$ או בתנאי $A \subset \bigcup_{n= 1}^{\infty}\Int(A_n)$
+			\item עבור קבוצה $A \subset \R^{2}$ אלמנטרית, מתקיים $m(A) = m^*(A)$. 
+		\end{enumerate}
+	\end{Collary}
+	ההבחנה השנייה, תאפשר לנו בהמשך להגדיר מידה חיצונית נטו בעזרת מעין מידה אלמנטרית (מקיימת את שלושת התכונות) מעל אלגברה נחמדה מספיק. 
+	
+	\begin{proof}[הוכחה של מסקנה 4]
+		ברור ש־$m^*(A) \le m(A)$ בעבור כיסוי עם איבר 1 – $A$ עצמה. יותר קשה להראות ש־$m^*(A) \ge m(A)$, כלומר צ.ל. בהינתן $A \subset \bigcup_{n = 1}^{\infty}A_n$ כאשר $A_n$ אלמנטריות, מתקיים $m(A) \le \sum_{n = 1}^{\infty} m(A_n)$. גם כאן התשובה פשוטה, מתת־$\sg$־אדטיביות. 
+	\end{proof}
+	
+	''ביטול. אין הפסקה``. 
+	
+	\textbf{דוגמאות של מידה חיצונית. }
+	\begin{enumerate}
+		\item $m^*([0, 1))^{2} = 1$ (כי זה אלמנטרי)
+		\item $m^*(I^{2}) = 1$. חסם תחתון ברור מהסעיף הקודם. החסם העליון כי עבור $\eg > 0$ קל להראות ש־$m^*(A) \le 1 + \eg$ ע''י הכיסוי $[0, 1) \cup P_1 \cup P_2 \cup P_3 \cup P_4$ כאשר $P_1 \dots P_4$ מלבנים אלמנטריים סביב צלעות המלבן ממידה $\frac{\eg}{4}$ (העובי שלהם קטן כרצוננו). 
+		\item באופן דומה להוכחה של $P_1 \dots P_4$, ברור ש־$m^*(I) = 0$ בתוך $\R^{2}$. 
+	\end{enumerate}
+	
+	\theo{מידה חיצונית היא תת־$\sg$־אדטיבית, כלומר: 
+	\[ m^*\!\Bigg(\smash{\overbrace{\bigcup_{n =1}^{\infty}A_n}^{A}}\Bigg) \!\le \sum_{n = 1}^{\infty}m^*(A_n) \]}\begin{proof}
+		ניקח $\eg > 0$ ונוכיח את הא''ש עד לכדי אפסילון. לכל $n$, קיימות אלמנטריות $P_{n, 1} \dots P_{n, 3} \dots \subset \R^{2}$ כך ש־$A_n \subset \bigcup_{k =1}^{\infty}P_{n, k}$,		וכמעט מתקבל ה־$\inf$, כלומר: 
+		\[ \begin{WithArrows}
+			\sum_{k = 1}^{\infty}m^*(P_{n, k}) &< m^*(A_n) + \frac{\eg}{2^{n}} \Arrow[up]{$A \subset \bigcup_{n, k}P_{n, k}$}\\
+			m^*(A) &\le \sum_{n, k = 1}^{\infty}m^*(P_{n, k}) \le \sum_{n = 1}^{\infty}m^*(A_n) + \frac{\eg}{2^{n}} = \eg + \sum_{n = 1}^{\infty}m^*(A_n)
+		\end{WithArrows} \]
+		כנדרש. 
+	\end{proof}
+	
+	\subsubsection{קבוצות מדידות}
+	
+	בעוד כמה שבועות, נראה $A, B$ (''כלל וכלל לא אלמנטריות``) זרות כך ש־$m^*(A \cup B) < m^*(A) + m^*(B)$. זו הבעיה העיקרית במידה חיצונית – זה אמור להיות אדטיבי ביחד לשתי קבוצות זרות. 
+	
+	הפתרון יהיה להצטמצם לקבוצה בשם קבוצת הקבוצות המדידות, שעליהן $m^*$ אדטיבית (מידת איחוד זר היא סכום המידות) ''רוב הקבוצות הן מדידות``, בהיבט הזה שחייבים להשתמש באקסיומת הבחירה כדי לבנות קבוצות לא מדידות. 
+	
+	לעת עתה, אנחנו עדיין עובדים בתחום תחום קבוע $\Og \subset \R^{2}$ כלשהו. 
+	
+	\defi{קבוצה $A \subset \Og$ נקראת \textit{מדידה} אם ניתן לקרבה ע''י אלמנטריות, כלומר לכל $\eg > 0$ קיימת אלמנטרית $P_\eg \subset \Og$ כך ש־$m^*(A \trio P_\eg) < \eg$. }
+	\rmark{בלעז, measurable. }
+	\rmark{יש גישה אלטרנטיבית, שקולה, בה מגדירים את $A$ להיות מדידה אמ''מ לכל $B$ מתקיים ש־$m^*(A) = m^*(A \cup B) + m^*(A \setminus B)$. אנחנו נעבוד עם הגישה המוגדרת לעיל, שהיא הגישה של לבג. }
+	''נוכיח שזה שקול?`` ''יום אחד``
+	
+	\textbf{דוגמאות: }\begin{enumerate}
+		\item כל אלמנטרית היא מדידה, ניתנת לקירוב ע''י עצמה. 
+		\item עיגולים הם גם סבבה: עם בנייה מגעילה מספיק אפשר לעשות את זה. ניתן להוכיח בצורה יותר אלגנטית באמצעות קריטריון דרבו לאינטגרביליות רימן. נראה בהמשך שכל פתוחה/סגורה היא מדידה. 
+		\item אם $A \subset \Og$ קב' בעלת מידה חיצונית $0$ היא בהכרח מדידה (ניתן לקרבה עם הקבוצה הריקה). 
+	\end{enumerate}
+	
+	בתרגיל, נוכיח ש־$d(A, B) = m^*(A \trio B)$ מקיים את א''ש המשולש וזו פסאודומטריקה. יתרה מכך, הפונקציה $A \to m^*(A)$ רציפה (מליפשיציות). 
+	
+	\clm{אוסף הקבוצות המדידות ב־$\Og$ סגור למשלים ולאיחוד (מהווה אלגברה). }\begin{proof}
+		יהיו $A, B \subset \Og$ מדידות, ונוכיח ש־$A \cup B$ מדיד. יהי $\eg >0$. רוצים למצוא $\eg$־קירוב אלמנטרי ל־$A \cup B$. ישנן אלמנטריות $P_\eg, Q_\eg$ שמקרבות את $A, B$ בהתאמה ברזולוציה של $\frac{\eg}{2}$ (כלומר $m^*(A \trio P_\eg) < \frac{\eg}{2}$ ו־$m^*(B \trio P_\eg) < \frac{\eg}{2}$). 
+		
+		נרצה לקרב את $A \cup B$ באמצעות $P_\eg \cup Q_\eg$. ואכן: 
+		\[ (A \cup B) \trio (P_\eg \cup Q_\eg) \subset (A \trio P_\eg) \cup (B \trio Q_\eg) \]
+		ומתת־אדטיביות של $m^*$ קיבלנו ש־$m^*((A \cup B) \trio (P_\eg \cup Q_\eg)) < \frac{\eg}{2} + \frac{\eg}{2} = \eg$ וסיימנו. 
+		
+		מה לגבי $\Og \setminus A$? יש אפסילון־קירוב ל־$A$ ע''י $P_\eg$ כך ש־$m^*(A \trio P_\eg) < \eg$. אך $A^c \trio P_\eg^c = A \trio P_\eg$ כלומר $m^*(A^c \trio P_\eg^c) = \eg$ כנדרש. 
+	\end{proof}
+	
+	\clm{נניח שיש $A, B \subset \Og$ \textit{מדידות} וזרות. אז $m^*(A \cup B) = m^*(A) + m^*(B)$. }\begin{proof}
+		א''ש אחד ידוע מתת־אדטיביות של $m^*$. הכיוון השני (צ.ל. $m^*(A \cup B) \le m^*(A) + m^*(B)$) לאו דווקא ברור. 
+		
+		כדי להוכיח את הא''ש השני, ניקח $\eg > 0$ ונסתפק בלהוכיח ש־$m^*(A \cup B) \ge m^*(A) + m^*(B) - 10\eg$. ממדידות $A, B$ קיימות אלמנטריות $P_\eg, Q_\eg \subset \Og$ כך ש־$m^*(A \trio P_\eg), m^*(B \trio Q_\eg) < \eg$. 
+		
+		[שימו לב שלמרות ש־$A \cap B = \vn$, ייתכן ש $P_\eg \cap Q_\eg \neq \vn$, אבל אפשר להראות שהחיתוך קטן]
+		
+		נבחין ש־:
+		\[ P_\eg \cap Q_\eg \subset (P_\eg \setminus A) \cup (Q \eg \setminus B) \subset (P_\eg \trio A) \cup (Q_\eg \trio B) \]
+		לכן $m^*(P_\eg \cap Q_\eg) \le m^*(P_\eg \trio A) + m^*(Q_\eg \trio B) < 2\eg$. מכיוון ש־$P_\eg, Q_\eg \subset \Og$ אלמנטריות, אז $m^*(P_\eg) = m(P_\eg)$ וכנ''ל לגבי $Q_\eg$ (כאשר $m$ המידה שהגדרנו רק לאלמנטריות, והוכחנו בה אדטיביות סופית) ולכן: 
+		\[ m^*(P_\eg \cup Q_\eg) = m^*(P_\eg) + m^*(Q_\eg) - m^*(Q_\eg \cap P_\eg) \]
+		עבור $x, y \in \R$ נסמן $x \approx y$ אם $\sof{x - y} < \eg$. לעיל הסקנו ש־$\smash{m^*(P_\eg \cup Q_\eg) \overset{2\eg}{\approx} m^*(P_\eg) + m^*(Q_\eg)}$. 
+		
+		בנוסף, ברור ש־$m^*(A) \approx m^*(P_\eg)$ ו־$m^*(B) \approx m^*(Q_\eg)$. 
+		
+		לגבי $A \cup B$, ראינו בהוכחה הקודמת ש־$m^*\csb{(A \cup B) \trio (P_\eg \cup Q_\eg)} \le m^*(A \trio P_\eg) + m^*(B \trio P_\eg) \le 2\eg$. לכן $m^*(A \cup B) \overset{2\eg}{\approx} m^*(P_\eg \cup Q_\eg)$. נציב למעלה ונקבל: 
+		\[ m^*(A \cup B) \overset{2\eg + 2\eg + \eg + \eg}{\approx} m^*(A) + m^*(B) \]
+		ובפרט עד לכדי $10\eg$ כנדרש. 
+	\end{proof}
+	
+	\cola{\begin{enumerate}
+			\item אפשר להמשיך באינדוקציה על $A_1 \dots A_n$ מדידות וזרות בזוגות ולקבל $m^*(\bigcup A_i) = \sum m^*(A_i)$. 
+			\item עבור $A, B \subset \Og$ מדידות, נוכל לקבל הכלה והפרדה: 
+			\[ m^*(A \cup B) = m^*(A) + m^*(B) - m^*(A \cap B) \]
+			(כי $m^*(B) = m^*(A \cap B) + m^*(B \setminus A)$ ובאופן דומה על $A$)
+	\end{enumerate}}
+	
+	''המשפט הבא הוא פלא``. ''במידה מסוימת, הקורס הזה הוא הערות למשפט הזה``
+	\begin{Theorem}[סיגמה־אדטיביות של המידה]
+		תהיינה $A_1, A_2 \dots \subset \Og$ סדרה בת־מנייה של קבוצות מדידות. אז: 
+		\begin{enumerate}
+			\item איחוד הבן מנייה $\bigcup_{n = 1}^{\infty}A_n$ של קבוצות מדידות הוא מדיד
+			\item אם הקבוצות זרות בזוגות, אז $m^*\cl{\bigcup_{n = 1}^{\infty}A_n} = \sum_{n = 1}^{\infty}m^*(A_n)$
+		\end{enumerate}
+	\end{Theorem}
+	\begin{proof}
+		\begin{itemize}
+			\item להוכחת החלק הראשון של המשפט, אפשר להניח בה''כ שהן זרות בזוגות, שכן אפשר תמיד להחליפן ב־: 
+			\[ \begin{cases}
+				A_1' = A_1 \\
+				A_n' = A_n \setminus \cl{\bigcup_{i = 1}^{n - 1} A_i}
+			\end{cases} \]
+			קיבלנו קבוצות $A_1' \dots A_n'$ זרות, מדידות (קבוצת המדידות היא אלגברה, ו־$A_n'$ מתקבלת ע''י מספר סופי של חיתוכים ואיחודים), ואיחודן אותו הדבר ($\bigcup A_n = \bigcup A_n'$). 
+			\item לכל $N$ סופי, ידוע ש־: 
+			\[ \sum_{n= 1}^{N}m^*(A_n) = m^*\cl{\bigcup^{N}_{n = 1} A_n} \le m^*(A) < \infty \]
+			מתת־$\sg$־אדטיביות. לכן הטור $\sum^{\infty}_{n  =1}m^*(A_n)$ מתכנס, כי סדרת הסכומים החלקיים חסומה (הרגע הוכחנו) ומונוטונית עולה (המידה חיובית). לכן הזנב קטן כרצוננו, כלומר לכל $\eg > 0$ ישנו $N_\eg$ כך ש־$\sum_{n = N_\eg}^{\infty}m^*(A_n) < \eg$ (זנב כל טור מתכנס). 
+			
+			\item למה $A = \bigcup_{n = 1}^{\infty}$ מדידה? יהי $\eg > 0$, נמצא קירוב אלמנטרי מתאים. הקבוצה $\bigcup_{n= 1}^{N_\eg}A_n$ מדידה, ולכן יש אלמנטרית $P_\eg$ שמקרבת אותה $m^*(P_\eg \trio \bigcup^{N_\eg}_{n = 1}A_n) < \eg$. נראה ש־$m^*(P_\eg \trio A) < 2\eg$. אכן: 
+			\[ \begin{WithArrows}
+				m^*(P_\eg \trio A) &= m^*\!\cl{P_\eg \trio \csb{\bigcup_{n = 1}^{N_\eg} \cup\  \bigcup_{\mathclap{n = N_\eg + 1}}^{\infty} A_n}} \Arrow[up]{סאב־אדטיביות} \\
+				&= m^*\!\cl{P_\eg \trio \bigcup_{n = 1}^{n_\eg}} + m^*\!\cl{\bigcup_{n = N_\eg + 1}^{\inft}A_n} \\
+				&= \eg + \eg = 2 \eg
+			\end{WithArrows} \]
+			בכך הוכחנו את חלק א' של המשפט. 
+			\item עתה, נותר להראות ש־$m^*\cl{\bigcup_{n = 1}^{\infty}} = \sum_{n = 1}^{\infty}m^*(A_n)$ כאשר $A_n$ זרות. כיוון אחד יש לנו מתת־$\sg$־אדטיביות. 
+			
+			לגבי הכיוון השני, ממונוטוניות. לכל $N$ מתקיים: 
+			\[ m^*\!\cl{\bigcup_{n = 1}^{\infty}A_n} \ge m^*\!\cl{\bigcup_{n = 1}^{N}A_n} = \sum_{n = 1}^{N}m^*(A_n) \]
+			ולכן מסנדוויץ' סיימנו. 
+		\end{itemize}\envendproof
+	\end{proof}
+	
+	\renewcommand{\footrule}{\rule{\linewidth-26pt}{0.25pt}\vspace{-5pt}}
+	
+	\defi{אוסף תת־קבוצות של $\Og$ הסגור למשלים ולאיחודים בני מנייה, וכן מכיל את הקבוצה הריקה, נקרא $\sg$־אלגברה (קרי: סיגמא אלגברה). }
+	
+	או במילים אחרות: אלגברה שעובדת גם לאיחודים בני מנייה (ולא רק סופיים). 
+	
+	יש סיגמה־אלגבראות מעוצמת הרצף, אך אין סיגמה־אלגברה (לא סופית) מעוצמה בת־מנייה. 
+	
+	לסיכום, הקבוצות המדידות ב־$\Og$ הוא $\sg$־אלגברה, והמידה החיצונית היא $\sg$־אדטיבית (כלומר היא אינווריאנטית לאיחוד קבוצות זרות). 
+	
+	\defi{עבור $A \subset \Og$ מדידה, מסמנים ב־$m(A) = m^*(A)$, וזו נקראת \textit{מידת לבג} של $A$. }
+	
+	זה כמובן מרחיב את ההגדרה הקודמת לקבוצות אלמנטריות. זה לא תלוי ב־$\Og$ (כי מידה חיצונית לא תלויה ב־$\Og$). 
+	
+	\textbf{דוגמאות: }
+	\begin{enumerate}
+		\item אם $A_1, A_2 \dots \subset \Og$ מדידות, אז גם $\bigcap_{n = 1}^{\infty}A_n$ מדיד (כי יש שימור של איחוד אינסופי ושל משלים, ומכללי דה מורגן, כלומר $\bigcap A_n = \cl{\bigcup A_n^{c}}^{c}$). 
+		\item איחוד בן־מנייה של מלבנים אלמנטריים (או איחוד כל המלבנים הרציונליים שמוכלים בקבוצה מדידה). 
+		\item כל קבוצה פתוחה $A \subset \Og$ מדידה. 
+		\item כל קבוצה סגורה $A \subset \Og$ מדידה, זאת כי: 
+		\[ \Og \setminus A = \underbrace{\Int \Og \setminus A}_{\ \!\text{פתוחה}} \cup \ B \]
+		כאשר $B \subset \partial \Og$, ו־$\partial \Og$ זניחה וממונוטוניות וסגירות לאיחוד סיימנו. 
+	\end{enumerate}
+	
+	\nthlec{2}{3}
+	
+	\subsubsection{הגדרת מידה מחוץ ל־$\Og$}
+	כרגע, קובעים מלבן אלמנטרי $\Og \subset \R^{2}$ ועובדים בתוכו. נרצה להתרחב לכל $\R^{2}$. 
+	
+	מומלץ לקרוא על המאמר של Falconer מ־1986. 
+	
+	תופעה מעניינת: אין קבוצה מדידה שמכילה ''חצי מהממשיים בכל סקאלה``. הכוונה היא שלא קיימת $A \subset \R$ מדידה כך שלכל $I \subset \R$ מתקיים $m(A \cup I) = \frac{m(I)}{2}$. 
+	
+	כשנרצה להתרחב מחוץ ל־$\Og$, נרצה להגדיר גם מידה לקבוצות לא חסומות. 
+	
+	\textbf{הרעיון: }נרצף את $\R^{2}$ עם מלבנים אלמנטריים, לדוגמה באמצעות $[n, n +1) \times [m, m + 1)$ לכל $n, m \in \Z$. נסמן את הריבועים בריצוף ב־$\Og_1, \Og_2 \dots $ ומן הסתם מתקיים ש־$\R^{2} = \biguplus^{\infty}_{i = 1} \Og_i$. 
+	
+	\defi{\label{defi:mesuareR2}קבוצה $A \subset \R^{2}$ תקרא \textit{מדידה לבג} אם $\forall n \co A \cap \Og_n$ מדידה ב־$\Og_n$, ונגדיר את \textit{מידת לבג של $A$} להיות: 
+	\[ m(A) \cod \bigcup_{n = 1}^{\infty}m(A \cap \Og_n) \]}
+	
+	\exe{נניח ש־$\Og_1, \Og_2$ מלבנים אלמנטריים, ונניח ש־$A \subset \Og_1 \cap \Og_2$. אז אם $A$ מדידה ביחס ל־$\Og_1$ היא גם מדידה ביחס ל־$\Og_2$. }
+	\cola{הגדרת המדידות לא תלויה בבחירת הריצוף. }
+	
+	\clm{ההגדרה ב־\ref{defi:mesuareR2} מקיימת את התנאים הבאים: 
+	\begin{enumerate}
+		\item אוסף הקבוצות ב־$\R^{2}$ הוא $\sg$־אלגברה. 
+		\item אם $A_1, A_2 \dots \subset \R^{2}$ מדידות וזרות, אז: 
+		\[ m\cl{\bigcup_{n = 1}^{\infty}A_n\!} = \sum_{n = 1}^{\infty}m(A_n) \]
+	\end{enumerate}}
+	\begin{proof}
+		\begin{enumerate}
+			\item ברור ש־$\vn$ מדידה (כי $\vn \cap \Og_n = \vn$ מדידה ב־$\Og_n$). סגירות למשלים ברורה כי: 
+			\[ \R^{2} \setminus A = \biguplus{\Og _n \setminus A} \]
+			ו־$\Og_n \setminus A$ מדידה לכל $n$ (כי שווה ל־$\Og_n\setminus (\Og_n \cap A)$). ישנה סגירות לאיחוד בן־מנייה: 
+			\[ \cl{\bigcup_{i = 1}^{\infty}A_i} \cap \Og_n = \bigcup_{i= 1}^{\infty}\underbrace{\cl{A_i \cap \Og _n}}_{\text{מדידה ב־$_n\Og$}} \]
+			\item יהיו $A_1, A_2 \dots $ כמו קודם, ואז: 
+			\[ \begin{WithArrows}
+				&m\cl{\bigcup_{i =1}^{\infty}A_i} \Arrow[up]{מההגדרה}\\
+				= &\sum_{n = 1}^{\infty}m\cl{\cl{\bigcup_{i =1}^{\infty}A_i} \cap \Og_n}  \\
+				 = & \sum_{n = 1}^{\infty}m\cl{\bigcup_{i = 1}^{\infty}\cl{A_i \cap \Og_n}} \Arrow[]{$\sg$־אדטיביות ב־$_n\Og$} \\
+				 = &\sum_{n = 1}^{\infty}\sum_{i= 1}^{\infty}m\cl{A_i \cap \Og_n} \Arrow[]{החלפת סדר סכימה} \\
+				 = & \sum_{i= 1}^{\infty}\cl{\sum_{n = 1}^{\infty}m\cl{A_i \cap \Og_n}}
+			\end{WithArrows} \]
+		\end{enumerate}
+	\end{proof}
+	
+	\clm{לכל $A \subset \R^{2}$ מדידה לבג, מתקיים $m(A) = m^*(A)$}
+	\rmark{זכרו שמידה חיצונית מוגדרת לכל $\R^{2}$. ראה \ref{defi:outermeasure}. }
+	\begin{proof}
+		למה $m(A) \ge m^*(A)$? כי: 
+		\[ m(A) = \sum_{n =1}^{\infty}m(A \cap \Og _n) = \sum_{n = 1}^{\infty}m^*(A \cap \Og_n) \ge m^*\cl{\bigcup_{n = 1}^{\infty}\cl{A \cap \Og _n}} = m^*(A) \]
+		למה $m(A) \le m^*(A)$? מספיק להראות את השוויון $m^*(A) \ge \sum_{n = 1}^{N}m(A \cap \Og _n)$ לכל $N$, ואז לקחת גבול וסיימנו. נקבע מלבן אלמנטרי שמכיל את $\Og_1 \dots \Og_n$ (יש מספר סופי, ולכן יש מלבן אלמנטרי שמכיל את כולם). הקבוצה $A \cap \Og_i$ מדידה ב־$\Og$ לכל $i$ (תרגיל למעלה), לכן $A \cap \Og = \bigcup_{i = 1}^{N}\cl{A \cap \Og_i}$ מדידה ב־$\Og$, ו־: 
+		\[ m^*(A) \ge m^*(A \cap \Og) m(A \cap \Og) \ge \sum_{i =1}^{N}m(A \cap \Og_i) \]
+		כאשר הא''שים לעיל נכונים ממונוטוניות, מדידות ותת־אדטיביות. 
+		והוכחנו את הנדרש. 
+	\end{proof}
+	
+	בפרט, הגדרת מידת לבג לא תלויה בריצוף. 
+	
+	\textbf{שאלה: }נתונות $A, B \subset \R^{2}$ מדידות. האם $m(A \cup B) = m(A) + m(B)- m(A \cap B)$? 
+	
+	\textbf{תשובה: }זה לאו דווקא מוגדר היטב. ייתכן שהקבוצות אין־סופיות, ואי אפשר לחסר אינסוף מאינסוף. מה שאפשר להגיד הוא ש־$m(A \cup B) + m(A \cap B) = m(A) + m(B)$. 
+	
+	\textbf{שאלה: }איזה קבוצות מדידות יש ב־$\R^{2}$? הוכחנו שיש: 
+	\begin{itemize}
+		\item אלמנטריות
+		\item פתוחות (כאיחוד בן מנייה של אלמנטריות) וסגורות
+		\item קבוצות ממידה (חיצונית) אפס
+		\item ועוד
+	\end{itemize}
+	
+	שאלה מתבקשת היא כמה קבוצות מדידות יש ב־$\R^{d}$. 
+	\clm{יש $2^{\con}$ קבוצות מדידות ב־$\R^{d}$. }\begin{proof}
+		החסם העליון פשוט, כי $\sof{\ps(\R^{d})} = 2^{\con}$. נדרש למצוא רק חסם תחתון. נחפש קבוצה מעוצמת הרצף, שכל תת־הקבוצות שלה מדידות. מספיק למצוא קבוצה ממידה אפס, שעוצמתה רצף. ב־$d \ge 2$ ההוכחה פשוטה: ניקח פשוט קו ישר. ב־$d = 1$ נוכל להשתמש בקבוצת קנטור. 
+	\end{proof}
+	
+	נתבונן בקבוצה החביבה הבאה: 
+	\[ A_\eg = \bigcup_{n = 1}^{\infty}\cl{q_n - \frac{\eg}{2^{n}}, q + \frac{\eg}{2^{n}}} \]
+	זו בבירור קבוצה פתוחה, $\Q \subset A_\eg$, ו־$A_\eg \subsetneq \R$ (כי מידתה לכל היותר $2\eg$ סופית מתת־סיגמה אדטיביות. ראינו כבר את זה בעבר). זו קבוצה פתוחה, צפופה ו''קטנה``. נוכל להקטין אותה אפילו עוד: 
+	\[ A = \bigcap_{k = 1}^{\infty} A_{\frac{1}{k}} \]
+	זו קבוצה אפילו יותר קטנה (כי $m(A) \le m(A_{\frac{1}{k}}) \le \frac{2}{k} \to 0$), צפופה (כי $\Q\subset A$), והיא גם מעוצמת הרצף (ממשפט הקטגוריה של בייר). הקבוצה $A$ היא קבוצת $G_\dg$. 
+	\defi{תהא $A \subset X$ מרחב טופולוגי. $A$ תקרא $G_\dg$ אם קיימות $(O_i)_{i = 1}^{\infty}$ פתוחות כך ש־$A = \bigcap_{i = 1}^{\infty} O_i$, ו־$F_\sg$ אם קיימות $(F_i)_{i = 1}^{\infty}$ סגורות כך ש־$A = \bigcup_{i = 1}^{\infty}F_i$. }
+	
+	\exe{חיתוך של $\sg$־אלגבראות הוא $\sg$־אלגברה. }
+	
+	\defi{ה־$\sg$ של בורל, היא ה־$\sg$־אלגברה המינימלית שמכילה קבוצות פתוחות ב־$\R^{d}$. }
+	\rmark{בלעז, Borel. }
+	\rmark{ה־$\sg$־אלגברה של בורל מוגדרת ביחידות מכיוון שניתן לקחת את החיתוך של כל ה־$\sg$־אלגבראות ולקבל $\sg$־אלגברה מינימלית. }
+	מסתבר שה־$\sg$־אלגברה של בורל קטנה יותר מה־$\sg$־אלגברה של לבג (קבוצת הקבוצות המדידות). 
+	\clm{ה־$\sg$־אלגברה של בורל, היא הקבוצה המורכבת מהקבוצות הבאות: 
+	\begin{itemize}
+		\item קבוצות פתוחות
+		\item קבוצות סגורות
+		\item קבוצות $F_\sg$
+		\item קבוצות $G_\dg$
+	\end{itemize}}
+%	באינדוקציה טרנספיניטית אפשר לייצר 
+
+	נרצה לנסח קריטריון למדידות של קבוצות ב־$A \subset \R^{2}$ שלא מערב ריצוף ספציפי של $\R^{2}$. 
+	
+	\begin{Theorem}[תנאי המדידות של Lebesgue]
+		תהא $A \subset \R^{2}$ קבוצה. אז $A$ מדידה אמ''מ לכל $\eg > 0$ קיימות $G$ פתוחה ו־$F$ סגורה כך ש־$F \subset A \subset G \land m(G \setminus F) < \eg$. 
+	\end{Theorem}\begin{proof}
+		\begin{itemize}
+			\item[$\implies$] רוצים להוכיח ש־$A \cap \Og_n$ מדידה לכל $n$. נבחר $\Og \cod \Og_n$, ונסמן $A' = A \cap \Og$. רוצים להראות ש־$A'$ מדידה ב־$\Og$, כלומר שיש לה קירוב אלמנטרי טוב. יהי $\eg > 0$, ומתנאי המשפט נמצא $F \subset A \subset G$ מתאימות. נתבונן ב־$F' = F \cap |og, G' = G \cap \Og$. ברור ש־$F', G'$ מדידות ב־$\Og$ (כי $G' \setminus \ \partial \Og$ פתוחה ו־$F' \setminus \partial \Og $ סגורה, והשפה זניחה). 
+			
+			חיתוך של מדידות מדיד ב־$\R^{2}$ ולכן $G', F'$ מדידות ב־$\R^{2}$. לכן ל־$F', G'$ יש קירובים אלמנטריים $P_\eg, Q_\eg \subset \Og$ כך ש־$m^*(F' \trio P_\eg) ,m^*(G' \trio Q_\eg) < \eg$. נבחין ש־$P_\eg$ קירוב טוב: 
+			\[ m^*(A' \trio P_\eg) \le m^*(\underbrace{A' \trio F'}_{A' \setminus F'}) + m^*(F' \trio P_\eg) \le m(A \setminus F) + \eg \le m(G \setminus F) + \eg \le 2\eg \]
+			\item[$\impliedby$]נתון ש־$A$ מדידה, ולכל $\eg > 0$ נרצה למצוא $F, G$ המקיימים את התנאים. נגדיר (לצורך ההוכחה הזו) פנים של מלבן אלמנטרי־פתוח``. היה תרגיל לפיו מידה חיצונית אינווריאנטית ביחס ללקיחת פנים. 
+			
+			יהי $\eg > 0$. נבנה פתוחה $G$ כך ש־$m(G \setminus A) < \eg$. לכל $n \in \N$ ידוע ש־$m(A \cap \Og_n) = m^*(A \cap \Og_n)$ ולכן מהגדרת המידה החיצונית קיימים מלבנים אלמנטריים פתוחים $P_{n}^{(1)}, P_{n}^{(2)} \dots \subset \Og_n$ שקרובים לאינפימום כרצוננו ובפרט בקצב מעריכי (ישירות מהגדרת $\inf$ וממדידות), כלומר:
+			\begin{align*}
+				A \cap \Og = \bigcup_{i = 1}^{\infty}P_n^{(i)} && \sum_{i = 1}^{\infty}m(P_{n}^{(i)}) \le \frac{\eg}{2^{n}} + m(A \cap \Og_n)
+			\end{align*}
+			נשים לב ש־: 
+			\[ \sum_{i = 1}^{\infty}m\cl{P_n^{(i)} \setminus A} \le \frac{\eg}{2^{n}} \]
+			כי: 
+			\[ m(P_{n}^{i} \setminus A) = m(P_n^{(i)}) - m(P_n^{(i)} \cap A) \]
+			(הכל מתכנס בהחלט) דהיינו: 
+			\[ \sum_{i = 1}^{\infty} \cl{m(P_n^{(i)}) - m(P_n^{(i)} \cap A)} = \frac{\eg}{2^{n}} + m(A \cap \Og_n) - \underbrace{\sum_{i = 1}^{\infty}m(P_n^{(i)} \cap A)}_{\mathclap{m\cl{\bigcup^{\infty}_{i = 1}(P_n^{(i)}\cap A)}}} = \frac{\eg}{2^{n}} + \cancel{m(A \cap \Og_n) - m(A \cap \Og_n)} \]
+			(תנסו לצייר את זה, זה אמור להיות יחסית אינטואיטיבי). 
+			עתה נגדיר: 
+			\[ G \cod \bigcup_{n, i}P_n^{(i)} \]
+			זו פתוחה (איחוד פתוחות), שמכילה את $A$ (כי לכל $n$ מתקיים $G \supset \bigcup_{i = 1} P_n^{(i)} \supset A \cap \Og_n$ ובאיחוד מוכלל על $n$ זה אכן מכיל את $A$). נחשב את $m(G \setminus A)$: 
+			\[ m(G \setminus A) = m\!\cl{\bigcup_{n, i}P_n^{(i)}\setminus A} \le \sum_{n, i}m(P_n^{(i)}\setminus A) \le \sum_{n =1}^{\infty}\frac{\eg}{2^{n}} = \eg \]
+			
+			איך נמצא את $F$? נחזור על התהליך בעבור $\R^{2} \setminus A$, ונקב ל$G'$ פתוחה כך ש־$\R^{2} \setminus \subset G'$ וכן $m(G' \setminus (\R^{2} \setminus A))) < \eg$ ומכאן קל לראות ש־$F = \R^{2} \setminus G'$ מקיימת את הנדרש. 
+			
+		\end{itemize}
+	\end{proof}
+	
+%	\exe{התנאים הבאים שקולים: 
+%	\begin{itemize}
+%		\item לכל $\eg$ קיימת $F_\eg$ סגורה שמקרבת טוב
+%		\item קיימת $G_\eg$ פתוחה שמקרבת טוב
+%		\item $A$ מדידה
+%		\end{itemize}}
+
+%TODO check above
+	
+	\cola{תהא $A \subset \R^{2}$ מדידה. אז: 
+	\begin{align*}
+		m(A) &=\inf\ccb{m(G) \vert A \subset G \land G \ \text{\en{open}}} \\
+		&= \inf\ccb{m(F) \vert F \subset A \land F \ \text{\en{closed}}}
+		\end{align*}}\begin{proof}
+		ברור ש־$m(A) \le \inf \ccb{\cdots}$. מהצד השני, לכל $\eg > 0$, $G$ פתוחה ו־$F$ סגורה, נקבל ש־: 
+		\[ m(G \setminus A) \le m(G \setminus P) < \eg \]
+		ולכן $m(G) = m(A) + m(G \setminus A) \le m(A) + \eg$ וסיימנו. הסופרמום באופן דומה. 
+	\end{proof}
+	
+	
+	\exe{לכל $A \subset \R^{d}$ מדידה, מתקיים ש־: 
+	\[ m(A) = \sup\ccb{m(K) \mid K \subset A \land K \ \text{\en{compact}}} \]}
+	
+	\cola{לכל מדידה $A \subset \R^{2}$ קיימת $S \subset \R^{2}$ שמכילה את $A$ והיא $G_\dg$, כך ש־$m(S \setminus A)= 0$. }\begin{proof}
+		לכל $n$ יש $G_n$ פתוחה שמכילה את $A$ ו־$m(G_n \setminus A) \le \frac{1}{n}$, ונגדיר: 
+		\[ S = \bigcap_{i = 1}^{\infty}G_n \]
+		מהגדרה היא $G_n$ ו־: 
+		\[ m(S \setminus A) \le m(G_n \setminus A) \le \frac{1}{n} \toinf 0 \]
+	\end{proof}
+	
+	בכך סיימנו את בניית מידת לבג ב־$\R^{2}$. 
+	
+	נבחין במספר תכונות של מידת לבג שמצאנו: 
+	\clm{נניח ש־$A \subset \R^{d}$ מדידה. אז: 
+	\begin{itemize}
+		\item אם $x \in \R^{d}$, אז $A + x$ מדידה. 
+		\item אם $\lg \in \R$, אז $m(\lg A) =\sof{\lg}^{d} m(A)$ מדידה. 
+		\item אם $T \co \R^{d} \to \R^{d}$ לינארית, אז: 
+		\[ m(T(A)) = \sof{\det T} m(A) \]
+		(הוכחה של זה בחדו''א 3)q
+		\end{itemize}}
+	
+	
+	\section[מידת לבג למרחב מידה]{\en{Lebegue Measure for a Mesuare Space}}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	\ndoc
+\end{document}
