@@ -1,0 +1,77 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../../tex/packages/theoremsSupport}
+
+
+
+
+\author{שחר פרץ}
+\title{מבוא לתורת החבורות $\sim$ \textit{תרגיל בית 1}}
+\begin{document}
+	\maketitle
+	\section{}
+	תהא $G$ חבורה סופית. 
+	\begin{enumerate}
+		\item נראה שלכל $a \in G$ יש $1 \le m$ כך ש־$a^{m} = 1$. \begin{proof}
+			יש $\az$ מספרים שלמים גדולים מ־$1$ והחבורה סופית, לכן קיימים $i, j$ שונים כך ש־$a^{i} = a^{j}$. בה''כ $i < j$. נחלק את שני האגפים ב־$j$ ונקבל ש־$a^{j - i} = 1_G$. משום ש־$i < j$ והם שלמים, נקבל ש־$j - i \ge 1$ כנדרש. 
+		\end{proof}
+		\item נראה שיש $1 \le m$ כך ש־$\forall a \in G \co a^{m} =1$. \begin{proof}
+			לכל $a$ הראנו קיום $m_a$ כך ש־$a^{m_a} = 1$. נגדיר $m = \lcm\{m_a \mid a \in G\}$ מוגדר היטב כי החבורה סופית ו־$m_a$ שלמים. אז לכל $a \in G$, קיים $k$ כך ש־$m_a k = m$, ולכן: 
+			\[ a^{m} = a^{m_a \cdot k} = (a^{m_a})^{k} = 1_G^{k} = 1_G \]
+			כנדרש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהא $G$ חבורה. נניח שלכל $a$ מתקיים $a^{2} = 1$. נראה ש־$G$ אבלית. \begin{proof}
+		יהיו $a, b \in G$. משום ש־$ab \in G$ אז $(ab)^{2} = 1$. לכן: 
+		\[ (ab)(ab) = 1 \implies (ab)\op = ab \implies ba \seq b\op a\op = ab \]
+		כאשר השוויון $\seq$ נכון כי $a\op = a \land b\op = b$ בגלל ש־$a^{2} = 1 \land b^{2} = b$. 
+	\end{proof}
+	
+	\section{}
+	תהא $G$ חבורה, ו־$H, K \le G$. 
+	\begin{enumerate}[(A)]
+		\item נראה ש־$HH = H \land H\op = H$\begin{proof}
+			\begin{itemize}
+				\item ראשית נראה ש־$HH = H$. ברור ש־$HH \subset H$ שכן $H$ סגורה לכפל מהגדרתה כתת־חבורה (כל $a \in HH$ ניתן לביטוי ככפל של $a, b \in H$ ו־$h = ab \in H$ כי היא סגורה לכפל). מהצד השני, יהי $h \in H$. אז מתקיים ש־$h = 1 \cdot h$, ו־$h, 1 \in H$ (כי $H$ תת־חבורה, ולכן $1 \in H$) כפל של שני איברים מ־$H$, ובפרט $h \in HH$. 
+				\item עתה נראה ש־$H\op = H$. תנאי להיות $H$ תת־חבורה הוא ש־$a \in H$ אמ''מ $a \op \in H$. אז מהגרת עקרון ההחלפה $H\op = H$. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נסמן ב־$H$ את חבורת הייזנברג. 
+	\begin{enumerate}
+		\item נוכיח ש־$H$ חבורה. \begin{proof}
+			אסוציאטיביות וקיום איבר יחידה נובע אוטומאטית מהיותה תת־קבוצה של חבורת המטריצות. יש להוכיח סגירות וקיום הופכי. 
+			\begin{itemize}
+				\item \textbf{סגירות: }יהיו $a_1, b_1, c_1, a_2, b_2, c_2 \in \R$. אז: 
+				\[ \pms{1 & a_1 & c_1 \\ & 1 & b_1 \\ & & 1}\pms{1 & a_2 & c_2 \\ & 1 & b_2 \\ & & 1} = \pms{1 & a_1 + a_2 & c_1 + c_2 + a_1b_2 \\  & 1 &b_1 + b_2 \\ & & 1} \in H \]
+				מהגדרה. 
+				\item \textbf{הופכי: }כל $A \in H$ בצורה קאנונית ללא שורות אפסים, לכן $\rk A = 3 = \dim \R^{3}$ דהיינו קיים ל־$A$ הופכי בחבורת המטריצות. 
+			\end{itemize}
+		\end{proof}
+		\item נמצא את מרכז החבורה. בהתאם לפיתוח האלגברי לעיל, נחפש $a_2, b_2, c_2$ כך שלכל $a_1, b_1, c_1$ מתקיים: 
+		\[ \pms{1 & a_1 + a_2 & c_1 + c_2 + a_1b_2 \\  & 1 &b_1 + b_2 \\ & & 1} = \pms{1 & a_2 + a_1 & c_2 + c_1 + a_2b_1 \\  & 1 &b_2 + b_1 \\ & & 1} \]
+		נבחין שכל השוויונות מתקיימים תמיד מקומטטיביות איברים ב־$\R$, פרט ל־$c_1 + c_2 + a_2b_1 = c_1 + c_2 + a_1b_2$. באופן שקול נדרוש שלכל $x, y \in \R $ מתקיים ש־$a_2x = yb_2$, כלומר $a_2 = b_2$. סה''כ, מדובר בחבורת המטריצות: 
+		\[ Z(G) = \ccb{\pms{1 &  & c \\  & 1 &  \\ && 1} \ \middle\vert \ c \in \R} \]
+	\end{enumerate}
+	
+	\section{}
+	נוכיח ש־$\gSL_n(\Z)$ חבורה. (לא ברור לי למה אמרתם להשתמש בכלל קרמר)
+	\begin{proof}
+		כמובן ש־$\gSL_n(\Z) \subset \gGL_n(\R)$, כלומר רק נותר להוכיח את הסגירות של $\gSL_n(\Z)$ לכפל וקיום הופכי. 
+		\begin{itemize}
+			\item \textbf{סגירות: }כפל מטריצות עם איברים שלמים נותן מטריצה עם איברים שלמים (ישירות מהגדרת כפל מטריצות וסגירות החבורה $\Z^{\times}$). אם $A, B \in \gSL_n(\Z)$ אז $\det A = \det B = 1$. ולכן גם $\det(AB) = \det A \det B = 1 \cdot 1 = 1$, כלומר $AB \in \gSL_n(\Z)$ כדרוש. 
+			\item \textbf{קיום הופכי: }נזכר שלכל $A \in \gSL_n(\Z)$ מתקיים ש־$A \op = \frac{\adj A}{\det A} = \adj A$ שכן $\det A = 1$. ומהגדרת ה־$\adj$: 
+			\[ (\adj A)_{ij} = (-1)^{i + j}\det\cl{M_{ji}} \]
+			אם $A$ בעלת מקדמים שלמים, אז גם המינור ה־$(i, j)$ של $A$ המסומנת ב־$M_{ij}$. מהנוסחה של דטרמיננטה לפי תמורות, דטרמיננטה של מטריצה בעלת מקדמים שלמים היא בעלת מקדמים שלמים (שכן מדובר על פעולות כפל וחיבור בתוך החוג $\Z$). סה''כ $\det M_{ij}$ שלם, וכפל שלם ב־$-1$ או $1$ הוא שלם, וסה''כ $(\adj A)_{ij}$ שלם. סה''כ $A\op = \adj A\in M_n(\Z)$. אשר לדרמיננטה: 
+			\[ \det (A\op) = (\det A)\op = 1\op = 1 \]
+			ולכן סה''כ $A\op \in \gSL_n(\Z)$. 
+		\end{itemize}
+	\end{proof}
+	
+	\ndoc
+\end{document}
