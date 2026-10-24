@@ -1,0 +1,156 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../../tex/packages/theoremsSupport}
+
+
+\renewcommand\mut[2] {\left \la #1, #2 \right \ra}
+
+\author{שחר פרץ}
+\title{חדו''א 3 $\sim$ \textit{תרגיל בית 1}}
+\begin{document}
+	\maketitle
+	\section{}
+	נוכיח/נפריך: 
+	\begin{enumerate}[(A)]
+		\item איחוד פתוח הוא פתוח: \begin{proof}
+			יהי $\{U_\ag\}_{\ag \in I}$ אוסף פתוחות (כאשר $I$ מעוצמה כלשהי). נוכיח ש־$ U \cod \bigcup_{\ag \in I} U_\ag$ פתוח. נוכיח שכל הנקודות ב־$U$ פנימיות. יהי $x \in U$, אז בפרט ישנו $\ag \in I$ כך ש־$x \in U_\ag$. משום ש־$U_\ag$ פתוחה, קיים $r > 0$ כך ש־$B(x, r) \subset U_\ag \subset U$ ומהגדרה $x$ נקודה פנימית של $U$ כנדרש. 
+		\end{proof}
+		\item איחוד סגור הוא סגור: \begin{proof}[הפרכה]
+			נתבונן בקבוצה הבאה: 
+			\[ A = \ccb{\frac{1}{n} \mid n \in \N} = \biguplus_{n = 1}^{\infty}\ccb{\frac{1}{n}} \]
+			סינגלטונים סגורים (מרחב מטרי הוא האוסדורף) ולכן $A$ איחוד סגורים. אך $A$ לא כוללת את כל נקודות ההתכנסות שלה שכן $\frac{1}{n} \to 0$ סדרה של איברים ב־$A$ ששואפת לאיבר מחוץ ל־$A$, ולכן לא סגורה. 
+		\end{proof}
+		\item איחוד סופי פתוח הוא פתוח: \begin{proof}
+			תוצאה של (1). 
+		\end{proof}
+		\item איחוד סופי סגור הוא סגור: \begin{proof}
+			יהי $\{F_n\}_{n = 1}^{N}$ אוסף של קבוצות סגורות. מהגדרה $U_n \cod X \setminus F_n$ פתוחים ($X$ המרחב). מדה־מורגן: 
+			\[ X \setminus \underbrace{\bigcup_{n = 1}^{N}F_\ag}_{\cod F} = \bigcap_{n = 1}^{N}X \setminus F_\ag = \bigcap_{n = 1}U_\ag \]
+			נבחין ש־$X \setminus F$ שווה לחיתוך הסופי של הפתוחות $U_\ag$ שמ־(ז) פתוח (ההוכחה של (ז) לא תלויה בהוכחה הזו). לכן $X \setminus F$ פתוחה ומהגדרה $F$ סגורה. 
+		\end{proof}
+		\item חיתוך פתוח הוא פתוח: \begin{proof}[הפרכה]
+			נתבונן בחיתוך הבא: 
+			\[ A \cod \bigcap_{i = 1}^{n}\cl{-\frac{1}{n}, \ \frac{1}{n}} \]
+			חיתוך בן־מנייה של קטעים פתוחים מהצורה $\cl{-\frac{1}{n}, \ \frac{1}{n}}$. בבירור $A =\{0\}$. אך $\{0\}$ אינו פתוח שכן אם היה פתוח הוא היה סגוח ו־$\R$ לא היה קשיר. 
+		\end{proof}
+		\item חיתוך סגור הוא סגור: \begin{proof}
+			יהי $\{F_\ag\}_{\ag \in I}$ אוסף של קבוצות סגורות. מהגדרה $U_\ag \cod X \setminus F_\ag$ פתוחים ($X$ המרחב). מדה־מורגן: 
+			\[ X \setminus \overbrace{\bigcap_{\ag \in I}F_\ag}^{\cod F} = \bigcup_{\ag \in I}X \setminus F_\ag = \bigcup_{\ag \in I}U_\ag \]
+			נבחין ש־$X \setminus F$ שווה לאיחוד הקבוצות הפתוחות $U_\ag$ שמ־(א) פתוח. לכן $X \setminus F$ פתוחה ומהגדרה $F$ סגורה. 
+		\end{proof}
+		\item חיתוך סופי פתוח הוא פתוח: \begin{proof}
+			יהי $\{U_n\}_{n = 1}^{N}$ אוסף סופי של פתוחות. נוכיח שחיתוכו פתוח. לשם כך, ניקח $x \in \bigcap_{n = 1}^{N} U_n \doc U$ ונראה שהיא פנימית. מהגדרה לכל $n$ מתקיים $x \in U_n$ ולכן קיים $r_n$ כך ש־$B(x, r_n) \subset U_n$. נתבונן ב־$r \cod \min\ccb{r_n \mid n \in [N]}$. נבחין ש־$r$ מוגדר היטב שכן זהו מינימום של קבוצה סופית. מהגדרת כדורים פתוחים, ברור ש־$B(x, r) \subset B(x, r_n) \subset U_n$ לכל $n \in [N]$. מהגדרת חיתוך $B(x, r) \in U$ ולכן $x$ פנימית כנדרש. 
+		\end{proof}
+		\item חיתוך סופי סגור הוא סגור: \begin{proof}
+			תוצאה של (ו). 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהא $A \subset \R^{n}$. נוכיח ש־$x_0 \in A$ מבודדת (בסגור אך אינה נק' הצטברות) אמ''מ $\exists \eg > 0 \co B(x_0, \eg) \cap A = \{x\}$. \begin{proof}
+		\begin{itemize}
+			\item[$\implies$]נניח שקיים $\eg > 0$  העונה על התנאים הנדרשים. אז בבירור $x_0 \in \Cl A$ שכן $x_0 \in B(x_0, \eg) \cap A \subset A \subset \Cl A$. אם בשלילה היא נקודת הצטברות אז לכל $r$ ובפרט ל־$\eg = r$ מתקיים ש־$(B(x_0, r) \cap A \setminus \{x_0\}) \neq \vn$ ולכן $B(x_0, \eg) \cap A \supsetneq \{x_0\}$ בסתירה לכך שידוע שמתקיים שוויון. 
+			\item[$\impliedby$]נניח ש־$x_0$ מבודדת. משום שהיא בסגור, קיים $\eg > 0$ כך ש־$B(x_0, \eg) \cap A \supset \{x\}$. משום שהיא מבודדת, לכל $r$ ובפרט ל־$\eg = r$ מתקיים ש־$((B(x, \eg) \cap A) \setminus \{x\}) = \vn$ דהיינו $B(x, \eg) \cap A \subset \{x\}$. מהכלה דו כיוונית  $B(x, \eg) \cap A = \{x\}$ כנדרש. 
+		\end{itemize}
+	\end{proof}
+	
+	\section{}
+	נוכיח טענות מהתרגול: 
+	\begin{enumerate}
+		\item נוכיח כי במרחב נורמי מעל $\R$ עם נורמה שמקיימת את שוויון המקבילית, המכפלה הפנימית שמושרת מנוסחת הפולריזקציה מקיימת את קושי־שוורץ. \begin{proof}
+			הוכחנו את א''ש קושי־שוורץ למ''פ כללית והראנו בתרגול שמעל $\R$ זוהי מכפלה פנימית תקינה שמושרת מהנורמה. 
+		\end{proof}
+		\item נוכיח מעל $\C$ שאם הנורמה מקיימת את שוויון המקבילית אז היא מושרית ע''י מכפלה פנימית. \begin{proof}
+			נגדיר מכפלה פנימית הרמיטית לפי נוסחת הפולריזציה המרוכבת: 
+			\begin{align*}
+				\mut{u}{v} &= \frac{1}{4}\cl{\norm{u + v}^{2} - \norm{u - v}^{2} + i\norm{u + iv}^{2} - i\norm{u - iv}^{2}} \\
+				&= \mut{u}{v}_\R + i\mut{u}{iv}_\R
+			\end{align*}
+			כאשר $\mut{u}{v}_\R$ המכפלה הפנימית הממשית שהגדרנו בתרגול (גם אם היא מקבלת מספרים מרוכבים, ההוכחה לגבי בי־לינאריות זהה לחלוטין לזו שראינו בתרגול). יש להראות שזו מכפלה פנימית הרמיטית. 
+			
+			\begin{itemize}
+				\item \textbf{ססקווי־בילינאריות: }מספיק להראות לינאריות ברכיב הראשון, ואז מהרכיב השני נסיק מהרמיטיות: 
+				\begin{align*}
+					\mut{u + v}{w} &= \mut{u + v}{w}_\R + i\mut{u + v}{iw}_\R \\
+					&= 1\cl{\mut{u}{w}_\R + \mut{v}{w}_\R} + i\cl{\mut{u}{iw}_\R + \mut{v}{w}_\R} \\
+					&= \cl{\mut{v}{w}_\R + i\mut{v}{iw}_\R} + \cl{\mut{u}{w}_\R + i\mut{u}{iw}_\R} \\
+					&= \mut{v}{w} + \mut{u}{iw}
+				\end{align*}
+				כנ''ל לגבי כפל בסקלר: 
+				\[ \mut{\lg u}{v} = \mut{\lg u}{v}_\R + i \mut{\lg u}{iv} = \lg \cl{\mut{u + v}{w}_\R + i\mut{u + v}{iw}_\R} = \lg \mut{u}{v} \]
+				\item \textbf{הרמיטיות: }נבחין ש־: 
+				\begin{itemize}
+					\item \hfil $\norm{u + v} = \norm{v + u}$
+					\item \hfil $\norm{u - v} = \sof{-1}\norm{u - v} = \norm{(-1)(u - v)} = \norm{v - u}$
+					\item \hfil $\norm{u + iv} = \norm{i(v - ui)} = \sof{i}\norm{v - ui} = \norm{v - ui}$
+					\item \hfil $\norm{u - iv} = \norm{\cl{-i}(u + iv)} = \sof{-i}\norm{(u + iv)} = \norm{v + iu}$
+				\end{itemize}
+				ולכן: 
+				\begin{align*}
+					\ol{\mut{u}{v}} &= \frac{1}{4}\cl{\norm{u + v}^{2} - \norm{u - v}^{2} - i\norm{u + iv}^{2} + i\norm{u - iv}^{2}} \\
+					&= \frac{1}{4}\cl{\norm{v + u}^{2} - \norm{v - u}^{2} - i\norm{u - iv}^{2} + i\norm{v + iu}^{2}} = \mut{u}{v}
+				\end{align*}
+				\item \textbf{חוסר ניוון, חיוביות: }ברור ש־: 
+				\[ \mut{v}{v} = \frac{1}{4}\cl{\norm{v + v}^{2} - 0 + i \norm{v + iv}^{2} - 0} \ge 0 \]
+				ברור שאם $v = 0$ אז הנורמות לעיל מתאפסות והכל שווה לאפס, ומצד שני אם ישנו שוויון לאפס אז בפרט $\norm{2v}^{2} = 0$ כלומר $\norm v = 0$. מחוסר ניוון הנורמה $v = 0$ וסיימנו. 
+			\end{itemize}\envendproof
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $n \in \N$. נתבונן בנורמה $\snorm_p \co \R^{n} \to [0, \infty)$. 
+	\begin{enumerate}
+		\item נוכיח כי זוהי נורמה על $\R^{n}$ כאשר $p \ge 1$. \begin{proof}
+			\begin{itemize}
+				\item ראשית נוכיח את א''ש המשולש (תת־אדטיביות, או בהקשר הזה א''ש מיניקובסקי), כלומר $\norm{x + y}_p \le \norm{x}_p + \norm{y}_p$. לשם כך, נבחין שהתנאי של א''ש הולדר שקול לכך ש־$(p - 1)q = p$ (נבחין שלשם שימוש ב''אש נדרש $p \ge 1$). ניעזר ב־$q$ זה. 
+				
+				\[ \begin{WithArrows}
+					a \cod \sum_{i = 1}^{n}\sof{x + y}^{p} = \norm{x + y}^{p}_p &= \sum_{i = 1}^{n}\sof{x+ y}^{p} \Arrow[up]{א''ש המשולש הרגיל}\\
+					&= \sum_{i = 1}^{n}\sof{x + y}^{p- 1}\cl{\sof x + \sof y} \\
+					&= \sum_{i = 1}^{n}\sof{x + y}^{p- 1}\sof x + \sum_{i = 1}^{n}\sof{x + y}^{p- 1}\sof y \Arrow[ll]{\en{H\"older}} \\
+					&\le \norm{\sof{x + y}^{p - 1}}_{q}\norm{x}_p + \norm{\sof{x + y}^{p - 1}}_{q}\norm{y}_p \\
+					&= \norm{x}_p\sqrt[q]{\sum_{i = 1}^{n}\sof{ x + y}^{(p - 1)q}} + \norm{y}_p\sqrt[q]{\sum_{i = 1}^{n}\sof{ x + y}^{(p - 1)q}} \Arrow[down]{$(p - 1)q = p$} \ \\
+					&= \cl{\norm{x}_p + \norm{y}_p} \cdot \cl{\sum_{i = 1}^{n}\sof{x + y}^{p}}^{1 - \frac{1}{p}}\dequad\dequad \ = a^{1 - \frac{1}{p}}\!
+				\end{WithArrows} \]
+				נחלק את שני האגפים ב־$a^{1 - \frac{1}{p}}$ (מספר חיובי) ונקבל: 
+				\[ \norm{x + y}_p = \sqrt[p]{\norm{x + y}_p^{p}} = a^{\frac{1}{p}} = a^{1 - \cl{1 - \frac{1}{p}}} = \frac{a}{a^{1 - \frac{1}{p}}} \le \norm{x}_p + \norm{y}_p \]
+				כנדרש. 
+				\item עתה נוכיח אי־ניוון וחיוביות. ברור שהנורמה חיובית (סכום של ערכים חיוביים, ואז חזקה), ואכן אם $\norm{x}_p = 0$ אז $\sum_{k = 1}^{n}\sof{x_k}^{p} = 0^{p} = 0$ ומשום שזהו סכום חיובי נדרש ש־$\sof{x_k}^{p} = 0$ דהיינו $x_k =0$ לכל $k$, ולסיום $x = 0$. מהכיוון השני, אם $x = 0$ אז זהו סכום של אפסים ו־$\norm{0}_p = 0$. 
+				\item נותר להראות שאפשר להוציא גודל של סקלר החוצה. אכן:
+				\[ \norm{\lg x}_p = \sqrt[p]{\sum_{k = 1}^{n}\sof{\lg x_k}^{p}} = \sqrt[p]{\sof{\lg}^{p}\sum_{k = 1}^{n}\sof{x_k}^{p}} = \sqrt[p]{\sof{\lg}^{p}} \cdot \norm{x}_p = \sof{\lg }\norm{x}_p \]
+				כנדרש. 
+			\end{itemize}
+			\item נראה כי לכל $ p \neq 2$ זוהי נורמה שאינה מושרית ע''י מכפלה פנימית. 
+		\end{proof}
+		\item יהי $p \neq 2$. נראה שהנורמה לא מושרת ממכפלה פנימית, כלומר ישנם $x, y$ כך ש־: 
+		\[ \norm{x + y}_p^{2} + \norm{x -y}_p^{2} \neq 2 \cl{\norm {x}_p^{2} + \norm {y}_p^{2}} \]
+		לדוגמה, בעבור $x = (1, 0)$ ו־$y = (0, 2)$ נקבל ש־: 
+		\[ \norm{(1, 2)}_p^{2} + \norm{(1, -2)}^{2} = 2(1 + 2^{p})^{\frac{2}{p}} \]
+		אך: 
+		\[ 2(\norm{(1, 0)}_p^{2} + \norm{(0, 2)}_p^{2}) = 2(1 + 2^{2}) = 10 \]
+		שוויון מתקיים אמ''מ: 
+		\[ 2(1 + 2^p)^{\frac{2}{p}} = 10 \implies (1 + 2^p)^{\frac{2}{p}} = 5 \implies 1 + 2^p = 5^{\frac{p}{2}} \]
+		קל לוודא שב־$p =2 $ אין בעיה, ובכל מקרה אחר אפשר לחסר אגפים ולבצע חקירה לפונקציה $5^{\frac{p}{2}} - 2^{p} - 1$ כדי להבחין שהיא מונוטונית עולה חזק ולכן לא תיתכן התאפסות. 
+		\item נראה שעבור $0 < p < 1$ זוהי איננה נורמה. 
+		
+		נבדוק תת־אדטיביות עבור $x = 1, y = 2$. אם בשלילה זו נורמה, אז:
+		\[ \sqrt[p]{1 + 2^{p}} \le  \norm{1 + 2}_p \le \norm{1}_p + \norm{2}_p = 1 + 2 \]
+		באופן שקול נקבל ש־$1 + 2^{p} \le 3^{p}$. מחקירה פשוטה אפשר להבחין שהא''ש $1 + 2^{p} < 3^{p}$ מתקיים לכל $p < 0$ וסיימנו. 
+	\end{enumerate}
+	
+	\section{}
+	נקבע עבור HS ועבור OP האם אלו נורמות שמושרות ממכפלה פנימית. 
+	\begin{proof}
+		נורמת HS מתלכדת עם הנורמה האוקלידית על $\R^{n \cdot m}$ ומתקיים $\R^{n \times m} \cong \R^{n \cdot m}$ ולכן נצחנו. 
+		
+		נראה שנורמת האופרטור לא מקיימת את שוויון המקבילית. נסמן $A = \binom{1\  0}{1 \ 0}$ ו־$B= \binom{0\ 1}{1 \ 0}$. לאחר מכן נגדיר $C = A + B$. נבחין ש־$\norm{C} = 2$. אך: 
+		\[ 2 + 1 = \norm{A}^{2} + \norm{B}^{2} \neq \norm{A + B}^{2} - \norm{A - B}^{2} \ge 5.23 - 2 < 3 \]
+	\end{proof}
+	
+	
+	
+	
+	
+	\ndoc
+\end{document}
