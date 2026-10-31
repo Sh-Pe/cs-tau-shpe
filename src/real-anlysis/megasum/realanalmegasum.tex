@@ -11,13 +11,18 @@
 \newcommand \nwa        {\nwarrow}
 \newcommand \sea        {\searrow}
 \newcommand \swa        {\swarrow}
+\newcommand \eqs        {\vspace{-13pt}}
+\newcommand \eqsw       {\vspace{-3pt}}
+\newcommand \toae       {\rrr{\text{\en{a.e.}}}}
+\newcommand\dmu {\,\dd\mu}
+\newcommand\q   {1}
 
 \author{שחר פרץ}
 \title{\name}
 \date{2026 סמסטר ב'}
 \begin{document}
 	\renewcommand{\footrule}{\rule{\linewidth-19pt}{0.25pt}\vspace{-5pt}}
-	\firstPage{2027A $\sim$ מבוסס על הקלטות 2016B}
+	\firstPage{2027A $\sim$ מבוסס על הקלטות פרופ' בועז קרלטג מ־2016B}
 	\newpage
 
 	\hfil \textit{תאריך קימפול: \today}
@@ -36,11 +41,12 @@
 \subsection{סימונים}
 	בסיכום הבא נניח את הסימונים הבאים:
 	\begin{itemize}
-		\item \hfil $[n] \cod \N \cap [0, n]$
-		\item \hfil $\subset \; \cod \; \subseteq$
-		\item \hfil $\bigcup A \cod \bigcup_{X \in A}X$
+		\item \hfil $[n] \cod \N_+ \cap [1, n]$
+		\item \hfil $\subset \; \cod \; \subseteq \quad\quad \land \quad\quad \supset \ \cod \ \supseteq$
+		\item \hfil $\disty \bigcup A \cod \bigcup_{X \in A}X$
 		\item \hfil $I \cod [0, 1]$
-		\item \hfil $\disty \forall \sg \in S_n \co \prod_{i = 1}^{n}X_i \cong \prod_{i = 1}^{n}X_{\sg(i)}$
+		\item \hfil $\disty \forall \sg \in S_n \co \prod_{i = 1}^{n}X_i = \prod_{i = 1}^{n}X_{\sg(i)}$
+		\item \hfil $0 \notin \N\cod \N_+$
 	\end{itemize}
 
 
@@ -52,10 +58,11 @@
 	%	\listoftheorems
 
 	\middleText{\textit{בתיאבון}}
-
-	\section[מבואות למיניהם]{\en{All Kinds of Introductions}}
 	\firstlec
+	
+	\section[מבואות למיניהם]{\en{All Kinds of Introductions}}
 	\subsection{חומרי קריאה}
+	
 	\begin{itemize}
 		\item Stein \& Sakarachi: Measure Theory
 		\item לינדשטראוס, וייס: מבוא לאנליזה מודרנית 
@@ -127,7 +134,7 @@
 	 
 	\begin{Lemma}[אדטיביות]
 		נניח ש־$R, R_1 \dots R_N \subset \R^{d}$ קוביות אלמנטריות, כך ש־$R = \biguplus_{k = 1}^{N}R_k$ (איחוד זר). אזי: 
-		\[ m(R) = \sum_{k = 1}^{N}m_2(R_k) \]
+		\[ m(R) = \sum_{k = 1}^{N}m_2(R_k) \]\eqs
 	\end{Lemma}
 	\prooftrivial
 	(הטריק שעושים כאן, הוא לקחת את כל הקוביות, ''להמשיך`` את הצלעות שלהן לישרים אינסופיים, להוכיח למקרה הזה ואז לעשות רדוקציה למקרה המקורי). 
@@ -197,7 +204,7 @@
 	\begin{Theorem}[תת־$\sg$־אדטיביות]\label{theo:r2subsigmaadd}
 		נניח ש־$A, A_1 \dots \subset \R^{d}$ סדרת קבוצות אלמנטריות כך ש־$A \subset \bigcup_{n = 1}^{\infty} A_n$, אז: 
 		\[ m(A) \le \sum_{n = 1}^{\infty}m(A_n) \]
-	\end{Theorem}
+	\end{Theorem} \
 	\rmark{בהקשרים הללו, האות סיגמה לרוב מסמנת איחוד בן־מנייה. }
 	התכונה לעיל קשורה לשלמות של $\R^{d}$ כמרחב מטרי. אם לדוגמה היינו עוברים ברציונליים, אז לדוגמה המלבן $I = [0, 1)^{d} \cap \Q^{d}$ היה איחוד של ''המון ישרים דקים`` וזה לא היה עובד. 
 	
@@ -236,7 +243,7 @@
 	אלו שלושת התכונות \textit{היחידות} שאנחנו עומדים להשתמש בהן בהגדרת המידה לקבוצות שאינן אלמנטריות. הניסיון הראשון שלנו להגדיר מידה כזו תהיה מידה חיצונית. 
 	
 	\defi{\label{defi:outermeasure}תהא $A \subset \R^{d}$ קבוצה כלשהי. אז \textit{המידה החיצונית של $A$} היא: 
-	\[ m^{*}(A) = \inf \ccb{\sum_{n = 1}^{\infty}m(P_n)\ \middle\vert \ A \subset \bigcup_{n = 1}^{\infty}P_n \ \mathrm{s.t.} \ \text{$_dA$ אלמנטריים}} \]}
+	\[ m^{*}(A) = \inf \ccb{\sum_{n = 1}^{\infty}m(P_n)\ \middle\vert \ A \subset \bigcup_{n = 1}^{\infty}P_n \ \mathrm{s.t.} \ \text{$_dA$ אלמנטריים}} \]\eqsw}
 	הבחנה חשובה היא ש־$\Img m^{*} = [0, +\infty]$. יש קבוצות שהשטח עבורן ''אינסופי``. 
 	
 	\begin{itemize}
@@ -274,7 +281,7 @@
 	\end{enumerate}
 	
 	\theo{מידה חיצונית היא תת־$\sg$־אדטיבית, כלומר: 
-	\[ m^*\!\Bigg(\smash{\overbrace{\bigcup_{n =1}^{\infty}A_n}^{A}}\Bigg) \!\le \sum_{n = 1}^{\infty}m^*(A_n) \]}\begin{proof}
+	\[ m^*\!\Bigg(\smash{\overbrace{\bigcup_{n =1}^{\infty}A_n}^{A}}\Bigg) \!\le \sum_{n = 1}^{\infty}m^*(A_n) \]\eqsw}\begin{proof}
 		ניקח $\eg > 0$ ונוכיח את הא''ש עד לכדי אפסילון. לכל $n$, קיימות אלמנטריות $P_{n, 1} \dots P_{n, 3} \dots \subset \R^{d}$ כך ש־$A_n \subset \bigcup_{k =1}^{\infty}P_{n, k}$,		וכמעט מתקבל ה־$\inf$, כלומר: 
 		\[ \begin{WithArrows}
 			\sum_{k = 1}^{\infty}m^*(P_{n, k}) &< m^*(A_n) + \frac{\eg}{2^{n}} \Arrow[up]{$A \subset \bigcup_{n, k}P_{n, k}$}\\
@@ -414,7 +421,7 @@
 	\textbf{הרעיון: }נרצף את $\R^{d}$ עם מלבנים אלמנטריים, לדוגמה באמצעות $[n, n +1) \times [m, m + 1)$ לכל $n, m \in \Z$. נסמן את הריבועים בריצוף ב־$\Og_1, \Og_2 \dots $ ומן הסתם מתקיים ש־$\R^{d} = \biguplus^{\infty}_{i = 1} \Og_i$. 
 	
 	\defi{\label{defi:mesuareR2}קבוצה $A \subset \R^{d}$ תקרא \textit{מדידה לבג} אם $\forall n \co A \cap \Og_n$ מדידה ב־$\Og_n$, ונגדיר את \textit{מידת לבג של $A$} להיות: 
-	\[ m(A) \cod \bigcup_{n = 1}^{\infty}m(A \cap \Og_n) \]}
+	\[ m(A) \cod \bigcup_{n = 1}^{\infty}m(A \cap \Og_n) \]\eqsw}
 	
 	\exe{נניח ש־$\Og_1, \Og_2$ מלבנים אלמנטריים, ונניח ש־$A \subset \Og_1 \cap \Og_2$. אז אם $A$ מדידה ביחס ל־$\Og_1$ היא גם מדידה ביחס ל־$\Og_2$. }
 	\cola{הגדרת המדידות לא תלויה בבחירת הריצוף. }
@@ -424,7 +431,7 @@
 		\item אוסף הקבוצות ב־$\R^{d}$ הוא $\sg$־אלגברה. 
 		\item אם $A_1, A_2 \dots \subset \R^{d}$ מדידות וזרות, אז: 
 		\[ m\cl{\bigcup_{n = 1}^{\infty}A_n\!} = \sum_{n = 1}^{\infty}m(A_n) \]
-	\end{enumerate}}
+	\end{enumerate}\eqsw}
 	\begin{proof}
 		\begin{enumerate}
 			\item ברור ש־$\vn$ מדידה (כי $\vn \cap \Og_n = \vn$ מדידה ב־$\Og_n$). סגירות למשלים ברורה כי: 
@@ -616,8 +623,8 @@
 	\npage
 	
 	
-	\section[מידת לבג למרחב מידה]{\en{Abstract Mesaure Theory}}
-	\subsection{הגדרת מרחב מידה}
+	\section[מרחבי מידה אבסטרקטיים]{\en{Abstract Mesaure Theory}}
+	\subsection{הגדרת מרחב מידה והשריית מידה}
 	הרעיון: להבין באיזה תכונות בדיוק השתמשנו בהן ואז להכליל אותן. 
 	
 	\defi{תהא $\Og$ קבוצה. $\fc \subset \ps(\Og)$ הוא \textit{$\sg$־אלגברה} אם: 
@@ -631,7 +638,7 @@
 		\item $\fc$ היא $\sg$־אלגברה של ת''קים של $\Og$. קבוצות ב־$\fc$ יקראו \textit{קבוצות מדידות}. 
 		\item $\mu \co \fc \to [0, +\infty]$ והיא $\sg$־אדטיבית, כלומר לכל $A_1, A_2 \dots \in \fc$ זרות, מתקיים: 
 		\[ \mu\!\cl{\bigcup_{i =1}^{\infty}A_n} = \sum_{n = 1}^{\infty}\mu(A_n) \]
-	\end{enumerate}}
+	\end{enumerate}}\ 
 	\cola{אם $\mu \neq \infty$ אז $\mu(\vn) = 0$. זה נובע ישירות מתכונה $2$. }
 	\defi{אם: 
 	\begin{itemize}
@@ -685,7 +692,7 @@
 	
 	אפשר להכליל את התהליך הזה. 
 	
-	\begin{Theorem}[גרסה של משפט Carathodory]
+	\begin{Theorem}[גרסה של משפט Carathodory]\label{theo:carathodory}
 		תהי $\Og$ קבוצה, ותהי $\fc \in 2^{\Og}$ אלגברה של קבוצות (''אלמנטריות``). נניח ש־: 
 		\begin{itemize}
 			\item $\mu$ סופית, כלומר $\mu(\Og) < \infty$
@@ -722,7 +729,7 @@
 				&\ge \nu(\Og) = \mu(\Og)
 			\end{WithArrows} \]
 			לכן הכל שוויונות ונסיק $\mu^*(A) = \nu(A)$. 
-		\end{itemize}
+		\end{itemize}\envendproof
 	\end{proof}
 	
 	עתה כשיש יחידות, נוכל להגדיר את ההרחבה לעיל באופן מוגדר היטב. 
@@ -730,10 +737,446 @@
 	\cola{בהינתן $\mu_1, \mu_2$ מידות \ס־אדטיביות של $\sg(F)$, כדי להראות $\mu_1 = \mu_2$ מספיק להראות ש־$\mu_1(A) = \mu_2(A)$ לכל $A \in \fc$. }
 	המסקנה הנ''ל נכונה, כי אם המידות מזדהות על גבי האלגברה $\fc$ אז הן מזדהות גם על כל הרחבה שלה. 
 	
+	\textbf{דוגמה. }מידת לבג על מעגל: 
+	\begin{itemize}
+		\item אפשר להגדיר את הקבוצות האלמנטריות להיות ''קשתות פתוחות משמאל וסגורות מימין`` 
+		\item האלמנטריות אלגברה, מגדירים עליה מידה אטיבית בפשטות
+		\item כדי להשתמש בהרחבת קרטאודורי, צריך להוכיח תת־\ס־אדטיביות (במקרה הזה זה נובע מהיינה בורל). 
+		\item הקטע המגניב: המשפט לא דורש שהאלגברה תהיה \ס־אלגברה. הוא מרחיב את האלגברה בעצמו. 
+	\end{itemize}
+	
+	היה לנו תהליך נוסף לבניית מידת לבג. כדי להרחיב את קבוצת הקבוצות המדידות שלנו לכל המרחב, ריצפנו את המישור בעותקים של ה־$\Og$־ות. 
+	\theo{\label{theo:tiling}נניח ש־$\Og = \biguplus_{n = 1}^{\infty} \Og_n$. נניח ש־$(\Og_n, \fc_n, \mu_n)$ מרחב מידה סופי לכל $n \in \N$. נגדיר \ס־אלגברה $\fc \subset 2^{\Og}$ ו־$\mu$ מידה על $\fc$ לפי: 
+	\begin{itemize}
+		\item עבור $A \subset \Og$, נאמר ש־$A \in \fc \iff \forall n \in \N \co A \cap \Og_n \in \fc_n$
+		\item אם $A \in \fc$, אז נגדיר $\mu(A) = \sum_{n = 1}^{\infty}\mu_n(A \cap \Og_n)$
+	\end{itemize}
+	אזי $(\Og, \fc, \mu)$ הוא מרחב מידה. }
+	
+	חשוב שהכל בן מנייה – אם היינו מנסים לעשות את התהליך על זה באמצעות איחוד מעוצמת האפס, נקבל דברים מעוותים (לדוגמה: $\R$ כסכום של סינגלטונים). 
+	
+	\begin{proof}
+		ע''ע המשפט בפרק הקודם
+	\end{proof}
+	
+	\defi{מרחב מידה $(\Og, \fc, \mu)$ נקרא \textit{\ס־סופי} אם קיים פירוק $\Og = \biguplus \Og_n$, כך ש־$\Og_n \in \fc$ go $\mu(\Og_n) < \infty$ (מדידות עם מידה סופית). }
+	
+	\subsection{דחיפה קדימה של מידות}
+	\rmark{באנגלית, push forward}
+	\defi{נניח $(\Og, \fc, \mu)$ מרחב מידה סופי, ו־$\tl \Og$ קבוצה, כך ש־$T \co \Og \to \tl \Og $ העתקה. מגדירים \ס־אלגברה $\tl F \subset 2^{\tl \Og}$, ו־$\tl \mu$ לפי: 
+	\begin{itemize}
+		\item \hfil $\tl F = \ccb{A \in \tl \Og \co T\op(A) \in \fc}$
+		\item \hfil $\forall A \in \tl F \co \tl \mu(A) = \mu(T\op (A))$
+	\end{itemize}
+	המרחב $(\tl \Og, \tl \fc, \tl \mu)$ נקרא \textit{הדחיפה קדימה של $\mu$}. }
+	
+	\rmark{\label{rmark:reverseTrans}אנחנו משתמשים כאן בכבדות שההעתקה הפוכה (הפעולה $T\op$ לכל פונקציה, לאו דווקא חח''ע) משמרת את כל התכונות שלנו של תקב''צ – משלים, איחוד, חיתוך וכו' (בניגוד להעתקה ''רגילה``). אנחנו משתמשים בזה בכבדות. }
+	
+	\theo{הדחיפה קדימה הוא מרחב מידה. }
+	
+	המשפט נובע ישירות מהערה \ref{rmark:reverseTrans}. 
+	
+	\textbf{דוגמאות. }
+	\begin{enumerate}
+		\item עבור מרחב המידה $I^{2}$ עם מידת לבג, ו־$T(x, y) = x$ היטל, $T$ דוחפת קדימה ומשרה את מידת לבג על $I$ לתוך $T(I^{2}) = I$. זאת כי $T\op(A) = A \times [0, 1]$ מקיים $\tl \mu(A) = m_2(A \times [0, 1]) = m_1(A)$. לכן $m_2 = \tl \mu$ (הן מזדהות על אלמנטריות, מספיק לוודא זאת כדי להראות שוויון מידות). 
+		\item עבור $\Og = [0, 1] \setminus \Q_{\text{\en{Dyadic}}}$ עם מידת לבג. (מספר דייאדי זה מספר בעל פיתוח סופי בבסיס $2$. יש להם שני ייצוגים כאלו. לשאר המספרים יש ייצגו אין־סופי ויחיד. ) נגדיר: 
+		\begin{align*}
+			T \co \Og \to \{0, 1\}^{\N} && T \!\cl{\sum_{i = 1}^{\infty}\frac{a_i}{2^{i}}} = (a_1, a_2 \dots)
+		\end{align*}
+		ההעתקה מוגדרת היטב כי הייצוג הבינארי יחיד למספרים שאינם דיאדיים. נבחין שיש רק מספר בן־מנייה של מספרים דיאדיים עם פיתוח עשרוני סופי, ולכן ''הוצאנו`` מ־$[0, 1]$ קבוצה זניחה כדי לקבל את $\Og$. לכן $m(\Og)  = 1$. 
+		
+		איך נראית הדחיפה קדימה? מקבלים מידת הסתברות ואיזושהי \ס־אלגברה על אוסף הסדרות. זו מידת הסתברות של הטלות מטבע הוגן (לדוגמה, אוסף כל הסדרות שמתחילות ב־$0,1, 1,1$ הוא ממידה $\frac{1}{16}$). 
+	\end{enumerate}
+	
+	\subsection{מידות לבג־סטילטייס}
+	\rmark{בלעז, Lebesgue-Stielties}
+	
+	מדובר במשפחה של מידות על $\R$ שמושרות ע''י פונקציה $f \co \R \to \R$ שהיא לא־יורדת (בשום מקום, כלומר היא מונוטונית עולה חלש) ורציפה משמאל (ייתכנו נקודות אי־רציפות מסדר ראשון). 
+	מטרתנו תהיה לבנות מידה באמצעות $f$. נשתמש בגישת קרתאודורי. נתחיל מקבוצות פשוטות: עבור $a < b$, נגדיר: 
+	\[ \mu_f([a, b)) = f(b) - f(a) \]
+	
+	כמובן נתחיל ב־$\Og = [0, 1]$ ואז נרצף (בהתאם למשפט שכבר ניסחנו). קבוצה אלמנטרית תהיה איחוד של מלבנים פשוטים, וזו אלגברה של קבוצות ב־$I$. באופן לא מפתיע, עבור $A$ איחוד זר של $[a_i, b_i)$ נגדיר: 
+	\[ \mu(A) \cod \sum_{i = 1}^{n}\mu([f(b_i) - f(a_i)]) \]
+	צ.ל. שההגדרה לא תלויה בפירוק לאיחוד זר של קטעים אלמנטריים (כדי להראות שזה מוגדר היטב). זה פשוט מאוד מטור טלסקופי, כלומר אינדוקציה על זה ש־: 
+	\[ \mu_f([a, b)) =f(b) -f(a) = (f(b) - f(c)) + (f(c) - f(a)) = \mu_f([a, c)) + \mu_f([c, b)) \]
+	נוסף על כך צריך להראות ש־$\mu_f$ אדטיבית סופית. זה ישירות מההגדרה. 
+	
+	\clm{$\mu_f$ המוגדרת לעיל תת־אדטיבית. }
+	שימו לב שטרם השתמשנו ברציפות משמאל. 
+	\clm{\label{clm:prefunctionmeasure}אם $f$ לא יורדת ורציפה משמאל, אז $\mu_f$ על הקבוצה האלמנטריות היא תת־\ס־אדטיבית. }
+	\lem{יהי $[a, b) \subset I$. אזי לכל $\eg > 0$ קיימת $\dg > 0$ כך ש־: 
+	\[ \mu_f\cl{[a, b - \dg)} \ge \mu([a, b]) - \eg \quad\land\quad \mu_f([a - \dg, b)) \le \mu_f([a, b)) + \eg \]\ }\begin{proof}
+		מרציפות משמאל:
+		\[ \lim_{\dg \to 0^{+}}\mu_f([a, b - \dg)) = \lim_{\dg \to 0^{+}}f(b - d) - f(a) = f(b) - f(a) = \mu_f([a, b)) \]
+		מהגדרת הגבול, קיימת $\dg$ כנדרש. ובאופן דומה מהצד השני $\lim_{\dg \to 0^+} \mu_f([a - \dg, b)) = \mu([a, b))$, נבחר את המינימום. 
+	\end{proof}
+	\lem{לכל אלמנטריות $A \subset [0, 1)$, ולכל $\eg > 0$, קיימות $A', \tl A \subset [0, 1)$ כך ש־: 
+	\[ \Cl A' \subset A \subset \Int  \tl A \quad \land \quad \mu_f(A' \setminus \tl A) < \eg \]\ }\begin{proof}
+		ישירות מהלמה הקודמת: ''קצת מקטינים מימיןאת הקטעים ליצירת $A'$, וקצת מגדילים משמאל ליצירת $\tl A$``. 
+	\end{proof}
+	\begin{proof}[הוכחת \ref{clm:prefunctionmeasure}]
+		נתון $A \subset \bigcup_{n = 1}^{\infty}A_n$. יהי $\eg > 0$. מספיק להראות ש־$\mu_f(A) \le \sum_{n = 1}^{\infty} \mu_f(A) + \eg$. 
+		
+		צריך כיסוי פתוח של קומפקט, אז נשתמש בינה בורל. מלמה $1$ קיימת $A'$ אלמנטרית כך ש‏־$\Cl A' \subset A \land \mu_f(A' \setminus A) = \frac{\eg}{2}$. לכל $n$, קיימת $\tl A_n$ כך ש־$A_n \subset \Int(\tl A_n)$ וכן $\mu_f(\tl A_n \setminus A_n) < \frac{\eg}{2^{n + 1}}$. עתה: 
+		\[ \Cl A' \subset A \subset \bigcup_{n = 1}^{\infty} \Int (\tl A_n) \]
+		נבחין ש־$\tl A_n$ פתוחות ו־$\Cl A'$ קומפקטי. מהיינה בורל יש $N$ כך ש־$\Cl A' \subset \bigcup_{r = 1}^{N} \Int \tl A_r$, ולכן מאדטיביות סופית: 
+		\[ \mu_f(A) \le \frac{\eg}{2} + \mu_f(A') \le \frac{\eg}{2}\mu\cl{\bigcup_{r = 1}^{N}\tl A_r} \le \frac{\eg}{2}\sum_{r = 1}^{N}\mu_f(\tl A_r) = \frac{\eg}{2} + \sum_{r = 1}^{N}\mu_f(A_r) \]
+	\end{proof}
+	\cola{לכן, מקרטאודורי (\ref{theo:carathodory}) וממשפט ההרחבה לכיסוי (\ref{theo:tiling}) קיבלנו מידה \ס־אדטיבית, המכילה את כל קבוצות בורל (כי היא מכילה את הקטעים החצי־פתוחים, ובורל המינימלית שמכילה אותם). }
+	\defi{המידה לעיל נקראת מידת לבג־סטילטייס. }
+	
+	
+	\textbf{דוגמאות. }
+	\begin{enumerate}
+		\item עבור $f(x) = x$, אז $\mu_{f}([a, b)) = b - a$, ולכן $\mu_f$ מזדהה עם מידת לבג. 
+		\item עבור $f(x) = \begin{cases}
+			0 & x \le 0 \\
+			1 & x > 0
+		\end{cases}$
+		פונקציית המדרגה. נבחין ש־: 
+		\[ \mu_f([a, b)) = f(b) - f(a) = \begin{cases}
+			1 & 0 \in [a, b) \\
+			0 & \other
+		\end{cases} \]
+		אז לכל אלמנטרית $A \subset I$, מתקיים: 
+		\[ \mu_f(A) = \begin{cases}
+			1 & 0 \in A \\
+			0 & \other
+		\end{cases} \]
+		למעשה זה גם נכון לכל $A$ בורל, שכן זו מידה המזדהה עם האלמנטריות. למידה כזו קוראים \textit{מידה אטומית}. 
+		
+		\defi{למידה המושרה ע''י פונקציית המדרגה ב־$r$ קוראים \textit{מידה אטומית} ומסמנים אותה ב־$\dg_r$. מתקיים ש־: 
+			\[ \dg_r(\{r\}) = 1 \quad\land\quad \dg_r(\R \setminus \{r\}) = 0 \]\eqs }
+			
+		בסיגמה אלגברה שמושרית ע''י המידה האטומית, כל קבוצה היא מדידה. 
+		
+		
+		
+		\item נניח ש־$f \in C^{1}$. נסמן $\rho = f'$. אז: 
+		\[ \mu_f([a, b)) = f(b) - f(a) = \int^{b}_a\dequad \ f'(x)\dx = \int^{b}_a \dequad\  \rho(x)\dx \]
+		(אלו, בינתיים, אינטגרלי רימן). ל־$\rho$ קוראים \textit{פונקציית צפיפות}. כאשר נלמד על אינטגרל לבג, נבחין ש־$\mu_f(A) = \int_A \rho$. לדוגמה, אם $\rho(t) = \frac{1}{\sqrt{2\pi}} e^{-t/2}$, אז למידה $\rho_f$ שמקבלים קוראים \textit{המידה הנורמלית}/\textit{סטנדרטית}. 
+		\item \ \!\! [הרחבה בתרגול] 
+		\defi{\textit{פונקציית קנטור} היא הפונקציה הבאה: 
+		\[ f\cl{\sum \frac{a_i}{3_i}} = \sum \frac{a_i}{2_i} \]\eqsw}
+		$f$ היא רציפה, $\mu_f(\cc) = 1 \land \mu_f(\R \setminus \cc) = 0$, ול־$f$ אין שום אטום ,כלומר $\mu_f\cl{\{a\}} = 0$. כלומר זוהי קבוצה שנתמכת על קנטור בלי אטומים. 
+		
+		זו מידה סינגולרית למידת לבג, כלומר היא נתמכת על קבוצה שביחס ללבג היא ממידה אפס. 
+	\end{enumerate}
+	
+	\rmark{כל מידת בורל (כלומר מידה שקבוצות בורל מדידות בה) היא מידת בורל־סטיליטייס של איזושהי $f \co \R \to \R$. }\begin{proof}
+		בהינתן מידת בורל $\mu_f$, נגדיר: 
+		\[ f(t) \cod \mu([-\infty, t)) \]
+		אכן: 
+		\begin{itemize}
+			\item $f$ לא יורדת, שכן $s < t$ גורר $[-\inft, s) \subset[-\inft, t)$ ויש תת־אדטיביות למידה. 
+			\item $f$ רציפה משמאל כי: 
+			\[ \lim_{n \to \inft, \eg_n \to 0}f(t - \eg_n) = \lim \mu((-\infty, t - \eg_n)) = \mu\cl{(-\infty, t)} = f(t) \]
+%			TODO
+		\end{itemize}
+		ו־$\mu_f$ מתלכדת עם $\mu$ על אלמנטריות, ולכן שוות. 
+	\end{proof}
+	
+	\npage
+	\section[פונקציות ממשיות מדידות]{\en{Real-Valued Lebesgue-Measurable Functions}}
+	\subsection{פונקציות מדידות}
+	
+	נעבוד במרחב מידה $(\Og, \fc, \mu)$ ונתעניין בעיקר במידת לבג. 
+	\defi{תהא $f \co \Og \to \R$. נגדיר $\{f < t\}$ להיות: 
+	\[ \{f < t\} \cod \{x \in \Og \co f(x) < t\} = f\op\cl{(-\infty, t)} \]\eqs}
+	\defi{פונקציה $f\co \Og \to \R$ נקראת \textit{מדידה} אם לכל $t \in \R$ הקבוצה $\{f < t\}$ מדידה (כלומר, שייכת ל־$\fc$). }
+	
+	\textbf{דוגמאות. }
+	\begin{itemize}
+		\item אם $A \subset \Og$ מדידה, הפונקציה האופיינית (האינדיקטור $\q_A(x)$) היא פונקציה מדידה. זאת כי: 
+		\[ \{1_A < t\} = \begin{cases}
+			\Og & t > 1 \\
+			A^{c} & 0 < t \le 1 \\
+			\vn & t \le 0
+		\end{cases} \]
+		כולן מדידות. 
+		\item ב־$\R$, פונקציית דיריכלה שאינ אינטגרילית רימן, היא מדידה לבג כי $D = \q_\Q$ ו־$\Q$ מדידה לבג (הראנו שהאינדיקטורים מדידים)
+		\item נניח ש־$f \co \R^{d} \to \R$ רציפה. אז היא מדידה. זאת כי רציפות שקולה לכך שתמונה הפוכה של פתוחה היא פתוחה. בפרט, מרציפות $f$, נובע ש־$\{f < t\} = f\op((-\infty, t))$ פתוחה ובפרט מדידה לבג. 
+	\end{itemize}
+	\clm{תהא $f \co \Og \to \R$ מדידה. אז לכל $t \in \R$, הקבוצות $\{f \le t\}, \ \{f > t\}, \ \{f = t\}, \ \{\sof f \le t\}$ מדידות. }
+	\begin{proof}
+		יודעים ש־$\{f < t\}$ מדידה לכל $t$, וש־$\fc$ \ס־אלגברה. רק נותר להציג את הקבוצות לעיל כאיחודים (לכל היותר בני מנייה) ומשלימים של קבוצות מהצורה $\{f < t\}$. 
+		\begin{gather*}
+			\{f \ge t\} = \Og \setminus \{f < t\} \\
+			\{f \le t\} = \bigcap_{n = 1}^{\infty}\{f < t + \frac{1}{n}\} \\
+			\{f = t\} = \{f \le t\} \cap \{f \ge t\} \\
+			\{\sof f \le t\} = \{f \le t\} \cap \{f \ge -t\}
+		\end{gather*}
+		כל הקבוצות באגף שמאל מדידות. 
+	\end{proof}
+	ברור גם שזה עובד מהכיוון השני, כלומר אם היינו מגדירים את $f$ להיות מדידה אמ''מ, לדוגמה, $\{f \le t\}$, ההגדרה הייתה שקולה. 
+	
+	\nthlec{4}{5}. 
+	\rmark{יש פונקציה בשם פונקציית Voltera, שהיא פונקציה $f \co \R\to \R$, גזירה, ליפשיצית, אבל $f'$ לא אינטגרבילית רימן. זה עושה בעיות במשפט היסודי של החדו''א. אבל אצלנו, באינטגרלי לבג, $f'$ כן תהיה מדידה. }
+	\exe{נניח ש־$f \co \Og \to \R$ מדידה, אז לכל קבוצת בורל $A \subset \R$ הקבוצה $f\op(A)$ מדידה. (רמז: ה־push forward הוא \ס־אלגברה). }
+	\rmark{אנקדוטה מהשיעור הקודם: לא ניתן לבנות קבוצה שאינה בורל אך מדידה לבג ללא שימוש באקסיומת הבחירה או גרסאות חלשות שלה. }
+	\theo{נניח $f, g \co \Og \to \R$ מדידות. אזי $f + g$ מדידה. }\begin{proof}
+		יהי $t \in \R$. צ''ל $\{f + g < t\}$ מדידה. נבחין ש־: 
+		\[ \{f  +g < t\} = \bigcup_{\mathclap{\substack{\ag, \bg \in \Q \\ \ag + \bg < t}}} \big[{\{f < \ag \}\cap \{g < \bg\}}\big] \]
+		ברור שמתקיים $\supset$ שכן אם $x \in \{f < \ag\} \cap \{y < \bg\}$ אז $f(x) < \ag \land y(x) < \bg$, כלומר $f(x) + g(x) < \ag + \bg < t$ וסה''כ $x \in\{f + g < t\}$. 
+		
+		מהצד השני ($\subset$), אם $x \in \{f + g < t\}$, אז מצפיפות הרציונליים ישנם $\ag, \bg \in \Q$ כך ש־: 
+		\begin{gather*}
+			f(x) < \ag < f(x) + \frac{t - f(x) - g(x)}{2} \\
+			g(x) < \bg < g(x) + \frac{t - f(x) - g(x)}{2}
+		\end{gather*}
+		ולכן $\ag + \bg < t$, ו־$x \in \{f < \ag\} \cap \{y < \bg\}$ כנדרש. 
+		
+		סה''כ הצגנו את $\{f + g < t\}$ כאיחוד בן מנייה של קבוצות מדידות, ולכן היא מדידה גם היא (קבוצת המדידות היא \ס־אלגברה). 
+	\end{proof}
+	\cola{יהיו $f, g \co \Og \to \R$ מדידות. אז: 
+	\begin{enumerate}[(A)]
+		\item $f - g$ מדידה
+		\item לכל $\ag \in \R$, גם $\ag f$ מדידה. 
+		\item $f \cdot g$ מדידה. 
+	\end{enumerate}}
+	\begin{proof}
+		\begin{enumerate}
+			\item ברור ש־$-g$ מדידה שכן $\{g < t\} = \{g > -t\}$ ולכן גם $f - g$ מדיד. 
+			\item לכל $c \in \R$: 
+			\[ \{cg < t\} = \begin{cases}
+				\{f < \frac{c}{t}\} & c \ge 0 \\
+				\{f > \frac{c}{t}\} & c < 0
+			\end{cases} \]
+			הקבוצות מימין מדידות ולכן גם $fc$ מדידה. 
+		\end{enumerate}
+		\item ראשית נראה ש־$f^{2}$ מדידה: 
+		\[ \{f^{2} < t\} = \begin{cases}
+			\vn & t \le 0 \\
+			\{f < \sqrt t\} \cap \{f > -\sqrt t\} & t > 0
+		\end{cases} \]
+		שתיהן מדידות. לכן $f^{2}$ מדידה. נעשה פולריזציה ממשית: 
+		\[ fg = \frac{(f + g)^{2} - (f - g)^{2}}{4} \]
+		ולכן מדידה. 
+	\end{proof}
+	
+	\exe{אם $f\co \Og \to \R$ מדידה ו־$\phi \co \R\to \R$ רציפה (מספיק מדידה בורל), אז $\phi \circ f$ מדידה. }
+	
+	\subsection{סדרות פונקציות מדידות}\ 
+	
+	\theo{יהיו $f_1, f_2 \dots \co \Og \to \R$ פונקציות מדידות. אזי: 
+	\begin{enumerate}[(A)]
+		\item $\Og \ni x \mapsto \sup_{n\in \N} f_n(x)$ מדידה. 
+		\item $\Og \ni x \mapsto \inf_{n\in \N} f_n(x)$ מדידה. 
+		\item $\Og \ni x \mapsto \limsup_{n\in \N} f_n(x)$ מדידה. 
+		\item $\Og \ni x \mapsto \liminf_{n\in \N} f_n(x)$ מדידה. 
+	\end{enumerate}}(
+	\rmark{אין בעיה להתיר את הסדרות להיות מוגדרות במובן הרחב, כלומר מותר לפונקציה על $\Og$ לקבל את $\pm \inf$ (כדי שהסופרמום יהיה מוגדר היטב), ונאמר ש־$f \co \Og \to \R \cup\{\pm\infty\}$ מדידה אם $A =\{f = +\infty\}$ מדידה, $B = \{f = -\infty\}$ מדידה, ו־$f|_{\Og \setminus (A \cup B)}$ מדידה. באופן שקול, $f \co \Og \to [-\infty, +\infty]$ אם לכל $t \in \R$ הקבוצה $\{f < t\}$ מדידה. }
+	\begin{proof}
+		לכל $t \in \R$, מתקיים ש־: 
+		\[ \{x \in \Og \mid \sup_n f_n(x) \le t\} = \bigcap_{i = 1}^{\infty}\{f \le t\} \]
+		ולכן הסופרמום מדיד. האינפימום מדיד שכן: 
+		\[ \inf_nf_n(x) = -\sup_n(-f_n(x)) \]
+		נוכל להיעזר בסופרמום גם ל־$\limsup$:
+		\[ x\mapsto \limsup_{n \to \infty} f_n(x) = \lim_{N\to\infty}\csb{\sup_{n \ge N}f_n(x)} = \inf_{N \in \N}\underbrace{\csb{\sup_{n \ge N}f_n(x)}}_{\ \! \text{$_ng$ מדידה}} \]
+		בעבור $g_n(x) = \sup f_n(x)$. אינפימום של מדידות מדיד. באופן דומה על ה־$\liminf$. 
+	\end{proof}
+	
+	\cola{נניח ש־$f_1, f_2 \co \Og \to \R \cup{\pm\infty}$ פונקציות מדידות. נניח שהגבול $\lim_{n \to \infty}f_n(x)$ במובן הרחב לכל $x$. אז $f(x) = \lim_{n \to \infty}f_n(x)$ מדידה. }
+	\prooftrivial
+	
+	\textbf{דוגמה. }תהא $f \co \R \to \R$ פונקציה גזירה. נסמן ב־$f_n(x) = \frac{f\cl{x + \frac{1}{n}} - f(x)}{1/n}$. אז לכל $x \in \R$, $f_n(x) \toinf f'(x)$. מצאנו סדרת פונקציות $f_n$ מדידות (הפרש מדידות הוא מדיד) שמתכנסת בכל $\R$ נקודתית ל־$f'$, ולכן $f'$ מדידה. 
+	
+	באופן כללי יותר גבול נקודתי של מדידות הוא מדיד. 
+	
+	בעצם, אנחנו מוכנים לוותר על התכנסות בחלק קטן מהנקודות (פרט לקבוצה במידה אפס). 
+	
+	\defi{במרחב $(\Og, \fc, \mu)$ מרחב מידה שלם. אומרים שתכונה מסוימת מתקיימת \textit{כמעט בכל מקום} אם היא מתקיימת לכל $x \in \Og$ פרט לקבוצה ממידה אפס. פורמלית $P \co \R \times X \to \{0, 1\}$ מקיימת $\pi_1\cl{P\op (0)}$ זניחה. }
+	\rmark{בלעז, Almost Everywhere או AE. }
+	\noti{$f, g \co \Og \to \R$ מסמנים $f \equiv g$ כב''מ (כמעט בכל מקום) אם $\{x \in \Og \co f(x) \neq g(x)\}$ זניחה, ון נקראות \textit{שקולות}. }
+	\lem{שקילות כב''מ היא יסח שקילות. }
+	
+	\clm{תהא $f \co \Og \to \R$ מדידה, ונניח ש־$g \co \Og \to \R$ שווה ל־$f$ כב''מ. אזי גם $g$ מדידה. }\begin{proof}
+		נסמן ב־$A$ את קבוצת הנקודות ש־$f, g$ לא מסכימות עליהן. $A$ זניחה. אזי לכל $t \in \R$: 
+		\[ \{f < t\} \trio \{g < t\} \subset A \]
+		ומשלמות $\mu((\{f < t\} \trio \{g < t\})) = 0$. וממדידות $\{f < t\}$ מקבלים ש־$\{g < t\}$ מדידה. 
+	\end{proof}
+	
+	\textbf{דוגמה. }פונקציית דיריכלה $D(x) = \q_\Q$ שקולה לפונקציית האפס עד כדי קבוצה זניחה ולכן מדידה. 
+	
+	\defi{יהיו $f, f_1, f_2 \dots \co \Og \to \R\cup\{\pm\infty\}$. אומרים ש־$f_n \to f$ כב''מ אם כמעט לכל $x$ מתקיימת התכנסות נקודתית. }
+	
+	\textbf{דוגמאות. }
+	\begin{itemize}
+		\item $f_n(x) = x^{n}$ בקטע $[0, 1]$ מתכנס כב''מ ל־$0$. 
+		\item עבור $x \in [0, 1]$, נסמן ב־$f_n(x)$ את מס' השביעיות בהצגה העשרונית של $x$. (לכאורה זה לא מוגדר היטב: למספרים מייצגו עשרוני סופי יש שתי הצגות, אבל המספרים מייצוג עשרוני צפופים מוכלים ב־$\Q$ והם קבוצה זניחה. אז $f_n(x)$ מוגדר היטב כב''מ). 
+		
+		אז: 
+		\[ \lim_{n\to\infty} \frac{f_n(x)}{n} = \frac{1}{10} \]
+		
+		זה נקרא החוק החזק של המספרים הגדולים בהסתברות.  
+	\end{itemize}
+	
+	\theo{גבול כב''מ של מדידות הוא מדיד. }\begin{proof}
+		ה־$\limsup_n f_n(x)$ מדיד וכב''מ שווה לפונקציה הגבולית. 
+	\end{proof}
+	
+%	TODO: sounds sus
+
+	
+	\subsection{התכנסות במידה}\ 
+	
+	בחדו''א 2א דיברנו על התכנסות במ''ש והתכנסות נקודתית. אז עכשיו יש לנו גרסאות חלשות יותר: 
+	\[ \text{התכנסות במ''ש} \implies \text{התכנסות נקודתית} \implies \text{התכנסות כב''מ} \implies \text{התכנסות במידה} \]
+	
+	נגדיר את מושג ההתכנסות במידה. 
+	
+	\defi{נניח ש־$(\Og, \fc, \mu)$ מרחב מידה סופי. יהיו $f, f_1, f_2 \dots \co \Og \to \R$ מדידות. אז מסמנים $f_n \overset{\mu}{\to} f$ \textit{מתכנסות במידה} אם לכל $\eg > 0$: 
+	\[ \mu\cl{\ccb{x \in \Og \co \sof{f_n(x)} - f(x)} > \eg}\toinf 0 \]}
+	\rmark{בלעז, Convergence In Measurement}
+	
+	למה מרחב מידה סופי? בהתבוננות על: 
+	\[ f(x) = \begin{cases}
+		1 & x - \floor{x} \in [0, \frac{1}{n}] \\
+		0 & \other
+	\end{cases} \]
+	אז $\{f =\frac{1}{2}\}$ ממידה אינסוף, ומההגדרה היא לא מתכנסת במידה (זה לא המצב הרצוי). אם מתעקשים על מרחב מידה אין־סופי, כדאי לדרוש שלכל קבוצה ממידה סופית, נדרוש שלכל $A \subset \Og$, אם $\mu(A) < \infty$ אז $f_n|_A \to f|_A$ במידה. 
+	
+	\textbf{דוגמה. }הגבנונים: בעבור הסדרה $I_1 =[0, 1/2], I_2 = [1/2, 1], \ I_3 = [0, 1/3], I_4 = [1/3, 2/3], I_5 = [2/3, 1], \ I_6 = [0, 1/4], I_7 = [1/4, 2/4]$ וכו'. נגדיר $f_n$ האינדיקטור על $I_n$. אז $f_n \toinf 0$ במידה. 
+	
+	צ''ל לכל $\eg > 0$ ש־$\{x \mid \sof{f_n(x) - 0} > \eg \} \doc A_n$ (בה''כ $0 < \eg < 1$) ממידה ששואפת לאפס כש־$n$ שואף לאינסוף. במקרה שלנו, משום שאורכי הקטעים שואפים ל־$0$, אז $\mu(A_n) = \eg_n$ ו־$\eg_n \to 0$. ולכן לכל $\eg \in (0, 1)$ הסדרה $\mu(A_n)$ שואפת ל־$0$ ולכן יש התכנסות למדיה בבירור. 
+	
+	האם יש התכנסות כמעט בכל מקום? לא – למעשה, אין התכנסות בשום נקודה $x$ ב־$[0, 1]$, כי הגבול העליון הוא הפונקציה $1$, כי לכל $x \in [0, 1]$ יש אינסוף ערכי $n$ שמכילים את $0$ ואינסוף ערכי $1$. 
+	
+	\defi{בהינתן מרחב מידה $(\Og, \fc, \mu)$, נאמר ש־$\Og' \subset \Og$ \textit{ממידה מלאה} אם $\mu(\Og \setminus \Og^{c}) = 0$ זניחה (בפרט $\Og' \in \fc$). }
+	
+	\theo{התכנסות כב''מ גוררת התכנסות במידה. }\begin{proof}
+		נתונות $f, f_1, f_2 \dots \co \Og \to \R$ כך ש־$f_n(x) \toinf f(x)$ לכל $x \in \Og'$, כאשר $\Og' \subset \Og$ קבוצה ממידה מלאה. יהי $\eg > 0$, צ.ל. $\mu(\{x \in \Og \co \sof{f_n(x) - f(x)} > \eg\}) \toinf 0$. למעשה נוכיח משהו יותר חזק: נסמן: 
+		\[ A_N = \ccb{x \in \Og \co \forall n \ge N \co \sof{f_n(x) - f(x)} \le \eg} \]
+		מספיק להוכיח ש־$\mu(A_N^{c}) \to 0$. זאת כי: 
+		\begin{align*}
+			A_N^{c} = &\ \{x \in \Og \mid \exists n \ge \N\co \sof{f_N(x) - f(x)} > \eg\} \\
+			\supset &\ \{x \in \Og \co \sof{f_N(x) - f(x) > \eg}\} \doc \ac_N
+		\end{align*}
+		לכן אם $\mu(A_N^{c}) \rrr{N \to \infty} 0$ אז גם $\ac_N \rrr{N \to \infty} 0$ (למעשה, $\mu(\ac_N) \tou 0$ במ''ש. זכרו זאת להמשך ההרצאה). נותר להראות שאכן $\mu(A_N^{c}) \rrr{N \to \infty} 0$. 
+		
+		לכל $x \in \Og'$ יודעים ש־$f_n(x) \to f(x)$. לכן קיים $N$ כך ש־$\forall n \ge N \co \sof{f_n(x) - f(x)} \le \eg$. כלומר, לכל $x \in \Og'$ קיים $N$ כך ש־$x \in A_N$. לכן: 
+		\[ A \cod \bigcup_{n = 1}^{\infty}A_N \supset \Og' \]
+		ובנוסף $A_1 \subset A_2 \subset \cdots$. משום ש־$\mu(A) = \mu(\Og)$ (כי $A \supset \Og'$. למעשה יש גם שימוש כאן בשלמות המרחב) ו־$A_N \nea A$, אז מרציפות המידה: 
+		\[ \mu(A_N) \rrr{N \to \inft} \mu(A) = \mu(\Og) \]
+		ובאופן שקול $\mu(A_N^{c}) \to 0$ כנדרש. 
+	\end{proof}
+	
+	\begin{Theorem}[ריס]
+		לכל סדרת פונקציות שמתכנסת במידה, יש ת''ס שמתכנסת כב''מ (לאותה פונקציה גבולית). 
+	\end{Theorem}
+	\rmark{באנגלית, Riesz. המון ריז בסקיבידי סיגמה אלגברה (הכותב \en{gen $\ag$}). }\begin{proof}
+		נניח ש־$A_1, A_2 \dots \subset \Og$. נתיידד עם הקבוצות הבאות:
+		\begin{gather*}
+			\ac_G \cod \bigcap_{N = 1}^{\infty}\cl{\bigcup_{n \ge N}A_n} \\
+			\ac_F \cod \bigcup_{N = 1}^{\infty}\cl{\bigcap_{n \ge N}A_n}
+		\end{gather*}
+		נבחין ש־$\ac_G$ היא קבוצת כל ה־$x$־ים ששייכים לאינסוף קבוצות, ו־$\ac_F$ קבוצת כל ה־$x$־ים שיייכים לכל הקבוצות פרט למספר סופי (המ''מ). נפנה להוכחת המשפט. 
+		
+		נתון ש־$f_n \toinf f$ במידה. עבור $\eg_k = \frac{1}{2^{k}}$ ידוע שהסדרה: 
+		\[ \mu\cl{\ccb{x \in \Og \co \sof{f_n(x) - f(x)} > \eg_k}}\toinf 0 \]
+		לכן, נקבל שבפרט קיים $n_k > 0$ כלשהו כך ש־: 
+		\[ \forall n \ge n_k \co \mu\bigg(\underbrace{{\ccb{x \co \sof{f_n(x) - f(x)}> \frac{1}{2^{k}}}} }_{A_k}\bigg) < \frac{1}{2^{k}} \]
+		אזי $\mu(A_k) < \frac{1}{2^{k}}$. הסדרה $A_k$ יוצרת $A_G$ לפי ההגדרה לעיל. נוכיח ש־: 
+		\begin{enumerate}[(A)]
+			\item $\mu(A_G) = 0$ (בורל־קנטלי)
+			\item לכל $x \notin A_G$ מתקיים $f_{n_k}(x) \toinf f(x)$. 
+		\end{enumerate}
+		אחרי שנוכיח זאת, מצאנו ת''ס $n_k$ שעבורו $f_{n_k} \toinf f$ כב''מ. 
+		\begin{enumerate}[(A)]
+			\item לכל $n$ ידוע: 
+			\[ \mu\cl{\bigcup_{k \ge n} A_k} \le \sum_{k = n}^{\infty}\mu(A_k) \le \sum_{k = n}^{\infty}\frac{1}{2^{k}} = \frac{1}{2^{k - 1}} \]
+			ולכן: 
+			\[ \mu(A_G) = \mu\Bigg(\bigcap_{n= 1}^{\infty}\underbrace{\csb{\bigcup_{k \ge n}A_k}}_{B_n\sea A_G}\Bigg) \sle \liminf_{n \to \infty}\mu\cl{\bigcup_{k \ge n}A_k} \le \lim_{n \to \infty}\frac{1}{2^{k - 1}} = 0 \]
+			(למעשה $\smash{\sle}$ הוא שוויון במרחב מידה סופי, מרציפות המידה (רציפות לסדרה יורדת עובדת רק במרחב מידה סופי))
+			\item נניח ש־$x \notin A_G$. אז קיים $N$ כך ש־$x \notin \bigcup_{k \ge n}A_k$, כלומר לכל $k \ge N$ מתקיים $x \notin A_k$. ואז $\forall k \ge N\co \sof{f_{n_k}(x) - f(x)} \le \frac{1}{2^{k}}$. \envendproof
+		\end{enumerate}
+	\end{proof}
+	
+	\textbf{סוד כמוס לפרה ולסוס. }התכנסות כב''מ היא לא מטרית ואפילו לא טופולוגית. למה הכוונה? אין שום טופולוגיה שמשרה התכנסות כב''מ. למה? בגלל משפט ריס. אילו הייתה טופולוגיה שמשרה את מושג ההתכנסות, אז היינו יכולים לקחת $f_n \to f$ שמתכנסת במידה ולא כב''מ, ואז הייתה איזושהי סביבה $U$ של $f$ כך שאינסוף פונקציות מחוץ ל־$U$ (שכן $f_n \not f$ כב''מ), נאמר $f_{n_1}, f_{n_2} \dots$. אך הן עדיין מתכנסות במידה, ולכן ישנה ת''ס $f_{n_{k_j}}$ שכן מתכנסת כב''מ אך זה לא מתאשר שכן $f_{n_{k_j}}$ לא בסביבה. 
+	
+	(התכנסות במ''ש מושרית ממטריקת הסופרמום והתכנסות נקודתית מטופולוגיית טיכונוף. התכנסות כב''מ היא ייצור מוזר בהקשר הזה). 
+	
+	\begin{Theorem}[Egorov]
+		יהי $(\Og, \fc, \mu)$ מרחב מידה סופי. נניח ש־$f_n \toae f$ (כב''מ). יהי $\eg > 0$, אזי קיימת $A \subset \Og$ עם $\mu(\Og \setminus A) < \eg$ כך ש־: 
+		\[ \sup_{x \in A}\sof{f_n(x) - f(x)} \toinf 0 \]
+		במילים אחרות, $f_n|_A \tou f|_A$ במ''ש. 
+	\end{Theorem}
+	\textbf{דוגמה. }עבור $x_n(x) = x^{n}$ ב־$(0, 1)$, ישנה התכנסות לא במ''ש ל־$0$. אך אם מצטמצמים לקבוצה $(0, 1 - \eg)$ אז ההתכנסות במ''ש. 
+	\rmark{זה לא עובר להתכנסות במידה. לדוגמה, הגבנון הנע. שם אין בשום נקודה התכנסות ובפרט לא במ''ש. }
+	\begin{proof}
+		תהא $\Og' \subset \Og$ קבוצה ממידה מלאה, כך ש־$f_n(x) \to f(x)$ לכל $x \in \Og'$.
+		יהי $k \in \N$. נגדיר: 
+		\[ A_N = \ccb{x \in \Og \mid \forall n \ge N \co \sof{f_n(x) - f(x)} < \frac{1}{2^{k}}} \]
+		אזי $A_1 \subset A_2 \subset \cdots$, כלומר הן עולות ל־$A_N \nea A$ כלשהי. מטיעונים שכבר ראינו $\Og' \subset A$ ומרציפות $\mu$ נובע ש־$\mu(A_n) = \mu(A) = \mu(\Og') = \mu(\Og)$. 
+		
+		לכן קיים איזשהו $N_k$ כך ש־$E_k \cod A_{N_k}$ מקיימת $\mu(E_k^{c}) = \mu(A_{N_k}^{c}) = \frac{1}{2^{k}}$. 
+		
+		באופן כללי, ישנן קבוצות $E_1, E_2 \dots \subset \Og$ כך ש־: 
+		\[ E_k = \ccb{x \in \Og \co \forall n \ge N_k \co \sof{f_n(x) - f(x)} < \frac{1}{2^{k}}} \]
+		אזי $\mu(E_k^{c}) < \frac{1}{2^{k}}$. עתה נבחין שלכל $n$: 
+		\[ \mu\cl{\Og \setminus \bigcap_{k \ge n} E_k^{c}} = \mu\cl{\bigcup_{k \ge n}E_k^{c}} \le \sum_{k \ge n}\mu(E_k^{c}) \le \sum_{k \ge n}\frac{1}{2^{k}} = \frac{2}{2^{n}}  \]
+		ומכאן $\mu\cl{\bigcap_{k \ge n} E_k^{c}} = \mu(\Og) - \frac{2}{2^{n}}$. 
+		
+		יהי $\eg > 0$. משום ש־$\frac{2}{2^{n}}$ שואף ל־$0$ קיים $n$ כך ש־$B = \bigcap_{k \ge n}E_k$ מקיימת $\mu(B) = \mu(\Og) - \eg$. נותר להראות התכנסות במ''ש על $B$. 
+		
+		לכל $k$ מספיק גדול ($k \ge N_k$) מתקיים: 
+		\[ \forall n \ge n_k \co \sup_{x \in A}\sof{f_n(x) - f(x)} \le \frac{1}{2^{k}} \]
+		(זה שקול להתכנסות במ''ש) כי $x \in E_k$. 
+	\end{proof}
+	
+	\begin{Theorem}[Luzin, ניסוח חלש]
+		תהי $f \co \R\to \R$ מדידה. אז לכל $\eg  >0$ קיימת $A \subset \R$ סגורה כך ש־$\mu(\R \setminus A) < \eg$, כך ש־$f|_A$ רציפה. 
+	\end{Theorem}
+	הוכחה של משפט לוזים נראה בהמשך. 
+	\rmark{יש הבדל בין ''$f$ רציפה ב־$A$`` ו־''$f|_A$ רציפה`` (הראשון אומר ש־$A$ קבוצת נקודות הרציפות של $f$, והשני אומר שהצמצום פונקציה רציפה). לדוגמה, $D(x)$ דיריכלה מקיימת $D|_\Q$ רציפה (היא פשוט פונקציית האפס), אך היא לא רציפה ב־$\Q$ (כי לכל $x \in \Q$, מתקיים ש־$x$ לא נקודת רציפות של $D(x)$). }
+	\rmark{הן אגורוב והן לוזין נרדפו ע''י סטלין. אגורוב ''ממש חוסל`` (נאסר, שבת רעב בכלא, ומת), לוזין הוכרז כאויב במסכה של אזרח סובייטי. ב־2012 האקדמיה הרוסית למדעים ביטלה את ההחלטה. }
+	
+	\nthlec{5}{6}
+	
+	\npage
+	
+	\section[אינטגרל לבג]{\en{Lebesgue Integral}}
+	יהי $(\Og, \fc, \mu)$ מרחב מידה. מה נצפה מאינטגרל? אנו כבר יודעים לעשות אינטגרציה לאינדנקטורים, ונצפה ש־: 
+	\[ \int_\Og \q_A \dmu = \mu(A) \]
+	זהו מושג האינטגרל הכי רחב שמשמש מתמטיקאים, לפחות לפונקציות חיוביות. הבנייה שלנו של אינטגרל לבג תהיה דו־שלבית: ראשית נגדיר אינטגרל לפונקציות פשוטות, ולאחר מכן לפונקציות כלליות.
+	
+	\subsection{אינטגרל של פונקציות פשוטות} \ 
+	\defi{$f \co \Og \to \R$ היא \textit{פונקציה פשוטה} אם אוסף הערכים שהיא מקבלת הוא סופי או בן־מנייה, כלומר, הקבוצה $f(\Og) = \{f(x) \mid x \in \Og\}$ מקיימת $\sof{f(\Og)} \le \az$. }
+	\rmark{השם ''פונקציה פשוטה`` לא מקובל במתמטיקה, הוא רק ישמש אותנו להגדיר את אינטגרל לבג. }
+	\textbf{דוגמה. 
+	\begin{enumerate}
+		\item $\q_A$ האינדיקטורים פונקציה פשוטה
+		\item ב־$\R$, $\sinx$ אינה פשוטה. 
+	\end{enumerate}}
+
+	איך נציג פונקציה פשוטה? כצירוף לינארי של אינדיקטורים: 
+	\[ f = \sum_{n = 1}^{\infty}a_n1_{A_n} \]
+	כאשר $A_1, A_2 \dots \subset \Og$ מדידות וזרות, ו־$a_1, a_2, \dots$ שונים זה מזה (פרט לאפסים). 
+	
+	הטור לעיל מתכנס נקודתית בכל מקום (משום שה־$A_n$־ים זרים). ברור ש־$A_n = f\op(a_n)$, ו־$f(\Og) = \{a_1, a_2 \dots\}$ (קיים מספור כזה כי $f(\Og)$ בת מנייה). 
+	
+	\clm{כל פונקציה פשוטה $f \co \Og \to \R$ אפשר לרשום כך: 
+	\[ f = \sum_{k = 1}^{\wg} a_n \q_{A_n} \]
+	כאשר $A_1, A_2 \dots$ מדידות, זרות ולא ריקות, $a_n$־ים שונים זה מזה, ו־$\wg = \N_0 \cup \{\infty\}$. }
+	\prooftrivial
+	\lem{ההצגה יחידה עד כדי: 
+	\begin{itemize}
+		\item שינוי סדר סכימה (די מתבקש, כי אין שום סדר קאנוני ל־$a_n$)
+		\item אפשר להוסיף/להוציא איבר מהצורה $0 \cdot \q_A$ לטור. 
+	\end{itemize}}
+	\defi{יהי $(\Og, \fc, \mu)$ מרחב מידה, ו־$f = \sum_{n = 1}^{\wg}a_n\q_{A_n}$ פונקציה פשוטה בהצגה. אומרים ש־$f$ אינטגרבילית אם הטור $\sum_{a_n \neq 0}\sof{a_n}\mu(A_n) < \infty$. במקרה זה, נסמן: 
+	\[ \int_\Og f \dmu = \int_{\Og}f(x) \dmu(x) = \sum_{a_n \neq 0}\sof{a_n}\mu(A_n) \]}
+	\rmark{חשובה לנו מאוד התכנסות בהחלט, כדי שזה יהיה מוגדר היטב (הרי הייצוג כקומבינציה לינארית של אינדיקטורים לא תלוי בסדר סכימה). }
+	\rmark{אם עבור $n$ מסוים, $a_n = 0$ ו־$\mu(A_n) = \infty$, אז אין זה משנה את ערך הטור. לשם כך נגדיר Abuse Of Notion לפיו אם $a_n =0 \land \mu(A_n) =\infty$, אז $a_n\mu(A_n) = 0$. זה יהפוך את הסימונים ליותר אלגנטיים. }
+	\rmark{לעיתים נתיר פונקציות $f \co \Og \to \R \cup \{\pm\infty\}$ מדידות, ואז אם $a_n = \infty$ אך $\mu(A_n) =0$ זניחה, נגדיר שלא תהיה בעיה לדבר על אינטגרביליות שלה ונגדיר Abuse Of Notion של $a_n\mu(A_n) = 0$. }
+	\rmark{באינטגרל לבג, אין ''כיוון`` לאינטגרציה. עושים אינטגרציה על קבוצה. לכן בתחתית האינטגרל כותבים את הקבוצה עליה עושים את האינטגרל, לא כותבים אינטגרל מ־$0$ עד $1$ (או משהו בסגנון). אין דבר כזה ''אינטגרל הפוך``. }
+	
+	\textbf{דוגמאות. }
 	
 	
 	
-	\nthlec{4}{5}. \textbf{ההמשך יבוא}
+	
+	 \textbf{ההמשך יבוא} $\sim$ \nthlec{6}{7}
 	
 	
 	
