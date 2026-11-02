@@ -1,4 +1,4 @@
-\documentclass[name=רשימות פונקציות ממשיות]{../../../tex/classes/noChapterMegasumPreamble}
+\documentclass[name=רשימות פונקציות ממשיות – WIP]{../../../tex/classes/noChapterMegasumPreamble}
 \usetikzlibrary{calc}
 \usepackage{../../../tex/packages/mathShortcuts}
 \usepackage{../../../tex/packages/hebrewSupport}
@@ -321,12 +321,12 @@
 		מה לגבי $\Og \setminus A$? יש אפסילון־קירוב ל־$A$ ע''י $P_\eg$ כך ש־$m^*(A \trio P_\eg) < \eg$. אך $A^c \trio P_\eg^c = A \trio P_\eg$ כלומר $m^*(A^c \trio P_\eg^c) = \eg$ כנדרש. 
 	\end{proof}
 	
-	\clm{נניח שיש $A, B \subset \Og$ \textit{מדידות} וזרות. אז $m^*(A \cup B) = m^*(A) + m^*(B)$. }\begin{proof}
+	\clm{\label{clm:mesarenice}נניח שיש $A, B \subset \Og$ \textit{מדידות} וזרות. אז $m^*(A \cup B) = m^*(A) + m^*(B)$. }\begin{proof}
 		א''ש אחד ידוע מתת־אדטיביות של $m^*$. הכיוון השני (צ.ל. $m^*(A \cup B) \le m^*(A) + m^*(B)$) לאו דווקא ברור. 
 		
 		כדי להוכיח את הא''ש השני, ניקח $\eg > 0$ ונסתפק בלהוכיח ש־$m^*(A \cup B) \ge m^*(A) + m^*(B) - 10\eg$. ממדידות $A, B$ קיימות אלמנטריות $P_\eg, Q_\eg \subset \Og$ כך ש־$m^*(A \trio P_\eg), m^*(B \trio Q_\eg) < \eg$. 
 		
-		[שימו לב שלמרות ש־$A \cap B = \vn$, ייתכן ש $P_\eg \cap Q_\eg \neq \vn$, אבל אפשר להראות שהחיתוך קטן]
+		[שימו לב שלמרות ש־$A \cap B = \vn$, ייתכן ש־$P_\eg \cap Q_\eg \neq \vn$, אבל אפשר להראות שהחיתוך קטן]
 		
 		נבחין ש־:
 		\[ P_\eg \cap Q_\eg \subset (P_\eg \setminus A) \cup (Q \eg \setminus B) \subset (P_\eg \trio A) \cup (Q_\eg \trio B) \]
@@ -377,7 +377,7 @@
 			בכך הוכחנו את חלק א' של המשפט. 
 			\item עתה, נותר להראות ש־$m^*\cl{\bigcup_{n = 1}^{\infty}} = \sum_{n = 1}^{\infty}m^*(A_n)$ כאשר $A_n$ זרות. כיוון אחד יש לנו מתת־$\sg$־אדטיביות. 
 			
-			לגבי הכיוון השני, ממונוטוניות. לכל $N$ מתקיים: 
+			לגבי הכיוון השני, ממונוטוניות. לכל $N$ מתקיים (מאינדוקציה על \ref{clm:mesarenice}): 
 			\[ m^*\!\cl{\bigcup_{n = 1}^{\infty}A_n} \ge m^*\!\cl{\bigcup_{n = 1}^{N}A_n} = \sum_{n = 1}^{N}m^*(A_n) \]
 			ולכן מסנדוויץ' סיימנו. 
 		\end{itemize}\envendproof
@@ -693,7 +693,7 @@
 	אפשר להכליל את התהליך הזה. 
 	
 	\begin{Theorem}[גרסה של משפט Carathodory]\label{theo:carathodory}
-		תהי $\Og$ קבוצה, ותהי $\fc \in 2^{\Og}$ אלגברה של קבוצות (''אלמנטריות``). נניח ש־: 
+		תהי $\Og$ קבוצה, ותהי $\fc \subset 2^{\Og}$ אלגברה של קבוצות (''אלמנטריות``). נניח ש־: 
 		\begin{itemize}
 			\item $\mu$ סופית, כלומר $\mu(\Og) < \infty$
 			\item $\mu$ תת־סיגמה אדטיבית, כלומר אם $A_1, A_2 \dots \in \fc$ ואם $A \subset \bigcup A_i$, אז $\mu(A) \le \sum \mu(A_n)$. 
@@ -1143,11 +1143,11 @@
 	\subsection{אינטגרל של פונקציות פשוטות} \ 
 	\defi{$f \co \Og \to \R$ היא \textit{פונקציה פשוטה} אם אוסף הערכים שהיא מקבלת הוא סופי או בן־מנייה, כלומר, הקבוצה $f(\Og) = \{f(x) \mid x \in \Og\}$ מקיימת $\sof{f(\Og)} \le \az$. }
 	\rmark{השם ''פונקציה פשוטה`` לא מקובל במתמטיקה, הוא רק ישמש אותנו להגדיר את אינטגרל לבג. }
-	\textbf{דוגמה. 
+	\textbf{דוגמה. }
 	\begin{enumerate}
 		\item $\q_A$ האינדיקטורים פונקציה פשוטה
 		\item ב־$\R$, $\sinx$ אינה פשוטה. 
-	\end{enumerate}}
+	\end{enumerate}
 
 	איך נציג פונקציה פשוטה? כצירוף לינארי של אינדיקטורים: 
 	\[ f = \sum_{n = 1}^{\infty}a_n1_{A_n} \]
@@ -1172,6 +1172,31 @@
 	\rmark{באינטגרל לבג, אין ''כיוון`` לאינטגרציה. עושים אינטגרציה על קבוצה. לכן בתחתית האינטגרל כותבים את הקבוצה עליה עושים את האינטגרל, לא כותבים אינטגרל מ־$0$ עד $1$ (או משהו בסגנון). אין דבר כזה ''אינטגרל הפוך``. }
 	
 	\textbf{דוגמאות. }
+	\begin{itemize}
+		\item פונקציית דיריכלה $D(x) = \q_\Q$ אינטגרבילית, שכן: 
+		\[ \int_{[0, 1]} D\, \dd m = 1 \cdot \underbrace{m(\Q\cap [0, 1])}_{0} + 0 \cdot m([0, 1] \setminus \Q) = 0 \]
+		\item עבור הפונקציה $f = \frac{1}{2^{\floor{n}}}$, נקבל שהאינטגרל הוא פשוט הסכום $\int_{[0, \infty)}f = \sum_{n = 0}^{\infty}\frac{1}{2^{n}} = 1$. 
+		\item פונקציה $f \co \R^{2} \to \R$ המוגדרת ע''י $f = \sum_{n, m = 0}^{\infty} = \frac{1}{2^{n + m}} \cdot \q_{[n, n + 1) \times [m, m +1)}$. הפונקציה הזו אינטגרבילית כי הסכום מתכנס ל־$4$, ואינטגרלה על כל $\R^{2}$ $\int_{\R^{2}}f = \int_{\R^{2}}d\,\dd m = 4$ (באינטגרציה במובן חדו''א 2 זה אינטגרל לא אמיתי). 
+		\item בעבור הפונקציה $f(x) = \sum_{n = 1}^{\infty}\frac{(-1)^{n}}{n}\q_{[n, n + 1)}$. זו פונקציה מדידה אך היא לא אינטגרבילית (כי הטור $\sum \sof{\frac{(-1)^{n}}{n}} \cdot m([n, n + 1)) = \sum \frac{1}{n}$ לא מתכנס בהחלט). דווקא כאן אינטגרל רימן לא אמיתי כן מוגדר ושווה ל־$\ln(2)$. 
+		
+		אין ממש דרך להגדיר אינטגרל לא אמיתי מחוץ לישר הממשי, כי לא ברור מה משאיפים לאינסוף. 
+	\end{itemize}
+	\defi{אם $f \co \Og \to \R$ פשוטה ומדידה, ו־$E \subset \Og$ תת־קבוצה מדידה, אז אפשר להגדיר $f_E \cod \int_\Og f \cdot \q_E$. במידה והפונקציה הפשוטה $f \cdot \q_E$ אינטגרבילית. לחילופין, בעבור $E \subset \Og $ מדידה, $ \fc_E = \{F \in \fc \co F \subset E\}$ היא \ס־אלגברה ולכן $(E, \fc_E, \mu_{\fc_E})$ מרחב מידה (עם האינטגרל ביחס אליו). }
+	
+	\exe{וודאו שתחת ההגדרות לעיל $\int_\Og f \cdot \q_E = \int_E f$. }
+	\clm{במרחב מידה סופי, כל פונקציה פשוטה וחסומה אינטגרבילית. }\begin{proof}
+		נסמן $M = \sup f$. ידוע $f = \sum a_n\q_{A_n} $ בעבור $A_n$ זרות, אזי:
+		\[ \sum \sof{a_n} \cdot \mu(A_n) \le M \cdot \sum \mu(A_n) = M \cdot \mu\cl{\bigcup A_n} \le M \cdot \underbrace{\mu(\Og)}_{\in \R} \in \R \]\envendproof
+	\end{proof}
+	\clm{רשימת תכונות של אינטגרציית פונקציות פשוטות. 
+	\begin{enumerate}
+		\item (במרחב מידה שלם) נניח ש־$f, g$ פשוטות ושוות כב''מ, אזי $f$ אינטגרבילית אמ''מ $g$ אינטגרבילית, ובמקרה כזה האינטגרלים מזדהים. 
+		\item 
+	\end{enumerate}}\begin{proof}
+		\begin{enumerate}
+			\item אם $\Og'$ הקבוצה עליהן הן מסכימות, אז נקבל $ $ [...]
+		\end{enumerate}
+	\end{proof}
 	
 	
 	
