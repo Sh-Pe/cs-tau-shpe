@@ -1,0 +1,200 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+
+\newcommand\gl {\mathfrak{gl}}
+\newcommand\g  {\mathfrak{g}}
+\newcommand\ad {\mathrm{ad}}
+\newcommand\Sl {\mathfrak{sl}}
+
+
+\author{Shahar Perets}
+\title{Infinite Dimensional Lie Algebras $\sim$ \textit{Lecture 1}}
+\begin{document}
+	\maketitle
+	
+	\textbf{Lectures by Prof. Evgeney Feigin}
+	
+%	\textbf{Suggestions for books:}
+%	\begin{itemize}
+%		\item \ [Complicated] V. Kae - Infinite-dim Lie Algebras
+%		\item \ [Better] Kae, Raka, Rozhhouskey - Boumbay lectures
+%		\item \ Shourawn K... generalized flag unreility
+%	\end{itemize}
+%	[I kinda have hard time understanding his handwrite]
+	
+	\section{basics of lie algebras}
+	Our basic field will be $\C$, even though extensions to general fields exists. 
+	
+	\textbf{Def. }Lie algebra $\g$ v.s. equipped with the bracket $\forall x \in \g\co \ad_x \co \g \to \g$. We denote $y \mapsto [x, y] = (\ad_x)(y)$. $[x, y]$ a bilinear  anti-symmetric operation, that follows the Jacobi identity: 
+	\[ (\ad_x)[y, z] = [(\ad_x)y, z] + [y, (\ad_x)z] \]
+	
+	\textbf{Examples. }
+	\begin{itemize}
+		\item Abelian Lie algebra: $a\dx = 0 \ \forall x$
+		\item $V$- vector space, $gl(V) = \mathrm{End} V$, and $x, y \in \gl(V) \mapsto [x, y] = xy - yx$. 
+	\end{itemize}
+	
+	\textbf{Def. }the \textit{representation} of $g$: $\rho \co g \to \gl(V)$ s.t. $\rho$ is a linear map, and $\rho([x, y]) = \rho(x)\rho(y) - \rho(y)\rho(x) = [\rho(x), \rho(y)]$. 
+	
+	In other words, \textit{representation} of $g$ is a homomorphism $g \to \gl V$ which respects the bracket. 
+	
+	\textbf{Def. }Let $g_1, g_2$ to be two lie algebras. Then a (linear) $f \co g_1 \to g_2$ is called a \textit{homomorphism} if $f[x, y] = [f(x), f(y)]\ \forall x, y$. 
+	
+	\textbf{Example. }The adjoint representation: a map $\rho \co \g \to \gl(\g)$ s.t. $\rho(x) = \ad_x \iff \rho(x)y = [x, y]$. Sometimes we'll use the notation $\ad\co \g \to \gl(V)$. 
+	
+	\textbf{Example. }Suppose $g = \gl(V)$. Then the \textit{vector representation} is the map $\rho \co g \to \gl(V)$ s.t. $\rho(x) = x$. 
+	
+	\textbf{Def. \textit{Subaglebras}: } a subalgebra is an algebra $\ml \subset \g$ s.t. $\forall h_1, h_2 \in \ml$, $[h_1, h_2] \subset \ml$. 
+	
+	\textbf{Def. \textit{Lie Ideal}: }Suppose we have a $H \subset \g$, then $H$ is called an ideal if $\forall h \in H, x \in \g\co [h, x] \in H$ ($H$ is a Lie Algebra). 
+	
+	\textbf{Example. }$\Sl(V) \subset \gGL(V)$, $\forall x, y \in \gGL(V)$ we know $[x, y] \in \Sl(V)$. ($\Sl$ is the subspace of trace zero operators)
+	
+	\textbf{Example. }$\g = \gGL(V)$, and $H$ the subspace of upper-triangular matrices (with zeros on the diagonal). $H$ is indeed a subalgebra but not an ideal ($\exists x \in \gl(V), y \in H \ \text{s.t.}\  [x, y] \notin H$). 
+	
+	\textbf{Remark. }Let $H \subset \g$ is an {ideal}. Then $\g/H$ has a natural structure of a Lie algebra. How can we define the Lie algebra? Naturally $[x + H, y + H] = [x, y] + H$, and we need to prove that it doesn't depend on the representative. 
+	
+	\textbf{Def. \textit{Center}: }the center of $\g$ is $\zc(\g) = \ccb{x \in g \co [x, y] =0 \ \forall y \in \g}$. Alternatively $\zc(\g) = \{x \in g \co ad(x) = 0\}$. 
+	
+	\textbf{Remark. }$\zc(\g)$ is an Abelian ideal in $\g$. Hence $\g/\zc(\g)$ is a Lie algebra. 
+	
+	\textbf{Question. }Prove/disprove $\zc(g/\zc(g)) = \{0 + H\} \cong \{0\}$ 
+	
+%	\begin{proof}
+%		\[ [x + \zc(g), y + \zc(g)] = [x, y] + \zc(g) \]
+%		Then $[x, y] \in \zc(g) \forall y \in g$. hence $[[x, y], z] = 0 \forall z \in g$ and by Jacobi $0 = [[x, z], y] + [x, [y, z]]$. The first term is zero because it's in the center. Verify the rest of the proof in the HW. 
+%	\end{proof}
+%	
+	\textbf{Subrepresentations: }consider a representation $\rho \co \g \to \gl(V)$. Then a \textit{subrepresentation} is subspace $U \subset V$ s.t. $\forall x \in \g, u \in U \co \rho(x)u \in U$. This defines $\rho_U \co \g \to \gl(U)$ by $\rho_U(x) = \rho(x)|_{U}$. 
+	
+	\textbf{Def. \textit{direct sum of representation}: }$\rho_1 \co \g \to \gl(V_1), \rho_2 \co \g \to \gl(V_2)$. Defined as: 
+	\begin{align*}
+		(\rho_1 \oplus \rho_2) \co \g \to \gl(V_1 \oplus V_2) && (\rho_1 \oplus \rho_2)(x) = \rho_1(x) \oplus \rho_2(x)
+	\end{align*}
+	
+	\textbf{Def. }$\rho \co \g \to \gl(V)$ is called \textit{irreducible} if it has no (nontrivial) subrepresentations ($U \neq 0, U \neq V$). 
+	
+	\textbf{Def. }$\rho$ is called \textit{undecomposable} if there are no nontrivial subspaces $U_1, U_2 \subset V$ s.t. $U_1, U_2$ are subreps. and $V = U_1 \oplus U_2$. 
+	
+	A decomposable reps. is reducible (contrapositive: irreducible is undecomposable). 
+	
+	\textbf{Anti-Example. }Consider $\g$ to be the algebra of triangular matrices, $V = \C^{n}$, and $\rho \co \g \to \gl(V), \rho = \mathrm{id}$ is reducible ($e_1 \dots e_n$ std basis $\implies$ $U = \Sp v_i$ is invariant). Then $\rho$ is not irr. Is $\rho$ undecomp? Yes: if $U$ is a subspace, $U \neq 0$, then $U \ni u = a_1v_1 + \cdots a_rv_r,\  a_r \neq 0$ then $\rho(E_{1,r})u = a_1v_1 \in U \implies v_1 \in U$, so there are no nonintersecting subreps. 
+	
+	Let $ad \co g \to \gl(g)$ be the adjoint representation. What are the subreps. of ad? $H \subset g$ is a subrep $\iff$ $H$ is inv. to add operators $ad(x), x \in g$ $\iff$ $\forall x \in g \co y \in H \co [x, h] \in H$ $\iff$ $H$-ideal. 
+	
+	Adjoint reprs. is iti $\iff$ $g$ has no nontrivial ideals ($g$ is simple)
+	
+	\textbf{Example. }$\Sl(V)$ is simple for any $V$. $\gl(V)$ is not simple Lie. alg. if $n \ge 2$. 
+	
+	\textbf{Remark. }two lie algebras are said to be isomorphic if there exists an homomorphism $\g_1 \to \g_2$ which is a bijection. 
+	
+	\textbf{Def. }suppose $\g$ is a lie algebra, and consider $\rho_1, \rho_2$ reps. to $\gl(V_1),\gl(V_2)$ respectively. Then a linear map $A \co V_1 \to V_2$ is a homomorphism of reps. if the natural functor thingy commutes (each $A \co V_1 \to V_2$ has the property $\rho_2(x) \circ A = A \circ \rho_1(x)$) ($A$ may not be an isomorphism). 
+	
+	Suppose $\rho_1 \co \g \to \gl(V_1), \rho_2 \co \g \to \gl(V_2)$ and $\dim V_1 = \dim V_2$. Is it true that $\rho_1 \cong \rho_2$ as reps. ($\rho_1, \rho_2 \neq 0$)? 
+	
+	\textbf{Example. }Let $\dim g = 1, g = \Sp \{x\}$, $g$ must be abelian. Consider $\rho_1, \rho_2$ 1-dim reps., $\rho_1(x) = \lg Id, \rho_2(x) = \eta Id$. Then $\rho_1 \not\cong \rho_2$ are not isomorphic (just multiply by sum complex number). 
+	
+	\textbf{Def. }a reps. is called completely reducible if it can be decomposed to the direct sum of two irreducible-reps. 
+	
+	\textbf{Ex. }$\Sl_2 = \Sl(V)$ where $\dim V = 2$, $\dim \Sl_2 = 3$, $\Sl_2 = \Sp(e, h, f)$ s.t.: 
+	\begin{align*}
+		e = \pms{0 & 1 \\ 0 & 0} && h = \pms{1 & 0 \\ 0 & -1} && f = \pms{0 & 0 \\ 1 & 0}
+	\end{align*}
+	
+	Then $[e, f] = h, [h, e] = 2e, [h, f] = -2f$. 
+	
+	\begin{itemize}
+		\item Any finite-dim reps. of $\Sl_2$ is a direct sum of irreducibles. 
+		\item for $m > 0$ there exists a unique irreducible reps. of $\Sl_2$ of dim $m + 1$ denoted $\rho_m \co \Sl_2 \to \gl(V_m)$, and $\dim V_m = m + 1$. 
+		\item If $\rho_{m_1} \oplus \cdots \oplus \rho_{m_k} \cong \rho_{n_1} \oplus \cdots \oplus \rho_{n_k}$ then $k = s, m_i = n_i, m_1 \le \cdots \le m_k, n_1 \le \cdots \le n_s$. 
+		\item $\rho_0$: $1$-dim is the zero reps., $\rho_1$: $2$-dim vector reps., $\rho_2$: $3$-d adjoint reps., etc.
+	\end{itemize}
+	Generally $\rho_n\co v_m \overset{\rho_m(f)}{\to} \rho_m(f)v_m \to \cdots \to \rho_m(f)^{m}v_m \overset{\rho_m(f)}{\to} 0$. From the other side $v_m \overset{ad}{\to} 0 $. 
+	
+	\textbf{Def. \textit{Dual reps.}: }$\rho \co \g \to \gl(V)$ a reps, we will wish to define the dual reps. $\rho^* \co \g \to \gl(V^*)$. We define it by $\forall x \in \g \co (\rho^*(x)f)(v) = f(p(x)v)$ and $[\rho^*(x), \rho^*(y)] = \rho^*([x, y])$. 
+	
+	\textbf{Def. \textit{Tensor Product reps.}: }We can also define the tensor product of reps. consider $\rho_1, \rho_2$ reps. to $\gl V_1, \gl V_2$. Then $(\rho_1\otimes \rho_2) \co g \to \gl(V_1 \otimes V_2)$ defined as: 
+	\[ ((\rho_1 \otimes \rho_2)(x))(V_1 \otimes V_2) = \rho_1(x)v_1\otimes v_2 + v_1 \otimes \rho_2(x)v_2 \]
+	
+	HW: Check that this is indeed a reps. 
+	
+	Let $\g$ be a Lie algebra. What are the $1$-dim reps. of $g$? We always have the $0$ reps. We want $\rho \co \g \to \gl_1 = \C$. Then $\rho([x, y]) = [\rho(x), \rho(y)] = 0$. This implies that $\forall [x, y] \mapsto 0$. 
+	
+	For any $\g$ we can define $[\g, \g]$ the subspace spanned by all commutators. By definition $[\g, \g]$ is an ideal. 
+	
+	The conclusion is that $1$-dim reps. of $\g$ $\iff$ $(\g / [\g, \g])^*$. Indeed for $\rho \co \g \to \gl_1 = \C$, $[\g, \g] \subset \ker \rho \mapsto \tl \rho \co \g/[\g, \g] \to \C$. 
+	
+	\textbf{Col. }if $\g$ is simple nonabelian, then there is only one-dim reps (the zero map). That's because $\g$ not abelian $\iff$ $[\g, \g] \neq 0$ so $\g$ is simple $\iff$ $[\g, \g] = \g$. Then $\g/[\g, \g] = 0$. 
+	
+	
+	Every $g$ lie algebra imposes an associative algebra $U(\g)$ called {the universal enveloping }of the algebra. 
+%	$\rho \co g \to \gl (V)$ reps., all of the operators $\rho(x), x \in g$. $\rho(x) \in \mathrm{End}(V), \rho([x, y]) = \rho(x)\rho(y) - \rho(y)\rho(x)$. $\mathrm{End} V$ is both a Lie algebra and the associative algebra.
+	
+	\textbf{Def. }Let $\g = \Sp x_1 \dots x_n$. Then the commutator $[x_i, x_j] = \sum_{k = 1}^{N}c_{ij}^{k}x_k$. Then $c_{ij}^{k}$ are called \textit{structure constants} of $g$. 
+	
+	\renewcommand\UU {U}
+	\textbf{Def. }$\UU(\g)$ is an associative algebra with a unit called \textit{the universal enveloping}, which is generated by $\bar x_1 \dots \bar x_N$, with the relations $\ol{[x_i, x_j]}\cod \bar x_i \bar x_j - \bar x_j \bar x_i = \sum c_{ij}^{k}\bar x_k$. 
+	
+	\textbf{Example. }
+	\begin{itemize}
+		\item Suppose $g$ is $1$-dim. Then $\UU(\g) = \C[\bar x]$ the polynomial algebra. 
+		\item If $\g$ is abelian, $\dim \g = N$, then $\UU(\g) = \C[\bar x_1 \dots \bar x_N]$ the polynomial algebera with $N$ variables. 
+		\item Let $a$ be a $3$-dim Heisbnerg Algebra (the upper triangular matrices with zeros on the diagonal) then $a = \Sp x, y, z$ (e.g. $x = E_{12}, y = E_{23}, z= E_{13}$) and the brackets $[x, y] = z, [z, x] = [z, y] = 0$ and in particular $\zc(a) = \Sp z$. Then $\UU(a) = \la \bar x, \bar y, \bar z \ra / _{\bar z \bar x = \bar x \bar z, \bar z \bar y = \bar y \bar z, \bar x \bar y - \bar y \bar x = z}$. 
+		
+		Is $\bar x^{k}, \bar y^{\ml}, \bar z^{m}$ is a basis ($k, \ml, m \ge 0$)? Yes, indeed $\bar x^{k}, \bar y^{\ml}, \bar z^{\ml}$ forms a basis for $\UU(a)$. 
+	\end{itemize}
+	
+	
+	
+	\textbf{Poincare-Birkhott-Witt-Theorem. }(PBW-theorem) Let $\g$ be $\Sp x_1 \dots x_N$, then $\UU(\g)$ has a basis of the form $\bar x^{k_1}_1 \dots \bar x_N^{k_n}$ where $k_i \in \Z_{\ge0}$. 
+	
+	\textbf{Remark. }the ``size'' of $\UU(\g)$ coincides with the ``size'' of $\C[\bar x_1 \dots \bar x_N]$. 
+	
+	\textbf{Def. }PBW filtration of $\UU(\g)$ is a basis of subspaces $\Sp(1) = F_0 \subset F_1 \subset \cdots \subset \UU(g)$ defined by: 
+	\begin{align*}
+		F_k &= \Sp\cl{\bar y_1 \dots \bar y_\ml \cod x_i \in g, \ml \le k}  \\
+		&= \Sp(\bar x_{i_1}, \cdots \bar x_{i_\ml}, \ml \le k)
+	\end{align*}
+	Where $y \in g, y = \sum_{}\ag_i x_i, \bar y = \sum \ag_i \bar x_i$. 
+	
+	\textbf{Remark.} $\bar x_i^{2}$ is a valid element in the universal algebra (unlike the Lie algebra). 
+	
+	Then $\dim F_1 = N + 1, \dim F_2 = 1 + N + \binom{N + 1}{2}$ and so on. 
+	
+	\textbf{Lemma. }$F_s F_t = F_{s + t}$
+	
+	\newcommand\gr {\mathrm{gr}}
+	\textbf{Construction. }$\gr \UU(\g)= F_0 \oplus F_1/F_0 \oplus F_2/F_1 \oplus = \bigoplus_{s \ge 0}F_s/F_{s - 1}$ (where $F_{-1} \cod 0$). 
+	
+	\textbf{Proposition. }The algebra structure on $\UU(\g)$ induces the algebra structure on $\gr \UU(\g)$. The resulting algebra is commutative and is generated in degree one (i.e. by $F_1/F_0$). \begin{proof}
+		\[ a + F_{n - 1} \in F_n / F_{n - 1}, b + F_{m -1 } \in F_{m}/F_{m - 1} \]
+		Then: 
+		\[ (a + F_{n - 1})(b + F_{m - 1} \cod ab + F_{n + m - 1}) \]
+		Then $F_n/F_{n -1} \times F_{m}F_{m - 1} \to F_{nm}/F_{nm - 1}$. 
+		
+		Any element $a + F_{n - 1}$ can be written as a linear combination of the elements of the form $\bar x_1 \dots \bar x_n + F_{n - 1}$, so since $\bar x_i + F_0 \in F_1/F_0$ the algebra $\gr \UU(\g)$ is generated by the degree one part. 
+		It's suffices to check that the degree one element commutes. Take $y, z \in g$ then $(\bar y + F_0)(\bar z + F_0) - (\bar z + F_0)(\bar y + F_0) = (\bar y \bar z + F_1) - (\bar z \bar y + F_1) = (\ol{py, z]} + F_1) \subset F_1$. . In $gr \UU(g) $ we got $(\bar y + F_0) (\bar z + F_0) = (\bar z + F_0)(\bar y + F_0)$. 
+	\end{proof}
+	
+	\textbf{Corollary. }$\gr\UU(\g) \cong \C[\bar x_1, \dots, \bar x_N]$
+	
+	\begin{proof}
+		From the proposition, there is a surjective $\C[\bar x_1 \dots \bar x_N] \to \gr\UU(\g)$ and by the PBW theorem this surjection had no kernel. 
+	\end{proof}
+	
+	In some sense, the polynomial alg. is the abelization of $\UU(\g)$, and $\UU(\g)$ is the queantization of $\C[\bar x_1 \dots \bar x_n]$
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+%	\ndoc
+\end{document}

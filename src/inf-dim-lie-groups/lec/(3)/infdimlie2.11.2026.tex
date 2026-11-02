@@ -1,0 +1,228 @@
+\documentclass[]{../../../../tex/classes/styledArticle}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+
+\newcommand\gl {\mathfrak{gl}}
+\newcommand\g  {\mathfrak{g}}
+\newcommand\ad {\mathrm{ad}}
+\newcommand\Sl {\mathfrak{sl}}
+\newcommand\gr {\mathrm{gr}}
+\newcommand\End{\mathrm{End}}
+\newcommand\Fi {\mathfrak{h}}
+\newcommand\Fh {\mathfrak{h}}
+
+\newcommand\asc{\mathscr{A}}
+\newcommand\sinf{\frac{\inft}{2}}
+
+\author{Shahar Perets}
+\title{Infinite Dimensional Lie Algebras $\sim$ \textit{Lecture 3}}
+\begin{document}
+	\maketitle
+	
+	\textbf{Lectures by Prof. Evgeney Feigin}
+	
+	\textbf{Recap. }we define $\asc = \Sp(a_n, n \in \Z) \oplus \C K$ s.t. $K$-central (commutes with everything) and $[a_n, a_m] = n\dg_{n + m, 0}m$. We defined $\asc_+ = \Sp(a_n, n > 0), \asc_- = \Sp(a_n, n< 0), \asc_0 = \Sp(a_0, K)$. 
+	
+	We also constructed the Fock modules: $\pi_\mu \co \asc \to \gl(B^{(\mu)})$. (though as vector spaces $B^{(\mu)} \cong \C[x_1, x_2, \dots ]$ space of finite-monomials). Where $\pi_\mu(K) = Id, \pi_\mu(a_0) = \mu Id, \pi_\mu(a_n) = \frac{\dd}{\dd x_n}, \pi_\mu(a_{-n}) = nx_n$ ($n > 0$). 
+	
+	Couple of canonical questions: 
+	\begin{itemize}
+		\item We do we need $n$ in the definition of the bracket of $a_n, a_m$? 
+		\item We do we need different $\mu$-s? 
+	\end{itemize}
+	Boasonic picture: the image of $\asc$ in commutative space $B$ / the picture of $\asc$ through the fock modules. 
+	
+	\subsection{Fermionic space (semi-infinite wedge product)}
+	\textbf{Def. }let $V = (v_n, n \in \Z)$ (finite linear combinations). Consider the semi-infinite wedge monomial: $\psi = v_{i_0} \land v_{i_{-1}} \land v_{i - 2} \land \cdots$ s.t. $i_0 > i_{-1} > i_{-2} > \cdots$, and $i_{-k - 1} = i_{-k} - 1$ for $k \gg 0$ large enough. $F \cod \Lg^{\sinf}$ is The space of semi-infinite forms (finite linear combination of semi-infinite monomials). 
+	
+	We can complete it to get a Hilbert space. 
+	
+	\textbf{Examples. }the vacuum vectors are $\Z \ni m = |m\ra  = v_m \land v_{m - 1} \land v_{m - 2} \land \cdots$. The tail starts from the beginning, notably $i_{-k} = m - k$. 
+	
+	\textbf{Def. \textit{charge}: }for $\psi = v_{i_0} \land v_{i_{- 1}} \land \cdots$ we can the \textit{charge} of $\psi$, which is the $m$ s.t. $i_{-k} = m- k$ for $k \gg 0$. 
+	
+	We can easily prove that such $m$ exists since the $i_k$-s stabilizes. 
+	
+	For example, $|m\ra $ has a charge of $m$. 
+	
+	\textbf{Def. }$\fc^{(m)}$ the linear span of all wedge monomials of charge $m$. In particular, since charge must exists, we can grade $\fc = \bigoplus_{m \in \Z} \fc^{(m)}$. 
+	
+	Each $\fc^{(m)}$ is still (``very'') infinite dimensional (take $n > m$ and define $v_n \land v_{m - 1} \land v_{m - 2} \land \cdot$). 
+	
+	\textbf{Def. \textit{degree}: }consider $\psi = v_{i_0} \land v_{i_{-1}} \land \dots$. Suppose $\psi \in \fc^{(m)}$. We can define the \textit{degree} of $\psi$ to be $\deg \psi = \sum_{s \ge 0}\cl{i_{-k} - (m - k)}$. In principal it's an infinite sum, but all of the terms vanishes for $k \gg 0$ so it's well defined. For example, $\deg |m\ra = 0$. 
+	
+	\textbf{Lemma. }
+	\begin{itemize}
+		\item $|m \ra = 0$ is the only monomial of degree 0. 
+		\item For any $\psi$, $\deg \psi \in \Z_{\ge 0}$. 
+	\end{itemize}\begin{proof}
+		Let $k$ be such that $i_{-k} = m - k$. Then $i_0 > i_{-1} > \cdots > i_{-k + 1} > i_{-k} = m - k$ therefore $i_{-k + 1} \ge m- (k - 1)$ and so on (up to $i_0 \ge m$). The each term $i_{-k} - (m - k) \ge 0$ and $i_{-k} - (m - k) = 0 \ \forall k \iff \psi = |m\ra$. 
+	\end{proof}
+	
+	\textbf{Notation. }$\fc^{(m)}_n = \Sp\cl{\psi \co \psi \in \fc^{(m)}, \deg \psi = n}$. 
+	In particular $\fc^{(m)} = \bigoplus_{n \ge 0}\fc^{(m)}_n$. 
+	
+	\textbf{Proposition. }$\dim \fc^{(m)}_n = p(m)$
+	
+	(reminder: $p(m)$ is the number of ways to write $n = n_0 + n_1 + \cdots + n_k$ where $n_i \ge n_{i + 1}$)
+	
+	\begin{proof}
+		We'll define a bijection. Given $(n_0, n_1 \dots n_k)$ s.t. their sum if $m$, we map the semi infinite wedge product $\psi = v_{i_0} \land v_{i_1} \land \cdots$ s.t. $i_s = n_s + m - s$. Clearly if $s > k$ then $i_s = m - s$, so the charge is correct, and $i_0 > i_1 > \cdots$. Finally $\deg \psi = n_0 + n_1 + \cdots + n_k = n$. 
+		
+		In the opposite direction, for a given $\psi \in \fc^{(m)}_n$ we can define $n_k = i_{-k} - (m - k)$ (this given a bijection). 
+	\end{proof}
+	
+	There should be a ``correct'' identification of $\fc^{(m)}\cong B^{(m)}$. This is quite weird, since the $m $ in $\fc^{(m)}$ saves information about the linear structure while in $B^{(m)}$ is encodes information about the Fock module it came from. 
+	
+	\textbf{Remark. }for any $m_1, m_2 \in \Z$, $\fc^{(m_1)} \cong \fc^{(m_2)}$ as a vector space. \begin{proof}
+		Just take $v_{i_0} \land \cdots \mapsto v_{i_0 + m_2 - m_1} \land v_{i_{-1} + m_2 - m-1} \land \cdots$
+	\end{proof}
+	
+	\textbf{Lemma. }let $\psi = v_{i_1} \land v_{i_2} \land \cdots \in \fc^{(m)}$. Then: 
+	\[ \deg \psi = \sum_{i_{-k} > m} i_{-k} - \sum_{\mathclap{\substack{j \le n \\ j \neq i_{-k} \ \forall k}}} j \]
+	\begin{proof}
+		The number of terms in the RHS is finite. $\deg |m\ra = 0$, otherwise: 
+		\[ \deg \psi = \sum_{k \ge 0}(i_{-k} - (m - k)) = \sum_{k = 1}^{s}(i_{-k} - (m - k)) = \sum_{k = 0}^{s}i_{-k} - \sum_{k = 1}^{s}(m - k) = \sum_{i_{-k} >m}i_{-k} - \sum_{\substack{j \neq i_{-k} \forall k \\ j \le n}} j \]
+		Where $s$ is large enough s.t. the tail starts
+	\end{proof}
+	
+	\textbf{Remark. }you can thing about $i_{-k} > 0$ as insertions and $j \le m, j \neq i_{-k}$ as holes. Then (image). 
+	
+	The picture is sometimes called the Dirac sea. 
+	
+	Are there some operators acting on $\fc$? 
+	
+	\textbf{Def. }
+	\[ \gl_\Z \cod \gl_\infty \cod \{A = (a_{ij})_{ij \in \Z\mid} \text{only finite number of entries may no vanish}\} \]
+	$\gl_\infty$ obviously has a basis $E_{ij}$ in the strong sense (finite linear combinations are enough). This is a Lie algebra with the standard bracket $[E_{ij}, E_{k\ml}] = \dg_{jk}E_{i\ml} - \dg_{\ml i}E_{kj}$. 
+	
+	The corresponding Lie group is: 
+	\[ \gGL_\infty \cod \ccb{A = (a_{ij})_{i, j \in \Z} \ \middle\vert\  \substack{\text{\normalsize$A$ is invertible} \\ \text{\normalsize$A-I$ has a finitely many non-zero enteries}}} \]
+	
+	\textbf{Lemma. }let us define $r \co \gl_\infty \to \gl(\fc), R \co \gGL_\infty \to \gGL(F)$ s.t.: 
+	\[ r(a)(v_{i_0} \land v_{i_{-1}} \land \dots ) = \sum_{k \ge 0}v_{i_0} \land v_{i_{-1}} \land \cdots \land v_{i_{-k + 1 } \land a \cdot v_{i_{-k}} \land v_{i_{k - 1}}} \land \cdots  \]
+	\[ R(A)(v_{i_0} \land \cdots ) = Av_{i_0} \land Av_{i_{-1}} \land \cdots \]
+	Then $r$ is a reps. of $\gl_\infty$ and $R$ is a reps. of $\gGL_\infty$. 
+	\begin{proof}
+		In both formulas, we ally a matrix to $v_{i_{-k}}$, the result is a linear combination of vectors $v_j$. After writing these linear combinations, we can (?) to our semi-infinite-monomials $v_j \land v_j =0, v_{j_1} \land v_{j_2} = -v_{j_2}\land v_{j_1}$. 
+		
+		Then the sum for $r(a)$ is finite, because $av_j =0$ for $j \ll 0$. 
+		
+		The expression for $R(A)$ is finite too, because there exists a $j$ s.t. $Av_k = v_k$ for $k < j$, i.e. $R(A) \psi = Av_{i_0} \land Av_{i_{-1}} \land \cdots \land A_{v_{i - j}} \land v_{i_{-j - 1}} \land \cdots$. 
+		
+		Now, $r, R$ are reps., because the analogous formulas for $\gl_N, \gGL_N$ are reps. 
+	\end{proof}
+	
+	\textbf{Example. }
+	\[ r(E_{ij})(v_{i_0} \land v_{i_1} \land \cdots) = \begin{cases}
+		0 & j \neq i_{-k} \ \forall k \\
+		\cdots \hat v_j, v_i \cdots & \text{otherwise}
+	\end{cases} \]
+	(the bottom line up to a shuffle)
+	\textbf{Remark. }$r(E_{ij})(v_{i_0} \land \cdots) = 0$  if $i = i_{-k}$ for some $k$. $r(E_{ij})\mid m \ra = 0$ if either $j > m$ or $i \le m$. 
+	
+	\textbf{Example. }
+	\[ R(A)(v_{i_0} \land v_{i_{-1}} \land \cdots) = \sum_{j_0 > j_1 > \cdots}v_{j_0} \land v_{j_{-1}} \land \cdots \cdot c_{i}^{j} \]
+	Where $c_i^{j} = \det(A_{i_0, i_{-1}, \cdots}^{j_0, j_1, \cdots })$ (from permutations of something) submatrix. 
+	
+	\textbf{Lemmma. }$\fc^{(m)}$ is a subreps. in respect to $r(a), R(A)$. \begin{proof}
+		Consider $r(E_{ij})(v_{i_0} \land v_{i_{-1}} \land \cdots )$, then the charge is unchanged (the tail is still the tail, we just replace one vector with another vector). Similar for $R(A)$. 
+	\end{proof}
+	
+	\textbf{Remark. }$\exp r(a) = R(\exp (a))$. 
+	
+	\newcommand\fn{\mathfrak{n}}
+	\newcommand\fh{\mathfrak{h}}
+	\textbf{Proposition. }Let $r_m \co \gl_\infty \to \gl(F^{(m)})$ the restriction of $r$ to the charge-$m$ subspace. Then $r_m$ is the highest-weight reps. in respect to the composition $\gl_\infty = \fn_+\oplus\fh\oplus \fn_-$. 
+	
+	\textbf{Reminder. }$\fh = \Sp(E_{ii} \mid i \in \Z), \fn_+ = \Sp(E_{ij}, i< j)$ etc. 
+	
+	\begin{proof}
+		We need to prove three things. 
+		\begin{itemize}
+			\item $\fn_+| m \ra = 0$: $E_{ij}|m\ra = 0$ for $i < j$. 
+			\item $h|m \ra = \lg(h)| m \ra)$ for some $\lg \in \fh^*$: $\lg(E_{ij}) = \begin{cases}
+				1 & i \le m \\
+				0 & i > m
+			\end{cases}$ solves it. 
+			\item $F^{(m)} = U(\fn_-) \cdot | m \ra $: Let $\psi = v_{i_0} \land v_{i_{-1}} \land v_{i_{-2}} \land \cdots \in \fc^{(m)}$. Then \set $i_0, \dots i_{is}$ insertions (i.e. $i_{-k} > m$ for $k \le s$) and \set $j_0 \dots j_{-s}$ be holes (i.e. $j_{-k} \le m$ for $j_0 \neq i_0$). Then $r_m(E_{i_0j_0})r_m(E_{i_{-1}j_{-1}}) \cdots r_m(E_{i - s, j -s}) = \pm \psi$. So any $\psi \in \fc^{(m)}$ belongs to $U(\fn_-) \cdot |m\ra$. 
+		\end{itemize}
+	\end{proof}
+	
+	$\gl_\infty$, $F^{(m)}$: h.w. reps. of weight ($0 \dots 0 1 1 1 \dots, \ \lg_i = \lg(E_{i, i})$)
+	
+	
+	\textbf{Def. \textit{idk but its ``more infinite''}: }
+	\[ \ol a _\infty = \ccb{a = (a_{ij})_{i, j \in \Z} \mid a_{ij} = 0 \ \text{for}\ \sof{i - j} \gg 0} \]
+	Any element of $\ol a_\infty$ is a finite (!) linear combination of $a_k = \sum_{i \in \Z} \mu_{k, i}E_{i, i + k}$  for some numbers $\mu_{k, i}$. 
+	
+	\textbf{Observation. }$\ol a_\infty$ is a Lie algebra under the standard bracket of matmul. 
+	
+	\begin{align*}
+		[a_k, a_\ml] &= \csb{\sum_{i \in \Z}\mu_i E_{i, i + k}, \ \sum_{j \in \Z}\nu_i E_{j, j + \ml}} \\
+		&= \sum_{i, j}\mu_i\nu_j [E_{i, i + k}, E_{j, j + \ml}] \\
+		&= \sum_{i, j}\mu_i\nu_i \cl{\dg_{i + j, j}E_{i, j + \ml} - \dg_{j + \ml, i}E_{j, i + k}}
+	\end{align*}
+	Hence it's supported on the diagonal $E_{i, i + k + \ml}$. 
+	
+	\textbf{Ex. }$\Lg_k \cod \sum_{i \in \Z} E_{i, i + k} \in \ol a_\infty$, and:
+	\[ [\Lg_k, \Lg_\ml] = 0 \]
+%	(``This is obvious'')
+	Since: 
+	\[ \Lg_k\Lg_\ml v_a = \Lg k a_{-\ml} = v_{a - \ml - k} = v_{a - k - \ml} = \Lg_\ml \Lg _k v_a \]
+	Does it act on $\fc$? 
+	\[ r(\Lg_0)(v_{i_0} \land \cdots) = \cl{1 + 1 + \cdots}v_{i_0} \land v_{i_1} \land \cdots \]
+	
+	Which does not converge. 
+	
+	Let $a_k = \sum \mu_i E_{i, i + k}$. Then $r(a_k)$ is well-defined. 
+	
+	\textbf{Lemma. }for any $k \neq 0$ and $a = \sum_{i \in \Z}\mu_i E_{i, i + k}$, then r(a) is well-defined operator on $\fc^{(m)}$ for all $m$. \begin{proof}
+		Let $\psi = v_{i_0} \land v_{i_{-1}} \cdots$ s.t. ${i_{-s}} = m - s$ for $s > s_0$. Then for $s \ge s_0 - k$, $a \cdot v_{s} = v_{s -k}$ and $s - k > s_0$ is present in $\psi$. Hence, only finitely many terms survive. 
+		
+		[We shifted the tail, but the tail is still there]
+	\end{proof}
+	
+	We'll have to change the action $r$ to make it work. 
+	
+	\textbf{Def. }
+	\[ \hat r_m(E_{ij}) = \begin{cases}
+		r_m(E_{ij}) & i \neq j \\
+		r_m(E_{ii}) - Id & i \le 0 \\
+		r_m(E_{ii}) & i > 0
+	\end{cases} \]
+	
+	\textbf{Example. }$\Lg_0 = \sum E_{ii}$, then: 
+	\[ \hat r_m(\Lg_0)|m \ra = m | m \ra \]
+	\begin{proof}
+		Let $m > 0$. Then $\hat r_m(\Lg_0)(v_m \land v_{m -1} \land \cdots) = r_m(E_{mm})v_m \land v_{m- 1} \land \cdots \land v_m \land \cdots \land v_2 \land r_m(E_{11})v_1 \land v_0 \land = m |m \ra$. 
+		
+		If $m < 0$, then $\hat r_m(\Lg 0) v_m \land v_{m - 1} \land \cdots  = \sum_{i \in \Z}\hat r_m(E_{ii})|m\ra = \sum_{i = m + 1} (r_m(E_{ii}) - I) |m\ra = m |m\ra$. 
+	\end{proof}
+	
+	\textbf{Claim. }extending $\hat r_m $ to $\ol a_{\infty}$ gives a well-defined map from $\ol a_\infty $ to $\gl(\fc^{(m)})$. \begin{proof}
+		We only need to check what happens with the diagonal matrices. let $a_0 = \sum_{i \in \Z}\mu_i E_{ii}$, $\psi = v_{i_0} \land \cdots$. Then: 
+		\begin{align*}
+			\hat r_m(a_0) \cdot \psi &= \sum_{i_{-k} > 0} \mu_{i_{-k}} - \sum_{\substack{j \le0 \\ j \neq i_{-k} \forall k}}\mu_j \\
+			&= \cl{\sum_{i \in \Z}\mu_i \hat r_m(E_{ii})} \psi = \cl{\sum_{i > 0}\mu_i r_m(E_{ii}) + \sum_{i \le 0}\mu_i(r_m(E_{ii} - I))}\psi \\
+			&=\cl{\sum_{i_{-k} > 0}\mu_{i, -k} - \sum_{\substack{j \le0 \\ j \neq i_{-k} \forall k}} \mu_i}\psi
+		\end{align*}
+	\end{proof}
+	
+	One step back to $\gl_\infty$: $r(E_{ij})$ act on $F$ and preserves the charge via $r(E_{ij}) \co \fc^{(m)} \to \fc^{(m)}$. 
+	
+	Q: suppose $\psi \in \fc^{(m)}_n$, $r(E_{ij})\psi \in \fc^{(m)}_? $
+	
+	A: $? = n + i -j$. 
+	
+	what is the effect of the operators $r(E_{ij})$? If it is non-zero, thus it replaces $v_j$ by $v_i$, so $\deg \psi = \cl{\sum_{k \ge 0} i_{-k} - (m - k)}$. After applying $E_{ij}$ one index $j$ is changed to $i$. 
+	
+	So: 
+	\[ \gl_\infty = \bigoplus_{r \in \Z}(\gl_\infty)_r, \quad \quad (\gl_\infty)_r = \Sp(E_{i + r, i}, \ i \in \Z)  \]
+	So, $(\gl_\infty)_r$ act on $\fc$ on degree $r$ output. 
+	
+	
+	%	\ndoc
+\end{document}
