@@ -1,0 +1,120 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+
+\author{שחר פרץ}
+\title{פונקציות ממשיות $\sim$ \textit{תרגיל בית 2}}
+\begin{document}
+	\maketitle
+	\section{}
+	יהיו $A, B \subset \R^{d}$ כך ש־$A$ מדידה ו־$m^*(A \trio B) = 0$. נוכיח ש־$B$ מדידה. 
+	
+	\begin{proof}
+		יהי $\eg > 0$. משום ש־$A$ מדידה, קיימת $P_\eg$ כך ש־$m^*(A \trio P_\eg) = 0$. נבחין ש־$B \trio P_\eg \subset A \trio P_\eg \cup A \trio B$ (עשיתי דיאגמת וון במחברת ואפשר להוכיח את זה באמצעות פיצול למקרים). ואז מתת־אדטיביות מידה חיצונית: 
+		\[ m^*(B \trio P_\eg) \le \underbrace{m^*(A \trio B)}_{ = 0} + \underbrace{m^*(A \trio P_\eg)}_{\le \eg} = \eg \]
+		ומהגדרת קבוצה מדידה סיימנו. 
+	\end{proof}
+	\textbf{חסרה שאלה 2}
+	
+	\stepcounter{section}
+%	\section{}
+%	נוכיח שקריטריון קרתאודורי גורר מדידות. 
+%	
+%	\begin{proof}
+%		תהא $A \subset \R^{d}$ שמקיימת את קריטריון קרתאודורי. נוכיח שהיא מדידה. יהי $\eg > 0$. ניקח כיסוי כלשהו $B_n$ של מלבנים אלמנטריים, כך ש־$A \subset \bigcup B_n$ ו־$m^*\cl{\bigcup B_n} \le m^*(A) + \eg$
+%	\end{proof}
+	
+%	TODO
+
+	\section{}
+	יהי $\{\fc_\wg\}_{\wg \in \Og} = F$ אוסף של \ס־אלגבראות. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\bigcap F$ היא \ס־אלגברה. \begin{proof}
+			בבירור $\vn \in \bigcap F$ שכן $\vn \in \fc_\wg$ לכל $\wg \in \Og$. נותר להראות סגירות לאיחוד ולמשלים. 
+			\begin{itemize}
+				\item \textbf{סגירות לאיחוד: }תהי $(F_i)_{i =1}^{\infty} \in F$ אוסף קבוצות בנות־מניה. אז לכל $\wg \in \Og $ מהגדרת חיתוך מתקיים $\forall i \co F_i \in \fc_\wg$. משום ש־$\fc_\wg$ היא \ס־אלגברה, היא סגורה לאיחוד בן־מנייה ולכן $\bigcup_{i  = 1}^{\infty}F_i \in \fc_\wg$, שוויון שמתקיים לכל \ס־אלגברה $\fc_\wg$. מהגדרת חיתוך $\bigcup_{i = 1}^{\infty} F_i \in \bigcap_{\wg \in \Og}\fc_\wg $ כנדרש. 
+				\item \textbf{סגירות למשלים: }באופן דומה, כל $f \in \bigcap F$ מקיימת $f \in \fc_\wg$ לכל $\wg \in \Og$, ולכן $\ol{f} \in \fc_\wg$ כי $\fc_\wg$ היא \ס־אלגברה, ולסיום משום שהטענה מתקיימת לכל $\wg \in \Og$ נקבל $\ol{f} \in \bigcap_{\wg \in \Og}\fc_\wg$ כנדרש. 
+			\end{itemize}\envendproof
+		\end{proof}
+		\item נראה ש־$\bigcup F$ לאו דווקא \ס־אלגברה. \begin{proof}[הפרכה]
+			לדוגמה, בעבור: 
+			\begin{gather*}
+				\fc_1 = \Big\{\vn,\ \{1\},\ \Og,\ \Og \setminus \{1\} \Big\} \\
+				\fc_2 = \Big\{\vn,\ \{2\},\ \Og,\ \Og \setminus \{2\} \Big\}
+			\end{gather*}
+			היא \ס־אלגברה מעל $\Og = \{1, 2, 3\}$. נבחין ש־$\{1, 2\} \notin \fc_1 \cup  \fc_2$. עם זאת, $\{1\}, \{2\} \in \fc_1 \cup \fc_2$ ולכן אם בשלילה $\fc_1 \cup \fc_2$ היא \ס־אלגברה ובפרט סגורה לאיחוד אז $\{1, 2\} \in \fc_1 \cup \fc_2$, וזו סתירה. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נסמן ב־$\Sg$ את ה־\ס־אלגברה של בורל שנוצרת מהטופולוגיה ה־co-finite. נוכיח שהיא \ס־אלגברה. 
+	\begin{proof}
+		משום ש־$\vn$ סופית אז $\vn \in \Sg$. 
+		\begin{itemize}
+			\item \textbf{סגירות לאיחוד: }בעבור $(A_i)_{i = 1}^{\infty}$ קבוצות ב־$A_i \in \Sg$. נראה שאיחודן גם שם. נפריד למקרים. אם ישנה $A_i$ כך ש־$\sof{A_i^{c}} \le \az$, אז: 
+			\[ \sof{\cl{\bigcup_{i = 1}^{\infty} A_i}^{\!\!c}} = \sof{\bigcap_{i = 1}^{\infty} A_i^{c}} \le \sof{A_i} \le \az \]
+			וסיימנו. אחרת, $A_i$ כולן (לכל היותר) בנות מנייה $\sof{A_i} \le \az$. במקרה זה, $\bigcup_{i = 1}^{\infty} A_i \doc A$ הוא איחוד בן מנייה של קבוצות לכל־היותר בנות מנייה, ולכן $\sof{A} = \az$ (תוך שימוש ב־AoC הבת מנייה). 
+			\item \textbf{סגירות למשלים: }אם $A \in \Sg$, אז אם $\sof{A} \le \az$ אז $\sof{A^{c}} \le \az$ ולכן $A^{c} \in \Sg$ וסיימנו, אחרת $\sof{A^{c}} \le \az$ ואז $\sof{(A^{c})^{c}} = \sof{A} \le \az$ דהיינו $A^{c} \in \Sg$ וסיימנו. 
+		\end{itemize}
+	\end{proof}
+	
+	\section{}
+	(סליחה אם הנימוקים שלי בסעיף הזה קצת טופולוגיים, זו הדרך הכי קלה שמצאתי להוכיח דברים)
+	
+	תהא $U \subset \R^{d}$ פתוחה. 
+	\begin{enumerate}[(A)]
+		\item נראה שקיים אוסף בן־מנייה של קוביות סגורות $Q_j$ שמכסות את $U$. \begin{proof}
+			המרחב $\R^{d}$ הוא מטרי ולכן $T_6$, ומכאן כל קבוצה פתוחה היא $G_\dg$. לכן קיימים $(F_j)_{j =1}^{\infty}$ סגורים כך ש־$U = \bigcup_{j = 1}^{\infty}F_j$. הטופולוגיה על $\R$ נוצרת גם על־ידי הקו־קוביות הסגורות, שכן היא נוצרת ע''י הקוביות הפתוחות וראינו בהרצאה (במספר הוכחות שונות) הוכחה קונסטרקטיבית שהמשלים של קובייה סגורה הוא איחוד של קוביות פתוחות. דהיינו כל $F_j$ ניתנת לביטוי כאיחוד $(Q_{i, j})_{i = 1}^{\infty}$ של קוביות סגורות כך ש־$F_j = \bigcup_{i = 1}^{\infty} Q_{i, j}$ (מספיק אוסף בן־מנייה של $Q_{i,j}$־ים כי המרחב האוקלידי מקיים אקסיומת מנייה שנייה). סה''כ $U = \bigcup_{i, j = 1}^{\infty}Q_{i, j}$ איחוד בן־מנייה של קוביות סגורות. 
+		\end{proof}
+		\item נראה שקיים אוסף בן־מנייה של קוביות סגורות $Q_j$ שמכסות את $U$ והפנים שלהן זר. \begin{proof}
+			הבחנו בסעיף הקודם שקיים כיסוי $Q_j$ בן מנייה של קוביות סגורות. עתה, נבצע את ההליך הבא: 
+			\[ \tl Q_1 \cod Q_1, \quad \tl Q_{j + 1} = \Cl \cl{Q_{j + 1} \setminus \bigcup_{i = 1}^{j}Q_j} \subset Q_{j + 1} \]
+			ההליך הזה משאיר אותנו עם קובייה (כי אוסף הקבוצות הפשוטות הוא אלגברה) סגורה (כי לקחנו $\Cl$ סגור של קבוצה). עתה: 
+			\[ \bigcup_{j = 1}^{\infty} \tl Q_j = \bigcup_{j = 0}^{\infty}\Cl \cl{Q_{j + 1} \setminus \bigcup_{i = 0}^{j}Q_j} \supset \bigcup_{j = 0}^{\infty}\cl{Q_{j + 1} \setminus \bigcup_{i = 1}^{j}Q_j} = \bigcup_{j = 1}^{\infty}Q_j = A \overset{!}{\supset}\bigcup_{j = 1}^{\infty}\tl Q_{j} \]
+			כאשר ההכלה המסומנת ב־$!$ נכונה כי לכל $j$ מתקיים $\tl Q_j \subset Q_j \subset A$. נותר להראות שהפנים זר. אכן הוא זר שכן לכל $i \neq j$ בה''כ $i > j$ ואז: 
+			\[ \Int \cl{Q_{i}} \subset Q_i \setminus \underbrace{\bigcup_{p = 1}^{i - 1}Q_p}_{\supset Q_j} \subset Q_i \setminus Q_j \subset Q_i \setminus \Int Q_j \implies \Int Q_i \cap \Int Q_j = \vn \]
+			כנדרש. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	יהי $\ec \subset 2^{X}$ אוסף קבוצות, ותהי $A \in \sg(\ec)$. נוכיח שקיים אוסיף בן מנייה $\{E_j\}_{j = 1}^{\infty}$ כך ש־$A \in \sg\cl{\{E_j\}_{j = 1}^{\infty}}$. 
+	
+	\begin{proof}
+		נתבונן ב־\ס־אלגברה הבאה: 
+		\[ \Sg \cod \bigcup_{\mathclap{\{E_j\}_{j =1}^{\infty} \subset \sg(E)}} \sg(\{E_j\}_{j = 1}^{\infty}) \]
+		נוכיח ש־$\sg(\ec) \subset \Sg$, ואז נקבל ישירות את הדרוש. ברור ש־$\ec \subset \Sg$ שכן $e \in \ec$ מקיים $e \in \sg(E_1, E_2 \dots)$ בעבור $e = E_1 = E_2 = \cdots$. נותר להראות רק ש־$\Sg$ היא \ס־אלגברה ואז מהגדרה נדע את ההכלה (שכן $\sg(\ec)$ חיתוך ה־\ס־אלגבראות שמכילות את $\ec$). 
+		\begin{itemize}
+			\item סגירות לאיחוד בן־מנייה: אם $U_1, U_2 \dots \in \Sg$ כך ש־$U_1 \in \sg(\{E_i^{(1)}\}), \ U_2 \in \sg(\{E_i^{(2)}\})\dots$, אז $\bigcup_{i = 1}^{\infty}U_i \in \sg \cl{\bigcup_{n = 1}^{\infty}\{E_i^{(n)}\}}$ וזהו איחוד בן מנייה של קבוצות בנות מנייה ולכן בן מנייה (ותקין). 
+			\item משלים: אם $U \in \Sg$ אז $U \in \sg(\{E_i\})$ כלשהם, ואז גם $U^{c} \in \sg(\{E_i\})$ כי $\sg(\{E_i\})$ היא \ס־אלגברה. 
+			\item $\vn \in \Sg$ כי $\vn \in \sg(\vn)$. 
+		\end{itemize}
+		סה''כ $\sg(\ec) \subset \Sg$, כלומר כל $A \in \sg(\ec)$ ולכן קיימת $\{E_j\}_{j = 1}^{\infty}$ ברת־מנייה כך ש־$A \in \sg(\{E_j\})$ כנדרש. 
+	\end{proof}
+	\section{}
+	נוכיח ש־$\bc(\R^{d})$ נוצרת ע''י האוספים של קטעים סגורים ($\fc_1$), קטעים סגורים ($\fc_2$), קטעים סגורים רציונליים ($\fc_3$), וקרניים סגורות מכיוון אחד ($\fc_4$). 
+	
+	\begin{proof}
+%		נוכיח שהקבוצות מייצרות את אותה הטופולוגיה (כאשר $\fc_2, \fc_3, \fc_4$ ישמשו כבסיס לקבוצות הסגורות), ואז ברור שלקיחת ה־$G_\dg$, $F_\sg$ וקבוצות סגורות/פתוחות (ה־\ס־אלגברה של בורל) יראו אותו הדבר. משום 
+
+		$\fc_1$ מייצר את ה־\ס־אלגברה של בורל לפי הגדרה. 
+		\begin{enumerate}
+			\skipitems{1}
+			\item $\fc_3 \subset \fc_2$ והראנו באופן לא תלוי הוכחה בעבור $\fc_3$. 
+			\item נראה ש־$\fc_3$ מייצר את $\fc_1$ באמצעות פעולות של \ס־אלגברה (במקרה הזה, איחוד בן־מנייה). אכן, לכל $(a_i, b_i)_{i = 1}^{d}$ מתקיים ש־: 
+			\[ F \cod \prod_{i = 1}^{d} (a_i, b_i) = \bigcup_{n = 1}^{\infty}\underbrace{\prod_{i = 1}^{d}\csb{a_i - \frac{1}{n}, b_i - \frac{1}{n}}}_{\cod F_n} \]
+			נבחין ש־$F_{n} \supset F_{n + 1}$ קבוצות מקוננות שיורדות ל־$F$, ומשום ש־$\frac{1}{n} \to 0$ אז יש שוויון. 
+			\item נוכיח ש־$\fc_4$ מייצר את $\fc_2$, ש־$\fc_3$ מוכל בו שמייצר את $\fc_1$. אכן לכל $(a_i, b_i)_{i = 1}^{\infty}$ ו־$\fc_2 \ni F = \prod (a_i, b_i)$. ראשית נבחין ש־: 
+			\[ \prod_{i =1}^{d} (-\infty, b_i] \cap \prod_{i =1}^{d} [a_i, +\infty) = \prod_{i =1}^{d} \big((-\infty, b_i] \cap [a_i, +\infty)\big) = \prod_{i = 1}^{d}[a_i, b_i] \]
+			חיתוך סופי של קבוצה ב־$\fc_4$ עם קרן סגורה מהצד השני. רק נותר להראות שניתן ליצור את $[a_i, \infty)$ מתוך $\fc_4$. אכן: 
+			\[ [a_i, +\infty) = \bigcap_{i = 1}^{n}{\left[a_i - \frac{1}{n}, \ \infty\right)} = \bigcap_{i = 1}^{n}{\left(\infty, \ a_i + \frac{1}{n}\right]}^{c} \]
+			חיתוך בן־מנייה של קבוצות ב־$\fc_4$. 
+		\end{enumerate}
+	\end{proof}
+	
+	
+	\ndoc
+\end{document}

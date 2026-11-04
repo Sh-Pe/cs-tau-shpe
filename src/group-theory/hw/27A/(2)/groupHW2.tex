@@ -1,0 +1,92 @@
+\documentclass[]{../../../../../tex/classes/homework}
+\usepackage{../../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../../tex/packages/theoremsSupport}
+
+
+\newcommand\GL{\gGL}
+\author{שחר פרץ}
+\title{מבוא לתורת החבורות $\sim$ תרגיל בית 2}
+\begin{document}
+	\maketitle
+	
+	\section{}
+	יהי $\phi \co G \to H$ הומומורפיםז של חבורות. יהיו $H_0 \le H, G_0 \le G$ תתח''ים. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$\phi(G_0)$ ת''ח של $H$. \begin{proof}
+			\begin{itemize}
+				\item  יהיו $h_1, h_2 \in \phi(G_0)$. נוכיח $h_1\cdot h_2 \in \phi(G_0)$. קיימים $g_1, g_2 \in G$ כך ש־$\phi(g_1) = h_1 \land \phi(g_2) =h_2$ מהגדרת תמונה. מהיות $\phi$ הומומורפיזם:
+				\[ h_1 \cdot h_2 = \phi(g_1) \cdot \phi(g_2) = \phi(g_1 \cdot g_2) \in \phi(G_0) \]
+				שכן $G_0$ חבורה ולכן $g_1 \cdots g_2 \in G_0$ (סגירות לפעולה) וסיימנו. 
+				
+				\item יהי $h \in \phi(G_0)$. נוכיח $h\op \in \phi(G_0)$. קיים $g \in G_0$ כך ש־$\phi(g) =h$, וכן $g\op \in G_0$ כי $G_0$ תת''ח, דהיינו: 
+				\[ h\op = \phi(g)\op = \phi(g\op) \in \phi(G_0) \]
+				כנדרש. 
+				\item ברור ש־$e_H \in \phi(G_0)$ כי $\phi(e_G) = e_H$. 
+			\end{itemize}
+		\end{proof}
+		\item נראה ש־$\phi\op(H_0)$ ת''ח של $H$. \begin{proof}
+			\begin{itemize}
+				\item יהיו $g_1, g_2 \in \phi\op(H_0)$. אז $\phi(g_1), \phi(g_2) \in H_0$ מהגדרה. מסגירות $H_0$ גם $\phi(g_1) \cdot \phi(g_2) \in H_0$, ומהיות $\phi$ הומומורפיזם נקבל ש־$\phi(g_1 \cdot g_2) = \phi(g_1) \cdot \phi(g_2) \in H_0$. מהגדרה $g_1 \cdot g_2 \in H_0$ כנדרש. 
+				\item יהי $g \in \phi\op(H_0)$. אז $\phi(g) \in H_0$, ומסגירות $H_0$ ומהיות $\phi$ הומומורפיזם גם $\phi(h\op) = \phi(h)\op \in H_0$. נסכם ש־$h\op \in \phi\op(H_0)$ מהגדרה כנדרש. 
+				\item ברור ש־$e \in \phi\op(H)$ שכן $\phi(e_G) = e_H \in H_0$ כי $H_0$ ת''ח ולכן מכילה את איבר היחידה. 
+			\end{itemize}
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	תהי $G =\GL(n, \R)$ ו־$H = \{h \in G \mid \det h > 0\}$. 
+	\begin{enumerate}[(A)]
+		\item נוכיח ש־$H$ ת''ח של $G$. \begin{proof}
+			\begin{itemize}
+				\item לכל $h_1, h_2 \in H$ מתקיים ש־$\det(h_1\cdots h_2) = \det(h_1)\det(h_2) > 0$ כי $\det(h_1), \det(h_2) > 0$ ומכפלת חיוביים חיובית. לכן $h_1 \cdots h_2 \in H$ (השתמשנו כך גם בזה ש־$G$ חבורה) כנדרש. 
+				\item אם $h \in H$ אז ההעתקה ההופכית מקיימת: 
+				\[ \det(h\op) = \frac{1}{\underbrace{\det h}_{> 0}} > 0 \]
+				לכן $h\op \in H$ כנדרש. 
+				\item $\det(e) = \det(I) = 1 > 0$ כלומר $e \in H$. 
+			\end{itemize}
+		\end{proof}
+		\item נוכיח שלכל $g \in G$ עם $\det g > 0$ מתקיים $G/H = \{H, gH\}$. נסיק ש־$[G: H] = 2$. \begin{proof}
+			יהי $g \in G$ כך ש־$\det g < 0$. יהי $g' \in G$, ונוכיח ש־$g'H \in \{H, gH\}$. 
+			\begin{itemize}
+				\item אם $\det g' < 0$: נבחין שלכל $h \in H$, מתקיים: 
+				\[ gh = \underbrace{g' {g'}\op}_{e} g h = g' \overbrace{\overbrace{\cl{{g'}\op \cdot g}}^{\in H}h}^{\smash{\in H}} \in g'H \]
+				כאשר ${g'}\op g \in H$ מתקיים כי: 
+				\[ \det({g'}\op g) = \underbrace{\det({g'}\op)}_{<0} \underbrace{\det g}_{<0} > 0 \]
+				והשאר מתקיים מהיות $H$ חבורה. לכן $gH \subset g'H$. הוכחת ההכלה מהכיוון השני זהה. סה''כ הראנו ש־$g'H = gH \in \{H, gH\}$. 
+				\item אם $\det g'> 0$, נבחין ש־$g' \in H$, ולכן ${g'}\op \in H$. נסיק ש־$H \subset g'H \subset g'{g'}\op H = H$ כלומר $g'H = H \in \{H, gH\}$
+			\end{itemize}
+			סה''כ $G/H = \{H, gH\}$, ומהגדרה $[G : H] = 2$. 
+		\end{proof}
+	\end{enumerate}
+	
+	\section{}
+	נתבונן ב־$\Z$ ובתת־הקבוצה $S = \{a_1 \dots a_k\} \subset \Z$. נסמן $d = \gcd\{a_1 \dots a_k\}$. נוכיח ש־$\la S \ra = d\Z$ תוך שימוש בלמה של בזו. 
+	\begin{proof}
+		אין לי מושג איך הגדירו ת''ח ציקלית, אניח שהגדירו את $\la S \ra$ כתת־חבורה שנוצרת ע''י כל המילים של איברי $S$. נוכיח הכלה דו־כיוונית. 
+		\begin{itemize}
+			\item[$\subset$] אם $s \in \la S \ra$, קיימים $z_1 \dots z_k \in \N$ כך ש־$s = \sum z_i \cdot a_i$ (זוהי חבורת החיבור של החוג $\Z$). משום ש־$d$ מתחלק בכל אחד מגורמי המכפלה (כי הוא מתחלק ב־$a_i$ לכל $i$), המספר $z = \frac{s}{d}$ שלם. סה''כ $s = zd$ כאשר $g$ ה־$\gcd$ ו־$z \in \Z$ כלומר $s \in d\Z$ כנדרש. 
+			\item[$\supset$] אם $p \in d\Z$, אז קיים $z \in \Z$ כך ש־$p = dz$. נבחין שמהלמה של בזו קיימים $m_1 \dots m_k \in \Z$ כך ש־$d = \sum m_ia_i$. עתה: 
+			\[ p = dz = d\sum_{i = 1}^{k}m_i a_i = \sum_{i = 1}^{k}\underbrace{(d \cdot m_i)}_{z_i}a_i \]
+			סה''כ $p = \sum z_i \cdot a_i$ מילה הנוצרת מאיברי $S$, כלומר $p \in \la S \ra$ כנדרש. 
+		\end{itemize}
+	\end{proof}
+	
+	\section{}
+	נוכיח שהחבורה החיבורית $\Q$ אינה נוצרת סופית. 
+	\begin{proof}
+		אם בשלילה $\Q$ נוצרת סופית ע''י איזשהם $\{q_1 \dots q_n\} \in \Q$, אז כל איבר ב־$\Q$ ניתן לייצוג כמילה מאיברי $q_1 \dots q_n$. קיימים ויחידים $p_1 \dots p_n \in \Z r_1 \dots r_n \in \N$ כך ש־$q_i = \frac{p_i}{r_i}$ ו־$\gcd(r_i, p_i) =1$. נתבונן במספר הרציונלי $q = \frac{1}{1 + \prod r_i}$. נבחין שהמונה בו לא מתחלק ב־$\la r_1 \dots r_n\ra$ ולכן הוא לא יכול להיות מבוטא כמילה של $q_i$־ים. סה''כ סתירה. 
+	\end{proof}
+	
+	\section{}
+	תהא $G$ חבורה ו־$H$ תת־חבורה מאינדקס סופי. נניח ש־$H$ נוצרת סופית. נוכי חש־$G$ נוצרת סופית. 
+	
+	\begin{proof}
+		נסמן את הקוסטים של $H$ ב־$g_1H, g_2H \dots g_nH$ (יש מספר סופי של כאלו כי $H$ מאינדקס סופי). אז ידוע $G = \biguplus_{i =1}^{n} g_iH$. נסמן את היוצרים של $H$ ב־$p_1 \dots p_m$. נטען ש־$p_1 \dots p_m, g_1 \dots g_n$ היוצרים של $G$: יהי $g \in G$, אז קיים $i \in [n]$ כך ש־$g_i h = g$ עבור $h \in H$ כלשהו, ו־$H$ נוצרת סופית ע''י $p_1 \dots p_m$ כלומר קיימים $z_1 \dots z_n \in \N$ כך ש־$p_1^{z_1} \cdots p_n^{z_n} = h$. סה''כ: 
+		\[ g = g_i h = g_i^{1} \cdot p_1^{z_1} \cdots p_n^{z_n} \]
+		מילה הנוצרת מאיברי $p_1 \dots p_m, g_1 \dots g_m$ כנדרש. 
+	\end{proof}
+	
+	
+	\ndoc
+\end{document}
