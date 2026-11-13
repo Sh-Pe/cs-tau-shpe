@@ -1,0 +1,109 @@
+\documentclass[]{../../../../tex/classes/homework}
+\usepackage{../../../../tex/packages/hebrewSupport}
+\usepackage{../../../../tex/packages/mathShortcuts}
+\usepackage{../../../../tex/packages/theoremsSupport}
+
+
+\author{שחר פרץ}
+\title{פונקציות ממשיות $\sim$ \textit{תרגיל בית 3}}
+\begin{document}
+	\maketitle
+	\section{}
+	תהיינה $A, B \subset \R^{n}$ מדידות. נוכיח ש־: 
+	\[ m(A \cup B) + m(A \cap B) = m(A) + m(B) \]
+	\begin{proof}
+		משום ש־$B, A \setminus B$ ו־$A, B \setminus A$ זרות, אז: 
+		\[ \begin{cases}
+			m(B \setminus A) + m(A) = m(A \cup (B \setminus A)) = m(A \cup B) & \quad(1) \\ 
+			m(A \setminus B) + m(B) = m(B \cup (A \setminus B)) = m(A \cup B) & \quad(2)
+		\end{cases} \]
+		נבחין ש־$B \setminus A$ ו־$A \setminus B$ קבוצות זרות גם כן, שאיחודן הוא $A \trio B$. לכן לאחר חיבור המשוואות נקבל: 
+		\[ (1) + (2) \implies m(A \trio B) + m(A) + m(B) = 2m(A \cup B)\quad\quad (*) \]
+		לבסוף, $A \trio B$ ו־$A \cap B$ זרות ואיחודן $A \cup B$, אז: 
+		\[ m(A \trio B) + m(A \cap B) = m((A \trio B) \cup (A \cap B)) = m(A \cup B) \quad\quad (**) \]
+		דהיינו: 
+		\begin{align*}
+			&&(*)-(**) \\
+			\implies &&m(A \trio B) + m(A) + m(B) - \cl{m(A \trio B) + m(A \cap B)} &= 2m(A \cup B) - m(A \cup B) \\
+			\iff && m(A) +m(B) - m(A \cap B) &=m(A \cup B)
+		\end{align*}
+		נעביר אגפים ונקבל את הנדרש. 
+	\end{proof}
+	
+	\section{}
+	נוכיח ש־$A \subset \R^{d}$ מדידה אמ''מ קיימות $G$ ו־$F$ כך ש־$G$ היא $G_\dg$ ו־$F$ היא $F_\dg$, ו־$F \subset A \subset G$ וכן $m(G \setminus F) = 0$. 
+	\begin{proof}
+		ניעזר בתנאי המדידות של לבג. 
+		\begin{itemize}
+			\item מכיוון אחד, אם $A$ מדידה, אז לכל $n \in \N$ מתנאי המדידות של לבג קיימות $G_n, F_n$ כך ש־$m(G \setminus F) = \frac{1}{n}$, $F_n$ סגורה, $G_n$ פתוחה, ו־$F_n \subset A \subset G_n$. לכן גם $F \cod \bigcup_{n \in \N}F_n \subset A \subset \bigcap_{n \in \N} G_n \doc G$, וכן $G$ היא $G_\dg$ ו־$F$ היא $F_\dg$ מהגדרה. יתרה מכך: 
+			\[ m(G \setminus F) \le m(G_n \setminus F_n) \le \frac{1}{n} \toinf 0 \]
+			ולכן $m(G \setminus F) = 0$, שכן $G \subset G_n$ ו־$F_n \subset F$ לכל $n \in \N$. 
+			\item מהכיוון השני, נניח שקיימות $F, G$ המדוברות. נוכיח שמתקיים התנאי בקריטריון לבג למדידות. יהי $\eg > 0$. משום ש־$G = \bigcap G_n$ ובה''כ $G_n \supset G_{n + 1}$ (אחרת נוכל להגדיר $\tl G_{n + 1} = G_n \cap G_{n + 1}, \tl F_{n + 1} = F_n \cup F_{n + 1}$) כלשהן, נוכל למצוא $n$ גדול דיה כך ש־$m(G \setminus G_n) < \frac{\eg}{2}$ (נוכיח זאת בסוף) ובאופן דומה גם $m(F \setminus F_m) \le \frac{\eg}{2}$ עבור $m$ כלשהו, ואז, בגלל ש־$F \subset F_m \subset F_{\max\{n, m\}} , \ G_{\max\{n, m\}} \subset G_n \subset G$: 
+			\[ \eg \ge m(G \setminus F) + \frac{\eg}{2} \cdot 2 \ge  m(G_n \setminus F_m) \ge m(G_{\max\{n, m\}} \setminus F_{\max\{n, m\}}) \]
+			כנדרש. 
+			
+			עתה נותר להוכיח שאכן קיימים $n, m$ שמקיימים את מה שדרשנו מהם. נוכיח בעבור $F_m$ וקיום $m$ בעבור $G_n$ נגרר מדה־מורגן. בגלל ש־$F_n \subset F_{n + 1}$ ו־$F = \bigcup F_n$, נגדיר $\tl F_{n + 1} = F_{n + 1} \setminus F_n$ ועדיין איחודן לא ישתנה, ונקבל מ־\ס־אדטיביות המידה: 
+			\[ m(F) = m\cl{\biguplus_{n = 1}^{\infty} \tl F_n} = \sum_{n = 1}^{\infty}m(\tl F_n) \]
+			לכן לכל $\eg$ קיים $N$ כך שהזנב $\sof{\sum_{n = 1}^{N}m(\tl F_n) - m(F)} < \eg$, ואף נבחין ש־$m(F_N) = \sum_{n = 1}^{N}m(\tl F_n)$ כלומר $\sof{m(F_N) - m(F)} < \eg$ כדרוש. בעבור ה־$G_n$־ים קיים כזה מדה־מורגן. 
+		\end{itemize}
+	\end{proof}
+	
+	
+	\section{}
+	תהי $E \subset \R$ מדידה לבג עם $m(E) > 0$. נוכיח כי לכל $\ag \in (0,1)$ קיים $I$ פתוח וחסום כך ש־$m(E \cap I) > \ag m(I)$. 
+	
+	\begin{proof}
+		אם $E$ מדידה במובן הרחב (כלומר $m(E) = \infty$), אז עבור $I = (0, 1)$ סיימנו. 
+%		אחרת $E$ חסומה ומקריטריון לבג קיים $F \subset E \subset G$ כך ש־$m(G \setminus F) < \eg$ כלומר $m(G \setminus E) < \eg$ ולכן $\sof{m(E) - m(G)} < \eg$, וכן $m(E) \le m(G)$. 
+	אחרת היא חסומה ונוכל להצטמצם למרחב מידה סופי כלשהו. ואז קיימת $F$ שהיא $F_\dg$ כך ש־$m(E) = m(F)$ ו־$F \subset E$. נבחין שב־$\R$ (ה־CII) כל קבוצה סגורה ניתנת לביטוי ע''י איחוד של קטעים סגורים. לכן גם $F = \bigcup_{k = 1}^{\infty} \tl I_k$ קטעים סגורים. נגדיר $I_k = \Int I_k$, שהם קטעים פתוחים שנבדלים מ־$I_k$ בשתי נקודות (ולכן $m(\tl I_k) = m(I_k)$). לכן גם $\tl F = \bigcup_{k = 1}^{\infty}I_k$ מקיים $m(\tl F) = m(F)$ (נבדלים בקבוצה בת־מנייה ולכן זניחה) וכן $E \subset F$ וגם $E \cup B \subset \tl F$ כאשר $B$ זניחה. 
+		
+		אם בשלילה הטענה לא נכונה, אז קיים $\ag$ כך שלכל קטע פתוח $I_k$ מתקיים $m(E \cap I_k) \le \ag m(I_k)$. סה''כ מ־\ס־אדטיביות סופית: 
+		\[ m(F) = m\!\cl{\bigcup_{k =1}^{\infty} E \cap I_k} = \sum_{i = 1}^{\infty}m(E \cap I_k) \le \sum_{n = 1}^{\infty}\ag m(I_k^{c}) = \ag m\!\cl{\bigcup_{k = 1}^{\infty}I_k^{c}} = \ag m(G^{c}) \]
+		כלומר $\ag = 1$ או ש־$0 < m(E) = m(G^{c}) = 0$ וזו סתירה. 
+	\end{proof}
+	
+	\section{}
+	תהי $E \subset \R$ מדידה לבג עם $m(E) > 0$. נוכיח ש־$E - E$ מכילה קטע פתוח סביב אפס. 
+%	\begin{proof}
+%		
+%	\end{proof}
+
+	אין לי מושג איך לפתור את זה. את כל שאר השאלות פתרתי. 
+	
+	\section{}
+	תהי $E \subset \R^{d}$ מדידה לבג ויהי $0 < t < m(E)$. נוכיח שקיימת תת־קבוצה חסומה ומדידה $A \subset E$ כך ש־$m(A) = t$. 
+	\begin{proof}
+		מסעיף (2) ישנה $F_\sg$ נסמנה $F$ כך ש־$F \subset E$ וכן $m(E) = m(F)$. ראשית נוכיח את הטענה בעבור $F$. נסמן $F = \bigcup U_i$ כאשר $U_i$ קטעים פתוחים (שכן כל קטע פתוח הוא איחוד בן מנייה של קטעים פתוחים), ובה''כ זרים (שכן אחרת נוכל לקחת $U_i = \Int(U_i \setminus U_{i + 1})$ ועדיין יתקיים שהאיחוד מאותה המידה כמו $E$). כלמה, נוכיח את הטענה בעבור $U_i$ קטע פתוח. נבחין שאם $0 < t < m(U_i)$, ו־$U_i = (a, b)$, אז $(a, a + t) \subset (a, b)$ מקיים את הנדרש. נסמן קטע זה ב־$U_i^{t}$. עתה נפנה להוכיח בעבור $F$. משום ש־$0 < t < m(F)$ אז בהכרח הטור $m(F) = \sum_{n = 1}^{\infty}m(U_i)$ נבחר $N$ כך שהזנב מקיים $P \cod \sum_{i = 1}^{N}m(U_i) < \sum_{i = 1}^{N + 1} m(U_i)$ (כי הטור מתכנס ולכן עוקף את $t$ המ''מ, ואז רק נצטרך לבחור את ה־$N$ המינימלי). נסמן $t' = m(P)$, ואז נבחין ש־$t - t' \in (0, m(U_{N + 1}))$ ולכן $P + m(U_{N + 1}^{t - t'}) = m(t)$, ומאדטיביות $U_t \cod U_{N + 1}^{t - t'} \cup \bigcup_{n = 1}^{N}U_n$ מקיימת את הנדרש. 
+		
+		נחזור ל־$E$. ידוע $m(E) = m(F)$ כלומר קיימת $e_1, e_2$ זניחות כך ש־$e_1 \cup E = e_2 \cup F$. לכל $t \in (0, m(E))$ קיימת $U_t \subset F$ פתוחה כך ש־$m(U_t) = t$ (הראנו זאת הרגע), ועכשיו נבחין ש־$m(U_t) = m(U_t \cap E)$ שכן $e_1 \cup U_t = e_2 \cup U_t \cap E$ נבדלות ע''י קבוצה זניחה. משום ש־$U_t \cap E \subset E$, אז סיימנו. 
+	\end{proof}
+	
+	\section{}
+	תהי $f \co [0, 1] \to \R$ גזירה. נוכיח כי קבוצת הנקודות הסטציונריות (נסמנה $P$) היא $G_\dg$. 
+	\begin{proof}
+		נוכיח שהמשלים הוא קבוצת $F_\dg$. נבחין ש־$f'(x) \neq 0$ אמ''מ $\lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \neq 0$ אמ''מ קיים $n \in \N$ ולכל $h$ מתקיים $\sof{\frac{f(x + h) - f(x)}{h}} > \frac{1}{n}$. נגדיר: 
+		\[ F_n = \ccb{x \ \co \ \forall h\in \R \co \sof{\frac{f(x + h) - f(x)}{h}} \ge \frac{1}{n}} \]
+		ומהטיעונים לעיל $P^{c} = \bigcup_{n = 1}^{\infty}F_n$. נבחין ש־$F_n$ סגורה, שכן היא חיתוך הסגורות: 
+		\[ F_n = \bigcap_{m = 1}^{\infty}\ccb{x \ \co \ \sof{\frac{f(x + \frac{1}{m}) - f(x)}{1/m}} \ge \frac{1}{n}} \]
+		וסה''כ $P^{c}$ היא $F_\sigma$ כלומר $P$ היא $G_\delta$. 
+	\end{proof}
+	
+	\section{}
+	נוכיח שאיחוד של קטעים לא מנוונים הוא קבוצה מדידה לבג ב־$\R$. 
+	\begin{proof}
+		נניח $U_\ag$ אוסף הקטעים שלנו (נניח $\sof{U_\ag} > \az$ לא מנוונים) ונוכיח ש־$U = \bigcup_{\ag \in I} U_\ag$ איחודם הוא מדיד לבג. משום ש־$U_\ag$ כולם קבוצות פתוחות (ובפרט קטעים פתוחים), אז $U$ פתוחה, שכן כל $x \in U$ היא גם $x \in U_\ag$ כלשהי, ואז קיים $r > 0$ כך ש־$B(x, r) \subset U_\ag \subset U$. לכן $U$ מדידה כנדרש. 
+	\end{proof}
+	
+%	\textit{הערה: }לא ברור אם רציתם שנתייחס גם לקטעים סגורים. זה נשמע לא נכון במקרה כזה. 
+	
+	\section{}
+	נוכיח שאם $E \subset \R^{d}$ מדידה ומרצפת, אז $m(E) = 1$. \begin{proof}
+%		משום ש־$\Z^{d}$ בת־מנייה, נוכל למספר אותה $z_1, z_2 \dots$. נסמן $\zc_n = \{z_1, z_2 \dots z_n\}$. נסמן $U(\zc_n) = \biguplus_{z \in \zc_n}m(E + z)$. נבחין ש־$m(U\cl{\zc_n}) = n \cdot m(E)$, שכן $m(E + z) = m(E)$ לכל $z \in \Z^{d}$. 
+
+		ניקח קבוצה מרצפת כלשהי $P$. נבחין ש־: 
+		\[ \R^{d} = \biguplus_{\ml \in \Z^{d}}(E + \ml) \implies m(P) = \biguplus_{\ml \in \Z^{d}}{\cl{(E + \ml) \cap P}} = \biguplus_{\ml \in \Z^{d}}{((P - \ml) \cap A)} = \biguplus_{\ml \in \Z^{d}}{((P + \ml) \cap A)} = m(A) \impliedby \!\biguplus_{\ml \in \Z^{d}}(P + \ml) = \R^{d} \]
+		כלומר $m(A) = m(P)$ לכל $A, P$ מרצפות. עתה נותר לבחור $P$ מרצפת כלשהי ולהוכיח שהיא ממידה $1$. אכן, המרצפת $P = [0, 1)^{d}$ שהיותה מרצפת הוכח בהרצאה כאשר הרחבנו את מידת לבג ל־$\R^{d}$ היא ממידת לבג $m(P) = \prod (1 - 0) = 1$ ולכן $m(A) = m(P) = 1$ כנדרש. 
+	\end{proof}
+	
+	\ndoc
+\end{document}
