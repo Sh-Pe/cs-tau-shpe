@@ -4,7 +4,7 @@
 \PassOptionsToClass{a4paper}{article}
 
 % Math packages
-	\RequirePackage[usenames, table]{color}
+	\RequirePackage[usenames]{color}
 	\RequirePackage[table]{xcolor}
 	\RequirePackage{forest}
 	\RequirePackage{ifxetex,ifluatex,amssymb,amsmath,mathrsfs,amsthm,witharrows,mathtools,mathdots,centernot}
