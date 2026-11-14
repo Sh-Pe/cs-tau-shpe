@@ -17,6 +17,8 @@
 \newcommand\dmu {\,\dd\mu}
 \newcommand\q   {1}
 \DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\supp}{supp}
+
 
 \author{שחר פרץ}
 \title{\name}
@@ -809,14 +811,14 @@
 	שימו לב שטרם השתמשנו ברציפות משמאל. 
 	\clm{\label{clm:prefunctionmeasure}אם $f$ לא יורדת ורציפה משמאל, אז $\mu_f$ על הקבוצה האלמנטריות היא תת־\ס־אדטיבית. }
 	\lem{יהי $[a, b) \subset I$. אזי לכל $\eg > 0$ קיימת $\dg > 0$ כך ש־: 
-	\[ \mu_f\cl{[a, b - \dg)} \ge \mu([a, b]) - \eg \quad\land\quad \mu_f([a - \dg, b)) \le \mu_f([a, b)) + \eg \]\ }\begin{proof}
+	\[ \mu_f\cl{[a, b - \dg)} \ge \mu([a, b]) - \eg \quad\land\quad \mu_f([a - \dg, b)) \le \mu_f([a, b)) + \eg \]\eqs}\begin{proof}
 		מרציפות משמאל:
 		\[ \lim_{\dg \to 0^{+}}\mu_f([a, b - \dg)) = \lim_{\dg \to 0^{+}}f(b - d) - f(a) = f(b) - f(a) = \mu_f([a, b)) \]
 		מהגדרת הגבול, קיימת $\dg$ כנדרש. ובאופן דומה מהצד השני $\lim_{\dg \to 0^+} \mu_f([a - \dg, b)) = \mu([a, b))$, נבחר את המינימום. 
 	\end{proof}
-	\lem{לכל אלמנטריות $A \subset [0, 1)$, ולכל $\eg > 0$, קיימות $A', \tl A \subset [0, 1)$ כך ש־: 
-	\[ \Cl A' \subset A \subset \Int  \tl A \quad \land \quad \mu_f(A' \setminus \tl A) < \eg \]\ }\begin{proof}
-		ישירות מהלמה הקודמת: ''קצת מקטינים מימיןאת הקטעים ליצירת $A'$, וקצת מגדילים משמאל ליצירת $\tl A$``. 
+	\lem{לכל אלמנטרית $A \subset [0, 1)$, ולכל $\eg > 0$, קיימות $A', \tl A \subset [0, 1)$ כך ש־: 
+	\[ \Cl A' \subset A \subset \Int  \tl A \quad \land \quad \mu_f(A' \setminus \tl A) < \eg \]\eqs }\begin{proof}
+		ישירות מהלמה הקודמת: ''קצת מקטינים מימין את הקטעים ליצירת $A'$, וקצת מגדילים משמאל ליצירת $\tl A$``. 
 	\end{proof}
 	\begin{proof}[הוכחת \ref{clm:prefunctionmeasure}]
 		נתון $A \subset \bigcup_{n = 1}^{\infty}A_n$. יהי $\eg > 0$. מספיק להראות ש־$\mu_f(A) \le \sum_{n = 1}^{\infty} \mu_f(A) + \eg$. 
@@ -862,7 +864,7 @@
 		\item \ \!\! [הרחבה בתרגול] 
 		\defi{\textit{פונקציית קנטור} היא הפונקציה הבאה: 
 		\[ f\cl{\sum \frac{a_i}{3_i}} = \sum \frac{a_i}{2_i} \]\eqsw}
-		$f$ היא רציפה, $\mu_f(\cc) = 1 \land \mu_f(\R \setminus \cc) = 0$, ול־$f$ אין שום אטום ,כלומר $\mu_f\cl{\{a\}} = 0$. כלומר זוהי קבוצה שנתמכת על קנטור בלי אטומים. 
+		$f$ היא רציפה, $\mu_f(\cc) = 1 \land \mu_f(\R \setminus \cc) = 0$, ול־$f$ אין שום אטום, כלומר $\mu_f\cl{\{a\}} = 0$. כלומר זוהי קבוצה שנתמכת על קנטור בלי אטומים. 
 		
 		זו מידה סינגולרית למידת לבג, כלומר היא נתמכת על קבוצה שביחס ללבג היא ממידה אפס. 
 	\end{enumerate}
@@ -906,7 +908,7 @@
 		יודעים ש־$\{f < t\}$ מדידה לכל $t$, וש־$\fc$ \ס־אלגברה. רק נותר להציג את הקבוצות לעיל כאיחודים (לכל היותר בני מנייה) ומשלימים של קבוצות מהצורה $\{f < t\}$. 
 		\begin{gather*}
 			\{f \ge t\} = \Og \setminus \{f < t\} \\
-			\{f \le t\} = \bigcap_{n = 1}^{\infty}\{f < t + \frac{1}{n}\} \\
+			\{f \le t\} = \bigcap_{n = 1}^{\infty}\ccb{f < t + \frac{1}{n}} \\
 			\{f = t\} = \{f \le t\} \cap \{f \ge t\} \\
 			\{\sof f \le t\} = \{f \le t\} \cap \{f \ge -t\}
 		\end{gather*}
@@ -1178,7 +1180,7 @@
 	\textbf{דוגמאות. }
 	\begin{itemize}
 		\item פונקציית דיריכלה $D(x) = \q_\Q$ אינטגרבילית, שכן: 
-		\[ \int_{[0, 1]} D\, \dd m = 1 \cdot \underbrace{m(\Q\cap [0, 1])}_{0} + 0 \cdot m([0, 1] \setminus \Q) = 0 \]
+		\[ \int_{[0, 1]}\dequad D\, \dd m = 1 \cdot \underbrace{m(\Q\cap [0, 1])}_{0} + 0 \cdot m([0, 1] \setminus \Q) = 0 \]
 		\item עבור הפונקציה $f = \frac{1}{2^{\floor{n}}}$, נקבל שהאינטגרל הוא פשוט הסכום $\int_{[0, \infty)}f = \sum_{n = 0}^{\infty}\frac{1}{2^{n}} = 1$. 
 		\item פונקציה $f \co \R^{2} \to \R$ המוגדרת ע''י $f = \sum_{n, m = 0}^{\infty} = \frac{1}{2^{n + m}} \cdot \q_{[n, n + 1) \times [m, m +1)}$. הפונקציה הזו אינטגרבילית כי הסכום מתכנס ל־$4$, ואינטגרלה על כל $\R^{2}$ $\int_{\R^{2}}f = \int_{\R^{2}}d\,\dd m = 4$ (באינטגרציה במובן חדו''א 2 זה אינטגרל לא אמיתי). 
 		\item בעבור הפונקציה $f(x) = \sum_{n = 1}^{\infty}\frac{(-1)^{n}}{n}\q_{[n, n + 1)}$. זו פונקציה מדידה אך היא לא אינטגרבילית (כי הטור $\sum \sof{\frac{(-1)^{n}}{n}} \cdot m([n, n + 1)) = \sum \frac{1}{n}$ לא מתכנס בהחלט). דווקא כאן אינטגרל רימן לא אמיתי כן מוגדר ושווה ל־$\ln(2)$. 
@@ -1264,13 +1266,13 @@
 	\end{enumerate}}
 	\begin{proof}[הוכחת \ref{label:1}]
 		למה הגבול קיים? נראה ש־$n \to \int_\Og f_n \dmu$ קושי. אכן: 
-		\[ \sof{\int_\Og f_n \dmu - \int_\Og f_m \dmu} \le \sof{\int_\Og \cl{f_n - f_m}\dmu} \le \mu(\Og) \cdot \sup_\Og \underbrace{\sof{f_n - f_m}}_{\le \sof{f_n - f} + \sof{f_m - f}} \rrr{n, m \to \infty} 0 \]
+		\[ \sof{\int_\Og f_n \dmu - \int_\Og f_m \dmu} \le \sof{\int_\Og \cl{f_n - f_m}\dmu} \le \mu(\Og) \cdot \sup_\Og \underbrace{\sof{f_n - f_m}}_{\mathclap{\le \sof{f_n - f} + \sof{f_m - f}}} \rrr{n, m \to \infty} 0 \]
 		כנדרש. נותר להראות שהגבול לא תלוי בבחירת הסדרה. נניח ש־$f_n \tou f, f_n' \tou f$ במ''ש סדרות פונקציות פשוטות ואינטגרביליות. אזי $\sup \sof{f_n - f_n'} \le \sup\sof{f_n - f} + \sup \sof{f - f_m} \toinf 0$, ומהתרגיל: 
 		\[ \sof{\int_\Og f_n\dmu - \int_\Og f_n' \dmu} \le \mu(\Og) \sup_\Og \sof{f_n - f_n'} \toinf 0 \]
 		כנדרש. 
 	\end{proof}
 	סה''כ נסיק מ־\ref{label:1} שמושג האינטגרל שהגדרנו מוגדר היטב. 
-	\clm{במרחב מידה סופי, כל פונקציה מדידה וחסומה אינטגרבילית. }\begin{proof}
+	\clm{במרחב מידה סופי, כל פונקציה מדידה וחסומה היא אינטגרבילית. }\begin{proof}
 		ממדידות $f$, קיימת סדרת פונקציות פשוטות $f_n \tou f$ במ''ש (מ־\ref{cola:equiinter}). נותר להראות ש־$f_n$ אינטגרביליות (המ''מ). יודעים שהחל ממקום מסוים $\sup\sof{f_n - f} < 1$, ולכן גם $f_n$ חסומה (ופשוטה), ולכן אינטגרבילית (כי אנו במרחב מידה סופי).  
 	\end{proof}
 	\textbf{דוגמה. }הפונקציה $f = \sum_{n = 1}^{\infty}\sqrt n \cdot \q_{\left[\frac{1}{n + 1}, \frac{1}{n}\right)}$ נבדלת בפונקציה חסומה $g(x) = \frac{1}{\sqrt x}$ ב־$[0, 1]$, מתקיים ש־: 
@@ -1307,7 +1309,7 @@
 		\end{enumerate}\envendproof
 	\end{proof}
 	
-	\subsection{קצת על צפיפות}\ 
+	\subsection{\label{ss:dense}קצת על צפיפות}\ 
 	\rmark{נניח שיש $f \co \Og \to \R$ מדידה וחיובית. אפשר להגדיר מידה חדשה על $\Og$ עם אותן  קבוצות מדידות, באופן הבא: 
 	\[ \mu_f(A) = \begin{cases}
 		\int_A f & f \in L^{1}(A) \\
@@ -1319,7 +1321,7 @@
 	למה $f$ אי־שלילית? כי אין לנו מידות מכוונות עדיין. 
 	
 	תכונה חשובה היא ש־$\mu_f$ \textit{רציפה בהחלט ביחס ל־$\mu$}, כלומר: 
-	\defi{$\nu \ll \mu$ \textit{רציפה בהחלט ביחס ל־$\mu$} אם $\mu(A) = 0 \implies \nu(A) = 0$. }
+	\defi{\label{def:continues}$\nu \ll \mu$ \textit{רציפה בהחלט ביחס ל־$\mu$} אם $\mu(A) = 0 \implies \nu(A) = 0$. }
 	לדוגמה, מידת $\dg$ אינה רציפה בהחלט ביחס למידת לבג. 
 	
 	\begin{Theorem}[רדון־ניקודים]
@@ -1349,7 +1351,7 @@
 		
 	\defi{נגדיר את ה־$\esssup$ להיות: 
 	\[ \esssup_{\Og}f \cod \inf\{a \in \R \mid \mu_\Og(f|_\Og\op((a, \infty))) = 0\} \]}
-	או במילים אחרות: הסופרמום 
+	או במילים אחרות: הסופרמום עד כדי קבוצה זניחה. 
 	\begin{proof}
 		נוכיח את זה להתכנסות במידה (שנגררת מהתכנסות כב''מ). נתון לנו ש־$f_n \rrr{\mu} f$, כלומר, לכל $\eg > 0$, מתקיים: 
 		\[ \mu(\underbrace{\ccb{\sof{f_n - f} > \eg}}_{E_{n, \eg}}) \toinf 0 \]
@@ -1414,7 +1416,7 @@
 	\subsection{אינטגרלי לבג במרחב מידה לא־סופי}
 	נרצה להרחיב את מושג אינטגרל הלבג. 
 	\defi{בהינתן מרחב מידה כללי $(\Og, \fc, \mu)$, ו־$f \ge 0$ מדידה, נגדיר: 
-	\[ \int_\Og d \dmu = \sup\ccb{\int_\Og \psi \dmu \ \middle\vert \ 0 \le \psi \le f, \ \text{$\psi$ פשוטה}} \]\eqs}
+	\[ \int_\Og d \dmu = \sup\ccb{\int_\Og \psi \dmu \ \middle\vert \ 0 \le \psi \le f, \ \text{$\psi$ פשוטה}} \]\eqsw}
 	כאשר האינטגרל של פשוטה מוגדר באופן ברור. אינטגרל של פונקציה שאיננה חיובית נוכל להגדיר להיות $\int f^{+} - \int f^{-}$ כאשר $f^{+}$ הצמצום של $f$ על תחום החיוביות שלה, ו־$f^{- }$ הצמצום על תחום השליליות. הגדרה זו יוצרת כל מיני בעיות. ולכן אנחנו נעסוק רק במרחב מידה \ס־סופי. 
 	
 	\defi{יהי $(\Og, \fc, \mu)$ מרחב מידה \ס־סופי עם פירוק למרחבים $\Og = \biguplus _{n = 1}^{\infty}\Og_n$ כאשר $\mu|_{\Og_n}$ סופית. נניח ש־$f \co \Og \to \R$ מדידה. נאמר ש־$f$ אינטגרבילית ב־$\Og$ אמ''מ היא אינטגרבילית על כל $\Og_n$, עם: 
@@ -1446,8 +1448,42 @@
 	\rmark{לעיתים נאפשר לפונקציה אי־שלילית לקבל את הערך $+\infty$. אם היא תקבל את הערך הזה על קבוצה זניחה זה לא ישנה, אחרת אם היא מדידה נסמן ש־$\int_\Og f = +\infty$ (זו ההגדרה האפשרית היחידה, אחרת נשבור מונוטוניות). }
 	\textbf{דוגמה. }הפונקציה $f(x) = \frac{1}{x}$ על $1, \infty$ לא אינטגרבילית, שכן: 
 	\[ \int_{[1, \infty)}\dequadd \ f = \sum_{n = 1}^{\infty}\frac{\dx}{x} \le \sum_{n = 1}^{\inft}\frac{1}{n + 1} = \infty \]
-	באופן כללי $\int \frac{\dx}{x^{\ag}}$ אמ''מ $\ag > 1$. 
+	באופן כללי $\int \frac{\dx}{x^{\ag}}$ מתכנס אמ''מ $\ag > 1$. 
 	
+	כזכור, (במרחב מידה \ס־סופי) כל פונקציה מדידה ואי־שלילית $f \co \Og \to \R \cup \{+\infty\}$ מגדירה מידה $\mu_f$ על $\Og$ באמצעות הצפיפות (ראה \ref{ss:dense}). שימו לב שלא מדובר על לבג־סטילטייס. ה־\ס־אדטיביות של האינטגרל מבטיחה ש־$\mu_f(A) = \int_A f\dmu$ היא מידה. 
+	
+	ראינו ש־$\mu_f$ רציפה בהחלט ביחס ל־$\mu$ (ראה \ref{def:continues}) (כי ברור שאם $\mu(A) = 0$ אז $\mu_A f\dmu = 0$). 
+	
+	\begin{Theorem}[רציפות בהחלט של האינטגרל]\label{theo:continuity}
+		יהי $(\Og, \fc, \mu)$ מרחב מידה \ס־סופי. תהי $f \co \Og \to \R \cup\{\pm\infty\}$ אינטגרבילית (בפרט את הערכים $\pm\infty$ כמעט ולא מקבלים). אזי לכל $\eg > 0$ ישנה $\dg > 0$ כך ש־: 
+		\[ \forall A \in \fc \co \mu(A)  < \dg \implies \sof{\int_A\!f} < \eg \]\eqsw
+	\end{Theorem}
+	למעשה, המשפט הזה הוא תוצאה ישירה של טענה חזקה יותר: 
+	\clm{\label{clm:pre-con}יהי $(\Og, \fc, \mu)$ מרחב מידה \ס־סופי. נניח ש־$\nu$ מידה \textbf{סופית} רציפה בהחלט ביחס ל־$\mu$, אזי: 
+	\[ \forall \eg > 0 .\, \exists \dg > 0 \co \mu(A) < \dg \implies \nu(A) < \eg \]\eqs}
+	למה המשפט \ref{theo:continuity} נובע מהטענה? כי בעבור $\nu = \mu_{\sof f}$ מתקיים $\nu \ll \mu$ ולכן מהטענה לכל $\eg > 0$ קיימת $\dg > 0$ כך ש־: 
+	\[ \forall A \in \fc \co \mu(A) < \dg \implies \eg > \nu(A) = \int_A \! \sof f \dmu \ge \sof{\int_A \! f} \]
+	
+	\begin{proof}[הוכחת \ref{clm:pre-con}]
+		נרצה לתרגם את הפסוק הלוגי לחיתוך של איחודים או איחוד של חיתוכים (בן מנייה), כדי שנוכל לעבוד עם הגדרת המידה. נניח בשלילה שהמשפט שגוי, כלומר קיים $\eg_0 > 0$ כך שאין שום $\dg > 0$ מתאימה, כלומר לכל $n$ קיימת $A_n \in \fc$ כך ש־$\mu(A_n)  < \frac{1}{2^{n}}$ אך $\nu(A) \ge \eg_0$. נסמן ב־$E_N \cod \bigcup_{n = N}^{\infty}A_n$. אז: 
+		\begin{align*}
+			\mu(E_N) \le \sum_{n = 1}^{\infty}\mu(A_n) \le \frac{1}{2^{N - 1}} && \nu(E_N) \ge \nu(A_1) \ge \eg_0
+		\end{align*}
+		מה הרווחנו? $E_N \sea E$ יורדות לאיזושהי $E$ (שהיא $E = \bigcap_{N = 1}^{\infty}E_N$). מה יודעים על $E$? 
+		\[ \mu(E) \le \mu(E_N) \rrr{N \to \infty} 0 \implies \mu(E) = 0 \]
+		ידוע ש־$\nu$ מידה \textit{סופית}, ולכן מהעובדה ש־$E_N \sea E$ נובע ש־$\nu(E_N) \to \nu(E) \ge \eg_0$ ואז $\nu(E) \ge \eg_0$ בעוד $\mu(E) = 0$, וזו סתירה לרציפות בהחלט $\nu \ll \mu$. 
+	\end{proof}
+	
+	\noti{ה\textit{תומך של $g$} הוא: 
+	\[ \supp g \cod \{x \mid g(x) \neq 0\} \]}
+	\rmark{בלעז, support. }
+	\defi{אומרים ש־$g$ עם \textit{תומך ממידה סופית} אם $\mu(\supp g) = 0$. }
+	
+	כזכור, לכל $A \subset \R^{d}$, מתקיים ש־$\mu(A) = \sup\{m(K) \mid K \mathrm{\ is\ compact}\}\ $. היא נראית תמימה אך היא לא טרוויאלית בכלל, היא די מפתיע בעבור $m(\R\setminus \Q) = \infty$. גרסה קצת אנלוגית של הטענה הזו היא הטענה הבאה: 
+	\clm{יהי $(\Og, \fc, \mu)$ מרחב מידה \ס־סופי, ו־$f$ אי־שלילית ומדידה. אזי: 
+	\[ \int_\Og \! f \dmu = \sup\ccb{\int_\Og \! g \dmu \ \middle\vert\ g\ \text{\en{is}}\  \substack{\text{\en{measurable, bounded,}}\\ \text{\en{and has a finite-}}\\ \text{\en{measure support}}}} \]\eqsw}\begin{proof}
+		TODO
+	\end{proof}
 	
 	
 	
