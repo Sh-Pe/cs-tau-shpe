@@ -1333,7 +1333,7 @@
 	
 	\subsection{משפטי מפתח}
 	\defi{סדרת פונקציות $f_n$ נקראת \textit{חסומה במשותף} (או \textit{חסומה במידה אחידה}) אם $\exists M \in \R.\, \forall n \in\N \co \sof{f_n} \le M$}
-	\begin{Theorem}[משפט ההתכנסות החסומה]
+	\begin{Theorem}[משפט ההתכנסות החסומה]\label{theo:bounded-convergence}
 		יהי $(\Og, f, \mu)$ מרחב מידה סופי, ו־$f_1, f_2 \dots \co \Og \to \R$ סדרת פונקציות מדידות המתכנסת כב''מ לפונקציה הגבולית $f$. נניח שהפונקציות חסומות במשותף. אזי $f, f_1, f_2 \dots$ אינטגרביליות וכן: 
 		\[ \int_\Og f \dmu = \lim_{n \to \infty}\int_\Og f_n\dmu \]
 		ולמעשה: 
@@ -1477,17 +1477,45 @@
 	\noti{ה\textit{תומך של $g$} הוא: 
 	\[ \supp g \cod \{x \mid g(x) \neq 0\} \]}
 	\rmark{בלעז, support. }
-	\defi{אומרים ש־$g$ עם \textit{תומך ממידה סופית} אם $\mu(\supp g) = 0$. }
+	\defi{אומרים ש־$g$ עם \textit{תומך ממידה סופית} אם $\mu(\supp g) < \infty$. }
 	
 	כזכור, לכל $A \subset \R^{d}$, מתקיים ש־$\mu(A) = \sup\{m(K) \mid K \mathrm{\ is\ compact}\}\ $. היא נראית תמימה אך היא לא טרוויאלית בכלל, היא די מפתיע בעבור $m(\R\setminus \Q) = \infty$. גרסה קצת אנלוגית של הטענה הזו היא הטענה הבאה: 
 	\clm{יהי $(\Og, \fc, \mu)$ מרחב מידה \ס־סופי, ו־$f$ אי־שלילית ומדידה. אזי: 
-	\[ \int_\Og \! f \dmu = \sup\ccb{\int_\Og \! g \dmu \ \middle\vert\ g\ \text{\en{is}}\  \substack{\text{\en{measurable, bounded,}}\\ \text{\en{and has a finite-}}\\ \text{\en{measure support}}}} \]\eqsw}\begin{proof}
-		TODO
+	\[ \int_\Og \! f \dmu = \sup\ccb{\int_\Og \! g \dmu \ \middle\vert\ 0 \le g \le f \ \mathrm{s.t.\ }g \ \text{\en{is}}\  \substack{\text{\en{measurable, bounded,}}\\ \text{\en{and has a finite-}}\\ \text{\en{measure support}}}} \]\eqsw}\begin{proof}
+		נניח ראשית ש־$I \cod \int_\Og f < \infty$. נגדיר $\nu(A) = \mu_f = \int_A f \dmu$, זו מידה סופית על $\Og$, עם $\nu(\Og) = I < \infty$. נסמן ב־$A_n \cod \{x \in \Og \co \frac{1}{N} \le f(x) \le N\}$, והיא מדידה. נסמן $\Og' = \{x \in \Og \co f(x) < \infty\}$, וזו קבוצה ממידה מלאה (כי $f$ מאינטגרל סופי), אזי $\nu(\Og') = \int_{\Og'}f = \int_\Og f =I$. סה''כ $A_N \nea \Og'$, ולכן $\nu(A_N) \to \nu(\Og') = I$. 
+		
+		בהינתן איזשהו $\eg > 0$ נבחר איזשהו $N$ כך ש־$\int_{A_N}f = \nu(A_N) > I - \eg$. הפונקציה $g$ שחיפשנו (עם התומך הסופי, החסימות והמדידות) תהיה: 
+		\[ g(x) = \begin{cases}
+			f(x) & x \in A_N \\
+			0 & \other 
+		\end{cases} = f \cdot \q_{A_N} \]
+		ברור ש־$g(x)$ מדידה ו־$0 \le f \le g$, היא חסומה ע''י $N$ מהגדרת $A_N$, והתומך שלה ממידה סופית ממרקוב־צ'ביצ'ב: 
+		\[ \mu(\{g \neq 0\}) = \mu(A_N) \le \nu\cl{\ccb{f > \frac{1}{N}}} \le \frac{\int f}{\frac{1}{N}} < \infty \]
+		לסיכום, לכל $\eg > 0$, מצאנו $g$ מדידה וחסומה עם תומך ממידה סופיץ עך ש־$0 \le g \le f$ ו־$\int_\Og g \ge \int_\Og - \eg$. 
+		
+		הוכחנו את הטענה במקרה של $I < \infty$. המקרה הכללי מאוד דומה, פשוט במקום $\int g > I - \eg$	נשתדל לקבל $\int g > K$ עבור $K$ נתון סופי. בשלב האחרון כדי לקבל תומך סופי נצטרך להשתמש ב־\ס־סופיות של $\mu$. 
+		(ההוכחה המלאה למקרה זה ניתנה כתרגיל). 
 	\end{proof}
+	\begin{Collary}[תוצאה מההוכחה]
+		אם $f \ge 0$ מדידה ואינטגרבילית, אז: 
+		\[ \int_\Og \! f = \lim_{N\to \infty}\int_{\{\frac{1}{N} < f < N\}}\dequadd\dequadd \ f \]\eqsw
+	\end{Collary}
+	
+	\nthlec{7}{8}
+	
+	\subsection{החלפת גבול ואינטגרל}
+	התכונה המרכזית לפרק זה היא הרציפות של מידה \ס־אדטיבית: 
+	\[ A_n \nea A \implies \mu(A_n) \toinf \mu(A) \]
+	ובמרחב מידה סופי: 
+	\[ A_n \sea A \implies \mu(A_n) \toinf \mu(A) \]
+	
+	\rmark{במרחב מידה אינסופי, רק ידוע ש־$A_N \sea A$ גורר $\mu(A) \le \lim \mu(A_N)$, כלומר ''מסה יכולה להיעלם בגבול``. }
+	
+	היה משפט אחד שהוכחנו בהקשר של החלפת גבול ואינטגרל, והוא היה משפט ההתכנסות החסומה (\ref{theo:bounded-convergence}). 
 	
 	
 	
-	\textbf{ההמשך יבוא} $\sim$ \nthlec{7}{8}
+	\textbf{ההמשך יבוא} $\sim$ \nthlec{8}{9}
 	
 	
 	
